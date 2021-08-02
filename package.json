@@ -15,7 +15,8 @@
     "pretest": "npm run build:cjs",
     "lint": "eslint . --ext .ts --fix",
     "prepare": "npm run build",
-    "prepack": "npm run build"
+    "prepack": "npm run build",
+    "postinstall": "npm run build"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.0.4",
