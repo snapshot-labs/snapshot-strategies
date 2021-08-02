@@ -14,7 +14,8 @@
     "test": "jest test/index.spec.ts --runInBand --testTimeout=50000",
     "pretest": "npm run build:cjs",
     "lint": "eslint . --ext .ts --fix",
-    "prepare": "npm run build"
+    "prepare": "npm run build",
+    "prepack": "npm run build"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.0.4",
