@@ -1,12 +1,11 @@
 import fetch from 'cross-fetch';
 import { Interface } from '@ethersproject/abi';
 import { Contract } from '@ethersproject/contracts';
-import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { jsonToGraphQLQuery } from 'json-to-graphql-query';
 import _strategies from './strategies';
 import Multicaller from './utils/multicaller';
 import getProvider from './utils/provider';
-import { signMessage, getBlockNumber } from './utils/web3';
+import { getBlockNumber } from './utils/web3';
 import gateways from './gateways.json';
 import networks from './networks.json';
 
@@ -15,8 +14,6 @@ export const SNAPSHOT_SUBGRAPH_URL = {
   '4': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-rinkeby',
   '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
 };
-
-export const SNAPSHOT_SCORE_API = 'https://score.snapshot.org/api/scores';
 
 export async function call(provider, abi: any[], call: any[], options?) {
   const contract = new Contract(call[0], abi, provider);
@@ -95,49 +92,6 @@ export async function ipfsGet(
   return fetch(url).then((res) => res.json());
 }
 
-export async function sendTransaction(
-  web3,
-  contractAddress: string,
-  abi: any[],
-  action: string,
-  params: any[],
-  overrides = {}
-) {
-  const signer = web3.getSigner();
-  const contract = new Contract(contractAddress, abi, web3);
-  const contractWithSigner = contract.connect(signer);
-  // overrides.gasLimit = 12e6;
-  return await contractWithSigner[action](...params, overrides);
-}
-
-export async function getScores(
-  space: string,
-  strategies: any[],
-  network: string,
-  provider: StaticJsonRpcProvider | string,
-  addresses: string[],
-  snapshot: number | string = 'latest'
-) {
-  try {
-    const params = {
-      space,
-      network,
-      snapshot,
-      strategies,
-      addresses
-    };
-    const res = await fetch(SNAPSHOT_SCORE_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ params })
-    });
-    const obj = await res.json();
-    return obj.result.scores;
-  } catch (e) {
-    return Promise.reject(e);
-  }
-}
-
 export async function getScoresDirect(
   space: string,
   strategies: any[],
@@ -174,11 +128,8 @@ export default {
   multicall,
   subgraphRequest,
   ipfsGet,
-  sendTransaction,
-  getScores,
   getScoresDirect,
   getProvider,
-  signMessage,
   getBlockNumber,
   Multicaller
 };
