@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import fetch from 'cross-fetch'; 
 import { subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
 import aboutFile from './README.md';
