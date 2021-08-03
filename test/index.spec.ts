@@ -106,7 +106,7 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
     console.log('Scores with latest snapshot', scores);
     console.log(`Resolved in ${(getScoresTime / 1e3).toFixed(2)} sec.`);
     // wait for all logs to be printed (bug: printed after results)
-    await new Promise((r) => setTimeout(r, 100));
+    await new Promise((r) => setTimeout(r, 500));
   }, 2e4);
 
   it('Should return an array of object with addresses', () => {
@@ -147,7 +147,7 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
       console.log(`Scores with ${moreArg || 500} addresses`, scoresMore);
       console.log(`Resolved in ${(getScoresTimeMore / 1e3).toFixed(2)} sec.`);
       // wait for all logs to be printed (bug: printed after results)
-      await new Promise((r) => setTimeout(r, 100));
+      await new Promise((r) => setTimeout(r, 500));
     });
 
     it(`Should take less than 20 sec. to resolve with ${
