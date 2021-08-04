@@ -1,4 +1,3 @@
-import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 import { getAllReserves, getInfo } from './helper';
 
@@ -18,7 +17,6 @@ const params = {
       }
     },
     id: true,
-    // owner:true,
     pool: {
       tick: true,
       sqrtPrice: true
