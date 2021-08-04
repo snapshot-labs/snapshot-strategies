@@ -14,8 +14,12 @@
   "license": "MIT",
   "scripts": {
     "dev": "tsc -p . -w --incremental",
-    "test": "tsc -p . && jest",
-    "prepublishOnly": "tsc -p ."
+    "build": "tsc -p .",
+    "test": "jest test/index.spec.ts --runInBand --testTimeout=120000",
+    "pretest": "npm run build",
+    "prepublishOnly": "tsc -p .",
+    "lint": "eslint . --ext .ts --fix",
+    "prepare": "npm run build"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.0.4",
