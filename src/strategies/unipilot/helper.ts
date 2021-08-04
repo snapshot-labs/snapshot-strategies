@@ -88,8 +88,12 @@ export const getReserves = async (
   currentTick: string,
   sqrtPrice: string
 ) => {
-  const _baseToken = await formatToken(baseToken);
-  const _quoteToken = await formatToken(quoteToken);
+  const [_baseToken, _quoteToken] = await Promise.all([
+    formatToken(baseToken),
+    formatToken(quoteToken)
+  ]);
+  // const _baseToken = await formatToken(baseToken);
+  // const _quoteToken = await formatToken(quoteToken);
 
   if (
     parseInt(currentTick) < parseInt(tickLower) ||

@@ -8,22 +8,6 @@ const UNISWAP_V3_SUBGRAPH_URL = {
 export const author = 'anassohail99';
 export const version = '0.1.0';
 
-const params = {
-  positions: {
-    __args: {
-      where: {
-        pool: '0xfc9f572124d8f469960b94537b493f2676776c03',
-        owner: ''
-      }
-    },
-    id: true,
-    pool: {
-      tick: true,
-      sqrtPrice: true
-    }
-  }
-};
-
 export async function strategy(
   _space,
   network,
@@ -32,17 +16,40 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const params = {
+    positions: {
+      __args: {
+        where: {
+          pool: '0xfc9f572124d8f469960b94537b493f2676776c03',
+          owner_in: addresses.map((address) => address.toLowerCase())
+        }
+      },
+      id: true,
+      owner: true,
+      pool: {
+        tick: true,
+        sqrtPrice: true
+      }
+    }
+  };
+
   if (snapshot !== 'latest') {
     // @ts-ignore
     params.positions.__args.block = { number: snapshot };
   }
 
-  const usersUniswap = await Promise.all(
-    addresses.map((address, idx) => {
-      params.positions.__args.where.owner = address;
-      return subgraphRequest(UNISWAP_V3_SUBGRAPH_URL[network], params);
-    })
+  const rawData = await subgraphRequest(
+    UNISWAP_V3_SUBGRAPH_URL[network],
+    params
   );
+
+  const usersUniswap = addresses.map(() => ({
+    positions: []
+  }));
+
+  rawData?.positions?.map((position, idx) => {
+    usersUniswap[addresses.indexOf(position?.owner)].positions.push(position);
+  });
 
   const positionInfos = await Promise.all(
     usersUniswap.map((user: any) => {
