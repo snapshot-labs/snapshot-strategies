@@ -21,8 +21,6 @@ It will apply the the following to the result:
 
 - **strategy.name:** name of the strategy to run
 
-- **strategy.network:** the network id to be used by the strategy.
-
 - **strategy.params:** the strategy specific params to execute it.
   
 - **log:** Boolean flag to enable or disable logging to the console (used for debugging purposes during development)

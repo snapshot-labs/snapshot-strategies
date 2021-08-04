@@ -6,8 +6,7 @@
       "params": {
         "strategy": {
           "name": "erc20-balance-of",
-          "network": "1",
-          "params": {
+           "params": {
             "address": "0x579cea1889991f68acc35ff5c3dd0621ff29b0c9",
             "decimals": 18
           }

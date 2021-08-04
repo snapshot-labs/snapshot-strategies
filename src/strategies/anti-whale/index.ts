@@ -67,15 +67,13 @@ export async function strategy(
 ) {
   _options = options;
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const result = await strategies[options.strategy.name](
+  const result = await strategies[options.strategy.name].strategy(
     space,
-    options.strategy.network,
-    getProvider(options.strategy.network),
+    network,
+    provider,
     addresses,
     options.strategy.params,
-    blockTag
+    snapshot
   );
 
   const entries = new Map<PropertyKey, any>();
