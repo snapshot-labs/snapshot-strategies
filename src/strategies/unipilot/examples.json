@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Unipilot query",
+    "strategy": {
+      "name": "unipilot",
+      "params": {}
+    },
+    "network": "1",
+    "addresses": ["0x1a62c9d1746de9fd9d449e80ddbb8a67d2a72a94"],
+    "snapshot": 12952757
+  }
+]
