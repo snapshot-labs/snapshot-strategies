@@ -7,15 +7,18 @@
     ".": "./dist/index.js"
   },
   "files": [
-    "dist/index.js",
-    "dist/index.d.ts"
+    "dist"
   ],
   "repository": "snapshot-labs/snapshot-strategies",
   "license": "MIT",
   "scripts": {
-    "dev": "tsc -p . -w --incremental",
-    "test": "tsc -p . && jest",
-    "prepublishOnly": "tsc -p ."
+    "build": "tsc -p .",
+    "test": "jest test/index.spec.ts --runInBand --testTimeout=120000",
+    "pretest": "npm run build",
+    "prepublishOnly": "npm run build",
+    "prepare": "npm run build",
+    "postbuild": "copyfiles -u 1 src/**/*.md dist/ && node scripts/textToJson.ts",
+    "lint": "eslint . --ext .ts --fix"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.0.4",
@@ -39,6 +42,7 @@
     "@types/node": "^13.9.5",
     "@typescript-eslint/eslint-plugin": "^4.28.2",
     "@typescript-eslint/parser": "^4.28.2",
+    "copyfiles": "^2.4.1",
     "eslint": "^6.8.0",
     "eslint-config-airbnb-base": "^14.1.0",
     "eslint-plugin-import": "^2.20.2",
