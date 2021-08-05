@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sunder",
+      "params": {
+        "token": "0x20axxxxc5c8C0D8",
+        "symbol": "xxxx",
+        "decimals": 18,
+        "address": "0x20axxxxc5c8C0D8"
+      }
+    },
+    "network": "42",
+    "addresses": [
+      ""
+    ],
+    "snapshot": 11437846
+  }
+]
