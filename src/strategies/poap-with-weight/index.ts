@@ -1,8 +1,12 @@
 import { id } from '@ethersproject/hash';
 import { multicall, subgraphRequest } from '../../utils';
+import examplesFile from './examples.json';
+import aboutFile from './README.md';
 
 export const author = 'G2 & Torch';
 export const version = '1.0.0';
+export const examples = examplesFile;
+export const about = aboutFile;
 
 const POAP_API_ENDPOINT_URL =
   'https://api.thegraph.com/subgraphs/name/poap-xyz/poap/graphql';
