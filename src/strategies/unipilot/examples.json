@@ -3,7 +3,9 @@
     "name": "Unipilot query",
     "strategy": {
       "name": "unipilot",
-      "params": {}
+      "params": {
+        "poolAddress": "0xfc9f572124d8f469960b94537b493f2676776c03"
+      }
     },
     "network": "1",
     "addresses": [

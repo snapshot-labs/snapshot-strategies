@@ -20,7 +20,7 @@ export async function strategy(
     positions: {
       __args: {
         where: {
-          pool: '0xfc9f572124d8f469960b94537b493f2676776c03',
+          pool: options.poolAddress,
           owner_in: addresses.map((address) => address.toLowerCase())
         }
       },
