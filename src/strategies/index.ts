@@ -1,4 +1,5 @@
 import * as balancer from './balancer';
+import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
 import * as ensDomainsOwned from './ens-domains-owned';
@@ -123,6 +124,7 @@ import * as unipoolUniv2Lp from './unipool-univ2-lp';
 
 export default {
   balancer,
+  sunder,
   'balancer-smart-pool': balancerSmartPool,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
