@@ -17,7 +17,7 @@
     "pretest": "npm run build",
     "prepublishOnly": "npm run build",
     "prepare": "npm run build",
-    "postbuild": "copyfiles -u 1 src/**/*.md dist/ && node scripts/textToJson.ts",
+    "postbuild": "copyfiles -u 1 src/**/*.md dist/",
     "lint": "eslint . --ext .ts --fix"
   },
   "dependencies": {
