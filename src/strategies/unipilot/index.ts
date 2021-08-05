@@ -1,10 +1,5 @@
 import { subgraphRequest } from '../../utils';
-import {
-  getAllReserves,
-  getAllReservesTest,
-  getInfo,
-  getReservesTest
-} from './helper';
+import { getAllReserves } from './helper';
 
 const UNISWAP_V3_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
@@ -77,69 +72,20 @@ export async function strategy(
   });
 
   const reserves = usersUniswap.map((user, idx) => {
-    return getAllReservesTest(user?.positions);
+    return getAllReserves(user?.positions);
   });
-
-  // console.log('user end', (Date.now() - now) / 1000);
-
-  // const positionInfos = await Promise.all(
-  //   usersUniswap.map((user: any) => {
-  //     return getInfo(user?.positions, _provider);
-  //   })
-  // );
-
-  // console.log('promise end', (Date.now() - now) / 1000);
-
-  // const positionInfosPrepare: any = [];
-  // positionInfos?.forEach((positionInfo: any, root_idx) => {
-  //   positionInfosPrepare.push(
-  //     positionInfo?.map((positions, idx) => {
-  //       return {
-  //         positions,
-  //         tick: usersUniswap[root_idx]?.positions[idx]?.pool.tick,
-  //         sqrtPrice: usersUniswap[root_idx]?.positions[idx]?.pool.sqrtPrice
-  //       };
-  //     })
-  //   );
-  // });
-
-  // // console.log('positionInfosPrepare', positionInfosPrepare);
-
-  // console.log('end position info', (Date.now() - now) / 1000);
-
-  // const reserves = await Promise.all(
-  //   positionInfosPrepare.map((positionInfo, idx) => {
-  //     return getAllReserves(positionInfo);
-  //   })
-  // );
-
-  // console.log('end reserve', (Date.now() - now) / 1000);
-
-  // // console.log('reserves', reserves);
 
   const score = {};
 
   reserves?.forEach((user: any, idx) => {
     let token0Reserve = 0;
-    let token1Reserve = 0;
 
     user.forEach((position: any) => {
-      console.log(
-        'position?.token0Reserve',
-        position?.token0Reserve,
-        position?.token1Reserve
-      );
       token0Reserve += position?.token0Reserve;
-      token1Reserve += position?.token1Reserve;
     });
 
     score[addresses[idx]] = token0Reserve;
   });
-
-  // htao
-  // addresses.forEach((address, idx) => {
-  //   score[address] = reserves[idx].token0Reserve;
-  // });
 
   return score || {};
 }
