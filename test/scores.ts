@@ -1,5 +1,5 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
-const snapshot = require('../');
+const snapshot = require('../').default;
 const networks = require('../src/networks.json');
 
 const space = 'aragon';

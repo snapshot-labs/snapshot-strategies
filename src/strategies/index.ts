@@ -1,3 +1,5 @@
+import { readFileSync } from 'fs';
+import path from 'path';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
@@ -121,7 +123,7 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 
-export default {
+const strategies = {
   balancer,
   'balancer-smart-pool': balancerSmartPool,
   'erc20-received': erc20Received,
@@ -245,3 +247,18 @@ export default {
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp
 };
+
+Object.keys(strategies).forEach(function (strategyName) {
+  let about = '';
+  try {
+    about = readFileSync(
+      path.join(__dirname, strategyName, 'README.md'),
+      'utf8'
+    );
+  } catch (error) {
+    about = '';
+  }
+  strategies[strategyName].about = about;
+});
+
+export default strategies;
