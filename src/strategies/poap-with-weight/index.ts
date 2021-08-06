@@ -2,7 +2,7 @@ import { multicall, subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
 import aboutFile from './README.md';
 
-export const author = 'G2 & Torch';
+export const author = 'gawainb';
 export const version = '1.0.0';
 export const examples = examplesFile;
 export const about = aboutFile;
