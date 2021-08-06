@@ -1,4 +1,3 @@
-import { id } from '@ethersproject/hash';
 import { multicall, subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
 import aboutFile from './README.md';
