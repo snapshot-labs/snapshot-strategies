@@ -1,4 +1,3 @@
-import getProvider from '../../utils/provider';
 import strategies from '..';
 
 export const author = 'joaomajesus';
