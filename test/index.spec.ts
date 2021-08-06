@@ -1,6 +1,6 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
-const snapshot = require('../');
+const snapshot = require('../').default;
 const networks = require('../src/networks.json');
 const addresses = require('./addresses.json');
 

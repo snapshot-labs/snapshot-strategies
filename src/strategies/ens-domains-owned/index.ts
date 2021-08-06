@@ -1,7 +1,6 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
-import aboutFile from './README.md';
 
 const ENS_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/ensdomains/ens',
@@ -13,7 +12,6 @@ const ENS_SUBGRAPH_URL = {
 export const author = 'makoto';
 export const version = '0.1.0';
 export const examples = examplesFile;
-export const about = aboutFile;
 
 export async function strategy(
   _space,
