@@ -122,7 +122,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
-import * as l2Deversifi from './l2-deversifi'
+import * as l2Deversifi from './l2-deversifi';
 
 const strategies = {
   balancer,
