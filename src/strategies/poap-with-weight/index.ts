@@ -5,7 +5,6 @@ import aboutFile from './README.md';
 export const author = 'gawainb';
 export const version = '1.0.0';
 export const examples = examplesFile;
-export const about = aboutFile;
 
 const POAP_API_ENDPOINT_URL =
   'https://api.thegraph.com/subgraphs/name/poap-xyz/poap/graphql';
