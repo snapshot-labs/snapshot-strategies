@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
@@ -125,6 +126,7 @@ import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as poapWithWeight from './poap-with-weight';
 
 const strategies = {
+  'anti-whale': antiWhale,
   balancer,
   'balancer-smart-pool': balancerSmartPool,
   'erc20-received': erc20Received,
