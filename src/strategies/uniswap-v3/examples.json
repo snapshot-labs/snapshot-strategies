@@ -1,8 +1,8 @@
 [
   {
-    "name": "Unipilot query",
+    "name": "Uniswap-v3 query",
     "strategy": {
-      "name": "unipilot",
+      "name": "uniswap-v3",
       "params": {
         "poolAddress": "0xfc9f572124d8f469960b94537b493f2676776c03"
       }

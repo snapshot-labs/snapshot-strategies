@@ -120,7 +120,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
-import * as unipilot from './unipilot';
+import * as uniswapV3 from './uniswap-v3';
 
 export default {
   balancer,
@@ -245,5 +245,5 @@ export default {
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
-  unipilot: unipilot
+  'uniswap-v3': uniswapV3
 };
