@@ -56,7 +56,6 @@ export async function strategy(
     // @ts-ignore
     params.positions.__args.block = { number: snapshot };
   }
-  const now = Date.now();
 
   const rawData = await subgraphRequest(
     UNISWAP_V3_SUBGRAPH_URL[network],
