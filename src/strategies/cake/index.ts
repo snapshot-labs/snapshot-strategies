@@ -1,12 +1,10 @@
-import fetch from 'cross-fetch';
+import fetch from 'cross-fetch'; 
 import { subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
-import aboutFile from './README.md';
 
 export const author = 'pancake-swap';
 export const version = '0.0.1';
 export const examples = examplesFile;
-export const about = aboutFile;
 
 type VotingResponse = {
   verificationHash: string;
@@ -19,6 +17,7 @@ type VotingResponse = {
   total: string;
 };
 
+const MINIUM_VOTING_POWER = 0.01;
 const SMART_CHEF_URL =
   'https://api.bscgraph.org/subgraphs/name/pancakeswap/smartchef';
 const VOTING_API_URL = 'https://voting-api.pancakeswap.info/api/power';
@@ -88,10 +87,11 @@ export async function strategy(
     const calculatedPower = votingPowerResults.reduce(
       (accum, response, index) => {
         const address = addresses[index];
+        const total = parseFloat(response.total);
 
         return {
           ...accum,
-          [address]: parseFloat(response.total)
+          [address]: total <= MINIUM_VOTING_POWER ? MINIUM_VOTING_POWER : total
         };
       },
       {}
