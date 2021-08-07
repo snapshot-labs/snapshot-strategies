@@ -41,37 +41,7 @@ const masterChefAbi = [
     ],
     stateMutability: 'view',
     type: 'function'
-  }
-];
-
-const smartChefAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
-
-const erc20Abi = [
+  },
   {
     "constant": true,
     "inputs": [],
@@ -104,6 +74,33 @@ const erc20Abi = [
     "payable": false,
     "stateMutability": "view",
     "type": "function"
+  }
+];
+
+const smartChefAbi = [
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: '',
+        type: 'address'
+      }
+    ],
+    name: 'userInfo',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amount',
+        type: 'uint256'
+      },
+      {
+        internalType: 'uint256',
+        name: 'rewardDebt',
+        type: 'uint256'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
   }
 ];
 
@@ -205,28 +202,12 @@ export async function strategy(
   const resultSmartChef: Record<string, BigNumberish> = await multiSmartChef.execute();
 
   /*
-    Total Supply LPs in pairs with BSW
-  */
-  const totalSupplyMulti = new Multicaller(network, provider, erc20Abi, { blockTag });
-  options.bswLPs.forEach((bswLpAddr) => {
-    totalSupplyMulti.call(bswLpAddr.address, bswLpAddr.address, 'totalSupply');
-  });
-  const resultTotalSupplyMulti = await totalSupplyMulti.execute();
-
-  /*
-    Balance BSW in pairs
-  */
-  const balanceBswInPairs = new Multicaller(network, provider, erc20Abi, { blockTag });
-  options.bswLPs.forEach((bswLpAddr) => {
-    balanceBswInPairs.call(bswLpAddr.address, options.address, 'balanceOf', [ bswLpAddr.address ]);
-  });
-  const resultBalanceBswInPairs = await balanceBswInPairs.execute();
-
-  /*
     Staked LPs in BSW farms
   */
   const multiBswLPs = new Multicaller(network, provider, masterChefAbi, { blockTag });
   options.bswLPs.forEach((bswLpAddr) => {
+    multiBswLPs.call('balanceOf', options.address, 'balanceOf', [ bswLpAddr.address ]);
+    multiBswLPs.call('totalSupply', bswLpAddr.address, 'totalSupply');
     addresses.forEach((address) => multiBswLPs.call(bswLpAddr.address + '-' + address, options.masterChef, 'userInfo', [bswLpAddr.pid, address]));
   });
   const resultBswLPs: Record<string, BigNumberish> = await multiBswLPs.execute();
@@ -273,7 +254,7 @@ export async function strategy(
       addUserBalance(
         userBalances,
         userAddr,
-        bn(resultBswLPs[bswLPAddr.address+'-'+userAddr][0]).mul(bn(resultBalanceBswInPairs[bswLPAddr.address])).div(bn(resultTotalSupplyMulti[bswLPAddr.address]))
+        bn(resultBswLPs[bswLPAddr.address+'-'+userAddr][0]).mul(bn(resultBswLPs.balanceOf)).div(bn(resultBswLPs.totalSupply))
       );
     });
   });
