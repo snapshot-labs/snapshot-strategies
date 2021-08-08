@@ -46,53 +46,7 @@ const smartChefAbi = [
 ];
 
 const autoBswAbi = [
-  {
-    "inputs": [],
-    "name": "getPricePerFullShare",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "inputs": [
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "userInfo",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "shares",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "lastDepositedTime",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "BswAtLastUserAction",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "lastUserActionTime",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function"
-  },
+  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
 const bn = (num: any): BigNumber => {
