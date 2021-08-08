@@ -3,7 +3,7 @@ import { formatUnits, parseUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
 import examplesFile from './examples.json';
 
-export const author = 'biswap';
+export const author = 'biswap-dex';
 export const version = '0.0.1';
 export const examples = examplesFile;
 
