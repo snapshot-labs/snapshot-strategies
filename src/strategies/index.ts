@@ -251,7 +251,15 @@ const strategies = {
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
+  let examples = null;
   let about = '';
+  try {
+    examples = JSON.parse(
+      readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
+    );
+  } catch (error) {
+    examples = null;
+  }
   try {
     about = readFileSync(
       path.join(__dirname, strategyName, 'README.md'),
@@ -260,6 +268,7 @@ Object.keys(strategies).forEach(function (strategyName) {
   } catch (error) {
     about = '';
   }
+  strategies[strategyName].examples = examples;
   strategies[strategyName].about = about;
 });
 

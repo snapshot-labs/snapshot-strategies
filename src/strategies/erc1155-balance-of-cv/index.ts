@@ -1,9 +1,7 @@
 import { strategy as erc1155BalanceOfStrategy } from '../erc1155-balance-of';
-import examplesFile from './examples.json';
 
 export const author = 'dave4506';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 export async function strategy(
   space,

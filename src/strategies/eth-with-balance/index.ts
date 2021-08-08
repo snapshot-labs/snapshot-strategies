@@ -1,9 +1,7 @@
 import { strategy as ethBalanceOfStrategy } from '../eth-balance';
-import examplesFile from './examples.json';
 
 export const author = 'AronVanAmmers';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 export async function strategy(
   space,

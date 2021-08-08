@@ -1,10 +1,8 @@
 import fetch from 'cross-fetch';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
-import examplesFile from './examples.json';
 
 export const author = 'snapshot-labs';
 export const version = '0.0.1';
-export const examples = examplesFile;
 
 const networksWithPlatforms = {
   1: 'ethereum',
