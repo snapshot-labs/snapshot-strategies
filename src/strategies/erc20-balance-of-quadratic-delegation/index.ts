@@ -1,10 +1,8 @@
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import { getDelegations } from '../../utils/delegation';
-import examplesFile from './examples.json';
 
 export const author = 'ferittuncer';
 export const version = '1.0.0';
-export const examples = examplesFile;
 
 export async function strategy(
   space,

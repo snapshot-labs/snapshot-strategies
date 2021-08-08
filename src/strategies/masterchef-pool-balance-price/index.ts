@@ -2,11 +2,9 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 import fetch from 'cross-fetch';
-import examplesFile from './examples.json';
 
 export const author = 'joaomajesus';
 export const version = '0.2.0';
-export const examples = examplesFile;
 
 /*
  * Generic masterchef pool balance or price strategy. Accepted options:
