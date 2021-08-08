@@ -123,6 +123,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
+import * as biswap from './biswap';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -247,7 +248,8 @@ const strategies = {
   'tomb-finance': tombFinance,
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
-  'unipool-univ2-lp': unipoolUniv2Lp
+  'unipool-univ2-lp': unipoolUniv2Lp,
+  biswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
