@@ -13,68 +13,9 @@ const abi = [
 ];
 
 const masterChefAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    "constant": true,
-    "inputs": [],
-    "name": "totalSupply",
-    "outputs": [
-      {
-        "name": "",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  },
-  {
-    "constant": true,
-    "inputs": [
-      {
-        "name": "_owner",
-        "type": "address"
-      }
-    ],
-    "name": "balanceOf",
-    "outputs": [
-      {
-        "name": "balance",
-        "type": "uint256"
-      }
-    ],
-    "payable": false,
-    "stateMutability": "view",
-    "type": "function"
-  }
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address _owner) view returns (uint256 balance)'
 ];
 
 const smartChefAbi = [
