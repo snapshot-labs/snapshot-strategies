@@ -19,34 +19,12 @@ const masterChefAbi = [
 ];
 
 const smartChefAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
 const autoBswAbi = [
-  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
+  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function getPricePerFullShare() view returns (uint256)'
 ];
 
 const bn = (num: any): BigNumber => {
