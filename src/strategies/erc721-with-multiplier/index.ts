@@ -1,10 +1,8 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = '2fd';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'

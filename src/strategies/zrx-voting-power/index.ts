@@ -3,11 +3,9 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
-import examplesFile from './examples.json';
 
 export const author = 'benlyaunzon';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 const ZRX_STAKING_POOLS = {
   '1': 'https://api.0x.org/staking/pools',

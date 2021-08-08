@@ -1,10 +1,8 @@
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = '0xKiwi';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 const xINV = '0x65b35d6Eb7006e0e607BC54EB2dFD459923476fE';
 const ONE_E18 = parseUnits('1', 18);

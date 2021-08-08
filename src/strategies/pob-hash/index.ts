@@ -1,9 +1,7 @@
 import { subgraphRequest } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'dave4506';
 export const version = '0.1.1';
-export const examples = examplesFile;
 
 export const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/proofofbeauty/hash'
