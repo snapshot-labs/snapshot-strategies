@@ -137,6 +137,7 @@ import * as mcnFarm from './mcn-farm';
 import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as dappnodeDao from './dappnode-dao';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -275,7 +276,8 @@ const strategies = {
   'mcn-farm': mcnFarm,
   snowswap,
   meebitsdao,
-  'crucible-erc20-balance-of': crucibleERC20BalanceOf
+  'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'dappnode-dao': dappnodeDao,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

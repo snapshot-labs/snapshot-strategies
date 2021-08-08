@@ -1,0 +1,30 @@
+[
+  {
+    "name": "DAppNodeDAO staked in Unipool rewards contracts multichain",
+    "strategy": {
+      "name": "dappnode-dao",
+      "params": {
+        "symbol": "NODE",
+        "decimals": 18,
+        "tokenAddress": "0xDa007777D86AC6d989cC9f79A73261b3fC5e0DA0",
+        "lpTokenAddress1": "0xee3b01b2debd3df95bf24d4aacf8e70373113315",
+        "unipoolAddress1": "0x072115DbD5c8b47E971890357d2951d4569F6B27",
+        "lpTokenAddress2": "0x60cd8dcc7cce0cca6a3743727ce909b6f715b2d8",
+        "unipoolAddress2": "0x89F2e26F20Bf66bBFAc947A3b628b4b4724AaA5c",
+        "unipoolSameToken": "0x19992b52338B7B49De9679ae018A7027803dB1Aa",
+        "unipoolSameTokenXdai": "0xF66823fdc33B9F4C66dB4C3394FF139872C12f16"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xe34c487c4bb958ec0542429d5e7f9f7f4d4dda92",
+      "0xf19b1c91faacf8071bd4bb5ab99db0193809068e",
+      "0x03c322db3f0d92ccdf6f8b6effd4031c94bed1ab",
+      "0x449833c57904f9d88cd3c26932060a329b93fe94",
+      "0xbfc7cae0fad9b346270ae8fde24827d2d779ef07",
+      "0x7fb1b28d66634106963c190aa99e779cd0dc779c",
+      "0x6b07d4ace5bc9a690fda9ddeb5a0f131fda0b257"
+    ],
+    "snapshot": 11635000
+  }
+]
