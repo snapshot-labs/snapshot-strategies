@@ -3,6 +3,7 @@ import path from 'path';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
+import * as blacklist from './blacklist';
 import * as contractCall from './contract-call';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
@@ -130,6 +131,7 @@ const strategies = {
   'anti-whale': antiWhale,
   balancer,
   'balancer-smart-pool': balancerSmartPool,
+  blacklist,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
   'eth-received': ethReceived,
