@@ -38,10 +38,12 @@ export async function strategy(
   const results = await Promise.all(promises);
   const resultsJson = await Promise.all(results.map((r: any) => r.json()));
 
-  const data: any = resultsJson.reduce(
-    (res: any, item: any) => [...res, ...item.score],
-    []
-  );
+  const data: any = resultsJson.reduce((res: any, item: any) => {
+    if (item.score) {
+      return [...res, ...item.score];
+    }
+    return res;
+  }, []);
 
   return Object.fromEntries(
     data.map((value) => [value.address, parseFloat(value.score)])
