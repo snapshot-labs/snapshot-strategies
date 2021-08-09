@@ -4,7 +4,10 @@
     "strategy": {
       "name": "xdai-stake-lp",
       "params": {
-        "exchange": "sushiswap"
+        "exchange": "sushiswap",
+        "lpTokenAddress": "0x9Fc5b87b74B9BD239879491056752EB90188106D",
+        "subgraphUrl": "https://api.thegraph.com/subgraphs/name/sushiswap/exchange",
+        "sushiswapMasterChefSubgraphUrl": "https://api.thegraph.com/subgraphs/name/sushiswap/master-chef"
       }
     },
     "network": "1",

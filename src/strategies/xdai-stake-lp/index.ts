@@ -7,21 +7,23 @@ export const version = '0.1.0';
 
 const STAKE_TOKEN_ADDRESS = '0x0Ae055097C6d159879521C384F1D2123D1f195e6';
 const DECIMALS = 18;
+const SUSHISWAP_MASTER_CHEF_SUBGRAPH_URL =
+  'https://api.thegraph.com/subgraphs/name/sushiswap/master-chef';
 
 const exchanges = {
   uniswap: {
     lpTokenAddress: '0x3B3d4EeFDc603b232907a7f3d0Ed1Eea5C62b5f7',
-    subgraph: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+    subgraphUrl: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
   },
   sushiswap: {
     lpTokenAddress: '0x9Fc5b87b74B9BD239879491056752EB90188106D',
-    subgraph: 'https://api.thegraph.com/subgraphs/name/sushiswap/exchange'
+    subgraphUrl: 'https://api.thegraph.com/subgraphs/name/sushiswap/exchange'
   }
 };
 
 const abi = ['function balanceOf(address owner) view returns (uint256)'];
 
-async function getSushiswapLpBalances(snapshot, addresses) {
+async function getSushiswapLpBalances(options, snapshot, addresses) {
   const params = {
     users: {
       __args: {
@@ -39,7 +41,8 @@ async function getSushiswapLpBalances(snapshot, addresses) {
     params.users.__args.block = { number: snapshot };
   }
   return subgraphRequest(
-    'https://api.thegraph.com/subgraphs/name/sushiswap/master-chef',
+    options.sushiswapMasterChefSubgraphUrl ||
+      SUSHISWAP_MASTER_CHEF_SUBGRAPH_URL,
     params
   );
 }
@@ -53,10 +56,11 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const lpTokenAddress = exchanges[
-    options.exchange
-  ].lpTokenAddress.toLowerCase();
+  const lpTokenAddress = (
+    options.lpTokenAddress || exchanges[options.exchange].lpTokenAddress
+  ).toLowerCase();
+  const subgraphUrl =
+    options.subgraphUrl || exchanges[options.exchange].subgraphUrl;
 
   let rate;
 
@@ -84,10 +88,7 @@ export async function strategy(
     params.pairs.__args.block = { number: snapshot };
   }
 
-  const result = await subgraphRequest(
-    exchanges[options.exchange].subgraph,
-    params
-  );
+  const result = await subgraphRequest(subgraphUrl, params);
 
   if (result && result.pairs) {
     result.pairs.map((object) => {
@@ -113,7 +114,7 @@ export async function strategy(
   );
 
   if (options.exchange === 'sushiswap') {
-    const response = await getSushiswapLpBalances(snapshot, addresses);
+    const response = await getSushiswapLpBalances(options, snapshot, addresses);
     response.users.forEach(({ address, amount }) => {
       const checksumAddress = getAddress(address);
       balances[checksumAddress] +=
