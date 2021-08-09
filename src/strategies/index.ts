@@ -42,6 +42,7 @@ import * as xDaiEasyStaking from './xdai-easy-staking';
 import * as xDaiPOSDAOStaking from './xdai-posdao-staking';
 import * as xDaiStakeHolders from './xdai-stake-holders';
 import * as xDaiStakeDelegation from './xdai-stake-delegation';
+import * as xDaiStakeLP from './xdai-stake-lp';
 import * as defidollar from './defidollar';
 import * as aavegotchi from './aavegotchi';
 import * as aavegotchiAgip from './aavegotchi-agip';
@@ -177,6 +178,7 @@ const strategies = {
   'xdai-posdao-staking': xDaiPOSDAOStaking,
   'xdai-stake-holders': xDaiStakeHolders,
   'xdai-stake-delegation': xDaiStakeDelegation,
+  'xdai-stake-lp': xDaiStakeLP,
   defidollar,
   aavegotchi,
   'aavegotchi-agip': aavegotchiAgip,

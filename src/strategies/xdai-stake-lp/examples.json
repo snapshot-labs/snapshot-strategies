@@ -1,0 +1,17 @@
+[
+  {
+    "name": "STAKE token LP balances",
+    "strategy": {
+      "name": "xdai-stake-lp",
+      "params": {
+        "exchange": "sushiswap"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xE58585B22cC2aC4270a2b92c2D2d8C5dB5A3330E",
+      "0x4D9e86a5AC368Aa4Df0473eF07e13Ec2Fbe04025"
+    ],
+    "snapshot": 12972390
+  }
+]
