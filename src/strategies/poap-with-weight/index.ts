@@ -6,7 +6,7 @@ export const version = '1.0.0';
 export const examples = examplesFile;
 
 const POAP_API_ENDPOINT_URL =
-  'https://api.thegraph.com/subgraphs/name/poap-xyz/poap/graphql';
+  'https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai';
 
 const abi = [
   'function ownerOf(uint256 tokenId) public view returns (address owner)'
