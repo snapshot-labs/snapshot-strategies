@@ -16,6 +16,9 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const tokenReserve =
+    options.tokenReserve === 0 ? 'token0Reserve' : 'token1Reserve';
+
   const params = {
     positions: {
       __args: {
@@ -77,13 +80,13 @@ export async function strategy(
   const score = {};
 
   reserves?.forEach((user: any, idx) => {
-    let token0Reserve = 0;
+    let tokenReserveAdd = 0;
 
     user.forEach((position: any) => {
-      token0Reserve += position?.token0Reserve;
+      tokenReserveAdd += position[tokenReserve];
     });
 
-    score[addresses[idx]] = token0Reserve;
+    score[addresses[idx]] = tokenReserveAdd;
   });
 
   return score || {};

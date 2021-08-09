@@ -250,7 +250,7 @@ const strategies = {
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
-  'uniswap-v3': uniswapV3
+  'uniswap-v3': uniswapV3,
   biswap
 };
 

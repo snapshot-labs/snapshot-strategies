@@ -4,7 +4,8 @@
     "strategy": {
       "name": "uniswap-v3",
       "params": {
-        "poolAddress": "0xfc9f572124d8f469960b94537b493f2676776c03"
+        "poolAddress": "0xfc9f572124d8f469960b94537b493f2676776c03",
+        "tokenReserve": 0
       }
     },
     "network": "1",
