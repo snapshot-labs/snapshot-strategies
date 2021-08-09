@@ -1,11 +1,9 @@
 import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
 import { multicall, subgraphRequest } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'maxaleks';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 const STAKE_TOKEN_ADDRESS = '0x0Ae055097C6d159879521C384F1D2123D1f195e6';
 const DECIMALS = 18;
@@ -21,29 +19,7 @@ const exchanges = {
   }
 };
 
-const abi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'owner',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+const abi = ['function balanceOf(address owner) view returns (uint256)'];
 
 async function getSushiswapLpBalances(snapshot, addresses) {
   const params = {
