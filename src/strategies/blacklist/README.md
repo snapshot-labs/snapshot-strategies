@@ -1,4 +1,4 @@
-# Anti-Whale strategy
+# Blacklist strategy
 
 ## Description
 
