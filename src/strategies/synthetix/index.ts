@@ -3,11 +3,9 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Contract } from '@ethersproject/contracts';
 import { Provider } from '@ethersproject/providers';
 import { subgraphRequest, ipfsGet } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'andytcf';
 export const version = '1.0.0';
-export const examples = examplesFile;
 
 type SNXHoldersResult = {
   snxholders: {

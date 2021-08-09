@@ -1,11 +1,9 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'kartojal';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 /**
  * Aave Governance strategy to measure voting or

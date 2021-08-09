@@ -1,11 +1,9 @@
 import fetch from 'cross-fetch';
 import { Web3Provider } from '@ethersproject/providers';
 import { ElasticSearchTxResult } from './ElasticSearchTxResult';
-import examplesFile from './examples.json';
 
 export const author = 'mccallofthewild';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 export async function strategy(
   ...args: [
