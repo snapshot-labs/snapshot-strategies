@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
@@ -123,8 +124,10 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as l2Deversifi from './l2-deversifi';
+import * as biswap from './biswap';
 
 const strategies = {
+  'anti-whale': antiWhale,
   balancer,
   'balancer-smart-pool': balancerSmartPool,
   'erc20-received': erc20Received,
@@ -247,11 +250,20 @@ const strategies = {
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
-  'l2-deversifi': l2Deversifi
+  'l2-deversifi': l2Deversifi,
+  biswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
+  let examples = null;
   let about = '';
+  try {
+    examples = JSON.parse(
+      readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
+    );
+  } catch (error) {
+    examples = null;
+  }
   try {
     about = readFileSync(
       path.join(__dirname, strategyName, 'README.md'),
@@ -260,6 +272,7 @@ Object.keys(strategies).forEach(function (strategyName) {
   } catch (error) {
     about = '';
   }
+  strategies[strategyName].examples = examples;
   strategies[strategyName].about = about;
 });
 

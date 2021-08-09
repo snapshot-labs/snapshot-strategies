@@ -1,10 +1,8 @@
 import { call } from '../../utils';
 import namehash from 'eth-ens-namehash';
-import examplesFile from './examples.json';
 
 export const author = 'makoto';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 const abi = [
   {
