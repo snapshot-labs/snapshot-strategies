@@ -10,7 +10,7 @@ This strategy executes a configured strategy and applies a blacklist to it's res
 
 - **strategy.params:** the strategy specific params to execute it.
 
-- **blacklist:** An array of st6rings representing wallet addresses to be blacklisted an their result set to 0
+- **blacklist:** An array of strings representing wallet addresses to be blacklisted an their result set to 0
   
 ## Examples
 
