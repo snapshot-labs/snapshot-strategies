@@ -73,6 +73,10 @@ async function getPools(network, snapshot, token) {
       pair: true
     }
   };
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    params.pools.__args.block = { number: snapshot };
+  }
   const result = await subgraphRequest(
     SUSHISWAP_SUBGRAPH_URL[network].masterChef,
     params
