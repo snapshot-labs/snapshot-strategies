@@ -4,25 +4,9 @@ import { multicall } from '../../utils';
 export const author = 'deversifi';
 export const version = '0.1.0';
 
-const vestedABI = [
-  {
-    inputs: [],
-    name: 'delegateForVoting',
-    outputs: [{ internalType: 'address', name: '', type: 'address' }],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+const vestedABI = [ 'function delegateForVoting() view returns (address)' ];
 
-const xDVFABI = [
-  {
-    inputs: [{ internalType: 'address', name: 'account', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+const xDVFABI = [ 'function balanceOf(address account) view returns (uint256)' ];
 
 export async function strategy(
   space,
