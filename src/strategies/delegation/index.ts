@@ -1,8 +1,10 @@
 import { getDelegations } from '../../utils/delegation';
 import { getScoresDirect } from '../../utils';
+import examplesFile from './examples.json';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
+export const examples = examplesFile;
 
 export async function strategy(
   space,
@@ -39,7 +41,7 @@ export async function strategy(
     addresses.map((address) => {
       const addressScore = delegations[address]
         ? delegations[address].reduce(
-            (a, b) => a + scores.reduce((x, y) => x + y[b] || 0, 0),
+            (a, b) => a + scores.reduce((x, y) => y[b] ? (x + y[b]) : (x + 0), 0),
             0
           )
         : 0;
