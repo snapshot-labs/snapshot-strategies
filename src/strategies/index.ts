@@ -125,6 +125,7 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as uniswapV3 from './uniswap-v3';
 import * as l2Deversifi from './l2-deversifi';
+import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
 
 const strategies = {
@@ -253,6 +254,7 @@ const strategies = {
   'unipool-univ2-lp': unipoolUniv2Lp,
   'uniswap-v3': uniswapV3,
   'l2-deversifi': l2Deversifi,
+  'vested-deversifi': vestedDeversifi,
   biswap
 };
 
