@@ -20,14 +20,18 @@ export async function strategy(
     network,
     provider,
     abi,
-    options.tokenIds.map( (id: any) => [ options.address, 'ownerOf', [id] ]),
+    options.tokenIds.map((id: any) => [options.address, 'ownerOf', [id]]),
     { blockTag }
   );
 
   return Object.fromEntries(
-    addresses.map( (address: any) => [
+    addresses.map((address: any) => [
       address,
-      response.findIndex((res: any) => res.owner.toLowerCase() === address.toLowerCase()) > -1 ? 1 : 0,
+      response.findIndex(
+        (res: any) => res.owner.toLowerCase() === address.toLowerCase()
+      ) > -1
+        ? 1
+        : 0
     ])
   );
 }
