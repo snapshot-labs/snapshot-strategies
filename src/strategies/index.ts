@@ -124,6 +124,9 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as poapWithWeight from './poap-with-weight';
+import * as uniswapV3 from './uniswap-v3';
+import * as l2Deversifi from './l2-deversifi';
+import * as biswap from './biswap';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -249,7 +252,10 @@ const strategies = {
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
-  'poap-with-weight': poapWithWeight
+  'poap-with-weight': poapWithWeight,
+  'uniswap-v3': uniswapV3,
+  'l2-deversifi': l2Deversifi,
+  biswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
