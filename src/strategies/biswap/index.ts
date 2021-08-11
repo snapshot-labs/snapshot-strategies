@@ -7,7 +7,6 @@ export const author = 'biswap-dex';
 export const version = '0.0.1';
 export const examples = examplesFile;
 
-
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'
 ];
@@ -60,45 +59,81 @@ export async function strategy(
   /*
     Balance in MasterChef pool BSW - BSW
   */
-  const multiMasterChef = new Multicaller(network, provider, masterChefAbi, { blockTag });
+  const multiMasterChef = new Multicaller(network, provider, masterChefAbi, {
+    blockTag
+  });
   addresses.forEach((address) =>
-    multiMasterChef.call(address, options.masterChef, 'userInfo', ['0', address])
+    multiMasterChef.call(address, options.masterChef, 'userInfo', [
+      '0',
+      address
+    ])
   );
-  const resultMasterChef: Record<string, BigNumberish> = await multiMasterChef.execute();
+  const resultMasterChef: Record<
+    string,
+    BigNumberish
+  > = await multiMasterChef.execute();
   /*
     Balance in Launch pools
   */
-  const multiSmartChef = new Multicaller(network, provider, smartChefAbi, { blockTag });
-  options.smartChef.forEach((smartChefAddress) => {
-    addresses.forEach((address) => multiSmartChef.call(smartChefAddress + '-' + address, smartChefAddress, 'userInfo', [address]));
+  const multiSmartChef = new Multicaller(network, provider, smartChefAbi, {
+    blockTag
   });
-  const resultSmartChef: Record<string, BigNumberish> = await multiSmartChef.execute();
+  options.smartChef.forEach((smartChefAddress) => {
+    addresses.forEach((address) =>
+      multiSmartChef.call(
+        smartChefAddress + '-' + address,
+        smartChefAddress,
+        'userInfo',
+        [address]
+      )
+    );
+  });
+  const resultSmartChef: Record<
+    string,
+    BigNumberish
+  > = await multiSmartChef.execute();
 
   /*
     Staked LPs in BSW farms
   */
-  const multiBswLPs = new Multicaller(network, provider, masterChefAbi, { blockTag });
-  options.bswLPs.forEach((bswLpAddr) => {
-    multiBswLPs.call('balanceOf', options.address, 'balanceOf', [ bswLpAddr.address ]);
-    multiBswLPs.call('totalSupply', bswLpAddr.address, 'totalSupply');
-    addresses.forEach((address) => multiBswLPs.call(bswLpAddr.address + '-' + address, options.masterChef, 'userInfo', [bswLpAddr.pid, address]));
+  const multiBswLPs = new Multicaller(network, provider, masterChefAbi, {
+    blockTag
   });
-  const resultBswLPs: Record<string, BigNumberish> = await multiBswLPs.execute();
+  options.bswLPs.forEach((bswLpAddr) => {
+    multiBswLPs.call('balanceOf', options.address, 'balanceOf', [
+      bswLpAddr.address
+    ]);
+    multiBswLPs.call('totalSupply', bswLpAddr.address, 'totalSupply');
+    addresses.forEach((address) =>
+      multiBswLPs.call(
+        bswLpAddr.address + '-' + address,
+        options.masterChef,
+        'userInfo',
+        [bswLpAddr.pid, address]
+      )
+    );
+  });
+  const resultBswLPs: Record<
+    string,
+    BigNumberish
+  > = await multiBswLPs.execute();
 
   /*
     Balance BSW in auto compound pool
   */
-  const autoBswMulti = new Multicaller(network, provider, autoBswAbi, { blockTag });
+  const autoBswMulti = new Multicaller(network, provider, autoBswAbi, {
+    blockTag
+  });
   autoBswMulti.call('priceShare', options.autoBsw, 'getPricePerFullShare');
   addresses.forEach((address) => {
     autoBswMulti.call(address, options.autoBsw, 'userInfo', [address]);
   });
   const resultAutoBsw = await autoBswMulti.execute();
 
-  const userBalances = new Array();
+  const userBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {
     userBalances[addresses[i]] = bn(0);
-  };
+  }
 
   Object.fromEntries(
     Object.entries(resultMasterChef).map(([address, balance]) => {
@@ -127,7 +162,9 @@ export async function strategy(
       addUserBalance(
         userBalances,
         userAddr,
-        bn(resultBswLPs[bswLPAddr.address+'-'+userAddr][0]).mul(bn(resultBswLPs.balanceOf)).div(bn(resultBswLPs.totalSupply))
+        bn(resultBswLPs[bswLPAddr.address + '-' + userAddr][0])
+          .mul(bn(resultBswLPs.balanceOf))
+          .div(bn(resultBswLPs.totalSupply))
       );
     });
   });
@@ -136,13 +173,16 @@ export async function strategy(
     addUserBalance(
       userBalances,
       userAddr,
-      resultAutoBsw[userAddr][0].mul(resultAutoBsw.priceShare).div(bn(parseUnits("1" ,options.decimals)))
+      resultAutoBsw[userAddr][0]
+        .mul(resultAutoBsw.priceShare)
+        .div(bn(parseUnits('1', options.decimals)))
     );
   });
 
   return Object.fromEntries(
     Object.entries(userBalances).map(([address, balance]) => [
       address,
+      // @ts-ignore
       parseFloat(formatUnits(balance, options.decimals))
     ])
   );

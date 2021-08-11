@@ -41,7 +41,7 @@ export const getReserves = ({
     };
   }
 
-  let _fee = getFeeAmount(feeTier) ?? 0;
+  const _fee = getFeeAmount(feeTier) ?? 0;
   const pool = new Pool(
     _baseToken,
     _quoteToken,
