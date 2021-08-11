@@ -69,11 +69,11 @@ export async function strategy(
     positions: []
   }));
 
-  rawData?.positions?.map((position, idx) => {
+  rawData?.positions?.map((position) => {
     usersUniswap[addresses.indexOf(position?.owner)].positions.push(position);
   });
 
-  const reserves = usersUniswap.map((user, idx) => {
+  const reserves = usersUniswap.map((user) => {
     return getAllReserves(user?.positions);
   });
 
