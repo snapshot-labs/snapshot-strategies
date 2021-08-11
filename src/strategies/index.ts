@@ -98,6 +98,7 @@ import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
+import * as erc721MultiRegistry from './erc721-multi-registry';
 import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
 import * as decentralandEstateSize from './decentraland-estate-size';
@@ -156,6 +157,7 @@ const strategies = {
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
+  'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   multichain,
