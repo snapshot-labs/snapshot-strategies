@@ -19,12 +19,14 @@ export async function strategy(
   const tokenReserve =
     options.tokenReserve === 0 ? 'token0Reserve' : 'token1Reserve';
 
+  const _addresses = addresses.map((address) => address.toLowerCase());
+
   const params = {
     positions: {
       __args: {
         where: {
-          pool: options.poolAddress,
-          owner_in: addresses.map((address) => address.toLowerCase())
+          pool: options.poolAddress.toLowerCase(),
+          owner_in: _addresses
         }
       },
       id: true,
@@ -70,7 +72,7 @@ export async function strategy(
   }));
 
   rawData?.positions?.map((position) => {
-    usersUniswap[addresses.indexOf(position?.owner)].positions.push(position);
+    usersUniswap[_addresses.indexOf(position?.owner)].positions.push(position);
   });
 
   const reserves = usersUniswap.map((user) => {
