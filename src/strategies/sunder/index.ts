@@ -2,7 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
 
-export const author = 'aaron';
+export const author = 'krotos-arch';
 export const version = '0.0.1';
 
 const abi = [
