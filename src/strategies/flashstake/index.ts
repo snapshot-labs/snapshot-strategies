@@ -1,6 +1,5 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
-import examplesFile from './examples.json';
 
 const FLASHSTAKE_SUBGRAPH_URL = {
   '1':
@@ -9,7 +8,6 @@ const FLASHSTAKE_SUBGRAPH_URL = {
 
 export const author = 'anassohail99';
 export const version = '0.1.0';
-export const examples = examplesFile;
 
 export async function strategy(
   _space,

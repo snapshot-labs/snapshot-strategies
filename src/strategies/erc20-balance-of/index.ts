@@ -1,13 +1,9 @@
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
-import examplesFile from './examples.json';
-import aboutFile from './README.md';
 
 export const author = 'bonustrack';
 export const version = '0.1.1';
-export const examples = examplesFile;
-export const about = aboutFile;
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'

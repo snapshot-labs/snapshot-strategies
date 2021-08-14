@@ -1,12 +1,8 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import examplesFile from './examples.json';
-import aboutFile from './README.md';
 
 export const author = 'lucid-eleven';
 export const version = '0.1.0';
-export const examples = examplesFile;
-export const about = aboutFile;
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'
@@ -20,10 +16,13 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const thresholds = options.thresholds || [{threshold: 1, votes: 1}];
-  if (thresholds.length == 0) thresholds.push({threshold: 1, votes: 1});
+  const thresholds = options.thresholds || [{ threshold: 1, votes: 1 }];
+  if (thresholds.length == 0) thresholds.push({ threshold: 1, votes: 1 });
 
-  const calculateVotes = (balance) => thresholds.sort((a, b) => b.threshold - a.threshold).find(t => t.threshold <= balance)?.votes ?? 0;
+  const calculateVotes = (balance) =>
+    thresholds
+      .sort((a, b) => b.threshold - a.threshold)
+      .find((t) => t.threshold <= balance)?.votes ?? 0;
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const response = await multicall(
@@ -37,7 +36,9 @@ export async function strategy(
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      calculateVotes(parseFloat(formatUnits(value.toString(), options.decimals)))
+      calculateVotes(
+        parseFloat(formatUnits(value.toString(), options.decimals))
+      )
     ])
   );
 }
