@@ -21,13 +21,14 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address) =>
-    multi.call(address, options.address, 'balanceOfDToken', [
+    multi.call(address, options.balanceOfAdds, 'balanceOfDToken', [
       options.token,
       address
     ])
   );
   const result: Record<string, BigNumberish> = await multi.execute();
 
+  console.log(result);
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
