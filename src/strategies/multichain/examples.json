@@ -4,6 +4,7 @@
     "strategy": {
       "name": "multichain",
       "params": {
+        "symbol": "<Token Symbol>",
         "strategies": [
           {
             "name": "erc20-balance-of",
