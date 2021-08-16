@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
+import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
 import * as ensDomainsOwned from './ens-domains-owned';
@@ -133,6 +134,7 @@ import * as eglVote from './egl-vote';
 const strategies = {
   'anti-whale': antiWhale,
   balancer,
+  sunder,
   'balancer-smart-pool': balancerSmartPool,
   'erc20-received': erc20Received,
   'contract-call': contractCall,

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sunder",
+      "params": {
+        "token": "0xaF5A2E9E0BCf9Ec3bf447F511F8Ac028F5959077",
+        "symbol": "sudner (token)",
+        "decimals": 18,
+        "balanceOfAdds": "0x20a183539DF9dE2223991329FE68d5cCc5c8C0D8"
+      }
+    },
+    "network": "42",
+    "addresses": [
+      "0x02Ec1090D59cbAA9D58EAeBb3328dF56A6dEd2D3",
+      "0x714AfdEB0c24127ec03149005AD59F80bbFD71d7"
+    ],
+    "snapshot": 26570329
+  }
+]
