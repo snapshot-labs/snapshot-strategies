@@ -28,7 +28,6 @@ export async function strategy(
   );
   const result: Record<string, BigNumberish> = await multi.execute();
 
-  console.log(result);
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
