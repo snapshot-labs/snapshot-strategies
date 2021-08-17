@@ -5,7 +5,6 @@ import Multicaller from '../../utils/multicaller';
 export const author = 'gerrrg';
 export const version = '0.0.1';
 
-// const abi = ['function balanceOf(address account) external view returns (uint256)'];
 const abi = ['function getInternalBalance(address user, address[] tokens) external view returns (uint256[] balances)'];
 
 export async function strategy(
