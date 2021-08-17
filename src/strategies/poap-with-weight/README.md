@@ -8,8 +8,11 @@ Here is an example of parameters:
 
 ```json
 {
-  "address": "0x22C1f6050E56d2876009903609a2cC3fEf83B415",
   "symbol": "POAP",
-  "tokenIds": ["613607", "613237"]
+  "tokenIds": [
+    {"id":"100001", "weight": 100}, 
+    {"id":"100002", "weight": 10}, 
+    {"id":"1000", "weight": 1}
+  ]
 }
 ```
