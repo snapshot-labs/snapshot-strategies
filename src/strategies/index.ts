@@ -262,7 +262,7 @@ const strategies = {
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
-  'honeyswap': honeyswap,
+  honeyswap,
   'egl-vote': eglVote
 };
 
