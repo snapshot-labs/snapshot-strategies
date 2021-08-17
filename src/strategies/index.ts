@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
+import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
 import * as ensDomainsOwned from './ens-domains-owned';
@@ -129,10 +130,12 @@ import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
 import * as honeyswap from './honeyswap';
+import * as eglVote from './egl-vote';
 
 const strategies = {
   'anti-whale': antiWhale,
   balancer,
+  sunder,
   'balancer-smart-pool': balancerSmartPool,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
@@ -260,6 +263,7 @@ const strategies = {
   'vested-deversifi': vestedDeversifi,
   biswap,
   'honeyswap': honeyswap,
+  'egl-vote': eglVote
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
