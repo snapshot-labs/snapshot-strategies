@@ -2,6 +2,7 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
+import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
@@ -138,6 +139,7 @@ const strategies = {
   balancer,
   sunder,
   'balancer-smart-pool': balancerSmartPool,
+  'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
   'eth-received': ethReceived,
