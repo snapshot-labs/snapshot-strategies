@@ -1,32 +1,28 @@
-import { multicall, subgraphRequest } from '../../utils';
+import { subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
 
 export const author = 'gawainb';
 export const version = '1.0.0';
 export const examples = examplesFile;
 
-const POAP_API_ENDPOINT_URL =
-  'https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai';
-
-const abi = [
-  'function ownerOf(uint256 tokenId) public view returns (address owner)'
-];
+const POAP_API_ENDPOINT_URL = {
+  '1': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap',
+  '100': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai'
+};
 
 const getTokenSupply = {
-  query: {
-    tokens: {
-      __args: {
-        where: {
-          id_in: undefined
-        }
-      },
-      event: {
-        tokenCount: true
-      },
-      id: true,
-      owner: {
-        id: true
+  tokens: {
+    __args: {
+      where: {
+        id_in: undefined
       }
+    },
+    event: {
+      tokenCount: true
+    },
+    id: true,
+    owner: {
+      id: true
     }
   }
 };
@@ -37,61 +33,33 @@ export async function strategy(
   provider,
   addresses,
   options,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   snapshot
 ) {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const response = await multicall(
-    network,
-    provider,
-    abi,
-    options.tokenIds.map((id: any) => [options.address, 'ownerOf', [id]]),
-    { blockTag }
-  );
   // Set TokenIds as arguments for GQL query
-  getTokenSupply.query.tokens.__args.where.id_in = options.tokenIds;
+  getTokenSupply.tokens.__args.where.id_in = options.tokenIds.map(
+    (token) => token.id
+  );
   const poapWeights = {};
   const supplyResponse = await subgraphRequest(
-    POAP_API_ENDPOINT_URL,
+    POAP_API_ENDPOINT_URL[network],
     getTokenSupply
   );
-  // Given a POAP and address-tokencount mapping,
-  // calculate the weight for this POAP.
-  // i.e., assuming POAP #4218 had weight 1.5,
-  //       given  {'0x123': 2, '0x456': 4}
-  //       return {'0x123': 3, '0x456': 6}
-  if (supplyResponse && supplyResponse.token) {
-    poapWeights[supplyResponse.token.owner.id] =
-      1000 * parseInt(supplyResponse.token.event.tokenCount);
-  }
-  return Object.keys(poapWeights[supplyResponse.token.owner.id]).forEach(
-    (key) => {
-      const value = poapWeights[supplyResponse.token.owner.id][key];
-      // Sums multiple address-voteweight mappings into a single object.
-      // i.e., given [{'0x123': 1, '0x456': 2}, {'0x123': 10, '0x456': 20}]
-      //       return {'0x123': 11, '0x456': 22}
-      function sumAddressWeights(arrayOfWeights) {
-        return arrayOfWeights.reduce((sum, current) => {
-          for (const k in current) {
-            sum[k] = (sum[k] || 0) + current[k];
-          }
-          return sum;
-        }, {});
-      }
 
-      // return response[0].owner;
-      return Object.fromEntries(
-        addresses.map(
-          (address: any) => [
-            address,
-            response.findIndex(
-              (res: any) => res.owner.toLowerCase() === address.toLowerCase()
-            ) > -1
-              ? 1
-              : 0
-          ],
-          sumAddressWeights(value)
-        )
-      );
-    }
+  if (supplyResponse && supplyResponse.tokens) {
+    supplyResponse.tokens.forEach((token: any) => {
+      if (!poapWeights[token.owner.id.toLowerCase()])
+        poapWeights[token.owner.id.toLowerCase()] = 0;
+      poapWeights[token.owner.id.toLowerCase()] +=
+        options.tokenIds.find((a) => a.id === token.id).weight *
+        parseInt(token.event.tokenCount);
+    });
+  }
+
+  return Object.fromEntries(
+    addresses.map((address: any) => [
+      address,
+      poapWeights[address.toLowerCase()] || 0
+    ])
   );
 }
