@@ -2,7 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
 
-export const author = 'gerg';
+export const author = 'gerrrg';
 export const version = '0.0.1';
 
 // const abi = ['function balanceOf(address account) external view returns (uint256)'];
