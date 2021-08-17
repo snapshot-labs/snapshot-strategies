@@ -129,6 +129,7 @@ import * as uniswapV3 from './uniswap-v3';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 
 const strategies = {
@@ -261,6 +262,7 @@ const strategies = {
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
+  honeyswap,
   'egl-vote': eglVote
 };
 
