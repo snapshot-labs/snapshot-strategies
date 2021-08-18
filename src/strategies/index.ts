@@ -2,6 +2,8 @@ import { readFileSync } from 'fs';
 import path from 'path';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
+import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
+import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as blacklist from './blacklist';
 import * as contractCall from './contract-call';
@@ -99,6 +101,7 @@ import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
+import * as erc721MultiRegistry from './erc721-multi-registry';
 import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
 import * as decentralandEstateSize from './decentraland-estate-size';
@@ -124,14 +127,21 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
+import * as poapWithWeight from './poap-with-weight';
+import * as uniswapV3 from './uniswap-v3';
 import * as l2Deversifi from './l2-deversifi';
+import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as honeyswap from './honeyswap';
+import * as eglVote from './egl-vote';
 
 const strategies = {
   'anti-whale': antiWhale,
   balancer,
+  sunder,
   'balancer-smart-pool': balancerSmartPool,
   blacklist,
+  'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
   'eth-received': ethReceived,
@@ -156,6 +166,7 @@ const strategies = {
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
+  'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   multichain,
@@ -252,8 +263,13 @@ const strategies = {
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
+  'poap-with-weight': poapWithWeight,
+  'uniswap-v3': uniswapV3,
   'l2-deversifi': l2Deversifi,
-  biswap
+  'vested-deversifi': vestedDeversifi,
+  biswap,
+  honeyswap,
+  'egl-vote': eglVote
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
