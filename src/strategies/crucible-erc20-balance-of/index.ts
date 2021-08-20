@@ -1,4 +1,3 @@
-import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
@@ -72,7 +71,7 @@ export async function strategy(
   }
   const walletIDToCrucibleAddresses: Record<
     string,
-    string
+    BigNumber
   > = await callWalletToCrucibleAddresses.execute();
 
   // get the balance of each crucible
@@ -85,7 +84,7 @@ export async function strategy(
     walletIDToCrucibleAddresses
   )) {
     callCrucibleToLpBalance.call(walletID, options.erc20_address, 'balanceOf', [
-      crucibleAddress
+      crucibleAddress.toHexString()
     ]);
   }
   const walletIDToLpBalance: Record<
@@ -106,7 +105,7 @@ export async function strategy(
 
   return Object.fromEntries(
     Object.entries(walletToLpBalance).map(([address, balance]) => [
-      getAddress(address),
+      address,
       parseFloat(formatUnits(balance, options.erc20_decimals))
     ])
   );
