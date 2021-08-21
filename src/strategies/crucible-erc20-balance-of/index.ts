@@ -2,7 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
 
-export const author = 'bonustrack';
+export const author = 'thegostep';
 export const version = '0.1.0';
 
 const abi = [
