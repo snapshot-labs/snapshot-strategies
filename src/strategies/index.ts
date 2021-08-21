@@ -133,6 +133,7 @@ import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
+import * as meebitsdao from './meebitsdao';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -267,7 +268,8 @@ const strategies = {
   'vested-deversifi': vestedDeversifi,
   biswap,
   honeyswap,
-  'egl-vote': eglVote
+  'egl-vote': eglVote,
+  meebitsdao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
