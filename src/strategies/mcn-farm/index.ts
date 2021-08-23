@@ -10,52 +10,10 @@ const MCN_ADDRESS = '0xD91E9a0fEf7C0fa4EBdAF4d0aCF55888949A2a9b';
 const MCN_LP_ADDRESS = '0x2Ef2cb6af83de4171A69EE2f7C677079fFD9BcD0';
 
 const abi = [
-  {
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [{ internalType: 'address', name: 'account', type: 'address' }],
-    name: 'balanceOf',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [],
-    name: 'getPoolList',
-    outputs: [{ internalType: 'address[]', name: '', type: 'address[]' }],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      { internalType: 'address', name: '_lpToken', type: 'address' },
-      { internalType: 'address', name: '_account', type: 'address' }
-    ],
-    name: 'getUser',
-    outputs: [
-      {
-        components: [
-          { internalType: 'uint256', name: 'amount', type: 'uint256' },
-          {
-            internalType: 'uint256[]',
-            name: 'rewardsWriteoffs',
-            type: 'uint256[]'
-          }
-        ],
-        internalType: 'struct IBonusRewards.User',
-        name: '',
-        type: 'tuple'
-      },
-      { internalType: 'uint256[]', name: '', type: 'uint256[]' }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address account) view returns (uint256)',
+  'function getPoolList() view returns (address[])',
+  'function getUser(address _lpToken, address _account) view returns (tuple(uint256 amount, uint256[] rewardsWriteoffs), uint256[])'
 ];
 
 export async function strategy(
