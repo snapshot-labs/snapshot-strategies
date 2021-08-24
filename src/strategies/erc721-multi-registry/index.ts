@@ -19,9 +19,9 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const calls: any[] = [];
-  options.forEach((registry) => {
+  options.registries.forEach((registry) => {
     addresses.forEach((address: any) => {
-      calls.push([registry.address, 'balanceOf', [address]]);
+      calls.push([registry, 'balanceOf', [address]]);
     });
   });
 
