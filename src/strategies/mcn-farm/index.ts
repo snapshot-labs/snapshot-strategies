@@ -25,7 +25,10 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const pools = await call(provider, abi, [FARM_ADDRESS, 'getPoolList', []]);
+  const lpAddress = options.lpAddress || MCN_LP_ADDRESS;
+  const tokenAddress = options.tokenAddress || MCN_ADDRESS;
+  const farmAddress = options.stakingAddress || FARM_ADDRESS;
+  const pools = await call(provider, abi, [farmAddress, 'getPoolList', []]);
   const flatten = (arr) => [].concat.apply([], arr);
   const product = (...sets) => {
     return sets.reduce(
@@ -39,9 +42,9 @@ export async function strategy(
     provider,
     abi,
     [
-      [MCN_LP_ADDRESS, 'totalSupply', []],
-      [MCN_ADDRESS, 'balanceOf', [MCN_LP_ADDRESS]]
-    ].concat(params.map((p) => [FARM_ADDRESS, 'getUser', p])),
+      [lpAddress, 'totalSupply', []],
+      [tokenAddress, 'balanceOf', [lpAddress]]
+    ].concat(params.map((p) => [farmAddress, 'getUser', p])),
     { blockTag }
   );
   const [totalSupply] = res[0];
