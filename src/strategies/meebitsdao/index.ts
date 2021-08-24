@@ -36,7 +36,7 @@ export async function strategy(
   const resp = await fetch(options.apiUrl);
   const tokenStatus = await resp.json();
 
-  async function checkActivated(address) {
+  function checkActivated(address: any) {
     const index = ownerResponse.findIndex(
       (res: any) => res.owner.toLowerCase() === address.toLowerCase()
     );
@@ -49,10 +49,7 @@ export async function strategy(
     return 0;
   }
 
-  const results = addresses.map(async (address: any) =>
-    checkActivated(address)
-  );
-  const votes = await Promise.all(results);
+  const votes = addresses.map((address: any) => checkActivated(address));
 
   const scores = {};
   votes.map((value, i) => {
