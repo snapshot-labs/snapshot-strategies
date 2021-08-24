@@ -134,6 +134,7 @@ import * as biswap from './biswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as snowswap from './snowswap';
+import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 
 const strategies = {
@@ -271,6 +272,7 @@ const strategies = {
   honeyswap,
   'egl-vote': eglVote,
   snowswap,
+  meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf
 };
 
