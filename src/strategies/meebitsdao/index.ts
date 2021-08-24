@@ -29,13 +29,12 @@ export async function strategy(
     ownerCalls.push([options.address, 'ownerOf', [i]]);
   }
 
-  const uriResponse = await multicall(network, provider, abi, uriCalls, {
-    blockTag
-  });
-
   const ownerResponse = await multicall(network, provider, abi, ownerCalls, {
     blockTag
   });
+
+  const resp = await fetch(options.apiUrl);
+  const tokenStatus = await resp.json();
 
   async function checkActivated(address) {
     const index = ownerResponse.findIndex(
@@ -44,14 +43,7 @@ export async function strategy(
     if (index == -1) {
       return 0;
     }
-
-    const uri = uriResponse[index][0];
-    let ipfs = uri.split('/');
-    ipfs = ipfs[ipfs.length - 1];
-    const resp = await fetch(`https://${options.gateway}/ipfs/${ipfs}`);
-    const metadata = await resp.json();
-    const activated = metadata.attributes[2];
-    if (activated.trait_type === 'Activated' && activated.value === 'True') {
+    if (tokenStatus[index].Active == true) {
       return 1;
     }
     return 0;
