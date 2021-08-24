@@ -3,8 +3,8 @@ import { formatUnits } from '@ethersproject/units';
 import Multicaller from '../../utils/multicaller';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
-export const author = 'Snowswap';
-export const version = '0.1';
+export const author = 'jairsnowswap';
+export const version = '0.1.0';
 
 const stakedAbi = [
   'function balanceOf(address account) external view returns (uint256)'
