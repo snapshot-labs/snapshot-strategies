@@ -4,6 +4,7 @@
     "strategy": {
       "name": "crucible-erc20-balance-of",
       "params": {
+        "symbol": "ABC",
         "crucible_factory": "0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56",
         "erc20_address": "0xCD6bcca48069f8588780dFA274960F15685aEe0e",
         "erc20_decimals": 18
