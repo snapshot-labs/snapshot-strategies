@@ -134,6 +134,9 @@ import * as biswap from './biswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
+import * as snowswap from './snowswap';
+import * as meebitsdao from './meebitsdao';
+import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -269,7 +272,10 @@ const strategies = {
   biswap,
   honeyswap,
   'egl-vote': eglVote,
-  'mcn-farm': mcnFarm
+  'mcn-farm': mcnFarm,
+  snowswap,
+  meebitsdao,
+  'crucible-erc20-balance-of': crucibleERC20BalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
