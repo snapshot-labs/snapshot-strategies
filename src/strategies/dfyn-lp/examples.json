@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dfyn-lp",
+      "params": {
+        "address": "0xc168e40227e4ebd8c1cae80f7a55a4f0e6d66c97",
+        "symbol": "DFYN",
+        "decimal": 18,
+        "scoreMultiplier": 1
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x41CdE29bF9aea095fDD204D150451678b2c6A736",
+      "0xD7B26f34775fa41D6dCE182851642573aBF9B532"
+    ],
+    "snapshot": 1111000
+  }
+]

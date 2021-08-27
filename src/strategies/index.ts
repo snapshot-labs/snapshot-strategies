@@ -5,6 +5,9 @@ import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
+import * as dfynLP from './dfyn-lp';
+import * as dfynFarms from './dfyn-staked-in-farms';
+import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as contractCall from './contract-call';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
@@ -143,6 +146,9 @@ const strategies = {
   sunder,
   'balancer-smart-pool': balancerSmartPool,
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
+  'dfyn-lp': dfynLP,
+  'dfyn-staked-in-farms': dfynFarms,
+  'dfyn-staked-in-vaults': dfynVaults,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
   'eth-received': ethReceived,
