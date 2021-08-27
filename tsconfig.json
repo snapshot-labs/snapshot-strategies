@@ -17,5 +17,7 @@
   ],
   "files": [
     "./src/typings.d.ts"
-  ]
+  ],
+  "types": ["node"],
+  "lib": ["ES2018", "DOM"],
 }

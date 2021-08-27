@@ -1,6 +1,6 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits, parseUnits } from '@ethersproject/units';
-import Multicaller from '../../utils/multicaller';
+import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
 
 export const author = 'biswap-dex';
