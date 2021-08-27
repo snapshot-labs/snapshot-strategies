@@ -22,3 +22,20 @@ jobs:
         npm install
         npm run build --if-present
         npm run lint --if-present
+  publish:
+    name: Publish
+    needs: build
+    runs-on: ubuntu-latest
+    if: github.event_name == 'push' && ( github.ref == 'refs/heads/master' )
+    steps:
+    - uses: actions/checkout@v2
+    - name: Build
+      if: steps.cache-modules.outputs.cache-hit != 'true'
+      run: |
+        npm install
+        npm run build --if-present
+    - name: Publish
+      uses: mikeal/merge-release@master
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        NPM_AUTH_TOKEN: ${{ secrets.NPM_AUTH_TOKEN }}
