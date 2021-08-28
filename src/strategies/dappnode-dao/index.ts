@@ -17,6 +17,7 @@ export async function strategy(
   // - Eth mainnet - Sushiswap LP (ETH-NODE)
   // - Eth mainnet - Only NODE (NODE)
   // - xDAI - Only NODE (NODE)
+
   const unipoolLp1 = await unipoolUniv2LpStrategy(
     _space,
     network,
@@ -29,7 +30,10 @@ export async function strategy(
       decimals: options.decimal
     },
     snapshot
-  );
+  ).catch((e) => {
+    e.message = 'Error in unipoolLp1: ' + e.message;
+    throw e;
+  });
 
   const unipoolLp2 = await unipoolUniv2LpStrategy(
     _space,
@@ -43,7 +47,10 @@ export async function strategy(
       decimals: options.decimal
     },
     snapshot
-  );
+  ).catch((e) => {
+    e.message = 'Error in unipoolLp2: ' + e.message;
+    throw e;
+  });
 
   const unipoolSameToken = await unipoolSameTokenStrategy(
     _space,
@@ -55,19 +62,25 @@ export async function strategy(
       decimals: options.decimal
     },
     snapshot
-  );
+  ).catch((e) => {
+    e.message = 'Error in unipoolSameToken: ' + e.message;
+    throw e;
+  });
 
   const unipoolSameTokenXdai = await unipoolSameTokenStrategy(
     _space,
-    "100", // xDAI
+    '100', // xDAI
     provider,
     addresses,
     {
       unipoolAddress: options.unipoolSameTokenXdai,
       decimals: options.decimal
     },
-    snapshot
-  );
+    options.snapshotXdai
+  ).catch((e) => {
+    e.message = 'Error in unipoolSameTokenXdai: ' + e.message;
+    throw e;
+  });
 
   const balanceByAddress = new Map<string, number>();
 

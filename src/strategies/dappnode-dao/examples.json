@@ -12,7 +12,8 @@
         "lpTokenAddress2": "0x60cd8dcc7cce0cca6a3743727ce909b6f715b2d8",
         "unipoolAddress2": "0x89F2e26F20Bf66bBFAc947A3b628b4b4724AaA5c",
         "unipoolSameToken": "0x19992b52338B7B49De9679ae018A7027803dB1Aa",
-        "unipoolSameTokenXdai": "0xF66823fdc33B9F4C66dB4C3394FF139872C12f16"
+        "unipoolSameTokenXdai": "0xF66823fdc33B9F4C66dB4C3394FF139872C12f16",
+        "snapshotXdai": 17808090
       }
     },
     "network": "1",
@@ -25,6 +26,6 @@
       "0x7fb1b28d66634106963c190aa99e779cd0dc779c",
       "0x6b07d4ace5bc9a690fda9ddeb5a0f131fda0b257"
     ],
-    "snapshot": 11635000
+    "snapshot": 13115010
   }
 ]
