@@ -4,36 +4,7 @@ export const author = 'AngelDAO';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    "inputs":[
-       {
-          "name":"",
-          "type":"uint256"
-       }
-    ],
-    "name":"rocks",
-    "outputs":[
-       {
-          "name":"owner",
-          "type":"address"
-       },
-       {
-          "name":"currentlyForSale",
-          "type":"bool"
-       },
-       {
-          "name":"price",
-          "type":"uint256"
-       },
-       {
-          "name":"timesSold",
-          "type":"uint256"
-       }
-    ],
-    "payable":false,
-    "stateMutability":"view",
-    "type":"function"
- }
+  'function rocks(uint256) view returns (address owner, bool currentlyForSale, uint256 price, uint256 timesSold)'
 ];
 
 export async function strategy(
