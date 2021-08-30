@@ -1,6 +1,6 @@
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
-import Multicaller from '../../utils/multicaller';
+import { Multicaller } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'jairsnowswap';

@@ -1,7 +1,7 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
 const snapshot = require('../').default;
-const networks = require('../src/networks.json');
+const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 const addresses = require('./addresses.json');
 
 const strategyArg =
