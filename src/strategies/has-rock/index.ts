@@ -34,7 +34,7 @@ export async function strategy(
     { blockTag }
   );
 
-  let result ={} as  any;
+  let result = {} as  any;
 
   addresses.forEach((address, x)=> {
     let addressRocks=0;
