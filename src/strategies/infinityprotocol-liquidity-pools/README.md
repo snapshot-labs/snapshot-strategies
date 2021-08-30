@@ -14,8 +14,7 @@ The space config will look like this:
       // token parameters
     "params": {
         "address": "0xc168e40227e4ebd8c1cae80f7a55a4f0e6d66c97",
-        "symbol": "DFYN",
-        "decimal": 18,
+        "symbol": "DFYN"
         // subgraphURL for the request
         "subGraphURL": "https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5",
         // scoreMultiplier can be used to increase users' scores by a certain magnitude
