@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'vatsal';
+export const author = 'vatsalgupta13';
 export const version = '0.1.0';
 
 
