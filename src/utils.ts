@@ -1,12 +1,6 @@
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 
-export const SNAPSHOT_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot',
-  '4': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-rinkeby',
-  '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
-};
-
 export async function getScoresDirect(
   space: string,
   strategies: any[],
