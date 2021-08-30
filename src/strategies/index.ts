@@ -6,6 +6,7 @@ import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balan
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
+import * as dfynFarms from './dfyn-staked-in-farms';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
 import * as erc20BalanceOf from './erc20-balance-of';
@@ -146,6 +147,7 @@ const strategies = {
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'dfyn-staked-in-farms': dfynFarms,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
