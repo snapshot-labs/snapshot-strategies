@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import Multicaller from '../../utils/multicaller';
+import { Multicaller } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'planet-finance';

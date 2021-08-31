@@ -1,5 +1,5 @@
 import { formatUnits } from '@ethersproject/units';
-import { getBlockNumber } from '../../utils/web3';
+import { getBlockNumber } from '../../utils';
 import { multicall } from '../../utils';
 
 export const author = 'franckc';

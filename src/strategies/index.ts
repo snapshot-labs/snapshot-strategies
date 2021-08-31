@@ -7,6 +7,7 @@ import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
 import * as dfynFarms from './dfyn-staked-in-farms';
+import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
 import * as erc20BalanceOf from './erc20-balance-of';
@@ -138,6 +139,7 @@ import * as mcnFarm from './mcn-farm';
 import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as hasrock from './has-rock';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -148,6 +150,7 @@ const strategies = {
   'erc20-received': erc20Received,
   'contract-call': contractCall,
   'dfyn-staked-in-farms': dfynFarms,
+  'dfyn-staked-in-vaults': dfynVaults,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
@@ -277,7 +280,8 @@ const strategies = {
   'mcn-farm': mcnFarm,
   snowswap,
   meebitsdao,
-  'crucible-erc20-balance-of': crucibleERC20BalanceOf
+  'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'has-rock':hasrock
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

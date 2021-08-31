@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import networks from '../../networks.json';
+import networks from '@snapshot-labs/snapshot.js/src/networks.json';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
