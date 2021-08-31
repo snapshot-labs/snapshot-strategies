@@ -54,9 +54,8 @@ export async function strategy(
   }
   const tokenAddress = options.address.toLowerCase();
   const result = await subgraphRequest(
-    INFINITYPROTOCOL_SUBGRAPH_URL[network],
-    params
-  );
+    options.subGraphURL ? options.subGraphURL : INFINITYPROTOCOL_SUBGRAPH_URL[network],
+    params);
   const score = {};
   if (result && result.users) {
     result.users.forEach((u) => {
@@ -69,11 +68,13 @@ export async function strategy(
         .forEach((lp) => {
           const token0perShard = lp.pair.reserve0 / lp.pair.totalSupply;
           const token1perShard = lp.pair.reserve1 / lp.pair.totalSupply;
-          const userScore =
+          let userScore =
             lp.pair.token0.id == tokenAddress
               ? token0perShard * lp.liquidityTokenBalance
               : token1perShard * lp.liquidityTokenBalance;
-
+          if (options.scoreMultiplier) {
+            userScore = userScore * options.scoreMultiplier
+          }
           const userAddress = getAddress(u.id);
           if (!score[userAddress]) score[userAddress] = 0;
           score[userAddress] = score[userAddress] + userScore;
