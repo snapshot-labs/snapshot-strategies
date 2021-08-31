@@ -5,7 +5,8 @@
       "name": "infinityprotocol-liquidity-pools",
       "params": {
         "address": "0xd8a1734945b9ba38eb19a291b475e31f49e59877",
-        "symbol": "SHARD"
+        "symbol": "SHARD",
+        "scoreMultiplier": 1
       }
     },
     "network": "56",
