@@ -2,15 +2,13 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'vatsalgupta13';
+export const author = 'vatsal';
 export const version = '0.1.0';
 
 
-const DFYN_SUBGRAPH_URL = {
-  '137': 'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5'
-};
+const DFYN_SUBGRAPH_URL = "https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5"
 
-const getAllLP = async (skip, stakedLP, network) => {
+const getAllLP = async (skip, stakedLP, snapshot) => {
   let params =
   {
     pairs: {
@@ -35,20 +33,23 @@ const getAllLP = async (skip, stakedLP, network) => {
       }
     }
   }
-
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    params.pairs.__args.block = { number: snapshot };
+  }
   try {
-    const response = await subgraphRequest(DFYN_SUBGRAPH_URL[network], params)
+    const response = await subgraphRequest(DFYN_SUBGRAPH_URL, params)
     return response.pairs;
   } catch (error) {
     console.error(error);
   }
 }
 
-const getLP = async (stakedLP, network) => {
+const getLP = async (stakedLP, snapshot) => {
   let lp = []
   let results = []
   do {
-    results = await getAllLP(lp.length, stakedLP, network);
+    results = await getAllLP(lp.length, stakedLP, snapshot);
     lp = lp.concat(results)
   } while (results.length === 1000);
   return lp
@@ -101,7 +102,7 @@ export async function strategy(
   );
 
   stakedLP = [].concat.apply([], stakedLP)
-  let dfyn_lp: any[] = await getLP(stakedLP, network)
+  let dfyn_lp: any[] = await getLP(stakedLP, snapshot)
   let temp: any = [];
   if (options.contractAddresses.length > 1) {
 
