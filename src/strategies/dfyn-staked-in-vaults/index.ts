@@ -45,7 +45,7 @@ export async function strategy(
     response = []
     result.map((item, index) => {
       let sum = 0
-      result[index].map((element, i) => {
+      result[index].map((element) => {
         sum = sum + parseFloat(formatUnits(element.toString(), 18))
       })
       response.push(sum)
