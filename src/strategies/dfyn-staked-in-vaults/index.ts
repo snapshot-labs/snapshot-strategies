@@ -44,13 +44,17 @@ export async function strategy(
     // performing summation over all balances of the user
     response = []
     result.map((item, index) => {
-      response.push(result[index].reduce((a, b) => [a.add(b)]))
+      let sum = 0
+      result[index].map((element) => {
+        sum = sum + parseFloat(formatUnits(element.toString(), 18))
+      })
+      response.push(sum)
     })
   }
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      options.scoreMultiplier * parseFloat(formatUnits(value.toString(), options.decimals))
+      options.scoreMultiplier * value
     ])
   );
 }
