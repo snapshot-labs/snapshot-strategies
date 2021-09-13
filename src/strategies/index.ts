@@ -105,6 +105,7 @@ import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
 import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
+import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
@@ -142,6 +143,7 @@ import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
 
 const strategies = {
+  coordinape,
   'anti-whale': antiWhale,
   balancer,
   sunder,
@@ -281,7 +283,7 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
-  'has-rock':hasrock
+  'has-rock': hasrock
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

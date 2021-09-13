@@ -85,7 +85,7 @@ export async function strategy(
     walletIDToCrucibleAddresses
   )) {
     callCrucibleToLpBalance.call(walletID, options.erc20_address, 'balanceOf', [
-     hexZeroPad(crucibleAddress.toHexString(), 20)
+      hexZeroPad(crucibleAddress.toHexString(), 20)
     ]);
   }
   const walletIDToLpBalance: Record<
