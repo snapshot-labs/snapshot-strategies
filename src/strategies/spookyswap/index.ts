@@ -12,95 +12,11 @@ const XBOO_TOKEN_ADDRESS = '0xa48d959AE2E88f1dAA7D5F611E01908106dE7598';
 const XBOO_STAKING_ADDRESS = '0x2352b745561e7e6FCD03c093cE7220e3e126ace0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    name: 'xBOOForBOO',
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_xBOOAmount',
-        type: 'uint256'
-      }
-    ],
-    outputs:[
-      {
-        internalType: 'uint256',
-        name: 'booAmount_',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [],
-    name: 'poolLength',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function',
-  },
+  'function balanceOf(address) view returns (uint256 amount)',
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function totalSupply() view returns (uint256)',
+  'function xBOOForBOO(uint256 _xBOOAmount) view returns (uint256 booAmount_)',
+  'function poolLength() view returns (uint256)'
 ];
 
 export async function strategy(
