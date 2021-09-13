@@ -205,7 +205,16 @@ export async function strategy(
         // xBOO staked
         result.xboo.staking[address].reduce(
           (prev: number, cur: any) =>
-            prev + xbooToBoo * parseFloat(formatUnits(cur[0], 18)), 0
+            prev +
+            xbooToBoo * parseFloat(
+              formatUnits(
+                cur[0]
+                  .mul(options.boo.numerator)
+                  .div(options.boo.denominator),
+                18
+              )
+            ),
+          0
         )
     ])
   );
