@@ -51,11 +51,11 @@ export async function strategy(
   const [tokenBalanceInLP] = res[1];
   const tokensPerLP = tokenBalanceInLP.div(totalSupply);
   const response = res.slice(2);
-  let values = {};
+  const values = {};
   response.forEach(([userInfo, rewards], i) => {
-    let address_i = i % addresses.length;
-    let address = addresses[address_i];
-    let pool_i = Math.floor(i / addresses.length);
+    const address_i = i % addresses.length;
+    const address = addresses[address_i];
+    const pool_i = Math.floor(i / addresses.length);
     values[address] = values.hasOwnProperty(address)
       ? values[address].add(rewards[0])
       : BigNumber.from(rewards[0]);
@@ -68,9 +68,9 @@ export async function strategy(
     }
   });
 
-  for (let address in values) {
+  for (const address in values) {
     if (values.hasOwnProperty(address)) {
-      let value = parseFloat(formatUnits(values[address], 18));
+      const value = parseFloat(formatUnits(values[address], 18));
       values[address] = value;
     }
   }
