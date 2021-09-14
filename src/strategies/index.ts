@@ -30,6 +30,7 @@ import * as yearnVault from './yearn-vault';
 import * as fraxFinance from './frax-finance';
 import * as moloch from './moloch';
 import * as uniswap from './uniswap';
+import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
@@ -186,6 +187,7 @@ const strategies = {
   masterchef,
   sushiswap,
   uniswap,
+  'faraland-staking': faralandStaking,
   flashstake,
   pancake,
   synthetix,
