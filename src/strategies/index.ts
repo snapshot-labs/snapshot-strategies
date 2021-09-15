@@ -141,7 +141,8 @@ import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
-import * as sunrisegamingUniv2Lp from './sunrisegaming-univ2-lp';
+import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
+import * as sunriseGamingStaking from './sunrisegaming-staking';
 
 const strategies = {
   coordinape,
@@ -285,7 +286,8 @@ const strategies = {
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
   'has-rock': hasrock,
-  'sunrisegaming-univ2-lp': sunrisegamingUniv2Lp
+  'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
+  'sunrisegaming-staking': sunriseGamingStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
