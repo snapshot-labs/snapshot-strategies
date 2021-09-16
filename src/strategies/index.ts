@@ -6,6 +6,7 @@ import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balan
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
+import * as dextfVaults from './dextf-staked-in-vaults';
 import * as dfynFarms from './dfyn-staked-in-farms';
 import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as ensDomainsOwned from './ens-domains-owned';
@@ -152,6 +153,7 @@ const strategies = {
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
   'eth-received': ethReceived,
