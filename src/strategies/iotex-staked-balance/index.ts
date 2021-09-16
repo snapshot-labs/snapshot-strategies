@@ -6,8 +6,8 @@ interface ApiReturn {
 export const author = 'iotex';
 export const version = '0.0.1';
 
-const testNetUrl = 'https://testnet.iotexscout.io/apiproxy';
-const mainNetUrl = 'https://iotexscout.io/apiproxy';
+const testNetUrl = 'https://iotex-analyser-api-testnet.chainanalytics.org';
+const mainNetUrl = 'https://iotex-analyser-api-mainnet.chainanalytics.org';
 
 function getUrl(network) {
   return network == 4689 ? mainNetUrl : testNetUrl;
@@ -24,7 +24,7 @@ export async function strategy(
   const height = typeof snapshot === 'number' ? snapshot : 10000000000;
   const apiUrl = getUrl(network);
   const response = await fetch(
-    `${apiUrl}/api.AccountVoteService.GetVoteByHeight`,
+    `${apiUrl}/api.StakingService.GetVoteByHeight`,
     {
       method: 'POST',
       headers: {
