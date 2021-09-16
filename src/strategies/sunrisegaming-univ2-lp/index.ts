@@ -6,38 +6,8 @@ export const author = 'sunrisegaming';
 export const version = '0.1.0';
 
 const erc20Abi = [
-  {
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address account) view returns (uint256)'
 ];
 
 const masterChefAbi = [
