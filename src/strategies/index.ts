@@ -141,6 +141,7 @@ import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
+import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 
 const strategies = {
   coordinape,
@@ -283,6 +284,7 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'has-rock': hasrock
 };
 
