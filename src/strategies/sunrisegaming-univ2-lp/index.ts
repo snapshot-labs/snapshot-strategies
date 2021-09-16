@@ -11,8 +11,7 @@ const erc20Abi = [
 ];
 
 const masterChefAbi = [
-  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
-  'function poolInfo(uint256) view returns (address lpToken, uint256 allocPoint, uint256 lastRewardBlock, uint256 accMMPerShare, uint256 amount)'
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
 function bn(num: any): BigNumber {
