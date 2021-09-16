@@ -14,18 +14,27 @@ export async function strategy(
   options,
   snapshot
 ) {
-  return Object.fromEntries(await Promise.all(addresses.map(async (address) => {
-    const response = await fetch(`${options.apiBase}/accounts/${getAddress(address)}/totals?snapshot=${snapshot}`, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/vnd.flexa.capacity.v1+json'
-      }
-    });
-    const data = await response.json();
-    const { supplyTotal = 0, rewardTotal = 0 } = data;
-    return [
-      address,
-      parseFloat(formatUnits(BigNumber.from(supplyTotal).add(rewardTotal), 18)),
-    ];
-  })));
+  const apiUrl = `${options.apiBase}/accounts?addresses=${addresses.join(
+    ','
+  )}&snapshot=${snapshot}`;
+
+  const response = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/vnd.flexa.capacity.v1+json'
+    }
+  });
+  const data = await response.json();
+
+  return Object.fromEntries(
+    data.map((value) => {
+      const { supplyTotal = 0, rewardTotal = 0 } = value;
+      return [
+        getAddress(value.address),
+        parseFloat(
+          formatUnits(BigNumber.from(supplyTotal).add(rewardTotal), 18)
+        )
+      ];
+    })
+  );
 }
