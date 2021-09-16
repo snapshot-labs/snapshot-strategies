@@ -11,74 +11,8 @@ const erc20Abi = [
 ];
 
 const masterChefAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    name: 'poolInfo',
-    outputs: [
-      {
-        internalType: 'contract IERC20',
-        name: 'lpToken',
-        type: 'address'
-      },
-      {
-        internalType: 'uint256',
-        name: 'allocPoint',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'lastRewardBlock',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'accMMPerShare',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function poolInfo(uint256) view returns (address lpToken, uint256 allocPoint, uint256 lastRewardBlock, uint256 accMMPerShare, uint256 amount)'
 ];
 
 function bn(num: any): BigNumber {
