@@ -6,35 +6,7 @@ export const author = 'sunrisedao';
 export const version = '0.1.0';
 
 const masterChefAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
 function bn(num: any): BigNumber {
