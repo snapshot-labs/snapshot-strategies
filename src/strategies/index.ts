@@ -6,6 +6,7 @@ import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balan
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
+import * as dextfVaults from './dextf-staked-in-vaults';
 import * as dfynFarms from './dfyn-staked-in-farms';
 import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as ensDomainsOwned from './ens-domains-owned';
@@ -143,6 +144,8 @@ import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
+import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
+import * as sunriseGamingStaking from './sunrisegaming-staking';
 
 const strategies = {
   coordinape,
@@ -153,6 +156,7 @@ const strategies = {
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
   'eth-received': ethReceived,
@@ -287,7 +291,9 @@ const strategies = {
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
   'has-rock': hasrock,
-  'flexa-capacity-staking': flexaCapacityStaking
+  'flexa-capacity-staking': flexaCapacityStaking,
+  'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
+  'sunrisegaming-staking': sunriseGamingStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

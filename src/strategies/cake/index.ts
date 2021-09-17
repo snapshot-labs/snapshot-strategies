@@ -17,7 +17,7 @@ type VotingResponse = {
 
 const MINIUM_VOTING_POWER = 0.01;
 const SMART_CHEF_URL =
-  'https://api.bscgraph.org/subgraphs/name/pancakeswap/smartchef';
+  'https://api.thegraph.com/subgraphs/name/pancakeswap/smartchef';
 const VOTING_API_URL = 'https://voting-api.pancakeswap.info/api/power';
 
 /**
