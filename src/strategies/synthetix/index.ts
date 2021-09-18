@@ -56,8 +56,7 @@ const SynthetixStateContractAddress =
 const DebtCacheContractAddress = '0xe92B4c7428152052B0930c81F4c687a5F1A12292';
 
 const defaultGraphs = {
-  '1':
-    'https://gateway.thegraph.com/api/[api-key]/subgraphs/id/0xde910777c787903f78c89e7a0bf7f4c435cbb1fe-0',
+  '1': 'https://api.thegraph.com/subgraphs/name/killerbyte/synthetix',
   '10':
     'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-issuance'
 };
