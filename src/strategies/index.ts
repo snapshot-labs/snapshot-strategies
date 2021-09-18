@@ -35,6 +35,7 @@ import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
+import * as synthetxNonQuadratic from './synthetix-non-quadratic';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -196,6 +197,7 @@ const strategies = {
   flashstake,
   pancake,
   synthetix,
+  synthetxNonQuadratic,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
