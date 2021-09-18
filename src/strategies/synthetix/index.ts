@@ -2,7 +2,10 @@ import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
 import { Contract } from '@ethersproject/contracts';
 import { Provider } from '@ethersproject/providers';
-import { subgraphRequest, ipfsGet } from '../../utils';
+import {
+  subgraphRequest
+  // ipfsGet
+} from '../../utils';
 
 export const author = 'andytcf';
 export const version = '1.0.0';
@@ -14,6 +17,10 @@ type SNXHoldersResult = {
     debtEntryAtIndex: BigNumber;
   }[];
 };
+
+const HIGH_PRECISE_UNIT = 1e27;
+const MED_PRECISE_UNIT = 1e18;
+const SCALING_FACTOR = 1e5;
 
 const DebtCacheABI = [
   {
@@ -42,21 +49,21 @@ const SynthetixStateABI = [
   }
 ];
 
+// @TODO: check if most-up-to-date version (using https://contracts.synthetix.io/SynthetixState)
 const SynthetixStateContractAddress =
   '0x4b9Ca5607f1fF8019c1C6A3c2f0CC8de622D5B82';
-const DebtCacheContractAddress = '0x9bB05EF2cA7DBAafFC3da1939D1492e6b00F39b8';
+// @TODO: check if most-up-to-date version (using http://contracts.synthetix.io/DebtCache)
+const DebtCacheContractAddress = '0xe92B4c7428152052B0930c81F4c687a5F1A12292';
 
 const defaultGraphs = {
-  '1': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/synthetix',
+  '1':
+    'https://gateway.thegraph.com/api/[api-key]/subgraphs/id/0xde910777c787903f78c89e7a0bf7f4c435cbb1fe-0',
   '10':
-    'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-general'
+    'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-issuance'
 };
 
-const ovmSnapshotJSON = 'QmNwvhq4By1Mownjycg7bWSXqbJWMVyAWRZ1K4mjxuvGXg';
-
-const HIGH_PRECISE_UNIT = 1e27;
-const MED_PRECISE_UNIT = 1e18;
-const SCALING_FACTOR = 1e5;
+// @TODO: update with the latest ovm snapshot
+// const ovmSnapshotJSON = 'QmNwvhq4By1Mownjycg7bWSXqbJWMVyAWRZ1K4mjxuvGXg';
 
 function returnGraphParams(snapshot: number | string, addresses: string[]) {
   return {
@@ -86,6 +93,7 @@ const loadLastDebtLedgerEntry = async (
     SynthetixStateABI,
     provider
   );
+
   const lastDebtLedgerEntry = await contract.lastDebtLedgerEntry({
     blockTag: snapshot
   });
@@ -139,19 +147,28 @@ const quadraticWeightedVoteL1 = async (
 
 const quadraticWeightedVoteL2 = async (
   initialDebtOwnership: BigNumber,
+  debtEntryAtIndex: BigNumber,
   totalL1Debt: number,
   scaledTotalL2Debt: number,
-  normalisedL2CRatio: number
+  lastDebtLedgerEntryL2: number
 ) => {
+  const currentDebtOwnershipPercent =
+    (Number(lastDebtLedgerEntryL2) / Number(debtEntryAtIndex)) *
+    Number(initialDebtOwnership);
+
+  const highPrecisionBalance =
+    totalL1Debt *
+    MED_PRECISE_UNIT *
+    (currentDebtOwnershipPercent / HIGH_PRECISE_UNIT);
+
+  const currentDebtBalance = highPrecisionBalance / MED_PRECISE_UNIT;
+
   const totalDebtInSystem = totalL1Debt + scaledTotalL2Debt;
 
-  const ownershipPercentBN = Number(initialDebtOwnership) * normalisedL2CRatio;
-  const ownershipPercent = ownershipPercentBN / HIGH_PRECISE_UNIT;
-  const ownershipOfDebtDollarValue = ownershipPercent * scaledTotalL2Debt;
-  const ownershipPercentOfTotalDebt =
-    ownershipOfDebtDollarValue / totalDebtInSystem;
+  const ownershipPercentOfTotalDebt = currentDebtBalance / totalDebtInSystem;
 
   const scaledWeighting = ownershipPercentOfTotalDebt * SCALING_FACTOR;
+
   return Math.sqrt(scaledWeighting);
 };
 
@@ -164,57 +181,107 @@ export async function strategy(
   snapshot
 ) {
   const score = {};
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const l1Results = (await subgraphRequest(
-    defaultGraphs[1],
-    returnGraphParams(blockTag, _addresses)
-  )) as SNXHoldersResult;
-
-  const normalisedL2CRatio = 1000 / 450;
+  /* Global Constants */
 
   const totalL1Debt = await loadL1TotalDebt(_provider, snapshot); // (high-precision 1e18)
   const lastDebtLedgerEntry = await loadLastDebtLedgerEntry(
     _provider,
     snapshot
   );
-  const totalL2Debt = 4792266; // $4,792,266 (high-precision 1e18)
+
+  /* EDIT THESE FOR OVM */
+
+  // @TODO update the currentDebt for the snapshot from (https://contracts.synthetix.io/ovm/DebtCache)
+  const totalL2Debt = 22617610;
+  // @TODO update the lastDebtLedgerEntry from (https://contracts.synthetix.io/ovm/SynthetixState)
+  const lastDebtLedgerEntryL2 = 20222730523217499684984991;
+  // @TODO update the comparison between OVM:ETH c-ratios at the time of snapshot
+  const normalisedL2CRatio = 600 / 450;
+  // @TODO update the L2 block number to use
+  const L2BlockNumber = 1770186;
+
   const scaledTotalL2Debt = totalL2Debt * normalisedL2CRatio;
+
+  /* --------------- */
+
+  /* Using the subgraph, we get the relevant L1 calculations */
+
+  const l1Results = (await subgraphRequest(
+    defaultGraphs[1],
+    returnGraphParams(blockTag, _addresses)
+  )) as SNXHoldersResult;
+
+  console.log(l1Results);
 
   if (l1Results && l1Results.snxholders) {
     for (let i = 0; i < l1Results.snxholders.length; i++) {
       const holder = l1Results.snxholders[i];
-      score[getAddress(holder.id)] = await quadraticWeightedVoteL1(
+      const weightedVoteL1 = await quadraticWeightedVoteL1(
         holder.initialDebtOwnership,
         holder.debtEntryAtIndex,
         totalL1Debt,
         scaledTotalL2Debt,
         lastDebtLedgerEntry
       );
+      console.log(weightedVoteL1);
+      score[getAddress(holder.id)] = weightedVoteL1;
     }
   }
 
-  const OVMSnapshot = await ipfsGet('gateway.pinata.cloud', ovmSnapshotJSON);
+  /* Using the subgraph, we get the relevant L2 calculations */
 
-  const array = Object.assign(
-    {},
-    ...OVMSnapshot.data.snxholders.map((key) => ({
-      [getAddress(key.id)]: key.initialDebtOwnership
-    }))
-  );
+  const l2Results = (await subgraphRequest(
+    defaultGraphs[10],
+    returnGraphParams(L2BlockNumber, _addresses)
+  )) as SNXHoldersResult;
 
-  for (let k = 0; k < _addresses.length; k++) {
-    const address = _addresses[k];
-    if (array[getAddress(address)]) {
-      score[getAddress(address)] += await quadraticWeightedVoteL2(
-        array[getAddress(address)],
+  // @notice fallback for when subgraph is down
+  /* 
+    const OVMSnapshot = await ipfsGet('gateway.pinata.cloud', ovmSnapshotJSON);
+    const array = Object.assign(
+      {},
+      ...OVMSnapshot.data.snxholders.map((key) => ({
+        [getAddress(key.id)]: {
+        initialDebtOwnership: key.initialDebtOwnership,
+        debtEntryAtIndex: key.debtEntryAtIndex
+        }
+      }))
+    );
+    for (let k = 0; k < _addresses.length; k++) {
+      const address = _addresses[k];
+      if (array[getAddress(address)]) {
+        score[getAddress(address)] += await quadraticWeightedVoteL2(
+          array[getAddress(address)].initialDebtOwnership,
+          array[getAddress(address)].debtEntryAtIndex,
+          totalL1Debt,
+          scaledTotalL2Debt,
+          lastDebtLedgerEntryL2
+        );
+      } else {
+        continue;
+      }
+    }
+  */
+
+  if (l2Results && l2Results.snxholders) {
+    for (let i = 0; i < l2Results.snxholders.length; i++) {
+      const holder = l2Results.snxholders[i];
+
+      const weightedVoteL2 = await quadraticWeightedVoteL2(
+        holder.initialDebtOwnership,
+        holder.debtEntryAtIndex,
         totalL1Debt,
         scaledTotalL2Debt,
-        normalisedL2CRatio
+        lastDebtLedgerEntryL2
       );
-    } else {
-      continue;
+
+      if (score[getAddress(holder.id)]) {
+        score[getAddress(holder.id)] += weightedVoteL2;
+      } else {
+        score[getAddress(holder.id)] = weightedVoteL2;
+      }
     }
   }
 
