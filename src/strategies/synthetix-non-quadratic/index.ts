@@ -117,7 +117,7 @@ const loadL1TotalDebt = async (
   return Number(currentDebtObject.debt) / MED_PRECISE_UNIT;
 };
 
-const quadraticWeightedVoteL1 = async (
+const debtL1 = async (
   initialDebtOwnership: BigNumber,
   debtEntryAtIndex: BigNumber,
   totalL1Debt: number,
@@ -144,7 +144,7 @@ const quadraticWeightedVoteL1 = async (
   return scaledWeighting;
 };
 
-const quadraticWeightedVoteL2 = async (
+const debtL2 = async (
   initialDebtOwnership: BigNumber,
   debtEntryAtIndex: BigNumber,
   totalL1Debt: number,
@@ -212,20 +212,17 @@ export async function strategy(
     returnGraphParams(blockTag, _addresses)
   )) as SNXHoldersResult;
 
-  console.log(l1Results);
-
   if (l1Results && l1Results.snxholders) {
     for (let i = 0; i < l1Results.snxholders.length; i++) {
       const holder = l1Results.snxholders[i];
-      const weightedVoteL1 = await quadraticWeightedVoteL1(
+      const vote = await debtL1(
         holder.initialDebtOwnership,
         holder.debtEntryAtIndex,
         totalL1Debt,
         scaledTotalL2Debt,
         lastDebtLedgerEntry
       );
-      console.log(weightedVoteL1);
-      score[getAddress(holder.id)] = weightedVoteL1;
+      score[getAddress(holder.id)] = vote;
     }
   }
 
@@ -268,7 +265,7 @@ export async function strategy(
     for (let i = 0; i < l2Results.snxholders.length; i++) {
       const holder = l2Results.snxholders[i];
 
-      const weightedVoteL2 = await quadraticWeightedVoteL2(
+      const vote = await debtL2(
         holder.initialDebtOwnership,
         holder.debtEntryAtIndex,
         totalL1Debt,
@@ -277,9 +274,9 @@ export async function strategy(
       );
 
       if (score[getAddress(holder.id)]) {
-        score[getAddress(holder.id)] += weightedVoteL2;
+        score[getAddress(holder.id)] += vote;
       } else {
-        score[getAddress(holder.id)] = weightedVoteL2;
+        score[getAddress(holder.id)] = vote;
       }
     }
   }

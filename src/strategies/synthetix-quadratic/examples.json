@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "synthetix",
+      "name": "synthetix-quadratic",
       "params": {
         "address": "0x023c66b7e13d30a3c46aa433fd2829763d5817c5",
         "symbol": "WD"

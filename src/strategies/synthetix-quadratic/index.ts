@@ -212,8 +212,6 @@ export async function strategy(
     returnGraphParams(blockTag, _addresses)
   )) as SNXHoldersResult;
 
-  console.log(l1Results);
-
   if (l1Results && l1Results.snxholders) {
     for (let i = 0; i < l1Results.snxholders.length; i++) {
       const holder = l1Results.snxholders[i];
@@ -224,7 +222,6 @@ export async function strategy(
         scaledTotalL2Debt,
         lastDebtLedgerEntry
       );
-      console.log(weightedVoteL1);
       score[getAddress(holder.id)] = weightedVoteL1;
     }
   }
