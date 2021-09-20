@@ -2,7 +2,7 @@
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'bonustrack';
+export const author = 'PolySwift';
 export const version = '0.1.1';
 
 // const abi = [
