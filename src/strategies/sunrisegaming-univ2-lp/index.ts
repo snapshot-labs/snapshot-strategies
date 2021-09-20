@@ -51,7 +51,7 @@ export async function strategy(
   res = res.slice(2);
 
   // Get staked LP in staking constract
-  let stakedRes = await multicall(
+  const stakedRes = await multicall(
     network,
     provider,
     masterChefAbi,
@@ -68,7 +68,7 @@ export async function strategy(
   // How much tokens user has from LP tokens
   const usersTokensFromLp = res.slice(0, addresses.length).map((amount, i) => {
     const totalLp = bn(amount).add(bn(stakedRes[i].amount)); // decimal: 18
-    
+
     // (LP + StakedLP) x token.balanceOf(LPToken) / LPToken.totalSupply()
     return totalLp.mul(totalTokensInPool).div(lpTokenTotalSupply); // decimal: options.decimal
   });

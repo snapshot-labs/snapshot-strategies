@@ -26,9 +26,9 @@ export async function strategy(
 
   const result = {} as any;
 
-  addresses.forEach((address, x) => {
+  addresses.forEach((address) => {
     let addressRocks = 0;
-    response.forEach((rockObject, i) => {
+    response.forEach((rockObject) => {
       if (rockObject.owner == address) {
         addressRocks++;
       }

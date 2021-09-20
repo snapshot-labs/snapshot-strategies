@@ -24,7 +24,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // Get staked LP in staking constract
-  let stakedRes = await multicall(
+  const stakedRes = await multicall(
     network,
     provider,
     masterChefAbi,
@@ -40,7 +40,9 @@ export async function strategy(
 
   return Object.fromEntries(
     stakedRes.map((stakedInfo, i) => {
-      const parsedAmount = parseFloat(formatUnits(bn(stakedInfo.amount), options.decimal));
+      const parsedAmount = parseFloat(
+        formatUnits(bn(stakedInfo.amount), options.decimal)
+      );
       return [addresses[i], parsedAmount];
     })
   );
