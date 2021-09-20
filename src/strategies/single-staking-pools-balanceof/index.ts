@@ -5,9 +5,6 @@ import { Multicaller } from '../../utils';
 export const author = 'PolySwift';
 export const version = '0.1.1';
 
-// const abi = [
-//   'function balanceOf(address account) external view returns (uint256)'
-// ];
 
 const singleStakingPoolAbi = [
   'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
