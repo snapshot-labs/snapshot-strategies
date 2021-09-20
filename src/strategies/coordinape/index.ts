@@ -23,15 +23,12 @@ export async function strategy(
   });
   const gifts = await res.json();
   const scores = {};
-  gifts.forEach(gift => {
+  gifts.forEach((gift) => {
     const address = getAddress(gift.recipient_address);
     if (!scores[address]) scores[address] = 0;
     scores[address] += gift.tokens;
   });
   return Object.fromEntries(
-    addresses.map(address => [
-      address,
-      scores[getAddress(address)] || 0
-    ])
+    addresses.map((address) => [address, scores[getAddress(address)] || 0])
   );
 }
