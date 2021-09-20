@@ -6,48 +6,19 @@ import {
   subgraphRequest
   // ipfsGet
 } from '../../utils';
+import {
+  DebtCacheABI,
+  debtL1,
+  debtL2,
+  returnGraphParams,
+  SNXHoldersResult,
+  SynthetixStateABI
+} from '../synthetix/helper';
 
 export const author = 'andytcf';
 export const version = '1.0.0';
 
-type SNXHoldersResult = {
-  snxholders: {
-    id: string;
-    initialDebtOwnership: BigNumber;
-    debtEntryAtIndex: BigNumber;
-  }[];
-};
-
-const HIGH_PRECISE_UNIT = 1e27;
 const MED_PRECISE_UNIT = 1e18;
-const SCALING_FACTOR = 1e5;
-
-const DebtCacheABI = [
-  {
-    constant: true,
-    inputs: [],
-    name: 'currentDebt',
-    outputs: [
-      { internalType: 'uint256', name: 'debt', type: 'uint256' },
-      { internalType: 'bool', name: 'anyRateIsInvalid', type: 'bool' }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
-
-const SynthetixStateABI = [
-  {
-    constant: true,
-    inputs: [],
-    name: 'lastDebtLedgerEntry',
-    outputs: [{ name: '', type: 'uint256' }],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
 
 // @TODO: check if most-up-to-date version (using https://contracts.synthetix.io/SynthetixState)
 const SynthetixStateContractAddress =
@@ -63,25 +34,6 @@ const defaultGraphs = {
 
 // @TODO: update with the latest ovm snapshot
 // const ovmSnapshotJSON = 'QmNwvhq4By1Mownjycg7bWSXqbJWMVyAWRZ1K4mjxuvGXg';
-
-function returnGraphParams(snapshot: number | string, addresses: string[]) {
-  return {
-    snxholders: {
-      __args: {
-        where: {
-          id_in: addresses.map((address: string) => address.toLowerCase())
-        },
-        first: 1000,
-        block: {
-          number: snapshot
-        }
-      },
-      id: true,
-      initialDebtOwnership: true,
-      debtEntryAtIndex: true
-    }
-  };
-}
 
 const loadLastDebtLedgerEntry = async (
   provider: Provider,
@@ -115,60 +67,6 @@ const loadL1TotalDebt = async (
   });
 
   return Number(currentDebtObject.debt) / MED_PRECISE_UNIT;
-};
-
-const quadraticWeightedVoteL1 = async (
-  initialDebtOwnership: BigNumber,
-  debtEntryAtIndex: BigNumber,
-  totalL1Debt: number,
-  scaledTotalL2Debt: number,
-  lastDebtLedgerEntry: BigNumber
-) => {
-  const currentDebtOwnershipPercent =
-    (Number(lastDebtLedgerEntry) / Number(debtEntryAtIndex)) *
-    Number(initialDebtOwnership);
-
-  const highPrecisionBalance =
-    totalL1Debt *
-    MED_PRECISE_UNIT *
-    (currentDebtOwnershipPercent / HIGH_PRECISE_UNIT);
-
-  const currentDebtBalance = highPrecisionBalance / MED_PRECISE_UNIT;
-
-  const totalDebtInSystem = totalL1Debt + scaledTotalL2Debt;
-
-  const ownershipPercentOfTotalDebt = currentDebtBalance / totalDebtInSystem;
-
-  const scaledWeighting = ownershipPercentOfTotalDebt * SCALING_FACTOR;
-
-  return Math.sqrt(scaledWeighting);
-};
-
-const quadraticWeightedVoteL2 = async (
-  initialDebtOwnership: BigNumber,
-  debtEntryAtIndex: BigNumber,
-  totalL1Debt: number,
-  scaledTotalL2Debt: number,
-  lastDebtLedgerEntryL2: number
-) => {
-  const currentDebtOwnershipPercent =
-    (Number(lastDebtLedgerEntryL2) / Number(debtEntryAtIndex)) *
-    Number(initialDebtOwnership);
-
-  const highPrecisionBalance =
-    totalL1Debt *
-    MED_PRECISE_UNIT *
-    (currentDebtOwnershipPercent / HIGH_PRECISE_UNIT);
-
-  const currentDebtBalance = highPrecisionBalance / MED_PRECISE_UNIT;
-
-  const totalDebtInSystem = totalL1Debt + scaledTotalL2Debt;
-
-  const ownershipPercentOfTotalDebt = currentDebtBalance / totalDebtInSystem;
-
-  const scaledWeighting = ownershipPercentOfTotalDebt * SCALING_FACTOR;
-
-  return Math.sqrt(scaledWeighting);
 };
 
 export async function strategy(
@@ -215,12 +113,13 @@ export async function strategy(
   if (l1Results && l1Results.snxholders) {
     for (let i = 0; i < l1Results.snxholders.length; i++) {
       const holder = l1Results.snxholders[i];
-      const weightedVoteL1 = await quadraticWeightedVoteL1(
+      const weightedVoteL1 = await debtL1(
         holder.initialDebtOwnership,
         holder.debtEntryAtIndex,
         totalL1Debt,
         scaledTotalL2Debt,
-        lastDebtLedgerEntry
+        lastDebtLedgerEntry,
+        true
       );
       score[getAddress(holder.id)] = weightedVoteL1;
     }
@@ -265,12 +164,13 @@ export async function strategy(
     for (let i = 0; i < l2Results.snxholders.length; i++) {
       const holder = l2Results.snxholders[i];
 
-      const weightedVoteL2 = await quadraticWeightedVoteL2(
+      const weightedVoteL2 = await debtL2(
         holder.initialDebtOwnership,
         holder.debtEntryAtIndex,
         totalL1Debt,
         scaledTotalL2Debt,
-        lastDebtLedgerEntryL2
+        lastDebtLedgerEntryL2,
+        true
       );
 
       if (score[getAddress(holder.id)]) {
