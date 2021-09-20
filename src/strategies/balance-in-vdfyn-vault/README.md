@@ -11,7 +11,7 @@ The space config will look like this:
   "strategies": [
     ["balance-in-vdfyn-vault", {
       // vDfyn vault contract
-      "contractAddresses": "0x75455c3DE45dD32CBE9a5aD5E518D3D50823c976",
+      "contractAddress": "0x75455c3DE45dD32CBE9a5aD5E518D3D50823c976",
       // scoreMultiplier can be used to increase users' scores by a certain magnitude
       "scoreMultiplier": 2,
       // ABI for balanceOf method
