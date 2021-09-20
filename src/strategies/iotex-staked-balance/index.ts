@@ -23,20 +23,17 @@ export async function strategy(
 ) {
   const height = typeof snapshot === 'number' ? snapshot : 10000000000;
   const apiUrl = getUrl(network);
-  const response = await fetch(
-    `${apiUrl}/api.StakingService.GetVoteByHeight`,
-    {
-      method: 'POST',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({
-        address: addresses,
-        height
-      })
-    }
-  );
+  const response = await fetch(`${apiUrl}/api.StakingService.GetVoteByHeight`, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      address: addresses,
+      height
+    })
+  });
 
   const ret: ApiReturn = await response.json();
   return Object.fromEntries(
