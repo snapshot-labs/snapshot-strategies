@@ -148,6 +148,7 @@ import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
+import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof'
 
 const strategies = {
   coordinape,
@@ -297,7 +298,8 @@ const strategies = {
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
-  'sunrisegaming-staking': sunriseGamingStaking
+  'sunrisegaming-staking': sunriseGamingStaking,
+  'single-staking-pools-balanceof': singleStakingPoolsBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
