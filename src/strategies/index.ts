@@ -150,6 +150,7 @@ import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof'
+import * as occStakeOf from './occ-stake-of'
 
 const strategies = {
   coordinape,
@@ -301,7 +302,8 @@ const strategies = {
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
-  'single-staking-pools-balanceof': singleStakingPoolsBalanceOf
+  'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
+  'occ-stake-of': occStakeOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
