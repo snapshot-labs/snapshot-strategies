@@ -6,7 +6,7 @@ Here is an example of parameters:
 
 ```json
 {
-  "stakingPoolAddresses": [
+  "stakingContractAddress": [
     "0xeBC86Fb12ab0fFaC6CBcaFCe2f049BfE7eFAda0D"
   ],
   "symbol": "OCC",
