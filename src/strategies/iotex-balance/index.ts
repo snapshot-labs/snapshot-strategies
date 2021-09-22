@@ -7,8 +7,8 @@ interface ApiReturn {
 export const author = 'iotex';
 export const version = '0.0.1';
 
-const testNetUrl = 'https://testnet.iotexscout.io/apiproxy';
-const mainNetUrl = 'https://iotexscout.io/apiproxy';
+const testNetUrl = 'https://iotex-analyser-api-testnet.chainanalytics.org';
+const mainNetUrl = 'https://iotex-analyser-api-mainnet.chainanalytics.org';
 
 function getUrl(network) {
   return network == 4689 ? mainNetUrl : testNetUrl;

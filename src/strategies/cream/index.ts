@@ -1,8 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { strategy as erc20BalanceOf } from '../erc20-balance-of';
-import { getBlockNumber } from '../../utils/web3';
-import Multicaller from '../../utils/multicaller';
+import { getBlockNumber } from '../../utils';
+import { Multicaller } from '../../utils';
 
 export const author = 'jeremyHD';
 export const version = '0.2.1';

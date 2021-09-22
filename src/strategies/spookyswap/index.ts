@@ -1,5 +1,5 @@
 import { formatUnits } from '@ethersproject/units';
-import Multicaller from '../../utils/multicaller';
+import { Multicaller } from '../../utils';
 
 export const author = 'ooGwei';
 export const version = '0.1.0';
