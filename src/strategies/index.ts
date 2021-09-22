@@ -152,7 +152,6 @@ import * as sunriseGamingStaking from './sunrisegaming-staking';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
-import * as hoprBridgedBalance from './hopr-bridged-balance';
 
 const strategies = {
   coordinape,
@@ -306,7 +305,6 @@ const strategies = {
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
-  'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf
 };
 
