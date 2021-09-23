@@ -149,8 +149,9 @@ import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
-import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof'
-import * as occStakeOf from './occ-stake-of'
+import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
+import * as occStakeOf from './occ-stake-of';
+import * as hoprBridgedBalance from './hopr-bridged-balance';
 
 const strategies = {
   coordinape,
@@ -303,6 +304,7 @@ const strategies = {
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
+  'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf
 };
 
