@@ -39,7 +39,7 @@ export async function strategy(
     addresses.map((address) => {
       const addressScore = delegations[address]
         ? delegations[address].reduce(
-            (a, b) => a + scores.reduce((x, y) => y[b] ? (x + y[b]) : x, 0),
+            (a, b) => a + scores.reduce((x, y) => (y[b] ? x + y[b] : x), 0),
             0
           )
         : 0;

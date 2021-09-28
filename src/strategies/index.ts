@@ -6,6 +6,10 @@ import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balan
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
+import * as dextfVaults from './dextf-staked-in-vaults';
+import * as dfynFarms from './dfyn-staked-in-farms';
+import * as dfynVaults from './dfyn-staked-in-vaults';
+import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
 import * as erc20BalanceOf from './erc20-balance-of';
@@ -28,9 +32,12 @@ import * as yearnVault from './yearn-vault';
 import * as fraxFinance from './frax-finance';
 import * as moloch from './moloch';
 import * as uniswap from './uniswap';
+import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
+import * as synthetixQuadratic from './synthetix-quadratic';
+import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -103,6 +110,7 @@ import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
 import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
+import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
@@ -137,15 +145,28 @@ import * as mcnFarm from './mcn-farm';
 import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as hasrock from './has-rock';
+import * as flexaCapacityStaking from './flexa-capacity-staking';
+import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
+import * as sunriseGamingStaking from './sunrisegaming-staking';
+import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
+import * as occStakeOf from './occ-stake-of';
+import * as hoprStaking from './hopr-staking';
+import * as hoprBridgedBalance from './hopr-bridged-balance';
 
 const strategies = {
+  coordinape,
   'anti-whale': antiWhale,
   balancer,
   sunder,
   'balancer-smart-pool': balancerSmartPool,
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
+  'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'dextf-staked-in-vaults': dextfVaults,
+  'dfyn-staked-in-farms': dfynFarms,
+  'dfyn-staked-in-vaults': dfynVaults,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
@@ -179,9 +200,12 @@ const strategies = {
   masterchef,
   sushiswap,
   uniswap,
+  'faraland-staking': faralandStaking,
   flashstake,
   pancake,
   synthetix,
+  'synthetix-quadratic': synthetixQuadratic,
+  'synthetix-non-quadratic': synthetixNonQuadratic,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
@@ -275,7 +299,15 @@ const strategies = {
   'mcn-farm': mcnFarm,
   snowswap,
   meebitsdao,
-  'crucible-erc20-balance-of': crucibleERC20BalanceOf
+  'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'has-rock': hasrock,
+  'flexa-capacity-staking': flexaCapacityStaking,
+  'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
+  'sunrisegaming-staking': sunriseGamingStaking,
+  'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
+  'hopr-staking': hoprStaking,
+  'hopr-bridged-balance': hoprBridgedBalance,
+  'occ-stake-of': occStakeOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

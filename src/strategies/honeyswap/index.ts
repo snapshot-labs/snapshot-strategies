@@ -1,7 +1,6 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
-
 export const author = 'Kittyslasher';
 export const version = '0.1.0';
 
