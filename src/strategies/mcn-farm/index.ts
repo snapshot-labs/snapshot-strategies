@@ -13,14 +13,15 @@ const abi = [
   'function totalSupply() view returns (uint256)',
   'function balanceOf(address account) view returns (uint256)',
   'function getPoolList() view returns (address[])',
-  'function getUser(address _lpToken, address _account) view returns (tuple(uint256 amount, uint256[] rewardsWriteoffs), uint256[])'
+  'function getPool(address _lpToken) view returns (tuple(tuple(address bonusTokenAddr, uint48 startTime, uint48 endTime, uint256 weeklyRewards, uint256 accRewardsPerToken, uint256 remBonus)[] bonuses, uint256 lastUpdatedAt, uint256 amount))',
+  'function getUser(address _lpToken, address _account) view returns (tuple(uint256 amount, uint256[] rewardsWriteoffs) user, uint256[] rewards)'
 ];
 
 export async function strategy(
   space,
   network,
   provider,
-  addresses,
+  addresses: string[],
   options,
   snapshot
 ) {
@@ -44,21 +45,40 @@ export async function strategy(
     [
       [lpAddress, 'totalSupply', []],
       [tokenAddress, 'balanceOf', [lpAddress]]
-    ].concat(params.map((p) => [farmAddress, 'getUser', p])),
+    ]
+      .concat(pools.map((p) => [farmAddress, 'getPool', [p]]))
+      .concat(params.map((p) => [farmAddress, 'getUser', p])),
     { blockTag }
   );
   const [totalSupply] = res[0];
   const [tokenBalanceInLP] = res[1];
   const tokensPerLP = tokenBalanceInLP.div(totalSupply);
-  const response = res.slice(2);
-  const values = {};
+  const poolInfo = res.slice(2, 2 + pools.length);
+  // rewardToken_i maps pool index => pool bonus token index matching tokenAddress (if applicable)
+  let rewardToken_i = {};
+  for (let i = 0; i < pools.length; i++) {
+    let bonuses = poolInfo[i][0].bonuses;
+    if (bonuses === undefined) continue;
+    for (let j = 0; j < bonuses.length; j++) {
+      if (bonuses[j].bonusTokenAddr == tokenAddress) {
+        rewardToken_i[i] = j;
+        continue;
+      }
+    }
+  }
+  const response = res.slice(2 + pools.length);
+  let values = {};
+  Object.values(addresses).forEach(
+    (address: string) => (values[address] = BigNumber.from(0))
+  );
   response.forEach(([userInfo, rewards], i) => {
-    const address_i = i % addresses.length;
-    const address = addresses[address_i];
-    const pool_i = Math.floor(i / addresses.length);
-    values[address] = values.hasOwnProperty(address)
-      ? values[address].add(rewards[0])
-      : BigNumber.from(rewards[0]);
+    let address_i = i % addresses.length;
+    let address = addresses[address_i];
+    let pool_i = Math.floor(i / addresses.length);
+    let bonus_i = rewardToken_i[pool_i];
+    if (bonus_i && rewards.length > bonus_i) {
+      values[address].add(rewards[bonus_i]);
+    }
     if (pool_i === 0) {
       // this is the MCN staking pool
       values[address] = values[address].add(userInfo.amount); // add staked amount
@@ -68,9 +88,9 @@ export async function strategy(
     }
   });
 
-  for (const address in values) {
+  for (let address in values) {
     if (values.hasOwnProperty(address)) {
-      const value = parseFloat(formatUnits(values[address], 18));
+      let value = parseFloat(formatUnits(values[address], 18));
       values[address] = value;
     }
   }
