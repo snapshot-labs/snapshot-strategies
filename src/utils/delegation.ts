@@ -1,5 +1,11 @@
 import { getAddress } from '@ethersproject/address';
-import { SNAPSHOT_SUBGRAPH_URL, subgraphRequest } from '../utils';
+import { subgraphRequest } from '../utils';
+
+const SNAPSHOT_SUBGRAPH_URL = {
+  '1': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot',
+  '4': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-rinkeby',
+  '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
+};
 
 export async function getDelegations(
   space,
