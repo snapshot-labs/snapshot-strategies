@@ -1,5 +1,5 @@
 import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
+import { multicall, getProvider } from '../../utils';
 
 export const author = 'lightninglu10';
 export const version = '0.1.0';
@@ -28,7 +28,6 @@ export async function strategy(
     return bool ? 1 : 0
   }
 
-  // console.log(chainBlocks);
   const allAddresses = {};
 
   for (let i = 0; i < tokens.length; i++) {
@@ -37,15 +36,9 @@ export async function strategy(
 
     const multicallAddresses = addresses.map((userAddress: any) => [address, 'balanceOf', [userAddress]]);
 
-    console.log('BLOCKTAG: ' + blockTag);
-
-    // if (network === '137') {
-    //   continue
-    // }
-
     const response = await multicall(
       network,
-      provider,
+      getProvider(network),
       abi,
       multicallAddresses,
       { blockTag }
