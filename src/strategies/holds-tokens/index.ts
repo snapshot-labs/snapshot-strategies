@@ -21,7 +21,7 @@ export async function strategy(
   const tokens = options.tokenAddresses || [];
 
   const holdsToken = (balance) => {
-    return balance > 1;
+    return balance > 0;
   }
 
   const calculateVotes = (bool) => {
