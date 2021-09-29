@@ -153,6 +153,7 @@ import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
+import * as lootCharacterGuilds from './loot-character-guilds';
 
 const strategies = {
   coordinape,
@@ -307,7 +308,8 @@ const strategies = {
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
   'hopr-bridged-balance': hoprBridgedBalance,
-  'occ-stake-of': occStakeOf
+  'occ-stake-of': occStakeOf,
+  'loot-character-guilds': lootCharacterGuilds
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
