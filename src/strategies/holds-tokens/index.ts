@@ -8,6 +8,8 @@ const abi = [
   'function balanceOf(address account) external view returns (uint256)'
 ];
 
+
+
 export async function strategy(
   space,
   network,
@@ -26,36 +28,48 @@ export async function strategy(
     return bool ? 1 : 0
   }
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const tokenResponses:any[] = [];
+  // console.log(chainBlocks);
   const allAddresses = {};
-  tokens.forEach(async ({tokenAddress, network}) => {
+
+  for (let i = 0; i < tokens.length; i++) {
+    const {address, network, snapshot} = tokens[i];
+    const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+    const multicallAddresses = addresses.map((userAddress: any) => [address, 'balanceOf', [userAddress]]);
+
+    console.log('BLOCKTAG: ' + blockTag);
+
+    // if (network === '137') {
+    //   continue
+    // }
+
     const response = await multicall(
       network,
       provider,
       abi,
-      addresses.map((address: any) => [tokenAddress, 'balanceOf', [address]]),
+      multicallAddresses,
       { blockTag }
     );
 
-    response.array.forEach((value, i) => {
+    response.forEach((value, i) => {
       const addressHasToken = holdsToken(
         parseFloat(formatUnits(value.toString(), options.decimals))
       );
+
       if (allAddresses[addresses[i]] !== undefined) {
         allAddresses[addresses[i]] = allAddresses[addresses[i]] && addressHasToken;
       } else {
         allAddresses[addresses[i]] = addressHasToken;
       }
     });
+  }
 
-    tokenResponses.push(response);
-  });
+  const entries = addresses.map(address => [
+    address,
+    calculateVotes(allAddresses[address])
+  ]);
 
   return Object.fromEntries(
-    addresses.map(address => [
-      address,
-      calculateVotes(allAddresses[addresses])
-    ])
+    entries
   );
 }
