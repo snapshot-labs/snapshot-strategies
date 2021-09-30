@@ -9,11 +9,11 @@ The space config will look like this:
 ```JSON
 {
   "strategies": [
-    ["dfyn-staked-in-vaults", {
+    ["anyan-staked-in-vaults", {
       // vault contracts across which token balance needs to be calculated
       "contractAddresses": [
       "0x8b016E4f714451f3aFF88B82Ec9dfAe13D664d42", 
-      "0x07E3f04903aBd6506A6E41246Da7d39dA0D6a8CA"
+  
       ], 
       // scoreMultiplier can be used to increase users' scores by a certain magnitude
       "scoreMultiplier": 1,
