@@ -32,8 +32,6 @@ export async function strategy(
     snapshot  
   );
 
-  console.log(scores);
-
   return Object.fromEntries(
     Object.entries(scores).map((address: any) => [
       address[0],
