@@ -154,7 +154,7 @@ import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
-import * as anyanVaults from './anyan-staked-in-vaults';
+import * as anyanVaults from './avanyan-staked-in-vaults';
 
 const strategies = {
   coordinape,
@@ -169,7 +169,7 @@ const strategies = {
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
-  'anyan-staked-in-vaults': anyanVaults,
+  'avanyan-staked-in-vaults': anyanVaults,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,

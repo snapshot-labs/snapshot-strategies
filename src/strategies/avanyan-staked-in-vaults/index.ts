@@ -1,7 +1,7 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
-export const author = 'avanyan';
+export const author = 'avanyanio';
 export const version = '0.1.0';
 
 function chunk(array, chunkSize) {
