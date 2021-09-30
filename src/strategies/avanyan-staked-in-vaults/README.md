@@ -12,7 +12,7 @@ The space config will look like this:
     ["anyan-staked-in-vaults", {
       // vault contracts across which token balance needs to be calculated
       "contractAddresses": [
-      "0x8b016E4f714451f3aFF88B82Ec9dfAe13D664d42", 
+      "0x64C298717491D7Be71C1DFf80F4B3b651a25A687", 
   
       ], 
       // scoreMultiplier can be used to increase users' scores by a certain magnitude
