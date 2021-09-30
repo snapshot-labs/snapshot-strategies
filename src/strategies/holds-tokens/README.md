@@ -7,10 +7,8 @@ Here is an example of parameters:
 ```json
 {
   "tokenAddresses": [
-    {"address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7", "network": "1"},
-    {"address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79", "network": "137"}
-  ],
-  "decimals": 0,
-  "snapshot": "latest"
+    {"address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7", "network": "1", "decimals": 0, "minBalance": 1},
+    {"address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79", "network": "137", "decimals": 0, "minBalance": 1}
+  ]
 }
 ```
