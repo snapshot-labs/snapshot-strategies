@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "anyan-staked-in-vaults",
+      "params": {
+        "name": "AvaNyan Vaults",
+        "contractAddresses": [
+          "0x64C298717491D7Be71C1DFf80F4B3b651a25A687"
+        ], 
+        "scoreMultiplier": 1,
+        "methodABI": 
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+              }
+            ],
+            "name": "balanceOf",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          }
+      }
+    },
+    "network": "43114",
+    "addresses": [
+      "0x41CdE29bF9aea095fDD204D150451678b2c6A736",
+      "0xD7B26f34775fa41D6dCE182851642573aBF9B532"
+    ],
+    "snapshot": 18342938
+  }
+]
