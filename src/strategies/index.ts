@@ -155,6 +155,7 @@ import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
+import * as cyberkongz from './cyberkongz';
 
 const strategies = {
   coordinape,
@@ -311,7 +312,8 @@ const strategies = {
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   'holds-tokens': holdsTokens,
-  'loot-character-guilds': lootCharacterGuilds
+  'loot-character-guilds': lootCharacterGuilds,
+  'cyberkongz': cyberkongz
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
