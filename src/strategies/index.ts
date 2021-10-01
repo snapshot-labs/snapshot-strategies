@@ -144,6 +144,7 @@ import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
 import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
+import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
@@ -309,6 +310,7 @@ const strategies = {
   'hopr-staking': hoprStaking,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
+  'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds
 };
 
