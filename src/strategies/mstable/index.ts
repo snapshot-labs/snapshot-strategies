@@ -61,7 +61,7 @@ export async function strategy(
         parseFloat(
           formatUnits(
             stkMTABalances[i][0].add(stkBPTBalances[i][0]).toString(),
-            options.decimals
+            18
           )
         )
       ])
