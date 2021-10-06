@@ -1,6 +1,6 @@
 [
   {
-    "name": "mStable",
+    "name": "mstable",
     "strategy": {
       "name": "mstable",
       "params": {
