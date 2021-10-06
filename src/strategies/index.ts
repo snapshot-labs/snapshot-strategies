@@ -157,6 +157,7 @@ import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
+import * as mstable from './mstable';
 
 const strategies = {
   coordinape,
@@ -315,7 +316,8 @@ const strategies = {
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
   'cyberkongz': cyberkongz,
-  'comp-like-votes-inclusive': compLikeVotesInclusive
+  'comp-like-votes-inclusive': compLikeVotesInclusive,
+  mstable
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
