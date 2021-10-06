@@ -1,4 +1,4 @@
-# mStable
+# mstable
 
 Calls getVotes() on both the stkMTA and stkBPT contracts, these balances are then summed to generate a users vMTA balance.
 
