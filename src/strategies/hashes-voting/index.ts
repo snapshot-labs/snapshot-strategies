@@ -1,29 +1,11 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
-export const author = 'Arr00';
+export const author = 'brennanfife';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_account',
-        type: 'address'
-      }
-    ],
-    name: 'getCurrentVotes',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getCurrentVotes(address _account) view returns (uint256)'
 ];
 
 export async function strategy(

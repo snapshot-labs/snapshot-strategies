@@ -8,7 +8,10 @@
       }
     },
     "network": "1",
-    "addresses": [],
+    "addresses": [
+      "0xecece69f68bde56e7d53bd77d84da21a386bae0f",
+      "0x6dfc724df608c15027772f770f00b2b7a4040976"
+    ],
     "snapshot": 13366241
   }
 ]
