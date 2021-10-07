@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Example Hashes votes query",
+    "strategy": {
+      "name": "hashes-voting",
+      "params": {
+        "address": "0xD07e72b00431af84AD438CA995Fd9a7F0207542d"
+      }
+    },
+    "network": "1",
+    "addresses": [],
+    "snapshot": 13366241
+  }
+]
