@@ -158,6 +158,7 @@ import * as lootCharacterGuilds from './loot-character-guilds';
 import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
+import * as hashesVoting from './hashes-voting';
 
 const strategies = {
   coordinape,
@@ -315,9 +316,10 @@ const strategies = {
   'occ-stake-of': occStakeOf,
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
-  'cyberkongz': cyberkongz,
+  cyberkongz: cyberkongz,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
-  mstable
+  mstable,
+  'hashes-voting': hashesVoting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
