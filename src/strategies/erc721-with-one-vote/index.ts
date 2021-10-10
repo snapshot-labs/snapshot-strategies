@@ -27,7 +27,7 @@ export async function strategy(
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      parseFloat(formatUnits(value.toString(), 0)) * 0 + 1
+      parseFloat(formatUnits(value.toString(), 0)) > 0 ? 1 : 0
     ])
   );
 }
