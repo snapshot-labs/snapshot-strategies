@@ -159,6 +159,7 @@ import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
+import * as erc721WithOneVote from './erc721-with-one-vote';
 
 const strategies = {
   coordinape,
@@ -196,6 +197,7 @@ const strategies = {
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-multi-registry': erc721MultiRegistry,
+  'erc721-with-one-vote': erc721WithOneVote,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   multichain,
