@@ -159,6 +159,7 @@ import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
+import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 
 const strategies = {
   coordinape,
@@ -319,7 +320,8 @@ const strategies = {
   cyberkongz: cyberkongz,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
-  'hashes-voting': hashesVoting
+  'hashes-voting': hashesVoting,
+  'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

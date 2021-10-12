@@ -8,7 +8,8 @@ const strategyArg =
   process.env['npm_config_strategy'] ||
   (
     process.argv.find((arg) => arg.includes('--strategy=')) ||
-    '--strategy=erc20-balance-of'
+    '--strategy=aavegotchi-wagmi-guild'
+    // '--strategy=erc20-balance-of'
   )
     .split('--strategy=')
     .pop();
@@ -21,6 +22,7 @@ const moreArg =
     ?.pop();
 
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
+console.log(strategy);
 if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
