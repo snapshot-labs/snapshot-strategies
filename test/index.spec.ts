@@ -8,8 +8,7 @@ const strategyArg =
   process.env['npm_config_strategy'] ||
   (
     process.argv.find((arg) => arg.includes('--strategy=')) ||
-    '--strategy=aavegotchi-wagmi-guild'
-    // '--strategy=erc20-balance-of'
+    '--strategy=erc20-balance-of'
   )
     .split('--strategy=')
     .pop();
