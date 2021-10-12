@@ -85,39 +85,28 @@ export async function strategy(
     if (itemValue > 0) prices[parseInt(itemInfo.svgId)] = itemValue;
   });
 
+  const itemVotingPower = { '239': 100, '240': 100, '241': 100 };
+
   const walletScores = {};
   result.users.map((addrInfo) => {
+    let gotchiWagieValue = 0;
+
     const { id, gotchisOwned } = addrInfo;
-    let gotchisBrsEquipValue = 0;
+
     if (gotchisOwned.length > 0)
       gotchisOwned.map((gotchi) => {
-        // const brs = parseInt(gotchi.baseRarityScore);
-        // gotchisBrsEquipValue += brs;
         gotchi.equippedWearables
-          .filter((itemId: number) => (itemId != 0 && ( itemId == 239 || itemId == 240 || itemId == 241 )))
+          .filter((itemId: number) => (itemId == 239 || itemId == 240 || itemId == 241 ))
           .map((itemId) => {
-            let shopCost = prices[itemId];
-            if (isNaN(shopCost)) shopCost = 0;
-            gotchisBrsEquipValue += shopCost;
+            let votes = itemVotingPower[itemId.toString()];
+            gotchiWagieValue += votes;
           });
       });
-
-    let ownerItemValue = 0;
-    // const ownerItemInfo = multiRes[options.tokenAddress][id];
-    // if (ownerItemInfo.length > 0)
-    //   ownerItemInfo.map((itemInfo) => {
-    //     const amountOwned = parseInt(itemInfo.balance.toString());
-    //     const itemId = parseInt(itemInfo.itemId.toString());
-    //     const pricetag = parseFloat(prices[itemId]);
-    //     let cost = pricetag * amountOwned;
-    //     if (isNaN(cost)) cost = 0;
-    //     ownerItemValue += cost;
-    //   });
 
     const addr = addresses.find(
       (addrOption: string) => addrOption.toLowerCase() === id
     );
-    walletScores[addr] = ownerItemValue + gotchisBrsEquipValue;
+    walletScores[addr] = gotchiWagieValue;
   });
   addresses.map((addr) => {
     if (!walletScores[addr]) walletScores[addr] = 0;
