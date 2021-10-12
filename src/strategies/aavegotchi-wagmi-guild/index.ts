@@ -1,33 +1,12 @@
 import { formatUnits } from '@ethersproject/units';
-import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'candoizo';
+export const author = 'jarrod';
 export const version = '0.1.0';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
 };
-
-const tokenAbi = [
-  {
-    inputs: [{ internalType: 'address', name: '_account', type: 'address' }],
-    name: 'itemBalances',
-    outputs: [
-      {
-        components: [
-          { internalType: 'uint256', name: 'itemId', type: 'uint256' },
-          { internalType: 'uint256', name: 'balance', type: 'uint256' }
-        ],
-        internalType: 'struct ItemsFacet.ItemIdIO[]',
-        name: 'bals_',
-        type: 'tuple[]'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
 
 const itemPriceParams = {
   itemTypes: {
@@ -47,19 +26,6 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const multi = new Multicaller(network, provider, tokenAbi, { blockTag });
-  addresses.map((addr: string) =>
-    multi.call(
-      `${options.tokenAddress}.${addr.toLowerCase()}`,
-      options.tokenAddress,
-      'itemBalances',
-      [addr]
-    )
-  );
-  // const multiRes = await multi.execute();
-
   const walletQueryParams = {
     users: {
       __args: {
