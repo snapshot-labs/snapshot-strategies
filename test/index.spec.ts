@@ -22,7 +22,6 @@ const moreArg =
     ?.pop();
 
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
-console.log(strategy);
 if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
