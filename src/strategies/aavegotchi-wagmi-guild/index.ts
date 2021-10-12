@@ -1,7 +1,7 @@
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'jarrod';
+export const author = 'programmablewealth';
 export const version = '0.1.0';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
