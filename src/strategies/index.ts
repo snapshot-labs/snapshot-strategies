@@ -160,6 +160,7 @@ import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
+import * as polisBalance from './polis-balance';
 
 const strategies = {
   coordinape,
@@ -321,7 +322,8 @@ const strategies = {
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
-  'pod-leader': podLeader
+  'pod-leader': podLeader,
+  'polis-balance': polisBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
