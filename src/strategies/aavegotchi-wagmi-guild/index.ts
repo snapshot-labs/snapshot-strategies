@@ -22,9 +22,7 @@ export async function strategy(
   _space,
   network,
   provider,
-  addresses,
-  options,
-  snapshot
+  addresses
 ) {
   const walletQueryParams = {
     users: {
