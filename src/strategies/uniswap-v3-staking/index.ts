@@ -22,9 +22,11 @@ export async function strategy(
 
   const _addresses = addresses.map((address) => address.toLowerCase());
 
+  // The subgraph query does not paginate past the first 1000 items
   const params = {
     positions: {
       __args: {
+        first: 1000,
         where: {
           pool: options.poolAddress.toLowerCase(),
           owner: UNISWAP_V3_STAKER.toLowerCase()
@@ -82,7 +84,7 @@ export async function strategy(
   const score = {};
 
   reserves?.forEach((position: any, idx) => {
-    const { owner,reward } = stakeInfo[positions[idx].id];
+    const { owner, reward } = stakeInfo[positions[idx].id];
     const unclaimedReward = parseFloat(formatUnits(reward, 18))
 
     if (_addresses.includes(owner)) {
