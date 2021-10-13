@@ -160,6 +160,7 @@ import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
+import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
 
 const strategies = {
@@ -323,6 +324,7 @@ const strategies = {
   mstable,
   'hashes-voting': hashesVoting,
   'pod-leader': podLeader,
+  'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
   'polis-balance': polisBalance
 };
 
