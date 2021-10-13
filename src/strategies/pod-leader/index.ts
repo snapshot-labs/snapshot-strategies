@@ -3,10 +3,10 @@ import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'ursamaritimus';
-export const version = '0.1.0';
+export const version = '0.3.0';
 
 /*
- * PodLeader pool balance or price strategy. Accepted options:
+ * PodLeader pool balance. Accepted options:
  * - chefAddress: Masterchef contract address
  * - pid: Mastechef pool id (starting with zero)
  *
@@ -22,20 +22,15 @@ export const version = '0.1.0';
  * - weightDecimals: Integer value of number of decimal places to apply to the final result
  *
  * - token0.address: Address of the uniPair token 0. If defined, the strategy will return the result for the token0.
- *                   can be used in conjunction with token1Address to get the sum of tokens or the UniPair token price
- *                   when used with usePrice and token1Address.
- *                   Can be used with usePrice to get the price value of the staked amount of token0
+ *                   
  * - token0.weight: Integer multiplier of the result for token0
  * - token0.weightDecimals: Integer value of number of decimal places to apply to the result of token0
  *
  * - token1.address: Address of the uniPair token 1. If defined, the strategy will return the result for the token1.
- *                   can be used in conjunction with token0Address to get the sum of tokens or the UniPair token price
- *                   when used with usePrice and token0Address.
- *                   can be used with usePrice to get the price value of the staked amount of token1
+ *                   
  * - token1,weight: Integer multiplier of the result for token1
  * - token1.weightDecimal: Integer value of number of decimal places to apply to the result of token1
  *
- * - currency: currency for the price. (defaulted to 'usd').
  *
  * - log: Boolean flag to enable or disable logging to the console (used for debugging purposes during development)
  *
