@@ -6,7 +6,10 @@
       "params": {
         "poolAddress": "0x94981f69f7483af3ae218cbfe65233cc3c60d93a",
         "tokenReserve": 0,
-        "incentiveId": "BE144419E7C2592887531DF53AE93061A8273CCF78AEF5A553C8FADA5BAFCDA5"
+        "rewardToken": "0x6123B0049F904d730dB3C36a31167D9d4121fA6B",
+        "startTime": 1633694400,
+        "endTime": 1638878400,
+        "refundee": "0xDAEada3d210D2f45874724BeEa03C7d4BBD41674"
       }
     },
     "network": "1",

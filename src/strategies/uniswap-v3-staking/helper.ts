@@ -78,7 +78,7 @@ export const getReserves = ({
 
 const V3_STAKER_ABI = [
   'function deposits(uint256 tokenId) external view returns ((address owner, uint48 numberOfStakes, int24 tickLower, int24 tickUpper))',
-  'function getRewardInfo((address,addres,uint256,uint256,address), uint256 tokenId) external view returns (uint256 reward, uint160 secondsInsideX128)'
+  'function getRewardInfo((address,address,uint256,uint256,address), uint256 tokenId) external view returns (uint256 reward, uint160 secondsInsideX128)'
 ];
 
 // Canonical V3 staker contract across all networks
@@ -92,13 +92,24 @@ export const getOwnerOfStakes = async (
   blockTag: string | number,
   network,
   provider,
+  options,
   tokenIDs: number[]
 ): Promise<Record<number, string>> => {
+  const incentiveKey = [
+    options.rewardToken,
+    options.poolAddress,
+    options.startTime,
+    options.endTime,
+    options.refundee
+  ];
+
   const multi = new Multicaller(network, provider, V3_STAKER_ABI, { blockTag });
-  tokenIDs.forEach((tokenID) =>
-    multi.call(tokenID, UNISWAP_V3_STAKER, 'deposits', [tokenID])
-  );
+  tokenIDs.forEach((tokenID) => {
+    multi.call(tokenID, UNISWAP_V3_STAKER, 'deposits', [tokenID]);
+    multi.call(tokenID, UNISWAP_V3_STAKER, 'getRewardInfo', [incentiveKey, tokenID]);
+  });
   const result: Record<number, Deposit> = await multi.execute();
+  console.log(result)
 
   return Object.fromEntries(
     Object.entries(result).map(([tokenID, deposit]) => [

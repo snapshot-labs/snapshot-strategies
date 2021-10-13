@@ -73,6 +73,7 @@ export async function strategy(
     snapshot,
     network,
     _provider,
+    options,
     tokenIDs
   );
 
@@ -90,6 +91,5 @@ export async function strategy(
     }
   });
 
-  console.log(score)
   return score || {};
 }
