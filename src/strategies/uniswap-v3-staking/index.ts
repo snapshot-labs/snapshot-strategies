@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 import { getAllReserves, getStakeInfo, UNISWAP_V3_STAKER } from './helper';
@@ -88,10 +89,11 @@ export async function strategy(
     const unclaimedReward = parseFloat(formatUnits(reward, 18))
 
     if (_addresses.includes(owner)) {
-      if (!score[owner]) {
-        score[owner] = position[tokenReserve] + unclaimedReward;
+      const checksumOwner = getAddress(owner)
+      if (!score[checksumOwner]) {
+        score[checksumOwner] = position[tokenReserve] + unclaimedReward;
       } else {
-        score[owner] += position[tokenReserve] + unclaimedReward;
+        score[checksumOwner] += position[tokenReserve] + unclaimedReward;
       }
     }
   });
