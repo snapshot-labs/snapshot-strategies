@@ -1,5 +1,6 @@
+import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
-import { getAllReserves, getOwnerOfStakes, UNISWAP_V3_STAKER } from './helper';
+import { getAllReserves, getStakeInfo, UNISWAP_V3_STAKER } from './helper';
 
 const UNISWAP_V3_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
@@ -69,7 +70,7 @@ export async function strategy(
 
   const positions = rawData.positions;
   const tokenIDs = positions.map((pos) => parseInt(pos.id));
-  const tokenIDToOwner = await getOwnerOfStakes(
+  const stakeInfo = await getStakeInfo(
     snapshot,
     network,
     _provider,
@@ -77,16 +78,18 @@ export async function strategy(
     tokenIDs
   );
 
-  const reserves = getAllReserves(positions)
+  const reserves = getAllReserves(positions);
   const score = {};
 
   reserves?.forEach((position: any, idx) => {
-    const user = tokenIDToOwner[positions[idx].id];
-    if (_addresses.includes(user)) {
-      if (!score[user]) {
-        score[user] = position[tokenReserve];
+    const { owner,reward } = stakeInfo[positions[idx].id];
+    const unclaimedReward = parseFloat(formatUnits(reward, 18))
+
+    if (_addresses.includes(owner)) {
+      if (!score[owner]) {
+        score[owner] = position[tokenReserve] + unclaimedReward;
       } else {
-        score[user] += position[tokenReserve];
+        score[owner] += position[tokenReserve] + unclaimedReward;
       }
     }
   });

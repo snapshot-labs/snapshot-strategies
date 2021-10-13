@@ -1,6 +1,7 @@
 import { FeeAmount, Pool, Position } from '@uniswap/v3-sdk';
 import { Token } from '@uniswap/sdk-core';
 import { Multicaller } from '../../utils';
+import { BigNumber } from '@ethersproject/bignumber';
 
 export const getFeeAmount = (fee: string): FeeAmount | undefined => {
   const feeAmount: FeeAmount | undefined = Object.values(FeeAmount).includes(
@@ -84,17 +85,18 @@ const V3_STAKER_ABI = [
 // Canonical V3 staker contract across all networks
 export const UNISWAP_V3_STAKER = '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d';
 
-interface Deposit {
+interface Stake {
   owner: string;
+  reward: BigNumber
 }
 
-export const getOwnerOfStakes = async (
+export const getStakeInfo = async (
   blockTag: string | number,
   network,
   provider,
   options,
   tokenIDs: number[]
-): Promise<Record<number, string>> => {
+): Promise<Record<number, Stake>> => {
   const incentiveKey = [
     options.rewardToken,
     options.poolAddress,
@@ -106,15 +108,21 @@ export const getOwnerOfStakes = async (
   const multi = new Multicaller(network, provider, V3_STAKER_ABI, { blockTag });
   tokenIDs.forEach((tokenID) => {
     multi.call(tokenID, UNISWAP_V3_STAKER, 'deposits', [tokenID]);
+  })
+  const depositResults: Record<number, {owner:string}> = await multi.execute();
+
+  tokenIDs.forEach((tokenID) => {
     multi.call(tokenID, UNISWAP_V3_STAKER, 'getRewardInfo', [incentiveKey, tokenID]);
   });
-  const result: Record<number, Deposit> = await multi.execute();
-  console.log(result)
+  const rewardResults: Record<number, {reward: BigNumber}> = await multi.execute();
 
   return Object.fromEntries(
-    Object.entries(result).map(([tokenID, deposit]) => [
+    Object.entries(depositResults).map(([tokenID, deposit], index) => [
       tokenID,
-      deposit.owner.toLowerCase()
+      {
+        owner: deposit.owner.toLowerCase(),
+        reward: rewardResults[tokenID].reward
+      }
     ])
   );
 };
