@@ -87,7 +87,7 @@ export const UNISWAP_V3_STAKER = '0x1f98407aaB862CdDeF78Ed252D6f557aA5b0f00d';
 
 interface Stake {
   owner: string;
-  reward: BigNumber
+  reward: BigNumber;
 }
 
 export const getStakeInfo = async (
@@ -105,19 +105,39 @@ export const getStakeInfo = async (
     options.refundee
   ];
 
+  // This helps us parallelize everything in one execution
   const multi = new Multicaller(network, provider, V3_STAKER_ABI, { blockTag });
   tokenIDs.forEach((tokenID) => {
-    multi.call(tokenID, UNISWAP_V3_STAKER, 'deposits', [tokenID]);
-  })
-  const depositResults: Record<number, {owner:string}> = await multi.execute();
-
-  tokenIDs.forEach((tokenID) => {
-    multi.call(tokenID, UNISWAP_V3_STAKER, 'getRewardInfo', [incentiveKey, tokenID]);
+    multi.call(`deposit-${tokenID}`, UNISWAP_V3_STAKER, 'deposits', [tokenID]);
+    multi.call(`reward-${tokenID}`, UNISWAP_V3_STAKER, 'getRewardInfo', [
+      incentiveKey,
+      tokenID
+    ]);
   });
-  const rewardResults: Record<number, {reward: BigNumber}> = await multi.execute();
+  const results: Record<number, any> = await multi.execute();
+
+  const keys = Object.keys(results);
+
+  const depositResults: Record<number, { owner: string }> = Object.fromEntries(
+    keys
+      .filter((k) => k.includes('deposit'))
+      .map((k) => {
+        const tokenID = k.split('-')[1];
+        return [tokenID, results[`deposit-${tokenID}`]];
+      })
+  );
+
+  const rewardResults: Record<number, { reward: string }> = Object.fromEntries(
+    keys
+      .filter((k) => k.includes('reward'))
+      .map((k) => {
+        const tokenID = k.split('-')[1];
+        return [tokenID, results[`reward-${tokenID}`]];
+      })
+  );
 
   return Object.fromEntries(
-    Object.entries(depositResults).map(([tokenID, deposit], index) => [
+    Object.entries(depositResults).map(([tokenID, deposit]) => [
       tokenID,
       {
         owner: deposit.owner.toLowerCase(),
