@@ -1,5 +1,7 @@
 # PodLeader pool balance
 
+Calculates the balance of either a uniswap pair in a Yield Yak/Pod leader style farm, or the amount of each individual token in that LP which is deposited into the farm. For example, if an LP pair has 100 token1 and 200 token2, one can isolate token2 for snapshot votes. One can also give weights to each of these tokens when combined with other strategies.
+
 ## Accepted options:
 
 - chefAddress: Masterchef contract address
