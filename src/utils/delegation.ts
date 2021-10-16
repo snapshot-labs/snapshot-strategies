@@ -7,14 +7,7 @@ const SNAPSHOT_SUBGRAPH_URL = {
   '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
 };
 
-export async function getDelegations(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
+export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const spaceIn = ['', space];
   // if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
