@@ -25,6 +25,7 @@ import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
+import * as foxBalance from './farmersonly-fox-in-vaults';
 import * as multichain from './multichain';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
@@ -187,6 +188,7 @@ const strategies = {
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'farmersonly-fox-in-vaults': foxBalance,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,

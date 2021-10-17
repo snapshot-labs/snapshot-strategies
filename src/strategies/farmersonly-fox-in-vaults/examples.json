@@ -1,0 +1,19 @@
+[
+  {
+    "name": "FarmersOnlyFi Snapshot",
+    "strategy": {
+      "name": "farmersonly-fox-in-vaults",
+      "params": {
+        "address": "0x0159ED2E06DDCD46a25E74eb8e159Ce666B28687",
+        "symbol": "FOX",
+        "decimals": 18
+      }
+    },
+    "network": "1666600000",
+    "addresses": [
+      "0xB989B490F9899a5AD56a4255A3C84457040B59dc",
+      "0xD20B976584bF506BAf5cC604D1f0A1B8D07138dA"
+    ],
+    "snapshot": 18263021
+  }
+]
