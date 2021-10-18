@@ -10,7 +10,7 @@ const SNAPSHOT_SUBGRAPH_URL = {
 export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const spaceIn = ['', space];
-  // if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
+  if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
   const params = Object.fromEntries(
     ['_1', '_2'].map((q) => [
       q,
