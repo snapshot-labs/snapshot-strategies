@@ -163,6 +163,7 @@ import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 
 const strategies = {
   coordinape,
@@ -327,7 +328,8 @@ const strategies = {
   'hashes-voting': hashesVoting,
   'pod-leader': podLeader,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
-  'polis-balance': polisBalance
+  'polis-balance': polisBalance,
+  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
