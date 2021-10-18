@@ -29,7 +29,6 @@ export async function strategy(
   );
 
   const vaultBalances = await Promise.all([vaultBalancesCalls]);
-  console.log('vaultBalances', vaultBalances);
 
   return Object.fromEntries(
     Object.entries(addresses).map((address: any, index) => [
