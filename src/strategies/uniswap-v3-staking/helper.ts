@@ -30,18 +30,6 @@ export const getReserves = ({
     new Token(1, token0.id, Number(token0.decimals), token0.symbol),
     new Token(1, token1.id, Number(token1.decimals), token1.symbol)
   ];
-  if (
-    parseInt(tick) < parseInt(tickLower.tickIdx) ||
-    parseInt(tick) > parseInt(tickUpper.tickIdx)
-  ) {
-    return {
-      token0Reserve: 0,
-      token1Reserve: 0,
-      poolTick: 0,
-      position: undefined,
-      inRange: false
-    };
-  }
 
   const _fee = getFeeAmount(feeTier) ?? 0;
   const pool = new Pool(

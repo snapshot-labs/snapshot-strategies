@@ -160,8 +160,10 @@ import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
+import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 
@@ -326,10 +328,12 @@ const strategies = {
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
+  'pod-leader': podLeader,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
   'polis-balance': polisBalance,
   'vault-token-lp-balance': vaultTokenLpBalance,
-  'single-staking-vault-balanceof': singleStakingVaultBalanceOf
+  'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
+  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
