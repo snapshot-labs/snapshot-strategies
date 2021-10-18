@@ -25,7 +25,6 @@ import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
-import * as foxBalance from './farmersonly-fox-in-vaults';
 import * as multichain from './multichain';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
@@ -163,6 +162,8 @@ import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as vaultTokenLpBalance from './vault-token-lp-balance';
+import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 
 const strategies = {
   coordinape,
@@ -188,7 +189,6 @@ const strategies = {
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
-  'farmersonly-fox-in-vaults': foxBalance,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
@@ -327,7 +327,9 @@ const strategies = {
   mstable,
   'hashes-voting': hashesVoting,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
-  'polis-balance': polisBalance
+  'polis-balance': polisBalance,
+  'vault-token-lp-balance': vaultTokenLpBalance,
+  'single-staking-vault-balanceof': singleStakingVaultBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
