@@ -1,14 +1,13 @@
-# single-staking-pools-balanceof
+# single-staking-vault-balanceof
 
-Used for fetching the staked token balance in a single staking pool
+Used for fetching the staked token balance in a single staking vault
 
-Here is an example of parameters:
+The only parameter is the vault address. The vault must
+have the function call `wantLockedTotal(address)` which should 
+return the amount of tokens in the vault.
 
 ```json
 {
-  "stakingPoolAddress": [
-      "0x081Ffa6Fa76e738531B3717301F4B636efAe1F1e"
-   ],
-  "decimals": 18
+  "vaultAddress": "0xA68E643e1942fA8635776b718F6EeD5cEF2a3F15"
 }
 ```
