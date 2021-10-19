@@ -166,6 +166,7 @@ import * as polisBalance from './polis-balance';
 import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as svsStaking from './svs-staking';
 
 const strategies = {
   coordinape,
@@ -333,7 +334,8 @@ const strategies = {
   'polis-balance': polisBalance,
   'vault-token-lp-balance': vaultTokenLpBalance,
   'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
-  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders
+  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'svs-staking': svsStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
