@@ -6,21 +6,7 @@ export const version = '0.1.0';
 
 const stakingAbi = [ 'function getVampsBuried(address burier) view returns (uint256[])' ];
 
-const tokenAbi = [{
-    "inputs":[{
-        "internalType":"address",
-        "name":"owner",
-        "type":"address"
-    }],
-    "name":"balanceOf",
-    "outputs":[{
-        "internalType":"uint256",
-        "name":"",
-        "type":"uint256"
-    }],
-    "stateMutability":"view",
-    "type":"function"
- }];
+const tokenAbi = [ 'function balanceOf(address owner) view returns (uint256)' ];
 
 export async function strategy(
   space,
