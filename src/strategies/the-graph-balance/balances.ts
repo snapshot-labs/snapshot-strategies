@@ -1,4 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { Provider } from '@ethersproject/providers';
 import { subgraphRequest } from '../../utils';
 import {
   GRAPH_NETWORK_SUBGRAPH_URL,
@@ -7,12 +8,12 @@ import {
 } from '../the-graph/graphUtils';
 
 export async function balanceStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  _options,
-  snapshot
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  _options: Record<string, any>,
+  snapshot: string | number
 ): Promise<GraphAccountScores> {
   const balanceParams = {
     graphAccounts: {

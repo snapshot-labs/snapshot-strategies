@@ -1,17 +1,23 @@
+import { Provider } from '@ethersproject/providers';
 import { getAddress } from '@ethersproject/address';
 import { getTokenLockWallets } from './tokenLockWallets';
-import { balanceStrategy } from '../the-graph-balance/balances';
-import { indexersStrategy } from '../the-graph-indexing/indexers';
-import { delegatorsStrategy } from '../the-graph-delegation/delegators';
-import { GraphAccountScores, verifyResults } from './graphUtils';
+
+import {
+  GraphAccountScores,
+  StrategyFunction,
+  verifyResults
+} from './graphUtils';
+
+const VALID_STRATEGIES = ['balance', 'indexing', 'delegation'];
 
 export async function baseStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  options,
-  snapshot
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  options: Record<string, any>,
+  snapshot: string | number,
+  graphStrategy: StrategyFunction
 ) {
   addresses = addresses.map((address) => address.toLowerCase());
   const tokenLockWallets = await getTokenLockWallets(
@@ -32,26 +38,8 @@ export async function baseStrategy(
   }
 
   let scores: GraphAccountScores = {};
-  if (options.strategyType == 'balance') {
-    scores = await balanceStrategy(
-      _space,
-      network,
-      _provider,
-      allAccounts,
-      options,
-      snapshot
-    );
-  } else if (options.strategyType == 'delegation') {
-    scores = await delegatorsStrategy(
-      _space,
-      network,
-      _provider,
-      allAccounts,
-      options,
-      snapshot
-    );
-  } else if (options.strategyType == 'indexing') {
-    scores = await indexersStrategy(
+  if (VALID_STRATEGIES.includes(options.strategyType)) {
+    scores = await graphStrategy(
       _space,
       network,
       _provider,

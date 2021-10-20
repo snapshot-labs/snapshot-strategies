@@ -1,5 +1,6 @@
 import { parseUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
+import { Provider } from '@ethersproject/providers';
 
 export const GRAPH_NETWORK_SUBGRAPH_URL = {
   '1':
@@ -13,8 +14,26 @@ export interface GraphAccountScores {
   [key: string]: number;
 }
 
-// Pass in a BigDecimal and BigNumber from a subgraph query, and return the multiplication of
-// them as a BigNumber
+export type StrategyFunction = (
+  // Snapshot space
+  space: string,
+  // networkId (i.e. ethereum mainnet = '1')
+  network: string,
+  provider: Provider,
+  addresses: string[],
+  // These are the parameters you can configure in your space settings
+  // for the strategy. It's up to the strategy developer to define the
+  // shape of the options and inform them in the README.md of the strategy
+  // so users know how to configure it
+  options: Record<string, any>,
+  // 'latest' or a blockNumber used to ignore votes from newer participants
+  snapshot: string | number
+) => Promise<Record<string, number>>; // mapping of addresses to scores
+
+/**
+ * Pass in a BigDecimal and BigNumber from a subgraph query, and return the multiplication of
+ * them as a BigNumber
+ * */
 export function bdMulBn(bd: string, bn: string): BigNumber {
   const splitDecimal = bd.split('.');
   let split;

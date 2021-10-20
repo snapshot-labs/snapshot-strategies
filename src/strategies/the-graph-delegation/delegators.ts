@@ -1,3 +1,4 @@
+import { Provider } from '@ethersproject/providers';
 import { BigNumber } from '@ethersproject/bignumber';
 import { subgraphRequest } from '../../utils';
 import {
@@ -10,12 +11,12 @@ import {
 } from '../the-graph/graphUtils';
 
 export async function delegatorsStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  options,
-  snapshot
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  options: Record<string, any>,
+  snapshot: string | number
 ): Promise<GraphAccountScores> {
   const delegatorsParams = {
     graphAccounts: {

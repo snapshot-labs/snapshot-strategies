@@ -1,7 +1,8 @@
 import { baseStrategy } from '../the-graph/baseStrategy';
+import { delegatorsStrategy } from './delegators';
 
-export const author = 'davekaj';
-export const version = '0.1.0';
+export const author = 'glmaljkovich';
+export const version = '1.0.0';
 
 export async function strategy(
   _space,
@@ -16,7 +17,8 @@ export async function strategy(
     network,
     _provider,
     addresses,
-    _options,
-    snapshot
+    { strategyType: 'delegation', ..._options },
+    snapshot,
+    delegatorsStrategy
   );
 }

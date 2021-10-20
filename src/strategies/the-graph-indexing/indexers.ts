@@ -1,4 +1,5 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { Provider } from '@ethersproject/providers';
 import { subgraphRequest } from '../../utils';
 import {
   GRAPH_NETWORK_SUBGRAPH_URL,
@@ -9,12 +10,12 @@ import {
 } from '../the-graph/graphUtils';
 
 export async function indexersStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  options,
-  snapshot
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  options: Record<string, any>,
+  snapshot: string | number
 ): Promise<GraphAccountScores> {
   const indexersParams = {
     graphAccounts: {
