@@ -4,6 +4,7 @@
     "strategy": {
       "name": "erc20-balance-from-graph",
       "params": {
+        "symbol": "MCB",
         "graph": "https://api.thegraph.com/subgraphs/name/renpu-mcarlo/mcb-balance"
       }
     },
