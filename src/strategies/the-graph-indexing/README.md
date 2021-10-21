@@ -4,7 +4,8 @@ This strategy uses the amount of GRT an address has staked to calculate its scor
 
 ## Parameters
 
-This strategy has no configuration
 ```json
-{}
+{
+    "symbol": "I-GRT"
+}
 ```

@@ -4,7 +4,8 @@ This strategy uses the amount of GRT an address has delegated to calculate its s
 
 ## Parameters
 
-This strategy has no configuration
 ```json
-{}
+{
+    "symbol": "D-GRT"
+}
 ```

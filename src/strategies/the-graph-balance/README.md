@@ -6,5 +6,7 @@ This strategy uses the amount of GRT an address holds to calculate its score.
 
 This strategy has no configuration
 ```json
-{}
+{
+    "symbol": "B-GRT"
+}
 ```

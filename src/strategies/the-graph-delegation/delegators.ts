@@ -66,6 +66,8 @@ export async function delegatorsStrategy(
       result.graphNetworks[0].totalTokensStaked,
       result.graphNetworks[0].totalDelegatedTokens
     );
+    // The normalization factor gives more weight to delegated stake
+    // over GRT holded
     normalizationFactor =
       nonStakedTokens /
       BigNumber.from(result.graphNetworks[0].totalDelegatedTokens)
@@ -87,6 +89,8 @@ export async function delegatorsStrategy(
       for (let i = 0; i < result.graphAccounts.length; i++) {
         if (result.graphAccounts[i].id == a) {
           if (result.graphAccounts[i].delegator != null) {
+            // Find all stakes from the delegator
+            // and sum the delegated and locked tokens for each
             result.graphAccounts[i].delegator.stakes.forEach((s) => {
               const delegatedTokens = bdMulBn(
                 s.indexer.delegationExchangeRate,
@@ -99,8 +103,10 @@ export async function delegatorsStrategy(
                 .toNumber();
               delegationScore = delegationScore + oneDelegationScore;
             });
+            // Apply normalization factor to the total delegated GRT
             delegationScore = delegationScore * normalizationFactor;
           }
+          break;
         }
       }
       score[a] = delegationScore;

@@ -58,6 +58,8 @@ export async function indexersStrategy(
       result.graphNetworks[0].totalTokensStaked,
       result.graphNetworks[0].totalDelegatedTokens
     );
+    // The normalization factor gives more weight to staked GRT
+    // over GRT holded
     normalizationFactor =
       nonStakedTokens /
       BigNumber.from(result.graphNetworks[0].totalTokensStaked)
