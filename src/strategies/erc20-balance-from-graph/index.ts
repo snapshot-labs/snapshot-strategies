@@ -1,7 +1,7 @@
 import { subgraphRequest } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
-export const author = 'yangz';
+export const author = 'yangzhao28';
 export const version = '1.0.0';
 
 export async function strategy(
