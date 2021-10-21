@@ -167,6 +167,7 @@ import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders'
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
+import * as erc20BalanceFromGraph from './erc20-balance-from-graph';
 
 const strategies = {
   coordinape,
@@ -335,7 +336,8 @@ const strategies = {
   'vault-token-lp-balance': vaultTokenLpBalance,
   'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
-  'svs-staking': svsStaking
+  'svs-staking': svsStaking,
+  'erc20-balance-from-graph': erc20BalanceFromGraph
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
