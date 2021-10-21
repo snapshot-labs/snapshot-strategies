@@ -160,6 +160,7 @@ import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
 import * as polisBalance from './polis-balance';
+import * as erc20BalanceFromGraph from './erc20-balance-from-graph';
 
 const strategies = {
   coordinape,
@@ -321,7 +322,8 @@ const strategies = {
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
-  'polis-balance': polisBalance
+  'polis-balance': polisBalance,
+  'erc20-balance-from-graph': erc20BalanceFromGraph,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
