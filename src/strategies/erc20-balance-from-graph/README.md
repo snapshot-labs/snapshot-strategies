@@ -4,8 +4,8 @@ The configuration would be like this:
 
 ```json
 {
-    "graph": "the api address of your graph",
-    "decimals": 18 
+    "symbol": "MCB",
+    "graph": "the api address of your graph"
 }
 ```
 
