@@ -136,6 +136,7 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as poapWithWeight from './poap-with-weight';
 import * as uniswapV3 from './uniswap-v3';
+import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
@@ -159,7 +160,13 @@ import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
+import * as podLeader from './pod-leader';
+import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
+import * as vaultTokenLpBalance from './vault-token-lp-balance';
+import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as svsStaking from './svs-staking';
 import * as erc20BalanceFromGraph from './erc20-balance-from-graph';
 
 const strategies = {
@@ -299,6 +306,7 @@ const strategies = {
   'unipool-univ2-lp': unipoolUniv2Lp,
   'poap-with-weight': poapWithWeight,
   'uniswap-v3': uniswapV3,
+  'uniswap-v3-staking': uniswapV3Staking,
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
@@ -323,7 +331,14 @@ const strategies = {
   mstable,
   'hashes-voting': hashesVoting,
   'polis-balance': polisBalance,
-  'erc20-balance-from-graph': erc20BalanceFromGraph,
+  'pod-leader': podLeader,
+  'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
+  'polis-balance': polisBalance,
+  'vault-token-lp-balance': vaultTokenLpBalance,
+  'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
+  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'svs-staking': svsStaking,
+  'erc20-balance-from-graph': erc20BalanceFromGraph
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

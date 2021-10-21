@@ -51,8 +51,8 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const response = await multicall(
+  const promises: any[] = [];
+  const responsePromise = multicall(
     network,
     provider,
     abi,
@@ -122,6 +122,66 @@ export async function strategy(
     ],
     { blockTag }
   );
+  promises.push(responsePromise);
+
+  if (options.stakingRewardUniswap4 && options.stakingRewardSushiSwap4) {
+    const responsePhase4Promise = multicall(
+      network,
+      provider,
+      abi,
+      [
+        ...addresses.map((address: any) => [
+          options.stakingRewardUniswap4,
+          'balanceOf',
+          [address]
+        ]),
+        ...addresses.map((address: any) => [
+          options.stakingRewardUniswap4,
+          'earned',
+          [address]
+        ]),
+        ...addresses.map((address: any) => [
+          options.stakingRewardSushiSwap4,
+          'balanceOf',
+          [address]
+        ]),
+        ...addresses.map((address: any) => [
+          options.stakingRewardSushiSwap4,
+          'earned',
+          [address]
+        ]),
+      ]
+    );
+    promises.push(responsePhase4Promise);
+  }
+
+  let lpBalancesUniswapStaking4;
+  let lonEarnedBalancesUniswapStaking4;
+  let lpBalancesSushiSwapStaking4;
+  let lonEarnedBalancesSushiSwapStaking4;
+  const [ response, responsePhase4 ] = await Promise.all(promises);
+  if (responsePhase4) {
+    // user's LP tokens in phase 4 uniswap staking contract
+    lpBalancesUniswapStaking4 = responsePhase4.slice(
+      addresses.length * 0,
+      addresses.length * 1
+    );
+    // user's LON of rewards in phase 4 uniswap staking contract
+    lonEarnedBalancesUniswapStaking4 = responsePhase4.slice(
+      addresses.length * 1,
+      addresses.length * 2
+    );
+    // user's SLP tokens in phase 4 sushiswap staking contract
+    lpBalancesSushiSwapStaking4 = responsePhase4.slice(
+      addresses.length * 2,
+      addresses.length * 3
+    );
+    // user's LON of rewards in phase 4 sushiswap staking contract
+    lonEarnedBalancesSushiSwapStaking4 = responsePhase4.slice(
+      addresses.length * 3,
+      addresses.length * 4
+    );
+  }
 
   // LON in uniswap ETH-LON pair / LP total supply
   const lonPerLPUniswap = parseUnits(response[0][0].toString(), 18).div(
@@ -198,6 +258,7 @@ export async function strategy(
     addresses.length * 11 + 6,
     addresses.length * 12 + 6
   );
+
   return Object.fromEntries(
     Array(addresses.length)
       .fill('')
@@ -209,27 +270,58 @@ export async function strategy(
         const lpBalanceUniswap = lpBalancesUniswap[i][0];
         const lpBalanceUniswapStaking2 = lpBalancesUniswapStaking2[i][0];
         const lpBalanceUniswapStaking3 = lpBalancesUniswapStaking3[i][0];
-        const lonLpBalanceUniswap = lpBalanceUniswap
+        let lonLpBalanceUniswap;
+        lonLpBalanceUniswap = lpBalanceUniswap
           .add(lpBalanceUniswapStaking2)
-          .add(lpBalanceUniswapStaking3)
-          .mul(lonPerLPUniswap)
-          .div(parseUnits('1', 18));
+          .add(lpBalanceUniswapStaking3);
         const lonEarnedBalanceUniswapStaking2 =
           lonEarnedBalancesUniswapStaking2[i][0];
         const lonEarnedBalanceUniswapStaking3 =
           lonEarnedBalancesUniswapStaking3[i][0];
+        let lonEarnedBalanceUniswapStaking = lonEarnedBalanceUniswapStaking2
+          .add(lonEarnedBalanceUniswapStaking3);
+
         const lpBalanceSushiSwap = lpBalancesSushiSwap[i][0];
         const lpBalanceSushiSwapStaking2 = lpBalancesSushiSwapStaking2[i][0];
         const lpBalanceSushiSwapStaking3 = lpBalancesSushiSwapStaking3[i][0];
-        const lonLpBalanceSushiSwap = lpBalanceSushiSwap
+        let lonLpBalanceSushiSwap;
+        lonLpBalanceSushiSwap = lpBalanceSushiSwap
           .add(lpBalanceSushiSwapStaking2)
-          .add(lpBalanceSushiSwapStaking3)
-          .mul(lonPerLPSushiSwap)
-          .div(parseUnits('1', 18));
+          .add(lpBalanceSushiSwapStaking3);
+
         const lonEarnedBalanceSushiSwapStaking2 =
           lonEarnedBalancesSushiSwapStaking2[i][0];
         const lonEarnedBalanceSushiSwapStaking3 =
           lonEarnedBalancesSushiSwapStaking3[i][0];
+        let lonEarnedBalanceSushiSwapStaking = lonEarnedBalanceSushiSwapStaking2
+          .add(lonEarnedBalanceSushiSwapStaking3);
+
+        if (options.stakingRewardUniswap4 && options.stakingRewardSushiSwap4) {
+          const lpBalanceUniswapStaking4 = lpBalancesUniswapStaking4[i][0];
+          lonLpBalanceUniswap = lonLpBalanceUniswap
+            .add(lpBalanceUniswapStaking4);
+
+          const lonEarnedBalanceUniswapStaking4 =
+            lonEarnedBalancesUniswapStaking4[i][0];
+          lonEarnedBalanceUniswapStaking = lonEarnedBalanceUniswapStaking
+            .add(lonEarnedBalanceUniswapStaking4);
+
+          const lpBalanceSushiSwapStaking4 = lpBalancesSushiSwapStaking4[i][0];
+          lonLpBalanceSushiSwap = lonLpBalanceSushiSwap
+            .add(lpBalanceSushiSwapStaking4);
+
+          const lonEarnedBalanceSushiSwapStaking4 =
+            lonEarnedBalancesSushiSwapStaking4[i][0];
+          lonEarnedBalanceSushiSwapStaking = lonEarnedBalanceSushiSwapStaking
+            .add(lonEarnedBalanceSushiSwapStaking4)
+        }
+        lonLpBalanceUniswap = lonLpBalanceUniswap
+          .mul(lonPerLPUniswap)
+          .div(parseUnits('1', 18));
+
+        lonLpBalanceSushiSwap = lonLpBalanceSushiSwap
+          .mul(lonPerLPSushiSwap)
+          .div(parseUnits('1', 18));
 
         return [
           addresses[i],
@@ -238,11 +330,9 @@ export async function strategy(
               tokenBalances[i][0]
                 .add(userLONShares)
                 .add(lonLpBalanceUniswap)
-                .add(lonEarnedBalanceUniswapStaking2)
-                .add(lonEarnedBalanceUniswapStaking3)
+                .add(lonEarnedBalanceUniswapStaking)
                 .add(lonLpBalanceSushiSwap)
-                .add(lonEarnedBalanceSushiSwapStaking2)
-                .add(lonEarnedBalanceSushiSwapStaking3),
+                .add(lonEarnedBalanceSushiSwapStaking),
               options.decimals
             )
           )

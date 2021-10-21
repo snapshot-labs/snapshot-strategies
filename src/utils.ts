@@ -1,5 +1,6 @@
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
+import { getDelegations } from './utils/delegation';
 
 export async function getScoresDirect(
   space: string,
@@ -50,5 +51,6 @@ export default {
   ipfsGet,
   call,
   getBlockNumber,
-  getProvider
+  getProvider,
+  getDelegations
 };
