@@ -4,6 +4,7 @@ const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 
 const space = 'yam.eth';
 const network = '1';
+const snapshotBlockNumber = 13461847;
 const strategies = [
   {
     name: 'ens-domains-owned',
@@ -181,9 +182,9 @@ const addresses = [
       network,
       new JsonRpcProvider(networks[network].rpc[0]),
       addresses,
-      13461847
+      snapshotBlockNumber
     );
-    console.log(Object.keys(scores[0]).length);
+    console.log(scores);
   } catch (e) {
     console.log('getScores failed');
     console.error(e);
