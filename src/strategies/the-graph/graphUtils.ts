@@ -14,6 +14,15 @@ export interface GraphAccountScores {
   [key: string]: number;
 }
 
+export type GraphStrategyOptions = {
+  symbol: string;
+  // It should not be provided by the user but injected by the strategies
+  strategyType: string;
+  pageSize?: number;
+  // Only for test purposes
+  expectedResults?: Record<string, any>;
+};
+
 export type StrategyFunction = (
   // Snapshot space
   space: string,
@@ -69,7 +78,25 @@ export function verifyResults(
   expectedResults: string,
   type: string
 ): void {
+  const diff = `expected:\n ${expectedResults}\ngot:\n ${result}`;
   result === expectedResults
     ? console.log(`>>> SUCCESS: ${type} match expected results`)
-    : console.error(`>>> ERROR: ${type} do not match expected results`);
+    : console.error(
+        `>>> ERROR: ${type} do not match expected results\n${diff}`
+      );
+}
+/**
+ * splits an array in even chunks and returns a list of chunks
+ *
+ * @export
+ * @param {string[]} _array
+ * @param {number} pageSize
+ * @return {string[][]} chunks
+ */
+export function splitArray(_array: string[], pageSize: number): string[][] {
+  const chunks: string[][] = [];
+  for (let i = 0; i < _array.length; i += pageSize) {
+    chunks.push(_array.slice(i, i + pageSize));
+  }
+  return chunks;
 }

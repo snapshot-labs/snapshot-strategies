@@ -4,7 +4,7 @@
     "strategy": {
       "name": "the-graph-balance",
       "params": {
-        "strategyType": "balance",
+        "symbol": "B-GRT",
         "expectedResults": {
           "tokenLockWallets": [
             {
