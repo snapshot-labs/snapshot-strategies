@@ -139,7 +139,6 @@ export async function strategy(
     { blockTag }
   );
 
-
   const balances = Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
