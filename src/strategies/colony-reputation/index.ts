@@ -32,7 +32,7 @@ export async function strategy(
   const domain = await call(
     provider,
     colonyAbi,
-    [options.colonyAddress, 'getDomain', [1]],
+    [options.colonyAddress, 'getDomain', [options.domainId]],
     { blockTag }
   );
 

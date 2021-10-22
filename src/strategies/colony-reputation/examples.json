@@ -5,7 +5,9 @@
       "name": "colony-reputation",
       "params": {
         "colonyAddress": "0x51A1fC3f8B1D46e66691C1a7F1A84C9b863dE8c2",
-        "colonyNetworkAddress": "0x78163f593D1Fa151B4B7cacD146586aD2b686294"
+        "colonyNetworkAddress": "0x78163f593D1Fa151B4B7cacD146586aD2b686294",
+        "domainId": 1,
+        "symbol": "CLNY-REP"
       }
     },
     "network": "100",
