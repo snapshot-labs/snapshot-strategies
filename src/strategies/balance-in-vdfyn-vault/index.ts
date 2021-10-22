@@ -21,13 +21,17 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   let callData: [any, string, [any]][] = [];
-  const ratio = await call(provider, options.methodABI, [options.contractAddress, 'ratio', []])
-  console.log('ratio: ', ratio.toString())
+  const ratio = await call(provider, options.methodABI, [
+    options.contractAddress,
+    'ratio',
+    []
+  ]);
+  console.log('ratio: ', ratio.toString());
   addresses.map((userAddress: any) => {
-      callData.push([options.contractAddress, 'balanceOf', [userAddress]]);
+    callData.push([options.contractAddress, 'balanceOf', [userAddress]]);
   });
   callData = [...chunk(callData, 2000)]; // chunking the callData into multiple arrays of 2000 requests
-  let response: any[] = [];
+  const response: any[] = [];
   for (let i = 0; i < callData.length; i++) {
     const tempArray = await multicall(
       network,
@@ -39,6 +43,11 @@ export async function strategy(
     response.push(...tempArray);
   }
   return Object.fromEntries(
-    response.map((value, i) => [addresses[i], options.scoreMultiplier * ratio * parseFloat(formatUnits(value.toString(), 18))])
+    response.map((value, i) => [
+      addresses[i],
+      options.scoreMultiplier *
+        ratio *
+        parseFloat(formatUnits(value.toString(), 18))
+    ])
   );
 }

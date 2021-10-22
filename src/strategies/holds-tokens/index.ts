@@ -14,12 +14,12 @@ export async function strategy(
   const tokens = options.tokenAddresses || [];
 
   options.strategies = tokens.map((token) => ({
-    "name": "erc20-with-balance",
-    "network": token.network,
-    "params": {
-      "address": token.address,
-      "decimals": token.decimals,
-      "minBalance": token.minBalance
+    name: 'erc20-with-balance',
+    network: token.network,
+    params: {
+      address: token.address,
+      decimals: token.decimals,
+      minBalance: token.minBalance
     }
   }));
 
@@ -29,13 +29,13 @@ export async function strategy(
     provider,
     addresses,
     options,
-    snapshot  
+    snapshot
   );
 
   return Object.fromEntries(
     Object.entries(scores).map((address: any) => [
       address[0],
-      (address[1] === tokens.length) ? 1 : 0
+      address[1] === tokens.length ? 1 : 0
     ])
   );
 }
