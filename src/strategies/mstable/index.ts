@@ -4,7 +4,7 @@ import { multicall } from '../../utils';
 export const author = 'chrisjgf';
 export const version = '0.0.1';
 
-const abi = [ 'function getVotes(address account) view returns (uint256)' ];
+const abi = ['function getVotes(address account) view returns (uint256)'];
 
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>

@@ -18,12 +18,7 @@ const itemPriceParams = {
   }
 };
 
-export async function strategy(
-  _space,
-  network,
-  provider,
-  addresses
-) {
+export async function strategy(_space, network, provider, addresses) {
   const walletQueryParams = {
     users: {
       __args: {
@@ -60,9 +55,11 @@ export async function strategy(
     if (gotchisOwned.length > 0)
       gotchisOwned.map((gotchi) => {
         gotchi.equippedWearables
-          .filter((itemId: number) => (itemId == 239 || itemId == 240 || itemId == 241 ))
+          .filter(
+            (itemId: number) => itemId == 239 || itemId == 240 || itemId == 241
+          )
           .map((itemId) => {
-            let votes = itemVotingPower[itemId.toString()];
+            const votes = itemVotingPower[itemId.toString()];
             gotchiWagieValue += votes;
           });
       });
