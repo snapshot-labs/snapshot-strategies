@@ -6,6 +6,7 @@
             "params": {
                 "name": "vDfyn Vault",
                 "contractAddress": "0x75455c3DE45dD32CBE9a5aD5E518D3D50823c976",
+                "symbol": "VDFYN",
                 "scoreMultiplier": 1,
                 "methodABI": [
                     {

@@ -6,6 +6,7 @@
       "params": {
         "decimals": 18,
         "contractAddress": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "symbol": "DAI",
         "receivingAddresses": [
           "0x65689471339798e1dae0d2ffb61073bf4e3765e4",
           "0x42b5d4a11c8fe76d114759f7f3d8e94ea28bdbe5",

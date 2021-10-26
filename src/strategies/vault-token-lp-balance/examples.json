@@ -5,6 +5,7 @@
       "name": "vault-token-lp-balance",
       "params": {
         "tokenAddress": "0x0159ED2E06DDCD46a25E74eb8e159Ce666B28687",
+        "symbol": "FOX",
         "tokenDecimals": 18,
         "vaultChefAddress": "0x2914646E782Cc36297c6639734892927B3b6Fe56",
         "pid": 8,

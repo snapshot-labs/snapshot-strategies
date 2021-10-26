@@ -5,6 +5,7 @@
       "name": "comp-like-votes-inclusive",
       "params": {
         "address": "0x86772b1409b61c639EaAc9Ba0AcfBb6E238e5F83",
+        "symbol": "NDX",
         "decimals": 18
       }
     },

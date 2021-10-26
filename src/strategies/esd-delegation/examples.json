@@ -8,6 +8,7 @@
             "rewards": "0x4082D11E506e3250009A991061ACd2176077C88f",
             "dao": "0x443d2f2755db5942601fa062cc248aaa153313d3",
             "token": "0x36F3FD68E7325a35EB768F1AedaAe9EA0689d723",
+            "symbol": "ESD",
             "decimals": 18
         }
     },

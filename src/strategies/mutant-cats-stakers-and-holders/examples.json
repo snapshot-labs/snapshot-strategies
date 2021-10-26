@@ -5,7 +5,9 @@
       "name": "mutant-cats-stakers-and-holders",
       "params": {
         "staking": "0xd09656a2EE7E5Ee3404fAce234e683D3337dA014",
-        "token": "0xaAdBA140Ae5e4c8a9eF0Cc86EA3124b446e3E46A"
+        "token": "0xaAdBA140Ae5e4c8a9eF0Cc86EA3124b446e3E46A",
+        "symbol": "MUTCATS",
+        "decimals": 0
       }
     },
     "network": "1",

@@ -10,6 +10,7 @@
         "pancake": "0x470BC451810B312BBb1256f96B0895D95eA659B1",
         "sharePool": "0x27Da7Bc5CcB7c31baaeEA8a04CC8Bf0085017208",
         "token": "0x233d91a0713155003fc4dce0afa871b508b3b715",
+        "symbol": "DITTO",
         "decimals": 18
       }
     },
