@@ -1,7 +1,7 @@
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import { abi } from './VeXBE.json';
+import { abi } from './VeXBE.abi.json';
 
 export const author = 'xbe.finance';
 export const version = '0.0.1';
