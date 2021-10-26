@@ -18,7 +18,7 @@
     "prepublishOnly": "npm run build",
     "prepare": "npm run build",
     "postbuild": "copyfiles -u 1 src/**/*.md dist/ && copyfiles -u 1 src/**/*.json dist/",
-    "lint": "eslint . --ext .ts --fix"
+    "lint": "eslint . --ext .ts,.json --fix"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.0.4",

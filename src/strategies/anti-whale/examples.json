@@ -6,7 +6,7 @@
       "params": {
         "strategy": {
           "name": "erc20-balance-of",
-           "params": {
+          "params": {
             "address": "0x579cea1889991f68acc35ff5c3dd0621ff29b0c9",
             "symbol": "IQ",
             "decimals": 18
