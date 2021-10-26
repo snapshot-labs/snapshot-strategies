@@ -1,0 +1,26 @@
+[
+  {
+    "name": "veXBE query",
+    "strategy": {
+      "name": "vexbe",
+      "params": {
+        "symbol": "veXBE",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xf0774219823852E445fb592F15d13A336315A0F8",
+      "0x1093531C7Fe1f5b24D727e0089a510d7f5DF9E7C",
+      "0x96C53DBE55a62287ea4E53360635cAF1CCCE467d",
+      "0x81E3ED7cd259fbF729e119453fb5B5197B80Dc6c",
+      "0x02aE32E0a8F768f87C8EcC6d7551b689b7E4e20a",
+      "0x821cAFfc665886DaDb44BD589a80619A551deBa3",
+      "0x58dd2Fe04202B6e7e0D547885C7E3E110606C8d5",
+      "0x8a3034dc09e4d452Ed7299fEB86A9Dd66503a6d5",
+      "0x4F023131a6f8F0F92Cb74BcEb3Ad973380C6980e",
+      "0xBa3B351f0EF50fB9E902A33aCdbdFFbE550A9517"
+    ],
+    "snapshot": 13466860
+  }
+]

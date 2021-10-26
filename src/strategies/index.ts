@@ -169,8 +169,10 @@ import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
+import * as vexbe from './vexbe';
 
 const strategies = {
+  vexbe,
   coordinape,
   'anti-whale': antiWhale,
   balancer,
