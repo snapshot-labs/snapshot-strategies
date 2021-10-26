@@ -4,7 +4,8 @@
     "strategy": {
       "name": "hashes-voting",
       "params": {
-        "address": "0xD07e72b00431af84AD438CA995Fd9a7F0207542d"
+        "address": "0xD07e72b00431af84AD438CA995Fd9a7F0207542d",
+        "symbol": "HASH"
       }
     },
     "network": "1",
