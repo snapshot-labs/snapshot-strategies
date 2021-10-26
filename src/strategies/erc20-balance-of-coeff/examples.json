@@ -1,0 +1,19 @@
+[  
+    {
+        "name": "Example query",
+        "strategy": {
+            "name":"erc20-balance-of-coeff",
+            "params": {
+                "coeff":2,
+                "symbol":"HYPR",
+                "address":"0x03d6bd3d48f956d783456695698c407a46ecd54d",
+                "decimals":18
+            }
+        },
+        "network": "1",
+        "addresses": [
+            
+        ],
+        "snapshot": 0
+    }
+]

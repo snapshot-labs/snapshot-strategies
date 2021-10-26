@@ -1,0 +1,19 @@
+[  
+    {
+        "name": "Example query",
+        "strategy": {
+            "name":"ctoken",
+            "params": {
+                "symbol":"cUNI",
+                "address":"0x35A18000230DA775CAc24873d00Ff85BccdeD550",
+                "decimals":8,
+                "offsetCheck":40320,
+                "borrowingRestricted":true
+            }
+        },
+        "network": "1",
+        "addresses": [
+        ],
+        "snapshot": 0
+    }
+]

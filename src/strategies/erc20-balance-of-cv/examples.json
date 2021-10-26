@@ -1,0 +1,18 @@
+[  
+    {
+        "name": "Example query",
+        "strategy": {
+            "name":"erc20-balance-of-cv",
+            "params": {
+                "symbol":"ICAP",
+                "address":"0xd83C569268930fadAd4cdE6D0cB64450fef32b65",
+                "decimals":18
+            }
+        },
+        "network": "1",
+        "addresses": [
+            
+        ],
+        "snapshot": 0
+    }
+]
