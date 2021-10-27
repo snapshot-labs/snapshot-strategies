@@ -84,6 +84,10 @@ describe(`\nTest strategy "${strategy}"`, () => {
     expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
   });
 
+  it('File examples.json must have symbol in its strategy params', async () => {
+    expect(typeof example.strategy.params.symbol).toBe('string');
+  });
+
   it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
     expect(
       Object.keys(scores[0]).every(

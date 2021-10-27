@@ -86,10 +86,10 @@ export async function strategy(
 
   reserves?.forEach((position: any, idx) => {
     const { owner, reward } = stakeInfo[positions[idx].id];
-    const unclaimedReward = parseFloat(formatUnits(reward, 18))
+    const unclaimedReward = parseFloat(formatUnits(reward, 18));
 
     if (_addresses.includes(owner)) {
-      const checksumOwner = getAddress(owner)
+      const checksumOwner = getAddress(owner);
       if (!score[checksumOwner]) {
         score[checksumOwner] = position[tokenReserve] + unclaimedReward;
       } else {

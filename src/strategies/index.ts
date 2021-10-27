@@ -163,6 +163,12 @@ import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
+import * as vaultTokenLpBalance from './vault-token-lp-balance';
+import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as svsStaking from './svs-staking';
+import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
+import * as colonyReputation from './colony-reputation';
 import alias from './alias.json';
 
 const strategies = {
@@ -329,7 +335,13 @@ const strategies = {
   'hashes-voting': hashesVoting,
   'pod-leader': podLeader,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
-  'polis-balance': polisBalance
+  'polis-balance': polisBalance,
+  'vault-token-lp-balance': vaultTokenLpBalance,
+  'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
+  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'svs-staking': svsStaking,
+  'mcb-balance-from-graph': mcbBalanceFromGraph,
+  'colony-reputation': colonyReputation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

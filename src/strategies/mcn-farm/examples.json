@@ -5,6 +5,8 @@
       "name": "mcn-farm",
       "params": {
         "tokenAddress": "0xD91E9a0fEf7C0fa4EBdAF4d0aCF55888949A2a9b",
+        "symbol": "MCN",
+        "decimals": "18",
         "lpAddress": "0x2Ef2cb6af83de4171A69EE2f7C677079fFD9BcD0",
         "stakingAddress": "0x15dEd15fE32EBac0b6cFb08cdAB112cca8380423"
       }

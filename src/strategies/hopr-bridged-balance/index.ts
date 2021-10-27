@@ -5,7 +5,7 @@ import { multicall, subgraphRequest } from '../../utils';
 export const author = 'QYuQianchen';
 export const version = '0.1.0';
 
-const tokenAbi = [ 'function balanceOf(address) view returns (uint256)' ]
+const tokenAbi = ['function balanceOf(address) view returns (uint256)'];
 
 const XDAI_BLOCK_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks';
