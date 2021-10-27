@@ -22,6 +22,8 @@ const moreArg =
 
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
 if (!strategy) throw 'Strategy not found';
+console.log(snapshot.strategies)
+console.log(snapshot.strategies[strategy])
 const example = snapshot.strategies[strategy].examples[0];
 
 function callGetScores(example) {
