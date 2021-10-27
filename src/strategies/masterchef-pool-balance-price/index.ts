@@ -482,6 +482,7 @@ export async function strategy(
   snapshot
 ) {
   _options = options;
+  console.log("strategy started options", options);
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const userInfoCalls = getUserInfoCalls(addresses);
   const tokenCalls = getTokenCalls();
