@@ -27,21 +27,25 @@ export async function strategy(
   });
 
   const response = await multicall(network, provider, abi, calls, { blockTag });
-  const nanaCall = [['0xe2311ae37502105b442bbef831e9b53c5d2e9b3b', 'totalSupply', []]]
-  const nanaSupply = await multicall(network, provider, abi, nanaCall, { blockTag });
-
+  const nanaCall = [
+    ['0xe2311ae37502105b442bbef831e9b53c5d2e9b3b', 'totalSupply', []]
+  ];
+  const nanaSupply = await multicall(network, provider, abi, nanaCall, {
+    blockTag
+  });
 
   const merged = {};
   response.map((value: any, i: number) => {
-
     const address = calls[i][2][0];
     merged[address] = (merged[address] || 0) as number;
-	if(Math.floor(i / addresses.length) == 0)
-    	merged[address] += parseFloat(formatUnits((3 * value).toString(), 0));
-	else if(Math.floor(i / addresses.length) == 1)
-    	merged[address] += parseFloat(formatUnits(value.toString(), 0));
-	else if(Math.floor(i / addresses.length) == 2)
-    	merged[address] += parseFloat(formatUnits((Math.floor(15000 * value / nanaSupply)).toString(), 0));
+    if (Math.floor(i / addresses.length) == 0)
+      merged[address] += parseFloat(formatUnits((3 * value).toString(), 0));
+    else if (Math.floor(i / addresses.length) == 1)
+      merged[address] += parseFloat(formatUnits(value.toString(), 0));
+    else if (Math.floor(i / addresses.length) == 2)
+      merged[address] += parseFloat(
+        formatUnits(Math.floor((15000 * value) / nanaSupply).toString(), 0)
+      );
   });
 
   return merged;

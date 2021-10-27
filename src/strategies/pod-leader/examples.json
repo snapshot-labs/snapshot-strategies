@@ -17,9 +17,7 @@
       }
     },
     "network": "43114",
-    "addresses": [
-      "0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"
-    ],
+    "addresses": ["0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"],
     "snapshot": 5475221
   },
   {
@@ -40,12 +38,10 @@
       }
     },
     "network": "43114",
-    "addresses": [
-      "0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"
-    ],
+    "addresses": ["0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"],
     "snapshot": 5475221
   },
-  
+
   {
     "name": "Example query - Tokens in single token Pool",
     "strategy": {
@@ -60,9 +56,7 @@
       }
     },
     "network": "43114",
-    "addresses": [
-      "0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"
-    ],
+    "addresses": ["0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"],
     "snapshot": 5475221
   }
 ]

@@ -55,9 +55,9 @@ export async function strategy(
   const tokensPerLP = tokenBalanceInLP.div(totalSupply);
   const poolInfo = res.slice(2, 2 + pools.length);
   // rewardToken_i maps pool index => pool bonus token index matching tokenAddress (if applicable)
-  let rewardToken_i = {};
+  const rewardToken_i = {};
   for (let i = 0; i < pools.length; i++) {
-    let bonuses = poolInfo[i][0].bonuses;
+    const bonuses = poolInfo[i][0].bonuses;
     if (bonuses === undefined) continue;
     for (let j = 0; j < bonuses.length; j++) {
       if (bonuses[j].bonusTokenAddr == tokenAddress) {
@@ -67,15 +67,15 @@ export async function strategy(
     }
   }
   const response = res.slice(2 + pools.length);
-  let values = {};
+  const values = {};
   Object.values(addresses).forEach(
     (address: string) => (values[address] = BigNumber.from(0))
   );
   response.forEach(([userInfo, rewards], i) => {
-    let address_i = i % addresses.length;
-    let address = addresses[address_i];
-    let pool_i = Math.floor(i / addresses.length);
-    let bonus_i = rewardToken_i[pool_i];
+    const address_i = i % addresses.length;
+    const address = addresses[address_i];
+    const pool_i = Math.floor(i / addresses.length);
+    const bonus_i = rewardToken_i[pool_i];
     if (bonus_i && rewards.length > bonus_i) {
       values[address].add(rewards[bonus_i]);
     }
@@ -88,9 +88,9 @@ export async function strategy(
     }
   });
 
-  for (let address in values) {
+  for (const address in values) {
     if (values.hasOwnProperty(address)) {
-      let value = parseFloat(formatUnits(values[address], 18));
+      const value = parseFloat(formatUnits(values[address], 18));
       values[address] = value;
     }
   }
