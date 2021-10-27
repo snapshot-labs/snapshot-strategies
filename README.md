@@ -23,6 +23,14 @@ npm run test --strategy=eth-balance
 npm run test --strategy=eth-balance --more=200 
 ```
 
+#### Testing Saffron Finance strategies
+```bash
+tsc test/scores-sfi.tx
+node test/scores-sfi.js
+```
+
+Make adjustments to variable, `strategies`.
+
 ## Checklist for adding a new strategy
 
 Here is a simple checklist to look when reviewing a PR for a new strategy:
