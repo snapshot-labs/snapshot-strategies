@@ -163,6 +163,7 @@ import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import alias from './alias.json';
 
 const strategies = {
   coordinape,
@@ -185,6 +186,7 @@ const strategies = {
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
+  'erc20-with-balance': { ...withBalance },
   'with-balance': withBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
@@ -333,18 +335,20 @@ const strategies = {
 Object.keys(strategies).forEach(function (strategyName) {
   let examples = null;
   let about = '';
+  let folderName = strategyName;
+  if (alias[strategyName]) {
+    folderName = alias[strategyName];
+    strategies[strategyName].alias = alias[strategyName];
+  }
   try {
     examples = JSON.parse(
-      readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
+      readFileSync(path.join(__dirname, folderName, 'examples.json'), 'utf8')
     );
   } catch (error) {
     examples = null;
   }
   try {
-    about = readFileSync(
-      path.join(__dirname, strategyName, 'README.md'),
-      'utf8'
-    );
+    about = readFileSync(path.join(__dirname, folderName, 'README.md'), 'utf8');
   } catch (error) {
     about = '';
   }
