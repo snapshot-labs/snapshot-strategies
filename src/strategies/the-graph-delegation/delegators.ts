@@ -7,7 +7,8 @@ import {
   bdMulBn,
   GraphAccountScores,
   calcNonStakedTokens,
-  verifyResults
+  verifyResults,
+  GraphStrategyOptions
 } from '../the-graph/graphUtils';
 
 export async function delegatorsStrategy(
@@ -15,7 +16,7 @@ export async function delegatorsStrategy(
   network: string,
   _provider: Provider,
   addresses: string[],
-  options: Record<string, any>,
+  options: GraphStrategyOptions,
   snapshot: string | number
 ): Promise<GraphAccountScores> {
   const delegatorsParams = {
@@ -24,7 +25,8 @@ export async function delegatorsStrategy(
         where: {
           id_in: addresses
         },
-        first: 1000
+        first: options.pageSize,
+        skip: options.skip
       },
       id: true,
       delegator: {

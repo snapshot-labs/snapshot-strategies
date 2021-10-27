@@ -18,7 +18,10 @@ export type GraphStrategyOptions = {
   symbol: string;
   // It should not be provided by the user but injected by the strategies
   strategyType: string;
+  // How many addresses to process per subgraphRequest. Default: 1000
   pageSize?: number;
+  // Used for pagination. It is set internally by the base strategy and shouldn't be provided by the end user.
+  skip?: number;
   // Only for test purposes
   expectedResults?: Record<string, any>;
 };
@@ -34,7 +37,7 @@ export type StrategyFunction = (
   // for the strategy. It's up to the strategy developer to define the
   // shape of the options and inform them in the README.md of the strategy
   // so users know how to configure it
-  options: Record<string, any>,
+  options: GraphStrategyOptions,
   // 'latest' or a blockNumber used to ignore votes from newer participants
   snapshot: string | number
 ) => Promise<Record<string, number>>; // mapping of addresses to scores

@@ -6,7 +6,8 @@ import {
   GraphAccountScores,
   calcNonStakedTokens,
   bnWEI,
-  verifyResults
+  verifyResults,
+  GraphStrategyOptions
 } from '../the-graph/graphUtils';
 
 export async function indexersStrategy(
@@ -14,7 +15,7 @@ export async function indexersStrategy(
   network: string,
   _provider: Provider,
   addresses: string[],
-  options: Record<string, any>,
+  options: GraphStrategyOptions,
   snapshot: string | number
 ): Promise<GraphAccountScores> {
   const indexersParams = {
@@ -23,7 +24,8 @@ export async function indexersStrategy(
         where: {
           id_in: addresses
         },
-        first: 1000
+        first: options.pageSize,
+        skip: options.skip
       },
       id: true,
       indexer: {
@@ -32,7 +34,8 @@ export async function indexersStrategy(
     },
     graphNetworks: {
       __args: {
-        first: 1000
+        first: options.pageSize,
+        skip: options.skip
       },
       totalSupply: true,
       totalDelegatedTokens: true,
