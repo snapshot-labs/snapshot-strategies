@@ -1,6 +1,6 @@
 # erc20-balance-of-weighted
 
-This the balances of the voters for a specific ERC20 token after applying a weight value.
+This returns the balances of the voters for a specific ERC20 token with a weight multiplier applied.
 
 Here is an example of parameters:
 
