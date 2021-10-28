@@ -62,12 +62,12 @@
 
           ],
           "scores": {
-            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 750000,
-            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 290000
+            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 743219.1737935165,
+            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 90793.90372774776
           },
           "combinedScores": {
-            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 750000,
-            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 290000
+            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 743219.1737935165,
+            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 90793.90372774776
           },
           "normalizationFactor": 1
         }
