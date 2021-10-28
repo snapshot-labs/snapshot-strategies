@@ -1,6 +1,6 @@
 [
   {
-    "name": "Graph Tokens",
+    "name": "Graph Tokens Rinkeby",
     "strategy": {
       "name": "the-graph-balance",
       "params": {
@@ -49,6 +49,35 @@
       "0x140b9b9756cE3dE8c8fD296FC9D3E7B3AAa1Cb16",
       "0x14B98b26D82421a27608B21BaF6BdEfc181DE546",
       "0xc1240aF85fFAc1Dbf826b7250db2644D62c728c8"
+    ]
+  },
+  {
+    "name": "Graph Tokens Mainnet with Curators",
+    "strategy": {
+      "name": "the-graph-balance",
+      "params": {
+        "symbol": "B-GRT",
+        "expectedResults": {
+          "tokenLockWallets": [
+
+          ],
+          "scores": {
+            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 750000,
+            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 290000
+          },
+          "combinedScores": {
+            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 750000,
+            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 290000
+          },
+          "normalizationFactor": 1
+        }
+      }
+    },
+    "network": "1",
+    "snapshot": 13101550,
+    "addresses": [
+      "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7",
+      "0x4a905ce2d555752f0d906ffdf628b26ad64a741a"
     ]
   }
 ]

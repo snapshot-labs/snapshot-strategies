@@ -60,8 +60,8 @@ export async function getScoresPage(
     options,
     snapshot
   );
-
-  if (options.expectedResults) {
+  // Only run tests for specific block
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       JSON.stringify(scores),
       JSON.stringify(options.expectedResults.scores),
@@ -122,8 +122,8 @@ export async function baseStrategy(
     console.error('ERROR: Strategy does not exist');
     return combinedScores;
   }
-  // Only for test purposes
-  if (options.expectedResults) {
+  // Only run tests for specific block
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       JSON.stringify(combinedScores),
       JSON.stringify(options.expectedResults.combinedScores),
