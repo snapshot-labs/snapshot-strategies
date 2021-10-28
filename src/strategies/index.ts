@@ -19,6 +19,7 @@ import * as erc20BalanceOfCv from './erc20-balance-of-cv';
 import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -194,6 +195,7 @@ const strategies = {
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
