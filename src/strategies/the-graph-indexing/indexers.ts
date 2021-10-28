@@ -70,7 +70,7 @@ export async function indexersStrategy(
         .toNumber();
   }
 
-  if (options.expectedResults) {
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       normalizationFactor.toString(),
       options.expectedResults.normalizationFactor.toString(),
