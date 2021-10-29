@@ -2,7 +2,7 @@ import { subgraphRequest, multicall } from '../../utils';
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'digitalax';
+export const author = 'onigiri-x';
 export const version = '0.1.1';
 
 const abiStaking = [
