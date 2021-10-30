@@ -34,10 +34,11 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const _addresses = addresses.map(x => x.toLowerCase())
   const addressSubsets = Array.apply(
     null,
-    Array(Math.ceil(addresses.length / LIMIT))
-  ).map((_e, i) => addresses.slice(i * LIMIT, (i + 1) * LIMIT));
+    Array(Math.ceil(_addresses.length / LIMIT))
+  ).map((_e, i) => _addresses.slice(i * LIMIT, (i + 1) * LIMIT));
 
   const returnedFromSubgraph = await Promise.all(
     addressSubsets.map((subset) =>
@@ -49,7 +50,7 @@ export async function strategy(
   const scores = {};
   const scaler = BigNumber.from(10).pow(options.decimals || 18);
   addresses.forEach((address) => {
-    const account = result.filter((x) => x.id == address)[0];
+    const account = result.filter((x) => x.id == address.toLowerCase())[0];
     let score = 0;
     if (account) {
       if (options.decimals) {
