@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "radicle-funding-nft",
+      "params": {
+        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "symbol": "DAI",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xb5bb9a125c2f67f1f2cd9d8992955bb209490afe"
+    ],
+    "snapshot": 9538200
+  }
+]

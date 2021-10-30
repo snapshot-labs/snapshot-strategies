@@ -170,6 +170,7 @@ import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
+import * as radicleFundingNft from './radicle-funding-nft';
 
 const strategies = {
   coordinape,
@@ -341,7 +342,8 @@ const strategies = {
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
-  'colony-reputation': colonyReputation
+  'colony-reputation': colonyReputation,
+  'radicle-funding-nft': radicleFundingNft
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
