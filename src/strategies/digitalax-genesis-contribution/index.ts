@@ -3,7 +3,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'onigiri-x';
-export const version = '0.1.1';
+export const version = '0.1.0';
 
 const abiStaking = [
   'function getGenesisContribution(uint256 _tokenId) external view returns (uint256)'
