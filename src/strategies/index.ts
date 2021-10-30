@@ -170,6 +170,7 @@ import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
+import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 
 const strategies = {
   coordinape,
@@ -341,6 +342,7 @@ const strategies = {
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
+  'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'colony-reputation': colonyReputation
 };
 
