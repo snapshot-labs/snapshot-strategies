@@ -117,7 +117,6 @@ export async function strategy(
         formatUnits(tokenIdsWithContribution[x][0], options.decimals)
       );
     });
-    console.log(decimalContributions);
     genesisRecord[addr] = decimalContributions.reduce((a, b) => a + b, 0);
   });
 
