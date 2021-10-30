@@ -112,12 +112,16 @@ export async function strategy(
   const genesisRecord: Record<string, number> = {};
   addresses.forEach((addr) => {
     const tokenIds = tokenIdsForAddress[addr];
-    const decimalContributions = tokenIds.map((x) => {
-      return parseFloat(
-        formatUnits(tokenIdsWithContribution[x][0], options.decimals)
-      );
-    });
-    genesisRecord[addr] = decimalContributions.reduce((a, b) => a + b, 0);
+    if (tokenIds) {
+      const decimalContributions = tokenIds.map((x) => {
+        return parseFloat(
+          formatUnits(tokenIdsWithContribution[x][0], options.decimals)
+        );
+      });
+      genesisRecord[addr] = decimalContributions.reduce((a, b) => a + b, 0);
+    } else {
+      genesisRecord[addr] = 0;
+    }
   });
 
   return genesisRecord;
