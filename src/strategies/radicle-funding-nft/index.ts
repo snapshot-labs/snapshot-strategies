@@ -7,6 +7,9 @@ const FUNDING_SUBGRAPH_URL = {
   '1': 'https://api.studio.thegraph.com/query/9578/funding-subgraph-v4/v0.0.2'
 };
 
+export const author = 'AmirSarraf';
+export const version = '0.1.0';
+
 export async function strategy(
   space,
   network,
