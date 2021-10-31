@@ -343,8 +343,7 @@ const strategies = {
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
-  'colony-reputation': colonyReputation,
-  'radicle-funding-nft': radicleFundingNft
+  'radicle-funding-nft': radicleFundingNft,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'colony-reputation': colonyReputation
 };
