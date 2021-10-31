@@ -1,6 +1,7 @@
 import { subgraphRequest, multicall } from '../../utils';
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
+import fetch from 'cross-fetch';
 
 export const author = 'onigiri-x';
 export const version = '0.1.0';
@@ -21,6 +22,7 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const block = await provider.getBlock(blockTag);
 
   const genesisStaking = '0xa202d5b0892f2981ba86c981884ceba49b8ae096';
 
@@ -108,6 +110,8 @@ export async function strategy(
     tokenIdsWithContribution[tokenIdsToCheck[i]] = x;
   });
 
+  const monaPriceConversion = await getConversionMonaPerETH(block);
+
   // Set up a record list for all the genesis tokens with their summed up contribution
   const genesisRecord: Record<string, number> = {};
   addresses.forEach((addr) => {
@@ -118,11 +122,33 @@ export async function strategy(
           formatUnits(tokenIdsWithContribution[x][0], options.decimals)
         );
       });
-      genesisRecord[addr] = decimalContributions.reduce((a, b) => a + b, 0);
+      genesisRecord[addr] =
+        decimalContributions.reduce((a, b) => a + b, 0) * monaPriceConversion;
     } else {
       genesisRecord[addr] = 0;
     }
   });
 
   return genesisRecord;
+}
+
+async function getConversionMonaPerETH(block) {
+  // Find the coingecko for monavale to eth
+  const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/monavale/market_chart/range?vs_currency=eth&from=${
+    block.timestamp - 100000
+  }&to=${block.timestamp}`;
+  const coingeckoData = await fetch(coingeckoApiURL)
+    .then(async (r) => {
+      const json = await r.json();
+      return json;
+    })
+    .catch((e) => {
+      console.error(e);
+      throw new Error(
+        'Strategy digitalax-genesis-contribution: coingecko api failed'
+      );
+    });
+
+  const priceConversion = parseFloat(coingeckoData.prices?.pop()[1]);
+  return 1 / priceConversion;
 }
