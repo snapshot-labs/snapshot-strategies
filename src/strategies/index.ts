@@ -171,6 +171,7 @@ import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
+import * as digitalaxLPStakers from './digitalax-lp-stakers';
 
 const strategies = {
   coordinape,
@@ -343,6 +344,7 @@ const strategies = {
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
+  'digitalax-lp-stakers': digitalaxLPStakers,
   'colony-reputation': colonyReputation
 };
 
