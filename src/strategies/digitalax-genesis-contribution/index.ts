@@ -110,24 +110,7 @@ export async function strategy(
     tokenIdsWithContribution[tokenIdsToCheck[i]] = x;
   });
 
-  // Find the coingecko for monavale to eth
-  const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/monavale/market_chart/range?vs_currency=eth&from=${
-    block.timestamp - 100000
-  }&to=${block.timestamp}`;
-  const coingeckoData = await fetch(coingeckoApiURL)
-    .then(async (r) => {
-      const json = await r.json();
-      return json;
-    })
-    .catch((e) => {
-      console.error(e);
-      throw new Error(
-        'Strategy digitalax-genesis-contribution: coingecko api failed'
-      );
-    });
-
-  const priceConversion = parseFloat(coingeckoData.prices?.pop()[1]);
-  const monaPriceConversion = 1 / priceConversion;
+  const monaPriceConversion = await getConversionMonaPerETH(block);
 
   // Set up a record list for all the genesis tokens with their summed up contribution
   const genesisRecord: Record<string, number> = {};
@@ -147,4 +130,25 @@ export async function strategy(
   });
 
   return genesisRecord;
+}
+
+async function getConversionMonaPerETH(block) {
+  // Find the coingecko for monavale to eth
+  const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/monavale/market_chart/range?vs_currency=eth&from=${
+    block.timestamp - 100000
+  }&to=${block.timestamp}`;
+  const coingeckoData = await fetch(coingeckoApiURL)
+    .then(async (r) => {
+      const json = await r.json();
+      return json;
+    })
+    .catch((e) => {
+      console.error(e);
+      throw new Error(
+        'Strategy digitalax-genesis-contribution: coingecko api failed'
+      );
+    });
+
+  const priceConversion = parseFloat(coingeckoData.prices?.pop()[1]);
+  return 1 / priceConversion;
 }
