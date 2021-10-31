@@ -171,6 +171,7 @@ import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
 import * as radicleFundingNft from './radicle-funding-nft';
+import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 
 const strategies = {
   coordinape,
@@ -344,6 +345,8 @@ const strategies = {
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'colony-reputation': colonyReputation,
   'radicle-funding-nft': radicleFundingNft
+  'digitalax-genesis-contribution': digitalaxGenesisContribution,
+  'colony-reputation': colonyReputation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
