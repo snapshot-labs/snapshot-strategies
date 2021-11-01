@@ -45,7 +45,7 @@ export async function strategy(
       : monaReserve.pair.totalSupply;
 
   return Object.fromEntries(
-    addresses.map((address, i) => [
+    addresses.map(address => [
       address,
       (erc20Balances[address] * monaReserve.pair.reserve0) / totalLPSupply
     ])
