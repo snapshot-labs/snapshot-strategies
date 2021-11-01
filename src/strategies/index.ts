@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import alias from './alias.json';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -19,6 +20,7 @@ import * as erc20BalanceOfCv from './erc20-balance-of-cv';
 import * as withBalance from './with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -169,7 +171,7 @@ import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
-import alias from './alias.json';
+import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 
 const strategies = {
   coordinape,
@@ -196,6 +198,7 @@ const strategies = {
   'with-balance': withBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
@@ -341,6 +344,7 @@ const strategies = {
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
+  'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'colony-reputation': colonyReputation
 };
 
