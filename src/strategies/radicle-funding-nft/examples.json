@@ -4,14 +4,15 @@
     "strategy": {
       "name": "radicle-funding-nft",
       "params": {
-        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
         "symbol": "DAI",
-        "decimals": 18
+        "decimals": 18,
+        "fundingProject": "0x0653fffa22daf68a86c86119521274c322ea3470"
       }
     },
     "network": "1",
     "addresses": [
-      "0xb5bb9A125c2F67F1F2cd9d8992955bb209490aFE"
+      "0xb5bb9A125c2F67F1F2cd9d8992955bb209490aFE",
+      "0x341a08926dCa7fa7D135F96E4d76b696e5f6d38d"
     ],
     "snapshot": 9538200
   }

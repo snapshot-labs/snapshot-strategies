@@ -18,25 +18,55 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const params = {
-    nfts: {
-      __args: {
-        where: {
-          nftReceiver_in: addresses.map((address) => address.toLowerCase())
+  let params = {};
+  let fundingProject = options.fundingProject;
+  const mainField: string = fundingProject ? 'fundingProjects' : 'nfts';
+
+  if (fundingProject) {
+    // parameters to query nfts belonging to the provided addresses in a certain fundingProject
+    params = {
+      fundingProjects: {
+        __args: {
+          id: fundingProject.toLowerCase()
         },
-        first: 1000
-      },
-      amtPerSec: true,
-      nftReceiver: true
-    }
-  };
+        id: true,
+        nfts: {
+          __args: {
+            where: {
+              nftReceiver_in: addresses.map((address) => address.toLowerCase())
+            }
+          },
+          amtPerSec: true,
+          nftReceiver: true
+        }
+      }
+    };
+  } else {
+    // parameters to query nfts belonging to the provided addresses
+    params = {
+      nfts: {
+        __args: {
+          where: {
+            nftReceiver_in: addresses.map((address) => address.toLowerCase())
+          },
+          first: 1000
+        },
+        amtPerSec: true,
+        nftReceiver: true
+      }
+    };
+  }
 
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params.nfts.__args.block = { number: snapshot };
+    params[mainField].__args.block = { number: snapshot };
   }
 
-  const result = await subgraphRequest(FUNDING_SUBGRAPH_URL[network], params);
+  let result = await subgraphRequest(FUNDING_SUBGRAPH_URL[network], params);
+  result = fundingProject
+    ? result?.fundingProjects?.find((proj) => proj.id == fundingProject) //double checking id
+    : result;
+
   const score: Record<string, BigNumber> = {};
   if (result && result.nfts) {
     result.nfts.forEach((nft) => {
