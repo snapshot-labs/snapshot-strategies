@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "radicle-funding-nft",
+      "name": "radicle-community-tokens",
       "params": {
         "symbol": "DAI",
         "decimals": 18,
