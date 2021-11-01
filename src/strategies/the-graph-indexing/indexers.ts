@@ -24,8 +24,7 @@ export async function indexersStrategy(
         where: {
           id_in: addresses
         },
-        first: options.pageSize,
-        skip: options.skip
+        first: options.pageSize
       },
       id: true,
       indexer: {
@@ -34,8 +33,7 @@ export async function indexersStrategy(
     },
     graphNetworks: {
       __args: {
-        first: options.pageSize,
-        skip: options.skip
+        first: options.pageSize
       },
       totalSupply: true,
       totalDelegatedTokens: true,
