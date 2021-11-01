@@ -1,20 +1,22 @@
 import { BigNumber } from '@ethersproject/bignumber';
+import { Provider } from '@ethersproject/providers';
 import { subgraphRequest } from '../../utils';
 import {
   GRAPH_NETWORK_SUBGRAPH_URL,
   GraphAccountScores,
   calcNonStakedTokens,
   bnWEI,
-  verifyResults
+  verifyResults,
+  GraphStrategyOptions
 } from '../the-graph/graphUtils';
 
 export async function indexersStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  options,
-  snapshot
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  options: GraphStrategyOptions,
+  snapshot: string | number
 ): Promise<GraphAccountScores> {
   const indexersParams = {
     graphAccounts: {
@@ -22,7 +24,8 @@ export async function indexersStrategy(
         where: {
           id_in: addresses
         },
-        first: 1000
+        first: options.pageSize,
+        skip: options.skip
       },
       id: true,
       indexer: {
@@ -31,7 +34,8 @@ export async function indexersStrategy(
     },
     graphNetworks: {
       __args: {
-        first: 1000
+        first: options.pageSize,
+        skip: options.skip
       },
       totalSupply: true,
       totalDelegatedTokens: true,
@@ -57,6 +61,8 @@ export async function indexersStrategy(
       result.graphNetworks[0].totalTokensStaked,
       result.graphNetworks[0].totalDelegatedTokens
     );
+    // The normalization factor gives more weight to staked GRT
+    // over GRT holded
     normalizationFactor =
       nonStakedTokens /
       BigNumber.from(result.graphNetworks[0].totalTokensStaked)
@@ -64,7 +70,7 @@ export async function indexersStrategy(
         .toNumber();
   }
 
-  if (options.expectedResults) {
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       normalizationFactor.toString(),
       options.expectedResults.normalizationFactor.toString(),
