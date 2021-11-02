@@ -105,8 +105,7 @@ export async function balanceStrategy(
         where: {
           id_in: addresses
         },
-        first: _options.pageSize,
-        skip: _options.skip
+        first: _options.pageSize
       },
       id: true,
       balance: true
@@ -114,8 +113,7 @@ export async function balanceStrategy(
     curators: {
       __args: {
         where: { id_in: addresses, id_not: GNS_ADDRESS },
-        first: _options.pageSize,
-        skip: _options.skip
+        first: _options.pageSize
       },
       id: true,
       signals: {

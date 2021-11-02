@@ -30,7 +30,7 @@ export async function getTokenLockWallets(
         where: {
           beneficiary_in: addresses
         },
-        first: 1000
+        first: options.pageSize
       },
       id: true,
       beneficiary: true
