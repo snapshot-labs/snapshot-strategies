@@ -1,9 +1,9 @@
 import fetch from 'cross-fetch'
 
-export const author = 'albert'
+export const author = 'alberthaotan'
 export const version = '0.1.0'
 
-const GALAXY_SUBGRAPH_URL = 'https://graphigo.prd.galaxy.eco/query'
+const GALAXY_GRAPHQL_URL = 'https://graphigo.prd.galaxy.eco/query'
 
 interface Config {
   name: string,
@@ -37,7 +37,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  let fetchRes = await fetch(GALAXY_SUBGRAPH_URL, {
+  let fetchRes = await fetch(GALAXY_GRAPHQL_URL, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -79,7 +79,6 @@ export async function strategy(
       }
     })
   })
-  console.log(ownerToNftCount)
 
   Object.keys(ownerToNftCount).forEach(owner => {
     ownerToScore[owner] = 0
