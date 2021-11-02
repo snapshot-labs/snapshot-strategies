@@ -1,19 +1,40 @@
+import { Provider } from '@ethersproject/providers';
 import { getAddress } from '@ethersproject/address';
 import { getTokenLockWallets } from './tokenLockWallets';
-import { balanceStrategy } from '../the-graph-balance/balances';
-import { indexersStrategy } from '../the-graph-indexing/indexers';
-import { delegatorsStrategy } from '../the-graph-delegation/delegators';
-import { GraphAccountScores, verifyResults } from './graphUtils';
 
-export async function baseStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  options,
-  snapshot
-) {
-  addresses = addresses.map((address) => address.toLowerCase());
+import {
+  GraphAccountScores,
+  GraphStrategyOptions,
+  splitArray,
+  StrategyFunction,
+  verifyResults
+} from './graphUtils';
+
+const DEFAULT_PAGE_SIZE = 1000;
+const VALID_STRATEGIES = ['balance', 'indexing', 'delegation'];
+
+/**
+ * Fetch scores for a list of addresses and their token-locked wallets
+ *
+ * @export
+ * @param {string} _space snapshot space
+ * @param {string} network networkId (i.e. ethereum mainnet = '1')
+ * @param {Provider} _provider
+ * @param {string[]} addresses
+ * @param {GraphStrategyOptions} options
+ * @param {(string | number)} snapshot 'latest' or blockNumber
+ * @param {StrategyFunction} graphStrategy
+ * @return {Promise<GraphAccountScores>} scores
+ */
+export async function getScoresPage(
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  options: GraphStrategyOptions,
+  snapshot: string | number,
+  graphStrategy: StrategyFunction
+): Promise<GraphAccountScores> {
   const tokenLockWallets = await getTokenLockWallets(
     _space,
     network,
@@ -30,40 +51,17 @@ export async function baseStrategy(
       allAccounts.push(tw);
     });
   }
-
-  let scores: GraphAccountScores = {};
-  if (options.strategyType == 'balance') {
-    scores = await balanceStrategy(
-      _space,
-      network,
-      _provider,
-      allAccounts,
-      options,
-      snapshot
-    );
-  } else if (options.strategyType == 'delegation') {
-    scores = await delegatorsStrategy(
-      _space,
-      network,
-      _provider,
-      allAccounts,
-      options,
-      snapshot
-    );
-  } else if (options.strategyType == 'indexing') {
-    scores = await indexersStrategy(
-      _space,
-      network,
-      _provider,
-      allAccounts,
-      options,
-      snapshot
-    );
-  } else {
-    console.error('ERROR: Strategy does not exist');
-  }
-
-  if (options.expectedResults) {
+  // Fetch scores for accounts and TLW
+  const scores: GraphAccountScores = await graphStrategy(
+    _space,
+    network,
+    _provider,
+    allAccounts,
+    options,
+    snapshot
+  );
+  // Only run tests for specific block
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       JSON.stringify(scores),
       JSON.stringify(options.expectedResults.scores),
@@ -84,7 +82,48 @@ export async function baseStrategy(
     combinedScores[account] = accountScore;
   }
 
-  if (options.expectedResults) {
+  return combinedScores;
+}
+
+export async function baseStrategy(
+  _space: string,
+  network: string,
+  _provider: Provider,
+  _addresses: string[],
+  options: GraphStrategyOptions,
+  snapshot: string | number,
+  graphStrategy: StrategyFunction
+) {
+  const addresses = _addresses.map((address) => address.toLowerCase());
+  let combinedScores: GraphAccountScores = {};
+
+  if (VALID_STRATEGIES.includes(options.strategyType)) {
+    // Paginate and get combined scores
+    const pageSize = options.pageSize || DEFAULT_PAGE_SIZE;
+    const pages = splitArray(addresses, pageSize);
+    let pageNum = 1;
+    let skip = 0;
+    for (const addressesPage of pages) {
+      console.info(`Processing page ${pageNum} of ${pages.length}`);
+      const pageScores = await getScoresPage(
+        _space,
+        network,
+        _provider,
+        addressesPage,
+        { ...options, pageSize, skip },
+        snapshot,
+        graphStrategy
+      );
+      combinedScores = { ...combinedScores, ...pageScores };
+      pageNum += 1;
+      skip += pageSize;
+    }
+  } else {
+    console.error('ERROR: Strategy does not exist');
+    return combinedScores;
+  }
+  // Only run tests for specific block
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       JSON.stringify(combinedScores),
       JSON.stringify(options.expectedResults.combinedScores),
