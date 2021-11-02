@@ -173,6 +173,7 @@ import * as colonyReputation from './colony-reputation';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as galaxyNftWithScore from './galaxy-nft-with-score';
 
 const strategies = {
   coordinape,
@@ -347,7 +348,8 @@ const strategies = {
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
-  'colony-reputation': colonyReputation
+  'colony-reputation': colonyReputation,
+  'galaxy-nft-with-score': galaxyNftWithScore
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
