@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "galaxy-nft-with-score",
+      "params": {
+        "symbol": "GLX",
+        "params": {
+          "nftCoreAddresses":["0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"],
+          "chain": "ETHEREUM",
+          "configs":[
+            {
+              "name": "Woofster",
+              "weight": 5,
+              "cumulative": false
+            },
+            {
+              "name": "Pugs Bunny",
+              "weight": 1,
+              "cumulative": true
+            }
+          ]
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xffFfA7D95ca2323d6bF4e46C5A287BF11219172E",
+      "0x0Cec743b8CE4Ef8802cAc0e5df18a180ed8402A7"
+    ],
+    "snapshot": 13040844
+  }
+]
