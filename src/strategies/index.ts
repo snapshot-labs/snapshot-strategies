@@ -171,7 +171,10 @@ import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
 import * as radicleCommunityTokens from './radicle-community-tokens';
+import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
+import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as galaxyNftWithScore from './galaxy-nft-with-score';
 
 const strategies = {
   coordinape,
@@ -344,8 +347,11 @@ const strategies = {
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,
+  'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
-  'colony-reputation': colonyReputation
+  'digitalax-lp-stakers': digitalaxLPStakers,
+  'colony-reputation': colonyReputation,
+  'galaxy-nft-with-score': galaxyNftWithScore
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

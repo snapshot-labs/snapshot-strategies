@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Digitalax MONA LP on Quickswap",
+    "strategy": {
+      "name": "digitalax-mona-quickswap",
+      "params": {
+        "symbol": "MONA",
+        "address": "0x82f1676ef298db09da935f4cb7bd3c44fb73d83a"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x0dcdc99c8f20c8825cc906dbbafe72f15e6ebcf4",
+      "0xb98f29ffff030efd58e75a625d1f6dca58a49bfa",
+      "0x806ef73ac66c4b669f2ba1403c770a2c503f6764",
+      "0xaa3e5ee4fdc831e5274fe7836c95d670dc2502e6",
+      "0x4879712c5d1a98c0b88fb700daff5c65d12fd729"
+    ],
+    "snapshot": 20828135
+  }
+]

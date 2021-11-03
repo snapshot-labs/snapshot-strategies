@@ -4,7 +4,7 @@
     "strategy": {
       "name": "digitalax-genesis-contribution",
       "params": {
-        "symbol": "DXG",
+        "symbol": "MONA",
         "decimals": 18
       }
     },
