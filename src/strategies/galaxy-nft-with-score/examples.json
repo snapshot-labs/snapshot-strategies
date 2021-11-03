@@ -6,9 +6,9 @@
       "params": {
         "symbol": "GLX",
         "params": {
-          "nftCoreAddresses":["0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"],
+          "nftCoreAddresses": ["0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"],
           "chain": "ETHEREUM",
-          "configs":[
+          "configs": [
             {
               "name": "Woofster",
               "weight": 5,
