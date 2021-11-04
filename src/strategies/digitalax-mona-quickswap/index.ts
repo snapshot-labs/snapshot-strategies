@@ -1,7 +1,6 @@
 import { subgraphRequest } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
-
 export const author = 'onigiri-x';
 export const version = '0.1.0';
 
@@ -45,7 +44,7 @@ export async function strategy(
       : monaReserve.pair.totalSupply;
 
   return Object.fromEntries(
-    addresses.map(address => [
+    addresses.map((address) => [
       address,
       (erc20Balances[address] * monaReserve.pair.reserve0) / totalLPSupply
     ])

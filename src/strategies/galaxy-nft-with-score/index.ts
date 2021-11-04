@@ -133,7 +133,9 @@ export async function strategy(
   const ownersWithNfts: OwnerWithNfts[] = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
     (map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
-        m[i.nftCore.contractAddress.toLowerCase() + '-0x' + Number.parseInt(i.id).toString(16)] = i.name
+        if (!options.params.invalidNftIds.includes(i.id)) {
+          m[i.nftCore.contractAddress.toLowerCase() + '-0x' + Number.parseInt(i.id).toString(16)] = i.name
+        }
         return m
       }, {})
       return map
@@ -171,17 +173,15 @@ export async function strategy(
   // Get owners score base on certain config
   Object.keys(ownerToNftCount).forEach(owner => {
     ownerToScore[restoreAddress[owner]] = 0
-    if (!options.params.addresses.includes(restoreAddress[owner])) {
-      configs.forEach(config => {
-        if (config.name in ownerToNftCount[owner]) {
-          if (config.cumulative) {
-            ownerToScore[restoreAddress[owner]] += config.weight * ownerToNftCount[owner][config.name]
-          } else {
-            ownerToScore[restoreAddress[owner]] += config.weight * 1
-          }
+    configs.forEach(config => {
+      if (config.name in ownerToNftCount[owner]) {
+        if (config.cumulative) {
+          ownerToScore[restoreAddress[owner]] += config.weight * ownerToNftCount[owner][config.name]
+        } else {
+          ownerToScore[restoreAddress[owner]] += config.weight * 1
         }
-      })
-    }
+      }
+    })
   })
 
   return ownerToScore

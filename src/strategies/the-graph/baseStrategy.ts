@@ -102,7 +102,6 @@ export async function baseStrategy(
     const pageSize = options.pageSize || DEFAULT_PAGE_SIZE;
     const pages = splitArray(addresses, pageSize);
     let pageNum = 1;
-    let skip = 0;
     for (const addressesPage of pages) {
       console.info(`Processing page ${pageNum} of ${pages.length}`);
       const pageScores = await getScoresPage(
@@ -110,13 +109,12 @@ export async function baseStrategy(
         network,
         _provider,
         addressesPage,
-        { ...options, pageSize, skip },
+        { ...options, pageSize },
         snapshot,
         graphStrategy
       );
       combinedScores = { ...combinedScores, ...pageScores };
       pageNum += 1;
-      skip += pageSize;
     }
   } else {
     console.error('ERROR: Strategy does not exist');

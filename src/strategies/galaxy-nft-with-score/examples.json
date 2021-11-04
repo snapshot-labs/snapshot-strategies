@@ -10,8 +10,8 @@
             "0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1",
             "0x68De1dECCE949ccA4C3Dcb32388a677e5a7dA8Bc"
           ],
-          "addresses": [
-            "0x0Cec743b8CE4Ef8802cAc0e5df18a180ed8402A7"
+          "invalidNftIds": [
+            "12"
           ],
           "configs":[
             {

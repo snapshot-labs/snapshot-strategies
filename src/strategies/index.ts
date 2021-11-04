@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -170,6 +171,7 @@ import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
+import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
@@ -193,6 +195,7 @@ const strategies = {
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
@@ -345,6 +348,7 @@ const strategies = {
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
+  'radicle-community-tokens': radicleCommunityTokens,
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,

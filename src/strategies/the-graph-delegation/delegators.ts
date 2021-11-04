@@ -25,8 +25,7 @@ export async function delegatorsStrategy(
         where: {
           id_in: addresses
         },
-        first: options.pageSize,
-        skip: options.skip
+        first: options.pageSize
       },
       id: true,
       delegator: {

@@ -34,7 +34,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const _addresses = addresses.map(x => x.toLowerCase())
+  const _addresses = addresses.map((x) => x.toLowerCase());
   const addressSubsets = Array.apply(
     null,
     Array(Math.ceil(_addresses.length / LIMIT))
