@@ -133,7 +133,7 @@ export async function strategy(
   const ownersWithNfts: OwnerWithNfts[] = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
     (map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
-        if (!options.params.invalidNftIds.includes(i.id)) {
+        if (!options.params.invalidNftIds?.includes(i.id)) {
           m[i.nftCore.contractAddress.toLowerCase() + '-0x' + Number.parseInt(i.id).toString(16)] = i.name
         }
         return m
