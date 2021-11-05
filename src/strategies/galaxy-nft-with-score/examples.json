@@ -4,30 +4,24 @@
     "strategy": {
       "name": "galaxy-nft-with-score",
       "params": {
-        "symbol": "GLX",
+        "symbol": "WOOFY",
         "params": {
-          "nftCoreAddresses":[
-            "0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1",
-            "0x68De1dECCE949ccA4C3Dcb32388a677e5a7dA8Bc"
+          "NFTCoreAddress":[
+            "0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"
           ],
-          "invalidNftIds": [
-            "12"
+          "blacklistNFTID": [
+            "1329"
           ],
           "configs":[
             {
               "name": "Woofster",
-              "weight": 5,
+              "votingPower": 1,
+              "cumulative": true
+            },
+            {
+              "name": "Androttweiler",
+              "votingPower": 2,
               "cumulative": false
-            },
-            {
-              "name": "Pugs Bunny",
-              "weight": 1,
-              "cumulative": true
-            },
-            {
-              "name": "Dcentral Miami Test",
-              "weight": 10,
-              "cumulative": true
             }
           ]
         }
