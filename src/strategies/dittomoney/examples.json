@@ -6,10 +6,11 @@
       "params": {
         "autofarm": "0x0895196562C7868C5Be92459FaE7f877ED450452",
         "jetfuel": "0x3d6D415be40159f207540f95E398F29a7173dC20",
-        "cafeswap":"0xc772955c33088a97D56d0BBf473d05267bC4feBB",
+        "cafeswap": "0xc772955c33088a97D56d0BBf473d05267bC4feBB",
         "pancake": "0x470BC451810B312BBb1256f96B0895D95eA659B1",
         "sharePool": "0x27Da7Bc5CcB7c31baaeEA8a04CC8Bf0085017208",
         "token": "0x233d91a0713155003fc4dce0afa871b508b3b715",
+        "symbol": "DITTO",
         "decimals": 18
       }
     },
