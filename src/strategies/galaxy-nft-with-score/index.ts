@@ -35,7 +35,7 @@ const Networks: {
 
 interface Config {
   name: string,
-  weight: number,
+  votingPower: number,
   cumulative: boolean
 }
 
@@ -112,7 +112,7 @@ export async function strategy(
       }`,
       variables: {
         option: {
-          nftCoreAddresses: options.params.nftCoreAddresses,
+          nftCoreAddresses: options.params.NFTCoreAddress,
           chain: Networks[network].name,
           owners: addresses
         }
@@ -133,7 +133,7 @@ export async function strategy(
   const ownersWithNfts: OwnerWithNfts[] = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
     (map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
-        if (!options.params.invalidNftIds?.includes(i.id)) {
+        if (!options.params.blacklistNFTID?.includes(i.id)) {
           m[i.nftCore.contractAddress.toLowerCase() + '-0x' + Number.parseInt(i.id).toString(16)] = i.name
         }
         return m
@@ -176,9 +176,9 @@ export async function strategy(
     configs.forEach(config => {
       if (config.name in ownerToNftCount[owner]) {
         if (config.cumulative) {
-          ownerToScore[restoreAddress[owner]] += config.weight * ownerToNftCount[owner][config.name]
+          ownerToScore[restoreAddress[owner]] += config.votingPower * ownerToNftCount[owner][config.name]
         } else {
-          ownerToScore[restoreAddress[owner]] += config.weight * 1
+          ownerToScore[restoreAddress[owner]] += config.votingPower * 1
         }
       }
     })
