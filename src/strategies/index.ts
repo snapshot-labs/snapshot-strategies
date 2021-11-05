@@ -335,7 +335,6 @@ const strategies = {
   'hopr-staking': hoprStaking,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
-  'loot-character-guilds': lootCharacterGuilds,
   swapr,
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
