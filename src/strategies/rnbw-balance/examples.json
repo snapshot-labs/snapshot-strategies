@@ -10,9 +10,7 @@
       }
     },
     "network": "42",
-    "addresses": [
-      "0x30Ca8F1e13978a7A819af012665CFa7E49F1c554"
-    ],
+    "addresses": ["0x30Ca8F1e13978a7A819af012665CFa7E49F1c554"],
     "snapshot": 25241929
   }
 ]

@@ -3,8 +3,7 @@
     "name": "Example query",
     "strategy": {
       "name": "pob-hash",
-      "params": {
-      }
+      "params": {}
     },
     "network": "1",
     "addresses": [

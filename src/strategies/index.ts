@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -19,6 +20,7 @@ import * as erc20BalanceOfCv from './erc20-balance-of-cv';
 import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -136,6 +138,7 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as poapWithWeight from './poap-with-weight';
 import * as uniswapV3 from './uniswap-v3';
+import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
@@ -144,6 +147,7 @@ import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
 import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
+import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
@@ -155,6 +159,24 @@ import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
+import * as cyberkongz from './cyberkongz';
+import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
+import * as mstable from './mstable';
+import * as hashesVoting from './hashes-voting';
+import * as podLeader from './pod-leader';
+import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
+import * as polisBalance from './polis-balance';
+import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
+import * as vaultTokenLpBalance from './vault-token-lp-balance';
+import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as svsStaking from './svs-staking';
+import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
+import * as colonyReputation from './colony-reputation';
+import * as radicleCommunityTokens from './radicle-community-tokens';
+import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
+import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
+import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as galaxyNftWithScore from './galaxy-nft-with-score';
 
 const strategies = {
   coordinape,
@@ -174,12 +196,14 @@ const strategies = {
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
@@ -293,6 +317,7 @@ const strategies = {
   'unipool-univ2-lp': unipoolUniv2Lp,
   'poap-with-weight': poapWithWeight,
   'uniswap-v3': uniswapV3,
+  'uniswap-v3-staking': uniswapV3Staking,
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
@@ -312,6 +337,26 @@ const strategies = {
   'occ-stake-of': occStakeOf,
   'loot-character-guilds': lootCharacterGuilds,
   swapr
+  'holds-tokens': holdsTokens,
+  'loot-character-guilds': lootCharacterGuilds,
+  cyberkongz: cyberkongz,
+  'comp-like-votes-inclusive': compLikeVotesInclusive,
+  mstable,
+  'hashes-voting': hashesVoting,
+  'pod-leader': podLeader,
+  'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
+  'polis-balance': polisBalance,
+  'vault-token-lp-balance': vaultTokenLpBalance,
+  'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
+  'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'svs-staking': svsStaking,
+  'mcb-balance-from-graph': mcbBalanceFromGraph,
+  'radicle-community-tokens': radicleCommunityTokens,
+  'digitalax-mona-quickswap': digitalaxMonaQuickswap,
+  'digitalax-genesis-contribution': digitalaxGenesisContribution,
+  'digitalax-lp-stakers': digitalaxLPStakers,
+  'colony-reputation': colonyReputation,
+  'galaxy-nft-with-score': galaxyNftWithScore
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

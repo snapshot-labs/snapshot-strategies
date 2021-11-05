@@ -6,9 +6,9 @@
       "params": {
         "symbol": "POAP",
         "tokenIds": [
-          {"id":"100001", "weight": 100}, 
-          {"id":"100002", "weight": 10}, 
-          {"id":"1000", "weight": 1}
+          { "id": "100001", "weight": 100 },
+          { "id": "100002", "weight": 10 },
+          { "id": "1000", "weight": 1 }
         ]
       }
     },

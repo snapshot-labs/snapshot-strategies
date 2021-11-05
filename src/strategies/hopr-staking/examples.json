@@ -4,7 +4,8 @@
     "strategy": {
       "name": "hopr-staking",
       "params": {
-        "tokenAddress": "0xf5581dfefd8fb0e4aec526be659cfab1f8c781da"
+        "tokenAddress": "0xf5581dfefd8fb0e4aec526be659cfab1f8c781da",
+        "symbol": "HOPR"
       }
     },
     "network": "1",

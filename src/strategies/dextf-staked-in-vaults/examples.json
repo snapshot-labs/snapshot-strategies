@@ -6,6 +6,7 @@
       "params": {
         "name": "DEXTF Vaults",
         "contractAddresses": ["0x42a05787584ec09dDDe46f8CE6a715c93049ee88"],
+        "symbol": "DEXTF",
         "scoreMultiplier": 1,
         "methodABI": {
           "inputs": [

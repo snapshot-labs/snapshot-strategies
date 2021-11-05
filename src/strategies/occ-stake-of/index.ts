@@ -20,9 +20,11 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  
+
   addresses.forEach((address) =>
-    multi.call(address, options.stakingContractAddress[0], 'getStake', [address])
+    multi.call(address, options.stakingContractAddress[0], 'getStake', [
+      address
+    ])
   );
 
   const result: Record<string, BigNumberish> = await multi.execute();
