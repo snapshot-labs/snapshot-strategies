@@ -21,14 +21,23 @@ export async function strategy(
     snapshot
   );
 
-  const rawErc20HoldersData = await erc20BalanceOfStartegy(
-    space,
-    network,
-    provider,
-    addresses,
-    options,
-    snapshot
-  );
+  let i = 0;
+  const PAGE_SIZE = 250;
+  let rawErc20HoldersData: { [address: string]: number } = {};
+  while (true) {
+    const pageData = await erc20BalanceOfStartegy(
+      space,
+      network,
+      provider,
+      addresses.slice(PAGE_SIZE * i, PAGE_SIZE * i + PAGE_SIZE),
+      options,
+      snapshot
+    );
+    rawErc20HoldersData = { ...rawErc20HoldersData, ...pageData };
+    if (Object.keys(pageData).length < PAGE_SIZE) break;
+    i++;
+  }
+
   // make sure the addresses have the correct casing before
   // merging the balance maps
   const erc20HoldersData = Object.entries(rawErc20HoldersData).reduce(
