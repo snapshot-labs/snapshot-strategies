@@ -8,6 +8,6 @@ Here is an example of parameters:
 {
     "symbol": "DAI",
     "decimals": 18,
-    "fundingProject": "0x0653fffa22daf68a86c86119521274c322ea3470"
+    "fundingProject": "0x488fc5d6e43259f87f816556a7ab99dc78cfbab6"
 }
 ```
