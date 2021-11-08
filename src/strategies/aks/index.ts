@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'akshay';
+export const author = 'akshaysoam8';
 export const version = '0.0.1';
 
 type VotingResponse = {
@@ -51,8 +51,6 @@ export async function strategy(
   const blockTag =
     typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
 
-    // console.log('blockTag', blockTag);
-
   const params = {
     smartChefs: {
       __args: {
@@ -71,8 +69,6 @@ export async function strategy(
   };
 
   const results = await subgraphRequest(SMART_CHEF_URL, params);
-
-  // console.log('results', results);
 
   if (!results) {
     return;
