@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -157,6 +158,7 @@ import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
+import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
@@ -175,6 +177,7 @@ import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as vesper from './vesper';
 
 const strategies = {
   coordinape,
@@ -194,6 +197,7 @@ const strategies = {
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
@@ -332,6 +336,7 @@ const strategies = {
   'hopr-staking': hoprStaking,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
+  swapr,
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
   cyberkongz: cyberkongz,
@@ -351,7 +356,8 @@ const strategies = {
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
   'colony-reputation': colonyReputation,
-  'galaxy-nft-with-score': galaxyNftWithScore
+  'galaxy-nft-with-score': galaxyNftWithScore,
+  vesper
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

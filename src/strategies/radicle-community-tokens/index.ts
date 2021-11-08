@@ -19,7 +19,7 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   let params = {};
-  let fundingProject = options.fundingProject;
+  const fundingProject = options.fundingProject;
   const mainField: string = fundingProject ? 'fundingProjects' : 'nfts';
 
   if (fundingProject) {
