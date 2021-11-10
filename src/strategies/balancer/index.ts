@@ -59,6 +59,9 @@ export async function strategy(
   // iterate through Balancer V1 & V2 Subgraphs
   const score = {};
   for (let version = 1; version <= 2; version++) {
+    // Skip attempt to query subgraph on networks where V1 isn't deployed
+    if ((network != 1 && network != 42) && version === 1 ) continue;
+    
     const result = await subgraphRequest(
       buildBalancerSubgraphUrl(network, version),
       params
