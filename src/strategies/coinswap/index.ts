@@ -17,7 +17,7 @@ const masterChefAbi = [
   'function balanceOf(address _owner) view returns (uint256 balance)'
 ];
 
-const smartChefAbi = [
+const communityStakeAbi = [
   'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
@@ -78,25 +78,25 @@ export async function strategy(
 
   /*
     Balance in Launch pools
-    from params.smartChef
+    from params.communityStakeChef
   */
-  const multiSmartChef = new Multicaller(network, provider, smartChefAbi, {
+  const multiCommunityStake = new Multicaller(network, provider, communityStakeAbi, {
     blockTag
   });
-  options.smartChef.forEach((smartChefAddress) => {
+  options.communityStake.forEach((communityStakeAddress) => {
     addresses.forEach((address) =>
-      multiSmartChef.call(
-        smartChefAddress + '-' + address,
-        smartChefAddress,
+    multiCommunityStake.call(
+        communityStakeAddress + '-' + address,
+        communityStakeAddress,
         'userInfo',
         [address]
       )
     );
   });
-  const resultSmartChef: Record<
+  const communityStakeChef: Record<
     string,
     BigNumberish
-  > = await multiSmartChef.execute();
+  > = await multiCommunityStake.execute();
 
   /*
     Staked LPs in CSS farms
@@ -156,12 +156,12 @@ export async function strategy(
     })
   );
 
-  options.smartChef.forEach((smartChefAddr) => {
+  options.communityStake.forEach((communityStakeAddr) => {
     addresses.forEach((userAddr) => {
       addUserBalance(
         userBalances,
         userAddr,
-        resultSmartChef[smartChefAddr + '-' + userAddr][0]
+        communityStakeChef[communityStakeAddr + '-' + userAddr][0]
       );
     });
   });

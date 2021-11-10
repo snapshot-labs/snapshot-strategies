@@ -7,7 +7,7 @@
         "address": "0x3bc5798416c1122BcFd7cb0e055d50061F23850d", // CCS tokn
         "masterChef": "0x3A0a988D680dBBB02DECBfd35F9E0676B4bEc292", // Master CCS
         "autoCss": "0x97a16ff6fd63a46bf973671762a39f3780cda73d", // Compound - do znalezienia
-        "smartChef": [
+        "communityStake": [
           // Compound
 
           // state & saas
