@@ -88,6 +88,7 @@ import * as niuStaked from './niu-staked';
 import * as mushrooms from './mushrooms';
 import * as curioCardsErc20Weighted from './curio-cards-erc20-weighted';
 import * as saffronFinance from './saffron-finance';
+import * as saffronFinanceV2 from './saffron-finance-v2';
 import * as renNodes from './ren-nodes';
 import * as multisigOwners from './multisig-owners';
 import * as trancheStaking from './tranche-staking';
@@ -270,6 +271,7 @@ const strategies = {
   pepemon,
   'erc1155-all-balances-of': erc1155AllBalancesOf,
   'saffron-finance': saffronFinance,
+  'saffron-finance-v2': saffronFinanceV2,
   'tranche-staking-lp': trancheStakingLP,
   'masterchef-pool-balance': masterchefPoolBalance,
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
