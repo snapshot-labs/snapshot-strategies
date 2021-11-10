@@ -3,11 +3,12 @@ import { getProvider } from '../../utils';
 import strategies from '..';
 
 export const author = 'kesar';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 const defaultGraphs = {
   '56': 'https://api.thegraph.com/subgraphs/name/apyvision/block-info',
-  '137': 'https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks'
+  '137': 'https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks',
+  '42161': 'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-one-blocks'
 };
 
 async function getChainBlockNumber(
