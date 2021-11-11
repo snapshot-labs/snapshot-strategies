@@ -4,19 +4,20 @@ import { subgraphRequest } from '../../utils';
 export const author = 'bonustrack';
 export const version = '0.2.0';
 
-const BALANCER_SUBGRAPH_URL_ROOT = "https://api.thegraph.com/subgraphs/name/balancer-labs/balancer"
+const BALANCER_SUBGRAPH_URL_ROOT =
+  'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer';
 
 const NETWORK_KEY = {
   '1': '',
   '42': '-kovan',
   '137': '-polygon',
-  '42161': '-arbitrum',
+  '42161': '-arbitrum'
 };
 
 function buildBalancerSubgraphUrl(chainId, version) {
-  const networkString = NETWORK_KEY[chainId]
-  const versionString = version == 2 ? "-v2" : ""
-  return `${BALANCER_SUBGRAPH_URL_ROOT}${networkString}${versionString}`
+  const networkString = NETWORK_KEY[chainId];
+  const versionString = version == 2 ? '-v2' : '';
+  return `${BALANCER_SUBGRAPH_URL_ROOT}${networkString}${versionString}`;
 }
 
 export async function strategy(
@@ -60,8 +61,8 @@ export async function strategy(
   const score = {};
   for (let version = 1; version <= 2; version++) {
     // Skip attempt to query subgraph on networks where V1 isn't deployed
-    if ((network != 1 && network != 42) && version === 1 ) continue;
-    
+    if (network != 1 && network != 42 && version === 1) continue;
+
     const result = await subgraphRequest(
       buildBalancerSubgraphUrl(network, version),
       params
