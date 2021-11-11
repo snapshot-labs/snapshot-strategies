@@ -3,12 +3,13 @@ import { getProvider } from '../../utils';
 import strategies from '..';
 
 export const author = 'kesar';
-export const version = '1.0.1';
+export const version = '1.0.2';
 
 const defaultGraphs = {
   '56': 'https://api.thegraph.com/subgraphs/name/apyvision/block-info',
   '137': 'https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks',
-  '42161': 'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-one-blocks'
+  '42161':
+    'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-one-blocks'
 };
 
 async function getChainBlockNumber(
@@ -78,6 +79,11 @@ export async function strategy(
   );
 
   for (const strategy of options.strategies) {
+    // If snapshot is taken before a network is activated then ignore its strategies
+    if (chainBlocks[strategy.network] < options.startBlocks[strategy.network]) {
+      continue;
+    }
+
     promises.push(
       strategies[strategy.name].strategy(
         space,
