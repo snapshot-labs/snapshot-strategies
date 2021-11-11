@@ -80,7 +80,10 @@ export async function strategy(
 
   for (const strategy of options.strategies) {
     // If snapshot is taken before a network is activated then ignore its strategies
-    if (chainBlocks[strategy.network] < options.startBlocks[strategy.network]) {
+    if (
+      options.startBlocks &&
+      chainBlocks[strategy.network] < options.startBlocks[strategy.network]
+    ) {
       continue;
     }
 
