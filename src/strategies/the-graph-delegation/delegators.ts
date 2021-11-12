@@ -1,3 +1,4 @@
+import { Provider } from '@ethersproject/providers';
 import { BigNumber } from '@ethersproject/bignumber';
 import { subgraphRequest } from '../../utils';
 import {
@@ -6,16 +7,17 @@ import {
   bdMulBn,
   GraphAccountScores,
   calcNonStakedTokens,
-  verifyResults
+  verifyResults,
+  GraphStrategyOptions
 } from '../the-graph/graphUtils';
 
 export async function delegatorsStrategy(
-  _space,
-  network,
-  _provider,
-  addresses,
-  options,
-  snapshot
+  _space: string,
+  network: string,
+  _provider: Provider,
+  addresses: string[],
+  options: GraphStrategyOptions,
+  snapshot: string | number
 ): Promise<GraphAccountScores> {
   const delegatorsParams = {
     graphAccounts: {
@@ -23,7 +25,7 @@ export async function delegatorsStrategy(
         where: {
           id_in: addresses
         },
-        first: 1000
+        first: options.pageSize
       },
       id: true,
       delegator: {
@@ -65,6 +67,8 @@ export async function delegatorsStrategy(
       result.graphNetworks[0].totalTokensStaked,
       result.graphNetworks[0].totalDelegatedTokens
     );
+    // The normalization factor gives more weight to delegated stake
+    // over GRT holded
     normalizationFactor =
       nonStakedTokens /
       BigNumber.from(result.graphNetworks[0].totalDelegatedTokens)
@@ -72,7 +76,7 @@ export async function delegatorsStrategy(
         .toNumber();
   }
 
-  if (options.expectedResults) {
+  if (options.expectedResults && snapshot !== 'latest') {
     verifyResults(
       normalizationFactor.toString(),
       options.expectedResults.normalizationFactor.toString(),
@@ -86,6 +90,8 @@ export async function delegatorsStrategy(
       for (let i = 0; i < result.graphAccounts.length; i++) {
         if (result.graphAccounts[i].id == a) {
           if (result.graphAccounts[i].delegator != null) {
+            // Find all stakes from the delegator
+            // and sum the delegated and locked tokens for each
             result.graphAccounts[i].delegator.stakes.forEach((s) => {
               const delegatedTokens = bdMulBn(
                 s.indexer.delegationExchangeRate,
@@ -98,8 +104,10 @@ export async function delegatorsStrategy(
                 .toNumber();
               delegationScore = delegationScore + oneDelegationScore;
             });
+            // Apply normalization factor to the total delegated GRT
             delegationScore = delegationScore * normalizationFactor;
           }
+          break;
         }
       }
       score[a] = delegationScore;

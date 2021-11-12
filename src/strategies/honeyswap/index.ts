@@ -1,12 +1,11 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
-
 export const author = 'Kittyslasher';
 export const version = '0.1.0';
 
 const HONEYSWAP_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/1hive/uniswap-v2'
+  '100': 'https://api.thegraph.com/subgraphs/name/1hive/uniswap-v2'
 };
 
 export async function strategy(

@@ -9,9 +9,7 @@
       }
     },
     "network": "1",
-    "addresses": [
-      "0x79317fc0fb17bc0ce213a2b50f343e4d4c277704"
-    ],
+    "addresses": ["0x79317fc0fb17bc0ce213a2b50f343e4d4c277704"],
     "snapshot": 1111000
   }
 ]

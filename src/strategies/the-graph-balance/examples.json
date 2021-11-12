@@ -1,10 +1,58 @@
 [
   {
-    "name": "Graph Tokens",
+    "name": "Graph Tokens Mainnet with Curators",
     "strategy": {
       "name": "the-graph-balance",
       "params": {
-        "strategyType": "balance",
+        "symbol": "B-GRT",
+        "expectedResults": {
+          "tokenLockWallets": [
+            {
+              "beneficiary": "0x00139f52e71c80bc71b3fbd2bdb908b56beef1e1",
+              "id": "0x9c90a2b1c019ef38e52d979915fd5aa55777d217"
+            }
+          ],
+          "scores": {
+            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 628798.551787525,
+            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 118259.26666409046,
+            "0xe29b6ad7ecb8bbc798c7144dd0e4fdee11917ca8": 13622.825426152955,
+
+            "0x00139f52e71c80bc71b3fbd2bdb908b56beef1e1": 30487.010146180415,
+            "0x9c90a2b1c019ef38e52d979915fd5aa55777d217": 93750
+          },
+          "combinedScores": {
+            "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7": 628798.551787525,
+            "0x4a905ce2d555752f0d906ffdf628b26ad64a741a": 118259.26666409046,
+            "0xe29b6ad7ecb8bbc798c7144dd0e4fdee11917ca8": 13622.825426152955,
+
+            "0x00139f52e71c80bc71b3fbd2bdb908b56beef1e1": 124237.01014618042
+          },
+          "normalizationFactor": 1,
+          "explanation": [
+            "The first 3 addresses are Curators with no balance and no Token-lock wallets associated to their account.",
+            "Their score is expected to be the sum of all signal GRT they have in active subgraph deployments.",
+            "The last address (0x00139f52e71c80bc71b3fbd2bdb908b56beef1e1) is a Curator, has balance and is a beneficiary of ",
+            "a Tocken-lock wallet. Its score is expected to be a combination of its active signal GRT, its balance and the balance",
+            "of its TLW (0x9c90a2b1c019ef38e52d979915fd5aa55777d217)."
+          ]
+        }
+      }
+    },
+    "network": "1",
+    "snapshot": 13507803,
+    "addresses": [
+      "0x4fc20ad3bb384764fdc7d588ee3b4dc5eabefce7",
+      "0x4a905ce2d555752f0d906ffdf628b26ad64a741a",
+      "0xe29b6ad7ecb8bbc798c7144dd0e4fdee11917ca8",
+      "0x00139f52e71c80bc71b3fbd2bdb908b56beef1e1"
+    ]
+  },
+  {
+    "name": "Graph Tokens Rinkeby",
+    "strategy": {
+      "name": "the-graph-balance",
+      "params": {
+        "symbol": "B-GRT",
         "expectedResults": {
           "tokenLockWallets": [
             {

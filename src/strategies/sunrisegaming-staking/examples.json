@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Sunrise Staked token",
+    "strategy": {
+      "name": "sunrisegaming-staking",
+      "params": {
+        "symbol": "SUNC",
+        "decimals": 18,
+        "tokenAddress": "0x692accdd8b86692427e0aa4752ae917df01cc56f",
+        "stakingAddress": "0x7dbE40ac6bB41A5FE4Fa2C74f31d7DEFBC793B58",
+        "poolIndex": 0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x7dbe40ac6bb41a5fe4fa2c74f31d7defbc793b58",
+      "0x26533020822f9b28c801e6beb772ef74dfe0c81e",
+      "0x75bd5989ce8f962a1864d8a0af8bfb5130805722",
+      "0x7505afcd576bb995577a944bccdb5c54c7d5ec45",
+      "0x930af93baa5f2c2f71bafd5a2fd7b1d47a61c352",
+      "0xbc444050d78107872c0262452fff004da9208258",
+      "0x26533020822f9b28c801e6beb772ef74dfe0c81e",
+      "0x45e049241b69df70cead33ef5a41d2d0a128ce01"
+    ],
+    "snapshot": 13229798
+  }
+]
