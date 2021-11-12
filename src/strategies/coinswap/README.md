@@ -1,6 +1,6 @@
 # Coinswap
 
-This is the most common strategy, it returns the balances of the voters for a balances BSW token
+This is the most common strategy, it returns the balances of the voters for a balances CSS token
 in Coinswap project(pools, farms, Liquidity, token).
 
 Here is an example of parameters:
