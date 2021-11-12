@@ -40,7 +40,7 @@ var snapshot = require('../')["default"];
 var networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 var space = 'turpintinz.eth';
 var network = '1';
-var snapshotBlockNumber = 13585170;
+var snapshotBlockNumber = 13591342;
 var strategies = [
     {
         "name": "saffron-finance-v2",
@@ -48,7 +48,7 @@ var strategies = [
             "address": "0xb753428af26e81097e7fd17f40c88aaa3e04902c",
             "symbol": "SFI",
             "decimals": 18,
-            "multiplier": 23
+            "multiplier": 1.1
         }
     },
     {
@@ -108,7 +108,7 @@ var addresses = [
     '0x64eacbcdbc6123bcc8b90a5fde8dd099aadb0e56',
     '0x7ba163a38a1fb4bd62096f6a76ef332f89aacf2f',
     '0x8d452c1f4bae385b13933c83ecff70d74229915f',
-    '0x91dca37856240e5e1906222ec79278b16420dc92',
+    '0xA43Cfc82083cd5EdaC9ABf13059bDb2447A10a80',
     '0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e',
     '0x3478697c64578D3D8092925EE365168CcabfeB66',
     '0x905D6a479C4be28aF08364CE1c8e02eBC9c4bdA8',
