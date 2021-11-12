@@ -140,6 +140,7 @@ import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
+import * as coinswap from './coinswap';
 
 const strategies = {
   'anti-whale': antiWhale,
@@ -281,7 +282,8 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
-  'has-rock':hasrock
+  'has-rock':hasrock,
+  coinswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -1,5 +1,5 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits, parseUnits } from '@ethersproject/units';
+import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
 
@@ -65,6 +65,7 @@ export async function strategy(
   const multiMasterChef = new Multicaller(network, provider, masterChefAbi, {
     blockTag
   });
+
   addresses.forEach((address) =>
     multiMasterChef.call(address, options.masterChef, 'userInfo', [
       '0',
