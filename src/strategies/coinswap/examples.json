@@ -5,7 +5,7 @@
       "name": "coinswap",
       "params": {
         "address": "0x3bc5798416c1122BcFd7cb0e055d50061F23850d",
-        "masterChef": "0x3A0a988D680dBBB02DECBfd35F9E0676B4bEc292",
+        "masterCSS": "0x3A0a988D680dBBB02DECBfd35F9E0676B4bEc292",
         "communityStake": [
           "0x496a0227f7f16622650DDf2601B6842e845203C5",
           "0xa25EA2B60c1a1365f195Cfda61b9fb7Eb8fcC38B",
