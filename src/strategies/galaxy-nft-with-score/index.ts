@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'alberthaotan';
-export const version = '0.2.0';
+export const version = '0.2.1';
 
 const Networks: {
   [network: string]: {
@@ -123,7 +123,7 @@ export async function strategy(
 
   const graphqlPromise = fetch(Networks[network].graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(
-    Networks[network].subgraph,
+    options.params.subgraph ? options.params.subgraph : Networks[network].subgraph,
     subgraphParams
   );
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
