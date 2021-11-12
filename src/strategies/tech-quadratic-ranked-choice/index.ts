@@ -5,6 +5,7 @@ import { Multicaller } from '../../utils';
 const ONE = BigNumber.from(1);
 const TWO = BigNumber.from(2);
 
+// For further explanation take a look on @ricmoo explanation here https://github.com/ethers-io/ethers.js/issues/1182
 function sqrt(value: BigNumber) {
   let z = value.add(ONE).div(TWO);
   let y = value;
