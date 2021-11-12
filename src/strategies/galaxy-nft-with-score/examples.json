@@ -6,13 +6,9 @@
       "params": {
         "symbol": "WOOFY",
         "params": {
-          "NFTCoreAddress":[
-            "0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"
-          ],
-          "blacklistNFTID": [
-            "1329"
-          ],
-          "configs":[
+          "NFTCoreAddress": ["0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"],
+          "blacklistNFTID": ["1329"],
+          "configs": [
             {
               "name": "Woofster",
               "votingPower": 1,

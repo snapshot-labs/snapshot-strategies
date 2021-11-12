@@ -128,6 +128,7 @@ import * as balancerDelegation from './balancer-delegation';
 import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
+import * as aks from './aks';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as ogn from './ogn';
@@ -158,6 +159,7 @@ import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
+import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
@@ -176,6 +178,7 @@ import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as vesper from './vesper';
 
 const strategies = {
   coordinape,
@@ -305,6 +308,7 @@ const strategies = {
   'infinityprotocol-liquidity-pools': infinityProtocolPools,
   'aave-governance-power': aaveGovernancePower,
   cake,
+  aks,
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
@@ -334,6 +338,7 @@ const strategies = {
   'hopr-staking': hoprStaking,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
+  swapr,
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
   cyberkongz: cyberkongz,
@@ -353,7 +358,8 @@ const strategies = {
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
   'colony-reputation': colonyReputation,
-  'galaxy-nft-with-score': galaxyNftWithScore
+  'galaxy-nft-with-score': galaxyNftWithScore,
+  vesper
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
