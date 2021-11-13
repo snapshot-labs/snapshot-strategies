@@ -2,37 +2,18 @@ import fetch from 'cross-fetch';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'alberthaotan';
-export const version = '0.2.1';
+export const version = '0.1.0';
 
-const Networks: {
-  [network: string]: {
-    name: string;
-    graphql: string;
-    subgraph: string;
-  };
+const Endpoint: {
+  name: string;
+  graphql: string;
+  subgraph: string;
+  contract: string;
 } = {
-  '1': {
-    name: 'ETHEREUM',
-    graphql: 'https://graphigo.prd.galaxy.eco/query',
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/alexvorobiov/eip1155subgraph'
-  },
-  '56': {
-    name: 'BSC',
-    graphql: 'https://graphigo.prd.galaxy.eco/query',
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/nftgalaxy/eip1155-bsc-subgraph'
-  }
-  // '137': {
-  //   name: 'MATIC',
-  //   graphql: 'https://graphigo.prd.galaxy.eco/query',
-  //   subgraph: ''
-  // },
-  // '250': {
-  //   name: 'FANTOM',
-  //   graphql: 'https://graphigo.prd.galaxy.eco/query',
-  //   subgraph: ''
-  // }
+  name: 'BSC',
+  graphql: 'https://graphigo.prd.galaxy.eco/query',
+  subgraph: 'https://api.thegraph.com/subgraphs/name/nftgalaxy/bsc-ticket-erc1155',
+  contract: '0x56535d2273e2eC8c2CdC65f71e3981Bf6301ae8D'
 };
 
 interface Config {
@@ -113,17 +94,17 @@ export async function strategy(
       }`,
       variables: {
         option: {
-          nftCoreAddresses: options.params.NFTCoreAddress,
-          chain: Networks[network].name,
+          nftCoreAddresses: options.params.NFTCoreAddress?options.params.NFTCoreAddress:[Endpoint.contract],
+          chain: Endpoint.name,
           owners: addresses
         }
       }
     })
   };
 
-  const graphqlPromise = fetch(Networks[network].graphql, graphqlParams);
+  const graphqlPromise = fetch(Endpoint.graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(
-    options.params.subgraph ? options.params.subgraph : Networks[network].subgraph,
+    Endpoint.subgraph,
     subgraphParams
   );
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
