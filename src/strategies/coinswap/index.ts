@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
 
-export const author = 'coinswap';
+export const author = 'CoinSwap-Space';
 export const version = '0.0.1';
 export const examples = examplesFile;
 
