@@ -16,7 +16,8 @@ type VotingResponse = {
 };
 
 const MINIUM_VOTING_POWER = 0.01;
-const SMART_CHEF_URL = 'https://api.thegraph.com/subgraphs/name/akshaysoam8/smartchef';
+const SMART_CHEF_URL =
+  'https://api.thegraph.com/subgraphs/name/akshaysoam8/smartchef';
 const VOTING_API_URL = 'https://voting-api.pancakeswap.info/api/power';
 
 /**

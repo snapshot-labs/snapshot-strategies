@@ -167,6 +167,7 @@ import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as techQuadraticRankedChoice from './tech-quadratic-ranked-choice';
 import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
@@ -180,6 +181,7 @@ import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
 import * as thales from './thales';
+import * as bscMvb from './bsc-mvb';
 
 const strategies = {
   coordinape,
@@ -361,7 +363,9 @@ const strategies = {
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
-  thales
+  thales,
+  'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
+  'bsc-mvb': bscMvb
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
