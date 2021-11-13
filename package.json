@@ -32,7 +32,7 @@
     "@ethersproject/strings": "^5.0.5",
     "@ethersproject/units": "^5.0.3",
     "@ethersproject/wallet": "^5.4.0",
-    "@snapshot-labs/snapshot.js": "^0.3.6",
+    "@snapshot-labs/snapshot.js": "^0.3.7",
     "@uniswap/sdk-core": "^3.0.1",
     "@uniswap/v3-sdk": "^3.3.1",
     "cross-fetch": "^3.0.6",
