@@ -182,6 +182,7 @@ import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
+import * as coinswap from './coinswap';
 
 const strategies = {
   coordinape,
@@ -365,7 +366,8 @@ const strategies = {
   vesper,
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
-  'bsc-mvb': bscMvb
+  'bsc-mvb': bscMvb,
+   coinswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
