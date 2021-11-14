@@ -1,4 +1,4 @@
-# ens-delegator
+# governor-delegator
 
 Allows users to vote with their token balance, if the user delegated their voting power to a particular delegate address
 
