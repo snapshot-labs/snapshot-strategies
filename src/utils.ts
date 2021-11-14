@@ -18,14 +18,19 @@ export async function getScoresDirect(
           (snapshot === 'latest' || snapshot > strategy.params?.end)) ||
         addresses.length === 0
           ? {}
-          : _strategies[strategy.name].strategy(
-              space,
-              network,
-              provider,
-              addresses,
-              strategy.params,
-              snapshot
-            )
+          : _strategies[strategy.name]
+              .strategy(
+                space,
+                network,
+                provider,
+                addresses,
+                strategy.params,
+                snapshot
+              )
+              .catch((error) => {
+                error.errorDescription = `Error in strategy: ${strategy.name}`;
+                return Promise.reject(error);
+              })
       )
     );
   } catch (e) {
