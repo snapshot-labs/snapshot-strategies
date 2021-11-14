@@ -180,6 +180,7 @@ import * as digitalaxGenesisContribution from './digitalax-genesis-contribution'
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
+import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 
 const strategies = {
@@ -362,6 +363,7 @@ const strategies = {
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
+  thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb
 };
