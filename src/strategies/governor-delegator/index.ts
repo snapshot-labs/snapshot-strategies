@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
@@ -37,7 +38,7 @@ export async function strategy(
   );
   return Object.fromEntries(
     Object.entries(score).map((address: any, i) => [
-      address[0],
+      getAddress(address[0]),
       delegates[i].toString().toLowerCase() === options.delegate.toLowerCase()
         ? address[1]
         : 0
