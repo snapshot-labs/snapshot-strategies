@@ -13,6 +13,7 @@ import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
+import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
@@ -180,6 +181,7 @@ import * as digitalaxGenesisContribution from './digitalax-genesis-contribution'
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
+import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
 
@@ -200,6 +202,7 @@ const strategies = {
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
+  'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
@@ -363,6 +366,7 @@ const strategies = {
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
+  thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
    coinswap
