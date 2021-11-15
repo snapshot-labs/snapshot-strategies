@@ -364,7 +364,7 @@ const strategies = {
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
-
+  'bsc-mvb': bscMvb,
    coinswap
 };
 
