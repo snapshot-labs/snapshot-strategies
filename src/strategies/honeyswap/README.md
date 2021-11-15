@@ -4,8 +4,8 @@ Here is an example of parameters:
 
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
+  "address": "0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
+  "symbol": "WXDAI",
   "decimals": 18
 }
 ```

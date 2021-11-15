@@ -9,11 +9,11 @@
         "decimals": 18
       }
     },
-    "network": "4690",
+    "network": "4689",
     "addresses": [
-      "0x1904BFcb93EdC9BF961Eead2e5c0de81dCc1D37D",
-      "0x87Eea07540789af85B64947aEA21A3f00400B597"
+      "0x515c2c35c3ec82c30affc5ec06da9a30ef008741",
+      "0xa00744882684c3e4747faefd68d283ea44099d03"
     ],
-    "snapshot": 8947000
+    "snapshot": 13000000
   }
 ]

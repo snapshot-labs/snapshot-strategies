@@ -42,6 +42,11 @@
         "graphs": {
           "56": "https://api.thegraph.com/subgraphs/name/apyvision/block-info",
           "137": "https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks"
+        },
+        "startBlocks": {
+          "1": 0,
+          "56": 10000000,
+          "137": 13000000
         }
       }
     },
