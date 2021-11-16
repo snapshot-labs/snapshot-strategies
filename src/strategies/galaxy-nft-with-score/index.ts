@@ -123,7 +123,9 @@ export async function strategy(
 
   const graphqlPromise = fetch(Networks[network].graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(
-    options.params.subgraph ? options.params.subgraph : Networks[network].subgraph,
+    options.params.subgraph
+      ? options.params.subgraph
+      : Networks[network].subgraph,
     subgraphParams
   );
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);

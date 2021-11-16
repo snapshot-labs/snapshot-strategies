@@ -373,7 +373,7 @@ const strategies = {
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
-   coinswap
+  coinswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
