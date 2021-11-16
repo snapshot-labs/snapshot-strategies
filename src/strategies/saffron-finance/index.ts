@@ -240,7 +240,7 @@ export async function strategy(
     dexReserveData.push(d);
   });
 
-  // ============= Multicall balance queries ==============
+  // ============= Multicall queries ==============
   options.contracts.forEach((contract) => {
     const queries = addresses.map((address: any) => {
       return [contract.tokenAddress, 'balanceOf', [address]];
