@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "digitalax-lp-stakers",
+      "params": {
+        "address": "0x275f5Ad03be0Fa221B4C6649B8AeE09a42D9412A",
+        "symbol": "MONA"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xd9854F3ab29A69c89Cc57fb675C48Ecd69b61Aec",
+      "0xa59ba4eebfbd28e5a61dea4b9bcf358320e8d53b",
+      "0xaa3e5ee4fdc831e5274fe7836c95d670dc2502e6",
+      "0xea41cd3f972db6237ffa2918df9199b547172420",
+      "0xbfd5493b94ead64d3dcada5700dbee9409acc345"
+    ],
+    "snapshot": 13526042
+  }
+]

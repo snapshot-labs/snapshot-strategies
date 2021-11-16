@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -12,6 +13,7 @@ import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
+import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
@@ -19,6 +21,7 @@ import * as erc20BalanceOfCv from './erc20-balance-of-cv';
 import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -127,6 +130,7 @@ import * as balancerDelegation from './balancer-delegation';
 import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
+import * as aks from './aks';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as ogn from './ogn';
@@ -157,6 +161,7 @@ import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
+import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
@@ -164,12 +169,22 @@ import * as hashesVoting from './hashes-voting';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
+import * as techQuadraticRankedChoice from './tech-quadratic-ranked-choice';
 import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
+import * as radicleCommunityTokens from './radicle-community-tokens';
+import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
+import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
+import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as vesper from './vesper';
+import * as thales from './thales';
+import * as bscMvb from './bsc-mvb';
+import * as coinswap from './coinswap';
 
 const strategies = {
   coordinape,
@@ -188,13 +203,16 @@ const strategies = {
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
+  'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
@@ -298,6 +316,7 @@ const strategies = {
   'infinityprotocol-liquidity-pools': infinityProtocolPools,
   'aave-governance-power': aaveGovernancePower,
   cake,
+  aks,
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
@@ -327,6 +346,7 @@ const strategies = {
   'hopr-staking': hoprStaking,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
+  swapr,
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
   cyberkongz: cyberkongz,
@@ -341,7 +361,17 @@ const strategies = {
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
-  'colony-reputation': colonyReputation
+  'radicle-community-tokens': radicleCommunityTokens,
+  'digitalax-mona-quickswap': digitalaxMonaQuickswap,
+  'digitalax-genesis-contribution': digitalaxGenesisContribution,
+  'digitalax-lp-stakers': digitalaxLPStakers,
+  'colony-reputation': colonyReputation,
+  'galaxy-nft-with-score': galaxyNftWithScore,
+  vesper,
+  thales,
+  'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
+  'bsc-mvb': bscMvb,
+   coinswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
