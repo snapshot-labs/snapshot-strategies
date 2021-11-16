@@ -15,7 +15,8 @@ To run Snapshot tests:
 npm run test --strategy=saffron-finance-v2
 ```
 
-To test running both `saffron-finance` and `saffron-finance-v2`:
+To test running both `saffron-finance` and `saffron-finance-v2` strategies to count accounts' SFI and SFI Hodl Contract
+balances:
 
 ```bash
 cd $SNAPSHOT_STRATEGIES_ROOT
@@ -44,6 +45,6 @@ Example strategy params:
 | decimals       | Number of decimals used by the asset used to calculate voting. Default: 18.                |
 | multiplier     | Voting score is multiplied by this value to provide additional voting power. Default: 1.1. |
 | stakingPool    | The address of the SaffronStakingV2 contract.                                              |
-|                |     Default: "0x4eB4C5911e931667fE1647428F38401aB1661763" (_SaffronStakingV2 Contract_)    |
+|                |     Default: "0x4eB4C5911e931667fE1647428F38401aB1661763" (_SaffronStakingV2 Contract_).   |
 | singleAssets   | Array of contract addresses of single asset stakings.                                      |
-|                |     Default: [ "0xb753428af26E81097e7fD17f40c88aaA3E04902c" ]. (_SFI address_)             |
+|                |     Default: [ "0xb753428af26E81097e7fD17f40c88aaA3E04902c" ]. (_SFI address_).            |
