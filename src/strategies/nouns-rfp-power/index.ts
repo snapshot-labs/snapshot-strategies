@@ -11,24 +11,8 @@ export const version = '0.1.0';
  */
 
 const abi = [
-  {
-    inputs: [
-      { internalType: 'address', name: 'user', type: 'address' }
-    ],
-    name: 'getVotingPower',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      { internalType: 'address', name: 'user', type: 'address' }
-    ],
-    name: 'getPropositionPower',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getVotingPower(address user) view returns (uint256)',
+  'function getPropositionPower(address user) view returns (uint256)'
 ];
 
 const powerTypesToMethod = {
