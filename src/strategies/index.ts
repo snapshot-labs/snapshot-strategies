@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
@@ -187,6 +188,7 @@ import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
 
 const strategies = {
+  'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
   balancer,
