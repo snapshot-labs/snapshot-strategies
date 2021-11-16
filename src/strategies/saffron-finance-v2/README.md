@@ -21,7 +21,7 @@ balances:
 ```bash
 cd $SNAPSHOT_STRATEGIES_ROOT
 npm run build
-tsc test/scores-sfi.tx
+tsc test/scores-sfi.ts
 node test/scores-sfi.js
 ```
 

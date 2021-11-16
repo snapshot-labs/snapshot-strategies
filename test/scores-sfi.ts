@@ -4,7 +4,7 @@ const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 
 const space = 'turpintinz.eth';
 const network = '1';
-const snapshotBlockNumber = 13591342;
+const snapshotBlockNumber = 13623707;
 const strategies = [
   {
     "name": "saffron-finance-v2",
@@ -67,6 +67,7 @@ const strategies = [
     }
   }
 ];
+
 const addresses = [
   '0xD90B866039E8820c2Cd082840fceeD81Cef691F8',
   '0x905D6a479C4be28aF08364CE1c8e02eBC9c4bdA8',
