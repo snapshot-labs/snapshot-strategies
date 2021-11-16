@@ -12,6 +12,18 @@ const SINGLE_ASSETS_DEFAULT = [SFI];
 const tenTo18 = BigNumber.from(10).pow(18);
 const STAKING_VOTE_BOOST_DEFAULT = 1.1;
 
+// ============ Needed contract ABI ============
+const abi = [
+  'function balanceOf(address account) view returns (uint256)',
+  'function getReserves() view returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast)',
+  'function poolLength() view returns (uint256)',
+  'function poolInfo(uint256) view returns (address lpToken, uint256 allocPoint, uint256 lastRewardBlock, uint256 accSFIPerShare)',
+  'function totalSupply() view returns (uint256)',
+  'function token0() view returns (address)',
+  'function token1() view returns (address)',
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)'
+];
+
 type PoolInfo = {
   id: BigNumber;
   lpToken: LpSfiPair;
@@ -135,145 +147,3 @@ export async function strategy(
 
   return Object.fromEntries(formatted);
 }
-
-// ============ Needed contract ABI ============
-const abi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [],
-    name: 'getReserves',
-    outputs: [
-      {
-        internalType: 'uint112',
-        name: '_reserve0',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint112',
-        name: '_reserve1',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint32',
-        name: '_blockTimestampLast',
-        type: 'uint32'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function',
-    constant: true
-  },
-  {
-    inputs: [],
-    name: 'poolLength',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    name: 'poolInfo',
-    outputs: [
-      { internalType: 'contract IERC20', name: 'lpToken', type: 'address' },
-      { internalType: 'uint256', name: 'allocPoint', type: 'uint256' },
-      { internalType: 'uint256', name: 'lastRewardBlock', type: 'uint256' },
-      { internalType: 'uint256', name: 'accSFIPerShare', type: 'uint256' }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: "token0",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: "token1",
-    outputs: [
-      {
-        internalType: "address",
-        name: "",
-        type: "address"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256"
-      },
-      {
-        internalType: "address",
-        name: "",
-        type: "address"
-      }
-    ],
-    name: "userInfo",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256"
-      },
-      {
-        internalType: "uint256",
-        name: "rewardDebt",
-        type: "uint256"
-      }
-    ],
-    stateMutability: "view",
-    type: "function"
-  }
-];
