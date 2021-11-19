@@ -20,7 +20,7 @@ async function getChainBlockNumber(
     blocks: {
       __args: {
         first: 1,
-        orderBy: 'number',
+        orderBy: 'timestamp',
         orderDirection: 'desc',
         where: {
           timestamp_lte: timestamp
