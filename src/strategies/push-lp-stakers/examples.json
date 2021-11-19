@@ -1,0 +1,31 @@
+[
+    {
+      "name": "Example query",
+      "strategy": {
+        "name": "push-lp-stakers",
+        "params": {
+          "epnsTokenAddr": "0xf418588522d5dd018b425E472991E52EBBeEEEEE",
+          "epnsLPTokenAddr": "0xaf31fd9c3b0350424bf96e551d2d1264d8466205",
+          "stakingAddr": "0xB72ff1e675117beDefF05a7D0a472c3844cfec85",
+          "uniswapV2Router02": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+          "symbol": "PUSH",
+
+          "WETHAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+          "USDTAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+          
+          "decimals": 18
+        }
+      },
+      "network": "1",
+      "addresses": [
+        "0x554d29160f779Adf0a4328597cD33Ea1Df4D9Ee9",
+        "0xcB034160f7B45E41E6015ECEA09F31A66C144422",
+        "0x5913760160d245d0C9A05a8a956012694281bEE3",
+        "0x4F76B969Fd570c5a5196f5eD5bcebD36bB5163cE",
+        "0x25ac0E53453CD8f2f7f26f34F2BFee0937474552",
+        "0x2dBC54D6993a1db9BE6431292036641Ec73E8C70",
+        "0x8cE9ec296542ec95C0259572F1C8965C30cd7DF0"
+      ],
+      "snapshot": 13626267
+    }
+]

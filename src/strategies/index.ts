@@ -1,6 +1,5 @@
 import { readFileSync } from 'fs';
 import path from 'path';
-import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
@@ -92,7 +91,6 @@ import * as niuStaked from './niu-staked';
 import * as mushrooms from './mushrooms';
 import * as curioCardsErc20Weighted from './curio-cards-erc20-weighted';
 import * as saffronFinance from './saffron-finance';
-import * as saffronFinanceV2 from './saffron-finance-v2';
 import * as renNodes from './ren-nodes';
 import * as multisigOwners from './multisig-owners';
 import * as trancheStaking from './tranche-staking';
@@ -186,9 +184,10 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
+import * as pushLpStakers from './push-lp-stakers';
+
 
 const strategies = {
-  'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
   balancer,
@@ -291,7 +290,6 @@ const strategies = {
   pepemon,
   'erc1155-all-balances-of': erc1155AllBalancesOf,
   'saffron-finance': saffronFinance,
-  'saffron-finance-v2': saffronFinanceV2,
   'tranche-staking-lp': trancheStakingLP,
   'masterchef-pool-balance': masterchefPoolBalance,
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
@@ -373,7 +371,8 @@ const strategies = {
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
-  coinswap
+   coinswap,
+   'push-lp-stakers': pushLpStakers
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
