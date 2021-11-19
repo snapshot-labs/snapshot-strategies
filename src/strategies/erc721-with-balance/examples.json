@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query with minimum ERC-721 balance",
+    "strategy": {
+      "name": "erc721-with-balance",
+      "params": {
+        "address": "0x25ed58c027921e14d86380ea2646e3a1b5c55a8b",
+        "symbol": "DEVS",
+        "minBalance": 1
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x0000000000000000000000000000000000baddad",
+      "0x76da95534c57516625948baA9d069D5ed371b324",
+      "0xb1c015bc96958e42b670c502bc29be791e754127",
+      "0x03f9bc4648a98cdc61fca7a177d809edab2c14fc",
+      "0x27f8602e403b6ea18f8711a7858fa4a94ef3269b",
+      "0xa703b1cb89f50939173a124ba76571369cf69953",
+      "0x184e2d53a04bc87a6b597703edcd62d768da1f27",
+      "0xa4a13b3f22bc0e90235e17ae9343b2c7e04e96c8"
+    ],
+    "snapshot": 13647430
+  }
+]
