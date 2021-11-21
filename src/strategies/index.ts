@@ -132,6 +132,7 @@ import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
+import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as ogn from './ogn';
@@ -319,6 +320,7 @@ const strategies = {
   'aave-governance-power': aaveGovernancePower,
   cake,
   aks,
+  tomyumswap,
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,

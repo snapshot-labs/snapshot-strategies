@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "tomyumswap",
+      "params": {
+        "symbol": "TOMYUM"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xF677b8EF72C34f63c43f47C30612B1A3Ec1b622F",
+      "0xd7eAd7DD37EFf97531beA958a58282Fa6D3a31A5"
+    ],
+    "snapshot": 7151302
+  }
+]
