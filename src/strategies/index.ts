@@ -298,7 +298,7 @@ const strategies = {
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
-  apiPost,
+  'api-post': apiPost,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,

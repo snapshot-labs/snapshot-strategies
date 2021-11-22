@@ -30,7 +30,7 @@ export async function strategy(
 
   const data = await response.json();
   return Object.fromEntries(
-    data.scores.map((value) => [
+    data.score.map((value) => [
       value.address,
       parseFloat(formatUnits(value.score.toString(), options.decimals))
     ])

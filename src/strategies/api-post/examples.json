@@ -4,7 +4,7 @@
     "strategy": {
       "name": "api-post",
       "params": {
-        "api": "https://api.yourproject.host/votingpower",
+        "api": "https://pmon-user-api-staging.herokuapp.com/snapshoOrgTestEndpoint",
         "symbol": "Points",
         "strategy": "PointsByAddress",
         "decimals": 0
