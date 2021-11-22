@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "push-lp-stakers",
+      "name": "push-voting-power",
       "params": {
         "pushTokenAddr": "0xf418588522d5dd018b425E472991E52EBBeEEEEE",
         "pushLPTokenAddr": "0xaf31fd9c3b0350424bf96e551d2d1264d8466205",

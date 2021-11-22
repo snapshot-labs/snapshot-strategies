@@ -186,7 +186,7 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
-import * as pushLpStakers from './push-lp-stakers';
+import * as pushVotingPower from './push-voting-power';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -375,7 +375,7 @@ const strategies = {
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
    coinswap,
-   'push-lp-stakers': pushLpStakers
+   'push-voting-power': pushVotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
