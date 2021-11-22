@@ -104,6 +104,7 @@ import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
+import * as apiPost from './api-post';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -186,6 +187,8 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
+import * as dgenesis from './dgenesis';
+import * as votePowerAndShare from './vote-power-and-share';
 import * as pushVotingPower from './push-voting-power';
 
 const strategies = {
@@ -298,6 +301,7 @@ const strategies = {
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
+  'api-post': apiPost,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
@@ -374,8 +378,10 @@ const strategies = {
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
-   coinswap,
-   'push-voting-power': pushVotingPower
+  coinswap,
+  dgenesis,
+  'vote-power-and-share': votePowerAndShare,
+  'push-voting-power': pushVotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
