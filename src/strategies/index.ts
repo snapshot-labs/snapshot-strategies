@@ -187,6 +187,7 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
+import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
 
 const strategies = {
@@ -377,6 +378,7 @@ const strategies = {
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
   coinswap,
+  dgenesis,
   'vote-power-and-share': votePowerAndShare
 };
 
