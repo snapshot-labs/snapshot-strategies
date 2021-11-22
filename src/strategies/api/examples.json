@@ -5,6 +5,7 @@
       "name": "api",
       "params": {
         "api": "https://api.pills.host/pills",
+        "symbol": "pills",
         "strategy": "shadowpak",
         "decimals": 0
       }
