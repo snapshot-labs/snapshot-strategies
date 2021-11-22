@@ -4,7 +4,7 @@
     "strategy": {
       "name": "api-post",
       "params": {
-        "api": "https://pmon-user-api-staging.herokuapp.com/v1/votingPowerTestMock",
+        "api": "https://dao-staging.polychainmonsters.com/v1/votingPowerTestMock",
         "symbol": "Points",
         "strategy": "PointsByAddress",
         "decimals": 0
