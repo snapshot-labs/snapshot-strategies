@@ -1,8 +1,13 @@
 import { formatUnits } from '@ethersproject/units';
+import { BigNumber } from '@ethersproject/bignumber';
 import { multicall } from '../../utils';
 
 export const author = 'mujtaba1747';
 export const version = '0.1.0';
+
+const tokenBNtoNumber = (tokenBn) => {
+  return (tokenBn).div(BigNumber.from(10).pow(BigNumber.from(10))).toNumber() / 100000000
+}
 
 const sharedABI = [
   {
@@ -150,6 +155,7 @@ export async function strategy(
   options,
   snapshot
 ){
+
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const responseEPNSToken = await multicall(
@@ -158,14 +164,14 @@ export async function strategy(
     epnsTokenABI,
     [
       [
-        options.epnsTokenAddr,
+        options.pushTokenAddr,
         'balanceOf',
-        [options.epnsLPTokenAddr]
+        [options.pushLPTokenAddr]
       ]
     ]
     .concat(
       addresses.map((address: any) => [
-        options.epnsTokenAddr,
+        options.pushTokenAddr,
         'getCurrentVotes',
         [address.toLowerCase()]
       ])
@@ -177,10 +183,10 @@ export async function strategy(
   // single Multicall using .concat
   // This was done because the number of Multicalls allowed is limited to 5 by Snapshot
 
-  const responseDelegatedVotes = responseEPNSToken.slice(1);
+  const responseDelegatedPUSH = responseEPNSToken.slice(1);
 
-  const pushAmountReserve = parseFloat(responseEPNSToken.slice(0, 1)[0][0].toString()) / 1e18;
-  
+  const pushAmountReserve = tokenBNtoNumber(responseEPNSToken.slice(0, 1)[0][0]);
+
   const responseStaked =  await multicall(
     network,
     provider,
@@ -189,13 +195,13 @@ export async function strategy(
     addresses.map((address: any) => [
       options.stakingAddr,
       'balanceOf',
-      [address.toLowerCase(), options.epnsTokenAddr]
+      [address.toLowerCase(), options.pushTokenAddr]
     ])
     .concat(
       addresses.map((address: any) => [
         options.stakingAddr,
         'balanceOf',
-        [address.toLowerCase(), options.epnsLPTokenAddr]
+        [address.toLowerCase(), options.pushLPTokenAddr]
       ])
     ),
 
@@ -214,13 +220,13 @@ export async function strategy(
       [
         options.WETHAddress,
         'balanceOf',
-        [options.epnsLPTokenAddr]
+        [options.pushLPTokenAddr]
       ],
     ],
     { blockTag }
   );
 
-  const wethAmountReserve = parseFloat(responseWETH[0][0].toString()) / 1e18;
+  const wethAmountReserve = tokenBNtoNumber(responseWETH[0][0]);
 
   const responseLPConversion = await multicall(
     network,
@@ -230,7 +236,7 @@ export async function strategy(
       [
         options.uniswapV2Router02,
         'getAmountsOut',
-        ["1000000000000000000", [ options.epnsTokenAddr, options.WETHAddress, options.USDTAddress]],
+        ["1000000000000000000", [ options.pushTokenAddr, options.WETHAddress, options.USDTAddress]],
       ],
 
       [
@@ -243,9 +249,9 @@ export async function strategy(
   );
 
   // pushPrice and wethPrice are in terms of USDT
-  const pushPrice = parseFloat(responseLPConversion[0]["amounts"][2].toString()) / 1e6;
+  const pushPrice = responseLPConversion[0]["amounts"][2].toNumber() / 1e6;
 
-  const wethPrice = parseFloat(responseLPConversion[1]["amounts"][1].toString()) / 1e6;
+  const wethPrice = responseLPConversion[1]["amounts"][1].toNumber() / 1e6;
 
   const responseEPNSLPToken = await multicall(
     network,
@@ -253,7 +259,7 @@ export async function strategy(
     epnsLpABI,
     [
       [
-        options.epnsLPTokenAddr,
+        options.pushLPTokenAddr,
         'totalSupply',
         []
       ]
@@ -262,20 +268,20 @@ export async function strategy(
   )
 
   // Calculating price of EPNS-LP Tokens in terms of EPNS Tokens
-  const uniLpTotalSupply = parseFloat(responseEPNSLPToken[0][0].toString()) / 1e18;
+  const uniLpTotalSupply = tokenBNtoNumber(responseEPNSLPToken[0][0]);
 
   const uniLpPrice = ((pushAmountReserve * pushPrice) + (wethAmountReserve * wethPrice)) / uniLpTotalSupply;
 
   const lpToPushRatio = uniLpPrice / pushPrice;
 
   return Object.fromEntries(
-    responseDelegatedVotes.map((value, i) => [
+    responseDelegatedPUSH.map((value, i) => [
       addresses[i],
 
       // Voting Power = Delegated PUSH + Staked PUSH + Staked UNI-LP PUSH
       parseFloat(formatUnits(value.toString(), options.decimals)) +
 
-      parseFloat(formatUnits(responseStakedPUSH[i].toString(), options.decimals)) + 
+      parseFloat(formatUnits(responseStakedPUSH[i].toString(), options.decimals)) +
 
       parseFloat(formatUnits(responseStakedLP[i].toString(), options.decimals)) * lpToPushRatio
 

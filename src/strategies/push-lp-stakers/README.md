@@ -1,17 +1,17 @@
 # EPNS Governance: Voting
 
 This strategy weighs the vote using:
-- Amount of `$PUSH` Delegated to user
-- Amount of `$PUSH` Staked in 1st Yeild Farm
-- Amount of `$PUSH-LP` Staked in 2nd Yeild Farm
+- Amount of `$PUSH` delegated to user
+- Amount of `$PUSH` staked in Push staking pool
+- Amount of `$PUSH-LP` staked in LP staking pool
 
 The voting power is calculated in terms of `$PUSH`, so `$PUSH-LP` tokens are converted to `$PUSH` using on chain data from Uniswap-V2 Router, WETH and USDT token contracts.
 
 - Example Parameters:
 ```JSON
 {
-    "epnsTokenAddr": "0xf418588522d5dd018b425E472991E52EBBeEEEEE",
-    "epnsLPTokenAddr": "0xaf31fd9c3b0350424bf96e551d2d1264d8466205",
+    "pushTokenAddr": "0xf418588522d5dd018b425E472991E52EBBeEEEEE",
+    "pushLPTokenAddr": "0xaf31fd9c3b0350424bf96e551d2d1264d8466205",
     "stakingAddr": "0xB72ff1e675117beDefF05a7D0a472c3844cfec85",
     "symbol": "PUSH",
 
