@@ -4,9 +4,7 @@
     "strategy": {
       "name": "dgenesis",
       "params": {
-        "address": "0xbe1fef07fb53aed268d8a7b1d6eff0c18c09db28",
-        "symbol": "DGV",
-        "decimals": 18
+        "symbol": "DGV"
       }
     },
     "network": "42161",
