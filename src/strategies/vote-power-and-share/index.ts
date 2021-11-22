@@ -7,9 +7,9 @@ export const version = '0.1.0';
 
 const abi = ['function totalSupply() public returns (uint256)'];
 
-enum PowerType{
-  VotingPower = "votingPower",
-  ShareOfTotalSupply = "shareOfTotalSupply",
+enum PowerType {
+  VotingPower = 'votingPower',
+  ShareOfTotalSupply = 'shareOfTotalSupply'
 }
 
 interface Options {
@@ -45,25 +45,26 @@ export async function strategy(
     { blockTag }
   );
 
-  if (!totalPoolShares  || !Object.keys(poolShares).length|| (options.powerType!=PowerType.ShareOfTotalSupply&&options.powerType!=PowerType.VotingPower))
+  if (
+    !totalPoolShares ||
+    !Object.keys(poolShares).length ||
+    (options.powerType != PowerType.ShareOfTotalSupply &&
+      options.powerType != PowerType.VotingPower)
+  )
     return {};
-   const totalShares = parseFloat(
+  const totalShares = parseFloat(
     formatUnits(totalPoolShares.toString(), options.decimals)
   );
 
-  if(options.powerType==PowerType.ShareOfTotalSupply)
-  {
+  if (options.powerType == PowerType.ShareOfTotalSupply) {
     return Object.fromEntries(
       Object.entries(poolShares).map((account) => [
         account[0],
-        (account[1] / totalShares)
+        account[1] / totalShares
       ])
     );
   }
   return Object.fromEntries(
-    Object.entries(poolShares).map((account) => [
-      account[0],
-      (account[1])
-    ])
+    Object.entries(poolShares).map((account) => [account[0], account[1]])
   );
 }
