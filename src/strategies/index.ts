@@ -104,6 +104,7 @@ import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
+import * as apiPost from './api-post';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -297,6 +298,7 @@ const strategies = {
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
+  apiPost,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
