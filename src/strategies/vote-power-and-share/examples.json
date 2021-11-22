@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Exemple of BaksDAO strategy",
+    "strategy": {
+      "name": "vote-power-and-share",
+      "params": {
+        "address": "0x300225DBb0a83c4706edDC5f6A34538964B86412",
+        "powerType": "votingPower",
+        "symbol": "BDV",
+        "decimals": 18
+      }
+    },
+    "network": "97",
+    "addresses": [
+      "0x96b6d32E9EF3ECdD7245F5F94C72099441e9D8c1",
+      "0x2150Cb38ee362bceAC3d4A2704A82eeeD02E93EC",
+      "0xdf2ff5946df21f818d5f67e62d22486ca470798e"
+    ],
+    "snapshot": 14188794
+  }
+]
