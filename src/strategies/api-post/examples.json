@@ -6,7 +6,6 @@
       "params": {
         "api": "https://dao-staging.polychainmonsters.com/v1/votingPowerTestMock",
         "symbol": "Points",
-        "strategy": "PointsByAddress",
         "decimals": 0
       }
     },
