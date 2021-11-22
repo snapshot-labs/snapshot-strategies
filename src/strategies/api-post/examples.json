@@ -2,11 +2,10 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "api",
+      "name": "api-post",
       "params": {
-        "api": "https://api.pills.host/pills",
-        "symbol": "pills",
-        "strategy": "shadowpak",
+        "api": "https://dao-staging.polychainmonsters.com/v1/votingPowerTestMock",
+        "symbol": "Points",
         "decimals": 0
       }
     },
