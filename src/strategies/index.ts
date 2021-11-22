@@ -375,7 +375,8 @@ const strategies = {
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
   coinswap,
-  dgenesis
+  dgenesis,
+  'vote-power-and-share': votePowerAndShare
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
