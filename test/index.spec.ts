@@ -1,5 +1,6 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
+const fetch = require('cross-fetch');
 const snapshot = require('../').default;
 const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 const addresses = require('./addresses.json');
@@ -161,3 +162,19 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
     });
   }
 );
+
+describe(`\nOthers:`, () => {
+  it('Author in strategy should be a valid github username', async () => {
+    const author = snapshot.strategies[strategy].author;
+    expect(typeof author).toBe('string');
+    const githubUserData = await fetch(
+      `https://api.github.com/users/${author}`
+    );
+    const githubUser = await githubUserData.json();
+    expect(githubUser.message).not.toEqual('Not Found');
+  });
+  it('Version in strategy should be a valid string', async () => {
+    const version = snapshot.strategies[strategy].author;
+    expect(typeof version).toBe('string');
+  });
+});
