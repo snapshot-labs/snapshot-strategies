@@ -19,7 +19,6 @@ const moreArg =
     .find((arg) => arg.includes('--more='))
     ?.split('--more=')
     ?.pop();
-
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
 if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
