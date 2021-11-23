@@ -4,18 +4,18 @@
     "strategy": {
       "name": "erc1155-with-multiplier",
       "params": {
-        "address": "0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d",
+        "address": "0x2C56b43983Ca77cc29b27B4a731F0f0d54ae7e52",
         "tokenId": 1,
         "symbol": "DAWN",
         "decimals": 0, 
-        "multiplier": 10
+        "multiplier": 5
       }
     },
-    "network": "1",
+    "network": "5",
     "addresses": [
-      "0x4eac6325e1dbf1ac90434d39766e164dca71139e",
-      "0x1b204424563dcfcabd2aee632163b9e6dc8bd4f3"
+      "0x9cA70B93CaE5576645F5F069524A9B9c3aef5006",
+      "0xb5aE5169F4D750e802884d81b4f9eC66c525396F"
     ],
-    "snapshot": 12453212
+    "snapshot": 9694956
   }
 ]
