@@ -17,29 +17,55 @@ type VotingResponse = {
 
 const MINIMUM_VOTING_POWER = 0.01;
 const SMART_CHEF_URL = 'https://api.thegraph.com/subgraphs/name/tomyumswap/smartchef';
-const VOTING_API_URL = 'http://voting-api.tomyumswap.com/api/power';
+const VOTING_API_URL = 'http://voting-api.tomyumswap.com/api/';
 
 /**
  * Fetches voting power of one address
  */
-const fetchVotingPower = async (
-  address: string,
+// const fetchVotingPower = async (
+//   address: string,
+//   block: number,
+//   poolAddresses: string[]
+// ): Promise<VotingResponse> => {
+//   const response = await fetch(`${VOTING_API_URL}power`, {
+//     method: 'POST',
+//     headers: {
+//       'Content-Type': 'application/json'
+//     },
+//     body: JSON.stringify({
+//       block,
+//       address,
+//       poolAddresses
+//     })
+//   });
+
+//   const payload = await response.json();
+//   return payload.data;
+// };
+
+
+/**
+ * Fetches voting power of multiple addresses
+ */
+const fetchVotingPowerMultiple = async (
+  addresses: string[],
   block: number,
   poolAddresses: string[]
-): Promise<VotingResponse> => {
-  const response = await fetch(VOTING_API_URL, {
+): Promise<VotingResponse[]> => {
+  const response = await fetch(`${VOTING_API_URL}powerV2`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
       block,
-      address,
+      addresses,
       poolAddresses
     })
   });
 
   const payload = await response.json();
+  
   return payload.data;
 };
 
@@ -51,8 +77,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag =
-    typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
+  const blockTag = typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
 
   const params = {
     smartChefs: {
@@ -79,23 +104,18 @@ export async function strategy(
 
   try {
     const poolAddresses = results.smartChefs.map((pool) => pool.id);
-    const promises = addresses.map((address) => {
-      return fetchVotingPower(address, blockTag, poolAddresses);
-    }) as ReturnType<typeof fetchVotingPower>[];
-    const votingPowerResults = await Promise.all(promises);
+    const votingPowerResult = await fetchVotingPowerMultiple(addresses, blockTag, poolAddresses);
 
-    const calculatedPower = votingPowerResults.reduce(
-      (accum, response, index) => {
-        const address = addresses[index];
-        const total = parseFloat(response.total);
+    const calculatedPower = votingPowerResult.reduce((accum, response, index) => {
+      const address = addresses[index];
+      const total = parseFloat(response.total);
 
-        return {
-          ...accum,
-          [address]: total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
-        };
-      },
-      {}
-    );
+      return {
+        ...accum[index],
+        [address]: total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
+      };
+    }, {});
+    
     return calculatedPower;
   } catch {
     return [];
