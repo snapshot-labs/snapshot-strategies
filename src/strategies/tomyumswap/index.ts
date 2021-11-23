@@ -16,7 +16,8 @@ type VotingResponse = {
 };
 
 const MINIMUM_VOTING_POWER = 0.01;
-const SMART_CHEF_URL = 'https://api.thegraph.com/subgraphs/name/tomyumswap/smartchef';
+const SMART_CHEF_URL =
+  'https://api.thegraph.com/subgraphs/name/tomyumswap/smartchef';
 const VOTING_API_URL = 'http://voting-api.tomyumswap.com/api/';
 
 /**
@@ -43,7 +44,6 @@ const VOTING_API_URL = 'http://voting-api.tomyumswap.com/api/';
 //   return payload.data;
 // };
 
-
 /**
  * Fetches voting power of multiple addresses
  */
@@ -65,7 +65,7 @@ const fetchVotingPowerMultiple = async (
   });
 
   const payload = await response.json();
-  
+
   return payload.data;
 };
 
@@ -77,7 +77,8 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag = typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
+  const blockTag =
+    typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
 
   const params = {
     smartChefs: {
@@ -104,18 +105,26 @@ export async function strategy(
 
   try {
     const poolAddresses = results.smartChefs.map((pool) => pool.id);
-    const votingPowerResult = await fetchVotingPowerMultiple(addresses, blockTag, poolAddresses);
+    const votingPowerResult = await fetchVotingPowerMultiple(
+      addresses,
+      blockTag,
+      poolAddresses
+    );
 
-    const calculatedPower = votingPowerResult.reduce((accum, response, index) => {
-      const address = addresses[index];
-      const total = parseFloat(response.total);
+    const calculatedPower = votingPowerResult.reduce(
+      (accum, response, index) => {
+        const address = addresses[index];
+        const total = parseFloat(response.total);
 
-      return {
-        ...accum[index],
-        [address]: total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
-      };
-    }, {});
-    
+        return {
+          ...accum[index],
+          [address]:
+            total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
+        };
+      },
+      {}
+    );
+
     return calculatedPower;
   } catch {
     return [];
