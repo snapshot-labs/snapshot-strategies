@@ -1,5 +1,5 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
-import { ethers } from 'ethers';
+import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
@@ -76,7 +76,7 @@ export async function strategy(
       // Ensure the NFT Exists before continuing to add balance
       if (nftExists[_nftId]) {
         // Ensure this address is the owner before continuing to add balance
-        if (nftOwners[_nftId] == ethers.utils.getAddress(address)) {
+        if (nftOwners[_nftId] == getAddress(address)) {
           // Add the balance
           totalBalance = totalBalance.add(vaultBalance[_nftId]);
         }
