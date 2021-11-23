@@ -10,141 +10,21 @@ const tokenBNtoNumber = (tokenBn) => {
 }
 
 const sharedABI = [
-  {
-    inputs: [
-      {
-        internalType:"address",
-        name:"user",
-        type:"address"
-      },
-      {
-        internalType:"address",
-        name:"token",
-        type:"address"
-      }
-    ],
-
-    name : "balanceOf",
-    outputs: [
-      {
-         internalType:"uint256",
-         name:"",
-         type:"uint256"
-      }
-    ],
-
-    stateMutability: "view",  
-    type: "function"
-  },
-  
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "amountIn",
-        type: "uint256"
-      },
-      {
-        internalType: "address[]",
-        name: "path",
-        type: "address[]"
-      }
-    ],
-    name: "getAmountsOut",
-    outputs: [
-      {
-        internalType: "uint256[]",
-        name: "amounts",
-        type: "uint256[]"
-      }
-    ],
-    stateMutability: "view",
-    type: "function"
-  },
-
+  'function balanceOf(address user, address token) view returns (uint256)',
+  'function getAmountsOut(uint256 amountIn, address[] path) view returns (uint256[] amounts)'
 ];
 
 const wethABI = [
-  {
-    constant: true,
-    inputs: [
-      {
-        name: "",
-        type: "address"
-      }
-    ],
-    name: "balanceOf",
-    outputs: [
-      {
-        name: "",
-        type: "uint256"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  },
+  'function balanceOf(address) view returns (uint256)'
 ];
 
 const epnsTokenABI = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'getCurrentVotes',
-    outputs: [
-      {
-        internalType: 'uint96',
-        name: '',
-        type: 'uint96'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-
-  {
-    inputs: [
-      {
-        internalType: "address",
-        name: "account",
-        type: "address"
-      }
-    ],
-    name: "balanceOf",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256"
-      }
-    ],
-    stateMutability: "view",
-    type: "function"
-  },
+  'function getCurrentVotes(address account) view returns (uint96)',
+  'function balanceOf(address account) view returns (uint256)'
 ];
 
 const epnsLpABI = [
-  {
-    constant: true,
-    inputs: [],
-    name: "totalSupply",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256"
-      }
-    ],
-    payable: false,
-    stateMutability: "view",
-    type: "function"
-  }
+  'function totalSupply() view returns (uint256)'
 ];
 
 export async function strategy(
