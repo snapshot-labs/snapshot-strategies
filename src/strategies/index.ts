@@ -190,6 +190,7 @@ import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
 import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
+import * as pushVotingPower from './push-voting-power';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -381,7 +382,8 @@ const strategies = {
   'bsc-mvb': bscMvb,
   coinswap,
   dgenesis,
-  'vote-power-and-share': votePowerAndShare
+  'vote-power-and-share': votePowerAndShare,
+  'push-voting-power': pushVotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
