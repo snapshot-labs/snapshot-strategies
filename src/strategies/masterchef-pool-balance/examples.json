@@ -4,6 +4,7 @@
     "strategy": {
       "name": "masterchef-pool-balance",
       "params": {
+        "symbol": "CHEF",
         "chefAddress": "0xD38abbAeC03a9FF287eFc9a5F0d0580E07335D1D",
         "uniPairAddress": null,
         "pid": "0",
