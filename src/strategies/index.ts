@@ -133,6 +133,7 @@ import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
+import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as ogn from './ogn';
@@ -190,6 +191,7 @@ import * as coinswap from './coinswap';
 import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
 import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
+import * as pushVotingPower from './push-voting-power';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -324,6 +326,7 @@ const strategies = {
   'aave-governance-power': aaveGovernancePower,
   cake,
   aks,
+  tomyumswap,
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
@@ -381,7 +384,8 @@ const strategies = {
   coinswap,
   dgenesis,
   'vote-power-and-share': votePowerAndShare,
-  'blockzerolabs-cryptonauts': blockzerolabsCryptonauts
+  'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
+  'push-voting-power': pushVotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
