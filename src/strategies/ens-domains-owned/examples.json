@@ -4,6 +4,7 @@
     "strategy": {
       "name": "ens-domains-owned",
       "params": {
+        "symbol": "ENS",
         "domain": "ismoney.eth"
       }
     },

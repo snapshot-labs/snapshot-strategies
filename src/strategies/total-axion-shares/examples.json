@@ -2,7 +2,10 @@
   {
     "name": "Total Axion Shares",
     "strategy": {
-      "name": "total-axion-shares"
+      "name": "total-axion-shares",
+      "params": {
+        "symbol": "TAS"
+      }
     },
     "network": "1",
     "addresses": [

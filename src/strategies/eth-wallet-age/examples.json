@@ -4,6 +4,7 @@
     "strategy": {
       "name": "eth-wallet-age",
       "params": {
+        "symbol": "ETH",
         "dfuseApiKey": "web_f527db575a38dd11c5b686d7da54d371"
       }
     },
