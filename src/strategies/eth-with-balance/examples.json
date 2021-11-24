@@ -4,6 +4,7 @@
     "strategy": {
       "name": "eth-with-balance",
       "params": {
+        "symbol": "ETH",
         "minBalance": 0.5
       }
     },
