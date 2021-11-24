@@ -186,6 +186,7 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
+import * as oceanMarketplaceBrightID from './ocean-marketplace-brightid';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -373,7 +374,8 @@ const strategies = {
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
-  coinswap
+  coinswap,
+  'ocean-marketplace-brightid': oceanMarketplaceBrightID
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
