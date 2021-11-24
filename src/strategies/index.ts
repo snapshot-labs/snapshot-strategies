@@ -193,6 +193,7 @@ import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
 import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
 import * as pushVotingPower from './push-voting-power';
+import * as SPSPBalanceOf from './spsp-balance-of';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -387,7 +388,8 @@ const strategies = {
   dgenesis,
   'vote-power-and-share': votePowerAndShare,
   'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
-  'push-voting-power': pushVotingPower
+  'push-voting-power': pushVotingPower,
+  'spsp-balance-of': SPSPBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
