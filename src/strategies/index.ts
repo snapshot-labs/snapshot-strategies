@@ -192,6 +192,7 @@ import * as coinswap from './coinswap';
 import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
 import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
+import * as math from './math';
 import * as pushVotingPower from './push-voting-power';
 import * as stakedPSPBalance from './staked-psp-balance';
 
@@ -388,6 +389,7 @@ const strategies = {
   dgenesis,
   'vote-power-and-share': votePowerAndShare,
   'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
+  math,
   'push-voting-power': pushVotingPower,
   'staked-psp-balance': stakedPSPBalance
 };
