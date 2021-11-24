@@ -8,9 +8,6 @@ Here is an example of parameters:
 ```json
 {
   "symbol": "CRYPTONAUTS",
-  "totalSupply": 110,
-  "decimals": 18,
-  "_nftTokenAddress": "0x1d48ddb875d1e540ee0715dbb7b019d02a3ba4db",
-  "_vaultAddress": "0x6d9d87fd57fb8ae3bf005e564a950124fc83dd1a"
+  "api": "https://8vs6gfcsmb.execute-api.us-east-1.amazonaws.com/prod/getCryptonautBalances"
 }
 ```
