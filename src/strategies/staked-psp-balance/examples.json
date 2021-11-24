@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "spsp-balance-of",
+      "name": "staked-psp-balance",
       "params": {
         "address": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",
         "symbol": "PSP",

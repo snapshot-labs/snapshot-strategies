@@ -1,4 +1,4 @@
-# spsp-balance-of
+# staked-psp-balance-of
 
 This is a strategy to get PSP balances staked in SPSP contracts.
 
