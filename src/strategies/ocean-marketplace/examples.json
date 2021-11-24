@@ -4,6 +4,7 @@
     "strategy": {
       "name": "ocean-marketplace",
       "params": {
+        "symbol": "OCEAN",
         "expectedResults": {
           "scores": {
             "0x655eFe6Eb2021b8CEfE22794d90293aeC37bb325": 234872.06400571144,

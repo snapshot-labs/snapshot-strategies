@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query Coinswap",
+    "strategy": {
+      "name": "coinswap",
+      "params": {
+        "address": "0x3bc5798416c1122BcFd7cb0e055d50061F23850d",
+        "masterCSS": "0x3A0a988D680dBBB02DECBfd35F9E0676B4bEc292",
+        "communityStake": [
+          "0xa25EA2B60c1a1365f195Cfda61b9fb7Eb8fcC38B",
+          "0x5Ca94e1b35C0a726E5431F66DBECDD2253cA6cb1",
+          "0x29a888e301A9fF0f4420a115F61E6ad0750Db9dE"
+        ],
+
+        "cssLPs": [
+          {
+            "address": "0xfA8E0C0568edcDD3D9b12B48792a5B00018FdB57",
+            "pid": 1
+          },
+          {
+            "address": "0x2f32E2252a6979704F0f540b7988Fa8B8C36B292",
+            "pid": 2
+          }
+        ],
+        "symbol": "CSS",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xa327D4b88a23c75BdB74aeA0F8f6493584405ed7",
+      "0x12d8E4C93949FEdfb798bd665dE99c47B8F4C8b0"
+    ],
+    "snapshot": 12664197
+  }
+]
