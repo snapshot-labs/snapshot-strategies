@@ -51,7 +51,6 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address, index) => {
       let addressScore = scores[address];
-      addressScore = Math.sqrt(addressScore); // square root for QV
       addressScore *= response[index][0] ? options.brightIdMultiplier : 1; // brightId multiplier
       return [address, addressScore];
     })
