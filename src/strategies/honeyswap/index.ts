@@ -87,14 +87,16 @@ async function getPools(network, snapshot, token) {
 
 async function getStakedBalances(network, snapshot, token, addresses) {
   const pools = await getPools(network, snapshot, token);
+  const PAGE_SIZE = 1000;
   const params = {
     deposits: {
       __args: {
         where: {
           pool_in: Object.keys(pools),
-          user_in: addresses.map((addr) => addr.toLowerCase())
+          user_in: addresses.map((addr) => addr.toLowerCase()),
+          status: 'Open'
         },
-        first: 1000
+        first: PAGE_SIZE
       },
       user: {
         id: true
@@ -109,11 +111,21 @@ async function getStakedBalances(network, snapshot, token, addresses) {
     // @ts-ignore
     params.deposits.__args.block = { number: snapshot };
   }
-  const result = await subgraphRequest(
-    HONEYSWAP_SUBGRAPH_URL[network].farm,
-    params
-  );
-  return result.deposits.map((deposit) => {
+  let deposits = [];
+  let page = 0;
+  while(true) {
+    // @ts-ignore
+    params.deposits.__args.skip = page * PAGE_SIZE;
+    const result = await subgraphRequest(
+      HONEYSWAP_SUBGRAPH_URL[network].farm,
+      params
+    );
+    deposits = deposits.concat(result.deposits);
+    page++;
+    if (result.deposits.length < PAGE_SIZE) break;
+  }
+
+  return deposits.map((deposit: any) => {
     const pool = pools[deposit.pool.id];
     const amount =
       parseFloat(formatUnits(deposit.amount, pool.decimals)) * pool.rate;
