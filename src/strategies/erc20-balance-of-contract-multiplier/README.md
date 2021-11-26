@@ -1,4 +1,4 @@
-# erc20-balance-of-weighted
+# erc20-balance-of-contract-multiplier
 
 This returns the balances of the voters for a specific ERC20 token with a multiplier obtained from a contract call.
 
