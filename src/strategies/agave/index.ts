@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
-import { call } from '../../utils';
+import { Multicaller } from '../../utils';
 
 export const author = 'maxaleks';
 export const version = '0.1.0';
@@ -20,22 +20,20 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const [
+
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+  multi.call('availableLiquidity', options.underlyingToken, 'balanceOf', [
+    options.lpToken
+  ]);
+  multi.call('lpTokenTotalSupply', options.lpToken, 'totalSupply');
+  multi.call('lpTokenDecimals', options.lpToken, 'decimals');
+  multi.call('underlyingTokenDecimals', options.underlyingToken, 'decimals');
+  const {
     availableLiquidity,
     lpTokenTotalSupply,
     lpTokenDecimals,
     underlyingTokenDecimals
-  ] = await Promise.all([
-    call(provider, abi, [
-      options.underlyingToken,
-      'balanceOf',
-      [options.lpToken],
-      { blockTag }
-    ]),
-    call(provider, abi, [options.lpToken, 'totalSupply'], { blockTag }),
-    call(provider, abi, [options.lpToken, 'decimals']),
-    call(provider, abi, [options.underlyingToken, 'decimals'])
-  ]);
+  } = await multi.execute();
 
   const rate =
     parseFloat(formatUnits(availableLiquidity, underlyingTokenDecimals)) /
