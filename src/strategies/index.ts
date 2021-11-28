@@ -195,6 +195,7 @@ import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
 import * as math from './math';
 import * as pushVotingPower from './push-voting-power';
 import * as stakedPSPBalance from './staked-psp-balance';
+import * as agave from './agave';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -391,7 +392,8 @@ const strategies = {
   'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
   math,
   'push-voting-power': pushVotingPower,
-  'staked-psp-balance': stakedPSPBalance
+  'staked-psp-balance': stakedPSPBalance,
+  agave
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
