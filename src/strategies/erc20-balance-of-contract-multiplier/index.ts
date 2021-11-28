@@ -1,7 +1,7 @@
 import { call } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
-export const author = 'Phoenix';
+export const author = 'phoenix-keeper';
 export const version = '1.0.0';
 
 export async function strategy(
