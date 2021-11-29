@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "snet-liquidity-providers",
+      "params": {
+        "address": "0xa1e841e8f770e5c9507e2f8cfd0aa6f73009715d",
+        "symbol": "AGIX",
+        "decimals": 8,
+        "lpAddress": "0x5318855ad173220e446002c01d5ee5f940502e70"
+      }
+    },
+    "network": "3",
+    "addresses": [
+      "0x8c89c50d3986e9e310df034554deb63ddf7db538",
+      "0x4e61d78b75c0bc64dc053cf93cfe31c912922b5a",
+      "0x46ef7d49aaa68b29c227442bdbd18356415f8304",
+      "0xe4ce53c10f2f84b17020152e5d8a0996687c9a03",
+      "0x3d09d2ac0ba857d48130fb243ccfa0387b7a167f",
+      "0x8c9b16489d8264bab6b9ddfb6ee3914392e973ea"
+    ],
+    "snapshot": 11437846
+  }
+]

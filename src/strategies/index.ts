@@ -192,6 +192,7 @@ import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
 import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
 import * as pushVotingPower from './push-voting-power';
+import * as snetLiquidityProviders from './snet-liquidity-providers';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -385,7 +386,8 @@ const strategies = {
   dgenesis,
   'vote-power-and-share': votePowerAndShare,
   'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
-  'push-voting-power': pushVotingPower
+  'push-voting-power': pushVotingPower,
+  'snet-liquidity-providers': snetLiquidityProviders
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
