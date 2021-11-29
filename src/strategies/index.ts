@@ -82,6 +82,7 @@ import * as pobHash from './pob-hash';
 import * as totalAxionShares from './total-axion-shares';
 import * as erc1155BalanceOf from './erc1155-balance-of';
 import * as erc1155BalanceOfCv from './erc1155-balance-of-cv';
+import * as erc1155WithMultiplier from './erc1155-with-multiplier';
 import * as compLikeVotes from './comp-like-votes';
 import * as governorAlpha from './governor-alpha';
 import * as pagination from './pagination';
@@ -191,7 +192,11 @@ import * as coinswap from './coinswap';
 import * as dgenesis from './dgenesis';
 import * as votePowerAndShare from './vote-power-and-share';
 import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
+import * as math from './math';
 import * as pushVotingPower from './push-voting-power';
+import * as stakedPSPBalance from './staked-psp-balance';
+import * as erc20BalanceOfContractMultiplier from './erc20-balance-of-contract-multiplier';
+import * as agave from './agave';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
 
 const strategies = {
@@ -297,6 +302,7 @@ const strategies = {
   'tranche-staking': trancheStaking,
   pepemon,
   'erc1155-all-balances-of': erc1155AllBalancesOf,
+  'erc1155-with-multiplier': erc1155WithMultiplier,
   'saffron-finance': saffronFinance,
   'saffron-finance-v2': saffronFinanceV2,
   'tranche-staking-lp': trancheStakingLP,
@@ -386,7 +392,11 @@ const strategies = {
   dgenesis,
   'vote-power-and-share': votePowerAndShare,
   'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
+  math,
   'push-voting-power': pushVotingPower,
+  'staked-psp-balance': stakedPSPBalance,
+  'erc20-balance-of-contract-multiplier': erc20BalanceOfContractMultiplier,
+  agave,
   'snet-liquidity-providers': snetLiquidityProviders
 };
 

@@ -6,6 +6,11 @@ const SUSHISWAP_SUBGRAPH_URL = {
   '1': {
     exchange: 'https://api.thegraph.com/subgraphs/name/sushiswap/exchange',
     masterChef: 'https://api.thegraph.com/subgraphs/name/sushiswap/master-chef'
+  },
+  '100': {
+    exchange: 'https://api.thegraph.com/subgraphs/name/sushiswap/xdai-exchange',
+    masterChef:
+      'https://api.thegraph.com/subgraphs/name/matthewlilley/xdai-minichef'
   }
 };
 

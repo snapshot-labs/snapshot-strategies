@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-contract-multiplier",
+      "params": {
+        "address": "0xb352A324283a51259f74fc9133b56A582671c836",
+        "symbol": "wTROVE",
+        "decimals": 9,
+        "contract_address": "0x4ef0191De9E85154161E6AD0E96fe0bb8D95892D",
+        "args": [],
+        "methodABI": {
+          "inputs": [],
+          "name": "index",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x0B72513E73BB60375a4329FABF9BA16f861C0f12",
+      "0x9a82d59f46913913808bFE905F6157F967AAa28E"
+    ],
+    "snapshot": 9711086
+  }
+]
