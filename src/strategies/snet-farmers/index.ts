@@ -2,8 +2,8 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'Vivek205';
+export const version = '0.1.0';
 
 type UserInfoResponse = {
   amount: BigNumber;
