@@ -42,7 +42,7 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const blockTag = 'latest';
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const { stakingAddress, stakeMapIndex } = options;
 
   const initMultiCaller = multiCallerFactory(network, provider, blockTag);
