@@ -1,6 +1,6 @@
 # erc20-balance-of
 
-This strategy return the liquidity pool balances of the voters for SingularityNET project.
+This strategy returns the liquidity pool balances of the voters for the SingularityNET project.
 
 Here is an example of parameters:
 
