@@ -108,6 +108,7 @@ import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
+import * as erc721WithBalance from './erc721-with-balance';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
@@ -224,6 +225,7 @@ const strategies = {
   'maker-ds-chief': makerDsChief,
   erc721,
   'erc721-enumerable': erc721Enumerable,
+  'erc721-with-balance': erc721WithBalance,
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-multi-registry': erc721MultiRegistry,
