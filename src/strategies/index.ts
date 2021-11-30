@@ -76,6 +76,7 @@ import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
 import * as whitelist from './whitelist';
+import * as whitelistWeighted from './whitelist-weighted';
 import * as tokenlon from './tokenlon';
 import * as rebased from './rebased';
 import * as pobHash from './pob-hash';
@@ -283,6 +284,7 @@ const strategies = {
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
   whitelist,
+  'whitelist-weighted': whitelistWeighted,
   tokenlon,
   rebased,
   'pob-hash': pobHash,
