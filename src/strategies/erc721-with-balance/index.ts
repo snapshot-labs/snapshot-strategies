@@ -1,7 +1,12 @@
-import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+import { formatUnits } from '@ethersproject/units';
+import { multicall } from '../../utils';
 
 export const author = 'WillBlackburn';
 export const version = '0.1.1';
+
+const abi = [
+  'function balanceOf(address account) external view returns (uint256)'
+];
 
 export async function strategy(
   space,
@@ -11,18 +16,18 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const score = await erc20BalanceOfStrategy(
-    space,
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const response = await multicall(
     network,
     provider,
-    addresses,
-    options,
-    snapshot
+    abi,
+    addresses.map((address: any) => [options.address, 'balanceOf', [address]]),
+    { blockTag }
   );
   return Object.fromEntries(
-    Object.entries(score).map((address: any) => [
-      address[0],
-      address[1] >= (options.minBalance || 1) ? 1 : 0
+    response.map((value, i) => [
+      addresses[i],
+      parseInt(formatUnits(value.toString(), 0)) >= (options.minBalance || 1) ? 1 : 0
     ])
   );
 }
