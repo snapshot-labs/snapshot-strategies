@@ -199,6 +199,7 @@ import * as erc20BalanceOfContractMultiplier from './erc20-balance-of-contract-m
 import * as agave from './agave';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as snetStakers from './snet-stakers';
+import * as snetFarmers from './snet-farmers';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -399,7 +400,8 @@ const strategies = {
   'erc20-balance-of-contract-multiplier': erc20BalanceOfContractMultiplier,
   agave,
   'snet-liquidity-providers': snetLiquidityProviders,
-  'snet-stakers': snetStakers
+  'snet-stakers': snetStakers,
+  'snet-farmers': snetFarmers
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
