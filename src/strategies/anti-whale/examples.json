@@ -4,6 +4,7 @@
     "strategy": {
       "name": "anti-whale",
       "params": {
+        "symbol": "ANTI",
         "strategy": {
           "name": "erc20-balance-of",
           "params": {

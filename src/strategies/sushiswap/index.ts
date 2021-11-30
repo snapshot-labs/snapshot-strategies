@@ -6,21 +6,28 @@ const SUSHISWAP_SUBGRAPH_URL = {
   '1': {
     exchange: 'https://api.thegraph.com/subgraphs/name/sushiswap/exchange',
     masterChef: 'https://api.thegraph.com/subgraphs/name/sushiswap/master-chef'
+  },
+  '100': {
+    exchange: 'https://api.thegraph.com/subgraphs/name/sushiswap/xdai-exchange',
+    masterChef:
+      'https://api.thegraph.com/subgraphs/name/matthewlilley/xdai-minichef'
   }
 };
+const PAGE_SIZE = 1000;
 
 export const author = 'vfatouros';
 export const version = '0.1.0';
 
 async function getPairs(network, snapshot, token) {
-  const getParams = (prop) => {
+  const getParams = (tokenId, page) => {
     const params = {
       pairs: {
         __args: {
           where: {
-            [prop]: token.toLowerCase()
+            [tokenId]: token.toLowerCase()
           },
-          first: 1000
+          first: PAGE_SIZE,
+          skip: page * PAGE_SIZE
         },
         id: true,
         totalSupply: true,
@@ -42,13 +49,25 @@ async function getPairs(network, snapshot, token) {
     }
     return params;
   };
-  const [result1, result2] = await Promise.all(
-    ['token0', 'token1'].map((prop) =>
-      subgraphRequest(SUSHISWAP_SUBGRAPH_URL[network].exchange, getParams(prop))
-    )
+  const requestPairs = async (tokenId) => {
+    let pairs = [];
+    let page = 0;
+    while (true) {
+      const result = await subgraphRequest(
+        SUSHISWAP_SUBGRAPH_URL[network].exchange,
+        getParams(tokenId, page)
+      );
+      pairs = pairs.concat(result.pairs);
+      page++;
+      if (result.pairs.length < PAGE_SIZE) break;
+    }
+    return pairs;
+  };
+  const [pairs1, pairs2] = await Promise.all(
+    ['token0', 'token1'].map((tokenId) => requestPairs(tokenId))
   );
   return Object.fromEntries(
-    result1.pairs.concat(result2.pairs).map((pair) => {
+    pairs1.concat(pairs2).map((pair: any) => {
       const isToken0 = pair.token0.id == token.toLowerCase();
       const rate = isToken0
         ? +pair.reserve0 / +pair.totalSupply
@@ -67,7 +86,7 @@ async function getPools(network, snapshot, token) {
         where: {
           pair_in: Object.keys(pairs)
         },
-        first: 1000
+        first: PAGE_SIZE
       },
       id: true,
       pair: true
@@ -77,12 +96,21 @@ async function getPools(network, snapshot, token) {
     // @ts-ignore
     params.pools.__args.block = { number: snapshot };
   }
-  const result = await subgraphRequest(
-    SUSHISWAP_SUBGRAPH_URL[network].masterChef,
-    params
-  );
+  let pools = [];
+  let page = 0;
+  while (true) {
+    // @ts-ignore
+    params.pools.__args.skip = page * PAGE_SIZE;
+    const result = await subgraphRequest(
+      SUSHISWAP_SUBGRAPH_URL[network].masterChef,
+      params
+    );
+    pools = pools.concat(result.pools);
+    page++;
+    if (result.pools.length < PAGE_SIZE) break;
+  }
   return Object.fromEntries(
-    result.pools.map((pool) => [pool.id, pairs[pool.pair]])
+    pools.map((pool: any) => [pool.id, pairs[pool.pair]])
   );
 }
 
@@ -95,7 +123,7 @@ async function getStakedBalances(network, snapshot, token, addresses) {
           pool_in: Object.keys(pools),
           address_in: addresses.map((addr) => addr.toLowerCase())
         },
-        first: 1000
+        first: PAGE_SIZE
       },
       address: true,
       amount: true,
@@ -108,11 +136,22 @@ async function getStakedBalances(network, snapshot, token, addresses) {
     // @ts-ignore
     params.users.__args.block = { number: snapshot };
   }
-  const result = await subgraphRequest(
-    SUSHISWAP_SUBGRAPH_URL[network].masterChef,
-    params
-  );
-  return result.users.map((user) => {
+
+  let users = [];
+  let page = 0;
+  while (true) {
+    // @ts-ignore
+    params.users.__args.skip = page * PAGE_SIZE;
+    const result = await subgraphRequest(
+      SUSHISWAP_SUBGRAPH_URL[network].masterChef,
+      params
+    );
+    users = users.concat(result.users);
+    page++;
+    if (result.users.length < PAGE_SIZE) break;
+  }
+
+  return users.map((user: any) => {
     const pool = pools[user.pool.id];
     const amount =
       parseFloat(formatUnits(user.amount, pool.decimals)) * pool.rate;

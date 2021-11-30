@@ -4,6 +4,7 @@
     "strategy": {
       "name": "eth-philanthropy",
       "params": {
+        "symbol": "ETH",
         "coeff": 50
       }
     },

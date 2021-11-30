@@ -4,6 +4,7 @@
     "strategy": {
       "name": "single-staking-vault-balanceof",
       "params": {
+        "symbol": "STAKE",
         "vaultAddress": "0xA68E643e1942fA8635776b718F6EeD5cEF2a3F15"
       }
     },

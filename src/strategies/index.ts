@@ -82,6 +82,7 @@ import * as pobHash from './pob-hash';
 import * as totalAxionShares from './total-axion-shares';
 import * as erc1155BalanceOf from './erc1155-balance-of';
 import * as erc1155BalanceOfCv from './erc1155-balance-of-cv';
+import * as erc1155WithMultiplier from './erc1155-with-multiplier';
 import * as compLikeVotes from './comp-like-votes';
 import * as governorAlpha from './governor-alpha';
 import * as pagination from './pagination';
@@ -104,6 +105,7 @@ import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
+import * as apiPost from './api-post';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -133,6 +135,7 @@ import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
+import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as ogn from './ogn';
@@ -187,6 +190,14 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
+import * as dgenesis from './dgenesis';
+import * as votePowerAndShare from './vote-power-and-share';
+import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
+import * as math from './math';
+import * as pushVotingPower from './push-voting-power';
+import * as stakedPSPBalance from './staked-psp-balance';
+import * as erc20BalanceOfContractMultiplier from './erc20-balance-of-contract-multiplier';
+import * as agave from './agave';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -292,6 +303,7 @@ const strategies = {
   'tranche-staking': trancheStaking,
   pepemon,
   'erc1155-all-balances-of': erc1155AllBalancesOf,
+  'erc1155-with-multiplier': erc1155WithMultiplier,
   'saffron-finance': saffronFinance,
   'saffron-finance-v2': saffronFinanceV2,
   'tranche-staking-lp': trancheStakingLP,
@@ -299,6 +311,7 @@ const strategies = {
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
+  'api-post': apiPost,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
@@ -321,6 +334,7 @@ const strategies = {
   'aave-governance-power': aaveGovernancePower,
   cake,
   aks,
+  tomyumswap,
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
@@ -375,7 +389,15 @@ const strategies = {
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
-  coinswap
+  coinswap,
+  dgenesis,
+  'vote-power-and-share': votePowerAndShare,
+  'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
+  math,
+  'push-voting-power': pushVotingPower,
+  'staked-psp-balance': stakedPSPBalance,
+  'erc20-balance-of-contract-multiplier': erc20BalanceOfContractMultiplier,
+  agave
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

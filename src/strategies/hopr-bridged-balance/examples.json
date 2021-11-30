@@ -4,6 +4,7 @@
     "strategy": {
       "name": "hopr-bridged-balance",
       "params": {
+        "symbol": "HOPR",
         "xHopr": "0xd057604a14982fe8d88c5fc25aac3267ea142a08",
         "wxHopr": "0xD4fdec44DB9D44B8f2b6d529620f9C0C7066A2c1",
         "hopr": "0xf5581dfefd8fb0e4aec526be659cfab1f8c781da"

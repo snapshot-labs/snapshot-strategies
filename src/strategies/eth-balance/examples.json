@@ -3,7 +3,9 @@
     "name": "Example query",
     "strategy": {
       "name": "eth-balance",
-      "params": {}
+      "params": {
+        "symbol": "ETH"
+      }
     },
     "network": "1",
     "addresses": [
