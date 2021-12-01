@@ -76,6 +76,7 @@ import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
 import * as whitelist from './whitelist';
+import * as whitelistWeighted from './whitelist-weighted';
 import * as tokenlon from './tokenlon';
 import * as rebased from './rebased';
 import * as pobHash from './pob-hash';
@@ -198,6 +199,7 @@ import * as stakedPSPBalance from './staked-psp-balance';
 import * as erc20BalanceOfContractMultiplier from './erc20-balance-of-contract-multiplier';
 import * as agave from './agave';
 import * as snetStakers from './snet-stakers';
+import * as snetLiquidityProviders from "./snet-liquidity-providers"
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -284,6 +286,7 @@ const strategies = {
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
   whitelist,
+  'whitelist-weighted': whitelistWeighted,
   tokenlon,
   rebased,
   'pob-hash': pobHash,
@@ -397,7 +400,8 @@ const strategies = {
   'staked-psp-balance': stakedPSPBalance,
   'erc20-balance-of-contract-multiplier': erc20BalanceOfContractMultiplier,
   agave,
-  'snet-stakers': snetStakers
+  'snet-stakers': snetStakers,
+  "snet-liquidity-providers":snetLiquidityProviders
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
