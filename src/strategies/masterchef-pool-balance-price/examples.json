@@ -4,6 +4,7 @@
     "strategy": {
       "name": "masterchef-pool-balance-price",
       "params": {
+        "symbol": "CHEF",
         "chefAddress": "0x8bE82Ab9B6179bE6EB88431E3E4E0fd93b9E607C",
         "tokenAddress": "0x72572ccf5208b59f4bcc14e6653d8c31cd1fc5a0",
         "pid": "3",

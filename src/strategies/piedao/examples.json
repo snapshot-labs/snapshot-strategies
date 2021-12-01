@@ -4,6 +4,7 @@
     "strategy": {
       "name": "piedao",
       "params": {
+        "symbol": "PIE",
         "BPT": "0xFAE2809935233d4BfE8a56c2355c4A2e7d1fFf1A",
         "doughv1": "0x5f5e9ed11344dadc3a08688e5f17e23f6a99bf81",
         "doughv2": "0xad32A8e6220741182940c5aBF610bDE99E737b2D",

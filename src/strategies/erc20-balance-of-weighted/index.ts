@@ -20,9 +20,6 @@ export async function strategy(
     snapshot
   );
   return Object.fromEntries(
-    Object.entries(scores).map((score) => [
-      score[0],
-      score[1] * options.weight
-    ])
+    Object.entries(scores).map((score) => [score[0], score[1] * options.weight])
   );
 }

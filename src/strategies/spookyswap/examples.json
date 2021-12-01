@@ -4,6 +4,7 @@
     "strategy": {
       "name": "spookyswap",
       "params": {
+        "symbol": "SPOOKY",
         "boo": {
           "numerator": 3,
           "denominator": 1

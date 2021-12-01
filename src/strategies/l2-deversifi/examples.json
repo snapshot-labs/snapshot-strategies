@@ -4,6 +4,7 @@
     "strategy": {
       "name": "l2-deversifi",
       "params": {
+        "symbol": "L2",
         "api": "https://api.deversifi.dev/v1/trading/r/tokenBalancesHistory",
         "token": "xDVF"
       }

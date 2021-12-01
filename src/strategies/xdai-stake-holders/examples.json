@@ -2,7 +2,10 @@
   {
     "name": "STAKE token holders on xDai",
     "strategy": {
-      "name": "xdai-stake-holders"
+      "name": "xdai-stake-holders",
+      "params": {
+        "symbol": "XDAI"
+      }
     },
     "network": "1",
     "addresses": [
