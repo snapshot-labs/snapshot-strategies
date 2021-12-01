@@ -4,7 +4,7 @@
       "strategy": {
         "name": "JBX",
         "params": {
-                "projectId": "1",
+                "projectId": "0x01",
                 "symbol": "JBX"
         }
       },
