@@ -5,32 +5,7 @@ export const author = 'drgorillamd';
 export const version = '0.1.0';
 
 const JBTicketBooth = "0xee2eBCcB7CDb34a8A822b589F9E8427C24351bfc";
-const abi = [
-  {
-	name: 'balanceOf',
-	type: 'function',
-	inputs: [
-		{
-			name: '',
-			type: 'address',
-			internalType: 'address'
-		},
-		{
-			name: '',
-			type: 'uint256',
-			internalType: 'uint256'
-		}
-	],
-	outputs: [
-		{
-			name: '',
-			type: 'uint256',
-			internalType: 'uint256'
-		}
-	],
-	stateMutability: 'view'
-	}
-]
+const abi = [ 'function balanceOf(address, uint256) view returns (uint256)' ]
 
 export async function strategy(
   space,
