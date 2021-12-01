@@ -33,7 +33,7 @@ export async function strategy(
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      parseFloat(formatUnits(value.toString(), '18'))
+      parseFloat(formatUnits(value.toString(), 18))
     ])
   );
 }
