@@ -198,6 +198,7 @@ import * as pushVotingPower from './push-voting-power';
 import * as stakedPSPBalance from './staked-psp-balance';
 import * as erc20BalanceOfContractMultiplier from './erc20-balance-of-contract-multiplier';
 import * as agave from './agave';
+import * as snetFarmers from './snet-farmers';
 import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from "./snet-liquidity-providers"
 
@@ -400,6 +401,7 @@ const strategies = {
   'staked-psp-balance': stakedPSPBalance,
   'erc20-balance-of-contract-multiplier': erc20BalanceOfContractMultiplier,
   agave,
+  'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
   "snet-liquidity-providers":snetLiquidityProviders
 };
