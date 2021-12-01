@@ -2,7 +2,7 @@
     {
       "name": "Juicebox Projects",
       "strategy": {
-        "name": "JBX",
+        "name": "juicebox",
         "params": {
                 "projectId": "0x01",
                 "symbol": "JBX"
