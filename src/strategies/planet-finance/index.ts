@@ -22,8 +22,14 @@ const aquaAutoCompAbi = [
   'function userInfo(address) view returns (uint256 shares, uint256 lastDepositedTime , uint256 cakeAtLastUserAction , uint256 lastUserActionTime)'
 ];
 
+const aquaLendingAbi = [
+  'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)',
+];
+
 const planetFinanceFarmContractAddress =
   '0x0ac58Fd25f334975b1B61732CF79564b6200A933';
+
+const gammaFarmAddress = '0xB87F7016585510505478D1d160BDf76c1f41b53d';
 
 const aquaAutoCompPoolAddress = '0x8A53dAdF2564d030b41dB1c04fB3c4998dC1326e';
 
@@ -34,6 +40,10 @@ const aquaBnbLpTokenAddress = '0x03028D2F8B275695A1c6AFB69A4765e3666e36d9';
 const aquaCakeLpTokenAddress = '0x8852263275Ab21FfBAEB88a17BCb27611EeA54Ef';
 
 const aquaBusdLpTokenAddress = '0x0DcFde6c6761286AE0FF26abE65c30c8918889Ca';
+
+const aquaGammaLpTokenAddress = '0xcCaF3fcE9f2D7A7031e049EcC65c0C0Cc331EE0D';
+
+const aquaLendingAddress = '0xB3A4ce0654524dCF4B5165cee280EbE69a6E8133';
 
 export async function strategy(
   space,
@@ -87,6 +97,7 @@ export async function strategy(
     ]),
     { blockTag }
   );
+
   // returns user's aqua balance in aqua-bnb vault
   let usersAquaBnbVaultBalances: any = multicall(
     network,
@@ -96,6 +107,32 @@ export async function strategy(
       planetFinanceFarmContractAddress,
       'stakedWantTokens',
       ['13', address]
+    ]),
+    { blockTag }
+  );
+
+  // returns user's aqua balance in aqua-bnb vault
+  let usersAquaGammaVaultBalances: any = multicall(
+    network,
+    provider,
+    planetFinanceFarmAbi,
+    addresses.map((address: any) => [
+      gammaFarmAddress,
+      'stakedWantTokens',
+      ['0', address]
+    ]),
+    { blockTag }
+  );
+
+  // returns user's aqua balance in aqua-bnb vault
+  let usersNewAquaBnbVaultBalances: any = multicall(
+    network,
+    provider,
+    planetFinanceFarmAbi,
+    addresses.map((address: any) => [
+      gammaFarmAddress,
+      'stakedWantTokens',
+      ['1', address]
     ]),
     { blockTag }
   );
@@ -126,13 +163,29 @@ export async function strategy(
     { blockTag }
   );
 
+  //AQUA LENDING
+  let usersAquaInLending: any = multicall(
+    network,
+    provider,
+    aquaLendingAbi,
+    addresses.map((address: any) => [
+      aquaLendingAddress,
+      'getAccountSnapshot',
+      [address]
+    ]),
+    { blockTag }
+  );
+
   const result = await Promise.all([
     score,
     usersAquaVaultBalances,
     usersAquaAutoCompVaultBalances,
     usersAquaBnbVaultBalances,
     usersAquaCakeVaultBalances,
-    usersAquaBusdVaultBalances
+    usersAquaBusdVaultBalances,
+    usersAquaGammaVaultBalances,
+    usersNewAquaBnbVaultBalances,
+    usersAquaInLending
   ]);
 
   score = result[0];
@@ -141,6 +194,9 @@ export async function strategy(
   usersAquaBnbVaultBalances = result[3];
   usersAquaCakeVaultBalances = result[4];
   usersAquaBusdVaultBalances = result[5];
+  usersAquaGammaVaultBalances = result[6];
+  usersNewAquaBnbVaultBalances = result[7];
+  usersAquaInLending = result[8];
 
   //AQUA-BNB
   erc20Multi.call('aquaBnbTotalSupply', aquaBnbLpTokenAddress, 'totalSupply');
@@ -155,6 +211,25 @@ export async function strategy(
 
   const contractAquaBalance = erc20Result.lpAquaBal.toString();
 
+  //AQUA-GAMMA
+  erc20Multi.call(
+    'aquaGammaTotalSupply',
+    aquaGammaLpTokenAddress,
+    'totalSupply'
+  );
+
+  erc20Multi.call('lpAquaBal', aquaAddress, 'balanceOf', [
+    aquaGammaLpTokenAddress
+  ]);
+
+  erc20Result = await erc20Multi.execute();
+
+  const totalSupplyAquaGamma = erc20Result.aquaGammaTotalSupply.toString();
+
+  const aquaGammaContractAquaBalance = erc20Result.lpAquaBal.toString();
+
+  //AQUA-CAKE
+
   erc20Multi.call('lpTotalSupply', aquaCakeLpTokenAddress, 'totalSupply');
 
   erc20Multi.call('poolMMBalance', aquaAddress, 'balanceOf', [
@@ -168,7 +243,9 @@ export async function strategy(
   const aquaCakeContractAquaBalance = erc20Result.poolMMBalance.toString();
 
   erc20Multi.call('lpTotalSupply', aquaBusdLpTokenAddress, 'totalSupply');
+
   //AQUA-BUSD
+
   erc20Multi.call('poolMMBalance', aquaAddress, 'balanceOf', [
     aquaBusdLpTokenAddress
   ]);
@@ -194,11 +271,15 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(score).map((address: any, index) => [
       address[0],
+
       address[1] +
         parseFloat(formatUnits(usersAquaVaultBalances[index].toString(), 18)) +
-        (parseFloat(
+        ((parseFloat(
           formatUnits(usersAquaBnbVaultBalances[index].toString(), 18)
-        ) /
+        ) +
+          parseFloat(
+            formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)
+          )) /
           parseFloat(formatUnits(totalSupply, 18))) *
           parseFloat(formatUnits(contractAquaBalance, 18)) +
         (parseFloat(
@@ -206,6 +287,11 @@ export async function strategy(
         ) /
           parseFloat(formatUnits(totalSupplyAquaCake, 18))) *
           parseFloat(formatUnits(aquaCakeContractAquaBalance, 18)) +
+        (parseFloat(
+          formatUnits(usersAquaGammaVaultBalances[index].toString(), 18)
+        ) /
+          parseFloat(formatUnits(totalSupplyAquaGamma, 18))) *
+          parseFloat(formatUnits(aquaGammaContractAquaBalance, 18)) +
         (parseFloat(
           formatUnits(usersAquaBusdVaultBalances[index].toString(), 18)
         ) /
@@ -218,7 +304,10 @@ export async function strategy(
           )
         ) /
           totalShares) *
-          aquaBalance
+          aquaBalance +
+        
+        (parseFloat(formatUnits(usersAquaInLending[index]['1'], 18))) *
+        parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
     ])
   );
 }
