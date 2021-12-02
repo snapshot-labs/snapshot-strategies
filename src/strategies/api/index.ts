@@ -13,9 +13,14 @@ export async function strategy(
   snapshot
 ) {
   let api_url = options.api + '/' + options.strategy;
-  api_url += '?network=' + network;
+  api_url += '?';
+  if (options.additionalParameters) {
+    api_url += options.additionalParameters + '&'
+  }
+  api_url += 'network=' + network;
   api_url += '&snapshot=' + snapshot;
   api_url += '&addresses=' + addresses.join(',');
+  api_url += options.additionalParameters;
 
   const response = await fetch(api_url, {
     method: 'GET',
