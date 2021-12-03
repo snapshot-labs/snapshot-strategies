@@ -1,3 +1,3 @@
 # Saddle Finance Governance Strategy
 
-Custom voting strategy to include unvested tokens in contracts.
+Custom strategy which includes unclaimed SDL tokens in the user's wallet, retroactive drop and team/advisor/investor vesting contracts.
