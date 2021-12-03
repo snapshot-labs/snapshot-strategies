@@ -100,6 +100,7 @@ export async function strategy(
   const userWalletBalances = userWalletBalanceResponse.map((amount, i) => {
     return [addresses[i], parseFloat(formatUnits(amount.toString(), 18))];
   });
+
   const userTotal = {};
   // loop through user, investor/advisor/team-member, and airdrop wallets to calculate total.
   userWalletBalances.forEach(([addr, amount]) => {
