@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "snet-farmers",
+      "params": {
+        "address": "0xa1e841e8f770e5c9507e2f8cfd0aa6f73009715d",
+        "symbol": "AGIX",
+        "decimals": 8,
+        "farmingAddress": "0x8C89C50D3986e9e310df034554DEb63dDf7dB538",
+        "farmingPoolId": 2
+      }
+    },
+    "network": "3",
+    "addresses": [
+      "0x88bc4235d23af66a268098e4a4dddeec9362682a",
+      "0xabd2ccb3828b4428bbde6c2031a865b0fb272a5a"
+    ],
+    "snapshot": 11437846
+  }
+]
