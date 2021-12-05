@@ -73,7 +73,7 @@ export async function strategy(
   const retroUserBalances = {};
   retroAddrs.forEach((addr, i) => {
     const userVesting = userVestingsRes[i];
-    if (userVesting.isVerified) {
+    if (userVesting?.isVerified) {
       retroUserBalances[addr] = parseFloat(
         formatUnits(
           userVesting.totalAmount.sub(userVesting.released).toString(),
@@ -119,7 +119,7 @@ export async function strategy(
   }
 
   const finalUserBalances = Object.fromEntries(
-    Object.entries(userTotal).filter(([addr]) => addresses.includes(addr))
+    addresses.map((addr) => [addr, userTotal[addr]])
   );
 
   return finalUserBalances;
