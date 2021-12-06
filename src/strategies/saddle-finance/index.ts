@@ -3,7 +3,7 @@ import { multicall } from '../../utils';
 import remappedMerkleData from './remappedMerkleData.json';
 import { vestingContractAddrs } from './vestingContractAddrs';
 
-export const author = 'ug02fast';
+export const author = 'saddle-finance';
 export const version = '0.1.0';
 
 const SDLTokenAddress = '0xf1Dc500FdE233A4055e25e5BbF516372BC4F6871';
@@ -29,7 +29,11 @@ export async function strategy(
     network,
     provider,
     abi,
-    addresses.map((address: any) => [SDLTokenAddress, 'balanceOf', [address]]),
+    addresses.map((address: any) => [
+      SDLTokenAddress,
+      'balanceOf',
+      [address.toLowerCase()]
+    ]),
     { blockTag }
   );
 
@@ -40,7 +44,7 @@ export async function strategy(
     vestingContractAddrs.map((vestingContractAddress: any) => [
       SDLTokenAddress,
       'balanceOf',
-      [vestingContractAddress]
+      [vestingContractAddress.toLowerCase()]
     ]),
     { blockTag }
   );
@@ -50,7 +54,7 @@ export async function strategy(
     provider,
     abi,
     vestingContractAddrs.map((vestingContractAddress: any) => [
-      vestingContractAddress,
+      vestingContractAddress.toLowerCase(),
       'beneficiary'
     ]),
     { blockTag }
@@ -65,7 +69,7 @@ export async function strategy(
     retroAddrs.map((retroAddr: any) => [
       RetroRewardsContract,
       'vestings',
-      [retroAddr]
+      [retroAddr.toLowerCase()]
     ]),
     { blockTag }
   );
@@ -74,14 +78,14 @@ export async function strategy(
   retroAddrs.forEach((addr, i) => {
     const userVesting = userVestingsRes[i];
     if (userVesting?.isVerified) {
-      retroUserBalances[addr] = parseFloat(
+      retroUserBalances[addr.toLowerCase()] = parseFloat(
         formatUnits(
           userVesting.totalAmount.sub(userVesting.released).toString(),
           18
         )
       );
     } else {
-      retroUserBalances[addr] = parseFloat(
+      retroUserBalances[addr.toLowerCase()] = parseFloat(
         formatUnits(remappedMerkleData[addr].amount, 18)
       );
     }
@@ -98,28 +102,34 @@ export async function strategy(
   );
 
   const userWalletBalances = userWalletBalanceResponse.map((amount, i) => {
-    return [addresses[i], parseFloat(formatUnits(amount.toString(), 18))];
+    return [
+      addresses[i].toLowerCase(),
+      parseFloat(formatUnits(amount.toString(), 18))
+    ];
   });
 
   const userTotal = {};
   // loop through user, investor/advisor/team-member, and airdrop wallets to calculate total.
-  userWalletBalances.forEach(([addr, amount]) => {
+  userWalletBalances.forEach(([address, amount]) => {
+    const addr = address.toLowerCase();
     if (userTotal[addr]) userTotal[addr] += amount;
     else userTotal[addr] = amount;
   });
-  for (const [addr, amount] of Object.entries(retroUserBalances)) {
+  for (const [address, amount] of Object.entries(retroUserBalances)) {
+    const addr = address.toLowerCase();
     if (userTotal[addr]) userTotal[addr] += amount;
     else userTotal[addr] = amount;
   }
-  for (const [addr, amount] of Object.entries(
+  for (const [address, amount] of Object.entries(
     mappedBeneficiariesToVestingContract
   )) {
+    const addr = address.toLowerCase();
     if (userTotal[addr]) userTotal[addr] += amount;
     else userTotal[addr] = amount;
   }
 
   const finalUserBalances = Object.fromEntries(
-    addresses.map((addr) => [addr, userTotal[addr]])
+    addresses.map((addr) => [addr, userTotal[addr.toLowerCase()]])
   );
 
   return finalUserBalances;
