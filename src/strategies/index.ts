@@ -407,7 +407,7 @@ const strategies = {
   'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

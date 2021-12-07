@@ -71,7 +71,7 @@ export async function strategy(
   const resultMasterChef: Record<
     string,
     BigNumberish
-    > = await multiMasterChef.execute();
+  > = await multiMasterChef.execute();
 
   /*
     Balance in Launch pools
@@ -92,7 +92,7 @@ export async function strategy(
   const resultSmartChef: Record<
     string,
     BigNumberish
-    > = await multiSmartChef.execute();
+  > = await multiSmartChef.execute();
 
   /*
     Staked LPs in BSW farms
@@ -125,7 +125,7 @@ export async function strategy(
   const resultBswLPs: Record<
     string,
     BigNumberish
-    > = await multiBswLPs.execute();
+  > = await multiBswLPs.execute();
 
   /*
     Balance BSW in auto compound pool
