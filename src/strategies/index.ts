@@ -406,7 +406,7 @@ const strategies = {
   juicebox,
   'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
-  'snet-liquidity-providers': snetLiquidityProviders，
+  'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm
 };
 
