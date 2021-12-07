@@ -39,7 +39,7 @@ const aquaBnbLpTokenAddress = '0x03028D2F8B275695A1c6AFB69A4765e3666e36d9';
 
 const aquaGammaLpTokenAddress = '0xcCaF3fcE9f2D7A7031e049EcC65c0C0Cc331EE0D';
 
-const aquaLendingAddress = '0xB3A4ce0654524dCF4B5165cee280EbE69a6E8133';
+const aquaLendingAddress = '0xb7eD4A5AF620B52022fb26035C565277035d4FD7';
 
 export async function strategy(
   space,
