@@ -113,7 +113,7 @@ async function getStakedBalances(network, snapshot, token, addresses) {
   }
   let deposits = [];
   let page = 0;
-  while(true) {
+  while (true) {
     // @ts-ignore
     params.deposits.__args.skip = page * PAGE_SIZE;
     const result = await subgraphRequest(
