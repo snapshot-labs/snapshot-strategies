@@ -204,6 +204,7 @@ import * as juicebox from './juicebox';
 import * as snetFarmers from './snet-farmers';
 import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
+import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 
 const strategies = {
@@ -410,7 +411,8 @@ const strategies = {
   'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'minmax-mcn-farm': minMaxMcnFarm,
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
