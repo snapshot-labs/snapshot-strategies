@@ -72,6 +72,7 @@ export async function strategy(
     string,
     BigNumberish
   > = await multiMasterChef.execute();
+
   /*
     Balance in Launch pools
   */
@@ -100,10 +101,17 @@ export async function strategy(
     blockTag
   });
   options.bswLPs.forEach((bswLpAddr) => {
-    multiBswLPs.call('balanceOf', options.address, 'balanceOf', [
-      bswLpAddr.address
-    ]);
-    multiBswLPs.call('totalSupply', bswLpAddr.address, 'totalSupply');
+    multiBswLPs.call(
+      'balanceOf-' + bswLpAddr.address,
+      options.address,
+      'balanceOf',
+      [bswLpAddr.address]
+    );
+    multiBswLPs.call(
+      'totalSupply-' + bswLpAddr.address,
+      bswLpAddr.address,
+      'totalSupply'
+    );
     addresses.forEach((address) =>
       multiBswLPs.call(
         bswLpAddr.address + '-' + address,
@@ -113,6 +121,7 @@ export async function strategy(
       )
     );
   });
+
   const resultBswLPs: Record<
     string,
     BigNumberish
@@ -163,8 +172,8 @@ export async function strategy(
         userBalances,
         userAddr,
         bn(resultBswLPs[bswLPAddr.address + '-' + userAddr][0])
-          .mul(bn(resultBswLPs.balanceOf))
-          .div(bn(resultBswLPs.totalSupply))
+          .mul(bn(resultBswLPs['balanceOf-' + bswLPAddr.address]))
+          .div(bn(resultBswLPs['totalSupply-' + bswLPAddr.address]))
       );
     });
   });

@@ -4,7 +4,8 @@
     "strategy": {
       "name": "aavegotchi-agip",
       "params": {
-        "tokenAddress": "0x86935f11c86623dec8a25696e1c19a8659cbf95d"
+        "tokenAddress": "0x86935f11c86623dec8a25696e1c19a8659cbf95d",
+        "symbol": "GOTCHI"
       }
     },
     "network": "137",

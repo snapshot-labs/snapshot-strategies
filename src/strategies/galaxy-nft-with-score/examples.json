@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "galaxy-nft-with-score",
+      "params": {
+        "symbol": "WOOFY",
+        "params": {
+          "NFTCoreAddress": ["0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"],
+          "blacklistNFTID": ["1329"],
+          "configs": [
+            {
+              "name": "Woofster",
+              "votingPower": 1,
+              "cumulative": true
+            },
+            {
+              "name": "Androttweiler",
+              "votingPower": 2,
+              "cumulative": false
+            }
+          ]
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xffFfA7D95ca2323d6bF4e46C5A287BF11219172E",
+      "0x0Cec743b8CE4Ef8802cAc0e5df18a180ed8402A7",
+      "0xBb3A7bc36b5baFa7691Ccb708EbF299B6d521b05"
+    ],
+    "snapshot": 13000000
+  }
+]

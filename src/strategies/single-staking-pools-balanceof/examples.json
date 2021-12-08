@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "single-staking-pools-balanceof",
+      "params": {
+        "stakingPoolAddresses": ["0x081Ffa6Fa76e738531B3717301F4B636efAe1F1e"],
+        "symbol": "DAI",
+        "decimals": 18
+      }
+    },
+    "network": "43114",
+    "addresses": ["0xa598710E9EdA808dF224E14748f6eba374043715"],
+    "snapshot": 4565540
+  }
+]

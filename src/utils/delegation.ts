@@ -7,40 +7,42 @@ const SNAPSHOT_SUBGRAPH_URL = {
   '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
 };
 
-export async function getDelegations(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
+export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const spaceIn = ['', space];
   if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
-  const params = {
-    delegations: {
-      __args: {
-        where: {
-          // delegate_in: addressesLc,
-          // delegator_not_in: addressesLc,
-          space_in: spaceIn
+  const pages = ['_1', '_2', '_3'];
+  const params = Object.fromEntries(
+    pages.map((q, i) => [
+      q,
+      {
+        __aliasFor: 'delegations',
+        __args: {
+          where: {
+            // delegate_in: addressesLc,
+            // delegator_not_in: addressesLc,
+            space_in: spaceIn
+          },
+          first: 1000,
+          skip: i * 1000
         },
-        first: 1000
-      },
-      delegator: true,
-      space: true,
-      delegate: true
-    }
-  };
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    params.delegations.__args.block = { number: snapshot };
-  }
-  const result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
-  if (!result?.delegations) return {};
+        delegator: true,
+        space: true,
+        delegate: true
+      }
+    ])
+  );
 
-  const delegations = result.delegations.filter(
+  if (snapshot !== 'latest') {
+    pages.forEach((page) => {
+      // @ts-ignore
+      params[page].__args.block = { number: snapshot };
+    });
+  }
+  let result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
+  result = result._1.concat(result._2).concat(result._3);
+
+  const delegations = result.filter(
     (delegation) =>
       addressesLc.includes(delegation.delegate) &&
       !addressesLc.includes(delegation.delegator)

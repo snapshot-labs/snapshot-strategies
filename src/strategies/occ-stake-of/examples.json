@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "occ-stake-of",
+      "params": {
+        "stakingContractAddress": [
+          "0xeBC86Fb12ab0fFaC6CBcaFCe2f049BfE7eFAda0D"
+        ],
+        "symbol": "OCC",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa95f8f54dc55281852b5c972e4874264c7b5d3de",
+      "0x77752aE2Cb765BDd09568E69B740a2276187F052",
+      "0xd3aecf9e0856822bd320873e905ae9f78a2977e7",
+      "0x2C2ADD1C863551A0644876be227604C8E458dD7e",
+      "0x8af630f68dd02c589b9449158455735814b452a3",
+      "0x252e2e0e4cc5bd7391acb47634fb6bb382d08586",
+      "0x4bf455074e67848dc7e1c55b45a32aafca2e9c9c",
+      "0xb623964e5761C1b04A4a46b9aE8D1809dEFa7efB"
+    ],
+    "snapshot": 12381658
+  }
+]
