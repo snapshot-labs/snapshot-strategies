@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
@@ -410,7 +411,9 @@ const strategies = {
 
 Object.keys(strategies).forEach(function (strategyName) {
   let examples = null;
+  let schema = null;
   let about = '';
+
   try {
     examples = JSON.parse(
       readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
@@ -418,6 +421,15 @@ Object.keys(strategies).forEach(function (strategyName) {
   } catch (error) {
     examples = null;
   }
+
+  try {
+    schema = JSON.parse(
+      readFileSync(path.join(__dirname, strategyName, 'schema.json'), 'utf8')
+    );
+  } catch (error) {
+    schema = null;
+  }
+
   try {
     about = readFileSync(
       path.join(__dirname, strategyName, 'README.md'),
@@ -427,6 +439,7 @@ Object.keys(strategies).forEach(function (strategyName) {
     about = '';
   }
   strategies[strategyName].examples = examples;
+  strategies[strategyName].schema = schema;
   strategies[strategyName].about = about;
 });
 
