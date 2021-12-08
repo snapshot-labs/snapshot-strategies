@@ -41,6 +41,7 @@ import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
+import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as ctoken from './ctoken';
@@ -258,6 +259,7 @@ const strategies = {
   flashstake,
   pancake,
   synthetix,
+  'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   ctoken,
