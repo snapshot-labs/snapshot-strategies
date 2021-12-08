@@ -204,6 +204,7 @@ import * as juicebox from './juicebox';
 import * as snetFarmers from './snet-farmers';
 import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
+import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -408,7 +409,8 @@ const strategies = {
   juicebox,
   'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
-  'snet-liquidity-providers': snetLiquidityProviders
+  'snet-liquidity-providers': snetLiquidityProviders,
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
