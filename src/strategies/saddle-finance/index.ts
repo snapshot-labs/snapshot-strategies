@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import remappedMerkleData from './remappedMerkleData.json';
+import fetch from 'cross-fetch';
 import { vestingContractAddrs } from './vestingContractAddrs';
 
 export const author = 'saddle-finance';
@@ -24,6 +24,18 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const remappedMerkleDataRes = await fetch(
+    'https://gateway.pinata.cloud/ipfs/QmV73GEaijyiBFHu1vRdZBFffoCHaXYWG5SpurbEgr4VK6',
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+  const remappedMerkleData = await remappedMerkleDataRes.json();
 
   const userWalletBalanceResponse = await multicall(
     network,
