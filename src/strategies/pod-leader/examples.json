@@ -4,6 +4,7 @@
     "strategy": {
       "name": "pod-leader",
       "params": {
+        "symbol": "STAKE",
         "chefAddress": "0x111E1E97435b57467E79d4930acc4B7EB3d478ad",
         "uniPairAddress": "0x73e6CB72a79dEa7ed75EF5eD6f8cFf86C9128eF5",
         "token0": {

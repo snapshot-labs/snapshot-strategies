@@ -4,6 +4,7 @@
     "strategy": {
       "name": "vested-deversifi",
       "params": {
+        "symbol": "VEST",
         "xDVFAddress": "0xdddd0e38d30dd29c683033fa0132f868597763ab",
         "decimals": 18,
         "vestedContracts": [

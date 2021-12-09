@@ -2,7 +2,10 @@
   {
     "name": "Staked Keep Example Query",
     "strategy": {
-      "name": "staked-keep"
+      "name": "staked-keep",
+      "params": {
+        "symbol": "SKEEP"
+      }
     },
     "network": "1",
     "addresses": [

@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
@@ -40,6 +41,7 @@ import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
+import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as ctoken from './ctoken';
@@ -76,12 +78,14 @@ import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
 import * as whitelist from './whitelist';
+import * as whitelistWeighted from './whitelist-weighted';
 import * as tokenlon from './tokenlon';
 import * as rebased from './rebased';
 import * as pobHash from './pob-hash';
 import * as totalAxionShares from './total-axion-shares';
 import * as erc1155BalanceOf from './erc1155-balance-of';
 import * as erc1155BalanceOfCv from './erc1155-balance-of-cv';
+import * as erc1155WithMultiplier from './erc1155-with-multiplier';
 import * as compLikeVotes from './comp-like-votes';
 import * as governorAlpha from './governor-alpha';
 import * as pagination from './pagination';
@@ -104,6 +108,7 @@ import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
+import * as apiPost from './api-post';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -132,6 +137,7 @@ import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
+import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as ogn from './ogn';
@@ -186,6 +192,20 @@ import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
 import * as coinswap from './coinswap';
+import * as dgenesis from './dgenesis';
+import * as votePowerAndShare from './vote-power-and-share';
+import * as blockzerolabsCryptonauts from './blockzerolabs-cryptonauts';
+import * as math from './math';
+import * as pushVotingPower from './push-voting-power';
+import * as stakedPSPBalance from './staked-psp-balance';
+import * as erc20BalanceOfContractMultiplier from './erc20-balance-of-contract-multiplier';
+import * as agave from './agave';
+import * as juicebox from './juicebox';
+import * as snetFarmers from './snet-farmers';
+import * as snetStakers from './snet-stakers';
+import * as snetLiquidityProviders from './snet-liquidity-providers';
+import * as minMaxMcnFarm from './minmax-mcn-farm';
+import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 import * as oceanDAOBrightID from './ocean-dao-brightid';
 
 const strategies = {
@@ -242,6 +262,7 @@ const strategies = {
   flashstake,
   pancake,
   synthetix,
+  'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   ctoken,
@@ -273,6 +294,7 @@ const strategies = {
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
   whitelist,
+  'whitelist-weighted': whitelistWeighted,
   tokenlon,
   rebased,
   'pob-hash': pobHash,
@@ -291,6 +313,7 @@ const strategies = {
   'tranche-staking': trancheStaking,
   pepemon,
   'erc1155-all-balances-of': erc1155AllBalancesOf,
+  'erc1155-with-multiplier': erc1155WithMultiplier,
   'saffron-finance': saffronFinance,
   'saffron-finance-v2': saffronFinanceV2,
   'tranche-staking-lp': trancheStakingLP,
@@ -298,6 +321,7 @@ const strategies = {
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
+  'api-post': apiPost,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
@@ -320,6 +344,7 @@ const strategies = {
   'aave-governance-power': aaveGovernancePower,
   cake,
   aks,
+  tomyumswap,
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
@@ -375,12 +400,28 @@ const strategies = {
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
   'bsc-mvb': bscMvb,
   coinswap,
+  dgenesis,
+  'vote-power-and-share': votePowerAndShare,
+  'blockzerolabs-cryptonauts': blockzerolabsCryptonauts,
+  math,
+  'push-voting-power': pushVotingPower,
+  'staked-psp-balance': stakedPSPBalance,
+  'erc20-balance-of-contract-multiplier': erc20BalanceOfContractMultiplier,
+  agave,
+  juicebox,
+  'snet-farmers': snetFarmers,
+  'snet-stakers': snetStakers,
+  'snet-liquidity-providers': snetLiquidityProviders,
+  'minmax-mcn-farm': minMaxMcnFarm,
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'ocean-dao-brightid': oceanDAOBrightID
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
   let examples = null;
+  let schema = null;
   let about = '';
+
   try {
     examples = JSON.parse(
       readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
@@ -388,6 +429,15 @@ Object.keys(strategies).forEach(function (strategyName) {
   } catch (error) {
     examples = null;
   }
+
+  try {
+    schema = JSON.parse(
+      readFileSync(path.join(__dirname, strategyName, 'schema.json'), 'utf8')
+    );
+  } catch (error) {
+    schema = null;
+  }
+
   try {
     about = readFileSync(
       path.join(__dirname, strategyName, 'README.md'),
@@ -397,6 +447,7 @@ Object.keys(strategies).forEach(function (strategyName) {
     about = '';
   }
   strategies[strategyName].examples = examples;
+  strategies[strategyName].schema = schema;
   strategies[strategyName].about = about;
 });
 
