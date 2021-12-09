@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dynamic-whitelist",
+      "params": {
+        "symbol": "dynamic"
+      }
+    },
+    "network": "4",
+    "options": {
+      "contractAddress": "0x256669f7a136a99baf979deea862b38d9866d08e",
+      "etherscanApiKey": "95WX4VDE93FSS5SUR8QZ6VUWBF7QBTJIVE"
+    },
+    "addresses": [
+      "0xc12e1cfbf16458164a989fd50190fcc5ec608166",
+      "0x2899f02f12f4641ded15ad1ed3e0081d52c2f869",
+      "0x4052c6ca27d1fdd2ae66b5e6d787709ed5033f9a",
+      "0x1280ad6dac54cbea72b07524e047bc87b86c4747",
+      "0xccb64bc72a5e0b33c78aaea44b7e0f5fd82050a1",
+      "0x0f62cfc2481f122d5b9c16594eaa8ffc65091152",
+      "0x1873decfd7517b52e1f8665f509d66adfde72504",
+      "0x710cd95391d0e478ec7613f589619c45e90d0cf4",
+      "0xed366dbb1af36cc41fe746a82a704932e002fde3"
+    ],
+    "snapshot": 9734523
+  }
+]
