@@ -5,7 +5,8 @@
     "strategy": {
       "name": "xkawa-farm",
       "params": {
-        "stakingPoolAddress": "0xC68844Cd3BA9d3Ad88F2cC278213F64b8C0bCddf",
+        "pool": "0xC68844Cd3BA9d3Ad88F2cC278213F64b8C0bCddf",
+        "token": "0xdC386452F9FFDa7F0d2940e5c60Dc0F9469b1097",
         "symbol": "xKAWA",
         "decimals": 18
       }

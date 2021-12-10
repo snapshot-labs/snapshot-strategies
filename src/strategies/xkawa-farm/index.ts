@@ -1,34 +1,16 @@
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import { Provider } from '@ethersproject/providers';
-import { Contract } from '@ethersproject/contracts';
+//import { BigNumber } from '@ethersproject/bignumber';
+
 
 export const author = 'drgorillamd';
 export const version = '1.0.0';
 
-const kawaFarmAddress = '0xC68844Cd3BA9d3Ad88F2cC278213F64b8C0bCddf';
+const abi = ['function pendingRewards(uint256,address) external view returns(uint256)',
+'function userInfo(address,uint256) external view returns(uint256 amount,uint256,uint256,uint256)',
+'function balanceOf(address) external view returns(uint256)'];
 
-const kawaFarmAbi = ['function getPoolCount() external view returns(uint256)',
-'function pendingRewards(uint256,address) external view returns(uint256)',
-'function userInfo(address,uint256) external view returns(uint256,uint256,uint256,uint256)'];
-
-const getNumberOfPools = async (
-    provider: Provider,
-    snapshot: number | string
-  ) => {
-    const kawaFarm = new Contract(
-      kawaFarmAddress,
-      kawaFarmAbi,
-      provider
-    );
-  
-    const farmCount:BigNumberish = await kawaFarm.getPoolCount({
-      blockTag: snapshot
-    });
-  
-    return farmCount;
-  };
 
 export async function strategy(
     space,
@@ -41,46 +23,28 @@ export async function strategy(
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const multi = new Multicaller(network, provider, kawaFarmAbi, { blockTag });
-  const pools = await getNumberOfPools(provider, snapshot);
+  const multi = new Multicaller(network, provider, abi, { blockTag });
 
-  let promises = [];
-
-  new Array(pools).fill(0).forEach((_, poolId) => {
-
-    addresses.forEach((address) => {
-      multi.call(address, kawaFarmAddress, 'userInfo', [address, poolId]),
-      multi.call(address, kawaFarmAddress, 'pendingRewards', [poolId, address])
-    });
-
-
-
+  addresses.forEach((address) => {
+    multi.call(address+"-staked", options.pool, 'userInfo', [address, '1']) // uint
+    multi.call(address+"-pendingReward", options.pool, 'pendingRewards', ['1', address])// .amount: uint
+    multi.call(address+"-balance", options.token, 'balanceOf', [address]);
   });
 
   const result: Record<string, BigNumberish> = await multi.execute();
 
-  console.log(result);
-/*
-  return result.reduce((finalResults: any, strategyResult: any) => {
-    for (const [address, value] of Object.entries(strategyResult)) {
-      if (!finalResults[address]) {
-        finalResults[address] = 0;
-      }
+  return Object.fromEntries(
+    addresses.map( (adr) => {
+      let bal = result[adr+"-staked"]['amount'];
+      bal = bal.add(result[adr+"-pendingReward"]);
+      bal = bal.add(result[adr+"-balance"]);
 
-      finalResults[address] += value;
-    }
+      return [adr, parseFloat(formatUnits(bal, options.decimals))];
+    })
+  );
 
-    return finalResults;
-  }, {});
-
-
-*/
-
-return Object.fromEntries(
-  Object.entries(result).map(([address, balance]) => [
-    address,
-    parseFloat(formatUnits(balance, options.decimals))
-  ])
-);
+//return Object.fromEntries(
+//  addresses.map( (adr, i) => [adr, parseFloat(formatUnits(res[i], options.decimals))])
+//);
 
 }
