@@ -2,8 +2,6 @@ import { subgraphRequest } from '../../utils';
 import fetch from 'cross-fetch';
 import { Multicaller, call, getProvider } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
-import { BigNumber } from '@ethersproject/bignumber';
-
 
 export const author = 'drgorillamd';
 export const version = '1.0.0';
@@ -60,8 +58,8 @@ export async function strategy(
 
   const resAvax = await multiAvax.execute();
 
-  const smrtRWeight = smrtRPrice.div(jadePrice);
-  const smrtWeight = smrtPrice.div(jadePrice);
+  //const smrtRWeight = smrtRPrice / jadePrice;
+  //const smrtWeight = smrtPrice / jadePrice;
 
   return Object.fromEntries(
     addresses.map( (adr) => {
@@ -70,12 +68,12 @@ export async function strategy(
 
       // SMRT balance * SMRT price/JADE price
       bal += parseFloat(formatUnits(
-        resAvax[adr+"-smrt"].mul(smrtWeight)
+        resAvax[adr+"-smrt"]*smrtPrice / jadePrice
         , options.SMRT.decimals));
 
       // SMRTR balance * SMRTR price/JADE price
       bal += parseFloat(formatUnits(
-        resAvax[adr+"-smrtR"].mul(smrtRWeight)
+        resAvax[adr+"-smrtR"]*smrtRPrice / jadePrice
         , options.SMRTR.decimals));
 
       // LP token held * smrtr pool balance / LP token total supply
@@ -109,7 +107,7 @@ async function getAvaxBlockTag(
   return Number(data.blocks[0].number);
 }
 
-async function geckoPrice(address, timestamp, chain): Promise<BigNumber> {
+async function geckoPrice(address, timestamp, chain): Promise<number> {
   const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/${chain}/contract/${address}/market_chart/range?vs_currency=usd&from=${
     timestamp - 100000
   }&to=${timestamp}`;
