@@ -1,6 +1,6 @@
 import { subgraphRequest } from '../../utils';
 import fetch from 'cross-fetch';
-import { Multicaller } from '../../utils';
+import { Multicaller, call, getProvider } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'drgorillamd';
@@ -51,11 +51,15 @@ export async function strategy(
   });
 
   // Avax SMRTR/WAVAX pool SMRTR balance and LP token total supply
-  multiAvax.call('LPBalance', options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]);
-  multiAvax.call('LPSupply', options.SMRTRLP.address, 'totalSupply', []);
+ // call('LPBalance', options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]);
+ // call('LPSupply', options.SMRTRLP.address, 'totalSupply', []);
+
+  const LPBalance = await call(getProvider('43114'), abi, [options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]]);
+  
+  const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
+  
 
   const resAvax = await multiAvax.execute();
-
 
   const smrtRWeight = smrtPrice.div(jadePrice);
   const smrtWeight = smrtRPrice.div(jadePrice);
@@ -77,7 +81,7 @@ export async function strategy(
 
       // LP token held * smrtr pool balance / LP token total supply
       bal += parseFloat(formatUnits(
-        resAvax[adr+"-smrtRLp"].mul(resAvax['LPBalance']).div(resAvax['LPSupply'])
+        resAvax[adr+"-smrtRLp"].mul(LPBalance).div(LPSupply)
         , options.SMRTR.decimals));
 
       return [adr, bal];
