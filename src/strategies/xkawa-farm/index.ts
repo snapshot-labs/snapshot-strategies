@@ -42,8 +42,5 @@ export async function strategy(
     })
   );
 
-//return Object.fromEntries(
-//  addresses.map( (adr, i) => [adr, parseFloat(formatUnits(res[i], options.decimals))])
-//);
 
 }
