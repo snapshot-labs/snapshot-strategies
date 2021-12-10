@@ -1,23 +1,92 @@
 import { subgraphRequest } from '../../utils';
-import { getProvider } from '../../utils';
-import strategies from '..';
 import fetch from 'cross-fetch';
-
+import { Multicaller } from '../../utils';
+import { formatUnits } from '@ethersproject/units';
 
 export const author = 'drgorillamd';
 export const version = '1.0.0';
 
-const SMRT = '0xCC2f1d827b18321254223dF4e84dE399D9Ff116c';
-const SMRTR = '0x6D923f688C7FF287dc3A5943CAeefc994F97b290';
-const JADE = '0x7ad7242A99F21aa543F9650A56D141C57e4F6081';
+const avaxGraph = 'https://api.thegraph.com/subgraphs/name/elkfinance/avax-blocks';
 
-const defaultGraphs = {
-  '56': 'https://api.thegraph.com/subgraphs/name/apyvision/block-info',
-};
+const abi = [
+  'function balanceOf(address account) external view returns (uint256)',
+  'function totalSupply() external view returns (uint256)'
+];
 
-async function getChainBlockNumber(
+export async function strategy(
+  space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+) {
+
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const block = await provider.getBlock(blockTag);
+  const timestamp = block.timestamp;
+
+  const avaxBlockTag = await getAvaxBlockTag(timestamp);
+
+  const jadePrice = await geckoPrice(options.JADE.address, timestamp, 'binance-smart-chain');
+  const smrtPrice = await geckoPrice(options.SMRT.address, timestamp, 'avalanche');
+  const smrtRPrice = await geckoPrice(options.SMRTR.address, timestamp, 'avalanche');
+  //BSC balances:
+  const multiBsc = new Multicaller(network, provider, abi, { blockTag });
+
+  addresses.forEach((address) => {
+    multiBsc.call(address+"-jade", options.JADE.address, 'balanceOf', [address]);
+    multiBsc.call(address+"-sjade", options.SJADE.address, 'balanceOf', [address]);
+  });
+
+  const resBsc = await multiBsc.execute();
+
+  // Avax balances:
+  const multiAvax = new Multicaller('43114', provider, abi, { blockTag: avaxBlockTag });
+
+  addresses.forEach((address) => {
+    multiAvax.call(address+"-smrt", options.SMRT.address, 'balanceOf', [address]);
+    multiAvax.call(address+"-smrtR", options.SMRTR.address, 'balanceOf', [address]);
+    multiAvax.call(address+"-smrtRLp", options.SMRTRLP.address, 'balanceOf', [address])
+  });
+
+  // Avax SMRTR/WAVAX pool SMRTR balance and LP token total supply
+  multiAvax.call('LPBalance', options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]);
+  multiAvax.call('LPSupply', options.SMRTRLP.address, 'totalSupply', []);
+
+  const resAvax = await multiAvax.execute();
+
+
+  const smrtRWeight = smrtPrice.div(jadePrice);
+  const smrtWeight = smrtRPrice.div(jadePrice);
+
+  return Object.fromEntries(
+    addresses.map( (adr) => {
+      let bal = parseFloat(formatUnits(resBsc[adr+"-jade"], options.JADE.decimals));
+      bal += parseFloat(formatUnits(resBsc[adr+"-sjade"], options.SJADE.decimals));
+
+      // SMRT balance * SMRT price/JADE price
+      bal += parseFloat(formatUnits(
+        resAvax[adr+"-smrt"].mul(smrtWeight)
+        , options.SMRT.decimals));
+
+      // SMRTR balance * SMRTR price/JADE price
+      bal += parseFloat(formatUnits(
+        resAvax[adr+"-smrtR"].mul(smrtRWeight)
+        , options.SMRTR.decimals));
+
+      // LP token held * smrtr pool balance / LP token total supply
+      bal += parseFloat(formatUnits(
+        resAvax[adr+"-smrtRLp"].mul(resAvax['LPBalance']).div(resAvax['LPSupply'])
+        , options.SMRTR.decimals));
+
+      return [adr, bal];
+    })
+  );             
+}
+
+async function getAvaxBlockTag(
   timestamp: number,
-  graphURL: string
 ): Promise<number> {
   const query = {
     blocks: {
@@ -33,136 +102,9 @@ async function getChainBlockNumber(
       timestamp: true
     }
   };
-  const data = await subgraphRequest(graphURL, query);
+  const data = await subgraphRequest(avaxGraph, query);
   return Number(data.blocks[0].number);
 }
-
-async function getChainBlocks(
-  snapshot,
-  provider,
-  options,
-  network
-): Promise<any> {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const block = await provider.getBlock(blockTag);
-  const chainBlocks = {};
-  for (const strategy of options.strategies) {
-    if (chainBlocks[strategy.network]) {
-      continue;
-    }
-    if (blockTag === 'latest' || strategy.network === network) {
-      chainBlocks[strategy.network] = blockTag;
-    } else {
-      const graph =
-        options.graphs?.[strategy.network] || defaultGraphs[strategy.network];
-      chainBlocks[strategy.network] = await getChainBlockNumber(
-        block.timestamp,
-        graph
-      );
-    }
-  }
-
-  return chainBlocks;
-}
-
-export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
-
-  const chainBlocks = await getChainBlocks(
-    snapshot,
-    provider,
-    options,
-    network
-  );
-
-  let block = await provider.getBlock(typeof snapshot === 'number' ? snapshot : 'latest');
-  let timestamp = block.timestamp;
-  let jadePrice: number = await geckoPrice(JADE, timestamp, 'binance-smart-chain');
-  let results: any = [];
-
-  for (const strategy of options.strategies) {
-    // If snapshot is taken before a network is activated then ignore its strategies
-    if (
-      options.startBlocks &&
-      chainBlocks[strategy.network] < options.startBlocks[strategy.network]
-    ) {
-      continue;
-    }
-
-    if( strategy.network === '56' ) {
-
-      let tmp = await strategies[strategy.name].strategy(
-          space,
-          strategy.network,
-          getProvider(strategy.network),
-          addresses,
-          strategy.params,
-          chainBlocks[strategy.network]
-      );
-      results.push(tmp);
-      
-    } else if( strategy.address === SMRT) {
-
-      let tmp = await strategies[strategy.name].strategy(
-          space,
-          strategy.network,
-          getProvider(strategy.network),
-          addresses,
-          strategy.params,
-          chainBlocks[strategy.network]
-      );
-
-      const smrtPrice = await geckoPrice(SMRT, timestamp, 'avalanche');
-
-      const weightedSmrt = Object.fromEntries(
-                            Object.entries(tmp).map((res: any) => [
-                              res[0],
-                              res[1] * smrtPrice / Math.max(1, jadePrice) // Jade price not available before Nov-21
-                            ])
-        );
-      results.push(weightedSmrt);
-
-    } else if( strategy.address === SMRTR) { // SMRTr and SMRTr in LP
-      let tmp = await strategies[strategy.name].strategy(
-          space,
-          strategy.network,
-          getProvider(strategy.network),
-          addresses,
-          strategy.params,
-          chainBlocks[strategy.network]
-      );
-      const smrtRPrice = await geckoPrice(SMRTR, timestamp, 'avalanche');
-
-      const weightedSmrtR = Object.fromEntries(
-                              Object.entries(tmp).map((res: any) => [
-                                res[0],
-                                res[1] * smrtRPrice / Math.max(1, jadePrice)
-                              ])
-        );
-      results.push(weightedSmrtR);
-    }
-
-  }
-
-  return results.reduce((finalResults: any, strategyResult: any) => {
-    for (const [address, value] of Object.entries(strategyResult)) {
-      if (!finalResults[address]) {
-        finalResults[address] = 0;
-      }
-
-      finalResults[address] += value;
-    }
-
-    return finalResults;
-  }, {});
-}
-
 
 async function geckoPrice(address, timestamp, chain) {
   const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/${chain}/contract/${address}/market_chart/range?vs_currency=usd&from=${

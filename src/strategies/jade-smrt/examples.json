@@ -4,55 +4,39 @@
     "strategy": {
       "name": "jade-smrt",
       "params": {
+
         "symbol": "jade-smrt",
-        "strategies": [
-          {
-            "name": "erc20-balance-of",
-            "network": "56",
-            "params": {
-              "address": "0x7ad7242A99F21aa543F9650A56D141C57e4F6081",
-              "decimals": 9,
-              "symbol": "JADE"
-            }
-          },
-          {
-            "name": "erc20-balance-of",
-            "network": "56",
-            "params": {
-              "address": "0x94CEA04C51E7d3EC0a4A97Ac0C3B3c9254c2aD41",
-              "decimals": 9,
-              "symbol": "sJADE"
-            }
-          },
-          {
-            "name": "erc20-balance-of",
-            "network": "43114",
-            "params": {
-              "address": "0x6D923f688C7FF287dc3A5943CAeefc994F97b290",
-              "decimals": 18,
-              "symbol": "SMRTr"
-            }
-          },
-          {
-            "name": "erc20-balance-of",
-            "network": "43114",
-            "params": {
-              "address": "0xCC2f1d827b18321254223dF4e84dE399D9Ff116c",
-              "decimals": 18,
-              "symbol": "SMRT"
-            }
-          },
-          {
-            "name": "snet-liquidity-providers",
-            "network": "43114",
-            "params": {
-              "address": "0x6D923f688C7FF287dc3A5943CAeefc994F97b290",
-              "symbol": "SMRTr",
-              "decimals": 18,
-              "lpAddress": "0x7b7617c7b2236d7871741783cae8bcc222c2e05d"
-            }
-          }
-        ],
+
+        "JADE": {
+          "network": "56",
+          "address": "0x7ad7242A99F21aa543F9650A56D141C57e4F6081",
+          "decimals": 9
+        },
+
+        "SJADE": {
+          "network": "56",
+          "address": "0x94CEA04C51E7d3EC0a4A97Ac0C3B3c9254c2aD41",
+          "decimals": 9
+        },
+
+        "SMRTR": {
+          "network": "43114",
+          "address": "0x6D923f688C7FF287dc3A5943CAeefc994F97b290",
+          "decimals": 18
+        },
+
+        "SMRT": {
+          "network": "43114",
+          "address": "0xCC2f1d827b18321254223dF4e84dE399D9Ff116c",
+          "decimals": 18
+        },
+
+        "SMRTRLP":{
+        "network": "43114",
+        "address": "0x7b7617c7b2236d7871741783cae8bcc222c2e05d",
+        "decimals": 18
+        },
+
         "graphs": {
           "56": "https://api.thegraph.com/subgraphs/name/apyvision/block-info",
           "43114": "https://api.thegraph.com/subgraphs/name/elkfinance/avax-blocks"
@@ -63,6 +47,8 @@
         }
       }
     },
+
+
     "network": "56",
     "addresses": [
       "0x422Cb45F4DCB3f798B53835F8671288D424d881F",
@@ -74,6 +60,6 @@
       "0x20c204adad9C991ED35ce2778e705439227EA406",
       "0x7AaCE7fb8CD4CEC3588F4a0b0A0DBdd470b20FbD"
     ],
-    "snapshot": 12899840
+    "snapshot": 13350104
   }
 ]
