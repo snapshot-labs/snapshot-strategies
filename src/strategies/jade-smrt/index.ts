@@ -20,11 +20,6 @@ export async function strategy(
   snapshot
 ) {
 
-  let jadePrice;
-  let smrtPrice;
-  let smrtRPrice;
-  let resBsc;
-  let resAvax;
   let promises: any = []
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
@@ -58,8 +53,9 @@ export async function strategy(
   const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
   promises.push(multiAvax.execute());
 
+  // @ts-ignore
+  let jadePrice, smrtPrice, smrtRPrice, resBsc, resAvax;
   [jadePrice, smrtPrice, smrtRPrice, resBsc, resAvax] = await Promise.all(promises);
-
 
   return Object.fromEntries(
     addresses.map( (adr) => {
