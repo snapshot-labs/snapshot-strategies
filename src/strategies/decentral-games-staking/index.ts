@@ -7,6 +7,7 @@ export const version = '0.1.0';
 const defaultGraphs = {
   '137': 'https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks'
 };
+const OLD_DG_STAKING_GOVERNANCE = "0xf1d113059517dbddd99ab9caffa76fc01f0557cd";
 
 async function getChainBlockNumber(
   timestamp: number,
@@ -74,6 +75,7 @@ export async function strategy(
     network
   );
 
+  const ratio: number[] = [];
   for (const strategy of options.strategies) {
     // If snapshot is taken before a network is activated then ignore its strategies
     if (
@@ -82,6 +84,10 @@ export async function strategy(
     ) {
       continue;
     }
+
+    ratio.push(
+      strategy.params.address.toLowerCase() == OLD_DG_STAKING_GOVERNANCE ? 1000 : 1
+    );
 
     promises.push(
       strategies[strategy.name].strategy(
@@ -95,13 +101,13 @@ export async function strategy(
     );
   }
   const results = await Promise.all(promises);
-  return results.reduce((finalResults: any, strategyResult: any) => {
+  return results.reduce((finalResults: any, strategyResult: any, index: number) => {
     for (const [address, value] of Object.entries(strategyResult)) {
       if (!finalResults[address]) {
         finalResults[address] = 0;
       }
 
-      finalResults[address] += value;
+      finalResults[address] += Number(value) * ratio[index];
     }
 
     return finalResults;

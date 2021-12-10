@@ -12,8 +12,7 @@
             "description": "$DG staking on Ethereum, with x1000 voting power",
             "params": {
               "address": "0xf1d113059517dbddd99ab9caffa76fc01f0557cd",
-              "decimals": 15,
-              "description": "Origin decimal is 18 and calculate it as 15 for x1000"
+              "decimals": 18
             }
           },
           {
