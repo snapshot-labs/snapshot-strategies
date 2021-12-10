@@ -1,0 +1,17 @@
+
+[
+  {
+    "name": "xKAWA farm balance",
+    "strategy": {
+      "name": "xkawa-farm",
+      "params": {
+        "stakingPoolAddress": "0xC68844Cd3BA9d3Ad88F2cC278213F64b8C0bCddf",
+        "symbol": "xKAWA",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": ["0x41a1b36fdef3df142d5116e52d6e72c02b904fda"],
+    "snapshot": 13677274
+  }
+]
