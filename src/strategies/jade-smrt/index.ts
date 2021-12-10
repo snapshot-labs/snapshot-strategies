@@ -53,7 +53,7 @@ export async function strategy(
   const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
   promises.push(multiAvax.execute());
 
-  // @ts-ignore
+  // @ts-nocheck
   let jadePrice, smrtPrice, smrtRPrice, resBsc, resAvax;
   [jadePrice, smrtPrice, smrtRPrice, resBsc, resAvax] = await Promise.all(promises);
 
