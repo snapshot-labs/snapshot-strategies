@@ -37,10 +37,8 @@
         "decimals": 18
         },
 
-        "graphs": {
-          "56": "https://api.thegraph.com/subgraphs/name/apyvision/block-info",
-          "43114": "https://api.thegraph.com/subgraphs/name/elkfinance/avax-blocks"
-        },
+        "avaxGraph": "https://api.thegraph.com/subgraphs/name/elkfinance/avax-blocks",
+
         "startBlocks": {
           "56": 12858840,
           "43114": 7639389
