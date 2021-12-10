@@ -206,6 +206,7 @@ import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
+import * as decentralGamesStaking from './decentral-games-staking';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -412,7 +413,8 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'decentral-games-staking': decentralGamesStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

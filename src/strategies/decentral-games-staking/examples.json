@@ -1,0 +1,56 @@
+[
+  {
+    "name": "Decentral Games Multichain Voting",
+    "strategy": {
+      "name": "decentral-games-staking",
+      "params": {
+        "symbol": "VOTE",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "network": "1",
+            "description": "$DG staking on Ethereum, with x1000 voting power",
+            "params": {
+              "address": "0xf1d113059517dbddd99ab9caffa76fc01f0557cd",
+              "decimals": 15,
+              "description": "Origin decimal is 18, calculate is as 15 for x1000"
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "1",
+            "description": "xDG on Ethereum, with x1 voting power",
+            "params": {
+              "address": "0x4f81c790581b240a5c948afd173620ecc8c71c8d",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "137",
+            "description": "xDG on Polygon, with x1 voting power",
+            "params": {
+              "address": "0xc6480Da81151B2277761024599E8Db2Ad4C388C8",
+              "decimals": 18
+            }
+          }
+        ],
+        "graphs": {
+          "137": "https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks"
+        },
+        "startBlocks": {
+          "1": 11416689,
+          "137": 21711821
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x14fa6410f7c2d81f4617a4c7f0dea91235dbad1a",
+      "0xce84495650bad7346e18b7e61c732591d5b2c304",
+      "0x5a1ab3a27df49f484c4f1656836f02b8aff70a1e",
+      "0x65562b673896b1c62e4b2429a9a91c1f010b8977"
+    ],
+    "snapshot": 13727304
+  }
+]
