@@ -1,13 +1,3 @@
-# erc20-balance-of
+# xkawa-farm
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
-
-Here is an example of parameters:
-
-```json
-{
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
-  "decimals": 18
-}
-```
+Returns voting power based on xKawa token held and stacked in the xKawa Single-side farm, as well as associated pending xKawa reward
