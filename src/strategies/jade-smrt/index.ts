@@ -2,6 +2,8 @@ import { subgraphRequest } from '../../utils';
 import fetch from 'cross-fetch';
 import { Multicaller, call, getProvider } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
+import { BigNumber } from '@ethersproject/bignumber';
+
 
 export const author = 'drgorillamd';
 export const version = '1.0.0';
@@ -31,6 +33,7 @@ export async function strategy(
   const jadePrice = await geckoPrice(options.JADE.address, timestamp, 'binance-smart-chain');
   const smrtPrice = await geckoPrice(options.SMRT.address, timestamp, 'avalanche');
   const smrtRPrice = await geckoPrice(options.SMRTR.address, timestamp, 'avalanche');
+
   //BSC balances:
   const multiBsc = new Multicaller(network, provider, abi, { blockTag });
 
@@ -42,7 +45,7 @@ export async function strategy(
   const resBsc = await multiBsc.execute();
 
   // Avax balances:
-  const multiAvax = new Multicaller('43114', provider, abi, { blockTag: avaxBlockTag });
+  const multiAvax = new Multicaller('43114', getProvider('43114'), abi, { blockTag: avaxBlockTag });
 
   addresses.forEach((address) => {
     multiAvax.call(address+"-smrt", options.SMRT.address, 'balanceOf', [address]);
@@ -51,18 +54,14 @@ export async function strategy(
   });
 
   // Avax SMRTR/WAVAX pool SMRTR balance and LP token total supply
- // call('LPBalance', options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]);
- // call('LPSupply', options.SMRTRLP.address, 'totalSupply', []);
 
   const LPBalance = await call(getProvider('43114'), abi, [options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]]);
-  
   const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
-  
 
   const resAvax = await multiAvax.execute();
 
-  const smrtRWeight = smrtPrice.div(jadePrice);
-  const smrtWeight = smrtRPrice.div(jadePrice);
+  const smrtRWeight = smrtRPrice.div(jadePrice);
+  const smrtWeight = smrtPrice.div(jadePrice);
 
   return Object.fromEntries(
     addresses.map( (adr) => {
@@ -110,7 +109,7 @@ async function getAvaxBlockTag(
   return Number(data.blocks[0].number);
 }
 
-async function geckoPrice(address, timestamp, chain) {
+async function geckoPrice(address, timestamp, chain): Promise<BigNumber> {
   const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/${chain}/contract/${address}/market_chart/range?vs_currency=usd&from=${
     timestamp - 100000
   }&to=${timestamp}`;
