@@ -20,29 +20,21 @@ export async function strategy(
   snapshot
 ) {
 
-  let promises: any = []
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const block = await provider.getBlock(blockTag);
   const timestamp = block.timestamp;
   const avaxBlockTag = await getAvaxBlockTag(timestamp, options);
 
-  // Token prices :
-  promises.push(geckoPrice(options.JADE.address, timestamp, 'binance-smart-chain'));
-  promises.push(geckoPrice(options.SMRT.address, timestamp, 'avalanche'));
-  promises.push(geckoPrice(options.SMRTR.address, timestamp, 'avalanche'));
-
   // BSC balances:
   const multiBsc = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) => {
+  addresses.forEach((address: string) => {
     multiBsc.call(address+"-jade", options.JADE.address, 'balanceOf', [address]);
     multiBsc.call(address+"-sjade", options.SJADE.address, 'balanceOf', [address]);
   });
-  promises.push(multiBsc.execute());
 
   // Avax balances:
   const multiAvax = new Multicaller('43114', getProvider('43114'), abi, { blockTag: avaxBlockTag });
-  addresses.forEach((address) => {
+  addresses.forEach((address: string) => {
     multiAvax.call(address+"-smrt", options.SMRT.address, 'balanceOf', [address]);
     multiAvax.call(address+"-smrtR", options.SMRTR.address, 'balanceOf', [address]);
     multiAvax.call(address+"-smrtRLp", options.SMRTRLP.address, 'balanceOf', [address])
@@ -51,12 +43,27 @@ export async function strategy(
   // Avax SMRTR/WAVAX pool: SMRTR balance and LP token total supply
   const LPBalance = await call(getProvider('43114'), abi, [options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]]);
   const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
-  promises.push(multiAvax.execute());
 
-  const [jadePrice, smrtPrice, smrtRPrice, resBsc, resAvax] = await Promise.all(promises);
+  let jadePrice: number, 
+    smrtPrice: number, 
+    smrtRPrice: number, 
+    resBsc: Record<string, number>,
+    resAvax: [number, number, number, Record<string, number>, Record<string, number>];
+
+   [jadePrice, 
+    smrtPrice, 
+    smrtRPrice, 
+    resBsc,
+    resAvax] = await Promise.all([
+      geckoPrice(options.JADE.address, timestamp, 'binance-smart-chain'),
+      geckoPrice(options.SMRT.address, timestamp, 'avalanche'),
+      geckoPrice(options.SMRTR.address, timestamp, 'avalanche'),
+      multiBsc.execute(),
+      multiAvax.execute()
+    ]);
 
   return Object.fromEntries(
-    addresses.map( (adr) => {
+    addresses.map( (adr: string) => {
       let bal = parseFloat(formatUnits(resBsc[adr+"-jade"], options.JADE.decimals));
       bal += parseFloat(formatUnits(resBsc[adr+"-sjade"], options.SJADE.decimals));
 
