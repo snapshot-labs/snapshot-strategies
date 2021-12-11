@@ -44,11 +44,11 @@ export async function strategy(
   const LPBalance = await call(getProvider('43114'), abi, [options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]]);
   const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
 
-  let jadePrice: number, 
-    smrtPrice: number, 
-    smrtRPrice: number, 
-    resBsc: Record<string, number>,
-    resAvax: [number, number, number, Record<string, number>, Record<string, number>];
+  let jadePrice: number = 0, 
+    smrtPrice: number = 0, 
+    smrtRPrice: number = 0, 
+    resBsc: Record<string, number> = {0:0},
+    resAvax: [number, number, number, Record<string, number>, Record<string, number>] = [0,0,0,{0:0}, {0:0}];
 
    [jadePrice, 
     smrtPrice, 
