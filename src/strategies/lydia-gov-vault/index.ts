@@ -5,36 +5,8 @@ export const author = 'manes-codes';
 export const version = '1.0.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'sharesOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [],
-    name: 'getPricePerFullShare',
-    outputs: [
-      {
-        internalType: 'uint256',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function sharesOf(address account) view returns (uint256)',
+  'function getPricePerFullShare() view returns (uint256)'
 ];
 
 export async function strategy(
