@@ -8,6 +8,10 @@ const abi = [
   'function players(address key) public view returns (bool, address, uint256, uint256, uint256, uint256)'
 ];
 
+const calcScore = (score: number) => {
+  return score == 0 ? 0 : Math.floor(Math.log2(score))
+}
+
 export async function strategy(
   space,
   network,
@@ -32,7 +36,7 @@ export async function strategy(
   return Object.fromEntries(
     response.map((playerStruct, i) => [
       addresses[i],
-      Math.floor(Math.sqrt(playerStruct[SCORE_INDEX].toNumber()))
+      calcScore(playerStruct[SCORE_INDEX].toNumber())
     ])
   );
 }
