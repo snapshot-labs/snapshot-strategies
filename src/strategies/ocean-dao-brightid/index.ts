@@ -50,7 +50,9 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address, index) => {
       let addressScore = scores[address];
-      addressScore *= response[index][0] ? options.brightIdMultiplier : 1; // brightId multiplier
+      addressScore *= response[index][0]
+        ? options.brightIdMultiplier
+        : options.notVerifiedMultiplier; // brightId multiplier
       return [address, addressScore];
     })
   );
