@@ -208,6 +208,7 @@ import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
+import * as darkforestScore from './darkforest-score';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -416,7 +417,8 @@ const strategies = {
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'lydia-gov-vault': lydiaGovVault,
-  'xkawa-farm': xkawaFarm
+  'xkawa-farm': xkawaFarm,
+  'darkforest-score': darkforestScore
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
