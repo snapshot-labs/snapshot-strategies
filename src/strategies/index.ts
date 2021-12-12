@@ -201,7 +201,8 @@ import * as agave from './agave';
 import * as juicebox from './juicebox';
 import * as snetFarmers from './snet-farmers';
 import * as snetStakers from './snet-stakers';
-import * as snetLiquidityProviders from "./snet-liquidity-providers"
+import * as snetLiquidityProviders from './snet-liquidity-providers';
+import * as erc20BalanceOfNftGated from './erc20-balance-of-nft-gated';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -225,6 +226,7 @@ const strategies = {
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
+  'erc20-balance-of-nft-gated': erc20BalanceOfNftGated,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
