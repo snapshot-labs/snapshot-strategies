@@ -207,6 +207,7 @@ import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 import * as jadeSmrt from './jade-smrt';
+import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 
 const strategies = {
@@ -416,6 +417,7 @@ const strategies = {
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
+  'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm
 };
 
