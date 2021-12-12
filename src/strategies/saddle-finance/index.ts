@@ -37,7 +37,7 @@ export async function strategy(
   );
   const remappedMerkleData = await remappedMerkleDataRes.json();
 
-  const userWalletBalanceResponse = await multicall(
+  const userWalletBalanceResponse = multicall(
     network,
     provider,
     abi,
@@ -49,7 +49,7 @@ export async function strategy(
     { blockTag }
   );
 
-  const vestingAddrsBalanceRes = await multicall(
+  const vestingAddrsBalanceRes = multicall(
     network,
     provider,
     abi,
@@ -61,7 +61,7 @@ export async function strategy(
     { blockTag }
   );
 
-  const beneficiaries = await multicall(
+  const beneficiaries = multicall(
     network,
     provider,
     abi,
@@ -74,7 +74,7 @@ export async function strategy(
 
   const retroAddrs = Object.keys(remappedMerkleData);
 
-  const userVestingsRes = await multicall(
+  const userVestingsRes = multicall(
     network,
     provider,
     abi,
@@ -86,9 +86,16 @@ export async function strategy(
     { blockTag }
   );
 
+  const balances = await Promise.all([
+    userWalletBalanceResponse,
+    vestingAddrsBalanceRes,
+    beneficiaries,
+    userVestingsRes
+  ]);
+
   const retroUserBalances = {};
   retroAddrs.forEach((addr, i) => {
-    const userVesting = userVestingsRes[i];
+    const userVesting = balances[3][i];
     if (userVesting?.isVerified) {
       retroUserBalances[addr.toLowerCase()] = parseFloat(
         formatUnits(
@@ -103,17 +110,15 @@ export async function strategy(
     }
   });
 
-  const mappedBeneficiariesToVestingContract = beneficiaries.reduce(
+  const mappedBeneficiariesToVestingContract = balances[2].reduce(
     (acc, addr, i) => ({
       ...acc,
-      [addr]: parseFloat(
-        formatUnits(vestingAddrsBalanceRes[i][0].toString(), 18)
-      )
+      [addr]: parseFloat(formatUnits(balances[1][i][0].toString(), 18))
     }),
     {}
   );
 
-  const userWalletBalances = userWalletBalanceResponse.map((amount, i) => {
+  const userWalletBalances = balances[0].map((amount, i) => {
     return [
       addresses[i].toLowerCase(),
       parseFloat(formatUnits(amount.toString(), 18))
