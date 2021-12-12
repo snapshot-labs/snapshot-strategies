@@ -15,6 +15,18 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const ALLOWED_STRATEGIES = [
+    'erc20-balance-of',
+    'ocean-marketplace',
+    'sushiswap',
+    'uniswap',
+    'contract-call'
+  ];
+  if (
+    options.strategies.length > 5 ||
+    options.strategies.some((x) => !ALLOWED_STRATEGIES.includes(x.name))
+  )
+    return [];
   const response = await multicall(
     options.brightIdNetwork,
     getProvider(options.brightIdNetwork),
