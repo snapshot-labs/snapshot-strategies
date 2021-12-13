@@ -2,12 +2,18 @@
 
 Apply common mathematical operations on outputs from other strategies.
 
+## Operations
+
 Currently supported operations are:
 
-- `square-root`
-- `cube-root`
-- `min`
-- `max`
+| Operation     | Operand Count | Description                                |
+| ------------- | ------------- | ------------------------------------------ |
+| `square-root` | 1             | takes the square root of the operand       |
+| `cube-root`   | 1             | takes the cube root of the operand         |
+| `min`         | 2             | takes the smaller number of the 2 operands |
+| `max`         | 2             | takes the larger number of the 2 operands  |
+
+## Examples
 
 The following example takes the cube root of a user's DAI token balance as voting score.
 
