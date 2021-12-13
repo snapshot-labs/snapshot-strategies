@@ -1,6 +1,4 @@
-// import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
-// import { fetch } from "cross-fetch";
 
 export const author = 'cha0sg0d';
 export const version = '0.1.0';
