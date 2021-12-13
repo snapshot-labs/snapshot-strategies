@@ -1,48 +1,20 @@
 import { getProvider } from '../../utils';
 import strategies from '..';
 
+import {
+  ConstantOperand,
+  migrateLegacyOptions,
+  Operand,
+  OperandType,
+  Operation,
+  OptionalOptions,
+  Options,
+  StrategyOperand,
+  validateOptions
+} from './options';
+
 export const author = 'xJonathanLEI';
 export const version = '0.2.0';
-
-interface Options {
-  operands: Operand[] | undefined;
-  operation: Operation | undefined;
-}
-
-interface LegacyFields {
-  strategy: any; // Legacy option used in v0.1.0
-}
-
-type Operand = StrategyOperand | ConstantOperand;
-
-enum OperandType {
-  Strategy = 'strategy',
-  Constant = 'constant'
-}
-
-interface StrategyOperand {
-  type: OperandType.Strategy;
-  strategy: any;
-}
-
-interface ConstantOperand {
-  type: OperandType.Constant;
-  value: number;
-}
-
-enum Operation {
-  SquareRoot = 'square-root',
-  CubeRoot = 'cube-root',
-  Min = 'min',
-  Max = 'max'
-}
-
-const operandCountByOperation: Record<Operation, number> = {
-  [Operation.SquareRoot]: 1,
-  [Operation.CubeRoot]: 1,
-  [Operation.Min]: 2,
-  [Operation.Max]: 2
-};
 
 export async function strategy(
   space,
@@ -52,13 +24,13 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const strategyOptions: Options = migrateLegacyOptions(options);
-  validateOptions(strategyOptions);
+  const rawOptions: OptionalOptions = migrateLegacyOptions(options);
+  const strategyOptions: Options = validateOptions(rawOptions);
 
   // Recursively resolve operands
   const operandPromises: Promise<
     Record<string, number>
-  >[] = strategyOptions.operands!.map((item) =>
+  >[] = strategyOptions.operands.map((item) =>
     resolveOperand(item, addresses, space, snapshot)
   );
   const resolvedOperands: Record<string, number>[] = await Promise.all(
@@ -66,7 +38,7 @@ export async function strategy(
   );
 
   const finalResult: Record<string, number> = resolveOperation(
-    strategyOptions.operation!,
+    strategyOptions.operation,
     resolvedOperands
   );
 
@@ -151,56 +123,5 @@ async function resolveOperand(
         addresses.map((address) => [address, constantOperand.value])
       );
     }
-  }
-}
-
-function validateOptions(options: Options) {
-  if (!options.operands) {
-    throw new Error('Field `operands` missing');
-  }
-  if (!options.operation) {
-    throw new Error('Field `operation` missing');
-  }
-  if (
-    options.operation !== Operation.SquareRoot &&
-    options.operation !== Operation.CubeRoot &&
-    options.operation !== Operation.Min &&
-    options.operation !== Operation.Max
-  ) {
-    throw new Error('Invalid `operation`');
-  }
-
-  for (const operand of options.operands) {
-    if (
-      operand.type !== OperandType.Strategy &&
-      operand.type !== OperandType.Constant
-    ) {
-      throw new Error('Invalid operand type');
-    }
-  }
-
-  if (options.operands.length !== operandCountByOperation[options.operation]) {
-    throw new Error('Operand count mismatch');
-  }
-}
-
-function migrateLegacyOptions(options: Options & LegacyFields): Options {
-  if (options.strategy && options.operands) {
-    throw new Error('Only one of `strategy` and `operands` can be used');
-  }
-
-  // `strategy` was used in v0.1.0
-  if (options.strategy) {
-    return {
-      operands: [
-        {
-          type: OperandType.Strategy,
-          strategy: options.strategy
-        }
-      ],
-      operation: options.operation
-    };
-  } else {
-    return options;
   }
 }
