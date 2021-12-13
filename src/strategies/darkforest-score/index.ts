@@ -1,4 +1,5 @@
 import { subgraphRequest } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'cha0sg0d';
 export const version = '0.1.0';
@@ -42,7 +43,7 @@ export async function strategy(
 
   return Object.fromEntries(
     result.players.map(p => [
-      p.id, 
+      getAddress(p.id), 
       calcScore(parseInt(p.score))
     ])
   );
