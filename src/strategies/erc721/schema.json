@@ -8,12 +8,12 @@
       "properties": {
         "symbol": {
           "type": "string",
-          "title": "NFT symbol",
+          "title": "Symbol",
           "examples": ["e.g. DOODLE"]
         },
         "address": {
           "type": "string",
-          "title": "NFT contract address",
+          "title": "Contract address",
           "examples": ["e.g. 0x1f9840a85d5af5bf1d1762f925bdaddc4201f984"]
         }
       },
