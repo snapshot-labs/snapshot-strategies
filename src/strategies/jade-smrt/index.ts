@@ -1,6 +1,5 @@
 import { subgraphRequest } from '../../utils';
-import fetch from 'cross-fetch';
-import { Multicaller, call, getProvider } from '../../utils';
+import { Multicaller, getProvider } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'drgorillamd';
@@ -10,6 +9,11 @@ const abi = [
   'function balanceOf(address account) external view returns (uint256)',
   'function totalSupply() external view returns (uint256)'
 ];
+
+const BUSD = '0xe9e7CEA3DedcA5984780Bafc599bD69ADd087D56';
+const WAVAX = '0xB31f66AA3C1e785363F0875A1B74E27b85FD66c7';
+const USDC = '0xA7D7079b0FEaD91F3e65f86E8915Cb59c1a4C664';
+const WAVAXUSDC = '0xA389f9430876455C36478DeEa9769B7Ca4E3DDB1';
 
 export async function strategy(
   space,
@@ -32,6 +36,11 @@ export async function strategy(
     multiBsc.call(address+"-sjade", options.SJADE.address, 'balanceOf', [address]);
   });
 
+  // BUSD per JADE spot - pick CAREFULLY the block height, it is NOT a twap
+  // as a twap would require 2 additionnal multicalls (and therefore be above the Snapshot 5 calls limit)
+  multiBsc.call('jadeLPBalance', options.JADE.address, 'balanceOf', [options.JADELP.address]); // jade balance in jade-busd pool 
+  multiBsc.call('busdLPBalance', BUSD, 'balanceOf', [options.JADELP.address]); // BUSD balance in jade-busd pool 
+
   // Avax balances:
   const multiAvax = new Multicaller('43114', getProvider('43114'), abi, { blockTag: avaxBlockTag });
   addresses.forEach((address: string) => {
@@ -40,28 +49,39 @@ export async function strategy(
     multiAvax.call(address+"-smrtRLp", options.SMRTRLP.address, 'balanceOf', [address])
   });
 
-  // Avax SMRTR/WAVAX pool: SMRTR balance and LP token total supply
-  const LPBalance = await call(getProvider('43114'), abi, [options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]]);
-  const LPSupply =  await call(getProvider('43114'), abi, [options.SMRTRLP.address, 'totalSupply', []]);
+  // WAVAX per SMRT spot
+  multiAvax.call('smrtLPBalance', options.SMRT.address, 'balanceOf', [options.SMRTLP.address]); // SMRT in SMRT/WAVAX pool balance
+  multiAvax.call('wavaxSmrtLPBalance', WAVAX, 'balanceOf', [options.SMRTLP.address]); // wavax in SMRT/WAVAX pool balance
 
-  let jadePrice: number = 0, 
-    smrtPrice: number = 0, 
-    smrtRPrice: number = 0, 
-    resBsc: Record<string, number> = {0:0},
-    resAvax: [number, number, number, Record<string, number>, Record<string, number>] = [0,0,0,{0:0}, {0:0}];
+  // WAVAX per SMRTR spot
+  multiAvax.call('smrtRLPBalance', options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]);
+  multiAvax.call('wavaxSmrtRLPBalance', WAVAX, 'balanceOf', [options.SMRTRLP.address]); // SMRT SMRT/WAVAX pool balance
 
-   [jadePrice, 
-    smrtPrice, 
-    smrtRPrice, 
-    resBsc,
-    resAvax] = await Promise.all([
-      geckoPrice(options.JADE.address, timestamp, 'binance-smart-chain'),
-      geckoPrice(options.SMRT.address, timestamp, 'avalanche'),
-      geckoPrice(options.SMRTR.address, timestamp, 'avalanche'),
+  // USD per WAVAX spot
+  multiAvax.call('UsdLPBalance', USDC, 'balanceOf', [WAVAXUSDC]); // SMRT SMRT/WAVAX pool balance
+  multiAvax.call('wavaxUsdLPBalance', WAVAX, 'balanceOf', [WAVAXUSDC]); // SMRT SMRT/WAVAX pool balance
+
+  // Avax SMRTR/WAVAX pool: LP token total supply
+  multiAvax.call('smrtRLPSupply', options.SMRTRLP.address, 'totalSupply', []);
+
+
+  let resBsc: Record<string, number> | number = {0:0},
+    resAvax: [number, number, number, Record<string, number>, Record<string, number>] | number = [0,0,0,{0:0}, {0:0}];
+
+   [resBsc, resAvax] = await Promise.all([
       multiBsc.execute(),
       multiAvax.execute()
     ]);
 
+  // All prices in USDish (BUSD or USDC.e)
+  const jadePrice: number = parseFloat(formatUnits(resBsc['busdLPBalance'], 18)) / parseFloat(formatUnits(resBsc['jadeLPBalance'], 9));
+  const wavaxPrice: number = parseFloat(formatUnits(resAvax['UsdLPBalance'], 6)) / parseFloat(formatUnits(resAvax['wavaxUsdLPBalance'], 18));
+  const smrtPrice: number = wavaxPrice / ( parseFloat(formatUnits(resAvax['smrtLPBalance'], 18)) / parseFloat(formatUnits(resAvax['wavaxSmrtLPBalance'], 18)));
+  const smrtRPrice: number = wavaxPrice / ( parseFloat(formatUnits(resAvax['smrtRLPBalance'], 18)) / parseFloat(formatUnits(resAvax['wavaxSmrtRLPBalance'], 18)));
+  const smrtRLPBalance: number = parseFloat(formatUnits(resAvax['smrtRLPBalance'], 18));
+  const smrtRLPSupply: number = parseFloat(formatUnits(resAvax['smrtRLPSupply'], 18));
+
+  
   return Object.fromEntries(
     addresses.map( (adr: string) => {
       let bal = parseFloat(formatUnits(resBsc[adr+"-jade"], options.JADE.decimals));
@@ -80,11 +100,8 @@ export async function strategy(
       bal += parsedSrmtr * smrtRPrice / jadePrice;
 
       // LP token held * smrtr pool balance / LP token total supply:
-      const LPHeld = resAvax[adr+"-smrtRLp"].mul(LPBalance).div(LPSupply);
-      const parsedLP = parseFloat(formatUnits(
-        LPHeld,
-        options.SMRTR.decimals));
-      bal += parsedLP * smrtRPrice / jadePrice;
+      const LPHeld = parseFloat(formatUnits(resAvax[adr+"-smrtRLp"], 18)) * smrtRLPBalance / smrtRLPSupply;
+      bal += LPHeld * smrtRPrice / jadePrice;
 
       return [adr, bal];
     })
@@ -111,21 +128,4 @@ async function getAvaxBlockTag(
   };
   const data = await subgraphRequest(options.avaxGraph, query);
   return Number(data.blocks[0].number);
-}
-
-async function geckoPrice(address, timestamp, chain): Promise<number> {
-  const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/${chain}/contract/${address}/market_chart/range?vs_currency=usd&from=${
-    timestamp - 100000
-  }&to=${timestamp}`;
-  const coingeckoData = await fetch(coingeckoApiURL)
-    .then(async (r) => {
-      const json = await r.json();
-      return json;
-    })
-    .catch((e) => {
-      console.error(e);
-      throw new Error('jade-smrt:coingecko api failed');
-    });
-
-    return coingeckoData.prices?.pop()?.pop() || 0;
 }

@@ -19,6 +19,12 @@
           "decimals": 9
         },
 
+        "JADELP" : {
+          "network": "56",
+          "address": "0x46503d91D7a41FCbDC250E84ceE9D457d082D7b4",
+          "decimals": 18
+        },
+
         "SMRTR": {
           "network": "43114",
           "address": "0x6D923f688C7FF287dc3A5943CAeefc994F97b290",
@@ -28,6 +34,12 @@
         "SMRT": {
           "network": "43114",
           "address": "0xCC2f1d827b18321254223dF4e84dE399D9Ff116c",
+          "decimals": 18
+        },
+
+        "SMRTLP":{
+          "network": "43114",
+          "address": "0xf070843Ba9ed0ab85B0d15f9E8D67A5A8E073254",
           "decimals": 18
         },
 
