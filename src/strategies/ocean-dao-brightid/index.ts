@@ -36,7 +36,7 @@ export async function strategy(
       'isVerifiedUser',
       [address]
     ]),
-    { blockTag: 'latest' }
+    { blockTag: snapshot }
   );
   let scores = await getScoresDirect(
     space,
