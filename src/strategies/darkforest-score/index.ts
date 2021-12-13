@@ -1,12 +1,9 @@
-import { multicall } from '../../utils';
+// import { getAddress } from '@ethersproject/address';
+import { subgraphRequest } from '../../utils';
+// import { fetch } from "cross-fetch";
 
 export const author = 'cha0sg0d';
 export const version = '0.1.0';
-
-const SCORE_INDEX = 5;
-const abi = [
-  'function players(address key) public view returns (bool, address, uint256, uint256, uint256, uint256)'
-];
 
 const calcScore = (score: number) => {
   return score == 0 ? 0 : Math.floor(Math.log2(score))
@@ -19,24 +16,37 @@ export async function strategy(
   addresses,
   options,
   snapshot
-): Promise<Record<string, number>> {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+) {
 
-  const response = await multicall(
-    network,
-    provider,
-    abi,
-    addresses.map((address: any) => [
-      options.address,
-      'players',
-      [address.toLowerCase()]
-    ]),
-    { blockTag }
-  );
+  const DF_SUBGRAPH_URL = options.graph_url;
+
+  const params = {
+    players: {
+      __args: {
+        where: {
+          id_in: addresses.map((addr: string) => addr.toLowerCase())
+        },
+        first: 1000
+      },
+      id: true,
+      score: true
+    }
+  };
+
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    params.players.__args.block = { number: snapshot };
+  }
+
+  const result = await subgraphRequest(DF_SUBGRAPH_URL, {
+    ...params
+  });
+
   return Object.fromEntries(
-    response.map((playerStruct, i) => [
-      addresses[i],
-      calcScore(playerStruct[SCORE_INDEX].toNumber())
+    result.players.map(p => [
+      p.id, 
+      calcScore(parseInt(p.score))
     ])
   );
+
 }

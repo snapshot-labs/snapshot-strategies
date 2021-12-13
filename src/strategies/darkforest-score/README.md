@@ -4,7 +4,5 @@ Gets player score from Dark Forest Contract. *Must be from a round with a `score
 
 Due to the exponential nature of Dark Forest scoring, this stategy takes the log2 of each player's score.
 
-The only parameter you need to set is the Dark Forest Contract Address.
-
-For v6.4: `"address": "0x27a166aE00C33Bef64306760aCd7C9fD3c2fEB74"`
+The only input parameter is `"graph_url"`, which requires the subgraph API URL for the round in question.
 

@@ -4,8 +4,8 @@
     "strategy": {
       "name": "darkforest-score",
       "params": {
-        "address": "0x27a166aE00C33Bef64306760aCd7C9fD3c2fEB74",
-        "symbol": "SILVER"
+        "graph_url": "https://api.thegraph.com/subgraphs/name/darkforest-eth/dark-forest-v06-round-4",
+        "symbol": "log2(score)"
       }
     },
     "network": "100",
@@ -21,7 +21,8 @@
       "0xd70c35c779d0055f1bccdc24b92fa58dcdad24b4",
       "0x61f7bf167bd32bcf7042bc823bfcd24327426da7",
       "0x8459c6bebe2d53b4dcaa71499a1ae4274c0e4df9",
-      "0x021004341db64a77a01eaead4c1cbfba8bedf589"
+      "0x021004341db64a77a01eaead4c1cbfba8bedf589",
+      "0xe732654bA181fC97A42dC35Cd137CdeE2B17930F"
     ],
     "snapshot": 19546839
   }
