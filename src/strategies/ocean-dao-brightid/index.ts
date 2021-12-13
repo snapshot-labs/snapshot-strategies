@@ -28,8 +28,8 @@ export async function strategy(
   )
     return [];
   const response = await multicall(
-    options.brightIdNetwork,
-    getProvider(options.brightIdNetwork),
+    network,
+    provider,
     abi,
     addresses.map((address: any) => [
       options.registry,
