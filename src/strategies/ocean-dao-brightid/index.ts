@@ -63,8 +63,8 @@ export async function strategy(
     addresses.map((address, index) => {
       let addressScore = scores[address];
       addressScore *= response[index][0]
-        ? options.brightIdMultiplier
-        : options.notVerifiedMultiplier; // brightId multiplier
+        ? options.brightIdMultiplier // brightId multiplier
+        : options.notVerifiedMultiplier; // not verified multiplier
       return [address, addressScore];
     })
   );
