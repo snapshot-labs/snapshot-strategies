@@ -94,7 +94,6 @@ export async function strategy(
         .div(bn(parseUnits('1', options.decimals)))
     );
     options.bswLPs.forEach((lp: { address: string, pid: number }) => {
-      console.log();
       addUserBalance(
         userBalances,
         address,
