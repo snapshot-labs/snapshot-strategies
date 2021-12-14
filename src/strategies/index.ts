@@ -208,6 +208,7 @@ import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
+import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
@@ -421,6 +422,7 @@ const strategies = {
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
