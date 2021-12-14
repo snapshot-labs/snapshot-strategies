@@ -13,7 +13,7 @@ export async function strategy(
   snapshot
 ) {
   const ts = (await provider.getBlock(snapshot)).timestamp;
-  const url = `https://coordinape.me/api/${options.circle}/token-gifts?latest_epoch=1&timestamp=${ts}&snapshot=${snapshot}`;
+  const url = `https://api.coordinape.com/api/${options.circle}/token-gifts?latest_epoch=1&timestamp=${ts}&snapshot=${snapshot}`;
   const res = await fetch(url, {
     method: 'GET',
     headers: {
