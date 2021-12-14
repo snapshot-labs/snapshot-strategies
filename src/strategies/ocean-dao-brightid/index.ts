@@ -1,4 +1,4 @@
-import { getScoresDirect, multicall, getProvider } from '../../utils';
+import { getScoresDirect, multicall } from '../../utils';
 
 export const author = 'trizin';
 export const version = '0.1.0';
