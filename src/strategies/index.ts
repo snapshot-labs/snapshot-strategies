@@ -43,7 +43,9 @@ import * as pancake from './pancake';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
+import * as synthetixQuadraticOne from './synthetix-quadratic_1';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
+import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -267,7 +269,9 @@ const strategies = {
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
+  'synthetix-quadratic_1': synthetixQuadraticOne,
   'synthetix-non-quadratic': synthetixNonQuadratic,
+  'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
