@@ -54,12 +54,17 @@ export async function strategy(
     lpTotalSupplyCaller.call(address, lpAddress, 'totalSupply', []);
   });
 
-  const contractBalanceCall = () => call(provider, erc20Abi, [tokenAddress, 'balanceOf', [lpAddress]]);
+  const contractBalanceCall = () =>
+    call(provider, erc20Abi, [tokenAddress, 'balanceOf', [lpAddress]]);
 
   const [
-    lpBalanceResult, lpTotalSupplyResult, contractBalanceResult
+    lpBalanceResult,
+    lpTotalSupplyResult,
+    contractBalanceResult
   ]: FinalResult = await Promise.all([
-    lpBalanceCaller.execute(), lpTotalSupplyCaller.execute(), contractBalanceCall()
+    lpBalanceCaller.execute(),
+    lpTotalSupplyCaller.execute(),
+    contractBalanceCall()
   ]);
 
   const contractTokenBalance = parseNumber(contractBalanceResult);
@@ -68,9 +73,16 @@ export async function strategy(
     addresses.map((address) => {
       const lpBalance = parseNumber(lpBalanceResult[address]);
       const lpTotalSupply = parseNumber(lpTotalSupplyResult[address]);
-      const senderTokenShare = computeTokenContribution(lpBalance, lpTotalSupply, contractTokenBalance);
+      const senderTokenShare = computeTokenContribution(
+        lpBalance,
+        lpTotalSupply,
+        contractTokenBalance
+      );
 
-      return [address, parseFloat(formatUnits(senderTokenShare, options.lpDecimals))];
+      return [
+        address,
+        parseFloat(formatUnits(senderTokenShare, options.lpDecimals))
+      ];
     })
   );
 }

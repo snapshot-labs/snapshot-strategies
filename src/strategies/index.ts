@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
@@ -40,6 +41,7 @@ import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as synthetix from './synthetix';
+import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as ctoken from './ctoken';
@@ -201,7 +203,13 @@ import * as agave from './agave';
 import * as juicebox from './juicebox';
 import * as snetFarmers from './snet-farmers';
 import * as snetStakers from './snet-stakers';
-import * as snetLiquidityProviders from "./snet-liquidity-providers"
+import * as snetLiquidityProviders from './snet-liquidity-providers';
+import * as minMaxMcnFarm from './minmax-mcn-farm';
+import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
+import * as saddleFinance from './saddle-finance';
+import * as lydiaGovVault from './lydia-gov-vault';
+import * as xkawaFarm from './xkawa-farm';
+import * as darkforestScore from './darkforest-score';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -257,6 +265,7 @@ const strategies = {
   flashstake,
   pancake,
   synthetix,
+  'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   ctoken,
@@ -405,12 +414,20 @@ const strategies = {
   juicebox,
   'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
-  "snet-liquidity-providers": snetLiquidityProviders
+  'snet-liquidity-providers': snetLiquidityProviders,
+  'minmax-mcn-farm': minMaxMcnFarm,
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'saddle-finance': saddleFinance,
+  'lydia-gov-vault': lydiaGovVault,
+  'xkawa-farm': xkawaFarm,
+  'darkforest-score': darkforestScore
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
   let examples = null;
+  let schema = null;
   let about = '';
+
   try {
     examples = JSON.parse(
       readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
@@ -418,6 +435,15 @@ Object.keys(strategies).forEach(function (strategyName) {
   } catch (error) {
     examples = null;
   }
+
+  try {
+    schema = JSON.parse(
+      readFileSync(path.join(__dirname, strategyName, 'schema.json'), 'utf8')
+    );
+  } catch (error) {
+    schema = null;
+  }
+
   try {
     about = readFileSync(
       path.join(__dirname, strategyName, 'README.md'),
@@ -427,6 +453,7 @@ Object.keys(strategies).forEach(function (strategyName) {
     about = '';
   }
   strategies[strategyName].examples = examples;
+  strategies[strategyName].schema = schema;
   strategies[strategyName].about = about;
 });
 
