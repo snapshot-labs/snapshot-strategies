@@ -43,7 +43,9 @@ import * as pancake from './pancake';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
+import * as synthetixQuadraticOne from './synthetix-quadratic_1';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
+import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -207,6 +209,7 @@ import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 import * as jadeSmrt from './jade-smrt';
+import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
@@ -268,7 +271,9 @@ const strategies = {
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
+  'synthetix-quadratic_1': synthetixQuadraticOne,
   'synthetix-non-quadratic': synthetixNonQuadratic,
+  'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
@@ -419,6 +424,7 @@ const strategies = {
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
+  'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
