@@ -1,5 +1,6 @@
-import { readFileSync } from 'fs'
-import path from 'path'
+import { readFileSync } from 'fs';
+import path from 'path';
+
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as antiWhale from './anti-whale';
@@ -213,7 +214,6 @@ import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
-
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -429,40 +429,40 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore
-}
+};
 
 Object.keys(strategies).forEach(function (strategyName) {
-  let examples = null
-  let schema = null
-  let about = ''
+  let examples = null;
+  let schema = null;
+  let about = '';
 
   try {
     examples = JSON.parse(
       readFileSync(path.join(__dirname, strategyName, 'examples.json'), 'utf8')
-    )
+    );
   } catch (error) {
-    examples = null
+    examples = null;
   }
 
   try {
     schema = JSON.parse(
       readFileSync(path.join(__dirname, strategyName, 'schema.json'), 'utf8')
-    )
+    );
   } catch (error) {
-    schema = null
+    schema = null;
   }
 
   try {
     about = readFileSync(
       path.join(__dirname, strategyName, 'README.md'),
       'utf8'
-    )
+    );
   } catch (error) {
-    about = ''
+    about = '';
   }
-  strategies[strategyName].examples = examples
-  strategies[strategyName].schema = schema
-  strategies[strategyName].about = about
-})
+  strategies[strategyName].examples = examples;
+  strategies[strategyName].schema = schema;
+  strategies[strategyName].about = about;
+});
 
-export default strategies
+export default strategies;
