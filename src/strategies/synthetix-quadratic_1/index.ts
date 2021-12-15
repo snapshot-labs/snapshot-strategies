@@ -67,7 +67,7 @@ export async function strategy(
   _network,
   _provider,
   _addresses,
-  _,
+  _options,
   snapshot
 ) {
   const score = {};
@@ -84,13 +84,15 @@ export async function strategy(
   /* EDIT THESE FOR OVM */
 
   // @TODO update the currentDebt for the snapshot from (https://contracts.synthetix.io/ovm/DebtCache)
-  const totalL2Debt = 48646913;
+  // const totalL2Debt = 48646913;
+  const totalL2Debt = _options.totalL2Debt;
   // @TODO update the lastDebtLedgerEntry from (https://contracts.synthetix.io/ovm/SynthetixState)
-  const lastDebtLedgerEntryL2 = 9773647546760863848975891;
+  // const lastDebtLedgerEntryL2 = 9773647546760863848975891;
+  const lastDebtLedgerEntryL2 = _options.lastDebtLedgerEntryL2;
   // @TODO update the comparison between OVM:ETH c-ratios at the time of snapshot
   const normalisedL2CRatio = 500 / 400;
   // @TODO update the L2 block number to use
-  const L2BlockNumber = 919219;
+  const L2BlockNumber = _options.L2BlockNumber;
 
   const scaledTotalL2Debt = totalL2Debt * normalisedL2CRatio;
 
