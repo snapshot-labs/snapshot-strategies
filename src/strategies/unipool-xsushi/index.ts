@@ -2,7 +2,7 @@ import { multicall } from '../../utils'
 import { formatUnits } from '@ethersproject/units'
 import { BigNumber } from '@ethersproject/bignumber'
 
-export const author = 'dapplion'
+export const author = 'orakurudata'
 export const version = '0.1.0'
 
 const contractAbi = [
