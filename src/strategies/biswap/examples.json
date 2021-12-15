@@ -7,18 +7,6 @@
         "address": "0x965F527D9159dCe6288a2219DB51fc6Eef120dD1",
         "masterChef": "0xDbc1A13490deeF9c3C12b44FE77b503c1B061739",
         "autoBsw": "0x97a16ff6fd63a46bf973671762a39f3780cda73d",
-        "smartChef": [
-          "0xc7019Fb00Dc2B080DCb45A7b0A3d09b230fdb84a",
-          "0xD4855892a3188DA76da0066b9e4918939511E67a",
-          "0x9b9F3F1112E74765518cE93B1489c70F6db52bFf",
-          "0x683963df7331c65Df8ACE6818651a7611bdc39E5",
-          "0xBD09D5E5dcC904bbf8649af78d323eEfdf7b0D1D",
-          "0x8b10E6959F2915f532fE142b9C53B167eEC42fF4",
-          "0x7D621C9F70B3743CbAb15c22d781754FcD7c9589",
-          "0x131010022654B57b0C39c918ef8313ce79Fa04B8",
-          "0x6653c3c4CD2083fEbFf49A52F9a5ce4c30978A25",
-          "0x44EeCE1e9ccbaa5Ad0b8C14192467Ab83BE0BA51"
-        ],
         "bswLPs": [
           {
             "address": "0x2b30c317cedfb554ec525f85e79538d59970beb0",
@@ -34,7 +22,9 @@
       }
     },
     "network": "56",
-    "addresses": ["0x8E5210ac7b4298Ff27DAA9F19fc035c025648097"],
-    "snapshot": 13130609
+    "addresses": [
+      "0xdBE55A0daDc80EF88e884f15CE41c26c0Af933a0"
+    ],
+    "snapshot": 13454693
   }
 ]
