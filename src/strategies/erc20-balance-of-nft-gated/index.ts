@@ -68,30 +68,7 @@ async function gate(
     'function balanceOf(address account) external view returns (uint256)'
   ];
   const balanceOfBatchABI = [
-    {
-      inputs: [
-        {
-          internalType: 'address[]',
-          name: 'accounts',
-          type: 'address[]'
-        },
-        {
-          internalType: 'uint256[]',
-          name: 'ids',
-          type: 'uint256[]'
-        }
-      ],
-      name: 'balanceOfBatch',
-      outputs: [
-        {
-          internalType: 'uint256[]',
-          name: '',
-          type: 'uint256[]'
-        }
-      ],
-      stateMutability: 'view',
-      type: 'function'
-    }
+    'function balanceOfBatch(address[] accounts, uint256[] ids) view returns (uint256[])'
   ];
   let erc721Gate: string[] = [];
   let erc1155Gate: string[] = [];
