@@ -430,7 +430,7 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
-  'botto-dao': bottoDao,
+  'botto-dao': bottoDao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
