@@ -3,7 +3,7 @@ import { formatUnits, parseUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
 
-export const author = 'cronaswap-dex';
+export const author = 'CronaChef';
 export const version = '0.0.1';
 export const examples = examplesFile;
 
