@@ -23,7 +23,6 @@ export async function strategy(
   options,
   snapshot
 ) {
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const block = await provider.getBlock(blockTag);
   const timestamp = block.timestamp;
@@ -32,30 +31,52 @@ export async function strategy(
   // BSC balances:
   const multiBsc = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address: string) => {
-    multiBsc.call(address+"-jade", options.JADE.address, 'balanceOf', [address]);
-    multiBsc.call(address+"-sjade", options.SJADE.address, 'balanceOf', [address]);
+    multiBsc.call(address + '-jade', options.JADE.address, 'balanceOf', [
+      address
+    ]);
+    multiBsc.call(address + '-sjade', options.SJADE.address, 'balanceOf', [
+      address
+    ]);
   });
 
   // BUSD per JADE spot - pick CAREFULLY the block height, it is NOT a twap
   // as a twap would require 2 additionnal multicalls (and therefore be above the Snapshot 5 calls limit)
-  multiBsc.call('jadeLPBalance', options.JADE.address, 'balanceOf', [options.JADELP.address]); // jade balance in jade-busd pool 
-  multiBsc.call('busdLPBalance', BUSD, 'balanceOf', [options.JADELP.address]); // BUSD balance in jade-busd pool 
+  multiBsc.call('jadeLPBalance', options.JADE.address, 'balanceOf', [
+    options.JADELP.address
+  ]); // jade balance in jade-busd pool
+  multiBsc.call('busdLPBalance', BUSD, 'balanceOf', [options.JADELP.address]); // BUSD balance in jade-busd pool
 
   // Avax balances:
-  const multiAvax = new Multicaller('43114', getProvider('43114'), abi, { blockTag: avaxBlockTag });
+  const multiAvax = new Multicaller('43114', getProvider('43114'), abi, {
+    blockTag: avaxBlockTag
+  });
   addresses.forEach((address: string) => {
-    multiAvax.call(address+"-smrt", options.SMRT.address, 'balanceOf', [address]);
-    multiAvax.call(address+"-smrtR", options.SMRTR.address, 'balanceOf', [address]);
-    multiAvax.call(address+"-smrtRLp", options.SMRTRLP.address, 'balanceOf', [address])
+    multiAvax.call(address + '-smrt', options.SMRT.address, 'balanceOf', [
+      address
+    ]);
+    multiAvax.call(address + '-smrtR', options.SMRTR.address, 'balanceOf', [
+      address
+    ]);
+    multiAvax.call(address + '-smrtRLp', options.SMRTRLP.address, 'balanceOf', [
+      address
+    ]);
   });
 
   // WAVAX per SMRT spot
-  multiAvax.call('smrtLPBalance', options.SMRT.address, 'balanceOf', [options.SMRTLP.address]); // SMRT in SMRT/WAVAX pool balance
-  multiAvax.call('wavaxSmrtLPBalance', WAVAX, 'balanceOf', [options.SMRTLP.address]); // wavax in SMRT/WAVAX pool balance
+  multiAvax.call('smrtLPBalance', options.SMRT.address, 'balanceOf', [
+    options.SMRTLP.address
+  ]); // SMRT in SMRT/WAVAX pool balance
+  multiAvax.call('wavaxSmrtLPBalance', WAVAX, 'balanceOf', [
+    options.SMRTLP.address
+  ]); // wavax in SMRT/WAVAX pool balance
 
   // WAVAX per SMRTR spot
-  multiAvax.call('smrtRLPBalance', options.SMRTR.address, 'balanceOf', [options.SMRTRLP.address]);
-  multiAvax.call('wavaxSmrtRLPBalance', WAVAX, 'balanceOf', [options.SMRTRLP.address]); // SMRT SMRT/WAVAX pool balance
+  multiAvax.call('smrtRLPBalance', options.SMRTR.address, 'balanceOf', [
+    options.SMRTRLP.address
+  ]);
+  multiAvax.call('wavaxSmrtRLPBalance', WAVAX, 'balanceOf', [
+    options.SMRTRLP.address
+  ]); // SMRT SMRT/WAVAX pool balance
 
   // USD per WAVAX spot
   multiAvax.call('UsdLPBalance', USDC, 'balanceOf', [WAVAXUSDC]); // SMRT SMRT/WAVAX pool balance
@@ -64,54 +85,72 @@ export async function strategy(
   // Avax SMRTR/WAVAX pool: LP token total supply
   multiAvax.call('smrtRLPSupply', options.SMRTRLP.address, 'totalSupply', []);
 
+  let resBsc: Record<string, number> | number = { 0: 0 },
+    resAvax:
+      | [number, number, number, Record<string, number>, Record<string, number>]
+      | number = [0, 0, 0, { 0: 0 }, { 0: 0 }];
 
-  let resBsc: Record<string, number> | number = {0:0},
-    resAvax: [number, number, number, Record<string, number>, Record<string, number>] | number = [0,0,0,{0:0}, {0:0}];
-
-   [resBsc, resAvax] = await Promise.all([
-      multiBsc.execute(),
-      multiAvax.execute()
-    ]);
+  [resBsc, resAvax] = await Promise.all([
+    multiBsc.execute(),
+    multiAvax.execute()
+  ]);
 
   // All prices in USDish (BUSD or USDC.e)
-  const jadePrice: number = parseFloat(formatUnits(resBsc['busdLPBalance'], 18)) / parseFloat(formatUnits(resBsc['jadeLPBalance'], 9));
-  const wavaxPrice: number = parseFloat(formatUnits(resAvax['UsdLPBalance'], 6)) / parseFloat(formatUnits(resAvax['wavaxUsdLPBalance'], 18));
-  const smrtPrice: number = wavaxPrice / ( parseFloat(formatUnits(resAvax['smrtLPBalance'], 18)) / parseFloat(formatUnits(resAvax['wavaxSmrtLPBalance'], 18)));
-  const smrtRPrice: number = wavaxPrice / ( parseFloat(formatUnits(resAvax['smrtRLPBalance'], 18)) / parseFloat(formatUnits(resAvax['wavaxSmrtRLPBalance'], 18)));
-  const smrtRLPBalance: number = parseFloat(formatUnits(resAvax['smrtRLPBalance'], 18));
-  const smrtRLPSupply: number = parseFloat(formatUnits(resAvax['smrtRLPSupply'], 18));
+  const jadePrice: number =
+    parseFloat(formatUnits(resBsc['busdLPBalance'], 18)) /
+    parseFloat(formatUnits(resBsc['jadeLPBalance'], 9));
+  const wavaxPrice: number =
+    parseFloat(formatUnits(resAvax['UsdLPBalance'], 6)) /
+    parseFloat(formatUnits(resAvax['wavaxUsdLPBalance'], 18));
+  const smrtPrice: number =
+    wavaxPrice /
+    (parseFloat(formatUnits(resAvax['smrtLPBalance'], 18)) /
+      parseFloat(formatUnits(resAvax['wavaxSmrtLPBalance'], 18)));
+  const smrtRPrice: number =
+    wavaxPrice /
+    (parseFloat(formatUnits(resAvax['smrtRLPBalance'], 18)) /
+      parseFloat(formatUnits(resAvax['wavaxSmrtRLPBalance'], 18)));
+  const smrtRLPBalance: number = parseFloat(
+    formatUnits(resAvax['smrtRLPBalance'], 18)
+  );
+  const smrtRLPSupply: number = parseFloat(
+    formatUnits(resAvax['smrtRLPSupply'], 18)
+  );
 
-  
   return Object.fromEntries(
-    addresses.map( (adr: string) => {
-      let bal = parseFloat(formatUnits(resBsc[adr+"-jade"], options.JADE.decimals));
-      bal += parseFloat(formatUnits(resBsc[adr+"-sjade"], options.SJADE.decimals));
+    addresses.map((adr: string) => {
+      let bal = parseFloat(
+        formatUnits(resBsc[adr + '-jade'], options.JADE.decimals)
+      );
+      bal += parseFloat(
+        formatUnits(resBsc[adr + '-sjade'], options.SJADE.decimals)
+      );
 
       // SMRT balance * SMRT price/JADE price:
-      const parsedSmrt = parseFloat(formatUnits(
-        resAvax[adr+"-smrt"],
-        options.SMRT.decimals));
-      bal += parsedSmrt * smrtPrice / jadePrice;
+      const parsedSmrt = parseFloat(
+        formatUnits(resAvax[adr + '-smrt'], options.SMRT.decimals)
+      );
+      bal += (parsedSmrt * smrtPrice) / jadePrice;
 
       // SMRTR balance * SMRTR price/JADE price:
-      const parsedSrmtr = parseFloat(formatUnits(
-        resAvax[adr+"-smrtR"],
-        options.SMRTR.decimals));
-      bal += parsedSrmtr * smrtRPrice / jadePrice;
+      const parsedSrmtr = parseFloat(
+        formatUnits(resAvax[adr + '-smrtR'], options.SMRTR.decimals)
+      );
+      bal += (parsedSrmtr * smrtRPrice) / jadePrice;
 
       // LP token held * smrtr pool balance / LP token total supply:
-      const LPHeld = parseFloat(formatUnits(resAvax[adr+"-smrtRLp"], 18)) * smrtRLPBalance / smrtRLPSupply;
-      bal += LPHeld * smrtRPrice / jadePrice;
+      const LPHeld =
+        (parseFloat(formatUnits(resAvax[adr + '-smrtRLp'], 18)) *
+          smrtRLPBalance) /
+        smrtRLPSupply;
+      bal += (LPHeld * smrtRPrice) / jadePrice;
 
       return [adr, bal];
     })
-  );             
+  );
 }
 
-async function getAvaxBlockTag(
-  timestamp: number,
-  options
-): Promise<number> {
+async function getAvaxBlockTag(timestamp: number, options): Promise<number> {
   const query = {
     blocks: {
       __args: {

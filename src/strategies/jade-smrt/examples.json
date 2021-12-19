@@ -4,7 +4,6 @@
     "strategy": {
       "name": "jade-smrt",
       "params": {
-
         "symbol": "jade-smrt",
 
         "JADE": {
@@ -19,7 +18,7 @@
           "decimals": 9
         },
 
-        "JADELP" : {
+        "JADELP": {
           "network": "56",
           "address": "0x46503d91D7a41FCbDC250E84ceE9D457d082D7b4",
           "decimals": 18
@@ -37,16 +36,16 @@
           "decimals": 18
         },
 
-        "SMRTLP":{
+        "SMRTLP": {
           "network": "43114",
           "address": "0xf070843Ba9ed0ab85B0d15f9E8D67A5A8E073254",
           "decimals": 18
         },
 
-        "SMRTRLP":{
-        "network": "43114",
-        "address": "0x7b7617c7b2236d7871741783cae8bcc222c2e05d",
-        "decimals": 18
+        "SMRTRLP": {
+          "network": "43114",
+          "address": "0x7b7617c7b2236d7871741783cae8bcc222c2e05d",
+          "decimals": 18
         },
 
         "avaxGraph": "https://api.thegraph.com/subgraphs/name/elkfinance/avax-blocks",
@@ -57,7 +56,6 @@
         }
       }
     },
-
 
     "network": "56",
     "addresses": [
