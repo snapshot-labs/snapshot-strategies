@@ -6,13 +6,18 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. SQDV"]
+        },
         "decimals": {
           "type": "number",
           "title": "Decimals",
           "examples": ["e.g. 4"]
         }
       },
-      "required": ["decimals"],
+      "required": ["symbol", "decimals"],
       "additionalProperties": false
     }
   }

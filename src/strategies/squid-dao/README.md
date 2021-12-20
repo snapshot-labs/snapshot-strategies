@@ -4,6 +4,7 @@ Combines SquidDAO vewsSquid holders and NFT holders, returning a combined voting
 
 ```json
 {
-  "decimals": 4
+  "decimals": 4,
+  "symbol": "SQDV"
 }
 ```

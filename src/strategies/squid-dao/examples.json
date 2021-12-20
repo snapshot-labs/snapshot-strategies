@@ -4,7 +4,7 @@
     "strategy": {
       "name": "squid-dao",
       "params": {
-        "symbol": "DAI",
+        "symbol": "SQDV",
         "decimals": 4
       }
     },
