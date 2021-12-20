@@ -215,6 +215,7 @@ import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -430,7 +431,8 @@ const strategies = {
   'saddle-finance': saddleFinance,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
-  'darkforest-score': darkforestScore
+  'darkforest-score': darkforestScore,
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
