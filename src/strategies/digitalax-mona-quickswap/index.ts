@@ -16,6 +16,11 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   // Set up the GraphQL parameters and necessary variables
+  if (options.strategyType) {
+    if (options.strategyType == 'monausd') {
+      options.address = '0x856ad56defbb685db8392d9e54441df609bc5ce1';
+    }
+  }
   const holderParams = {
     pair: {
       __args: {
