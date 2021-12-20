@@ -1,4 +1,3 @@
-import { getProvider } from '../../utils';
 import strategies from '..';
 
 import {
@@ -31,7 +30,7 @@ export async function strategy(
   const operandPromises: Promise<
     Record<string, number>
   >[] = strategyOptions.operands.map((item) =>
-    resolveOperand(item, addresses, space, snapshot)
+    resolveOperand(item, addresses, space, network, provider, snapshot)
   );
   const resolvedOperands: Record<string, number>[] = await Promise.all(
     operandPromises
@@ -97,6 +96,8 @@ async function resolveOperand(
   operand: Operand,
   addresses: string[],
   space: any,
+  network: any,
+  provider: any,
   snapshot: any
 ): Promise<Record<string, number>> {
   switch (operand.type) {
@@ -107,8 +108,8 @@ async function resolveOperand(
         strategyOperand.strategy.name
       ].strategy(
         space,
-        strategyOperand.strategy.network,
-        getProvider(strategyOperand.strategy.network),
+        network,
+        provider,
         addresses,
         strategyOperand.strategy.params,
         snapshot
