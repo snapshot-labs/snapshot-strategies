@@ -22,14 +22,17 @@ export async function strategy(
     query,
     variables: {}
   };
-  const rawResponse = await fetch('http://172.168.3.38:8080/query', {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify(data)
-  });
+  const rawResponse = await fetch(
+    'https://api.orangeprotocol.io/orange2c/query',
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify(data)
+    }
+  );
   const content = await rawResponse.json();
   const list = content.data.getBasedVotingStrategy;
   return Object.fromEntries(list.map((item) => [item.address, item.score]));
