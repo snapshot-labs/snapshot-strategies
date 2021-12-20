@@ -155,6 +155,7 @@ import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as cronaswap from './cronaswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
@@ -371,6 +372,7 @@ const strategies = {
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
+  cronaswap,
   honeyswap,
   'egl-vote': eglVote,
   'mcn-farm': mcnFarm,
