@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Glide Finance Query",
+    "strategy": {
+      "name": "glide",
+      "params": {
+        "symbol": "GLIDE",
+        "glide": {
+          "numerator": 1,
+          "denominator": 1
+        },
+        "lp": {
+          "numerator": 1,
+          "denominator": 1
+        }
+      }
+    },
+    "network": "20",
+    "addresses": [
+      "0x3Ac3935326cCA3146365a39458b5905bCdAe476b",
+      "0x9e33Cc5b5835518609f1C432C0B75f6e28524e7f",
+      "0x61ffC37eFB973561d5fe91B11c14EbAd603F7d67"
+    ],
+    "snapshot": 10018666
+  }
+]
