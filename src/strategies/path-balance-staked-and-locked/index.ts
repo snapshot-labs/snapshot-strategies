@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import { multicall } from '../../utils';
 
-export const author = 'bonustrack';
+export const author = 'PathDAO';
 export const version = '0.1.1';
 
 const tokenAbi = [
