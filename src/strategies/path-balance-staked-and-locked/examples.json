@@ -14,25 +14,9 @@
           "0xfB05dc346f36eE88680e885CaC881983FAdEcBD4",
           "0x9A319F461A84EA5b508AE1e97113fD1743ED691D"
         ],
-        "methodABI": {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "_recipient",
-              "type": "address"
-            }
-          ],
-          "name": "getRemainingAmount",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "amount",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        },
+        "methodABI": [
+          "function getRemainingAmount(address _recipient) external view returns (uint256 amount)"
+        ],
         "symbol": "PATH",
         "decimals": 18
       }
