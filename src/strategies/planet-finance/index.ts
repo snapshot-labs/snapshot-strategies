@@ -23,7 +23,7 @@ const aquaAutoCompAbi = [
 ];
 
 const aquaLendingAbi = [
-  'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)',
+  'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)'
 ];
 
 const planetFinanceFarmContractAddress =
@@ -95,7 +95,6 @@ export async function strategy(
     { blockTag }
   );
 
-
   // returns user's aqua balance in aqua-bnb vault
   let usersAquaGammaVaultBalances: any = multicall(
     network,
@@ -159,14 +158,17 @@ export async function strategy(
   ]);
 
   //AQUA-GAMMA
-  erc20Multi.call('aquaGammaTotalSupply',aquaGammaLpTokenAddress,'totalSupply');
+  erc20Multi.call(
+    'aquaGammaTotalSupply',
+    aquaGammaLpTokenAddress,
+    'totalSupply'
+  );
 
   erc20Multi.call('aquaGammaAquaBal', aquaAddress, 'balanceOf', [
     aquaGammaLpTokenAddress
   ]);
 
-
-  let erc20Result = await erc20Multi.execute();
+  const erc20Result = await erc20Multi.execute();
 
   const totalSupply = erc20Result.aquaBnbTotalSupply.toString();
 
@@ -175,7 +177,6 @@ export async function strategy(
   const totalSupplyAquaGamma = erc20Result.aquaGammaTotalSupply.toString();
 
   const aquaGammaContractAquaBalance = erc20Result.aquaGammaAquaBal.toString();
-
 
   //AQUA AUTO COMPOUNDING
   autoCompMulti.call('aquaBalance', aquaAutoCompPoolAddress, 'balanceOf');
@@ -195,10 +196,9 @@ export async function strategy(
 
       address[1] +
         parseFloat(formatUnits(usersAquaVaultBalances[index].toString(), 18)) +
-        ((
-          parseFloat(
-            formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)
-          )) /
+        (parseFloat(
+          formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)
+        ) /
           parseFloat(formatUnits(totalSupply, 18))) *
           parseFloat(formatUnits(contractAquaBalance, 18)) +
         (parseFloat(
@@ -214,9 +214,8 @@ export async function strategy(
         ) /
           totalShares) *
           aquaBalance +
-        
-        (parseFloat(formatUnits(usersAquaInLending[index]['1'], 18))) *
-        parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
+        parseFloat(formatUnits(usersAquaInLending[index]['1'], 18)) *
+          parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
     ])
   );
 }

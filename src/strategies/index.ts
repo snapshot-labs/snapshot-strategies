@@ -43,7 +43,9 @@ import * as pancake from './pancake';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
+import * as synthetixQuadraticOne from './synthetix-quadratic_1';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
+import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -130,6 +132,7 @@ import * as inverseXINV from './inverse-xinv';
 import * as modefi from './modefi';
 import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
+import * as glide from './glide';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
@@ -146,12 +149,14 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
+import * as unipoolXSushi from './unipool-xsushi';
 import * as poapWithWeight from './poap-with-weight';
 import * as uniswapV3 from './uniswap-v3';
 import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as cronaswap from './cronaswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
@@ -188,6 +193,7 @@ import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
 import * as thales from './thales';
@@ -207,8 +213,16 @@ import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
+import * as jadeSmrt from './jade-smrt';
+import * as oceanDAOBrightID from './ocean-dao-brightid';
+import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
+import * as darkforestScore from './darkforest-score';
+import * as squidDao from './squid-dao';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
+import * as bottoDao from './botto-dao';
+import * as genart from './genart';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -266,7 +280,9 @@ const strategies = {
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
+  'synthetix-quadratic_1': synthetixQuadraticOne,
   'synthetix-non-quadratic': synthetixNonQuadratic,
+  'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
@@ -339,6 +355,7 @@ const strategies = {
   'iotex-staked-balance': iotexStakedBalance,
   'xrc20-balance-of': xrc20BalanceOf,
   spookyswap,
+  glide,
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
@@ -356,12 +373,14 @@ const strategies = {
   'tranche-staking-slice': trancheStakingSLICE,
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
+  'unipool-xsushi': unipoolXSushi,
   'poap-with-weight': poapWithWeight,
   'uniswap-v3': uniswapV3,
   'uniswap-v3-staking': uniswapV3Staking,
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
+  cronaswap,
   honeyswap,
   'egl-vote': eglVote,
   'mcn-farm': mcnFarm,
@@ -395,6 +414,7 @@ const strategies = {
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
+  'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
@@ -417,8 +437,16 @@ const strategies = {
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'membership-based-voting': membershipBasedVoting,
+  'jade-smrt': jadeSmrt,
+  'ocean-dao-brightid': oceanDAOBrightID,
+  'saddle-finance': saddleFinance,
   'lydia-gov-vault': lydiaGovVault,
-  'xkawa-farm': xkawaFarm
+  'xkawa-farm': xkawaFarm,
+  'darkforest-score': darkforestScore,
+  'squid-dao': squidDao,
+  'botto-dao': bottoDao,
+  genart,
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
