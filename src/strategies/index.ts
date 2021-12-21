@@ -436,7 +436,7 @@ const strategies = {
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
   'botto-dao': bottoDao,
-  genart: genart
+  genart
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
