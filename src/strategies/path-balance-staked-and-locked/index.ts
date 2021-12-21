@@ -5,14 +5,9 @@ import { Multicaller } from '../../utils';
 export const author = 'PathDAO';
 export const version = '0.1.0';
 
-const tokenAbi = [
+const constAbi = [
   'function balanceOf(address account) external view returns (uint256)'
 ];
-
-const stakingAbi = [
-  'function balanceOf(address account) external view returns (uint256)'
-];
-
 
 export async function strategy(
   space,
@@ -25,8 +20,8 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const lockedAbi = options.methodABI;
 
-  const stakingPool = new Multicaller(network, provider, stakingAbi, { blockTag });
-  const tokenPool = new Multicaller(network, provider, tokenAbi, { blockTag });
+  const stakingPool = new Multicaller(network, provider, constAbi, { blockTag });
+  const tokenPool = new Multicaller(network, provider, constAbi, { blockTag });
   const lockedPool = new Multicaller(network, provider, lockedAbi, { blockTag });
 
   addresses.forEach((address) => {
