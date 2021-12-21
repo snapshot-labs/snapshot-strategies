@@ -12,9 +12,14 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const query = `{
-    getBasedVotingStrategy(addrs: ${JSON.stringify(
-      addresses
-    )}, space: "${space}")
+    getBasedVotingStrategy(
+      addrs: ${JSON.stringify(addresses)},
+      space: "${space}",
+      snapshot: "${snapshot}",
+      network: "${network}",
+      provider: "${provider}",
+      options: { address: "${options.address}", symbol: "${options.symbol}" }
+    )
     { address score }
   }`;
   const data = {
