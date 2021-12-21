@@ -219,6 +219,7 @@ import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as genart from './genart';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -437,8 +438,9 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
+  'botto-dao': bottoDao,
+  genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
-  'botto-dao': bottoDao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
