@@ -67,7 +67,6 @@ import * as dittomoney from './dittomoney';
 import * as balancerUnipool from './balancer-unipool';
 import * as sushiswap from './sushiswap';
 import * as masterchef from './masterchef';
-import * as shinobi from './shinobi';
 import * as shinobiInTGEFarms from './shinobi-staked-in-tge-farms';
 import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
