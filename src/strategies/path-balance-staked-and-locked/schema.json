@@ -19,6 +19,9 @@
         "lockedAddresses": {
           "type": "array",
           "title": "Locked addresses",
+          "items" : {
+            "type": "string"
+          },
           "examples": ["e.g. [\"0x67f0260254FB3Cee97dA18077927888Ed72D1f17\", \"0xeE729DB66431e4401D63A38a2048d8CE0DF96eC3\", \"0x8923f2A0465287E2F8564F85a7f62ed34d947594\",\"0xfB05dc346f36eE88680e885CaC881983FAdEcBD4\"]"]
         },
         "methodABI": {
