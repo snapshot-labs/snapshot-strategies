@@ -156,6 +156,7 @@ import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as cronaswap from './cronaswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
@@ -217,7 +218,9 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as squidDao from './squid-dao';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as genart from './genart';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -375,6 +378,7 @@ const strategies = {
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
+  cronaswap,
   honeyswap,
   'egl-vote': eglVote,
   'mcn-farm': mcnFarm,
@@ -436,7 +440,9 @@ const strategies = {
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
   'squid-dao': squidDao,
-  'botto-dao': bottoDao
+  'botto-dao': bottoDao,
+  genart,
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
