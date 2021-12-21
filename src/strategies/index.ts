@@ -157,6 +157,7 @@ import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
 import * as snowswap from './snowswap';
 import * as meebitsdao from './meebitsdao';
+import * as membershipBasedVoting from './membership-based-voting';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as hasrock from './has-rock';
@@ -204,7 +205,6 @@ import * as juicebox from './juicebox';
 import * as snetFarmers from './snet-farmers';
 import * as snetStakers from './snet-stakers';
 import * as snetLiquidityProviders from './snet-liquidity-providers';
-import * as erc20BalanceOfNftGated from './erc20-balance-of-nft-gated';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 import * as lydiaGovVault from './lydia-gov-vault';
@@ -232,7 +232,6 @@ const strategies = {
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
-  'erc20-balance-of-nft-gated': erc20BalanceOfNftGated,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
@@ -417,6 +416,7 @@ const strategies = {
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'membership-based-voting': membershipBasedVoting,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm
 };
