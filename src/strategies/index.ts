@@ -132,6 +132,7 @@ import * as inverseXINV from './inverse-xinv';
 import * as modefi from './modefi';
 import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
+import * as glide from './glide';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
@@ -216,6 +217,7 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as bottoDao from './botto-dao';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -348,6 +350,7 @@ const strategies = {
   'iotex-staked-balance': iotexStakedBalance,
   'xrc20-balance-of': xrc20BalanceOf,
   spookyswap,
+  glide,
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
@@ -432,7 +435,8 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
-  'orange-reputation-based-voting': orangeReputationBasedVoting
+  'orange-reputation-based-voting': orangeReputationBasedVoting,
+  'botto-dao': bottoDao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
