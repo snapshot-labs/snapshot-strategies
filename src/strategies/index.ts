@@ -67,6 +67,7 @@ import * as dittomoney from './dittomoney';
 import * as balancerUnipool from './balancer-unipool';
 import * as sushiswap from './sushiswap';
 import * as masterchef from './masterchef';
+import * as shinobiInTGEFarms from './shinobi-staked-in-tge-farms';
 import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
 import * as typhoon from './typhoon';
@@ -268,6 +269,7 @@ const strategies = {
   masterchef,
   sushiswap,
   uniswap,
+  'shinobi-staked-in-tge-farms': shinobiInTGEFarms,
   'faraland-staking': faralandStaking,
   flashstake,
   pancake,
