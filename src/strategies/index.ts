@@ -192,6 +192,7 @@ import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
 import * as thales from './thales';
@@ -412,6 +413,7 @@ const strategies = {
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
+  'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
