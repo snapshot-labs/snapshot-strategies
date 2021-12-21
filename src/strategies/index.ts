@@ -269,7 +269,6 @@ const strategies = {
   masterchef,
   sushiswap,
   uniswap,
-  shinobi,
   'shinobi-staked-in-tge-farms': shinobiInTGEFarms,
   'faraland-staking': faralandStaking,
   flashstake,
