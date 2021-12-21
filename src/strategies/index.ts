@@ -216,6 +216,7 @@ import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 
 const strategies = {
@@ -434,6 +435,7 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'botto-dao': bottoDao
 };
 
