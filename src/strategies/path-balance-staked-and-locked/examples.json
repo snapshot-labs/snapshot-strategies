@@ -12,7 +12,8 @@
           "0xeE729DB66431e4401D63A38a2048d8CE0DF96eC3",
           "0x8923f2A0465287E2F8564F85a7f62ed34d947594",
           "0xfB05dc346f36eE88680e885CaC881983FAdEcBD4",
-          "0x9A319F461A84EA5b508AE1e97113fD1743ED691D"
+          "0x9A319F461A84EA5b508AE1e97113fD1743ED691D",
+          "0x340d07AD05607b885Fd66fcefE3c6dC5b960F27a"
         ],
         "methodABI": [
           "function getRemainingAmount(address _recipient) external view returns (uint256 amount)"
