@@ -17,7 +17,6 @@ export async function strategy(
       space: "${space}",
       snapshot: "${snapshot}",
       network: "${network}",
-      provider: "${provider}",
       options: { address: "${options.address}", symbol: "${options.symbol}" }
     )
     { address score }
