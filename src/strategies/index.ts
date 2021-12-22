@@ -156,6 +156,7 @@ import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as cronaswap from './cronaswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
@@ -191,6 +192,7 @@ import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
 import * as thales from './thales';
@@ -217,7 +219,10 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as squidDao from './squid-dao';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as genart from './genart';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -375,6 +380,7 @@ const strategies = {
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
+  cronaswap,
   honeyswap,
   'egl-vote': eglVote,
   'mcn-farm': mcnFarm,
@@ -408,6 +414,7 @@ const strategies = {
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
+  'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,
@@ -436,7 +443,10 @@ const strategies = {
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
   'orange-reputation-based-voting': orangeReputationBasedVoting,
-  'botto-dao': bottoDao
+  'squid-dao': squidDao,
+  'botto-dao': bottoDao,
+  genart,
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
