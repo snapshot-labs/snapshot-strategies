@@ -2,7 +2,7 @@
 
 This strategy is a modification of erc721-with-tokenid by dimsome. Instead of a maximum one vote per wallet, this strategy allows for multiple votes from a single wallet. For example, a wallet containing three whitelisted ERC721 TokenIDs would receive three votes.
 
-In short, this stragety provides one vote per whitelisted ERC721 TokenID- regardless of wallet distribution.
+In short, this strategy provides one vote per whitelisted ERC721 TokenID- regardless of wallet distribution.
 
 Here is an example of parameters:
 
