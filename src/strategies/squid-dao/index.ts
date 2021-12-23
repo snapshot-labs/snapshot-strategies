@@ -10,10 +10,12 @@ const nftContractAddress = '0x7136ca86129e178399b703932464df8872f9a57a';
 const sSquidContractAdress = '0x9d49bfc921f36448234b0efa67b5f91b3c691515';
 
 const vewsSquidContractAbi = [
-  'function balanceOf(address account) external view returns (uint256)'
+  'function balanceOf(address account) external view returns (uint256)',
+  'function supply() external view returns (uint256)'
 ];
 const nftContractAbi = [
-  'function balanceOf(address account) external view returns (uint256)'
+  'function balanceOf(address account) external view returns (uint256)',
+  'function totalSupply() external view returns (uint256)'
 ];
 const sSquidContractAbi = ['function index() external view returns (uint256)'];
 
@@ -37,6 +39,22 @@ export async function strategy(
     ]);
   };
 
+  const callNftSupply = () => {
+    return call(provider, nftContractAbi, [
+      nftContractAddress,
+      'totalSupply',
+      []
+    ]);
+  };
+
+  const callVewsSquidSupply = () => {
+    return call(provider, vewsSquidContractAbi, [
+      vewsSquidContractAddress,
+      'supply',
+      []
+    ]);
+  };
+
   const makeMulticaller = (abi, contractAddress) => {
     const multiCaller = new Multicaller(network, provider, abi, {
       blockTag
@@ -53,12 +71,16 @@ export async function strategy(
   );
   const nftMulti = makeMulticaller(nftContractAbi, nftContractAddress);
 
-  const [index, vewsResults, nftResults]: [
+  const [index, nftSupply, vewsSquidSupply, vewsResults, nftResults]: [
+    BigNumber,
+    BigNumber,
     BigNumber,
     MultiCallResult,
     MultiCallResult
   ] = await Promise.all([
     callIndex(),
+    callNftSupply(),
+    callVewsSquidSupply(),
     vewsSquidMulti.execute(),
     nftMulti.execute()
   ]);
@@ -76,10 +98,9 @@ export async function strategy(
     scores[address] = vewsScore.add(nftScore);
   }
 
-  const totalScore = Object.values(scores).reduce(
-    (a, b) => a.add(b),
-    BigNumber.from(0)
-  );
+  const totalScore = nftSupply
+    .mul(nftMultiplier)
+    .add(vewsSquidSupply.mul(index).div(1e9));
 
   const dec_multi = BigNumber.from(10).pow(options.decimals);
 
