@@ -17,7 +17,11 @@ export async function strategy(
       space: "${space}",
       snapshot: "${snapshot}",
       network: "${network}",
-      options: { address: "${options.address}", symbol: "${options.symbol}" }
+      options: {
+        address: "${options.address}",
+        symbol: "${options.symbol}",
+        thirdMediaType: ${JSON.stringify(options.thirdMediaType)}
+      }
     )
     { address score }
   }`;
