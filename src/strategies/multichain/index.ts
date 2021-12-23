@@ -83,7 +83,7 @@ async function getChainBlocksFromApi(
     return r.json()
   });
 
-  //Response should contain blocks object with chainId as key and block number as value
+  //Response should contain blocks object with chainIds as keys and block numbers as values
   return resp.blocks;
 }
 
