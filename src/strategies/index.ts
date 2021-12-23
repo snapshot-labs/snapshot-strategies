@@ -217,6 +217,7 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as bottoDao from './botto-dao';
+import * as voltVotingPower from './volt-voting-power';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -434,7 +435,8 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
-  'botto-dao': bottoDao
+  'botto-dao': bottoDao,
+  'volt-voting-power':voltVotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
