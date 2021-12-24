@@ -79,9 +79,7 @@ async function getChainBlocksFromApi(
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
-  }).then(r => {
-    return r.json()
-  });
+  }).then(r => r.json());
 
   //Response should contain blocks object with chainIds as keys and block numbers as values
   return resp.blocks;
