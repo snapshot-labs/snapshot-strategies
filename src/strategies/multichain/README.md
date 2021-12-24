@@ -39,7 +39,7 @@ The setting that should be set is `blockApi` and it should be an url pointing to
 
 Here is an example of parameters:
 
-In the below example, the tokens on the three networks namely ethereum, polygon and bsc denotes combined voting power and block numbers on each chain is searched from a subgraph query.
+In the below example, the tokens on the three networks namely ethereum, polygon and bsc denotes combined voting power and block numbers on each chain are searched from a subgraph query.
 
 
 ```json
