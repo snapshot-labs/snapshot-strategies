@@ -23,11 +23,13 @@ export async function strategy(
     options.tokenIds.map((id: any) => [options.address, 'ownerOf', [id]]),
     { blockTag }
   );
-  
+
   return Object.fromEntries(
     addresses.map((address: any) => [
       address,
-      response.filter((element: any) => element.owner.toLowerCase() === address.toLowerCase()).length
+      response.filter(
+        (element: any) => element.owner.toLowerCase() === address.toLowerCase()
+      ).length
     ])
   );
 }

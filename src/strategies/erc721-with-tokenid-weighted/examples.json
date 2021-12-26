@@ -6,12 +6,7 @@
       "params": {
         "address": "0x30cDAc3871c41a63767247C8D1a2dE59f5714e78",
         "symbol": "Reaper(s)",
-        "tokenIds": [
-            "2112",
-            "2871",
-            "3221",
-            "3587"
-        ]
+        "tokenIds": ["2112", "2871", "3221", "3587"]
       }
     },
     "network": "1",
