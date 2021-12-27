@@ -24,7 +24,7 @@ const vault_abi = [
 ];
 
 const dividend_abi = [
-  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
 export async function strategy(
@@ -53,14 +53,10 @@ export async function strategy(
     multi1.call(`lp2.${address}`, LP2_TOKEN, 'balanceOf', [address]);
   });
   addresses.forEach((address: any) => {
-    multi2.call(`autoStaking.${address}`, GLIDE_VAULT, 'userInfo', [
-      address
-    ]);
+    multi2.call(`autoStaking.${address}`, GLIDE_VAULT, 'userInfo', [address]);
   });
   addresses.forEach((address: any) => {
-    multi3.call(`feeStaking.${address}`, DIVIDEND_POOL, 'userInfo', [
-      address
-    ]);
+    multi3.call(`feeStaking.${address}`, DIVIDEND_POOL, 'userInfo', [address]);
   });
 
   multi1.call(`lp1.totalSupply`, LP1_TOKEN, 'totalSupply', []);
@@ -77,12 +73,7 @@ export async function strategy(
     addresses.map((address) => [
       address,
       // GLIDE in wallet
-      parseFloat(
-        formatUnits(
-          result1.glide[address],
-          18
-        )
-      ) +
+      parseFloat(formatUnits(result1.glide[address], 18)) +
         // GLIDE-ELA LP in farm
         parseFloat(
           formatUnits(
@@ -136,7 +127,7 @@ export async function strategy(
               .mul(result2.autoStaking.shares)
               .div(precision)
           )
-        ) + 
+        ) +
         // GLIDE in fee staking
         parseFloat(formatUnits(result3.feeStaking[address][0], 18))
     ])
