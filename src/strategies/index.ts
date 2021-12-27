@@ -169,6 +169,7 @@ import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
+import * as sUmamiHolders from './sumami-holders';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
@@ -450,7 +451,8 @@ const strategies = {
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
   genart,
-  'path-balance-staked-and-locked': pathBalanceStakedAndLocked
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
+  'sumami-holders': sUmamiHolders
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
