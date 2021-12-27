@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name":"contract-call-multi-outputs",
+      "params": {
+        "address": "0x73feaa1eE314F8c655E354234017bE2193C9E24E",
+        "symbol": "Cake",
+        "decimals": 18,
+        "args": [0, "%{address}"], 
+        "output":"amount",
+        "methodABI": {
+            "inputs": [
+                {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+                },
+                {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+                }
+            ],
+            "name": "userInfo",
+            "outputs": [
+                {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+                },
+                {
+                "internalType": "uint256",
+                "name": "rewardDebt",
+                "type": "uint256"
+                }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+        }
+      }  
+    },
+    "network": "56",
+    "addresses": ["0x78f65fec157cc49fd80a953edc3045334d8d58ca"],
+    "snapshot": 13839867
+  }
+]
