@@ -1,6 +1,6 @@
 [
     {
-      "name": "Voting shares of token stakers and holders on VOLT",
+      "name": "Voting shares of VOLT token stakers and holders",
       "strategy": {
         "name": "volt-voting-power",
         "params": {

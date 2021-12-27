@@ -1,6 +1,8 @@
-# vault-token-lp-balance
-
+# Voting shares of VOLT token stakers and holders
+ 
 This strategy computes users shares of volt token (erc-20) in an lp pool.
+
+The strategy calculates user votes using this formula : user's volt balance + staked volt balance + User LP share mapped volt balance
 
 You must supply the voltwap token address, symbol, decimals, network id and token address of the lp token.
 

@@ -1,7 +1,7 @@
 
 import { formatUnits } from '@ethersproject/units';
-import { getAddress } from '@ethersproject/address';
-import { subgraphRequest } from '../../utils';
+
+import { subgraphRequest, multicall } from '../../utils';
 
 export const author = 'philip';
 export const version = '0.1.0';
@@ -17,6 +17,30 @@ const SUBGRAPH_URL = {
 
 }
 
+
+const abi = [
+    {
+        constant: true,
+        inputs: [
+            {
+                internalType: 'address',
+                name: 'user',
+                type: 'address'
+            }
+        ],
+        name: 'balanceOf',
+        outputs: [
+            {
+                internalType: 'uint256',
+                name: '',
+                type: 'uint256'
+            }
+        ],
+        payable: false,
+        stateMutability: 'view',
+        type: 'function'
+    }
+];
 
 
 
@@ -34,7 +58,7 @@ export async function strategy(
 
 
 
-    const params = {
+    const voltDataparams = {
         users: {
             __args: {
                 where: {
@@ -45,10 +69,11 @@ export async function strategy(
             id: true,
 
             vaults: {
+                id: true,
                 locks: {
                     __args: {
                         where: {
-                            token: lpTokenAddress
+                            token_in: [options.voltAddress.toLowerCase(), options.lpTokenAddress.toLowerCase()]
                         }
                     },
                     id: true,
@@ -62,32 +87,32 @@ export async function strategy(
         }
     }
 
-    const params2 = {
-        users: {
+
+
+
+    const subgraphDataParams = {
+
+
+        pairs: {
             __args: {
                 where: {
-                    id_in: addresses.map((address) => address.toLowerCase())
+                    id: lpTokenAddress.toLowerCase()
                 },
-                first: 1000
+                first: 1
             },
             id: true,
+            token0:
+            {
+                id: true
+            },
+            reserve0: true,
+            token1: {
+                id: true
+            },
+            reserve1: true,
+            totalSupply: true
 
-            liquidityPositions: {
 
-                liquidityTokenBalance: true,
-                pair: {
-                    id: true,
-                    token0: {
-                        id: true
-                    },
-                    reserve0: true,
-                    token1: {
-                        id: true
-                    },
-                    reserve1: true,
-                    totalSupply: true
-                }
-            }
         }
     };
 
@@ -95,83 +120,172 @@ export async function strategy(
 
 
 
-    // For Volt single token pool    
-    if (options.lpTokenAddress.toLowerCase() === options.voltAddress.toLowerCase()) {
-        const geyserData = await subgraphRequest(SUBGRAPH_URL[options.network || network], params2)
-        const result = await subgraphRequest(SUBGRAPH_URL[options.network || network], params);
 
-        let userObj = {};
-        const results: object[] = [];
+    const poolData = await subgraphRequest(SUBGRAPH_URL[options.network || network], voltDataparams)
+
+    const subgraphData = await subgraphRequest(UNISWAP_SUBGRAPH_URL[options.network || network], subgraphDataParams);
 
 
-        if (geyserData && geyserData.geysers.length && result && result.users) {
-            const totalStake = parseFloat(formatUnits(geyserData.geysers[0].totalStake, tokenDecimals))
+    let totalVoltComposition = 0
+    let totalStake = 0
 
 
-            result.users.forEach((u) => {
-                userObj['userAddress'] = getAddress(u.id)
-                u.vaults.forEach((v) => {
-                    userObj['vaultAddress'] = v.id
-                    userObj['currentStake'] = 0
-                    v.locks.forEach(lock => {
-                        const userCurrentStake = parseFloat(formatUnits(lock.amount, tokenDecimals))
-                        const userLpShare = (userCurrentStake / totalStake) * 100
+    if (subgraphData && subgraphData.pairs) {
 
+        subgraphData.pairs.forEach((lp) => {
+            const isToken0 = lp.token0.id.toLowerCase() === options.voltAddress.toLowerCase()
+            if (isToken0) {
+                totalVoltComposition = lp.reserve0
 
-                        userObj['currentStake'] = userCurrentStake
-                        userObj['userLpShare'] = userLpShare
-                    });
+            } else {
+                totalVoltComposition = lp.reserve1
+            }
+            totalStake = Number(lp.reserve0) + Number(lp.reserve1)
 
-                });
-                results.push(userObj)
-                userObj = {}
+        });
 
-
-            });
-
-            return Object.fromEntries(
-                results.map((value, i) => [
-                    value['userAddress'],
-                    value['userLpShare']
-                ])
-            );
-        }
     }
 
 
-    const result = await subgraphRequest(UNISWAP_SUBGRAPH_URL[options.network || network], params2);
-    const score = {};
-    if (result && result.users) {
-        result.users.forEach((u) => {
 
-            u.liquidityPositions.filter(
-                (p) =>
-                    p.pair.id.toLowerCase() === options.lpTokenAddress.toLowerCase()
-            )
-                .forEach((lp) => {
-                    const userBalance = Number(lp.liquidityTokenBalance)
-                    const isToken0 = lp.pair.token0.id.toLowerCase() === options.voltAddress.toLowerCase()
-                    const totalDeposit = Number(lp.pair.reserve0) + Number(lp.pair.reserve1)
-                    let userScore = 0
-                    const userLpShare = userBalance / totalDeposit
-                  
-                    if (isToken0) {
-                        // total VOLT in the pool * user's pool percentage
-                        userScore = lp.pair.reserve0 * userLpShare
-                    } else {
-                        userScore = lp.pair.reserve1 * userLpShare
+
+
+
+
+
+
+
+    if (addresses.length && addresses.length > 200) {
+
+        const remainder1 = Math.floor(addresses.length / 3)
+        let remainder2 = remainder1 + remainder1
+        let remainder3 = remainder2
+        const response1 = await multicall(
+            network,
+            _provider,
+            abi,
+            addresses.slice(0, remainder1).map((address: any) => [
+                options.voltAddress,
+                'balanceOf',
+                [address]
+            ]),
+
+        );
+
+
+
+        const response2 = await multicall(
+            network,
+            _provider,
+            abi,
+            addresses.slice(remainder1, remainder2).map((address: any) => [
+                options.voltAddress,
+                'balanceOf',
+                [address]
+            ]),
+
+        );
+
+
+        const response3 = await multicall(
+            network,
+            _provider,
+            abi,
+            addresses.slice(remainder3).map((address: any) => [
+                options.voltAddress,
+                'balanceOf',
+                [address]
+            ]),
+
+        );
+
+
+        return Object.fromEntries(
+            [...response1, ...response2, ...response3].map((u, i) => {
+                let userLpShare = 0
+                let userCurrentStakeInVolt = 0
+                let userCurrentStakeInLP = 0
+                let stakesOfVoltInLp = 0
+
+                if (poolData && poolData.users.length) {
+
+                    let user = poolData.users.find(r => r.id.toLowerCase() === addresses[i].toLowerCase())
+                    if (user && user.vaults.length) {
+                        user.vaults.forEach((v) => {
+                            let voltLock = v.locks.find(r => r.token.toLowerCase() === options.voltAddress.toLowerCase())
+                            let lpLock = v.locks.find(r => r.token.toLowerCase() === options.lpTokenAddress.toLowerCase())
+                            if (voltLock) userCurrentStakeInVolt = parseFloat(formatUnits(voltLock.amount, tokenDecimals))
+                            if (lpLock) userCurrentStakeInLP = parseFloat(formatUnits(lpLock.amount, tokenDecimals))
+                            userLpShare = (userCurrentStakeInLP / totalStake) * 100
+                            stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition
+                        });
                     }
 
+        
+                    // user address => user's volt balance + staked volt balance + User LP share mapped volt balance                    
 
-                    const userAddress = getAddress(u.id);
-                    if (!score[userAddress]) score[userAddress] = 0;
-                    score[userAddress] = score[userAddress] + userScore;
-                    console.log(score)
-                });
-        });
+                }
+
+                return [
+                    addresses[i],
+                    parseFloat(formatUnits(u.toString(), options.decimals)) + userCurrentStakeInVolt + stakesOfVoltInLp
+                ]
+            }
+
+            )
+        );
+
     }
-    return score || {};
+
+
+    const response = await multicall(
+        network,
+        _provider,
+        abi,
+        addresses.map((address: any) => [
+            options.voltAddress,
+            'balanceOf',
+            [address]
+        ]),
+
+    );
+
+
+
+    return Object.fromEntries(
+        response.map((u, i) => {
+
+            let userLpShare = 0
+            let userCurrentStakeInVolt = 0
+            let userCurrentStakeInLP = 0
+            let stakesOfVoltInLp = 0
+
+            if (poolData && poolData.users.length) {
+
+                let user = poolData.users.find(r => r.id.toLowerCase() === addresses[i].toLowerCase())
+                if (user && user.vaults.length) {
+                    user.vaults.forEach((v) => {
+                        let voltLock = v.locks.find(r => r.token.toLowerCase() === options.voltAddress.toLowerCase())
+                        let lpLock = v.locks.find(r => r.token.toLowerCase() === options.lpTokenAddress.toLowerCase())
+                        if (voltLock) userCurrentStakeInVolt = parseFloat(formatUnits(voltLock.amount, tokenDecimals))
+                        if (lpLock) userCurrentStakeInLP = parseFloat(formatUnits(lpLock.amount, tokenDecimals))
+                        userLpShare = (userCurrentStakeInLP / totalStake) * 100
+                        stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition
+                    });
+                }
+
+                // user address => user's volt balance + staked volt balance + User LP share 
+            }
+
+            return [
+                addresses[i],
+                parseFloat(formatUnits(u.toString(), options.decimals)) + userCurrentStakeInVolt + stakesOfVoltInLp
+            ]
+
+        })
+    );
+
+
 
 }
-
 
