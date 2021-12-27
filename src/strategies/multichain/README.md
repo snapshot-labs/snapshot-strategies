@@ -4,7 +4,7 @@ If you want to calculate the balance from various chains like Ethereum, Binance 
 
 In multichain strategy, the params should define sub strategies which would use different networks mentioned in the field to combine the voting power.
 
-In order to provide multichain functionality, this strategy requires a way for calculating which block number should be used on additional chains: If a snapshot was created on block 125 on mainnet, it needs to find the timestamp for than block and go find which block number corresponds to that same timestamp on every other wanted chain. This way it can accurately represent an address' voting power at a given point in time. In order to do this, it supports 2 different mechanisms:
+In order to provide multichain functionality, this strategy requires a way for calculating which block number should be used on additional chains: If a snapshot was created on block 125 on mainnet, it needs to find the timestamp for that block and go find which block number corresponds to that same timestamp on every other wanted chain. This way it can accurately represent an address' voting power at a given point in time. In order to do this, it supports 2 different mechanisms:
 
 - [DEFAULT] Querying a block subgraph. If a working block info subgraph is found for that chain, it can be passed into the strategy's options in the "graph" objects, this will allow the strategy to query that subgraph for the given chain and fetch the block number from there. An example of a graph object could be:
 ```json
