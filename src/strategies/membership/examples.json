@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "membership-based-voting",
+      "name": "membership",
       "params": {
         "symbol": "DAI",
         "membershipStrategy": {
