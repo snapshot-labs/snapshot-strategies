@@ -11,7 +11,7 @@ export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const spaceIn = ['', space];
   if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
-  const pages = ['_1', '_2', '_3'];
+  const pages = ['_1', '_2', '_3', '_4'];
   const params = Object.fromEntries(
     pages.map((q, i) => [
       q,
@@ -40,7 +40,7 @@ export async function getDelegations(space, network, addresses, snapshot) {
     });
   }
   let result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
-  result = result._1.concat(result._2).concat(result._3);
+  result = result._1.concat(result._2).concat(result._3).concat(result._4);
 
   const delegations = result.filter(
     (delegation) =>
