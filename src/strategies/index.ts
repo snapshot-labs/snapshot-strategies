@@ -117,6 +117,7 @@ import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as erc721WithTokenId from './erc721-with-tokenid';
+import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
@@ -156,6 +157,7 @@ import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
 import * as vestedDeversifi from './vested-deversifi';
 import * as biswap from './biswap';
+import * as cronaswap from './cronaswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
@@ -191,6 +193,8 @@ import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
+import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
+import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as vesper from './vesper';
 import * as thales from './thales';
@@ -216,6 +220,9 @@ import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
+import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as squidDao from './squid-dao';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as voltVotingPower from './volt-voting-power';
 
@@ -258,6 +265,7 @@ const strategies = {
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
+  'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
@@ -375,6 +383,7 @@ const strategies = {
   'l2-deversifi': l2Deversifi,
   'vested-deversifi': vestedDeversifi,
   biswap,
+  cronaswap,
   honeyswap,
   'egl-vote': eglVote,
   'mcn-farm': mcnFarm,
@@ -408,6 +417,8 @@ const strategies = {
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
+  'digitalax-mona-stakers-matic': digitalaxMonaStakersMatic,
+  'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
   vesper,

@@ -24,7 +24,11 @@ export enum Operation {
   SquareRoot = 'square-root',
   CubeRoot = 'cube-root',
   Min = 'min',
-  Max = 'max'
+  Max = 'max',
+  AIfLtB = 'a-if-lt-b',
+  AIfLteB = 'a-if-lte-b',
+  AIfGtB = 'a-if-gt-b',
+  AIfGteB = 'a-if-gte-b'
 }
 
 interface LegacyFields {
@@ -52,7 +56,11 @@ const operandCountByOperation: Record<Operation, number> = {
   [Operation.SquareRoot]: 1,
   [Operation.CubeRoot]: 1,
   [Operation.Min]: 2,
-  [Operation.Max]: 2
+  [Operation.Max]: 2,
+  [Operation.AIfLtB]: 3,
+  [Operation.AIfLteB]: 3,
+  [Operation.AIfGtB]: 3,
+  [Operation.AIfGteB]: 3
 };
 
 export function validateOptions(rawOptions: OptionalOptions): Options {
@@ -66,7 +74,11 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
     rawOptions.operation !== Operation.SquareRoot &&
     rawOptions.operation !== Operation.CubeRoot &&
     rawOptions.operation !== Operation.Min &&
-    rawOptions.operation !== Operation.Max
+    rawOptions.operation !== Operation.Max &&
+    rawOptions.operation !== Operation.AIfLtB &&
+    rawOptions.operation !== Operation.AIfLteB &&
+    rawOptions.operation !== Operation.AIfGtB &&
+    rawOptions.operation !== Operation.AIfGteB
   ) {
     throw new Error('Invalid `operation`');
   }
