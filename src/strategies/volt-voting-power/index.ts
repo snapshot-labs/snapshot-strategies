@@ -31,7 +31,7 @@ export async function strategy(
     const voltAddress = options.voltAddress.toLowerCase()
     const tokenDecimals = options.tokenDecimals
     const network = options.network || _network
-    const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+    const blockTag = 'latest'
 
     const voltDataparams = {
         users: {
@@ -122,7 +122,7 @@ export async function strategy(
             _provider,
             addresses.slice(0, remainder1),
             {
-                address: voltAddress,
+                address: options.voltAddress,
                 decimals: tokenDecimals
             },
             blockTag
@@ -134,7 +134,7 @@ export async function strategy(
             _provider,
             addresses.slice(remainder1, remainder2),
             {
-                address: voltAddress,
+                address: options.voltAddress,
                 decimals: tokenDecimals
             },
             blockTag
@@ -146,82 +146,15 @@ export async function strategy(
             _provider,
             addresses.slice(remainder3),
             {
-                address: voltAddress,
+                address: options.voltAddress,
                 decimals: tokenDecimals
             },
             blockTag
         );
 
-      
-
-        return Object.entries({...response1, ...response2, ...response3}).map(([address, balance]) =>{
-
-                let userLpShare = 0;
-                let userCurrentStakeInVolt = 0;
-                let userCurrentStakeInLP = 0;
-                let stakesOfVoltInLp = 0;
-
-                if (poolData && poolData.users.length) {
-                    const user = poolData.users.find(
-                        (r) => r.id.toLowerCase() === address.toLowerCase()
-                    );
-                    if (user && user.vaults.length) {
-                        user.vaults.forEach((v) => {
-                            const voltLock = v.locks.find(
-                                (r) =>
-                                    r.token.toLowerCase() === voltAddress
-                            );
-                            const lpLock = v.locks.find(
-                                (r) =>
-                                    r.token.toLowerCase() === lpTokenAddress
-                            );
-                            if (voltLock)
-                                userCurrentStakeInVolt = parseFloat(
-                                    formatUnits(voltLock.amount, tokenDecimals)
-                                );
-                            if (lpLock)
-                                userCurrentStakeInLP = parseFloat(
-                                    formatUnits(lpLock.amount, tokenDecimals)
-                                );
-                            userLpShare = (userCurrentStakeInLP / totalStake) * 100;
-                            stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
-                        });
-                    }
-
-                    // user address => user's volt balance + staked volt balance + User LP share mapped volt balance
-                }
-
-                
-                
-                return [
-                    address,
-                    balance+
-                    userCurrentStakeInVolt +
-                    stakesOfVoltInLp
-                ];
-            
-            
-            }
-              
-              )
-           
-        
-    }
 
 
-    const response = await erc20BalanceOfStrategy(
-        _space,
-        network,
-        _provider,
-        addresses,
-        {
-            address: voltAddress,
-            decimals: tokenDecimals
-        },
-        blockTag
-    );
-
-    return Object.entries(response).map(([address, balance]) =>{
+        return (Object.entries({ ...response1, ...response2, ...response3 }).map(([address, balance]) => {
 
             let userLpShare = 0;
             let userCurrentStakeInVolt = 0;
@@ -258,19 +191,91 @@ export async function strategy(
                 // user address => user's volt balance + staked volt balance + User LP share mapped volt balance
             }
 
-            
-            
+
+
             return [
                 address,
                 balance +
                 userCurrentStakeInVolt +
                 stakesOfVoltInLp
             ];
-        
-        
+
+
         }
-          
-          )
-       
-    
+
+        ))
+
+
+    }
+
+
+
+
+    const response = await erc20BalanceOfStrategy(
+        _space,
+        network,
+        _provider,
+        addresses,
+        {
+            address: options.voltAddress,
+            decimals: tokenDecimals
+        },
+        blockTag
+    );
+
+
+
+    return Object.fromEntries(
+        Object.entries(response).map(([address, balance]) => {
+
+            let userLpShare = 0;
+            let userCurrentStakeInVolt = 0;
+            let userCurrentStakeInLP = 0;
+            let stakesOfVoltInLp = 0;
+
+            if (poolData && poolData.users.length) {
+                const user = poolData.users.find(
+                    (r) => r.id.toLowerCase() === address.toLowerCase()
+                );
+                if (user && user.vaults.length) {
+                    user.vaults.forEach((v) => {
+                        const voltLock = v.locks.find(
+                            (r) =>
+                                r.token.toLowerCase() === voltAddress
+                        );
+                        const lpLock = v.locks.find(
+                            (r) =>
+                                r.token.toLowerCase() === lpTokenAddress
+                        );
+                        if (voltLock)
+                            userCurrentStakeInVolt = parseFloat(
+                                formatUnits(voltLock.amount, tokenDecimals)
+                            );
+                        if (lpLock)
+                            userCurrentStakeInLP = parseFloat(
+                                formatUnits(lpLock.amount, tokenDecimals)
+                            );
+                        userLpShare = (userCurrentStakeInLP / totalStake) * 100;
+                        stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
+                    });
+                }
+
+                // user address => user's volt balance + staked volt balance + User LP share mapped volt balance
+            }
+
+
+
+            return [
+                address,
+                balance +
+                userCurrentStakeInVolt +
+                stakesOfVoltInLp
+            ];
+
+
+        }
+
+        ))
+
+
 }
