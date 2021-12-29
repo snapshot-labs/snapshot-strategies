@@ -220,7 +220,11 @@ import * as saddleFinance from './saddle-finance';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
+import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as squidDao from './squid-dao';
+import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as genart from './genart';
 import * as voltVotingPower from './volt-voting-power';
 
 const strategies = {
@@ -443,7 +447,11 @@ const strategies = {
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
+  'orange-reputation-based-voting': orangeReputationBasedVoting,
+  'squid-dao': squidDao,
   'botto-dao': bottoDao,
+  genart,
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'volt-voting-power':voltVotingPower
 };
 
