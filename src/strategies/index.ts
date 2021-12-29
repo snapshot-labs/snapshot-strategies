@@ -452,7 +452,7 @@ const strategies = {
   'botto-dao': bottoDao,
   genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
-  'volt-voting-power':voltVotingPower
+  'volt-voting-power': voltVotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

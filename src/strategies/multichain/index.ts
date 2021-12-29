@@ -79,7 +79,7 @@ async function getChainBlocksFromApi(
       Accept: 'application/json',
       'Content-Type': 'application/json'
     }
-  }).then(r => r.json());
+  }).then((r) => r.json());
 
   //Response should contain blocks object with chainIds as keys and block numbers as values
   return resp.blocks;
@@ -94,7 +94,12 @@ async function getChainBlocks(
   if (options.blockApi) {
     return await getChainBlocksFromApi(snapshot, provider, options);
   } else {
-    return await getChainBlocksFromSubGraph(snapshot, provider, options, network);
+    return await getChainBlocksFromSubGraph(
+      snapshot,
+      provider,
+      options,
+      network
+    );
   }
 }
 
