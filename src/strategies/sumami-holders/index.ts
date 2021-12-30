@@ -20,6 +20,9 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  if (options.marinateLevels.length > 4) {
+    return;
+  }
   
   const sUmamiBalances = await erc20BalanceOfStrategy(
     space,
@@ -51,7 +54,7 @@ export async function strategy(
     Object.entries(sUmamiBalances).map((address, index) => [
       address[0],
       address[1] + 
-        marinateBalances.reduce((prev: number, cur: any, idx: number) =>
+        marinateBalances.reduce((prev: number, cur: any) =>
           prev + 
           parseFloat(
             formatUnits(
