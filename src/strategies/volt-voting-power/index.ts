@@ -1,5 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
-import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+
+import { strategy as pagination } from '../pagination';
 
 import { subgraphRequest } from '../../utils';
 
@@ -102,69 +103,64 @@ export async function strategy(
     });
   }
 
-  const max = 200;
-  const pages = Math.ceil(addresses.length / max);
-  const promises: any = [];
-  Array.from(Array(pages)).forEach((x, i) => {
-    const addressesInPage = addresses.slice(max * i, max * (i + 1));
-    promises.push(
-      erc20BalanceOfStrategy(
-        _space,
-        network,
-        _provider,
-        addressesInPage,
-        {
-          address: options.voltAddress,
-          decimals: tokenDecimals
-        },
-        blockTag
-      )
-    );
-  });
+  let results: any = {};
 
-  let results: Array<any> = [];
-  results = await Promise.all(promises);
+  results = await pagination(
+    _space,
+    network,
+    _provider,
+    addresses,
+    {
+      limit: 200,
+      address: voltAddress,
+      strategy: {
+        name: 'erc20-balance-of',
+        params: {
+          address: voltAddress,
+          decimals: tokenDecimals
+        }
+      }
+    },
+    blockTag
+  );
 
   return Object.fromEntries(
     addresses.map((address) => {
-      if (results.length) {
-        const balance = results[0][address] || 0;
-        let userLpShare = 0;
-        let userCurrentStakeInVolt = 0;
-        let userCurrentStakeInLP = 0;
-        let stakesOfVoltInLp = 0;
+      const balance = results?.[address] || 0;
+      let userLpShare = 0;
+      let userCurrentStakeInVolt = 0;
+      let userCurrentStakeInLP = 0;
+      let stakesOfVoltInLp = 0;
 
-        if (poolData && poolData.users.length) {
-          const user = poolData.users.find(
-            (r) => r.id.toLowerCase() === address.toLowerCase()
-          );
-          if (user && user.vaults.length) {
-            user.vaults.forEach((v) => {
-              const voltLock = v.locks.find(
-                (r) => r.token.toLowerCase() === voltAddress
+      if (poolData && poolData.users.length) {
+        const user = poolData.users.find(
+          (r) => r.id.toLowerCase() === address.toLowerCase()
+        );
+        if (user && user.vaults.length) {
+          user.vaults.forEach((v) => {
+            const voltLock = v.locks.find(
+              (r) => r.token.toLowerCase() === voltAddress
+            );
+            const lpLock = v.locks.find(
+              (r) => r.token.toLowerCase() === lpTokenAddress
+            );
+            if (voltLock)
+              userCurrentStakeInVolt = parseFloat(
+                formatUnits(voltLock.amount, tokenDecimals)
               );
-              const lpLock = v.locks.find(
-                (r) => r.token.toLowerCase() === lpTokenAddress
+            if (lpLock)
+              userCurrentStakeInLP = parseFloat(
+                formatUnits(lpLock.amount, tokenDecimals)
               );
-              if (voltLock)
-                userCurrentStakeInVolt = parseFloat(
-                  formatUnits(voltLock.amount, tokenDecimals)
-                );
-              if (lpLock)
-                userCurrentStakeInLP = parseFloat(
-                  formatUnits(lpLock.amount, tokenDecimals)
-                );
-              userLpShare = (userCurrentStakeInLP / totalStake) * 100;
-              stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
-            });
-          }
-
-          // user address => user's volt balance + staked volt balance + User LP share mapped volt balance
+            userLpShare = (userCurrentStakeInLP / totalStake) * 100;
+            stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
+          });
         }
 
-        return [address, balance + userCurrentStakeInVolt + stakesOfVoltInLp];
+        // user address => user's volt balance + staked volt balance + User LP share mapped volt balance
       }
-      return [];
+
+      return [address, balance + userCurrentStakeInVolt + stakesOfVoltInLp];
     })
   );
 }
