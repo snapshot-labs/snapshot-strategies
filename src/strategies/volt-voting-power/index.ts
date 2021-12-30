@@ -1,5 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+
 import { subgraphRequest } from '../../utils';
 
 export const author = 'philipappiah';
@@ -101,49 +102,33 @@ export async function strategy(
     });
   }
 
-  if (addresses.length && addresses.length > 200) {
-    const remainder1 = Math.floor(addresses.length / 3);
-    const remainder2 = remainder1 + remainder1;
-    const remainder3 = remainder2;
-
-    const response1 = await erc20BalanceOfStrategy(
-      _space,
-      network,
-      _provider,
-      addresses.slice(0, remainder1),
-      {
-        address: options.voltAddress,
-        decimals: tokenDecimals
-      },
-      blockTag
+  const max = 200;
+  const pages = Math.ceil(addresses.length / max);
+  const promises: any = [];
+  Array.from(Array(pages)).forEach((x, i) => {
+    const addressesInPage = addresses.slice(max * i, max * (i + 1));
+    promises.push(
+      erc20BalanceOfStrategy(
+        _space,
+        network,
+        _provider,
+        addressesInPage,
+        {
+          address: options.voltAddress,
+          decimals: tokenDecimals
+        },
+        blockTag
+      )
     );
+  });
 
-    const response2 = await erc20BalanceOfStrategy(
-      _space,
-      network,
-      _provider,
-      addresses.slice(remainder1, remainder2),
-      {
-        address: options.voltAddress,
-        decimals: tokenDecimals
-      },
-      blockTag
-    );
+  let results: Array<any> = [];
+  results = await Promise.all(promises);
 
-    const response3 = await erc20BalanceOfStrategy(
-      _space,
-      network,
-      _provider,
-      addresses.slice(remainder3),
-      {
-        address: options.voltAddress,
-        decimals: tokenDecimals
-      },
-      blockTag
-    );
-
-    return Object.entries({ ...response1, ...response2, ...response3 }).map(
-      ([address, balance]) => {
+  return Object.fromEntries(
+    addresses.map((address) => {
+      if (results.length) {
+        const balance = results[0][address] || 0;
         let userLpShare = 0;
         let userCurrentStakeInVolt = 0;
         let userCurrentStakeInLP = 0;
@@ -179,57 +164,7 @@ export async function strategy(
 
         return [address, balance + userCurrentStakeInVolt + stakesOfVoltInLp];
       }
-    );
-  }
-
-  const response = await erc20BalanceOfStrategy(
-    _space,
-    network,
-    _provider,
-    addresses,
-    {
-      address: options.voltAddress,
-      decimals: tokenDecimals
-    },
-    blockTag
-  );
-
-  return Object.fromEntries(
-    Object.entries(response).map(([address, balance]) => {
-      let userLpShare = 0;
-      let userCurrentStakeInVolt = 0;
-      let userCurrentStakeInLP = 0;
-      let stakesOfVoltInLp = 0;
-
-      if (poolData && poolData.users.length) {
-        const user = poolData.users.find(
-          (r) => r.id.toLowerCase() === address.toLowerCase()
-        );
-        if (user && user.vaults.length) {
-          user.vaults.forEach((v) => {
-            const voltLock = v.locks.find(
-              (r) => r.token.toLowerCase() === voltAddress
-            );
-            const lpLock = v.locks.find(
-              (r) => r.token.toLowerCase() === lpTokenAddress
-            );
-            if (voltLock)
-              userCurrentStakeInVolt = parseFloat(
-                formatUnits(voltLock.amount, tokenDecimals)
-              );
-            if (lpLock)
-              userCurrentStakeInLP = parseFloat(
-                formatUnits(lpLock.amount, tokenDecimals)
-              );
-            userLpShare = (userCurrentStakeInLP / totalStake) * 100;
-            stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
-          });
-        }
-
-        // user address => user's volt balance + staked volt balance + User LP share mapped volt balance
-      }
-
-      return [address, balance + userCurrentStakeInVolt + stakesOfVoltInLp];
+      return [];
     })
   );
 }
