@@ -24,7 +24,7 @@ npm run test --strategy=eth-balance
 npm run test --strategy=eth-balance --more=200
 ```
 
-## Checklist for adding a new strategy
+### Checklist for adding a new strategy
 
 Here is a simple checklist to look when reviewing a PR for a new strategy:
 
