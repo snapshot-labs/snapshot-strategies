@@ -14,4 +14,3 @@ Can be used instead of the erc20-balance-of strategy, the space config will look
     "marinateAddress": "0x190a6b6E8e4D9B8324E1F97127c588C5b082d94b",
     "decimals": 9
 }
-```
