@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'philip';
+export const author = 'philipappiah';
 export const version = '0.1.0';
 
 const UNISWAP_SUBGRAPH_URL = {
