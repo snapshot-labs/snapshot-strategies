@@ -21,7 +21,7 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   if (options.marinateLevels.length > 4) {
-    return;
+    return [];
   }
   
   const sUmamiBalances = await erc20BalanceOfStrategy(
