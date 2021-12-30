@@ -2,12 +2,12 @@
   {
     "name": "Example query",
     "strategy": {
-      "name":"contract-call",
+      "name": "contract-call",
       "params": {
         "address": "0x0e09fabb73bd3ade0a17ecc321fd13a19e81ce82",
         "symbol": "Cake",
         "decimals": 18,
-        "methodABI":  {
+        "methodABI": {
           "inputs": [
             {
               "internalType": "address",
@@ -25,7 +25,7 @@
           ],
           "stateMutability": "view",
           "type": "function"
-        } 
+        }
       }
     },
     "network": "56",
