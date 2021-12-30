@@ -7,23 +7,8 @@ export const version = '0.1.1';
 
 // Merged ABI for sUMAMI and Marinate contracts
 const abi = [
-  {
-    inputs: [{internalType: "address",name: "account",type: "address"}],
-    name: "balanceOf",
-    outputs: [{internalType: "uint256",name: "",type: "uint256"}],
-    stateMutability: "view",
-    type: "function"
-  },
-  {
-    inputs: [
-      {internalType: "address", name: "account", type: "address"},
-      {internalType: "uint32", name: "level", type: "uint32"}
-    ],
-    name: "stakedBalance",
-    outputs: [{internalType: "uint256",name: "",type: "uint256"}],
-    stateMutability: "view",
-    type: "function"
-  }
+  'function balanceOf(address account) view returns (uint256)',
+  'function stakedBalance(address account, uint32 level) view returns (uint256)'
 ];
 
 export async function strategy(
