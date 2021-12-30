@@ -3,7 +3,7 @@ import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'arugulo';
-export const version = '0.1.1';
+export const version = '0.1.0';
 
 // Merged ABI for sUMAMI and Marinate contracts
 const abi = [
