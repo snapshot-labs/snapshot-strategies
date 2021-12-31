@@ -50,20 +50,16 @@ export async function strategy(
     )
   );
   
+  const totalMarinateBalances = marinateBalances.reduce(
+    //@ts-ignore
+    (prev, cur) => cur.map((balance, idx) => (prev[idx] || 0) + parseFloat(formatUnits(balance.toString(), options.decimals))), []
+  );
+  
   return Object.fromEntries(
     Object.entries(sUmamiBalances).map((address, index) => [
       address[0],
-      address[1] + 
-        marinateBalances.reduce((prev: number, cur: any) =>
-          prev + 
-          parseFloat(
-            formatUnits(
-              cur[index].amount.toString(),
-              options.decimals
-            )
-          ),
-        0
-      )
+      //@ts-ignore
+      address[1] + totalMarinateBalances[index]
     ])
   );
 }
