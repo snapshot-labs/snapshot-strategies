@@ -117,6 +117,7 @@ import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as erc721WithTokenId from './erc721-with-tokenid';
+import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
@@ -266,6 +267,7 @@ const strategies = {
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
+  'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
