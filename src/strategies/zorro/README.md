@@ -1,21 +1,30 @@
 # Zorro Proof of Personhood
 
-- Returns `1` or `0` depending on whether the voter's address has proven to be a unique person within your Snapshot space using Zorro (https://zorro.xyz). No matter how many Ethereum addresses someone creates, Zorro aims to make it so only one of them can receive a `1` from this strategy within a given `purposeIdentifier`.
-- Takes an optionl arg `purposeIdentifier`. By default, `purposeIdentifier` is your snapshot space id (e.g. yourspace.eth). If you want to, you can override this parameter by setting a param.
+This strategy distributes voting power democratically using the Zorro Proof of Personhood protocol (https://zorro.xyz).
 
-## Example parameters
+- The voting power of an address is `0` if they have not been proven as a unique person within your Snapshot space. If they are proven unique, then their voting power is given by the `power` parameter (which defaults to `1`).
 
-#### Omit `purposeIdentifer` to use the default of your space's ens name
+- No matter how many Ethereum addresses someone creates, Zorro aims to make it so only one of them can receive a non-zero voting power from this strategy for a given `purposeIdentifier` (which defaults to your space's ENS name).
 
-```json
-{}
-```
+## Example options parameters
 
-#### Custom `purposeIdentifier`
+#### Minimal example
 
 ```json
 {
-  "purposeIdentifier": "YourDaoName"
+  "symbol": "VOTES"
+}
+```
+
+In the above example, `purposeIdentifier` defaults to your space's ens name (e.g. `yourdao.eth`), and `power` defaults to `1`.
+
+#### options
+
+```json
+{
+  "symbol": "VOTES",
+  "purposeIdentifier": "YourDaoName",
+  "power": 1000
 }
 ```
 

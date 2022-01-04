@@ -26,7 +26,11 @@ export async function strategy(
   const lookup = Object.fromEntries(
     verifiedExternalAddresses.map((addr) => [addr.toLowerCase(), true])
   );
+  const power = options.power || 1;
   return Object.fromEntries(
-    addresses.map((address) => [address, lookup[address.toLowerCase()] ? 1 : 0])
+    addresses.map((address) => [
+      address,
+      lookup[address.toLowerCase()] ? power : 0
+    ])
   );
 }
