@@ -228,6 +228,7 @@ import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as genart from './genart';
+import * as zorro from './zorro';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -456,7 +457,8 @@ const strategies = {
   'botto-dao': bottoDao,
   genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
-  'sumami-holders': sUmamiHolders
+  'sumami-holders': sUmamiHolders,
+  zorro
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
