@@ -47,7 +47,7 @@ export async function strategy(
 
   // Calculate the score
   return Object.fromEntries(
-    addresses.map((address, addr_idx) => {
+    addresses.map(address => {
       let addressScore = 0;
 
       // If the address is a delegator, its score is zero since it delegated it away
