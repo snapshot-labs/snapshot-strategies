@@ -52,7 +52,7 @@ export async function strategy(
 
   const totalMarinateBalances = marinateBalances.reduce(
     //@ts-ignore
-    (prev, cur) =>
+    (prev: any, cur: any) =>
       cur.map(
         (balance, idx) =>
           (prev[idx] || 0) +
