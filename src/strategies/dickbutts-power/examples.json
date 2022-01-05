@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dickbutts-power",
+      "params": {
+        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "symbol": "CDB"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x151f444d27d865b7c732386c26abf735e47a9333",
+      "0x07cc65ec4de72fdf7d2b6c39fd80c4ea4706215b",
+      "0xb2a2a6a69e7a0ad66943f4c2869d45a9919cf740",
+      "0xd7a9ccad4ddb88f9a39fcc87748a045767baf5dd"
+    ],
+    "snapshot": 13942255
+  }
+]
