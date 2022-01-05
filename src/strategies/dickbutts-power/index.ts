@@ -29,9 +29,9 @@ export async function strategy(
     )
   );
 
-  const scores = {};
+  const scores: Record<string, number> = {};
   for (const [index, response] of responses.entries()) {
-    const { votes } = await response.json();
+    const { votes }: { votes: number } = await response.json();
     const address = getAddress(addresses[index]);
     if (!scores[address]) scores[address] = 0;
     scores[address] += votes;
