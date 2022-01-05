@@ -99,42 +99,7 @@ export async function strategy(
       } else {
         page = -1;
       }
-      console.log('version', version, 'page', page, score)
     }
   }
   return score || {};
 }
-
-// Working on https://thegraph.com/hosted-service/subgraph/balancer-labs/balancer-v2
-/*
-  {
-  pool (
-    id: "0xcb0e14e96f2cefa8550ad8e4aea344f211e5061d00020000000000000000011a"
-  ) {
-    id address name totalWeight 
-    totalLiquidity totalShares holdersCount principalToken
-    shares (
-      where: {
-        userAddress_in: [
-          "0x0951ff0835302929d6c0162b3d2495a85e38ec3a",
-          "0x5d577c1cdaf838b264c7d977449c776ef664d654",
-          "0xefa5121ddac8d083a5a4c3d42e2bfaab2f0390dc",
-          "0x0ddc793680ff4f5793849c8c6992be1695cbe72a",
-        ]
-      }
-    ) {
-      id
-      userAddress { id }
-      balance
-      poolId {
-        id
-        totalShares
-        tokens {
-          id
-          balance
-        }
-      }
-    }
-  }
-}
-*/
