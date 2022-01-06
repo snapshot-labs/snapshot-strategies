@@ -1,7 +1,7 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
-export const author = 'snoopy';
+export const author = 'ChefSnoopy';
 export const version = '0.1.0';
 
 function getArgs(options, address: string) {
