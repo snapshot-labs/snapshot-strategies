@@ -20,26 +20,37 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const response = await multicall(
-    network,
-    provider,
-    [options.methodABI],
-    addresses.map((address: any) => [
-      options.address,
-      options.methodABI.name,
-      getArgs(options, address)
-    ]),
-    { blockTag }
-  );
-  return Object.fromEntries(
-    response.map((value, i) => [
-      addresses[i],
-      parseFloat(
-        formatUnits(
-          options?.output ? value[options.output].toString() : value.toString(),
-          options.decimals
+  try {
+    const response = await multicall(
+      network,
+      provider,
+      [options.methodABI],
+      addresses.map((address: any) => [
+        options.address,
+        options.methodABI.name,
+        getArgs(options, address)
+      ]),
+      { blockTag }
+    );
+    return Object.fromEntries(
+      response.map((value, i) => [
+        addresses[i],
+        parseFloat(
+          formatUnits(
+            options?.output
+              ? value[options.output].toString()
+              : value.toString(),
+            options.decimals
+          )
         )
-      )
-    ])
-  );
+      ])
+    );
+  } catch (e) {
+    return Object.fromEntries(
+      addresses.map((address) => [
+        address,
+        parseFloat(formatUnits('0', options.decimals))
+      ])
+    );
+  }
 }
