@@ -230,7 +230,7 @@ import * as bottoDao from './botto-dao';
 import * as genart from './genart';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
-import * as balancerPoolId from './balancer-poolId';
+import * as balancerPoolid from './balancer-poolid';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -462,7 +462,7 @@ const strategies = {
   'sumami-holders': sUmamiHolders,
   zorro,
   'volt-voting-power': voltVotingPower, 
-  'balancer-poolId': balancerPoolId
+  'balancer-poolid': balancerPoolid
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

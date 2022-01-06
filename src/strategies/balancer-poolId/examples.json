@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "balancer-poolId",
+      "name": "balancer-poolid",
       "params": {
         "poolId": "0xcb0e14e96f2cefa8550ad8e4aea344f211e5061d00020000000000000000011a",
         "token": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",

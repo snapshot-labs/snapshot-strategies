@@ -89,8 +89,7 @@ export async function strategy(
               const userAddress = getAddress(poolShare.userAddress.id);
               if (!score[userAddress]) score[userAddress] = 0;
               score[userAddress] =
-                score[userAddress] +
-                (poolToken.balance / pool.totalShares) * poolShare.balance;
+                score[userAddress] + (poolShare.balance / pool.totalShares) * poolToken.balance;
             }
           });
         });
