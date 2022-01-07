@@ -15,7 +15,6 @@ const blacklistedAddresses = [
   '0x820f92c1b3ad8e962e6c6d9d7caf2a550aec46fb', // Banana Tip.cc
   '0x9ffad2ff3a59d8579e3b0edc6c8f2f591c94dfab', // Banana cyberkongz.eth
   '0xe058d87fc1185e38ab68893136834715b30961e1', // Banana Rewarder
-  '0xb14b87790643d2dab44b06692d37dd95b4b30e56', // ?
   '0xe2311ae37502105b442bbef831e9b53c5d2e9b3b'  // CyberKongZ: BANANA Token
 ];
 

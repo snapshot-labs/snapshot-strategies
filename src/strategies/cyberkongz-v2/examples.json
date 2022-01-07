@@ -2,7 +2,7 @@
   {
     "name": "CyberKongz, CyberKongz VX and Banana holdings",
     "strategy": {
-      "name": "cyberkongz",
+      "name": "cyberkongz-v2",
       "params": {
         "symbol": "KONGZ",
         "registries": [
@@ -20,17 +20,8 @@
       "0x9279c4cfb0e85e2dff8825ce141f9794c7c7170a",
       "0x6f35b0cfc58eb1e21eef8a439bbb0ce4c929d32a",
       "0xe34bded2b256430a9be53cbf5cba3b6d866d55f3",
-      "0x031c690be2932403cbdd85f8853f596794cff6c3",
-      "0xb14b87790643d2dab44b06692d37dd95b4b30e56",
-      "0x9d59eba4deaee09466ba9d4073bf912bc72982b0", 
-      "0x0f4676178b5c53ae0a655f1b19a96387e4b8b5f2",
-      "0xcfa9a297a406a48d1137172c18de04c944b47ba9",
-      "0x820f92c1b3ad8e962e6c6d9d7caf2a550aec46fb", 
-      "0x9ffad2ff3a59d8579e3b0edc6c8f2f591c94dfab",
-      "0xe058d87fc1185e38ab68893136834715b30961e1",
-      "0xb14b87790643d2dab44b06692d37dd95b4b30e56",
-      "0xe2311ae37502105b442bbef831e9b53c5d2e9b3b" 
-    ],
+      "0xb14b87790643d2dab44b06692d37dd95b4b30e56"
+      ],
     "snapshot": 13322697
   }
 ]
