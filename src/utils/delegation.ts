@@ -40,7 +40,11 @@ export async function getDelegations(space, network, addresses, snapshot) {
     });
   }
   let result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
-  result = result._1.concat(result._2).concat(result._3).concat(result._4).concat(result._5);
+  result = result._1
+    .concat(result._2)
+    .concat(result._3)
+    .concat(result._4)
+    .concat(result._5);
 
   const delegations = result.filter(
     (delegation) =>
