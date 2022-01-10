@@ -222,6 +222,7 @@ import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
 import * as squidDao from './squid-dao';
+import * as dogDao from './dog-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as genart from './genart';
@@ -448,6 +449,7 @@ const strategies = {
   'darkforest-score': darkforestScore,
   'orange-reputation-based-voting': orangeReputationBasedVoting,
   'squid-dao': squidDao,
+  'dog-dao': dogDao,
   'botto-dao': bottoDao,
   genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked

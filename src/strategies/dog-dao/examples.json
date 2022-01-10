@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dog-dao",
+      "params": {
+        "symbol": "$DOG",
+        "decimals": 4
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfd4f24676ed4588928213f37b126b53c07186f45",
+      "0xec6d36a487d85cf562b7b8464ce8dc60637362ac"
+    ],
+    "snapshot": 13837434
+  }
+]
