@@ -30,14 +30,11 @@ const params = {
     __args: { id: "" },
     totalShares: true,
     address: true, 
-    totalLiquidity: true,
     tokens: {
       __args: {
         where: {address: ""}
       },
-      id: true,
       balance: true,
-      decimals: true,
       address: true,
     },
     shares: {
