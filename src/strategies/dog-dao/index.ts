@@ -1,11 +1,11 @@
-// import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { BigNumber } from '@ethersproject/bignumber';
 // import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'zencephalon';
 export const version = '0.0.0';
 
-const address = {
+const contract = {
   dog: '0xBAac2B4491727D78D2b78815144570b9f2Fe8899'
 };
 
@@ -38,9 +38,16 @@ export async function strategy(
     return multiCaller;
   };
 
-  const dogMulti = makeMulticaller(abi.erc20, address.dog);
+  const dogMulti = makeMulticaller(abi.erc20, contract.dog);
 
   const [dogBalances] = await Promise.all([dogMulti.execute()]);
 
-  return dogBalances;
+  console.log(dogBalances);
+  const votes = {};
+
+  for (const a of addresses) {
+    votes[a] = dogBalances[a].div(BigNumber.from(10).pow(18)).toNumber() || 0;
+  }
+
+  return votes;
 }
