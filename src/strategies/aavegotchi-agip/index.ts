@@ -3,7 +3,7 @@ import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'candoizo';
-export const version = '0.1.1';
+export const version = '0.1.0';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
@@ -72,9 +72,6 @@ export async function strategy(
       gotchisOwned: {
         baseRarityScore: true,
         equippedWearables: true
-      },
-      parcelsOwned: {
-        size: true
       }
     }
   };
@@ -88,26 +85,9 @@ export async function strategy(
     if (itemValue > 0) prices[parseInt(itemInfo.svgId)] = itemValue;
   });
 
-  // agip 17: Voting power of 0.5 GHST/pixel
-  const realmSizeVotePower = {
-    0: 32, // humble
-    1: 128, // reasonable
-    2: 1028, // spacious vertical
-    3: 1028, // spacious horizontal
-    4: 2048 // partner
-  };
-
   const walletScores = {};
-  result.users.map(({ id, gotchisOwned, parcelsOwned }) => {
-    let realmVotingPowerValue = 0;
-    if (parcelsOwned.length > 0) {
-      parcelsOwned.map(({ size }) => {
-        let votePower = realmSizeVotePower[size];
-        if (isNaN(votePower)) votePower = 0;
-        realmVotingPowerValue += votePower;
-      });
-    }
-
+  result.users.map((addrInfo) => {
+    const { id, gotchisOwned } = addrInfo;
     let gotchisBrsEquipValue = 0;
     if (gotchisOwned.length > 0)
       gotchisOwned.map((gotchi) => {
@@ -137,8 +117,7 @@ export async function strategy(
     const addr = addresses.find(
       (addrOption: string) => addrOption.toLowerCase() === id
     );
-    walletScores[addr] =
-      realmVotingPowerValue + ownerItemValue + gotchisBrsEquipValue;
+    walletScores[addr] = ownerItemValue + gotchisBrsEquipValue;
   });
   addresses.map((addr) => {
     if (!walletScores[addr]) walletScores[addr] = 0;
