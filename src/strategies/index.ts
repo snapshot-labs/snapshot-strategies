@@ -465,7 +465,7 @@ const strategies = {
   'sumami-holders': sUmamiHolders,
   zorro,
   'volt-voting-power': voltVotingPower, 
-  'balancer-poolid': balancerPoolid
+  'balancer-poolid': balancerPoolid,
   'staked-balancer': stakedBalancer,
 };
 
