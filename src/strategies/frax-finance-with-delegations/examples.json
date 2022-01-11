@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "frax-finance",
+      "name": "frax-finance-with-delegations",
       "params": {
         "symbol": "FXS",
         "decimals": 18,

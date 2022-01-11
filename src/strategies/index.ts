@@ -36,6 +36,7 @@ import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
 import * as fraxFinance from './frax-finance';
+import * as fraxFinanceWithDelegations from './frax-finance-with-delegations';
 import * as moloch from './moloch';
 import * as uniswap from './uniswap';
 import * as faralandStaking from './faraland-staking';
@@ -281,6 +282,7 @@ const strategies = {
   multichain,
   uni,
   'frax-finance': fraxFinance,
+  'frax-finance-with-delegations': fraxFinanceWithDelegations,
   'yearn-vault': yearnVault,
   moloch,
   masterchef,
