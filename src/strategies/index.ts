@@ -231,6 +231,7 @@ import * as bottoDao from './botto-dao';
 import * as genart from './genart';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
+import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 
 const strategies = {
@@ -463,7 +464,8 @@ const strategies = {
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'sumami-holders': sUmamiHolders,
   zorro,
-  'volt-voting-power': voltVotingPower,
+  'volt-voting-power': voltVotingPower, 
+  'balancer-poolid': balancerPoolid
   'staked-balancer': stakedBalancer,
 };
 
