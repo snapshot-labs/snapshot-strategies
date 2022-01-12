@@ -58,7 +58,6 @@ export async function strategy(
     sSnoopMulti.execute()
   ]);
 
-  console.log(dogBalances);
   const votes = {};
 
   for (const a of addresses) {
