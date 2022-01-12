@@ -232,6 +232,7 @@ import * as genart from './genart';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
 import * as balancerPoolid from './balancer-poolid';
+import * as stakedBalancer from './staked-balancer';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -464,7 +465,8 @@ const strategies = {
   'sumami-holders': sUmamiHolders,
   zorro,
   'volt-voting-power': voltVotingPower, 
-  'balancer-poolid': balancerPoolid
+  'balancer-poolid': balancerPoolid,
+  'staked-balancer': stakedBalancer,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
