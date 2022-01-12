@@ -180,6 +180,7 @@ import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
+import * as cyberkongzV2 from './cyberkongz-v2';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
@@ -412,6 +413,7 @@ const strategies = {
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
   cyberkongz: cyberkongz,
+  'cyberkongz-v2': cyberkongzV2, 
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
