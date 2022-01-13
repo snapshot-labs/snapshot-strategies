@@ -1,6 +1,6 @@
+import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import fetch from 'cross-fetch';
 import { vestingContractAddrs } from './vestingContractAddrs';
 
 export const author = 'saddle-finance';
@@ -12,7 +12,8 @@ const RetroRewardsContract = '0x5DCA270671935cf3dF78bd8373C22BE250198a03';
 const abi = [
   'function balanceOf(address) external view returns (uint256)',
   'function beneficiary() external view returns (address)',
-  'function vestings(address) external view returns (bool isVerified, uint120 totalAmount, uint120 released)'
+  'function vestings(address) external view returns (bool isVerified, uint120 totalAmount, uint120 released)',
+  'function vestedAmount() public view returns (uint256)'
 ];
 
 export async function strategy(
@@ -49,18 +50,6 @@ export async function strategy(
     { blockTag }
   );
 
-  const vestingAddrsBalanceRes = multicall(
-    network,
-    provider,
-    abi,
-    vestingContractAddrs.map((vestingContractAddress: any) => [
-      SDLTokenAddress,
-      'balanceOf',
-      [vestingContractAddress.toLowerCase()]
-    ]),
-    { blockTag }
-  );
-
   const beneficiaries = multicall(
     network,
     provider,
@@ -68,6 +57,17 @@ export async function strategy(
     vestingContractAddrs.map((vestingContractAddress: any) => [
       vestingContractAddress.toLowerCase(),
       'beneficiary'
+    ]),
+    { blockTag }
+  );
+
+  const vestedAndUnclaimedAmountRes = multicall(
+    network,
+    provider,
+    abi,
+    vestingContractAddrs.map((vestingContractAddress: any) => [
+      vestingContractAddress.toLowerCase(),
+      'vestedAmount'
     ]),
     { blockTag }
   );
@@ -88,7 +88,7 @@ export async function strategy(
 
   const balances = await Promise.all([
     userWalletBalanceResponse,
-    vestingAddrsBalanceRes,
+    vestedAndUnclaimedAmountRes,
     beneficiaries,
     userVestingsRes
   ]);
@@ -110,7 +110,7 @@ export async function strategy(
     }
   });
 
-  const mappedBeneficiariesToVestingContract = balances[2].reduce(
+  const mappedBeneficiariesToUnclaimedAmount = balances[2].reduce(
     (acc, addr, i) => ({
       ...acc,
       [addr]: parseFloat(formatUnits(balances[1][i][0].toString(), 18))
@@ -138,7 +138,7 @@ export async function strategy(
     else userTotal[addr] = amount;
   }
   for (const [address, amount] of Object.entries(
-    mappedBeneficiariesToVestingContract
+    mappedBeneficiariesToUnclaimedAmount
   )) {
     const addr = address.toLowerCase();
     if (userTotal[addr]) userTotal[addr] += amount;
