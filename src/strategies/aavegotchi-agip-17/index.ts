@@ -15,14 +15,23 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const args: {
+    where: { id_in: string[] };
+    first: number;
+    block?: { number: number };
+  } = {
+    where: {
+      id_in: addresses.map((addr: string) => addr.toLowerCase())
+    },
+    first: 1000
+  };
+  if (blockTag !== 'latest') args.block = { number: blockTag };
+
   const walletQueryParams = {
     users: {
-      __args: {
-        where: {
-          id_in: addresses.map((addr: string) => addr.toLowerCase())
-        },
-        first: 1000
-      },
+      __args: args,
       id: true,
       parcelsOwned: {
         size: true
@@ -42,25 +51,22 @@ export async function strategy(
     4: 2048 // partner
   };
 
-  const walletScores = {};
-  result.users.map(({ id, parcelsOwned }) => {
-    let realmVotingPowerValue = 0;
-    if (parcelsOwned.length > 0) {
-      parcelsOwned.map(({ size }) => {
-        let votePower = realmSizeVotePower[size];
-        if (isNaN(votePower)) votePower = 0;
-        realmVotingPowerValue += votePower;
-      });
-    }
+  const scores = Object.fromEntries(
+    result.users.map(({ id, parcelsOwned }) => {
+      let realmVotingPowerValue = 0;
+      if (parcelsOwned.length > 0) {
+        parcelsOwned.map(({ size }) => {
+          let votePower = realmSizeVotePower[size];
+          if (isNaN(votePower)) votePower = 0;
+          realmVotingPowerValue += votePower;
+        });
+      }
+      const addr = addresses.find(
+        (addrOption: string) => addrOption.toLowerCase() === id
+      );
+      return [addr, realmVotingPowerValue];
+    })
+  );
 
-    const addr = addresses.find(
-      (addrOption: string) => addrOption.toLowerCase() === id
-    );
-    walletScores[addr] = realmVotingPowerValue;
-  });
-  addresses.map((addr) => {
-    if (!walletScores[addr]) walletScores[addr] = 0;
-  });
-
-  return walletScores;
+  return scores;
 }
