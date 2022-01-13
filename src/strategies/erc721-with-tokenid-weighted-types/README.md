@@ -1,15 +1,16 @@
-# erc721-with-tokenid-weighted
+# erc721-with-tokenid-weighted-types
 
-This strategy is a modification of erc721-with-tokenid by dimsome. Instead of a maximum one vote per wallet, this strategy allows for multiple votes from a single wallet. For example, a wallet containing three whitelisted ERC721 TokenIDs would receive three votes.
-
-In short, this strategy provides one vote per whitelisted ERC721 TokenID- regardless of wallet distribution.
+This strategy is a modification of erc721-with-tokenid-weighted. This strategy allows for multiple votes from a single wallet, and different token id's represent different weights. For example, a wallet containing primary ERC721 TokenIDs and three secondary ERC721 TokenIDS would receive fifteen votes.
 
 Here is an example of parameters:
 
 ```json
 {
-  "address": "0x30cDAc3871c41a63767247C8D1a2dE59f5714e78",
-  "symbol": "Reaper(s)",
-  "tokenIds": ["2112", "2871", "3221", "3587"]
+  "address": "0x696115768bbef67be8bd408d760332a7efbee92d",
+  "symbol": "LINKSDAO",
+  "tokenIdsPrimary": ["1", ......, "6363"],
+  "tokenIdsSecondary": ["6464", ......, "9090"],
+  "primaryWeight": 1,
+  "secondaryWeight": 4
 }
 ```
