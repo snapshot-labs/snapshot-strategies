@@ -4,6 +4,8 @@ import { subgraphRequest } from '../utils';
 const SNAPSHOT_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot',
   '4': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-rinkeby',
+  '137': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-polygon',
+  '97': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-binance-smart-chain',
   '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
 };
 
@@ -11,7 +13,7 @@ export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const spaceIn = ['', space];
   if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
-  const pages = ['_1', '_2', '_3', '_4'];
+  const pages = ['_1', '_2', '_3', '_4', '_5'];
   const params = Object.fromEntries(
     pages.map((q, i) => [
       q,
@@ -40,7 +42,11 @@ export async function getDelegations(space, network, addresses, snapshot) {
     });
   }
   let result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
-  result = result._1.concat(result._2).concat(result._3).concat(result._4);
+  result = result._1
+    .concat(result._2)
+    .concat(result._3)
+    .concat(result._4)
+    .concat(result._5);
 
   const delegations = result.filter(
     (delegation) =>
