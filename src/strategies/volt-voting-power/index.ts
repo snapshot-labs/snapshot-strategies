@@ -99,7 +99,7 @@ export async function strategy(
       } else {
         totalVoltComposition = lp.reserve1;
       }
-      totalStake = lp.totalSupply
+      totalStake = lp.totalSupply;
     });
   }
 
