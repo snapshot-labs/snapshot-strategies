@@ -118,6 +118,7 @@ import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
+import * as erc721WithTokenIdWeightedTypes from './erc721-with-tokenid-weighted-types';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
@@ -266,6 +267,7 @@ const strategies = {
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
+  'erc721-with-tokenid-weighted-types': erc721WithTokenIdWeightedTypes,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
