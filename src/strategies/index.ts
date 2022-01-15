@@ -63,6 +63,7 @@ import * as xDaiStakeDelegation from './xdai-stake-delegation';
 import * as defidollar from './defidollar';
 import * as aavegotchi from './aavegotchi';
 import * as aavegotchiAgip from './aavegotchi-agip';
+import * as aavegotchiAgip17 from './aavegotchi-agip-17';
 import * as mithcash from './mithcash';
 import * as dittomoney from './dittomoney';
 import * as balancerUnipool from './balancer-unipool';
@@ -311,6 +312,7 @@ const strategies = {
   defidollar,
   aavegotchi,
   'aavegotchi-agip': aavegotchiAgip,
+  'aavegotchi-agip-17': aavegotchiAgip17,
   mithcash,
   stablexswap,
   dittomoney,
