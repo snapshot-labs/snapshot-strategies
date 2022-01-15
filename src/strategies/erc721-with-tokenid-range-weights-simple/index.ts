@@ -21,9 +21,16 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const { tokenIdWeightRanges } = options;
+  if (tokenIdWeightRanges.length > 5) {
+    throw new Error('Strategy cannot have > 5 different ranges');
+  }
+
   const responses: Array<any> = await Promise.all(
     tokenIdWeightRanges.map(async (tokenIdWeightRange) => {
       const { start, end, weight } = tokenIdWeightRange;
+      if (end - start > 7000) {
+        throw new Error('Strategy range too large');
+      }
       return {
         weight,
         multicall: await multicall(

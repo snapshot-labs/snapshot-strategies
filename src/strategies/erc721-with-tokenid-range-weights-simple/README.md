@@ -8,9 +8,9 @@ Here is an example of parameters:
 {
   "address": "0x696115768bbef67be8bd408d760332a7efbee92d",
   "symbol": "LINKSDAO",
-  "weightToTokenIDRange": {
-    "1": { "start": 1, "end": 6363 },
-    "4": { "start": 6464, "end": 9090 }
-  }
+  "tokenIdWeightRanges": [
+    { "start": 1, "end": 100, "weight": 1 },
+    { "start": 6364, "end": 6464, "weight": 4 }
+  ]
 }
 ```
