@@ -222,6 +222,7 @@ import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stac
 import * as jadeSmrt from './jade-smrt';
 import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
+import * as saddleFinanceV2 from './saddle-finance-v2';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
@@ -455,6 +456,7 @@ const strategies = {
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
+  'saddle-finance-v2': saddleFinanceV2,
   membership: membership,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
