@@ -33,10 +33,14 @@
           },
           {
             "type": "constant",
+            "value": 0
+          },
+          {
+            "type": "constant",
             "value": 100
           }
         ],
-        "operation": "min"
+        "operation": "a-if-lt-b"
       }
     },
     "network": "1",

@@ -13,7 +13,7 @@ import {
 } from './options';
 
 export const author = 'xJonathanLEI';
-export const version = '0.2.0';
+export const version = '0.2.1';
 
 export async function strategy(
   space,
@@ -86,6 +86,54 @@ function resolveOperation(
         ).map(([address, score]: [string, number]) => [
           address,
           Math.max(score, resolvedOperands[1][address])
+        ])
+      );
+    }
+    case Operation.AIfLtB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score < resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
+    }
+    case Operation.AIfLteB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score <= resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
+    }
+    case Operation.AIfGtB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score > resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
+    }
+    case Operation.AIfGteB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score >= resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
         ])
       );
     }

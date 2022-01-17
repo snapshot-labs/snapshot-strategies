@@ -13,6 +13,7 @@ npm run build
 ```
 
 #### Test strategy
+*Note: If you're writing a new strategy, make sure to add it to strategies/index.ts before testing*
 ```bash
 # Test default strategy (erc20-balance-of)
 npm run test
@@ -20,10 +21,10 @@ npm run test
 npm run test --strategy=erc20-received
 npm run test --strategy=eth-balance
 # Test with more addresses from addresses.json
-npm run test --strategy=eth-balance --more=200 
+npm run test --strategy=eth-balance --more=200
 ```
 
-## Checklist for adding a new strategy
+### Checklist for adding a new strategy
 
 Here is a simple checklist to look when reviewing a PR for a new strategy:
 

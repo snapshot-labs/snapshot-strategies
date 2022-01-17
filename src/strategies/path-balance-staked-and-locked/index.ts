@@ -20,37 +20,51 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const lockedAbi = options.methodABI;
 
-  const stakingPool = new Multicaller(network, provider, constAbi, { blockTag });
+  const stakingPool = new Multicaller(network, provider, constAbi, {
+    blockTag
+  });
   const tokenPool = new Multicaller(network, provider, constAbi, { blockTag });
-  const lockedPool = new Multicaller(network, provider, lockedAbi, { blockTag });
+  const lockedPool = new Multicaller(network, provider, lockedAbi, {
+    blockTag
+  });
 
   addresses.forEach((address) => {
     stakingPool.call(address, options.stakingAddress, 'balanceOf', [address]);
     tokenPool.call(address, options.tokenAddress, 'balanceOf', [address]);
- });
+  });
 
- addresses.forEach((address) => {
-  for (let i = 0; i < options.lockedAddresses.length; i++) {
-    lockedPool.call(`locked_${i}.${address}`, options.lockedAddresses[i], 'getRemainingAmount', [address]);
-  }
-});
+  addresses.forEach((address) => {
+    for (let i = 0; i < options.lockedAddresses.length; i++) {
+      lockedPool.call(
+        `locked_${i}.${address}`,
+        options.lockedAddresses[i],
+        'getRemainingAmount',
+        [address]
+      );
+    }
+  });
 
- const [stakingResponse, tokenResponse] : [
-  Record<string, BigNumberish>,
-  Record<string, BigNumberish>
- ] = await Promise.all([stakingPool.execute(), tokenPool.execute()]);
+  const [stakingResponse, tokenResponse]: [
+    Record<string, BigNumberish>,
+    Record<string, BigNumberish>
+  ] = await Promise.all([stakingPool.execute(), tokenPool.execute()]);
 
-const lockedResponse = await lockedPool.execute()
+  const lockedResponse = await lockedPool.execute();
 
-  
   return Object.fromEntries(
     addresses.map((address) => {
-      const stakingCount = parseFloat(formatUnits(stakingResponse[address], options.decimals));
-      const tokenCount = parseFloat(formatUnits(tokenResponse[address], options.decimals));
-      let lockedCount = 0
+      const stakingCount = parseFloat(
+        formatUnits(stakingResponse[address], options.decimals)
+      );
+      const tokenCount = parseFloat(
+        formatUnits(tokenResponse[address], options.decimals)
+      );
+      let lockedCount = 0;
       for (let i = 0; i < options.lockedAddresses.length; i++) {
-        let lockedMap = lockedResponse[`locked_${i}`]
-        lockedCount += parseFloat(formatUnits(lockedMap[address], options.decimals))
+        const lockedMap = lockedResponse[`locked_${i}`];
+        lockedCount += parseFloat(
+          formatUnits(lockedMap[address], options.decimals)
+        );
       }
       return [address, stakingCount + tokenCount + lockedCount];
     })

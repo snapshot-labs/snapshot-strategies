@@ -48,7 +48,7 @@ export async function strategy(
       address
     ]);
   });
-  options.cronaLPs.forEach((lp: { address: string, pid: number}) => {
+  options.cronaLPs.forEach((lp: { address: string; pid: number }) => {
     multicall.call(`lp.${lp.pid}.totalSupply`, lp.address, 'totalSupply');
     multicall.call(`lp.${lp.pid}.balanceOf`, options.address, 'balanceOf', [
       lp.address
@@ -63,16 +63,23 @@ export async function strategy(
     });
   });
 
-  const multicallAutoCompound = new Multicaller(network, provider, autoCronaSwapAbi, {
-    blockTag
-  });
+  const multicallAutoCompound = new Multicaller(
+    network,
+    provider,
+    autoCronaSwapAbi,
+    {
+      blockTag
+    }
+  );
   multicallAutoCompound.call(
     'priceShare',
     options.autoCrona,
     'getPricePerFullShare'
   );
   addresses.forEach((address) => {
-    multicallAutoCompound.call(address, options.autoCrona, 'userInfo', [address]);
+    multicallAutoCompound.call(address, options.autoCrona, 'userInfo', [
+      address
+    ]);
   });
 
   const resultAutoCrona = await multicallAutoCompound.execute();
@@ -93,7 +100,7 @@ export async function strategy(
         .mul(resultAutoCrona.priceShare)
         .div(bn(parseUnits('1', options.decimals)))
     );
-    options.cronaLPs.forEach((lp: { address: string, pid: number }) => {
+    options.cronaLPs.forEach((lp: { address: string; pid: number }) => {
       addUserBalance(
         userBalances,
         address,
