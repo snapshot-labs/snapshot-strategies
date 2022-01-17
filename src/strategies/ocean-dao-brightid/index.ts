@@ -15,6 +15,9 @@ export async function strategy(
   options,
   snapshot
 ) {
+  provider = getProvider(options.chainId);
+  snapshot = options.chainBlock;
+
   const ALLOWED_STRATEGIES = [
     'erc20-balance-of',
     'ocean-marketplace',

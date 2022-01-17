@@ -12,8 +12,10 @@ Example parameters:
   "brightIdNetwork": "4",
   "registry": "0xbD45cf7C9f8eE04409C31D0ef939D4b0926263Ae",
   "symbol": "OCEAN",
-  "brightIdNetwork":4,
-  "brightIdSnapshot":100000,
+  "brightIdNetwork": 4,
+  "brightIdSnapshot": 100000,
+  "chainId": "1",
+  "chainBlock": 13803684,
   "strategies": [
     {
       "name": "erc20-balance-of",
