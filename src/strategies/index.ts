@@ -63,6 +63,7 @@ import * as xDaiStakeDelegation from './xdai-stake-delegation';
 import * as defidollar from './defidollar';
 import * as aavegotchi from './aavegotchi';
 import * as aavegotchiAgip from './aavegotchi-agip';
+import * as aavegotchiAgip17 from './aavegotchi-agip-17';
 import * as mithcash from './mithcash';
 import * as dittomoney from './dittomoney';
 import * as balancerUnipool from './balancer-unipool';
@@ -222,6 +223,7 @@ import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stac
 import * as jadeSmrt from './jade-smrt';
 import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
+import * as saddleFinanceV2 from './saddle-finance-v2';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
@@ -310,6 +312,7 @@ const strategies = {
   defidollar,
   aavegotchi,
   'aavegotchi-agip': aavegotchiAgip,
+  'aavegotchi-agip-17': aavegotchiAgip17,
   mithcash,
   stablexswap,
   dittomoney,
@@ -455,6 +458,7 @@ const strategies = {
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
+  'saddle-finance-v2': saddleFinanceV2,
   membership: membership,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
