@@ -1,8 +1,19 @@
-import { getProvider } from '../../utils';
 import strategies from '..';
 
+import {
+  ConstantOperand,
+  migrateLegacyOptions,
+  Operand,
+  OperandType,
+  Operation,
+  OptionalOptions,
+  Options,
+  StrategyOperand,
+  validateOptions
+} from './options';
+
 export const author = 'xJonathanLEI';
-export const version = '0.1.0';
+export const version = '0.2.1';
 
 export async function strategy(
   space,
@@ -12,36 +23,154 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const upstreamResult: Record<string, number> = await strategies[
-    options.strategy.name
-  ].strategy(
-    space,
-    options.strategy.network,
-    getProvider(options.strategy.network),
-    addresses,
-    options.strategy.params,
-    snapshot
+  const rawOptions: OptionalOptions = migrateLegacyOptions(options);
+  const strategyOptions: Options = validateOptions(rawOptions);
+
+  // Recursively resolve operands
+  const operandPromises: Promise<
+    Record<string, number>
+  >[] = strategyOptions.operands.map((item) =>
+    resolveOperand(item, addresses, space, network, provider, snapshot)
+  );
+  const resolvedOperands: Record<string, number>[] = await Promise.all(
+    operandPromises
   );
 
-  let scoreConverter: (score: number) => number;
-  switch (options.operation) {
-    case 'square-root': {
-      scoreConverter = (score) => Math.sqrt(score);
-      break;
+  const finalResult: Record<string, number> = resolveOperation(
+    strategyOptions.operation,
+    resolvedOperands
+  );
+
+  return finalResult;
+}
+
+function resolveOperation(
+  operation: Operation,
+  resolvedOperands: Record<string, number>[]
+): Record<string, number> {
+  switch (operation) {
+    case Operation.SquareRoot: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          Math.sqrt(score)
+        ])
+      );
     }
-    case 'cube-root': {
-      scoreConverter = (score) => Math.cbrt(score);
-      break;
+    case Operation.CubeRoot: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          Math.cbrt(score)
+        ])
+      );
     }
-    default: {
-      throw new Error(`Unknown math operation: ${options.operation}`);
+    case Operation.Min: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          Math.min(score, resolvedOperands[1][address])
+        ])
+      );
+    }
+    case Operation.Max: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          Math.max(score, resolvedOperands[1][address])
+        ])
+      );
+    }
+    case Operation.AIfLtB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score < resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
+    }
+    case Operation.AIfLteB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score <= resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
+    }
+    case Operation.AIfGtB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score > resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
+    }
+    case Operation.AIfGteB: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score >= resolvedOperands[2][address]
+            ? resolvedOperands[1][address]
+            : score
+        ])
+      );
     }
   }
+}
 
-  return Object.fromEntries(
-    Object.entries(upstreamResult).map(([address, score]) => [
-      address,
-      scoreConverter(score)
-    ])
-  );
+async function resolveOperand(
+  operand: Operand,
+  addresses: string[],
+  space: any,
+  network: any,
+  provider: any,
+  snapshot: any
+): Promise<Record<string, number>> {
+  switch (operand.type) {
+    case OperandType.Strategy: {
+      const strategyOperand: StrategyOperand = operand as StrategyOperand;
+
+      const upstreamResult: Record<string, number> = await strategies[
+        strategyOperand.strategy.name
+      ].strategy(
+        space,
+        network,
+        provider,
+        addresses,
+        strategyOperand.strategy.params,
+        snapshot
+      );
+
+      return upstreamResult;
+    }
+    case OperandType.Constant: {
+      const constantOperand: ConstantOperand = operand as ConstantOperand;
+
+      return Object.fromEntries(
+        addresses.map((address) => [address, constantOperand.value])
+      );
+    }
+  }
 }
