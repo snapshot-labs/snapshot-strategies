@@ -1,4 +1,4 @@
-import { getScoresDirect, multicall } from '../../utils';
+import { getProvider, getScoresDirect, multicall } from '../../utils';
 
 export const author = 'trizin';
 export const version = '0.1.0';
@@ -27,16 +27,20 @@ export async function strategy(
     options.strategies.some((x) => !ALLOWED_STRATEGIES.includes(x.name))
   )
     return [];
+
+  const brightIdNetwork = options.brightIdNetwork || network;
+  const brightIdProvider = getProvider(brightIdNetwork);
+  const brightIdSnapshotBlock = options.brightIdSnapshotBlock || snapshot;
   const response = await multicall(
-    network,
-    provider,
+    brightIdNetwork,
+    brightIdProvider,
     abi,
     addresses.map((address: any) => [
       options.registry,
       'isVerifiedUser',
       [address]
     ]),
-    { blockTag: snapshot }
+    { blockTag: brightIdSnapshotBlock }
   );
   let scores = await getScoresDirect(
     space,
