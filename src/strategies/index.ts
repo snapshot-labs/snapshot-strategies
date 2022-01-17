@@ -222,6 +222,7 @@ import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as genart from './genart';
+import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -444,7 +445,8 @@ const strategies = {
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
   genart,
-  'path-balance-staked-and-locked': pathBalanceStakedAndLocked
+  'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
+  'staked-uniswap-modifiable': stakedUniswapModifiable
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
