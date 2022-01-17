@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "digitalax-mona-stakers-matic",
+      "params": {
+        "address": "0xF795c2abB0E7A56A0C011993C37A51626756B4BD",
+        "symbol": "MONA"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xba658ae386566745ee8b661e148460b0ece00144",
+      "0xbff466b48073bb1ffda6c644f4c0cdb61287c75f",
+      "0x5359ed6ef235be8ef0f25ad0a5c0b521bcf8d663",
+      "0x71284ddcaba20f2386c09b9ccd3ad1d369bf4e30",
+      "0x03ea64a5ced21e2cccfaea0aec283d0a0afe9424"
+    ],
+    "snapshot": 22757476
+  }
+]

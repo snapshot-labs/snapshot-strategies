@@ -5,8 +5,8 @@ export const author = 'cha0sg0d';
 export const version = '0.1.0';
 
 const calcScore = (score: number) => {
-  return score == 0 ? 0 : Math.floor(Math.log2(score))
-}
+  return score == 0 ? 0 : Math.floor(Math.log2(score));
+};
 
 export async function strategy(
   space,
@@ -16,7 +16,6 @@ export async function strategy(
   options,
   snapshot
 ) {
-
   const DF_SUBGRAPH_URL = options.graph_url;
 
   const params = {
@@ -42,10 +41,6 @@ export async function strategy(
   });
 
   return Object.fromEntries(
-    result.players.map(p => [
-      getAddress(p.id), 
-      calcScore(parseInt(p.score))
-    ])
+    result.players.map((p) => [getAddress(p.id), calcScore(parseInt(p.score))])
   );
-
 }
