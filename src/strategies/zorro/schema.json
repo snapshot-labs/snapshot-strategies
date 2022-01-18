@@ -7,10 +7,10 @@
       "type": "object",
       "properties": {
         "symbol": {
-            "type": "string",
-            "title": "Symbol",
-            "examples": ["e.g. VOTES"]
-          },
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. VOTES"]
+        },
         "purposeIdentifier": {
           "type": "string",
           "title": "Purpose identifier (defaults to snapshot space ens)",

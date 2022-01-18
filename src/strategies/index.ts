@@ -63,6 +63,7 @@ import * as xDaiStakeDelegation from './xdai-stake-delegation';
 import * as defidollar from './defidollar';
 import * as aavegotchi from './aavegotchi';
 import * as aavegotchiAgip from './aavegotchi-agip';
+import * as aavegotchiAgip17 from './aavegotchi-agip-17';
 import * as mithcash from './mithcash';
 import * as dittomoney from './dittomoney';
 import * as balancerUnipool from './balancer-unipool';
@@ -180,6 +181,7 @@ import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
+import * as cyberkongzV2 from './cyberkongz-v2';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
@@ -221,6 +223,7 @@ import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stac
 import * as jadeSmrt from './jade-smrt';
 import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
+import * as saddleFinanceV2 from './saddle-finance-v2';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
@@ -231,6 +234,8 @@ import * as bottoDao from './botto-dao';
 import * as genart from './genart';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
+import * as balancerPoolid from './balancer-poolid';
+import * as stakedBalancer from './staked-balancer';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -307,6 +312,7 @@ const strategies = {
   defidollar,
   aavegotchi,
   'aavegotchi-agip': aavegotchiAgip,
+  'aavegotchi-agip-17': aavegotchiAgip17,
   mithcash,
   stablexswap,
   dittomoney,
@@ -410,6 +416,7 @@ const strategies = {
   'holds-tokens': holdsTokens,
   'loot-character-guilds': lootCharacterGuilds,
   cyberkongz: cyberkongz,
+  'cyberkongz-v2': cyberkongzV2, 
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
@@ -451,6 +458,7 @@ const strategies = {
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
+  'saddle-finance-v2': saddleFinanceV2,
   membership: membership,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
@@ -462,7 +470,9 @@ const strategies = {
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'sumami-holders': sUmamiHolders,
   zorro,
-  'volt-voting-power': voltVotingPower
+  'volt-voting-power': voltVotingPower, 
+  'balancer-poolid': balancerPoolid,
+  'staked-balancer': stakedBalancer,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

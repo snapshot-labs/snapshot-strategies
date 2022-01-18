@@ -38,6 +38,9 @@ export async function strategy(
 
   // The score is LP staking contract uniswap MONA value * (user LP staked / total LP staked)
   return Object.fromEntries(
-    stakeResponse.map((value, i) => [addresses[i], parseFloat(bn(value)) / ETH_IN_WEI])
+    stakeResponse.map((value, i) => [
+      addresses[i],
+      parseFloat(bn(value)) / ETH_IN_WEI
+    ])
   );
 }
