@@ -237,6 +237,8 @@ import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
 import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
+import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
+import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -474,7 +476,9 @@ const strategies = {
   zorro,
   'volt-voting-power': voltVotingPower,
   'balancer-poolid': balancerPoolid,
-  'staked-balancer': stakedBalancer
+  'staked-balancer': stakedBalancer,
+  'erc1155-balance-of-ids': erc1155BalanceOfIds,
+  'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
