@@ -4,8 +4,10 @@ import { subgraphRequest } from '../utils';
 const SNAPSHOT_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot',
   '4': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-rinkeby',
-  '137': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-polygon',
-  '97': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-binance-smart-chain',
+  '137':
+    'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-polygon',
+  '97':
+    'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-binance-smart-chain',
   '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
 };
 
