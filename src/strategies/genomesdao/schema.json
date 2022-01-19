@@ -9,12 +9,17 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. UNI"]
+          "examples": ["e.g. GNOME"]
         },
         "address": {
           "type": "string",
-          "title": "Contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"]
+          "title": "Governance Token Contract address",
+          "examples": ["e.g. 0x6E8a8726639d12935b3219892155520bdC57366B"]
+        },
+        "lpaddress": {
+          "type": "string",
+          "title": "LP Token Contract address",
+          "examples": ["e.g. 0xc1214b61965594b3e08Ea4950747d5A077Cd1886"]
         },
         "decimals": {
           "type": "number",
@@ -22,7 +27,7 @@
           "examples": ["e.g. 18"]
         }
       },
-      "required": ["symbol", "address", "decimals"],
+      "required": ["symbol", "address", "lpaddress", "decimals"],
       "additionalProperties": false
     }
   }
