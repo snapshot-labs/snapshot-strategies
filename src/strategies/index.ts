@@ -238,6 +238,7 @@ import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
 import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
+import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -476,7 +477,8 @@ const strategies = {
   zorro,
   'volt-voting-power': voltVotingPower,
   'balancer-poolid': balancerPoolid,
-  'staked-balancer': stakedBalancer
+  'staked-balancer': stakedBalancer,
+  'staked-uniswap-modifiable': stakedUniswapModifiable
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
