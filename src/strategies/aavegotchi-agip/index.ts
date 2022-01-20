@@ -69,7 +69,7 @@ export async function strategy(
         first: 1000
       },
       id: true,
-      gotchisOwned: {
+      gotchisOwned(first:1000): {
         baseRarityScore: true,
         equippedWearables: true
       }
