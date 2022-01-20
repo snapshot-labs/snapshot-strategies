@@ -4,24 +4,24 @@
 
 #### Install dependencies
 ```bash
-npm install
+yarn
 ```
 
 #### Build package
 ```bash
-npm run build
+yarn build
 ```
 
 #### Test strategy
 *Note: If you're writing a new strategy, make sure to add it to strategies/index.ts before testing*
 ```bash
 # Test default strategy (erc20-balance-of)
-npm run test
+yarn test
 # Test strategy with name
-npm run test --strategy=erc20-received
-npm run test --strategy=eth-balance
+yarn test --strategy=erc20-received
+yarn test --strategy=eth-balance
 # Test with more addresses from addresses.json
-npm run test --strategy=eth-balance --more=200
+yarn test --strategy=eth-balance --more=200
 ```
 
 ### Checklist for adding a new strategy
