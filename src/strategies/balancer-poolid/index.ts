@@ -57,9 +57,11 @@ export async function strategy(
   snapshot
 ) {
   // @ts-ignore
-  params.pool.__args.id = options.poolId
-  params.pool.shares.__args.where.userAddress_in = addresses.map((address) => address.toLowerCase())
-    
+  params.pool.__args.id = options.poolId;
+  params.pool.shares.__args.where.userAddress_in = addresses.map((address) =>
+    address.toLowerCase()
+  );
+
   if (snapshot !== 'latest') {
     // @ts-ignore
     params.pool.__args.block = { number: snapshot };
@@ -89,12 +91,13 @@ export async function strategy(
               const userAddress = getAddress(poolShare.userAddress.id);
               if (!score[userAddress]) score[userAddress] = 0;
               score[userAddress] =
-                score[userAddress] + (poolShare.balance / pool.totalShares) * poolToken.balance;
+                score[userAddress] +
+                (poolShare.balance / pool.totalShares) * poolToken.balance;
             }
           });
         });
         // If more shares, use pagination
-        page = (pool.shares.length < PAGE_SIZE) ? -1 : page + 1;
+        page = pool.shares.length < PAGE_SIZE ? -1 : page + 1;
       } else {
         page = -1;
       }
