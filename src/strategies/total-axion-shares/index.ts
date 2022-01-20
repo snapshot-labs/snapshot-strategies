@@ -4,7 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 export const author = 'Axion Foundation';
 export const version = '0.2.0';
 
-const data_reader_address = '0x421456eFcEBf814975c8739CD613e5e7a954C474';
+const data_reader_address = '0x8458fe26CbF3B8295755654C02ABaDFB1d3CBCe6';
 const data_reader_abi = [
   {
     name: 'getDaoShares',
@@ -41,7 +41,7 @@ export async function strategy(
     provider,
     data_reader_abi,
     addresses.map((addr: string) => [
-      data_reader_address,
+      options.dataReader || data_reader_address,
       'getDaoShares',
       [addr]
     ]),

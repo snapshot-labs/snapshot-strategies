@@ -4,7 +4,8 @@
     "strategy": {
       "name": "total-axion-shares",
       "params": {
-        "symbol": "TAS"
+        "symbol": "TAS",
+        "dataReader": "0x8458fe26CbF3B8295755654C02ABaDFB1d3CBCe6"
       }
     },
     "network": "1",
