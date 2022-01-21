@@ -240,8 +240,10 @@ import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethBalancerBalance from './giveth-balancer-balance';
 
 const strategies = {
+  'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
   coordinape,
