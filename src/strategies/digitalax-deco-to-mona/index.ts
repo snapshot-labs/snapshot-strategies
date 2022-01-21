@@ -17,32 +17,23 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   // Set up the GraphQL parameters and necessary variables
 
-  const decoEthPair = "0x7ecb3be21714114d912469810aedd34e6fc27736";
-  const monaEthPair = "0x3203bf44d434452b4605c7657c51bfeaf2a0847c";
-
   const holderParams = {
-    pair: {
+    pairs: {
       __args: {
-        id: decoEthPair
+        where: {
+          id_in: [
+            '0x7ecb3be21714114d912469810aedd34e6fc27736',
+            '0x3203bf44d434452b4605c7657c51bfeaf2a0847c'
+          ]
+        }
       },
+      token0Price: true,
       token1Price: true
     }
   };
 
-  // Mona to eth
-  const holderParams2 = {
-    pair: {
-      __args: {
-        id: monaEthPair
-      },
-      token0Price: true
-    }
-  };
-
   // Query subgraph for the holders and the stakers based on input addresses
-  const decoEthReserve = await subgraphRequest(QUICKSWAP_SUBGRAPH, holderParams);
-  const monaEthReserve = await subgraphRequest(QUICKSWAP_SUBGRAPH, holderParams2);
-
+  const reserves = await subgraphRequest(QUICKSWAP_SUBGRAPH, holderParams);
 
   const erc20Balances = await erc20BalanceOfStrategy(
     space,
@@ -56,7 +47,9 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address) => [
       address,
-      (erc20Balances[address] * decoEthReserve.pair.token1Price * monaEthReserve.pair.token0Price)
+      erc20Balances[address] *
+        reserves.pairs[1].token1Price *
+        reserves.pairs[0].token0Price
     ])
   );
 }
