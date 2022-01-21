@@ -239,8 +239,10 @@ import * as voltVotingPower from './volt-voting-power';
 import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
+import * as givethXdaiBalance from './giveth-xdai-balance';
 
 const strategies = {
+  'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
