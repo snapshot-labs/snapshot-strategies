@@ -85,21 +85,6 @@ export async function strategy(
     network
   );
 
-  const ALLOWED_STRATEGIES = [
-    'erc20-balance-of',
-    'ocean-marketplace',
-    'sushiswap',
-    'uniswap',
-    'contract-call'
-  ];
-  for (const key of Object.keys(options.chains)) {
-    if (
-      options.chains[key].length > 5 ||
-      options.chains[key].some((x) => !ALLOWED_STRATEGIES.includes(x.name))
-    )
-      return [];
-  }
-
   const brightIdNetwork = options.brightIdNetwork || network;
   const response = await multicall(
     brightIdNetwork,
