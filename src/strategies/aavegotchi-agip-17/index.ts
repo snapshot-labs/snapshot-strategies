@@ -1,7 +1,7 @@
 import { subgraphRequest } from '../../utils';
 
 export const author = 'candoizo';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
