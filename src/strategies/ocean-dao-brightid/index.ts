@@ -68,6 +68,46 @@ async function getChainBlocksFromSubGraph(
   return chainBlocks;
 }
 
+async function getChainBlocksFromApi(
+  snapshot,
+  provider,
+  options
+): Promise<any> {
+  const block = await provider.getBlock(snapshot);
+  const timestamp = block.timestamp;
+
+  //Should receive the timestamp as query param and return the block height by chain
+  const apiUrl = `${options.blockApi}?timestamp=${timestamp}`;
+  const resp = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then((r) => r.json());
+
+  //Response should contain blocks object with chainIds as keys and block numbers as values
+  return resp.blocks;
+}
+
+async function getChainBlocks(
+  snapshot,
+  provider,
+  options,
+  network
+): Promise<any> {
+  if (options.blockApi) {
+    return await getChainBlocksFromApi(snapshot, provider, options);
+  } else {
+    return await getChainBlocksFromSubGraph(
+      snapshot,
+      provider,
+      options,
+      network
+    );
+  }
+}
+
 ////////////////////////////////////////////////////////////////////////////////
 
 export async function strategy(
@@ -78,7 +118,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const chainBlocks = await getChainBlocksFromSubGraph(
+  const chainBlocks = await getChainBlocks(
     snapshot,
     provider,
     options,
