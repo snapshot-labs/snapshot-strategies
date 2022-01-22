@@ -11,7 +11,7 @@ const GIVETH_SUBGRAPH_API =
 const BALANCER_SUBGRAPH_API =
   'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2';
 
-const balParams = {
+const poolParams = {
   pool: {
     __args: {
       id: '0x7819f1532c49388106f7762328c51ee70edd134c000200000000000000000109'
@@ -59,7 +59,13 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const balData = await subgraphRequest(BALANCER_SUBGRAPH_API, balParams);
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    poolParams.pool.__args.block = { number: snapshot };
+    // @ts-ignore
+    params.balance.__args.block = { number: snapshot };
+  }
+  const balData = await subgraphRequest(BALANCER_SUBGRAPH_API, poolParams);
   const balFormatedData = formatReserveBalance(balData, options.decimals);
 
   const data = await Promise.all(
