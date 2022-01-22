@@ -1,6 +1,6 @@
-# Giveth xDai balance
+# Giveth Balancer balance
 
-This strategy sums up all the GIV on xDai, including the ones that are staked in Honeyswap pools, Sushiswap pools, and single staked on GIV pool.
+This strategy sums up all the GIV on Balancer LP pools.
 
 Here is an example of parameters:
 
