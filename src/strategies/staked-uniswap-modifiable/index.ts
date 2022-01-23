@@ -6,8 +6,7 @@ export const version = '0.1.0';
 const tokenAbi = [
   'function balanceOf(address account) view returns (uint256)',
   'function totalSupply() view returns (uint256)'
-]
-
+];
 
 export async function strategy(
   _space,
@@ -19,7 +18,7 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const tokenMethodAbi = tokenAbi.concat(options.methodABI);
-  const methodName = options.methodABI["name"]
+  const methodName = options.methodABI['name'];
   const res = await multicall(
     network,
     provider,
