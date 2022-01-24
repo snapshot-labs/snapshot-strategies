@@ -148,6 +148,7 @@ import * as aks from './aks';
 import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
+import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
 import * as zrxVotingPower from './zrx-voting-power';
 import * as tombFinance from './tomb-finance';
@@ -388,6 +389,7 @@ const strategies = {
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
+  'immutable-x': immutableX,
   badgeth,
   'zrx-voting-power': zrxVotingPower,
   'tomb-finance': tombFinance,
