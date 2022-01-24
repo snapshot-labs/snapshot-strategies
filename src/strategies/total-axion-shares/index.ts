@@ -1,8 +1,8 @@
 import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
-export const author = 'Axion Foundation';
-export const version = '0.2.0';
+export const author = 'Axion-Network';
+export const version = '0.3.0';
 
 const data_reader_address = '0x8458fe26CbF3B8295755654C02ABaDFB1d3CBCe6';
 const data_reader_abi = [
