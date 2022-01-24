@@ -1,6 +1,5 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 
-//import Multicaller from './utils/multicaller';
 import { Multicaller } from '../../utils';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import fetch from 'cross-fetch';
