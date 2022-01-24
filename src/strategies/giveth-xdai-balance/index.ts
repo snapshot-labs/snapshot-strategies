@@ -106,28 +106,34 @@ export async function strategy(
 
   const result = {};
   addresses.map((address, index) => {
-    const {
-      balance,
-      givStaked,
-      honeyswapLp,
-      honeyswapLpStaked,
-      sushiswapLp,
-      sushiSwapLpStaked
-    } = data[index].balance;
-    const totalGIV = BigNumber.from(balance).add(givStaked);
-    const hnyGIV = calcGivAmount(
-      BigNumber.from(honeyswapLp).add(honeyswapLpStaked),
-      hnyFormatedData.totalSupply,
-      hnyFormatedData.reserve
-    );
-    const sushiGIV = calcGivAmount(
-      BigNumber.from(sushiswapLp).add(sushiSwapLpStaked),
-      sushiFormatedData.totalSupply,
-      sushiFormatedData.reserve
-    );
-    result[address] = parseFloat(
-      formatUnits(totalGIV.add(hnyGIV).add(sushiGIV), options.decimals)
-    );
+    if (!data[index].balance) {
+      result[address] = parseFloat(
+        formatUnits(BigNumber.from('0'), options.decimals)
+      );
+    } else {
+      const {
+        balance,
+        givStaked,
+        honeyswapLp,
+        honeyswapLpStaked,
+        sushiswapLp,
+        sushiSwapLpStaked
+      } = data[index].balance;
+      const totalGIV = BigNumber.from(balance).add(givStaked);
+      const hnyGIV = calcGivAmount(
+        BigNumber.from(honeyswapLp).add(honeyswapLpStaked),
+        hnyFormatedData.totalSupply,
+        hnyFormatedData.reserve
+      );
+      const sushiGIV = calcGivAmount(
+        BigNumber.from(sushiswapLp).add(sushiSwapLpStaked),
+        sushiFormatedData.totalSupply,
+        sushiFormatedData.reserve
+      );
+      result[address] = parseFloat(
+        formatUnits(totalGIV.add(hnyGIV).add(sushiGIV), options.decimals)
+      );
+    }
   });
   return result;
 }

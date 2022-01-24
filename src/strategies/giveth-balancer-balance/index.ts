@@ -77,19 +77,25 @@ export async function strategy(
 
   const result = {};
   addresses.map((address, index) => {
-    const { balance, givStaked, balancerLp, balancerLpStaked } = data[
-      index
-    ].balance;
-    const totalGIV = BigNumber.from(balance).add(givStaked);
+    if (!data[index].balance) {
+      result[address] = parseFloat(
+        formatUnits(BigNumber.from('0'), options.decimals)
+      );
+    } else {
+      const { balance, givStaked, balancerLp, balancerLpStaked } = data[
+        index
+      ].balance;
+      const totalGIV = BigNumber.from(balance).add(givStaked);
 
-    const balGIV = calcGivAmount(
-      BigNumber.from(balancerLp).add(balancerLpStaked),
-      balFormatedData.totalShares,
-      balFormatedData.balance
-    );
-    result[address] = parseFloat(
-      formatUnits(totalGIV.add(balGIV), options.decimals)
-    );
+      const balGIV = calcGivAmount(
+        BigNumber.from(balancerLp).add(balancerLpStaked),
+        balFormatedData.totalShares,
+        balFormatedData.balance
+      );
+      result[address] = parseFloat(
+        formatUnits(totalGIV.add(balGIV), options.decimals)
+      );
+    }
   });
   return result;
 }
