@@ -45,14 +45,10 @@ export async function strategy(
     options: Options,
     _snapshot: unknown
 ): Promise<Record<string, number>> {
-    try {
-        return combineBalanceScores([
-            await getL1Balances(network, provider, options, addresses),
-            await getL2Balances(network, options, addresses)
-        ]);
-    } catch (e) {
-        throw new Error(`Strategy ${name} failed`);
-    }
+    return combineBalanceScores([
+        await getL2Balances(network, options, addresses),
+        await getL1Balances(network, provider, options, addresses)
+    ]);
 }
 
 async function getL1Balances(

@@ -4,14 +4,16 @@
         "strategy": {
             "name": "immutable-x",
             "params": {
-                "address": "0x65d0388c858acd99bdd1d44b00629d73f0ce4587",
+                "symbol": "imx",
+                "address": "0x26b81657e09d3a6a18ff1c6d776fd09f4bb9ee80",
                 "decimals": 18,
                 "pageSize": 100
             }
         },
-        "network": "1",
+        "network": "3",
         "addresses": [
-            "0xdc1bfbc2b8f01439eeea8e4659bbb452d0f9ee2a"
-        ]
+            "0x973eb49bbdd2754609ba5f3da0b7836948636e62"
+        ],
+        "snapshot": 10802061
     }
 ]
