@@ -3,7 +3,9 @@
       "name": "razor-network-voting",
       "strategy": {
         "name": "razor-network-voting",
-        "symbol":"RAZOR"
+        "params":{
+          "symbol":"RAZOR"
+        }
       },
       "network": "80001",
       "snapshot": 24258292,
