@@ -1,4 +1,4 @@
-import { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
@@ -8,7 +8,9 @@ export const version = '1.0.0';
 const abi = [
   'function pendingRewards(uint256,address) external view returns(uint256)',
   'function userInfo(address,uint256) external view returns(uint256 amount,uint256,uint256,uint256)',
-  'function balanceOf(address) external view returns(uint256)'
+  'function balanceOf(address) external view returns(uint256)',
+  'function getReserves() external view returns(uint112,uint112 reserve1,uint32)',
+  'function totalSupply() external view returns(uint256)'
 ];
 
 export async function strategy(
@@ -24,13 +26,22 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
   addresses.forEach((address) => {
-    multi.call(address + '-staked', options.pool, 'userInfo', [address, '1']); // uint
+    multi.call(address + '-staked', options.pool, 'userInfo', [address, '1']); // .amount: uint
     multi.call(address + '-pendingReward', options.pool, 'pendingRewards', [
       '1',
       address
-    ]); // .amount: uint
-    multi.call(address + '-balance', options.token, 'balanceOf', [address]);
+    ]); // uint
+    multi.call(address + '-balance', options.token, 'balanceOf', [address]); // uint
+    multi.call(address + '-LPstaked', options.pool, 'userInfo', [address, '3']); // .amount: uint
+    multi.call(address + '-LPpendingReward', options.pool, 'pendingRewards', [
+      '3',
+      address
+    ]); // uint
   });
+
+  // xKawa is token1
+  multi.call('reserves', options.LPxKawa, 'getReserves', []); // .reserve1: uint
+  multi.call('totalSupplyLP', options.LPxKawa, 'totalSupply', []); // uint
 
   const result: Record<string, BigNumberish> = await multi.execute();
 
@@ -39,6 +50,18 @@ export async function strategy(
       let bal = result[adr + '-staked']['amount'];
       bal = bal.add(result[adr + '-pendingReward']);
       bal = bal.add(result[adr + '-balance']);
+
+      bal = bal.add(
+        BigNumber.from(result[adr + '-LPstaked']['amount'])
+          .mul(result['reserves']['reserve1'])
+          .div(result['totalSupplyLP'])
+      );
+
+      bal = bal.add(
+        BigNumber.from(result[adr + '-LPpendingReward'])
+          .mul(result['reserves']['reserve1'])
+          .div(result['totalSupplyLP'])
+      );
 
       return [adr, parseFloat(formatUnits(bal, options.decimals))];
     })

@@ -6,6 +6,7 @@
       "params": {
         "pool": "0xC68844Cd3BA9d3Ad88F2cC278213F64b8C0bCddf",
         "token": "0xdC386452F9FFDa7F0d2940e5c60Dc0F9469b1097",
+        "LPxKawa": "0x876692166cAC59506Eac1DB7f01B120F5Da98A50",
         "symbol": "xKAWA",
         "decimals": 18
       }
