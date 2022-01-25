@@ -43,11 +43,11 @@ export async function strategy(
     provider: StaticJsonRpcProvider,
     addresses: string[],
     options: Options,
-    _snapshot: unknown
+    block: number | string = 'latest'
 ): Promise<Record<string, number>> {
     return combineBalanceScores([
-        await getL2Balances(network, options, addresses),
-        await getL1Balances(network, provider, options, addresses)
+        await getL2Balances(network, options, addresses, block),
+        await getL1Balances(network, provider, options, addresses, block)
     ]);
 }
 
@@ -55,22 +55,23 @@ async function getL1Balances(
     network: string,
     provider: StaticJsonRpcProvider,
     options: Options,
-    addresses: string[]
+    addresses: string[],
+    block: number | string
 ): Promise<Record<string, number>> {
-    const multi = new Multicaller(network, provider, abi, { blockTag: 'latest' });
+    const multi = new Multicaller(network, provider, abi, { blockTag: block });
     addresses.forEach((address: string) => multi.call(address, options.address, 'balanceOf', [address]));
     const result: Record<string, BigNumberish> = await multi.execute();
     return mapL1Response(result, options);
 }
 
-async function getL2Balances(network: string, options: Options, addresses: string[]): Promise<Record<string, number>> {
+async function getL2Balances(network: string, options: Options, addresses: string[], block: number | string): Promise<Record<string, number>> {
     const records: Record<string, number> = {};
 
     let cursor = '',
         recordsLen = addresses.length; // assume all addresses exist
 
     while (recordsLen != 0) {
-        const apiUrl = buildURL(network, options, cursor);
+        const apiUrl = buildURL(network, options, block, cursor);
         const response = await fetch(apiUrl, {
             method: 'POST',
             body: JSON.stringify({"ether_keys": addresses}),
@@ -87,10 +88,11 @@ async function getL2Balances(network: string, options: Options, addresses: strin
     return records;
 }
 
-function buildURL(network: string, options: Options, cursor?: string): string {
+function buildURL(network: string, options: Options, block: number | string, cursor?: string): string {
     let apiUrl = networkMapping[network] + snapshotPath;
     apiUrl += '/' + options.address.toLowerCase();
     apiUrl += `?page_size=${'pageSize' in options ? options.pageSize : defaultPageSize}`;
+    apiUrl += `${'latest' === block ? '' : `&block=${block}`}`;
     apiUrl += cursor || cursor != '' ? `&cursor=${cursor}` : '';
     return apiUrl;
 }
