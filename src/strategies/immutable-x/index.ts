@@ -70,11 +70,13 @@ async function getL2Balances(network: string, options: Options, addresses: strin
         recordsLen = addresses.length; // assume all addresses exist
 
     while (recordsLen != 0) {
-        const apiUrl = buildURL(network, options, addresses, cursor);
+        const apiUrl = buildURL(network, options, cursor);
         const response = await fetch(apiUrl, {
-            method: 'GET',
+            method: 'POST',
+            body: JSON.stringify({"ether_keys": addresses}),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
             }
         });
         const resJson = await response.json();
@@ -85,26 +87,12 @@ async function getL2Balances(network: string, options: Options, addresses: strin
     return records;
 }
 
-function buildURL(network: string, options: Options, addresses: string[], cursor?: string): string {
+function buildURL(network: string, options: Options, cursor?: string): string {
     let apiUrl = networkMapping[network] + snapshotPath;
     apiUrl += '/' + options.address.toLowerCase();
-    apiUrl += buildArr('addresses', addresses);
-    apiUrl += `&page_size=${'pageSize' in options ? options.pageSize : defaultPageSize}`;
+    apiUrl += `?page_size=${'pageSize' in options ? options.pageSize : defaultPageSize}`;
     apiUrl += cursor || cursor != '' ? `&cursor=${cursor}` : '';
     return apiUrl;
-}
-
-function buildArr(name: string, arr: string[]): string {
-    let url = '';
-    for (let i = 0; i < arr.length; i++) {
-        if (i == 0) {
-            url += `?`;
-        } else {
-            url += `&`;
-        }
-        url += `${name}=${arr[i].toLowerCase()}`;
-    }
-    return url;
 }
 
 function mapL1Response(data: Record<string, BigNumberish>, options: Options): Record<string, number> {
