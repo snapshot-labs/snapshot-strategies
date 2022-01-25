@@ -6,7 +6,6 @@ export const author = 'drgorillamd';
 export const version = '1.0.0';
 
 const abi = [
-  'function pendingRewards(uint256,address) external view returns(uint256)',
   'function userInfo(address,uint256) external view returns(uint256 amount,uint256,uint256,uint256)',
   'function balanceOf(address) external view returns(uint256)',
   'function getReserves() external view returns(uint112,uint112 reserve1,uint32)',
