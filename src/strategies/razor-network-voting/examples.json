@@ -2,17 +2,18 @@
     {
       "name": "razor-network-voting",
       "strategy": {
-        "name": "razor-network-voting"
+        "name": "razor-network-voting",
+        "symbol":"RAZOR"
       },
       "network": "80001",
-      "snapshot": 20375929,
+      "snapshot": 24258292,
       "addresses": [
-        "0x1940b6b99962e31216e4e1ff6ee988c8d8cce483",
-        "0x5d70d96306ce5a7a2045638864296aa4637f15a8",
-        "0xfc6cf9b84e5270538667c798e45cf95c662a6f23",
-        "0x3490c46025fec9db2bde6a2b596e8ff5c8b016cf",
-        "0xa8bc8351289646ee617e737e8aba1ecf816b84e9",
-        "0x089e978ce4c68954e844d484d62d75786843beb4",
+        "0xbac9609ed8f4d24ad5f8b723ca81d0f7dbf271ce",
+        "0xb3a3617555f372951532f71fd8f844b4a699bf3a",
+        "0x6a3d4d169ef896c46c409156d73f7e00dbc8d519",
+        "0x04fe59f4f53afabf312f25cacc14e5cb222270f3",
+        "0x26a98513240401567733253c6cdd16f006fcd9b1",
+        "0x329dd19f84c9c17b189b9484034c80a27bd6e463",
         "0xa7893412e2ca9165bd5639db370bb5f7b2fb221b",
         "0x6ee26af75a47e15ab040af73cbdc077740f4825c"
       ]
