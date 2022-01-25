@@ -92,7 +92,7 @@ function buildURL(network: string, options: Options, block: number | string, cur
     let apiUrl = networkMapping[network] + snapshotPath;
     apiUrl += '/' + options.address.toLowerCase();
     apiUrl += `?page_size=${'pageSize' in options ? options.pageSize : defaultPageSize}`;
-    apiUrl += `${'latest' === block ? '' : `&block=${block}`}`;
+    apiUrl += 'latest' === block ? '' : `&block=${block}`;
     apiUrl += cursor || cursor != '' ? `&cursor=${cursor}` : '';
     return apiUrl;
 }
