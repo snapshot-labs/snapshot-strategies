@@ -7,7 +7,7 @@ export const version = '1.0.0';
 const LIMIT = 500;
 
 function makeQuery(snapshot, addressSet) {
-  let query = {
+  const query = {
     accounts: {
       __args: {
         where: {
@@ -18,7 +18,7 @@ function makeQuery(snapshot, addressSet) {
       id: true,
       balance: true
     }
-  }
+  };
   if (snapshot !== 'latest') {
     // @ts-ignore
     query.accounts.__args.block = { number: snapshot };
@@ -34,10 +34,11 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const _addresses = addresses.map((x) => x.toLowerCase());
   const addressSubsets = Array.apply(
     null,
-    Array(Math.ceil(addresses.length / LIMIT))
-  ).map((_e, i) => addresses.slice(i * LIMIT, (i + 1) * LIMIT));
+    Array(Math.ceil(_addresses.length / LIMIT))
+  ).map((_e, i) => _addresses.slice(i * LIMIT, (i + 1) * LIMIT));
 
   const returnedFromSubgraph = await Promise.all(
     addressSubsets.map((subset) =>
@@ -45,12 +46,12 @@ export async function strategy(
     )
   );
 
-  const result = returnedFromSubgraph.map(x => x.accounts).flat()
-  const scores = {}
-  const scaler = BigNumber.from(10).pow(options.decimals || 18)
-  addresses.forEach(address => {
-    const account = result.filter(x => x.id == address)[0]
-    let score = 0
+  const result = returnedFromSubgraph.map((x) => x.accounts).flat();
+  const scores = {};
+  const scaler = BigNumber.from(10).pow(options.decimals || 18);
+  addresses.forEach((address) => {
+    const account = result.filter((x) => x.id == address.toLowerCase())[0];
+    let score = 0;
     if (account) {
       if (options.decimals) {
         score = BigNumber.from(account.balance).div(scaler).toNumber();
@@ -58,7 +59,7 @@ export async function strategy(
         score = parseFloat(account.balance);
       }
     }
-    scores[address] = score
-  })
-  return scores || {}
+    scores[address] = score;
+  });
+  return scores || {};
 }

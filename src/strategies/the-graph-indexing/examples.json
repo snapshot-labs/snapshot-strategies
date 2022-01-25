@@ -4,7 +4,7 @@
     "strategy": {
       "name": "the-graph-indexing",
       "params": {
-        "strategyType": "indexing",
+        "symbol": "I-GRT",
         "expectedResults": {
           "tokenLockWallets": [
             {

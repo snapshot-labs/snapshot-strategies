@@ -1,13 +1,16 @@
 import { subgraphRequest } from '../../utils';
 import { getProvider } from '../../utils';
 import strategies from '..';
+import fetch from 'cross-fetch';
 
 export const author = 'kesar';
-export const version = '1.0.0';
+export const version = '1.0.2';
 
 const defaultGraphs = {
   '56': 'https://api.thegraph.com/subgraphs/name/apyvision/block-info',
-  '137': 'https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks'
+  '137': 'https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks',
+  '42161':
+    'https://api.thegraph.com/subgraphs/name/ianlapham/arbitrum-one-blocks'
 };
 
 async function getChainBlockNumber(
@@ -32,7 +35,7 @@ async function getChainBlockNumber(
   return Number(data.blocks[0].number);
 }
 
-async function getChainBlocks(
+async function getChainBlocksFromSubGraph(
   snapshot,
   provider,
   options,
@@ -60,6 +63,46 @@ async function getChainBlocks(
   return chainBlocks;
 }
 
+async function getChainBlocksFromApi(
+  snapshot,
+  provider,
+  options
+): Promise<any> {
+  const block = await provider.getBlock(snapshot);
+  const timestamp = block.timestamp;
+
+  //Should receive the timestamp as query param and return the block height by chain
+  const apiUrl = `${options.blockApi}?timestamp=${timestamp}`;
+  const resp = await fetch(apiUrl, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  }).then((r) => r.json());
+
+  //Response should contain blocks object with chainIds as keys and block numbers as values
+  return resp.blocks;
+}
+
+async function getChainBlocks(
+  snapshot,
+  provider,
+  options,
+  network
+): Promise<any> {
+  if (options.blockApi) {
+    return await getChainBlocksFromApi(snapshot, provider, options);
+  } else {
+    return await getChainBlocksFromSubGraph(
+      snapshot,
+      provider,
+      options,
+      network
+    );
+  }
+}
+
 export async function strategy(
   space,
   network,
@@ -77,6 +120,14 @@ export async function strategy(
   );
 
   for (const strategy of options.strategies) {
+    // If snapshot is taken before a network is activated then ignore its strategies
+    if (
+      options.startBlocks &&
+      chainBlocks[strategy.network] < options.startBlocks[strategy.network]
+    ) {
+      continue;
+    }
+
     promises.push(
       strategies[strategy.name].strategy(
         space,

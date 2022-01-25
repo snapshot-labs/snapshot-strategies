@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Stakers on xDai (from POSDAO staking)",
+    "strategy": {
+      "name": "yearn-vault",
+      "params": {
+        "symbol": "YFI (yYFI)",
+        "address": "0xBA2E7Fed597fd0E3e70f5130BcDbbFE06bB94fe1",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x8C612B03b3358C1E535706695c635C360034B968",
+      "0x24d19f100ba142543a863fc2294b188e35ab55b9",
+      "0x29cf39de6d963d092c177a60ce67879eea9910bb"
+    ],
+    "snapshot": 11884857
+  }
+]

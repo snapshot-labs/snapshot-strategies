@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Juicebox Projects",
+    "strategy": {
+      "name": "juicebox",
+      "params": {
+        "projectId": "1",
+        "symbol": "JBX"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x754F37225CE0E30639093Af47C16ef057B544b4f",
+      "0x6877be9E00d0bc5886c28419901E8cC98C1c2739"
+    ],
+    "snapshot": 13714984
+  }
+]

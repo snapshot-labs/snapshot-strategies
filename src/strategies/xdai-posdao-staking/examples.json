@@ -2,7 +2,10 @@
   {
     "name": "Stakers on xDai (from POSDAO staking)",
     "strategy": {
-      "name": "xdai-posdao-staking"
+      "name": "xdai-posdao-staking",
+      "params": {
+        "symbol": "XDAI"
+      }
     },
     "network": "1",
     "addresses": [

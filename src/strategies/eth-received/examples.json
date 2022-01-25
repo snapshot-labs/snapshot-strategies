@@ -4,6 +4,7 @@
     "strategy": {
       "name": "eth-received",
       "params": {
+        "symbol": "ETH",
         "receivingAddresses": [
           "0xc7464dbcA260A8faF033460622B23467Df5AEA42",
           "0x02a13ED1805624738Cc129370Fee358ea487B0C6",

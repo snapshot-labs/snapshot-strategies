@@ -4,6 +4,7 @@
     "strategy": {
       "name": "pod-leader",
       "params": {
+        "symbol": "STAKE",
         "chefAddress": "0x111E1E97435b57467E79d4930acc4B7EB3d478ad",
         "uniPairAddress": "0x73e6CB72a79dEa7ed75EF5eD6f8cFf86C9128eF5",
         "token0": {
@@ -17,9 +18,7 @@
       }
     },
     "network": "43114",
-    "addresses": [
-      "0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"
-    ],
+    "addresses": ["0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"],
     "snapshot": 5475221
   },
   {
@@ -40,12 +39,10 @@
       }
     },
     "network": "43114",
-    "addresses": [
-      "0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"
-    ],
+    "addresses": ["0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"],
     "snapshot": 5475221
   },
-  
+
   {
     "name": "Example query - Tokens in single token Pool",
     "strategy": {
@@ -60,9 +57,7 @@
       }
     },
     "network": "43114",
-    "addresses": [
-      "0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"
-    ],
+    "addresses": ["0x9F8A5B35f5508071cf2304A670EAB0803F3737aa"],
     "snapshot": 5475221
   }
 ]

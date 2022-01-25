@@ -4,6 +4,7 @@
     "strategy": {
       "name": "loot-character-guilds",
       "params": {
+        "symbol": "LOOT",
         "lootAddress": "0xFF9C1b15B16263C61d017ee9F65C50e4AE0113D7",
         "lootCharacterGuildsAddress": "0xBbb55b52d2186C4dd99cDba7AF483459E517BE3d",
         "guildId": 5

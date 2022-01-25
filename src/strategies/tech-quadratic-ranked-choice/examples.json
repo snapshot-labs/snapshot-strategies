@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "tech-quadratic-ranked-choice",
+      "params": {
+        "address": "0x799844141C2627bD195c89c3A0c71341d0314c55",
+        "symbol": "TECH",
+        "decimals": 18
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0xB22981bA3FE1De2325935c91a3B717168fB86714",
+      "0xaa79B87DC8B046A5E4f7D03F1562D7fe5BF98737",
+      "0x66dF5A7715C5D4AfbBFA52435c66aa20733be0d1",
+      "0x7d547666209755FB833f9B37EebEa38eBF513Abb",
+      "0x1d921dff757610FbDB0073479e12c0a07d382677",
+      "0x826976d7C600d45FB8287CA1d7c76FC8eb732030",
+      "0x839395e20bbB182fa440d08F850E6c7A8f6F0780",
+      "0xC46c67Bb7E84490D7EbdD0b8ecDaca68Cf3823F4",
+      "0xF8D1d34956cEa24718cf8687588D6FeDbc6d9AA6"
+    ],
+    "snapshot": 18983705
+  }
+]

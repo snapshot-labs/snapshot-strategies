@@ -5,6 +5,7 @@
       "name": "zrx-voting-power",
       "params": {
         "address": "0xe41d2489571d322189246dafa5ebde1f4699f498",
+        "symbol": "ZRX",
         "governerContract": "0x0bB1810061C2f5b2088054eE184E6C79e1591101",
         "decimals": 18
       }

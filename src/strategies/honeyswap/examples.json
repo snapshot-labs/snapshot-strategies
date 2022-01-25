@@ -4,9 +4,9 @@
     "strategy": {
       "name": "honeyswap",
       "params": {
-        "address": "0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
         "symbol": "WXDAI",
-        "decimals": 18
+        "address": "0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
+        "useStakedBalances": "true"
       }
     },
     "network": "100",
