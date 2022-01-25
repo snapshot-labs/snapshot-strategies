@@ -6,6 +6,7 @@
       "params": {
         "address": "0x6E8a8726639d12935b3219892155520bdC57366B",
         "lpaddress": "0xc1214b61965594b3e08Ea4950747d5A077Cd1886",
+        "harvaddress": "0x0a0be71cfce12ecb966dc762016c28ef5640b56a",
         "symbol": "GNOME",
         "decimals": 18
       }
@@ -13,6 +14,7 @@
     "network": "137",
     "addresses": [
       "0xd53c79ff8c473bbfe4e40e5525d4d24fd4b8534c",
+      "0xA4e2E09eDEDC19342801243CcFcB834F582616aE",
       "0x326a9c20f220042c9e2ee3d7969e2a3963a67606",
       "0xc1214b61965594b3e08ea4950747d5a077cd1886",
       "0x7641d6f27dfd771daa164b9dc9aa13a8ebe41ce1",
@@ -33,6 +35,6 @@
       "0x74ddd85389f4fd0069c922273498b4e28cdc9ccc",
       "0x0057ff99a06f82cd876c4f7f1718bd9a4f2e74b6"
     ],
-    "snapshot": 23873394
+    "snapshot": 23999817
   }
 ]
