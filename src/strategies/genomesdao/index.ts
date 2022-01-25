@@ -23,15 +23,20 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) =>
+  addresses.forEach((address: any) =>
     multi.call(address, options.address, 'balanceOf', [address])
   );
   const result: Record<string, BigNumberish> = await multi.execute();
   
-  addresses.forEach((address) =>
+  addresses.forEach((address: any) =>
     multi.call(address, options.lpaddress, 'balanceOf', [address])
   );
-  const resultLP: Record<string, BigNumberish> = await multi.execute();
+  const resultLP1: Record<string, BigNumberish> = await multi.execute();
+  
+  addresses.forEach((address: any) =>
+    multi.call(address, options.harvaddress, 'balanceOf', [address])
+  );
+  const resultLP2: Record<string, BigNumberish> = await multi.execute();
 
   multi.call("token0", options.lpaddress, 'token0', []);
   multi.call("getReserves", options.lpaddress, 'getReserves', []);
@@ -43,9 +48,10 @@ export async function strategy(
   } else {
     totalGnomeAmount = getReserves[1];
   }
-  return Object.fromEntries(Object.entries(resultLP).map(([address, balance]) => {
+
+  return Object.fromEntries(Object.entries(resultLP1).map(([address, balance]) => {
     let bal: BigNumber = BigNumber.from(balance).mul(totalGnomeAmount).div(totalSupply);
-    bal = bal.add(result[address]);
+    bal = bal.add(result[address]).add(resultLP2[address]);
     return [address, parseFloat(formatUnits(bal, options.decimals))];
   }));
 }

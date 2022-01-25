@@ -198,6 +198,7 @@ import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
 import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
+import * as digitalaxDecoToMona from './digitalax-deco-to-mona';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
@@ -241,6 +242,8 @@ import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethXdaiBalance from './giveth-xdai-balance';
 import * as givethBalancerBalance from './giveth-balancer-balance';
+import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
+import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -438,6 +441,7 @@ const strategies = {
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
+  'digitalax-deco-to-mona': digitalaxDecoToMona,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
   'digitalax-mona-stakers-matic': digitalaxMonaStakersMatic,
@@ -482,7 +486,9 @@ const strategies = {
   'volt-voting-power': voltVotingPower,
   'balancer-poolid': balancerPoolid,
   'staked-balancer': stakedBalancer,
-  'staked-uniswap-modifiable': stakedUniswapModifiable
+  'staked-uniswap-modifiable': stakedUniswapModifiable,
+  'erc1155-balance-of-ids': erc1155BalanceOfIds,
+  'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

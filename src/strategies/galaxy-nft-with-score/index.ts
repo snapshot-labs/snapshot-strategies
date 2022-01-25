@@ -116,7 +116,9 @@ export async function strategy(
 
   const graphqlPromise = fetch(Networks[network].graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(
-    options.params.subgraph ? options.params.subgraph : Networks[network].subgraph,
+    options.params.subgraph
+      ? options.params.subgraph
+      : Networks[network].subgraph,
     subgraphParams
   );
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
@@ -133,7 +135,7 @@ export async function strategy(
   const ownersWithNfts: OwnerWithNfts = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
     (map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
-        m[i.nftCore.contractAddress.toLowerCase() + '-' + i.id ] = i.name;
+        m[i.nftCore.contractAddress.toLowerCase() + '-' + i.id] = i.name;
         return m;
       }, {});
       return map;
@@ -146,7 +148,9 @@ export async function strategy(
     if (!(ownership.owner in subgraphOwnersWithNfts)) {
       subgraphOwnersWithNfts[ownership.owner] = {};
     }
-    subgraphOwnersWithNfts[ownership.owner][ownership.nft.contract.id + '-' + ownership.nft.tokenID] = '';
+    subgraphOwnersWithNfts[ownership.owner][
+      ownership.nft.contract.id + '-' + ownership.nft.tokenID
+    ] = '';
   });
 
   // Intersect nft holdings of owners from graphql and subgraph returns
