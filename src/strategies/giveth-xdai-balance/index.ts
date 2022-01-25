@@ -43,10 +43,15 @@ const pairParams = {
 };
 
 const params = {
-  balance: {
+  balances: {
     __args: {
-      id: ''
+      orderBy: 'id',
+      orderDirection: 'asc',
+      where: {
+        id_in: []
+      }
     },
+    id: true,
     balance: true,
     givStaked: true,
     honeyswapLp: true,
@@ -78,17 +83,16 @@ export async function strategy(
   options,
   snapshot
 ) {
-  if (snapshot !== 'latest') {
-    const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-    const block = await provider.getBlock(blockTag);
-    blockParams.blocks.__args.where.timestamp_lte = block.timestamp;
-    const xDaiBlock = await subgraphRequest(XDAI_BLOCKS_API, blockParams);
-    const blockNumber = Number(xDaiBlock.blocks[0].number);
-    // @ts-ignore
-    pairParams.pair.__args.block = { number: blockNumber };
-    // @ts-ignore
-    params.balance.__args.block = { number: blockNumber };
-  }
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const block = await provider.getBlock(blockTag);
+  blockParams.blocks.__args.where.timestamp_lte = block.timestamp;
+  const xDaiBlock = await subgraphRequest(XDAI_BLOCKS_API, blockParams);
+  const blockNumber = Number(xDaiBlock.blocks[0].number);
+  // @ts-ignore
+  pairParams.pair.__args.block = { number: blockNumber };
+  // @ts-ignore
+  params.balances.__args.block = { number: blockNumber };
+
   const [hnyData, sushiData] = await Promise.all(
     PAIR_APIS.map((API, index) => {
       pairParams.pair.__args.id = PAIR_IDS[index];
@@ -97,43 +101,40 @@ export async function strategy(
   );
   const hnyFormatedData = formatReserveBalance(hnyData, options.decimals);
   const sushiFormatedData = formatReserveBalance(sushiData, options.decimals);
-  const data = await Promise.all(
-    addresses.map((address) => {
-      params.balance.__args.id = address.toLowerCase();
-      return subgraphRequest(GIVETH_SUBGRAPH_API, params);
-    })
+
+  params.balances.__args.where.id_in = addresses.map((address) =>
+    address.toLowerCase()
   );
 
-  const result = {};
-  addresses.map((address, index) => {
-    if (!data[index].balance) {
-      result[address] = parseFloat(
-        formatUnits(BigNumber.from('0'), options.decimals)
-      );
-    } else {
-      const {
-        balance,
-        givStaked,
-        honeyswapLp,
-        honeyswapLpStaked,
-        sushiswapLp,
-        sushiSwapLpStaked
-      } = data[index].balance;
-      const totalGIV = BigNumber.from(balance).add(givStaked);
-      const hnyGIV = calcGivAmount(
-        BigNumber.from(honeyswapLp).add(honeyswapLpStaked),
-        hnyFormatedData.totalSupply,
-        hnyFormatedData.reserve
-      );
-      const sushiGIV = calcGivAmount(
-        BigNumber.from(sushiswapLp).add(sushiSwapLpStaked),
-        sushiFormatedData.totalSupply,
-        sushiFormatedData.reserve
-      );
-      result[address] = parseFloat(
-        formatUnits(totalGIV.add(hnyGIV).add(sushiGIV), options.decimals)
-      );
-    }
+  const data = await subgraphRequest(GIVETH_SUBGRAPH_API, params);
+  const dataBalances = data.balances;
+
+  const score = {};
+  console.log(dataBalances);
+  dataBalances.map((addressBalance) => {
+    const {
+      id,
+      balance,
+      givStaked,
+      honeyswapLp,
+      honeyswapLpStaked,
+      sushiswapLp,
+      sushiSwapLpStaked
+    } = addressBalance;
+    const totalGIV = BigNumber.from(balance).add(givStaked);
+    const hnyGIV = calcGivAmount(
+      BigNumber.from(honeyswapLp).add(honeyswapLpStaked),
+      hnyFormatedData.totalSupply,
+      hnyFormatedData.reserve
+    );
+    const sushiGIV = calcGivAmount(
+      BigNumber.from(sushiswapLp).add(sushiSwapLpStaked),
+      sushiFormatedData.totalSupply,
+      sushiFormatedData.reserve
+    );
+    score[id] = parseFloat(
+      formatUnits(totalGIV.add(hnyGIV).add(sushiGIV), options.decimals)
+    );
   });
-  return result;
+  return score;
 }

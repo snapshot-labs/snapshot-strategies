@@ -25,10 +25,15 @@ const poolParams = {
 };
 
 const params = {
-  balance: {
+  balances: {
     __args: {
-      id: ''
+      orderBy: 'id',
+      orderDirection: 'asc',
+      where: {
+        id_in: []
+      }
     },
+    id: true,
     balance: true,
     givStaked: true,
     balancerLp: true,
@@ -63,39 +68,36 @@ export async function strategy(
     // @ts-ignore
     poolParams.pool.__args.block = { number: snapshot };
     // @ts-ignore
-    params.balance.__args.block = { number: snapshot };
+    params.balances.__args.block = { number: snapshot };
   }
   const balData = await subgraphRequest(BALANCER_SUBGRAPH_API, poolParams);
   const balFormatedData = formatReserveBalance(balData, options.decimals);
 
-  const data = await Promise.all(
-    addresses.map((address) => {
-      params.balance.__args.id = address.toLowerCase();
-      return subgraphRequest(GIVETH_SUBGRAPH_API, params);
-    })
+  params.balances.__args.where.id_in = addresses.map((address) =>
+    address.toLowerCase()
   );
 
-  const result = {};
-  addresses.map((address, index) => {
-    if (!data[index].balance) {
-      result[address] = parseFloat(
-        formatUnits(BigNumber.from('0'), options.decimals)
-      );
-    } else {
-      const { balance, givStaked, balancerLp, balancerLpStaked } = data[
-        index
-      ].balance;
-      const totalGIV = BigNumber.from(balance).add(givStaked);
+  const data = await subgraphRequest(GIVETH_SUBGRAPH_API, params);
+  const dataBalances = data.balances;
 
-      const balGIV = calcGivAmount(
-        BigNumber.from(balancerLp).add(balancerLpStaked),
-        balFormatedData.totalShares,
-        balFormatedData.balance
-      );
-      result[address] = parseFloat(
-        formatUnits(totalGIV.add(balGIV), options.decimals)
-      );
-    }
+  const score = {};
+  dataBalances.map((addressBalance) => {
+    const {
+      id,
+      balance,
+      givStaked,
+      balancerLp,
+      balancerLpStaked
+    } = addressBalance;
+    const totalGIV = BigNumber.from(balance).add(givStaked);
+
+    const balGIV = calcGivAmount(
+      BigNumber.from(balancerLp).add(balancerLpStaked),
+      balFormatedData.totalShares,
+      balFormatedData.balance
+    );
+    score[id] = parseFloat(formatUnits(totalGIV.add(balGIV), options.decimals));
   });
-  return result;
+
+  return score;
 }
