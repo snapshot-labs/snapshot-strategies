@@ -6,11 +6,6 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "symbol": {
-          "type": "string",
-          "title": "Symbol",
-          "examples": ["e.g. GNOME"]
-        },
         "address": {
           "type": "string",
           "title": "Governance Token Contract address",
@@ -18,8 +13,18 @@
         },
         "lpaddress": {
           "type": "string",
-          "title": "LP Token Contract address",
+          "title": "LP Token Contract address on Sushi",
           "examples": ["e.g. 0xc1214b61965594b3e08Ea4950747d5A077Cd1886"]
+        },
+        "harvaddress": {
+          "type": "string",
+          "title": "Harvest Token Contract Address",
+          "examples": ["e.g. 0x0a0be71cfce12ecb966dc762016c28ef5640b56a"]
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. GNOME"]
         },
         "decimals": {
           "type": "number",
