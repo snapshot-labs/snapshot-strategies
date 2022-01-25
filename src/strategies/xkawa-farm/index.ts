@@ -26,17 +26,9 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
   addresses.forEach((address) => {
-    multi.call(address + '-staked', options.pool, 'userInfo', [address, '1']); // .amount: uint
-    multi.call(address + '-pendingReward', options.pool, 'pendingRewards', [
-      '1',
-      address
-    ]); // uint
+    multi.call(address + '-staked', options.farm, 'userInfo', [address, '1']); // .amount: uint
     multi.call(address + '-balance', options.token, 'balanceOf', [address]); // uint
-    multi.call(address + '-LPstaked', options.pool, 'userInfo', [address, '3']); // .amount: uint
-    multi.call(address + '-LPpendingReward', options.pool, 'pendingRewards', [
-      '3',
-      address
-    ]); // uint
+    multi.call(address + '-LPstaked', options.farm, 'userInfo', [address, '3']); // .amount: uint
   });
 
   // xKawa is token1
@@ -48,17 +40,10 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((adr) => {
       let bal = result[adr + '-staked']['amount'];
-      bal = bal.add(result[adr + '-pendingReward']);
       bal = bal.add(result[adr + '-balance']);
 
       bal = bal.add(
         BigNumber.from(result[adr + '-LPstaked']['amount'])
-          .mul(result['reserves']['reserve1'])
-          .div(result['totalSupplyLP'])
-      );
-
-      bal = bal.add(
-        BigNumber.from(result[adr + '-LPpendingReward'])
           .mul(result['reserves']['reserve1'])
           .div(result['totalSupplyLP'])
       );
