@@ -4,6 +4,7 @@
     "strategy": {
       "name": "uniswap-v3-staking",
       "params": {
+        "symbol": "UNI",
         "poolAddress": "0x94981f69f7483af3ae218cbfe65233cc3c60d93a",
         "tokenReserve": 0,
         "rewardToken": "0x6123B0049F904d730dB3C36a31167D9d4121fA6B",

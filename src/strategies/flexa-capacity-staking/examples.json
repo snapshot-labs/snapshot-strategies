@@ -4,6 +4,7 @@
     "strategy": {
       "name": "flexa-capacity-staking",
       "params": {
+        "symbol": "FLEX",
         "apiBase": "https://api.capacity.staging.flexa.network"
       }
     },

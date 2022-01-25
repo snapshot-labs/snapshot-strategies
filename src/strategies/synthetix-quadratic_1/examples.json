@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "synthetix-quadratic_1",
+      "params": {
+        "address": "0x023c66b7e13d30a3c46aa433fd2829763d5817c5",
+        "symbol": "WD",
+        "totalL2Debt": 48646913,
+        "lastDebtLedgerEntryL2": 9773647546760863848975891,
+        "L2BlockNumber": 919219
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xcAc59F91E4536Bc0E79aB816a5cD54e89f10433C",
+      "0x935D2fD458fdf41B6F7B62471f593797866a3Ce6"
+    ],
+    "snapshot": 13764062
+  }
+]

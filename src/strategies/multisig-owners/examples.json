@@ -4,6 +4,7 @@
     "strategy": {
       "name": "multisig-owners",
       "params": {
+        "symbol": "MSO",
         "address": "0x48301Fe520f72994d32eAd72E2B6A8447873CF50"
       }
     },

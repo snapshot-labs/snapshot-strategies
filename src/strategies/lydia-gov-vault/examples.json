@@ -1,0 +1,20 @@
+[
+  {
+    "name": "lydia-gov-vault",
+    "strategy": {
+      "name": "lydia-gov-vault",
+      "params": {
+        "address": "0x59002fcbC7D19B7c91D530F739d71507B83CaC53",
+        "symbol": "GovLYD"
+      }
+    },
+    "network": "43114",
+    "addresses": [
+      "0xB1cbb693D6cF15a88d251b7361C8925BeA58db5f",
+      "0x806EB1C67f54D286239E0aC953Aa5514B7958Cc8",
+      "0x2e8Ac6830CcAA5a767ddf96c10E4A9772D19C2A8",
+      "0x91BF066D64Ef577b64A8445343834c7f5Cbbd0CD"
+    ],
+    "snapshot": 8088843
+  }
+]

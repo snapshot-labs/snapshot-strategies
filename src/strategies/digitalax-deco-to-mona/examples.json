@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Digitalax Deco to Mona conversion",
+    "strategy": {
+      "name": "digitalax-deco-to-mona",
+      "params": {
+        "symbol": "MONA",
+        "address": "0x200f9621cbce6ed740071ba34fde85ee03f2e113"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xd4c4f5e108d09f4383f431d143e75ecabb703f2a",
+      "0x0e091edbc59d7089451b19bd54bddd3576232edc",
+      "0x5fc1f31a084ef781b436885d10ab8c3e24a29642",
+      "0x5e4038eb6f1e7316a45ed569e94c8cd1706a5ec5",
+      "0xab48edd90bdf367d326d827758bacd2460c59d17"
+    ],
+    "snapshot": 23986420
+  }
+]

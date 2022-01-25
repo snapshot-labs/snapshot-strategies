@@ -4,7 +4,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const FUNDING_SUBGRAPH_URL = {
-  '1': 'https://api.studio.thegraph.com/query/9578/funding-subgraph-v4/v0.0.2'
+  '4': 'https://api.studio.thegraph.com/query/9578/funding-subgraph-v5/v0.0.1' // Rinkeby testnet
 };
 
 export const author = 'AmirSarraf';
