@@ -105,7 +105,6 @@ export async function strategy(
     return subgraphRequest(API, pairParams);
   });
   requests.push(subgraphRequest(GIVETH_SUBGRAPH_API, params));
-
   const [hnyData, sushiData, data] = await Promise.all(requests);
 
   const hnyFormatedData = formatReserveBalance(hnyData, options.decimals);
