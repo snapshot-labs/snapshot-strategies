@@ -1,5 +1,6 @@
 import { subgraphRequest } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
+import { getAddress } from '@ethersproject/address';
 import { parseUnits, formatUnits } from '@ethersproject/units';
 
 export const author = 'pkretzschmar';
@@ -96,7 +97,9 @@ export async function strategy(
       balFormatedData.totalShares,
       balFormatedData.balance
     );
-    score[id] = parseFloat(formatUnits(totalGIV.add(balGIV), options.decimals));
+    score[getAddress(id)] = parseFloat(
+      formatUnits(totalGIV.add(balGIV), options.decimals)
+    );
   });
 
   return score;

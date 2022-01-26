@@ -1,5 +1,6 @@
 import { subgraphRequest } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
+import { getAddress } from '@ethersproject/address';
 import { parseUnits, formatUnits } from '@ethersproject/units';
 
 export const author = 'pkretzschmar';
@@ -132,7 +133,7 @@ export async function strategy(
       sushiFormatedData.totalSupply,
       sushiFormatedData.reserve
     );
-    score[id] = parseFloat(
+    score[getAddress(id)] = parseFloat(
       formatUnits(totalGIV.add(hnyGIV).add(sushiGIV), options.decimals)
     );
   });
