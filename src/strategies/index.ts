@@ -198,6 +198,7 @@ import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
 import * as radicleCommunityTokens from './radicle-community-tokens';
 import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
+import * as digitalaxDecoToMona from './digitalax-deco-to-mona';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
@@ -436,6 +437,7 @@ const strategies = {
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
+  'digitalax-deco-to-mona': digitalaxDecoToMona,
   'digitalax-genesis-contribution': digitalaxGenesisContribution,
   'digitalax-lp-stakers': digitalaxLPStakers,
   'digitalax-mona-stakers-matic': digitalaxMonaStakersMatic,
