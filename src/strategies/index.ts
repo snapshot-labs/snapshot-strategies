@@ -242,6 +242,7 @@ import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
+import * as spacey2025 from './spacey2025';
 
 const strategies = {
   'nouns-rfp-power': nounsPower,
@@ -484,7 +485,8 @@ const strategies = {
   'staked-balancer': stakedBalancer,
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
-  'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted
+  'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
+  'spacey2025':spacey2025
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
