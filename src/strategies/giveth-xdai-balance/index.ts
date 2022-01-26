@@ -111,7 +111,6 @@ export async function strategy(
   const dataBalances = data.balances;
 
   const score = {};
-  console.log(dataBalances);
   dataBalances.map((addressBalance) => {
     const {
       id,
