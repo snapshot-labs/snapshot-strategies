@@ -4,7 +4,7 @@ import { subgraphRequest } from '../../utils';
 export const author = '2fd';
 export const version = '0.1.0';
 
-const DECENTRALAND_MARKETPLACE_SUBGRAPH_URL = {
+const SPACEY2025_MARKETPLACE_SUBGRAPH_URL = {
   '56': 'https://api.thegraph.com/subgraphs/name/blockfishio/marketplacebsc',
 };
 
@@ -53,7 +53,7 @@ export async function strategy(
   let hasNext = true;
   while (hasNext) {
     const result = await subgraphRequest(
-      DECENTRALAND_MARKETPLACE_SUBGRAPH_URL[network],
+      SPACEY2025_MARKETPLACE_SUBGRAPH_URL[network],
       params
     );
 
