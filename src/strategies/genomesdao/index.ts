@@ -50,8 +50,8 @@ export async function strategy(
   }
 
   return Object.fromEntries(Object.entries(resultLP1).map(([address, balance]) => {
-    let bal: BigNumber = BigNumber.from(balance).mul(totalGnomeAmount).div(totalSupply);
-    bal = bal.add(result[address]).add(resultLP2[address]);
+    let bal: BigNumber = BigNumber.from(balance).add(resultLP2[address]).mul(totalGnomeAmount).div(totalSupply);
+    bal = bal.add(result[address]);
     return [address, parseFloat(formatUnits(bal, options.decimals))];
   }));
 }
