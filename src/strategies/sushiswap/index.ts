@@ -5,18 +5,24 @@ import { subgraphRequest } from '../../utils';
 const SUSHISWAP_SUBGRAPH_URL = {
   '1': {
     exchange: 'https://api.thegraph.com/subgraphs/name/sushiswap/exchange',
-    masterChef: 'https://api.thegraph.com/subgraphs/name/sushiswap/master-chef'
+    masterChef: {
+      'v1': 'https://api.thegraph.com/subgraphs/name/sushiswap/master-chef',
+      'v2': 'https://api.thegraph.com/subgraphs/name/sushiswap/master-chefv2'
+    }
   },
   '100': {
     exchange: 'https://api.thegraph.com/subgraphs/name/sushiswap/xdai-exchange',
-    masterChef:
-      'https://api.thegraph.com/subgraphs/name/matthewlilley/xdai-minichef'
+    masterChef: {
+      'v1': 'https://api.thegraph.com/subgraphs/name/matthewlilley/xdai-minichef'
+      // Could now be replaced by official sushiswap/xdai-minichef: 
+      // https://api.thegraph.com/subgraphs/name/sushiswap/xdai-minichef
+    }
   }
 };
 const PAGE_SIZE = 1000;
 
 export const author = 'vfatouros';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 async function getPairs(network, snapshot, token) {
   const getParams = (tokenId, page) => {
@@ -78,7 +84,7 @@ async function getPairs(network, snapshot, token) {
   );
 }
 
-async function getPools(network, snapshot, token) {
+async function getPools(network, snapshot, token, masterChefUrl) {
   const pairs = await getPairs(network, snapshot, token);
   const params = {
     pools: {
@@ -102,7 +108,7 @@ async function getPools(network, snapshot, token) {
     // @ts-ignore
     params.pools.__args.skip = page * PAGE_SIZE;
     const result = await subgraphRequest(
-      SUSHISWAP_SUBGRAPH_URL[network].masterChef,
+      masterChefUrl,
       params
     );
     pools = pools.concat(result.pools);
@@ -114,8 +120,12 @@ async function getPools(network, snapshot, token) {
   );
 }
 
-async function getStakedBalances(network, snapshot, token, addresses) {
-  const pools = await getPools(network, snapshot, token);
+async function getStakedBalances(network, snapshot, options, addresses) {
+  const token = options.address
+  // Only allow the masterChefVersion key to be v2 if on mainnet, otherwise fallback to v1
+  const masterchefVersion = network == '1' ? options.masterchefVersion : 'v1'
+  const masterChefUrl = SUSHISWAP_SUBGRAPH_URL[network].masterChef[masterchefVersion]
+  const pools = await getPools(network, snapshot, token, masterChefUrl);
   const params = {
     users: {
       __args: {
@@ -143,7 +153,7 @@ async function getStakedBalances(network, snapshot, token, addresses) {
     // @ts-ignore
     params.users.__args.skip = page * PAGE_SIZE;
     const result = await subgraphRequest(
-      SUSHISWAP_SUBGRAPH_URL[network].masterChef,
+      masterChefUrl,
       params
     );
     users = users.concat(result.users);
@@ -237,7 +247,7 @@ export async function strategy(
     const stakedBalances = await getStakedBalances(
       network,
       snapshot,
-      options.address,
+      options,
       addresses
     );
     stakedBalances.forEach((balance) => {
