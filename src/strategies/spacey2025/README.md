@@ -1,6 +1,11 @@
 Spacey2025
 
-Checks for the number of SNOW's staked in Frosty’s pool (https://etherscan.io/address/0x7d2c8b58032844f222e2c80219975805dce1921c) and adds it to the balance of the voters FLAME ERC20 token
+This strategy implements the voting power rules for blockchain game SpaceY2025(https://spacey2025.com). Voting power rules are as below:
+- SPAY x1
+- Ticket x1500
+- Land x600
+- Tower x6
+
 
 Here is an example of parameters:
 
