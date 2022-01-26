@@ -9,7 +9,7 @@ export const version = '0.1.0';
 const GIVETH_SUBGRAPH_API =
   'https://api.thegraph.com/subgraphs/name/giveth/giveth-economy-xdai';
 const XDAI_BLOCKS_API =
-  'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks';
+  'https://api.thegraph.com/subgraphs/name/elkfinance/xdai-blocks';
 const PAIR_IDS = [
   '0x08ea9f608656a4a775ef73f5b187a2f1ae2ae10e',
   '0x55ff0cef43f0df88226e9d87d09fa036017f5586'
@@ -90,28 +90,29 @@ export async function strategy(
   const xDaiBlock = await subgraphRequest(XDAI_BLOCKS_API, blockParams);
   const blockNumber = Number(xDaiBlock.blocks[0].number);
   // @ts-ignore
-  pairParams.pair.__args.block = { number: blockNumber };
-  // @ts-ignore
   params.balances.__args.block = { number: blockNumber };
-
-  const [hnyData, sushiData] = await Promise.all(
-    PAIR_APIS.map((API, index) => {
-      pairParams.pair.__args.id = PAIR_IDS[index];
-      return subgraphRequest(API, pairParams);
-    })
-  );
-  const hnyFormatedData = formatReserveBalance(hnyData, options.decimals);
-  const sushiFormatedData = formatReserveBalance(sushiData, options.decimals);
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    pairParams.pair.__args.block = { number: blockNumber };
+  }
 
   params.balances.__args.where.id_in = addresses.map((address) =>
     address.toLowerCase()
   );
 
-  const data = await subgraphRequest(GIVETH_SUBGRAPH_API, params);
+  const requests = PAIR_APIS.map((API, index) => {
+    pairParams.pair.__args.id = PAIR_IDS[index];
+    return subgraphRequest(API, pairParams);
+  });
+  requests.push(subgraphRequest(GIVETH_SUBGRAPH_API, params));
+
+  const [hnyData, sushiData, data] = await Promise.all(requests);
+
+  const hnyFormatedData = formatReserveBalance(hnyData, options.decimals);
+  const sushiFormatedData = formatReserveBalance(sushiData, options.decimals);
   const dataBalances = data.balances;
 
   const score = {};
-  console.log(dataBalances);
   dataBalances.map((addressBalance) => {
     const {
       id,
