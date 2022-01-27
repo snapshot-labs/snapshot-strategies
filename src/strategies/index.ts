@@ -240,10 +240,14 @@ import * as voltVotingPower from './volt-voting-power';
 import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
+import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
 
 const strategies = {
+  'giveth-balancer-balance': givethBalancerBalance,
+  'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
