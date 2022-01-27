@@ -1,7 +1,7 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
-export const author = '2fd';
+export const author = 'chuang39';
 export const version = '0.1.0';
 
 const SPACEY2025_MARKETPLACE_SUBGRAPH_URL = {
