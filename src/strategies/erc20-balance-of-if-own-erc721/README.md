@@ -2,7 +2,7 @@
 
 This strategy return the following voting power:
 - 0 if the address doesn't own any of the ERC721 NFTs in *nftAddress*
-- *erc20Address*.balance(of) if the address owns at least one of those NFTs.
+- *erc20Address*.balanceOf(address) if the address owns at least one of those NFTs.
 
 ## Accepted options
 
