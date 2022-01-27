@@ -82,8 +82,6 @@ export async function strategy(
       extraBoosted = (currentExperience / 100);
     }
     
-
-    console.log("extraBoosted", extraBoosted);
     results[address] = (results[address] ||  0) + extraBoosted;
   }
 
