@@ -240,11 +240,17 @@ import * as voltVotingPower from './volt-voting-power';
 import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
+import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
 import * as erc20BalanceOfIfOwnErc721 from './erc20-balance-of-if-own-erc721';
+import * as spacey2025 from './spacey2025';
+import * as sandmanDao from './sandman-dao';
 
 const strategies = {
+  'giveth-balancer-balance': givethBalancerBalance,
+  'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
@@ -486,7 +492,9 @@ const strategies = {
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
-  'erc20-balance-of-if-own-erc721': erc20BalanceOfIfOwnErc721
+  'erc20-balance-of-if-own-erc721': erc20BalanceOfIfOwnErc721,
+  'spacey2025':spacey2025,
+  'sandman-dao': sandmanDao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
