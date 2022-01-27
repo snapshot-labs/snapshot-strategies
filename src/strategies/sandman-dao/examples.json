@@ -1,8 +1,8 @@
 [
   {
-    "name": "DAO sandman.finance",
+    "name": "dao sandman.finance",
     "strategy": {
-      "name": "sandManDAO",
+      "name": "sandman-dao",
       "params": {
         "address": "0x743F554f6AcCd4E452AF6C96c48B78E849d87316",
         "symbol": "TheEndless"
