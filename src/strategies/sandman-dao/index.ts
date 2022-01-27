@@ -1,7 +1,7 @@
 import { Multicaller } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
-export const author = 'myst4';
+export const author = 'sandmanfinance';
 export const version = '0.0.1';
 
 const factoryNftABI = [
