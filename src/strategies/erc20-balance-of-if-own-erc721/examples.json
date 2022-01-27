@@ -1,0 +1,22 @@
+[
+  {
+    "name": "ERC20 BalanceOf If Own ERC721 Strategy",
+    "strategy": {
+      "name": "erc20-balance-of-if-own-erc721",
+      "params": {
+        "nftAddress": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+        "erc20Address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "symbol": "WETH",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa25803ab86a327786bb59395fc0164d826b98298",
+      "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
+      "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
+      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58"
+    ],
+    "snapshot": 14082195
+  }
+]
