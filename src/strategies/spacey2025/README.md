@@ -11,6 +11,5 @@ Here is an example of parameters:
 
 {
     "address": "0x230185C3B02b897B89cb1e62717AD7772b8319DA",
-    "symbol": "SPACEY NFT",
-    "decimals": 18,
+    "symbol": "SPACEY NFT"
 }
