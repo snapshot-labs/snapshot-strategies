@@ -13,16 +13,6 @@
           "137": "https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks"
         },
         "chains": {
-          "137": [
-            {
-              "name": "erc20-balance-of",
-              "params": {
-                "symbol": "OCEAN",
-                "address": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
-                "decimals": 18
-              }
-            }
-          ],
           "1": [
             {
               "name": "erc20-balance-of",
