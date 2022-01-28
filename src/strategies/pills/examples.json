@@ -1,0 +1,15 @@
+[
+  {
+    "name": "pills",
+    "strategy": {
+      "name": "pills",
+      "params": {
+        "symbol": "PILLS",
+        "decimals": 18
+      }
+    },
+    "network": "250",
+    "addresses": ["0xbb8799657915E203d880F6a581a41A5e4f828620"],
+    "snapshot": 29324199
+  }
+]

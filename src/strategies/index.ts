@@ -247,6 +247,7 @@ import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
+import * as pills from './pills';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -494,7 +495,8 @@ const strategies = {
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
   'spacey2025':spacey2025,
-  'sandman-dao': sandmanDao
+  'sandman-dao': sandmanDao,
+  'pills': pills
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
