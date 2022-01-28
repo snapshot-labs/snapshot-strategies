@@ -245,6 +245,8 @@ import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
 import * as herobabiesClubStakersAndOwners from './herobabies-club-stakers-and-owners';
+import * as spacey2025 from './spacey2025';
+import * as sandmanDao from './sandman-dao';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -490,7 +492,9 @@ const strategies = {
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
-  'herobabies-club-stakers-and-owners': herobabiesClubStakersAndOwners
+  'herobabies-club-stakers-and-owners': herobabiesClubStakersAndOwners,
+  'spacey2025':spacey2025,
+  'sandman-dao': sandmanDao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

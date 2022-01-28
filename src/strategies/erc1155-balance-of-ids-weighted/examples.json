@@ -6,9 +6,8 @@
       "params": {
         "symbol": "ABC",
         "address": "0x28472a58A490c5e09A238847F66A68a47cC76f0f",
-        "ids": ["0"],
-        "weight": 10,
-        "decimals": 0
+        "ids": ["0", "1"],
+        "weight": 10
       }
     },
     "network": "1",
