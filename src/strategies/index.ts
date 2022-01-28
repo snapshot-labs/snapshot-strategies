@@ -244,6 +244,7 @@ import * as givethXdaiBalance from './giveth-xdai-balance';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
+import * as herobabiesClubStakersAndOwners from './herobabies-club-stakers-and-owners';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -488,7 +489,8 @@ const strategies = {
   'staked-balancer': stakedBalancer,
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
-  'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted
+  'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
+  'herobabies-club-stakers-and-owners': herobabiesClubStakersAndOwners
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
