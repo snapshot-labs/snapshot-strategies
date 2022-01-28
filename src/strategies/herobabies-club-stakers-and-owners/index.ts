@@ -1,7 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'herobabies-club';
+export const author = 'tony31913';
 export const version = '0.1.0';
 
 const stakingAbi = [
