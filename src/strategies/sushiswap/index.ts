@@ -41,7 +41,7 @@ const SUSHISWAP_SUBGRAPH_URL = {
 
 const PAGE_SIZE = 1000;
 
-export const author = 'vfatouros';
+export const author = 'maxaleks';
 export const version = '0.2.0';
 
 async function getPairs(network, snapshot, token) {
