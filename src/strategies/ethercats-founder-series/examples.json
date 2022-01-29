@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "ethercats-power",
+      "name": "ethercats-founder-series",
       "params": {
         "symbol": "Ether Cat"
       }
