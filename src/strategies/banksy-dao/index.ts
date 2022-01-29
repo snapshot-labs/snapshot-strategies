@@ -75,7 +75,6 @@ export async function strategy(
   const results = {} as Record<string, number>;
   for (const [walletID, values] of Object.entries(walletIDToSkills)) {
     const address = walletID.split('-')[0];
-    console.log(values[1]);
     const currentExperience = values[1] / 1e18;
 
     let extraBoosted = 1;
