@@ -21,9 +21,14 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // First, get the balance of nft
-  const callWalletToBalanceOf = new Multicaller(network, provider, factoryNftABI, {
-    blockTag
-  });
+  const callWalletToBalanceOf = new Multicaller(
+    network,
+    provider,
+    factoryNftABI,
+    {
+      blockTag
+    }
+  );
   for (const walletAddress of addresses) {
     callWalletToBalanceOf.call(walletAddress, options.address, 'balanceOf', [
       walletAddress
@@ -35,9 +40,14 @@ export async function strategy(
   > = await callWalletToBalanceOf.execute();
 
   // Second, get the tokenId's for each nft
-  const callWalletToAddresses = new Multicaller(network, provider, factoryNftABI, {
-    blockTag
-  });
+  const callWalletToAddresses = new Multicaller(
+    network,
+    provider,
+    factoryNftABI,
+    {
+      blockTag
+    }
+  );
   for (const [walletAddress, count] of Object.entries(walletToBalanceOf)) {
     for (let index = 0; index < count.toNumber(); index++) {
       callWalletToAddresses.call(
@@ -57,38 +67,31 @@ export async function strategy(
   const callTokenToSkill = new Multicaller(network, provider, factoryNftABI, {
     blockTag
   });
-  
+
   for (const [walletID, tokenId] of Object.entries(walletIDToAddresses)) {
-    
-    callTokenToSkill.call(
-      walletID,
-      options.address,
-      'getCharacterOverView',
-      [tokenId]
-    );
+    callTokenToSkill.call(walletID, options.address, 'getCharacterOverView', [
+      tokenId
+    ]);
   }
   const walletIDToSkills: Record<
     string,
     any
   > = await callTokenToSkill.execute();
-  
+
   const results = {} as Record<string, number>;
   for (const [walletID, values] of Object.entries(walletIDToSkills)) {
     const address = walletID.split('-')[0];
     const currentExperience = values[1] / 1e18;
 
     let extraBoosted = 1;
-    if(currentExperience > 0){
-      extraBoosted = (currentExperience / 100);
+    if (currentExperience > 0) {
+      extraBoosted = currentExperience / 100;
     }
-    
-    results[address] = (results[address] ||  0) + extraBoosted;
+
+    results[address] = (results[address] || 0) + extraBoosted;
   }
 
   return Object.fromEntries(
-    Object.entries(results).map(([address, weight]) => [
-      address,
-      weight
-    ])
+    Object.entries(results).map(([address, weight]) => [address, weight])
   );
 }

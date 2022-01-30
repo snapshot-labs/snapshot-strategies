@@ -5,7 +5,7 @@ import { subgraphRequest } from '../../utils';
 // Minichef: https://github.com/sushiswap/sushiswap-interface/blob/master/src/services/graph/fetchers/masterchef.ts
 // Exchange: https://github.com/sushiswap/sushiswap-interface/blob/master/src/services/graph/fetchers/exchange.ts
 
-const theGraph_baseUrl = 'https://api.thegraph.com/subgraphs/name/'
+const theGraph_baseUrl = 'https://api.thegraph.com/subgraphs/name/';
 const SUSHISWAP_SUBGRAPH_URL = {
   exchange: {
     '1': 'sushiswap/exchange',
@@ -32,12 +32,11 @@ const SUSHISWAP_SUBGRAPH_URL = {
     '42220': 'sushiswap/celo-minichef-v2',
     '122': 'sushiswap/fuse-minichef',
     '1666600000': 'sushiswap/harmony-minichef'
-  }, 
+  },
   masterChefV2: {
     '1': 'sushiswap/master-chefv2'
   }
-}
-
+};
 
 const PAGE_SIZE = 1000;
 
@@ -127,10 +126,7 @@ async function getPools(network, snapshot, token, masterChefUrl) {
   while (true) {
     // @ts-ignore
     params.pools.__args.skip = page * PAGE_SIZE;
-    const result = await subgraphRequest(
-      masterChefUrl,
-      params
-    );
+    const result = await subgraphRequest(masterChefUrl, params);
     pools = pools.concat(result.pools);
     page++;
     if (result.pools.length < PAGE_SIZE) break;
@@ -141,12 +137,13 @@ async function getPools(network, snapshot, token, masterChefUrl) {
 }
 
 async function getStakedBalances(network, snapshot, options, addresses) {
-  const token = options.address
+  const token = options.address;
   // Only allow the masterChefVersion key to be v2 if on mainnet, otherwise fallback to v1
-  const masterchefSuffix = (network == '1' && options.masterchefVersion == 'v2') ? 
-        SUSHISWAP_SUBGRAPH_URL.masterChefV2[network] : 
-        SUSHISWAP_SUBGRAPH_URL.masterChef[network]
-  const masterChefUrl = theGraph_baseUrl + masterchefSuffix
+  const masterchefSuffix =
+    network == '1' && options.masterchefVersion == 'v2'
+      ? SUSHISWAP_SUBGRAPH_URL.masterChefV2[network]
+      : SUSHISWAP_SUBGRAPH_URL.masterChef[network];
+  const masterChefUrl = theGraph_baseUrl + masterchefSuffix;
   const pools = await getPools(network, snapshot, token, masterChefUrl);
   const params = {
     users: {
@@ -174,10 +171,7 @@ async function getStakedBalances(network, snapshot, options, addresses) {
   while (true) {
     // @ts-ignore
     params.users.__args.skip = page * PAGE_SIZE;
-    const result = await subgraphRequest(
-      masterChefUrl,
-      params
-    );
+    const result = await subgraphRequest(masterChefUrl, params);
     users = users.concat(result.users);
     page++;
     if (result.users.length < PAGE_SIZE) break;
@@ -265,7 +259,10 @@ export async function strategy(
         });
     });
   }
-  if (options.useStakedBalances === 'true' && SUSHISWAP_SUBGRAPH_URL.masterChef[network]) {
+  if (
+    options.useStakedBalances === 'true' &&
+    SUSHISWAP_SUBGRAPH_URL.masterChef[network]
+  ) {
     const stakedBalances = await getStakedBalances(
       network,
       snapshot,

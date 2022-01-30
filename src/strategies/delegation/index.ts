@@ -13,7 +13,12 @@ export async function strategy(
   snapshot
 ) {
   const delegationSpace = options.delegationSpace || space;
-  const delegations = await getDelegations(delegationSpace, network, addresses, snapshot);
+  const delegations = await getDelegations(
+    delegationSpace,
+    network,
+    addresses,
+    snapshot
+  );
   if (Object.keys(delegations).length === 0) return {};
 
   const scores = (
