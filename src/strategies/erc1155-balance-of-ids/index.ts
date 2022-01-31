@@ -1,4 +1,3 @@
-import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
 export const author = 'naomsa';
@@ -31,14 +30,9 @@ export async function strategy(
   );
 
   return Object.fromEntries(
-    response.map((value, i) => [
+    response.map((values, i) => [
       addresses[i],
-      parseFloat(
-        formatUnits(
-          value.reduce((prev, curr) => prev + curr, 0).toString(),
-          options.decimals
-        )
-      )
+      values[0].reduce((prev, curr) => prev + curr.toNumber(), 0)
     ])
   );
 }
