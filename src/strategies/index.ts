@@ -443,7 +443,7 @@ const strategies = {
   'vault-token-lp-balance': vaultTokenLpBalance,
   'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
-  'razor-network-voting' : razorVoting,
+  'razor-network-voting': razorVoting,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,

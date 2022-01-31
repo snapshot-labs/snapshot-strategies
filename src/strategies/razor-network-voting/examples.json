@@ -1,23 +1,23 @@
 [
-    {
+  {
+    "name": "razor-network-voting",
+    "strategy": {
       "name": "razor-network-voting",
-      "strategy": {
-        "name": "razor-network-voting",
-        "params":{
-          "symbol":"RAZOR"
-        }
-      },
-      "network": "80001",
-      "snapshot": 24258292,
-      "addresses": [
-        "0xbac9609ed8f4d24ad5f8b723ca81d0f7dbf271ce",
-        "0xb3a3617555f372951532f71fd8f844b4a699bf3a",
-        "0x6a3d4d169ef896c46c409156d73f7e00dbc8d519",
-        "0x04fe59f4f53afabf312f25cacc14e5cb222270f3",
-        "0x26a98513240401567733253c6cdd16f006fcd9b1",
-        "0x329dd19f84c9c17b189b9484034c80a27bd6e463",
-        "0xa7893412e2ca9165bd5639db370bb5f7b2fb221b",
-        "0x6ee26af75a47e15ab040af73cbdc077740f4825c"
-      ]
-    }
-  ]
+      "params": {
+        "symbol": "RAZOR"
+      }
+    },
+    "network": "80001",
+    "snapshot": 24258292,
+    "addresses": [
+      "0xbac9609ed8f4d24ad5f8b723ca81d0f7dbf271ce",
+      "0xb3a3617555f372951532f71fd8f844b4a699bf3a",
+      "0x6a3d4d169ef896c46c409156d73f7e00dbc8d519",
+      "0x04fe59f4f53afabf312f25cacc14e5cb222270f3",
+      "0x26a98513240401567733253c6cdd16f006fcd9b1",
+      "0x329dd19f84c9c17b189b9484034c80a27bd6e463",
+      "0xa7893412e2ca9165bd5639db370bb5f7b2fb221b",
+      "0x6ee26af75a47e15ab040af73cbdc077740f4825c"
+    ]
+  }
+]
