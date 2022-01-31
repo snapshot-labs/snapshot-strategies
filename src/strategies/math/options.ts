@@ -28,7 +28,8 @@ export enum Operation {
   AIfLtB = 'a-if-lt-b',
   AIfLteB = 'a-if-lte-b',
   AIfGtB = 'a-if-gt-b',
-  AIfGteB = 'a-if-gte-b'
+  AIfGteB = 'a-if-gte-b',
+  AIfBGt0 = 'a-if-b-gt-0'
 }
 
 interface LegacyFields {
@@ -60,7 +61,8 @@ const operandCountByOperation: Record<Operation, number> = {
   [Operation.AIfLtB]: 3,
   [Operation.AIfLteB]: 3,
   [Operation.AIfGtB]: 3,
-  [Operation.AIfGteB]: 3
+  [Operation.AIfGteB]: 3,
+  [Operation.AIfBGt0]: 2
 };
 
 export function validateOptions(rawOptions: OptionalOptions): Options {
@@ -78,7 +80,8 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
     rawOptions.operation !== Operation.AIfLtB &&
     rawOptions.operation !== Operation.AIfLteB &&
     rawOptions.operation !== Operation.AIfGtB &&
-    rawOptions.operation !== Operation.AIfGteB
+    rawOptions.operation !== Operation.AIfGteB &&
+    rawOptions.operation !== Operation.AIfBGt0
   ) {
     throw new Error('Invalid `operation`');
   }

@@ -16,6 +16,7 @@ Currently supported operations are:
 | `a-if-lte-b`  | 3             | (x, a, b) = x <= b ? a : x                 |
 | `a-if-gt-b`   | 3             | (x, a, b) = x > b ? a : x                  |
 | `a-if-gte-b`  | 3             | (x, a, b) = x >= b ? a : x                 |
+| `a-if-b-gt-0` | 2             | (a, b) = b > 0 ? a : 0                     |
 
 ## Examples
 

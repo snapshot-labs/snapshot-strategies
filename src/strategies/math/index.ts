@@ -13,7 +13,7 @@ import {
 } from './options';
 
 export const author = 'xJonathanLEI';
-export const version = '0.2.1';
+export const version = '0.2.2';
 
 export async function strategy(
   space,
@@ -134,6 +134,18 @@ function resolveOperation(
           score >= resolvedOperands[2][address]
             ? resolvedOperands[1][address]
             : score
+        ])
+      );
+    }
+    case Operation.AIfBGt0: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[1]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score >= 0
+            ? resolvedOperands[0][address]
+            : 0
         ])
       );
     }
