@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Immutable X (L1 + L2) vote weighting strategy",
+    "strategy": {
+      "name": "immutable-x",
+      "params": {
+        "symbol": "imx",
+        "address": "0x26b81657e09d3a6a18ff1c6d776fd09f4bb9ee80",
+        "decimals": 18,
+        "pageSize": 100
+      }
+    },
+    "network": "3",
+    "addresses": [
+      "0x4140Ae3beC0c7DFf651d367e3b5ee928a84c8853",
+      "0x8ebEE6758DC532678F02003657B496AC38014da0"
+    ],
+    "snapshot": 11850372
+  }
+]
