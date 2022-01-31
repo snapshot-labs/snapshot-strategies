@@ -9,7 +9,8 @@ const SNAPSHOT_SUBGRAPH_URL = {
   '97':
     'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-binance-smart-chain',
   '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan',
-  '100': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-gnosis-chain'
+  '100':
+    'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-gnosis-chain'
 };
 
 export async function getDelegations(space, network, addresses, snapshot) {

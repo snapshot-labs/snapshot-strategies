@@ -495,7 +495,7 @@ const strategies = {
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
   'banksy-dao': banksyDao,
-  'spacey2025':spacey2025,
+  spacey2025: spacey2025,
   'sandman-dao': sandmanDao
 };
 
