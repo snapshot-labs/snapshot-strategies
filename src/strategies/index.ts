@@ -71,6 +71,7 @@ import * as sushiswap from './sushiswap';
 import * as masterchef from './masterchef';
 import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
+import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
 import * as ticket from './ticket';
@@ -332,6 +333,7 @@ const strategies = {
   stablexswap,
   dittomoney,
   'staked-keep': stakedKeep,
+  'staked-daomaker': stakedDaomaker,
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
