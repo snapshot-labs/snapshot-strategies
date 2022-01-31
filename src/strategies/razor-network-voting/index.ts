@@ -1,10 +1,10 @@
 import { subgraphRequest } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
-export const author = 'adi44';
+export const author = 'razor-network';
 export const version = '0.1.0';
 
 const RAZOR_NETWORK_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/rajkharvar/indexer';
+  'https://api.thegraph.com/subgraphs/name/razor-network/razor';
 
 // a method to calculate corresponding razor amount for delegators
 async function sRZR_to_RZR(
@@ -72,7 +72,6 @@ export async function strategy(
 
   // subgraph request 1 : it fetches all the details of the stakers and delegators.
   const result = await subgraphRequest(RAZOR_NETWORK_SUBGRAPH_URL, params);
-  console.log(result);
   if (result && result.delegators) {
     result.delegators.forEach(
       async (delegator: {
