@@ -1,21 +1,21 @@
-# Herobabies club stakers and owners strategy
+# Stakers and holders strategy
 
-This strategy return the balances of the voters for Herobabies Club project from both staking pool and ERC721 NFT.
+This strategy return the balances of the voters from both staking pool and ERC721 NFT.
 
 ## Accepted options
 
-- **staking:** Herobabies Club staking pool address.
+- **staking:** Staking pool address.
 
-- **token:** Herobabies Club ERC721 NFT address.
+- **token:** ERC721 NFT address.
 
 ## Examples
 
 ```JSON
 [
   {
-    "name": "Herobabies Club Stakers and Owners",
+    "name": "Stakers and Holders",
     "strategy": {
-      "name": "herobabies-club-stakers-and-owners",
+      "name": "stakers-and-holders",
       "params": {
         "staking": "0x611D4fe3773606C7680020D1a59a2e8c5D43e682",
         "token": "0x79104Beca59CAe0EeeDd5ecB9fbc1AAD90cA40FE",
