@@ -38,17 +38,17 @@ export async function strategy(
     { blockTag }
   );
 
-  let stakeAmountByWallet: any[] = [];
+  const stakeAmountByWallet: any[] = [];
 
   // preparing second array for multicall
-  let arrayForMultiCall: any = [];
-  for (var i in stakeCountByWallet) {
+  const arrayForMultiCall: any = [];
+  for (const i in stakeCountByWallet) {
     const num = Number(stakeCountByWallet[i] + '');
     stakeAmountByWallet.push({ wallet: addresses[i], amt: BigNumber.from(0) });
 
     if (num > 0) {
       const arr = Array.from(Array(num).keys());
-      for (var j in arr) {
+      for (const j in arr) {
         arrayForMultiCall.push({
           wallet: addresses[i].toLowerCase(),
           stakeId: arr[j]
@@ -68,8 +68,8 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  for (var i in arrayForMultiCall) {
-    for (var j in stakeAmountByWallet) {
+  for (const i in arrayForMultiCall) {
+    for (const j in stakeAmountByWallet) {
       if (
         arrayForMultiCall[i].wallet.toLowerCase() ===
         stakeAmountByWallet[j].wallet.toLowerCase()
