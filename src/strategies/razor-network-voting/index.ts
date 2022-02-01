@@ -7,12 +7,17 @@ const RAZOR_NETWORK_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/razor-network/razor';
 
 // a method to calculate corresponding razor amount for delegators
-async function sRZR_to_RZR(
+function sRZR_to_RZR(
   stake: BigNumber,
   totalSupply: BigNumber,
   amount: BigNumber
 ) {
-  return stake.mul(amount).div(totalSupply);
+  try {
+    return stake.mul(amount).div(totalSupply);
+  } catch (err) {
+    return BigNumber.from(0)
+    // do nothing
+  }
 }
 
 function wei_to_ether(amount: number) {
@@ -29,18 +34,13 @@ export async function strategy(
   snapshot: string
 ) {
   const params = {
-    // delegators (where : {delegatorAddress : address[1]}){
     delegators: {
-      //  staker () {
       __args: {
-        //     totalSupply
         where: {
-          //     newStake
-          delegatorAddress_in: addresses //      }
+          delegatorAddress_in: addresses
         } // delegatorAddress
       }, // Amount_Delegated
       staker: {
-        //  }
         totalSupply: true,
         stake: true
       },
@@ -48,13 +48,10 @@ export async function strategy(
       sAmount: true
     },
     stakers: {
-      // stakers (where : {stakerAddress : address[0]}){
       __args: {
-        //  newStake
         where: {
-          //  totalSupply
           staker_in: addresses //  stakerAddress
-        } // }
+        }
       },
       stake: true,
       totalSupply: true,
@@ -72,14 +69,15 @@ export async function strategy(
 
   // subgraph request 1 : it fetches all the details of the stakers and delegators.
   const result = await subgraphRequest(RAZOR_NETWORK_SUBGRAPH_URL, params);
-  if (result && result.delegators) {
+  console.log(result);
+  if (result) {
     result.delegators.forEach(
       async (delegator: {
         sAmount: string;
         staker: { stake: string; totalSupply: string };
         delegatorAddress: string | number;
       }) => {
-        const razor_amount = await sRZR_to_RZR(
+        const razor_amount = sRZR_to_RZR(
           BigNumber.from(delegator.sAmount),
           BigNumber.from(delegator.staker.totalSupply),
           BigNumber.from(delegator.staker.stake)
@@ -87,9 +85,7 @@ export async function strategy(
         //if delegator has delegated to more than one staker, we need to add that amount also to calculate score.
         if (!score[delegator.delegatorAddress]) {
           //if score[delegator] has no score setup already we will put it as intial amount
-          score[delegator.delegatorAddress] = wei_to_ether(
-            Number(razor_amount)
-          );
+          score[delegator.delegatorAddress] = wei_to_ether(Number(razor_amount));
         } else {
           // update the score of delegator by adding new Stoken -> razor Value
           score[delegator.delegatorAddress] += wei_to_ether(
@@ -98,10 +94,8 @@ export async function strategy(
         }
       }
     );
-  }
 
   // for stakers
-  if (result && result.stakers) {
     result.stakers.forEach(
       async (Staker: {
         staker: string | number;
@@ -109,7 +103,7 @@ export async function strategy(
         sAmount: string | number;
         totalSupply: string;
       }) => {
-        const razor_amount = await sRZR_to_RZR(
+        const razor_amount = sRZR_to_RZR(
           BigNumber.from(Staker.sAmount),
           BigNumber.from(Staker.totalSupply),
           BigNumber.from(Staker.stake)
