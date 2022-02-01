@@ -71,6 +71,7 @@ import * as sushiswap from './sushiswap';
 import * as masterchef from './masterchef';
 import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
+import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
 import * as ticket from './ticket';
@@ -245,10 +246,12 @@ import * as givethXdaiBalance from './giveth-xdai-balance';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
+import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
+import * as veBalanceOfAt from './ve-balance-of-at';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -333,6 +336,7 @@ const strategies = {
   stablexswap,
   dittomoney,
   'staked-keep': stakedKeep,
+  'staked-daomaker': stakedDaomaker,
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
@@ -495,10 +499,12 @@ const strategies = {
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
+  'stakers-and-holders': stakersAndHolders,
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
-  'ethercats-founder-series': ethercatsFounderSeries
+  'ethercats-founder-series': ethercatsFounderSeries,
+  've-balance-of-at': veBalanceOfAt
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

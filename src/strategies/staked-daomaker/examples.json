@@ -1,0 +1,35 @@
+[
+  {
+    "name": "staked-daomaker",
+    "strategy": {
+      "name": "staked-daomaker",
+      "params": {
+        "address": "0x0f51bb10119727a7e5ea3538074fb341f56b09ad",
+        "symbol": "DAO",
+        "decimals": 18,
+        "smartcontract": "0xd07e86f68C7B9f9B215A3ca3E79E74Bf94D6A847"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x8097A41aE28a1aE6e333A8dEfC9d59E35a5f8945",
+      "0x0018fc9ca03e305f312bb91c1893ce7874e630c5",
+      "0x0050a84030dda38f929f8bf893e33c0dd7cb40d8",
+      "0x005624c04a39abccf2a66fde732fe5aa4dd26aab",
+      "0x005e1ecfafe45d0887428b8f6c5db978ec72296a",
+      "0x008a696e9855aa357f4ff7bf94674eb640bb2d2a",
+      "0x00a739ba820c0f98ac54ffd8284bfa12bca9194b",
+      "0x00b97fa8b11433f9b93bb7bcf438f98a2b77a3cc",
+      "0x00c5f023e6eea1e81170dd7d8c5293dac792a75c",
+      "0x00c7969c285559f3b21fe48622fa6e51c104c153",
+      "0x0218ea910135779376cf06be2d1d5c19c641aa0c",
+      "0x0216ed3aabfdaa50e263600e5a39082121ceed9f",
+      "0x0236f0869c0420b05eed924d4c5b559adec930f7",
+      "0x029cbfe5fa5ea8ed04f0d4e8e7051400238b0b61",
+      "0x02bc449b248f5c81b5a748db0b45402cd5ffa6b2",
+      "0x02c2fba4f75f9e5e60546ba83c03277ad547b179",
+      "0x03194d3df4e646b490b82a8acb4c720c32b31524"
+    ],
+    "snapshot": 13672525
+  }
+]

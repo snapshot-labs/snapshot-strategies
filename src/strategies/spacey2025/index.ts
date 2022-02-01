@@ -5,19 +5,16 @@ export const author = 'chuang39';
 export const version = '0.1.0';
 
 const SPACEY2025_MARKETPLACE_SUBGRAPH_URL = {
-  '56': 'https://api.thegraph.com/subgraphs/name/blockfishio/marketplacebsc',
+  '56': 'https://api.thegraph.com/subgraphs/name/blockfishio/marketplacebsc'
 };
 
-
-
-enum Category  {
-  LAND='land',
-  BOARDINGPASS='boardingpass',
-  BUILDING='building',
-  TOWER='tower',
-  TRAP='trap',
+enum Category {
+  LAND = 'land',
+  BOARDINGPASS = 'boardingpass',
+  BUILDING = 'building',
+  TOWER = 'tower',
+  TRAP = 'trap'
 }
-
 
 export async function strategy(
   space,
@@ -31,8 +28,7 @@ export async function strategy(
     nfts: {
       __args: {
         where: {
-          owner_in: addresses.map((address) => address.toLowerCase()),
-         
+          owner_in: addresses.map((address) => address.toLowerCase())
         },
         first: 1000,
         skip: 0
@@ -40,7 +36,7 @@ export async function strategy(
       owner: {
         id: true
       },
-      category:{}
+      category: {}
     }
   };
 
@@ -59,25 +55,24 @@ export async function strategy(
 
     const nfts = result && result.nfts ? result.nfts : [];
     for (const nft of nfts) {
-      let vp=0
+      let vp = 0;
       switch (nft.category) {
         case Category.TOWER:
         case Category.BUILDING:
         case Category.TRAP:
-          vp+=6
+          vp += 6;
           break;
         case Category.BOARDINGPASS:
-          vp+=1500
-          break
+          vp += 1500;
+          break;
         case Category.LAND:
-          vp+=600
-          break
+          vp += 600;
+          break;
         default:
           break;
       }
       const userAddress = getAddress(nft.owner.id);
-      score[userAddress] =
-        (score[userAddress] || 0) + vp;
+      score[userAddress] = (score[userAddress] || 0) + vp;
     }
 
     params.nfts.__args.skip += params.nfts.__args.first;
