@@ -120,18 +120,13 @@ export async function strategy(
       network,
       _provider,
       abi3,
-      [""].map((id: any) => [rewards, 'totalLPAllocPoint', []]),
+      [[rewards, 'totalLPAllocPoint', []], [rewards, 'totalBasicAllocPoint', []]],
       {blockTag}
     );
-    let allocToken = await multicall(
-      network,
-      _provider,
-      abi3,
-      [""].map((id: any) => [rewards, 'totalBasicAllocPoint', []]),
-      {blockTag}
-    );
+    let allocToken = allocLP[1][0];
     allocLP = allocLP[0][0];
-    allocToken = allocToken[0][0];
+    
+    //allocToken = allocToken[0][0];
 
     let finalResult = {};
     result.accounts.forEach(account => {
