@@ -25,6 +25,7 @@ import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
+import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -502,7 +503,8 @@ const strategies = {
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
-  've-balance-of-at': veBalanceOfAt
+  've-balance-of-at': veBalanceOfAt,
+  "revest":revest,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

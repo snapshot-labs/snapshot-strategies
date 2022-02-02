@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "erc1155-all-balances-of",
+      "name": "revest",
       "params": {
         "address": "0xe952bda8c06481506e4731C4f54CeD2d4ab81659",
         "symbol": "RVST",
