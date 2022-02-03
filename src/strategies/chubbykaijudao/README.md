@@ -24,7 +24,8 @@ Most of codes are from the "mutant-cats-stakers-and-holders" strategy.
     },
     "network": "1",
     "addresses": [ 
-      "0xbA6f51199725D4f1F6B1A9E5fEFdc597eDC89B8A"
+      "0xbA6f51199725D4f1F6B1A9E5fEFdc597eDC89B8A",
+      "0x9534643b04d4b51B90FcdDeeBB628efC54e58D64"
     ],
     "snapshot": 14129872
   }
