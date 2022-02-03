@@ -252,6 +252,7 @@ import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 
 const strategies = {
@@ -506,6 +507,7 @@ const strategies = {
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
+  'chubbykaijudao': chubbykaijudao,
   revest: revest
 };
 
