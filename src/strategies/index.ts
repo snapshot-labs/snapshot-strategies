@@ -506,7 +506,7 @@ const strategies = {
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
-  "revest":revest,
+  revest: revest
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

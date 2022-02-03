@@ -17,7 +17,8 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const blockTag = typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
+  const blockTag =
+    typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
 
   const multi = new Multicaller(network, provider, abi);
   addresses.forEach((address) =>

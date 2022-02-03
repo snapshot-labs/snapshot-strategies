@@ -53,14 +53,17 @@ export async function strategy(
     BigNumber
   > = await callWalletToAddresses.execute();
 
-  // fetch ipfs tier weights 
-  const response = await fetch("https://ipfs.io/ipfs/" + options.tokenWeightIPFS, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
+  // fetch ipfs tier weights
+  const response = await fetch(
+    'https://ipfs.io/ipfs/' + options.tokenWeightIPFS,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
     }
-  });
+  );
   const weights = await response.json();
 
   // sum the weights for each token ID
@@ -68,7 +71,7 @@ export async function strategy(
   for (const [walletID, tokenId] of Object.entries(walletIDToAddresses)) {
     const address = walletID.split('-')[0];
 
-    let tokenIdValue = weights[tokenId.toString()];
+    const tokenIdValue = weights[tokenId.toString()];
 
     walletToLpBalance[address] = walletToLpBalance[address]
       ? walletToLpBalance[address].add(BigNumber.from(tokenIdValue))
