@@ -251,6 +251,7 @@ import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as chubbykaijudao from './chubbykaijudao';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -502,7 +503,8 @@ const strategies = {
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
-  've-balance-of-at': veBalanceOfAt
+  've-balance-of-at': veBalanceOfAt,
+  'chubbykaijudao': chubbykaijudao,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
