@@ -1,4 +1,5 @@
 import { subgraphRequest } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
 export const author = 'razor-network';
 export const version = '0.1.0';
@@ -69,13 +70,12 @@ export async function strategy(
 
   // subgraph request 1 : it fetches all the details of the stakers and delegators.
   const result = await subgraphRequest(RAZOR_NETWORK_SUBGRAPH_URL, params);
-  console.log(result);
   if (result) {
     result.delegators.forEach(
       async (delegator: {
         sAmount: string;
         staker: { stake: string; totalSupply: string };
-        delegatorAddress: string | number;
+        delegatorAddress: string ;
       }) => {
         const razor_amount = sRZR_to_RZR(
           BigNumber.from(delegator.sAmount),
@@ -85,10 +85,10 @@ export async function strategy(
         //if delegator has delegated to more than one staker, we need to add that amount also to calculate score.
         if (!score[delegator.delegatorAddress]) {
           //if score[delegator] has no score setup already we will put it as intial amount
-          score[delegator.delegatorAddress] = wei_to_ether(Number(razor_amount));
+          score[getAddress(delegator.delegatorAddress)] = wei_to_ether(Number(razor_amount));
         } else {
           // update the score of delegator by adding new Stoken -> razor Value
-          score[delegator.delegatorAddress] += wei_to_ether(
+          score[getAddress(delegator.delegatorAddress)] += wei_to_ether(
             Number(razor_amount)
           );
         }
@@ -98,7 +98,7 @@ export async function strategy(
   // for stakers
     result.stakers.forEach(
       async (Staker: {
-        staker: string | number;
+        staker: string ;
         stake: string;
         sAmount: string | number;
         totalSupply: string;
@@ -111,10 +111,10 @@ export async function strategy(
         //score will be based on the current stake in the block Number
         if (!score[Staker.staker]) {
           //if score[delegator] has no score setup already we will put it as intial amount
-          score[Staker.staker] = wei_to_ether(Number(razor_amount));
+          score[getAddress(Staker.staker)] = wei_to_ether(Number(razor_amount));
         } else {
           // update the score of delegator by adding new Stoken -> razor Value
-          score[Staker.staker] += wei_to_ether(Number(razor_amount));
+          score[getAddress(Staker.staker)] += wei_to_ether(Number(razor_amount));
         }
       }
     );
