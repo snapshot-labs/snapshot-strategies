@@ -25,6 +25,7 @@ import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
+import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -252,8 +253,10 @@ import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as chubbykaijudao from './chubbykaijudao';
+import * as landDaoTiers from './landdao-token-tiers';
 
 const strategies = {
+  'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
@@ -505,6 +508,7 @@ const strategies = {
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
   'chubbykaijudao': chubbykaijudao,
+  revest: revest
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
