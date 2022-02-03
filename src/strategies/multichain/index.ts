@@ -37,11 +37,7 @@ export async function strategy(
   snapshot
 ) {
   const promises: any = [];
-  const blocks = await getBlocks(
-    snapshot,
-    provider,
-    options
-  );
+  const blocks = await getBlocks(snapshot, provider, options);
 
   for (const strategy of options.strategies) {
     // If snapshot is taken before a network is activated then ignore its strategies
