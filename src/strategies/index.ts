@@ -251,8 +251,10 @@ import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as landDaoTiers from './landdao-token-tiers';
 
 const strategies = {
+  'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
