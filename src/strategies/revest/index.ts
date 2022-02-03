@@ -144,7 +144,6 @@ export async function strategy(
   Object.keys(finalResult).forEach(element => {
     returnVals[element] = parseInt(finalResult[element].toString(), 10); 
   });
-  console.log(returnVals);
   return returnVals;
   
 }
