@@ -54,7 +54,7 @@ export async function strategy(
   > = await callWalletToAddresses.execute();
 
   // fetch ipfs tier weights 
-  const response = await fetch(options.tokenWeightLink, {
+  const response = await fetch("https://ipfs.io/ipfs/" + options.tokenWeightIPFS, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
