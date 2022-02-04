@@ -196,6 +196,7 @@ import * as techQuadraticRankedChoice from './tech-quadratic-ranked-choice';
 import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as razorVoting from './razor-network-voting';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
@@ -450,6 +451,7 @@ const strategies = {
   'vault-token-lp-balance': vaultTokenLpBalance,
   'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'razor-network-voting': razorVoting,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,
