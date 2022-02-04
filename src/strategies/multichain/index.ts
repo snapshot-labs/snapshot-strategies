@@ -10,7 +10,6 @@ async function getBlocks(network, snapshot, provider, options) {
   options.strategies.forEach((s) => (blocks[s.network] = 'latest'));
   if (snapshot === 'latest') return blocks;
   const block = await provider.getBlock(snapshot);
-  console.log(Object.keys(blocks).filter((block) => network !== block));
   const query = {
     blocks: {
       __args: {
