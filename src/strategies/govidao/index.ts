@@ -23,7 +23,6 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  console.log(`Strategy Called with ${snapshot}, ${network}`);
   const multi = new Multicaller(network, provider, abi, { blockTag });
   multi.call('availableLiquidity', options.underlyingToken, 'balanceOf', [
     options.lpToken
@@ -41,12 +40,6 @@ export async function strategy(
   const rate =
     parseFloat(formatUnits(availableLiquidity, underlyingTokenDecimals)) /
     parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals));
-
-  // console.log(
-  //   `rate: ${rate} = ${parseFloat(
-  //     formatUnits(availableLiquidity, underlyingTokenDecimals)
-  //   )} / ${parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))}`
-  // );
 
   const scoresPerlpToken = await erc20BalanceOfStrategy(
     space,
@@ -72,20 +65,9 @@ export async function strategy(
     snapshot
   );
 
-  const rtScores = Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(scoresPerlpToken).map(([address, balance]) => {
-      // console.log(
-      //   `${network} address ${address}  has balance ${balance} xGOVI + ${
-      //     scoresPerUnderlyingToken[address]
-      //   } GOVI therefore by rate we have ${balance * rate}`
-      // );
       return [address, balance * rate + scoresPerUnderlyingToken[address]];
     })
   );
-
-  // console.log(
-  //   `strategy returns rtScores: ${JSON.stringify(rtScores, null, 2)}`
-  // );
-
-  return rtScores;
 }
