@@ -509,7 +509,7 @@ const strategies = {
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
-  'chubbykaijudao': chubbykaijudao,
+  chubbykaijudao: chubbykaijudao,
   revest: revest
 };
 
