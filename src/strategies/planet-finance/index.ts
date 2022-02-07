@@ -16,11 +16,9 @@ const bep20Abi: any = [
   'function balanceOf(address) view returns (uint256)'
 ];
 
-const aquaAutoCompAbi = [
-  'function balanceOf() view returns (uint256)',
-  'function totalShares() view returns (uint256)',
-  'function userInfo(address) view returns (uint256 shares, uint256 lastDepositedTime , uint256 cakeAtLastUserAction , uint256 lastUserActionTime)'
-];
+const aquaInfinityAbi = [
+  'function getUserGtokenBal(address) view returns (uint256)'
+]
 
 const aquaLendingAbi = [
   'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)'
@@ -31,8 +29,6 @@ const planetFinanceFarmContractAddress =
 
 const gammaFarmAddress = '0xB87F7016585510505478D1d160BDf76c1f41b53d';
 
-const aquaAutoCompPoolAddress = '0x8A53dAdF2564d030b41dB1c04fB3c4998dC1326e';
-
 const aquaAddress = '0x72B7D61E8fC8cF971960DD9cfA59B8C829D91991';
 
 const aquaBnbLpTokenAddress = '0x03028D2F8B275695A1c6AFB69A4765e3666e36d9';
@@ -40,6 +36,10 @@ const aquaBnbLpTokenAddress = '0x03028D2F8B275695A1c6AFB69A4765e3666e36d9';
 const aquaGammaLpTokenAddress = '0xcCaF3fcE9f2D7A7031e049EcC65c0C0Cc331EE0D';
 
 const aquaLendingAddress = '0xb7eD4A5AF620B52022fb26035C565277035d4FD7';
+
+const aquaInfinityAddress = '0x936eB7d386B21794A5AE2365a0D0f6a70b8eF51c';
+
+const increase_in_voting = 5; //increase 5 times
 
 export async function strategy(
   space,
@@ -52,10 +52,6 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const erc20Multi = new Multicaller(network, provider, bep20Abi, {
-    blockTag
-  });
-
-  const autoCompMulti = new Multicaller(network, provider, aquaAutoCompAbi, {
     blockTag
   });
 
@@ -83,13 +79,13 @@ export async function strategy(
   );
 
   //returns user's shares  in aqua auto comp vault
-  let usersAquaAutoCompVaultBalances: any = multicall(
+  let usergAquaBalInAquaInfinityVault: any = multicall(
     network,
     provider,
-    aquaAutoCompAbi,
+    aquaInfinityAbi,
     addresses.map((address: any) => [
-      aquaAutoCompPoolAddress,
-      'userInfo',
+      aquaInfinityAddress,
+      'getUserGtokenBal',
       [address]
     ]),
     { blockTag }
@@ -137,7 +133,7 @@ export async function strategy(
   const result = await Promise.all([
     score,
     usersAquaVaultBalances,
-    usersAquaAutoCompVaultBalances,
+    usergAquaBalInAquaInfinityVault,
     usersAquaGammaVaultBalances,
     usersNewAquaBnbVaultBalances,
     usersAquaInLending
@@ -145,7 +141,7 @@ export async function strategy(
 
   score = result[0];
   usersAquaVaultBalances = result[1];
-  usersAquaAutoCompVaultBalances = result[2];
+  usergAquaBalInAquaInfinityVault = result[2];
   usersAquaGammaVaultBalances = result[3];
   usersNewAquaBnbVaultBalances = result[4];
   usersAquaInLending = result[5];
@@ -178,44 +174,35 @@ export async function strategy(
 
   const aquaGammaContractAquaBalance = erc20Result.aquaGammaAquaBal.toString();
 
-  //AQUA AUTO COMPOUNDING
-  autoCompMulti.call('aquaBalance', aquaAutoCompPoolAddress, 'balanceOf');
-  autoCompMulti.call('totalShares', aquaAutoCompPoolAddress, 'totalShares');
-
-  const autoCompResult = await autoCompMulti.execute();
-
-  let aquaBalance = autoCompResult.aquaBalance.toString();
-  aquaBalance = parseFloat(formatUnits(aquaBalance, 18));
-
-  let totalShares = autoCompResult.totalShares.toString();
-  totalShares = parseFloat(formatUnits(totalShares, 18));
-
-  return Object.fromEntries(
+  const res = Object.fromEntries(
     Object.entries(score).map((address: any, index) => [
+      
       address[0],
 
       address[1] +
+
         parseFloat(formatUnits(usersAquaVaultBalances[index].toString(), 18)) +
-        (parseFloat(
-          formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)
-        ) /
-          parseFloat(formatUnits(totalSupply, 18))) *
-          parseFloat(formatUnits(contractAquaBalance, 18)) +
-        (parseFloat(
-          formatUnits(usersAquaGammaVaultBalances[index].toString(), 18)
-        ) /
-          parseFloat(formatUnits(totalSupplyAquaGamma, 18))) *
-          parseFloat(formatUnits(aquaGammaContractAquaBalance, 18)) +
-        (parseFloat(
-          formatUnits(
-            usersAquaAutoCompVaultBalances[index]['shares'].toString(),
-            18
-          )
-        ) /
-          totalShares) *
-          aquaBalance +
+        
+        (parseFloat(formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)) / parseFloat(formatUnits(totalSupply, 18))) 
+        * parseFloat(formatUnits(contractAquaBalance, 18)) 
+          
+        +
+
+        (parseFloat(formatUnits(usersAquaGammaVaultBalances[index].toString(), 18)) / parseFloat(formatUnits(totalSupplyAquaGamma, 18))) 
+        * parseFloat(formatUnits(aquaGammaContractAquaBalance, 18)) 
+        
+        +
+        
+        parseFloat(formatUnits(usergAquaBalInAquaInfinityVault[index].toString(),18)) *
+        parseFloat(formatUnits(usersAquaInLending[index]['3'], 18)) *
+        increase_in_voting
+        
+        +
+        
         parseFloat(formatUnits(usersAquaInLending[index]['1'], 18)) *
-          parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
+        parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
     ])
   );
+
+  return res
 }
