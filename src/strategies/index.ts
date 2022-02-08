@@ -251,7 +251,7 @@ import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
-import * as dimoBalanceOfDelegateVesting from "./dimo-balance-of-delegate-vesting";
+import * as dimoErc20VotesVesting from "./dimo-erc20-votes-vesting";
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -504,7 +504,7 @@ const strategies = {
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
-  'dimo-balance-of-delegate-vesting': dimoBalanceOfDelegateVesting
+  'dimo-erc20-votes-vesting': dimoErc20VotesVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

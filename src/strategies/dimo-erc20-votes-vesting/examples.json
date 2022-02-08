@@ -1,0 +1,22 @@
+[
+    {
+        "name": "Example query",
+        "strategy": {
+            "name": "dimo-erc20-votes-vesting",
+            "params": {
+                "vesting": "0xCB2fEF9f1ceC77934bE805B6eB26134d67808D1D",
+                "address": "0xc20F2c8Fa8CE2661D569176Dc9a7B3c709709ff8",
+                "symbol": "VT",
+                "decimals": 18
+            }
+        },
+        "network": "42",
+        "addresses": [
+            "0xEC227cFE7485b9423B7e2eb30b813c7b5413a0f2",
+            "0x4D33a95A0A8eF5ef1fd4F6fd31Ab9DA3071711E4",
+            "0xE466373B886854821e0614C672CEc87176b46cc9",
+            "0x58Fc94e6015f83eddCFCCDB884d5f5d87F482E61"
+        ],
+        "snapshot": 29725650
+    }
+]
