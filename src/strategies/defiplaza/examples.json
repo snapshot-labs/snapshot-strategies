@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "defiplaza",
+      "params": {
+        "address": "0x2F57430a6ceDA85a67121757785877b4a71b8E6D",
+        "symbol": "DFP2",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xef7ddc0852baa45cc8ae7c99d30c47b75147c2ff",
+      "0xac0f1af3b5439d0954e83ede9b7c4a0772178217",
+      "0xf8c95d77e4c7668c0982917b3a7f47ae3902c095",
+      "0x2f7ab204f3675353f37c70f180944a65b9890a9a",
+      "0x29961513051affe355f6db49cb7e81b4970b4492",
+      "0x4bc760c7997a2833c974a85420c5a35d93f26be8",
+      "0x77fc54677f6cd1c3a669b9c2ff032836af59c5b8",
+      "0x9de1d0c4ec447242a5a13e26ff7fe68e8158e489",
+      "0x4d08800317e9aabffb815014d8d7054878663665",
+      "0x720de10fea55f74e58f9478ee4225087d1260048",
+      "0x7a9608f2e24d78a2e90104a1a31526a057dd8b10",
+      "0xea51de3bcfcda969eae74f27b9785611b0c43550",
+      "0xe579ac2dce69f44cc85d8d66e5eecc8fc4fe292a",
+      "0x5fa483d02a78fcf0e5dd0670b5d4b60a0be1de33",
+      "0x40d0440af173578d0ce4e959f822fca215cad7bb",
+      "0x27f2be297489e813dae3895a30c9ac72b01bf57a",
+      "0xb4185c5e29a9b415efc405ec5d1eae51b65059ff"
+    ],
+    "snapshot": 14159134
+  }
+]
