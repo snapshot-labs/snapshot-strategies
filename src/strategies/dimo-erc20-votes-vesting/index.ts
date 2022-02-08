@@ -3,7 +3,7 @@ import { strategy as erc20VotesStrategy } from '../erc20-votes';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'kostyamospan';
+export const author = 'RedDuck-Software';
 export const version = '0.1.0';
 
 const abi = [
