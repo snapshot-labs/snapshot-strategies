@@ -9,10 +9,17 @@
         "brightIdNetwork": "1",
         "registry": "0xc37F8341Ac6e4a94538302bCd4d49Cf0852D30C0",
         "symbol": "OCEAN",
-        "graphs": {
-          "137": "https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks"
-        },
-        "chains": {
+        "strategies": {
+          "137": [
+            {
+              "name": "erc20-balance-of",
+              "params": {
+                "symbol": "OCEAN",
+                "address": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
+                "decimals": 18
+              }
+            }
+          ],
           "1": [
             {
               "name": "erc20-balance-of",
@@ -123,7 +130,10 @@
       "0x12BD31628075C20919BA838b89F414241b8c4869",
       "0xf88bD9c3F81f7148E4076bBB8b2e2B0951A8cE38",
       "0xAAB9EaBa1AA2653c1Dda9846334700b9F5e14E44",
-      "0xB9b14C4d0cbc18FC5f54701D578e85968cf19FD5"
+      "0xB9b14C4d0cbc18FC5f54701D578e85968cf19FD5",
+      "0xceE1C921067E5fe65CD71fb8c0627d86Ce91d746",
+      "0xde1E6A7ED0ad3F61D531a8a78E83CcDdbd6E0c49",
+      "0x830dff6a094b417ff5a78f989054a873dfd8fa2b"
     ],
     "snapshot": 14048401
   }
