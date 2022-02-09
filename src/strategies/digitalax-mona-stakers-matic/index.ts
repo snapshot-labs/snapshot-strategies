@@ -12,6 +12,7 @@ const abiStaking = [
 ];
 
 const STAKING_ADDRESS = '0xF795c2abB0E7A56A0C011993C37A51626756B4BD';
+export const ETH_IN_WEI = 1000000000000000000;
 
 export async function strategy(
   _space,
@@ -39,7 +40,7 @@ export async function strategy(
   return Object.fromEntries(
     stakeResponse.map((value, i) => [
       addresses[i],
-      (parseFloat(bn(value)))
+      parseFloat(bn(value)) / ETH_IN_WEI
     ])
   );
 }
