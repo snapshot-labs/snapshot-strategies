@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "grim-inspirit",
+      "params": {
+        "address": "0x2FBFf41a9efAEAE77538bd63f1ea489494acdc08",
+        "symbol": "inSpirit",
+        "decimals": 18
+      }
+    },
+    "network": "250",
+    "addresses": [
+      "0x928144CD396aC88C84d60086e3Db20555C56322c",
+      "0xbeBc1FfA110Ff9eaEC211f25f94B7726eCF60392"
+    ],
+    "snapshot": 11437846
+  }
+]
