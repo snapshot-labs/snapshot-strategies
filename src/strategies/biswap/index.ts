@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
 
 export const author = 'biswap-dex';
-export const version = '0.0.1';
+export const version = '0.0.2';
 export const examples = examplesFile;
 
 const abi = [
