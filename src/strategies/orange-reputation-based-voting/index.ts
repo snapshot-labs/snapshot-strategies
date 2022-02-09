@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 
 export const author = 'orange-protocol';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
   space,
@@ -19,8 +19,7 @@ export async function strategy(
       network: "${network}",
       options: {
         address: "${options.address}",
-        symbol: "${options.symbol}",
-        thirdMediaType: ${JSON.stringify(options.thirdMediaType)}
+        symbol: "${options.symbol}"
       }
     )
     { address score }
