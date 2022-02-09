@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "frwc-weighted-erc721s",
+      "params": {
+        "symbol": "FRWC",
+        "tokens": [
+          "0x521f9c7505005cfa19a8e5786a9c3c9c9f5e6f42",
+          "0x251b5f14a825c537ff788604ea1b58e49b70726f"
+        ],
+        "weights": [
+          1,
+          2
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x24d7a9daf84a3f30b279b931a732f58c4eb0e52b",
+      "0x5007f5457d14b0dbf432d2a9e8bfd379e3875fdb"
+    ],
+    "snapshot": 14173407
+  }
+]

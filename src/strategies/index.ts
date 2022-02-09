@@ -238,6 +238,7 @@ import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as genart from './genart';
+import * as frwcWeightedErc721s from './frwc-weighted-erc721s';
 import * as genomesdao from './genomesdao';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
@@ -282,6 +283,7 @@ const strategies = {
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
+  'frwc-weighted-erc721s': frwcWeightedErc721s,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
