@@ -1,6 +1,6 @@
 import { subgraphRequest } from '../../utils';
 
-export const author = 'naomsa';
+export const author = 'woodydeck';
 export const version = '1.0.0';
 
 // Constants
