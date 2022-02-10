@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "k9s",
+      "params": {
+        "address": "0xD9C2b61eC1C7779427eA922637cC94288eeE16A2",
+        "symbol": "K9"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x0af53db501bb544f2a95477ea01615dffe7c3d99",
+      "0x7768fbc67afecf2b4caee9d1841ad14637d13652",
+      "0x1476a879168da1678dfac224918df3abc343258b",
+      "0x120546f4ad4b76afe2a93ef8a9a5ffed2e880924",
+      "0x0F90387fc8DF00C5D519081b7A6e977FCAE03eca"
+    ],
+    "snapshot": 14179477
+  }
+]

@@ -257,8 +257,10 @@ import * as veBalanceOfAt from './ve-balance-of-at';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
+import * as k9s from './k9s';
 
 const strategies = {
+	k9s,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
