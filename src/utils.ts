@@ -40,7 +40,8 @@ export const {
   ipfsGet,
   call,
   getBlockNumber,
-  getProvider
+  getProvider,
+  SNAPSHOT_SUBGRAPH_URL
 } = snapshot.utils;
 
 export default {
@@ -52,5 +53,6 @@ export default {
   call,
   getBlockNumber,
   getProvider,
-  getDelegations
+  getDelegations,
+  SNAPSHOT_SUBGRAPH_URL
 };
