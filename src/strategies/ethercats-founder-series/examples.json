@@ -4,7 +4,7 @@
     "strategy": {
       "name": "ethercats-founder-series",
       "params": {
-        "symbol": "Ether Cat"
+        "symbol": "EtherCat"
       }
     },
     "network": "1",
