@@ -25,6 +25,7 @@ import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
+import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -195,6 +196,7 @@ import * as techQuadraticRankedChoice from './tech-quadratic-ranked-choice';
 import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as razorVoting from './razor-network-voting';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
@@ -252,8 +254,12 @@ import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as chubbykaijudao from './chubbykaijudao';
+import * as landDaoTiers from './landdao-token-tiers';
+import * as defiplaza from './defiplaza';
 
 const strategies = {
+  'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
@@ -266,6 +272,7 @@ const strategies = {
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'defiplaza': defiplaza,
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
@@ -447,6 +454,7 @@ const strategies = {
   'vault-token-lp-balance': vaultTokenLpBalance,
   'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'razor-network-voting': razorVoting,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,
@@ -504,7 +512,9 @@ const strategies = {
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
   'ethercats-founder-series': ethercatsFounderSeries,
-  've-balance-of-at': veBalanceOfAt
+  've-balance-of-at': veBalanceOfAt,
+  chubbykaijudao: chubbykaijudao,
+  revest: revest
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
