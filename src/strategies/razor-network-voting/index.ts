@@ -16,7 +16,7 @@ function sRZR_to_RZR(
   try {
     return stake.mul(amount).div(totalSupply);
   } catch (err) {
-    return BigNumber.from(0)
+    return BigNumber.from(0);
     // do nothing
   }
 }
@@ -75,7 +75,7 @@ export async function strategy(
       async (delegator: {
         sAmount: string;
         staker: { stake: string; totalSupply: string };
-        delegatorAddress: string ;
+        delegatorAddress: string;
       }) => {
         const razor_amount = sRZR_to_RZR(
           BigNumber.from(delegator.sAmount),
@@ -85,7 +85,9 @@ export async function strategy(
         //if delegator has delegated to more than one staker, we need to add that amount also to calculate score.
         if (!score[delegator.delegatorAddress]) {
           //if score[delegator] has no score setup already we will put it as intial amount
-          score[getAddress(delegator.delegatorAddress)] = wei_to_ether(Number(razor_amount));
+          score[getAddress(delegator.delegatorAddress)] = wei_to_ether(
+            Number(razor_amount)
+          );
         } else {
           // update the score of delegator by adding new Stoken -> razor Value
           score[getAddress(delegator.delegatorAddress)] += wei_to_ether(
@@ -95,10 +97,10 @@ export async function strategy(
       }
     );
 
-  // for stakers
+    // for stakers
     result.stakers.forEach(
       async (Staker: {
-        staker: string ;
+        staker: string;
         stake: string;
         sAmount: string | number;
         totalSupply: string;
@@ -114,7 +116,9 @@ export async function strategy(
           score[getAddress(Staker.staker)] = wei_to_ether(Number(razor_amount));
         } else {
           // update the score of delegator by adding new Stoken -> razor Value
-          score[getAddress(Staker.staker)] += wei_to_ether(Number(razor_amount));
+          score[getAddress(Staker.staker)] += wei_to_ether(
+            Number(razor_amount)
+          );
         }
       }
     );
