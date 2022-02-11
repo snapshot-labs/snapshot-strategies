@@ -38,7 +38,7 @@ export async function strategy(
     delegators: {
       __args: {
         where: {
-          delegatorAddress_in: addresses
+          delegatorAddress_in : addresses
         } // delegatorAddress
       }, // Amount_Delegated
       staker: {
@@ -83,7 +83,7 @@ export async function strategy(
           BigNumber.from(delegator.staker.stake)
         );
         //if delegator has delegated to more than one staker, we need to add that amount also to calculate score.
-        if (!score[delegator.delegatorAddress]) {
+        if (!score[getAddress(delegator.delegatorAddress)]) {
           //if score[delegator] has no score setup already we will put it as intial amount
           score[getAddress(delegator.delegatorAddress)] = wei_to_ether(
             Number(razor_amount)
@@ -111,7 +111,7 @@ export async function strategy(
           BigNumber.from(Staker.stake)
         );
         //score will be based on the current stake in the block Number
-        if (!score[Staker.staker]) {
+        if (!score[getAddress(Staker.staker)]) {
           //if score[delegator] has no score setup already we will put it as intial amount
           score[getAddress(Staker.staker)] = wei_to_ether(Number(razor_amount));
         } else {
