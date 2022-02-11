@@ -113,6 +113,7 @@ export async function strategy(
       addressScore *= response[index][0]
         ? options.brightIdMultiplier // brightId multiplier
         : options.notVerifiedMultiplier; // not verified multiplier
+      addressScore = Math.sqrt(addressScore);
       return [address, addressScore];
     })
   );
