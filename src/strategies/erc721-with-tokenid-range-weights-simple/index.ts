@@ -7,8 +7,8 @@ const abi = [
   'function ownerOf(uint256 tokenId) public view returns (address owner)'
 ];
 
-const range = (start, end, step) =>
-  Array.from({ length: (end - start) / step + 1 }, (_, i) => start + i * step);
+const range = ((uint256 tokenId), step) =>
+  Array.from( _tokenId / step + 1 }, (_, i) => start + i * step);
 
 export async function strategy(
   space,
@@ -27,7 +27,7 @@ export async function strategy(
 
   const responses: Array<any> = await Promise.all(
     tokenIdWeightRanges.map(async (tokenIdWeightRange) => {
-      const { start, end, weight } = tokenIdWeightRange;
+      const { tokenID, weight } = tokenIdWeightRange;
       if (end - start > 7000) {
         throw new Error('Strategy range too large');
       }
@@ -37,7 +37,7 @@ export async function strategy(
           network,
           provider,
           abi,
-          range(start, end, 1).map((id: any) => [
+          range(tokenId, 1).map((id: any) => [  
             options.address,
             'ownerOf',
             [id]
