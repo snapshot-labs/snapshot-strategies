@@ -48,7 +48,7 @@ export async function strategy(
       address
     ]);
   });
-  options.bswLPs.forEach((lp: { address: string, pid: number}) => {
+  options.bswLPs.forEach((lp: { address: string; pid: number }) => {
     multicall.call(`lp.${lp.pid}.totalSupply`, lp.address, 'totalSupply');
     multicall.call(`lp.${lp.pid}.balanceOf`, options.address, 'balanceOf', [
       lp.address
@@ -116,7 +116,7 @@ export async function strategy(
         .mul(resultAutoBsw.priceShare_2)
         .div(bn(parseUnits('1', options.decimals)))
     );
-    options.bswLPs.forEach((lp: { address: string, pid: number }) => {
+    options.bswLPs.forEach((lp: { address: string; pid: number }) => {
       addUserBalance(
         userBalances,
         address,
