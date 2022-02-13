@@ -26,15 +26,17 @@ export async function strategy(
     multi.call(`balanceOf:${address}`, options.address, 'balanceOf', [address]);
 
     // request balance of unclaimed staking rewards
-    multi.call(`rewardsQuote:${address}`, options.address, 'rewardsQuote', [address]);
+    multi.call(`rewardsQuote:${address}`, options.address, 'rewardsQuote', [
+      address
+    ]);
   });
   const result: Record<string, BigNumberish> = await multi.execute();
 
-  let returnObject = {};
+  const returnObject = {};
 
   Object.entries(result).map(([path, balance]) => {
     const address = path.split(':')[1];
-    
+
     if (!returnObject.hasOwnProperty(address)) {
       returnObject[address] = 0;
     }

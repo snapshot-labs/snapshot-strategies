@@ -38,7 +38,7 @@ export async function strategy(
     delegators: {
       __args: {
         where: {
-          delegatorAddress_in : addresses
+          delegatorAddress_in: addresses
         } // delegatorAddress
       }, // Amount_Delegated
       staker: {
