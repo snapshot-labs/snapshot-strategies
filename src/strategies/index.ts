@@ -248,7 +248,7 @@ import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted'
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
-import * as ethercatsFounderSeries from './ethercats-founder-series';
+import * as ethercatsFoundersSeries from './ethercats-founders-series';
 
 const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
@@ -498,7 +498,7 @@ const strategies = {
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
-  'ethercats-founder-series': ethercatsFounderSeries
+  'ethercats-founders-series': ethercatsFoundersSeries
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
