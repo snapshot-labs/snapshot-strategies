@@ -89,7 +89,7 @@ function buildURL(
   apiUrl += `?page_size=${
     'pageSize' in options ? options.pageSize : defaultPageSize
   }`;
-  apiUrl += 'latest' === block ? '' : `&block=${block}`;
+  apiUrl += typeof block === 'number' ? `&block=${block}` : '';
   apiUrl += cursor || cursor != '' ? `&cursor=${cursor}` : '';
   return apiUrl;
 }
