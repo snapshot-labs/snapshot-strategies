@@ -4,7 +4,7 @@
         "strategy": {
             "name": "dimo-erc20-votes-vesting",
             "params": {
-                "vesting": "0xCB2fEF9f1ceC77934bE805B6eB26134d67808D1D",
+                "vesting": "0x639a3492BCdeD73D1E582A05554Ab78Ce77244bf",
                 "address": "0xc20F2c8Fa8CE2661D569176Dc9a7B3c709709ff8",
                 "symbol": "VT",
                 "decimals": 18
@@ -17,6 +17,6 @@
             "0xE466373B886854821e0614C672CEc87176b46cc9",
             "0x58Fc94e6015f83eddCFCCDB884d5f5d87F482E61"
         ],
-        "snapshot": 29725650
+        "snapshot": 29837683
     }
 ]

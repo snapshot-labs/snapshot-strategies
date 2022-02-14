@@ -7,7 +7,7 @@ export const author = 'RedDuck-Software';
 export const version = '0.1.0';
 
 const abi = [
-    'function totalUnclaimedOf(address user) external view returns (uint256)'
+    'function balanceOf(address user) external view returns (uint256)'
 ];
 
 export async function strategy(
@@ -31,7 +31,7 @@ export async function strategy(
 
     const multi = new Multicaller(network, provider, abi, { blockTag });
     addresses.forEach((address) =>
-        multi.call(address, options.vesting, 'totalUnclaimedOf', [address])
+        multi.call(address, options.vesting, 'balanceOf', [address])
     );
 
     const vestingScore: Record<string, BigNumberish> = await multi.execute();
