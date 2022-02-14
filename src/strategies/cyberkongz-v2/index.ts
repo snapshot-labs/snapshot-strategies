@@ -15,7 +15,7 @@ const blacklistedAddresses = [
   '0x820f92c1b3ad8e962e6c6d9d7caf2a550aec46fb', // Banana Tip.cc
   '0x9ffad2ff3a59d8579e3b0edc6c8f2f591c94dfab', // Banana cyberkongz.eth
   '0xe058d87fc1185e38ab68893136834715b30961e1', // Banana Rewarder
-  '0xe2311ae37502105b442bbef831e9b53c5d2e9b3b'  // CyberKongZ: BANANA Token
+  '0xe2311ae37502105b442bbef831e9b53c5d2e9b3b' // CyberKongZ: BANANA Token
 ];
 
 const abi = [
@@ -41,18 +41,19 @@ export async function strategy(
   });
 
   const response = await multicall(network, provider, abi, calls, { blockTag });
-  const nanaCall = [
-    [bananaContract, 'totalSupply', []]
-  ];
+  const nanaCall = [[bananaContract, 'totalSupply', []]];
   let nanaSupply = await multicall(network, provider, abi, nanaCall, {
     blockTag
   });
 
   response.forEach((value: any, i: number) => {
     const address = calls[i][2][0];
-    if (Math.floor(i / addresses.length) == 2 && blacklistedAddresses.find((add) => add === address)) {
+    if (
+      Math.floor(i / addresses.length) == 2 &&
+      blacklistedAddresses.find((add) => add === address)
+    ) {
       nanaSupply -= value;
-    }    
+    }
   });
 
   const merged = {};
