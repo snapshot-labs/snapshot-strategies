@@ -258,6 +258,7 @@ import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
+import * as gysrStakingBalance from './gysr-staking-balance';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -516,7 +517,8 @@ const strategies = {
   've-balance-of-at': veBalanceOfAt,
   chubbykaijudao: chubbykaijudao,
   revest: revest,
-  'staking-claimed-unclaimed': stakingClaimedUnclaimed
+  'staking-claimed-unclaimed': stakingClaimedUnclaimed,
+  'gysr-staking-balance': gysrStakingBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
