@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { hexZeroPad } from '@ethersproject/bytes';
-import { formatUnits } from '@ethersproject/units';
+// import { hexZeroPad } from '@ethersproject/bytes';
+// import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'nascentxyz';
@@ -58,8 +58,36 @@ export async function strategy(
       : balance;
   }
 
-  // TODO: Pull vesting contract and get claimable token amounts
-  const vesting = options?.vesting;
+  // ** Pull "vesting" contract address and get claimable token amounts
+  const vestedClub = options?.vesting;
+
+  // ** Fetch claimable (vested) $CLUB tokens
+  const getWalletToVestedAmount = new Multicaller(network, provider, abi, {
+    blockTag
+  });
+  for (const walletAddress of addresses) {
+    getWalletToVestedAmount.call(
+      walletAddress,
+      vestedClub,
+      'getClaimableAmount',
+      [
+        // TODO: insert cohortId and other function arguments here
+        walletAddress
+      ]
+    );
+  }
+  const walletToVestedAmount: Record<
+    string,
+    BigNumber
+  > = await getWalletToVestedAmount.execute();
+
+  // ** Add the claimable/vested amounts to the reverseVotingBalance mapping
+  for (const [walletID, balance] of Object.entries(walletToVestedAmount)) {
+    const address = walletID.split('-')[0];
+    reverseVotingBalance[address] = reverseVotingBalance[address]
+      ? reverseVotingBalance[address].add(balance)
+      : balance;
+  }
 
   // TODO: Fetch vesting tokens from agora api
 
