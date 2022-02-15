@@ -2,6 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 // import { hexZeroPad } from '@ethersproject/bytes';
 // import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
+import fetch from 'cross-fetch';
 
 export const author = 'nascentxyz';
 export const version = '0.1.0';
@@ -56,6 +57,24 @@ export async function strategy(
     reverseVotingBalance[address] = reverseVotingBalance[address]
       ? reverseVotingBalance[address].add(balance)
       : balance;
+  }
+
+  // ?? Available CLUB Agora API Endpoints ?? //
+  // ?? https://github.com/agoraxyz/club-backend#endpoints ?? //
+  // [GET] hello?name=World: a test endpoint with an optional parameter
+  // [GET] cohort/:cohortId: checks if a specific cohort with cohortId exists in the database or the contract. If both are true, returns it's data
+  // [GET] cohort-ids/:account: returns the IDs of the cohorts the account is in
+  // [GET] claim-data/:cohortId/:account: returns the claim data for a specific account in a specific cohort (cohortId)
+  // [GET] all-claim-data/:account: returns the claim data for a specific account from all the cohorts it is in
+
+  // ** Fetch Cohort Ids for each account ** //
+  // Mapping from address to list of cohort ids
+  const walletCohortIds = {} as Record<string, BigNumber[]>;
+  for (const walletAddress of addresses) {
+    const cohortIds = await fetch(`https://club.agora.space/api/cohort-ids/${walletAddress}`);
+    const cohortJson = await cohortIds.json();
+    console.log('Got cohort ids:', cohortJson);
+    walletCohortIds[walletAddress] = cohortJson;
   }
 
   // ** Pull "vesting" contract address and get claimable token amounts
