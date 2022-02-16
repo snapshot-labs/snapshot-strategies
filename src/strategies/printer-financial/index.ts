@@ -2,12 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'printerfinancial';
-export const version = '0.1.0';
-
-const PRINTER_ADDRESS = '0xb1E6B2a4e6c5717CDBf8F6b01e89455C920a3646';
-const INK_TOKEN_ADDRESS = '0xFFAbb85ADb5c25D57343547a8b32B62f03814B12';
-const INK_LP_TOKEN_ADDRESS = '0xDECC75dBF9679d7A3B6AD011A98F05b5CC6A8a9d';
-const POOLS_ADDRESS = '0xF95AB2A261B0920f3d5aBc02A41dBe125eBA10aE';
+export const version = '0.1.1';
 
 const abi = [
   'function balanceOf(address) view returns (uint256 amount)',
@@ -30,23 +25,23 @@ export async function strategy(
 
   multi = new Multicaller(network, provider, abi, { blockTag });
 
-  multi.call(`lp.inkBalance`, INK_TOKEN_ADDRESS, 'balanceOf', [
-    INK_LP_TOKEN_ADDRESS
+  multi.call(`lp.inkBalance`, options.inkAddress, 'balanceOf', [
+    options.lpPairAddress
   ]);
-  multi.call(`lp.totalSupply`, INK_LP_TOKEN_ADDRESS, 'totalSupply');
+  multi.call(`lp.totalSupply`, options.lpPairAddress, 'totalSupply');
 
   addresses.forEach((address: any) => {
-    multi.call(`ink.${address}`, INK_TOKEN_ADDRESS, 'balanceOf', [
+    multi.call(`ink.${address}`, options.inkAddress, 'balanceOf', [
       address
     ]);
-    multi.call(`inkInPrinter.${address}`, PRINTER_ADDRESS, 'balanceOf', [
+    multi.call(`inkInPrinter.${address}`, options.printerAddress, 'balanceOf', [
       address
     ]);
-    multi.call(`lpInPools.${address}`, POOLS_ADDRESS, 'userInfo', [
+    multi.call(`lpInPools.${address}`, options.lpPoolAddress, 'userInfo', [
       '1',
       address
     ]);
-    multi.call(`lp.${address}`, INK_LP_TOKEN_ADDRESS, 'balanceOf', [
+    multi.call(`lp.${address}`, options.lpPairAddress, 'balanceOf', [
       address
     ]);
   });
@@ -83,12 +78,10 @@ export async function strategy(
 
       return [
         address,
-        Math.sqrt(
           inkInWallet +
             inkInLpInWallet +
             inkInPrinter +
             inkInPools
-        )
       ];
     })
   );
