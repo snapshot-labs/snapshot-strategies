@@ -10,8 +10,8 @@
           "type": "string",
           "title": "Symbol",
           "examples": ["e.g. UNI"],
-          "minimum": 1,
-          "maximum": 16
+          "minLength": 1,
+          "maxLength": 16
         },
         "address": {
           "type": "string",
