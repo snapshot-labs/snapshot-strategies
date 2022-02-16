@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example printer-financial query",
+    "strategy": {
+      "name": "printer-financial",
+      "params": {
+        "symbol": "INK"
+      }
+    },
+    "network": "250",
+    "addresses": [
+      "0x659fc9f71f407764D6C961Cea4c1814409feb5eE",
+      "0x1CBC2226b57Ae4BDbF6BC5CE1908E9D1873553aa"
+    ],
+    "snapshot": 31153229
+  }
+]
