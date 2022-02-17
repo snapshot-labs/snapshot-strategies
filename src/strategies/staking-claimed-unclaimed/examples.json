@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Staking Claimed and Unclaimed",
+    "strategy": {
+      "name": "staking-claimed-unclaimed",
+      "params": {
+        "staking": "0x9b561710fEED0B8d829de89C82F80Bb7B2B364B8",
+        "token": "0xceb726e6383468dd8ac0b513c8330cc9fb4024a8",
+        "symbol": "WORMS",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x55975a6da3a41c3dd81e95673f6ded1856d34711",
+      "0x0Fddf683A5F3a2B51704aAE4e828Ec9A35DEE5e5",
+      "0xdeA8554F1ec3496e0c81219f01D22515A265eCd0",
+      "0x5c86410bB3CfAA05a62802bcA20cCCbeEdF8f556"
+    ],
+    "snapshot": 14126302
+  }
+]
