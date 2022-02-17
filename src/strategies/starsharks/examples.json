@@ -4,7 +4,8 @@
     "strategy": {
       "name": "starsharks",
       "params": {
-        "symbol": "SSS"
+        "symbol": "SSS",
+        "chainId": 56
       }
     },
     "network": "56",

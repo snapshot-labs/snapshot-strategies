@@ -62,14 +62,15 @@ export async function strategy(
   network,
   _provider,
   addresses,
-  _options,
+  options,
   snapshot
 ): Promise<Record<string, number>> {
   const block_id = typeof snapshot === 'number' ? snapshot : 0;
+  const { chainId } = options;
   const depositsMap = await getAddressesDespoits({
     addresses,
     block_id,
-    network
+    network: chainId ?? network
   });
 
   const result = {};
