@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ethercats-founder-series",
+      "params": {
+        "symbol": "EtherCat"
+      }
+    },
+    "network": "1",
+    "addresses": ["0x0e917dcffb792dbfb36b75afcc1a5d6174ec94e2"],
+    "snapshot": 14121348
+  }
+]

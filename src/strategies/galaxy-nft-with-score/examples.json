@@ -4,31 +4,46 @@
     "strategy": {
       "name": "galaxy-nft-with-score",
       "params": {
-        "symbol": "WOOFY",
+        "symbol": "SUPA",
         "params": {
-          "NFTCoreAddress": ["0x0966a53f2533EaF01D0bB2fa0E2274f3002287F1"],
-          "blacklistNFTID": ["1329"],
+          "NFTCoreAddress": ["0x60F6A3e7EF786CB301AE0AA0E6F37fE84DC48345"],
+          "blacklistNFTID": [
+            "4"
+          ],
           "configs": [
             {
-              "name": "Woofster",
-              "votingPower": 1,
-              "cumulative": true
+              "name": "Basic",
+              "cumulative": false,
+              "votingPower": 1
             },
             {
-              "name": "Androttweiler",
-              "votingPower": 2,
-              "cumulative": false
+              "name": "SuperUMAn",
+              "cumulative": false,
+              "votingPower": 10
+            },
+            {
+              "name": "UMAster",
+              "cumulative": false,
+              "votingPower": 20
+            },
+            {
+              "name": "Alumni",
+              "cumulative": false,
+              "votingPower": 1
             }
           ]
         }
       }
     },
-    "network": "1",
+    "network": "137",
     "addresses": [
-      "0xffFfA7D95ca2323d6bF4e46C5A287BF11219172E",
-      "0x0Cec743b8CE4Ef8802cAc0e5df18a180ed8402A7",
-      "0xBb3A7bc36b5baFa7691Ccb708EbF299B6d521b05"
+      "0x31A4C53BE2356b09220D348508B97Ed9b26a6c30",
+      "0x69D0341d380a1229f4751a0A721345dBc716586C",
+      "0xe5fF2C80759db9408dC9fD22b155b851Cd5aAA94",
+      "0xBaE38Bf54f2aA0e6159f3d9B656300f61DBd2ED3",
+      "0x5924EB6A482CeA85e23403E448257FbE5c58A9ed",
+      "0xD02BAE47fD93325fd0cc3d660B73D8f93C4D7B5E"
     ],
-    "snapshot": 13000000
+    "snapshot": 24549784
   }
 ]
