@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'printerfinancial';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const abi = [
   'function balanceOf(address) view returns (uint256 amount)',
@@ -38,7 +38,7 @@ export async function strategy(
       address
     ]);
     multi.call(`lpInPools.${address}`, options.lpPoolAddress, 'userInfo', [
-      '1',
+      options.lpPoolId,
       address
     ]);
     multi.call(`lp.${address}`, options.lpPairAddress, 'balanceOf', [
