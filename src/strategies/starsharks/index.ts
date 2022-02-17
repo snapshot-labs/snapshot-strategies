@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { utils } from 'ethers';
+import utils from '@ethersproject/units';
 const { getAddress } = require('@ethersproject/address');
 
 export const author = 'starsharks';
