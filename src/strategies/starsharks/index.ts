@@ -41,14 +41,12 @@ async function getAddressesDespoits({
   return data.data;
 }
 
-function calcPowerByDeposits(deposits: Deposit[]) {
-  const now = Date.now();
+function calcPowerByDeposits(deposits: Deposit[], blockTime: number) {
   let power = 0;
   for (const deposit of deposits) {
     const { vesss_amount, begin_at, end_at } = deposit;
-    if (begin_at * 1000 < now && end_at * 1000 > now) {
-      const remainTimePercent =
-        (now - begin_at * 1000) / ((end_at - begin_at) * 1000);
+    if (begin_at < blockTime && end_at > blockTime) {
+      const remainTimePercent = (blockTime - begin_at) / (end_at - begin_at);
       const increment = Number(formatUnits(vesss_amount)) * remainTimePercent;
       power += increment;
     }
@@ -59,12 +57,14 @@ function calcPowerByDeposits(deposits: Deposit[]) {
 export async function strategy(
   _space,
   network,
-  _provider,
+  provider,
   addresses,
   options,
   snapshot
 ): Promise<Record<string, number>> {
   const block_id = typeof snapshot === 'number' ? snapshot : 0;
+  const block = await provider.getBlock('latest');
+  const blockTime = block.timestamp;
   const { chainId } = options;
   const depositsMap = await getAddressesDespoits({
     addresses,
@@ -75,7 +75,7 @@ export async function strategy(
   const result = {};
   for (const address in depositsMap) {
     const deposits = depositsMap[address];
-    result[getAddress(address)] = calcPowerByDeposits(deposits);
+    result[getAddress(address)] = calcPowerByDeposits(deposits, blockTime);
   }
 
   return result;
