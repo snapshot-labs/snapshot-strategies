@@ -37,6 +37,14 @@
           "minLength": 42,
           "maxLength": 42
         },
+        "lpPoolId": {
+          "type": "string",
+          "title": "LP Pool ID",
+          "examples": ["e.g. 0"],
+          "pattern": "^[0-9]{1}$",
+          "minLength": 1,
+          "maxLength": 1
+        },
         "lpPairAddress": {
           "type": "string",
           "title": "INK LP Pair address",
