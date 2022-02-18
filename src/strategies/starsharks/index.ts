@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import utils from '@ethersproject/units';
+import { formatUnits } from '@ethersproject/units';
 const { getAddress } = require('@ethersproject/address');
 
 export const author = 'starsharks';
@@ -49,8 +49,7 @@ function calcPowerByDeposits(deposits: Deposit[]) {
     if (begin_at < now || end_at > now) {
       const remainTimePercent =
         (now - begin_at * 1000) / ((end_at - begin_at) * 1000);
-      const increment =
-        Number(utils.formatUnits(vesss_amount)) * remainTimePercent;
+      const increment = Number(formatUnits(vesss_amount)) * remainTimePercent;
       power += increment;
     }
   }
