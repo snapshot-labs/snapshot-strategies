@@ -260,6 +260,7 @@ import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
+import * as printerFinancial from './printer-financial';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -520,7 +521,8 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
-   starsharks
+   starsharks,
+  'printer-financial': printerFinancial
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

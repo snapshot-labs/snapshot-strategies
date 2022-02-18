@@ -50,7 +50,6 @@ export async function strategy(
 ) {
   const chainBlocks = await getBlocks(snapshot, provider, options, network);
   const delegations = await getDelegations(space, network, addresses, snapshot);
-  console.debug(delegations);
 
   const brightIdNetwork = options.brightIdNetwork || network;
   const response = await multicall(
@@ -113,6 +112,8 @@ export async function strategy(
       addressScore *= response[index][0]
         ? options.brightIdMultiplier // brightId multiplier
         : options.notVerifiedMultiplier; // not verified multiplier
+      if (isNaN(addressScore)) addressScore = 0;
+      addressScore = Math.sqrt(addressScore);
       return [address, addressScore];
     })
   );
