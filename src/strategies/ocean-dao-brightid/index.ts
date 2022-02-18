@@ -93,6 +93,7 @@ export async function strategy(
     addresses.forEach((address) => {
       if (delegations[address]) {
         delegations[address].forEach((delegator) => {
+          // @ts-ignore
           scores[address] += scores[delegator];
           scores[delegator] = 0;
         });
