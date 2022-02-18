@@ -46,7 +46,7 @@ function calcPowerByDeposits(deposits: Deposit[], blockTime: number) {
   for (const deposit of deposits) {
     const { vesss_amount, begin_at, end_at } = deposit;
     if (begin_at < blockTime && end_at > blockTime) {
-      const remainTimePercent = (blockTime - begin_at) / (end_at - begin_at);
+      const remainTimePercent = (end_at - blockTime) / (end_at - begin_at);
       const increment = Number(formatUnits(vesss_amount)) * remainTimePercent;
       power += increment;
     }
