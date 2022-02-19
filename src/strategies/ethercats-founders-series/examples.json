@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ethercats-founders-series",
+      "params": {
+        "symbol": "Meows"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x03C4dcDbD7Efc4fD32e2C0E92D4E1F8B778e1A56",
+      "0x0e917dcffb792dbfb36b75afcc1a5d6174ec94e2",
+      "0x160e5B66f58924736B0a264f25ffd01e6732C39f"
+    ],
+    "snapshot": 14101221
+  }
+]
