@@ -1,4 +1,3 @@
-index.ts
 import { subgraphRequest } from '../../utils';
 
 export const author = 'woodydeck';
