@@ -70,7 +70,9 @@ async function getL2Balances(
     const apiUrl = buildURL(network, options, block, cursor);
     const response = await fetch(apiUrl, {
       method: 'POST',
-      body: JSON.stringify({ ether_keys: addresses.slice(totalLen, options.pageSize) }),
+      body: JSON.stringify({
+        ether_keys: addresses.slice(totalLen, options.pageSize)
+      }),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
@@ -80,7 +82,7 @@ async function getL2Balances(
     Object.assign(records, mapL2Response(resJson, options));
     cursor = resJson.cursor;
     recordsLen = (resJson as Response).records.length;
-    totalLen += recordsLen
+    totalLen += recordsLen;
   }
   return records;
 }

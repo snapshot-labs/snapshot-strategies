@@ -31,9 +31,7 @@ export async function strategy(
   multi.call(`lp.totalSupply`, options.lpPairAddress, 'totalSupply');
 
   addresses.forEach((address: any) => {
-    multi.call(`ink.${address}`, options.inkAddress, 'balanceOf', [
-      address
-    ]);
+    multi.call(`ink.${address}`, options.inkAddress, 'balanceOf', [address]);
     multi.call(`inkInPrinter.${address}`, options.printerAddress, 'balanceOf', [
       address
     ]);
@@ -41,18 +39,14 @@ export async function strategy(
       options.lpPoolId,
       address
     ]);
-    multi.call(`lp.${address}`, options.lpPairAddress, 'balanceOf', [
-      address
-    ]);
+    multi.call(`lp.${address}`, options.lpPairAddress, 'balanceOf', [address]);
   });
 
   const result = await multi.execute();
 
   return Object.fromEntries(
     addresses.map((address: any) => {
-      const inkInWallet = parseFloat(
-        formatUnits(result.ink[address], 18)
-      );
+      const inkInWallet = parseFloat(formatUnits(result.ink[address], 18));
 
       const inkInLpInWallet = parseFloat(
         formatUnits(
@@ -78,10 +72,7 @@ export async function strategy(
 
       return [
         address,
-          inkInWallet +
-            inkInLpInWallet +
-            inkInPrinter +
-            inkInPools
+        inkInWallet + inkInLpInWallet + inkInPrinter + inkInPools
       ];
     })
   );
