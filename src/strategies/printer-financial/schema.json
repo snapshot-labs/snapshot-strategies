@@ -54,7 +54,12 @@
           "maxLength": 42
         }
       },
-      "required": ["inkAddress", "printerAddress", "lpPoolAddress", "lpPairAddress"],
+      "required": [
+        "inkAddress",
+        "printerAddress",
+        "lpPoolAddress",
+        "lpPairAddress"
+      ],
       "additionalProperties": false
     }
   }
