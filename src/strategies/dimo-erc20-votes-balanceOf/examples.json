@@ -2,12 +2,12 @@
     {
         "name": "Example query",
         "strategy": {
-            "name": "dimo-erc20-votes-vesting",
+            "name": "dimo-erc20-votes-balanceOf",
             "params": {
-                "vesting": "0x639a3492BCdeD73D1E582A05554Ab78Ce77244bf",
                 "address": "0xc20F2c8Fa8CE2661D569176Dc9a7B3c709709ff8",
+                "decimals": 18,
                 "symbol": "VT",
-                "decimals": 18
+                "balanceOfContract": "0x639a3492BCdeD73D1E582A05554Ab78Ce77244bf"
             }
         },
         "network": "42",

@@ -257,7 +257,7 @@ import * as veBalanceOfAt from './ve-balance-of-at';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
-import * as dimoErc20VotesVesting from "./dimo-erc20-votes-vesting";
+import * as dimoErc20VotesBalance from "./dimo-erc20-votes-balanceOf";
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -514,7 +514,7 @@ const strategies = {
   'sandman-dao': sandmanDao,
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
-  'dimo-erc20-votes-vesting': dimoErc20VotesVesting,
+  'dimo-erc20-votes-balanceOf': dimoErc20VotesBalance,
   chubbykaijudao: chubbykaijudao,
   revest: revest
 };
