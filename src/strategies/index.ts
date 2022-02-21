@@ -261,6 +261,7 @@ import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
+import * as MinotaurMoney from './minotaur-money';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -522,7 +523,8 @@ const strategies = {
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
    starsharks,
-  'printer-financial': printerFinancial
+  'printer-financial': printerFinancial,
+  'minotaur-money': MinotaurMoney
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
