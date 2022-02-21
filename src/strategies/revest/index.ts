@@ -117,7 +117,7 @@ export async function strategy(
     network,
     _provider,
     abi2,
-    [''].map((id: any) => [options.staking, 'rewardsHandlerAddress', []]),
+    [''].map(() => [options.staking, 'rewardsHandlerAddress', []]),
     { blockTag }
   );
   rewards = rewards[0][0];
