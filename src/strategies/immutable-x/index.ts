@@ -71,7 +71,9 @@ async function getL2Balances(
     // Send request
     const response = await fetch(apiUrl, {
       method: 'POST',
-      body: JSON.stringify({ ether_keys: addresses.slice(receivedLen, receivedLen+options.pageSize) }),
+      body: JSON.stringify({
+        ether_keys: addresses.slice(receivedLen, receivedLen+options.pageSize)
+      }),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
