@@ -114,7 +114,6 @@ export async function strategy(
         ? options.brightIdMultiplier // brightId multiplier
         : options.notVerifiedMultiplier; // not verified multiplier
       if (isNaN(addressScore)) addressScore = 0;
-      addressScore = Math.sqrt(addressScore);
       return [address, addressScore];
     })
   );
