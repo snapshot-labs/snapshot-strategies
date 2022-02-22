@@ -68,7 +68,7 @@ export async function strategy(
     nftContracts: {
       __args: {
         where: {
-          id_in: options.params.NFTCoreAddress.map((a)=>a.toLowerCase())
+          id_in: options.params.NFTCoreAddress.map((a) => a.toLowerCase())
         }
       },
       id: true,
@@ -117,7 +117,9 @@ export async function strategy(
 
   const graphqlPromise = fetch(Networks[network].graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(
-    options.params.subgraph ? options.params.subgraph : Networks[network].subgraph,
+    options.params.subgraph
+      ? options.params.subgraph
+      : Networks[network].subgraph,
     subgraphParams
   );
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
@@ -135,7 +137,7 @@ export async function strategy(
     (map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
         if (!options.params.blacklistNFTID?.includes(i.id)) {
-          m[i.nftCore.contractAddress.toLowerCase() + '-' + i.id ] = i.name;
+          m[i.nftCore.contractAddress.toLowerCase() + '-' + i.id] = i.name;
         }
         return m;
       }, {});
@@ -150,7 +152,9 @@ export async function strategy(
       if (!(nft.ownership[0].owner in subgraphOwnersWithNfts)) {
         subgraphOwnersWithNfts[nft.ownership[0].owner] = {};
       }
-      subgraphOwnersWithNfts[nft.ownership[0].owner][nftContract.id + '-' + nft.tokenID] = '';
+      subgraphOwnersWithNfts[nft.ownership[0].owner][
+        nftContract.id + '-' + nft.tokenID
+      ] = '';
     });
   });
 

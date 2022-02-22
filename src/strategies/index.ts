@@ -261,6 +261,7 @@ import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
+import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as MinotaurMoney from './minotaur-money';
 
 const strategies = {
@@ -522,10 +523,10 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
-   starsharks,
+  starsharks,
   'printer-financial': printerFinancial,
+  'ethercats-founders-series': ethercatsFoundersSeries,
   'minotaur-money': MinotaurMoney
-};
 
 Object.keys(strategies).forEach(function (strategyName) {
   let examples = null;
