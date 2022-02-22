@@ -7,6 +7,7 @@ import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
 import * as sunder from './sunder';
+import * as spirit from './spirit';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
 import * as dextfVaults from './dextf-staked-in-vaults';
@@ -150,7 +151,6 @@ import * as aks from './aks';
 import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
-import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
 import * as zrxVotingPower from './zrx-voting-power';
 import * as tombFinance from './tomb-finance';
@@ -270,6 +270,7 @@ const strategies = {
   balancer,
   sunder,
   'balancer-smart-pool': balancerSmartPool,
+  'spirit': spirit,
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
@@ -413,7 +414,6 @@ const strategies = {
   'planet-finance': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
-  'immutable-x': immutableX,
   badgeth,
   'zrx-voting-power': zrxVotingPower,
   'tomb-finance': tombFinance,

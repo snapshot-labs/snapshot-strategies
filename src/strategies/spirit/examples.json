@@ -1,0 +1,30 @@
+[{
+    "name": "Example query",
+    "strategy": {
+        "name": "spirit",
+        "params": {
+            "address": "0x2FBFf41a9efAEAE77538bd63f1ea489494acdc08",
+            "symbol": "InSpirit",
+            "decimals": 18,
+            "methodABI": {
+                "inputs": [{
+                    "internalType": "address",
+                    "name": "account",
+                    "type": "address"
+                }],
+                "name": "balanceOf",
+                "outputs": [{
+                    "internalType": "uint256",
+                    "name": "",
+                    "type": "uint256"
+                }],
+                "stateMutability": "view",
+                "type": "function"
+            }
+
+        }
+    },
+    "network": "250",
+    "addresses": ["0x5b826FAEDE6043D0538f72f345C5Fb76c5AA6256"],
+    "snapshot": 13691035
+}]
