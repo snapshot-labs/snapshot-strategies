@@ -169,18 +169,19 @@ export async function strategy(
     safetyModuleRewardsToken.toLowerCase() ===
     options.votingToken.address.toLowerCase();
 
+  const safetyModuleTotalSupply = parseFloat(
+    formatUnits(
+      safetyModuleGlobalState[TOTAL_SUPPLY_ATTR],
+      options.safetyModule.decimals
+    )
+  );
+
   const scores = Object.fromEntries(
     Object.entries(accountsStakesAndRewards).map(
       ([address, accountStakesAndRewards]) => {
         const accountSafetyModuleBalance = parseFloat(
           formatUnits(
             accountStakesAndRewards[BALANCE_OF_ATTR],
-            options.safetyModule.decimals
-          )
-        );
-        const safetyModuleTotalSupply = parseFloat(
-          formatUnits(
-            safetyModuleGlobalState[TOTAL_SUPPLY_ATTR],
             options.safetyModule.decimals
           )
         );
