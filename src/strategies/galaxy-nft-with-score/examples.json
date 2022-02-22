@@ -7,9 +7,7 @@
         "symbol": "SUPA",
         "params": {
           "NFTCoreAddress": ["0x60F6A3e7EF786CB301AE0AA0E6F37fE84DC48345"],
-          "blacklistNFTID": [
-            "4"
-          ],
+          "blacklistNFTID": ["4"],
           "configs": [
             {
               "name": "Basic",

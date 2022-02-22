@@ -62,25 +62,30 @@ async function getL2Balances(
 
   // Loop variables
   let cursor = '',
-    recordsLen = addresses.length, // assume all addresses exist
-    totalLen = 0;
+    receivedLen = 0;
 
-  // Until final records are returned
-  while (recordsLen != 0) {
+  // Until all records are returned
+  while (receivedLen < addresses.length) {
+    // Build URL
     const apiUrl = buildURL(network, options, block, cursor);
+    // Send request
     const response = await fetch(apiUrl, {
       method: 'POST',
-      body: JSON.stringify({ ether_keys: addresses.slice(totalLen, options.pageSize) }),
+      body: JSON.stringify({
+        ether_keys: addresses.slice(receivedLen, receivedLen+options.pageSize)
+      }),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       }
     });
+    // Decode response
     const resJson = await response.json();
+    // Store result
     Object.assign(records, mapL2Response(resJson, options));
+    // Iterate
     cursor = resJson.cursor;
-    recordsLen = (resJson as Response).records.length;
-    totalLen += recordsLen
+    receivedLen += (resJson as Response).records.length;
   }
   return records;
 }
