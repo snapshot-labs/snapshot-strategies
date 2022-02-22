@@ -45,6 +45,7 @@ async function fetchSafetyModuleScore(
 
 const SafetyModuleMinABI = [
   'function totalSupply() external view returns (uint256)',
+  'function STAKED_TOKEN() external view returns (address)',
   'function REWARD_TOKEN() external view returns (address)',
   'function decimals() view returns (uint8)',
   'function balanceOf(address account) external view returns (uint256)',
@@ -52,6 +53,7 @@ const SafetyModuleMinABI = [
 ];
 
 const TOTAL_SUPPLY_ATTR = 'totalSupply';
+const STAKED_TOKEN_ATTR = 'stakedToken';
 const REWARD_TOKEN_ATTR = 'rewardToken';
 const BALANCE_OF_ATTR = 'balanceOf';
 const REWARDS_OF_ATTR = 'totalRewardsBalance';
@@ -126,10 +128,12 @@ async function fetchSafetyModuleGlobalState(
     blockTag
   });
 
+  multi.call(STAKED_TOKEN_ATTR, options.safetyModule.address, 'STAKED_TOKEN');
   multi.call(REWARD_TOKEN_ATTR, options.safetyModule.address, 'REWARD_TOKEN');
   multi.call(TOTAL_SUPPLY_ATTR, options.safetyModule.address, 'totalSupply');
 
   const result: {
+    [STAKED_TOKEN_ATTR]: string;
     [REWARD_TOKEN_ATTR]: string;
     [TOTAL_SUPPLY_ATTR]: BigNumberish;
   } = await multi.execute();
@@ -162,6 +166,17 @@ export async function strategy(
       FetchSafetyModuleGlobalStateOutput
     ]
   );
+
+  const safetyModuleStakedToken = safetyModuleGlobalState[STAKED_TOKEN_ATTR];
+
+  if (
+    safetyModuleStakedToken.toLowerCase() !==
+    options.balancerPoolId.substring(0, 42).toLowerCase()
+  ) {
+    throw new Error(
+      `safety-module-bpt-power, safety module's staken token ${safetyModuleStakedToken} doesn't match balancer pool ${options.balancerPoolId}`
+    );
+  }
 
   const safetyModuleRewardsToken = safetyModuleGlobalState[REWARD_TOKEN_ATTR];
 
