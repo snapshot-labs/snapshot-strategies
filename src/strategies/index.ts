@@ -527,6 +527,7 @@ const strategies = {
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
   'minotaur-money': MinotaurMoney
+};
 
 Object.keys(strategies).forEach(function (strategyName) {
   let examples = null;
