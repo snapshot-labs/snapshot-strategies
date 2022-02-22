@@ -4,7 +4,7 @@
     "strategy": {
       "name": "safety-module-bpt-power",
       "params": {
-        "symbol": "stkPSPBpt",
+        "symbol": "PSP",
         "balancerPoolId": "0xcb0e14e96f2cefa8550ad8e4aea344f211e5061d00020000000000000000011a",
         "safetyModule": {
           "address": "0xC8DC2Ec5f5e02bE8b37A8444a1931F02374A17ab",
