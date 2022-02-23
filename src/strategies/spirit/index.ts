@@ -86,7 +86,7 @@ export async function strategy(
   const owner = await find_contract_creator(addresses[0], provider);
 
   return Object.fromEntries(
-    response.map(([value, i]) => [
+    response.map(([value]) => [
       owner,
       parseFloat(
         formatUnits(
