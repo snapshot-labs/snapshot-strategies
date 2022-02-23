@@ -6,9 +6,9 @@ export const version = '0.1.0';
 
 async function search_contract_cretion_block(contract_address, provider) {
   var highest_block = await provider.getBlockNumber();
-  const lowest_block = 13691035;
+  var lowest_block = 13691035;
 
-  const contract_code = await provider.getCode(contract_address, highest_block);
+  var contract_code = await provider.getCode(contract_address, highest_block);
 
   if (contract_code == '0x') {
     return -1;
@@ -30,9 +30,9 @@ async function search_contract_cretion_block(contract_address, provider) {
 }
 
 async function search_contract_creator(contract_address, block, provider) {
-  const block = await provider.getBlock(block);
-  var transactions = block.transactions;
-  if (block == -1) {
+  const block1 = await provider.getBlock(block);
+  var transactions = block1.transactions;
+  if (block1 == -1) {
     return contract_address;
   }
   for (var y = 0; y < transactions.length; y++) {
