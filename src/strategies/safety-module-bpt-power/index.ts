@@ -3,7 +3,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'paraswap';
+export const author = 'mwamedacen';
 export const version = '0.1.0';
 
 interface Options {
