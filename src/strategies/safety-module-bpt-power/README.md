@@ -1,6 +1,6 @@
 # staked-psp-balance
 
-This strategy compute the voting power of a staker relative to one token involved in a Aave like safety module that accepts arbitrary balancer LP token as staked token.
+This strategy computes the voting power of a staker relative to one token involved in a Aave like safety module that accepts arbitrary balancer LP token as staked token.
 It uses balancer-pool-id strategy.
 
 To simplify async flow, it requires to pass couple of parameters: 

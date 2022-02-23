@@ -112,15 +112,16 @@ async function fetchAccountsSafetyModuleStakesAndRewards(
 type FetchSafetyModuleGlobalStateOutput = Promise<{
   [TOTAL_SUPPLY_ATTR]: BigNumberish;
   [REWARD_TOKEN_ATTR]: string;
+  [STAKED_TOKEN_ATTR]: string;
 }>;
 
 async function fetchSafetyModuleGlobalState(
-  space,
-  network,
+  space: string,
+  network: string,
   provider,
-  addresses,
+  addresses: string[],
   options: Options,
-  snapshot
+  snapshot: number
 ): FetchSafetyModuleGlobalStateOutput {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
