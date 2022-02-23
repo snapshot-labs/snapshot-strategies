@@ -21,12 +21,12 @@ interface Options {
 type FetchSafetyModuleScoreOutput = Promise<number>;
 
 async function fetchSafetyModuleScore(
-  space,
-  network,
+  space: string,
+  network: string,
   provider,
-  addresses,
+  addresses: string[],
   options: Options,
-  snapshot
+  snapshot: number
 ): FetchSafetyModuleScoreOutput {
   const scores = await balancerPoolIdStrategy(
     space,
@@ -66,12 +66,12 @@ type FetchAccountsSafetyModuleStakesAndRewardsOuput = Promise<{
 }>;
 
 async function fetchAccountsSafetyModuleStakesAndRewards(
-  space,
-  network,
+  space: string,
+  network: string,
   provider,
-  addresses,
+  addresses: string[],
   options: Options,
-  snapshot
+  snapshot: number
 ): FetchAccountsSafetyModuleStakesAndRewardsOuput {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
@@ -142,12 +142,12 @@ async function fetchSafetyModuleGlobalState(
 }
 
 export async function strategy(
-  space,
-  network,
+  space: string,
+  network: string,
   provider,
-  addresses,
+  addresses: string[],
   options: Options,
-  snapshot
+  snapshot: number
 ) {
   const [
     safetyModuleScore,
