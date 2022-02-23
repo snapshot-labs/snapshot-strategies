@@ -6,9 +6,9 @@ export const version = '0.1.0';
 
 async function search_contract_cretion_block(contract_address, provider) {
   var highest_block = await provider.getBlockNumber();
-  var lowest_block = 13691035;
+  const lowest_block = 13691035;
 
-  var contract_code = await provider.getCode(contract_address, highest_block);
+  const contract_code = await provider.getCode(contract_address, highest_block);
 
   if (contract_code == '0x') {
     return -1;
