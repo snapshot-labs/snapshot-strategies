@@ -257,6 +257,11 @@ import * as veBalanceOfAt from './ve-balance-of-at';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
+import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
+import * as gysrStakingBalance from './gysr-staking-balance';
+import * as starsharks from './starsharks';
+import * as printerFinancial from './printer-financial';
+import * as ethercatsFoundersSeries from './ethercats-founders-series';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -514,7 +519,12 @@ const strategies = {
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
   chubbykaijudao: chubbykaijudao,
-  revest: revest
+  revest: revest,
+  'staking-claimed-unclaimed': stakingClaimedUnclaimed,
+  'gysr-staking-balance': gysrStakingBalance,
+  starsharks,
+  'printer-financial': printerFinancial,
+  'ethercats-founders-series': ethercatsFoundersSeries
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
