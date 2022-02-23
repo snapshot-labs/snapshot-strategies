@@ -18,7 +18,7 @@ const sMinoContractAbi = ['function index() external view returns (uint256)'];
 const mmfPoolAbi = ['function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)']
 
 type MultiCallResult = Record<string, BigNumberish>;
-type MultiCallObjectResult = Record<string, object>;
+type MultiCallObjectResult = Record<string, any>;
 
 export async function strategy(
   space,
