@@ -46,8 +46,8 @@ async function search_contract_creator(contract_address, block, provider) {
 }
 
 async function find_contract_creator(contract_address, provider) {
-  var block = await search_contract_cretion_block(contract_address, provider);
-  var creator = await search_contract_creator(
+  const block = await search_contract_cretion_block(contract_address, provider);
+  const creator = await search_contract_creator(
     contract_address,
     block,
     provider
