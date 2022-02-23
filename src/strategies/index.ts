@@ -25,6 +25,7 @@ import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
+import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
@@ -71,6 +72,7 @@ import * as sushiswap from './sushiswap';
 import * as masterchef from './masterchef';
 import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
+import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
 import * as ticket from './ticket';
@@ -194,6 +196,7 @@ import * as techQuadraticRankedChoice from './tech-quadratic-ranked-choice';
 import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders';
 import * as vaultTokenLpBalance from './vault-token-lp-balance';
 import * as singleStakingVaultBalanceOf from './single-staking-vault-balanceof';
+import * as razorVoting from './razor-network-voting';
 import * as svsStaking from './svs-staking';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
@@ -245,11 +248,23 @@ import * as givethXdaiBalance from './giveth-xdai-balance';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
+import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
+import * as ethercatsFounderSeries from './ethercats-founder-series';
+import * as veBalanceOfAt from './ve-balance-of-at';
+import * as chubbykaijudao from './chubbykaijudao';
+import * as landDaoTiers from './landdao-token-tiers';
+import * as defiplaza from './defiplaza';
+import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
+import * as gysrStakingBalance from './gysr-staking-balance';
+import * as starsharks from './starsharks';
+import * as printerFinancial from './printer-financial';
+import * as ethercatsFoundersSeries from './ethercats-founders-series';
 
 const strategies = {
+  'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
@@ -262,6 +277,7 @@ const strategies = {
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  defiplaza: defiplaza,
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
@@ -332,6 +348,7 @@ const strategies = {
   stablexswap,
   dittomoney,
   'staked-keep': stakedKeep,
+  'staked-daomaker': stakedDaomaker,
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
@@ -442,6 +459,7 @@ const strategies = {
   'vault-token-lp-balance': vaultTokenLpBalance,
   'single-staking-vault-balanceof': singleStakingVaultBalanceOf,
   'mutant-cats-stakers-and-holders': mutantCatsStakersAndHolders,
+  'razor-network-voting': razorVoting,
   'svs-staking': svsStaking,
   'mcb-balance-from-graph': mcbBalanceFromGraph,
   'radicle-community-tokens': radicleCommunityTokens,
@@ -494,9 +512,19 @@ const strategies = {
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
+  'stakers-and-holders': stakersAndHolders,
   'banksy-dao': banksyDao,
-  'spacey2025':spacey2025,
-  'sandman-dao': sandmanDao
+  spacey2025: spacey2025,
+  'sandman-dao': sandmanDao,
+  'ethercats-founder-series': ethercatsFounderSeries,
+  've-balance-of-at': veBalanceOfAt,
+  chubbykaijudao: chubbykaijudao,
+  revest: revest,
+  'staking-claimed-unclaimed': stakingClaimedUnclaimed,
+  'gysr-staking-balance': gysrStakingBalance,
+  starsharks,
+  'printer-financial': printerFinancial,
+  'ethercats-founders-series': ethercatsFoundersSeries
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
