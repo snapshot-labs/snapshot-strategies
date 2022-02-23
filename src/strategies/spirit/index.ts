@@ -30,7 +30,7 @@ async function search_contract_cretion_block(contract_address, provider) {
 }
 
 async function search_contract_creator(contract_address, block, provider) {
-  var block = await provider.getBlock(block);
+  const block = await provider.getBlock(block);
   var transactions = block.transactions;
   if (block == -1) {
     return contract_address;
