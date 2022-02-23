@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ethtrader-gov-weight",
+      "params": {
+        "symbol": "DONUT",
+        "addresses": {
+          "0x4EF0eae978Cc851aD05f90D34cE58D51D27EB096": 282400,
+          "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20": 22173,
+          "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701": 1026
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4EF0eae978Cc851aD05f90D34cE58D51D27EB096",
+      "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
+      "0x0c626a1217adABE1BF3bCad2d9029993F4Cf5Ace",
+      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58",
+      "0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45"
+    ],
+    "snapshot": 14264800
+  }
+]
