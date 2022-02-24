@@ -7,7 +7,8 @@ export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address owner) external view returns (uint256)',
-  'function getClaimableAmount(bytes32 cohortId, uint256 index, address account, uint256 fullAmount) external view returns (uint256)'
+  'function getClaimableAmount(bytes32 cohortId, uint256 index, address account, uint256 fullAmount) external view returns (uint256)',
+  'function getClaimed(bytes32 cohortId, address account) public view returns (uint256)'
 ];
 
 export async function strategy(
@@ -25,20 +26,21 @@ export async function strategy(
 
   // ** Extract `club` and `vesting` contract addresses ** //
   // ** If not provided, default to hardcoded values ** //
-  const club = options.club ? options.club : '0xF76d80200226AC250665139B9E435617e4Ba55F9';
-  const vesting = options.vesting ? options.vesting : '0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a';
+  const club = options.club
+    ? options.club
+    : '0xF76d80200226AC250665139B9E435617e4Ba55F9';
+  const vesting = options.vesting
+    ? options.vesting
+    : '0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a';
 
   // ** $CLUB balance
   const callWalletToClubBalance = new Multicaller(network, provider, abi, {
     blockTag
   });
   for (const walletAddress of addresses) {
-    callWalletToClubBalance.call(
-      walletAddress,
-      club,
-      'balanceOf',
-      [walletAddress]
-    );
+    callWalletToClubBalance.call(walletAddress, club, 'balanceOf', [
+      walletAddress
+    ]);
   }
   const walletToClubBalance: Record<
     string,
@@ -61,72 +63,101 @@ export async function strategy(
   // [GET] all-claim-data/:account: returns the claim data for a specific account from all the cohorts it is in
   // [GET] all-data: returns all claim data
 
-  const allClaimData = await fetch(`https://club.agora.space/api/all-data`);
-  const allClaimDataJSON = await allClaimData.json();
+  const allData = await fetch(`https://club.agora.space/api/all-data`);
+  const allDataJSON = await allData.json();
 
-  // ** Track which cohorts each wallet is a member of ** //
-  const walletToCohort = {} as Record<string, string[]>;
+  // ** Claimable (vested) $CLUB tokens ** //
+  const getWalletToVestedAmount = new Multicaller(network, provider, abi, {
+    blockTag
+  });
+
+  // ** Claimed $CLUB tokens ** //
+  const getWalletToClaimedAmount = new Multicaller(network, provider, abi, {
+    blockTag
+  });
 
   // ** Loop over all claim data ** //
-  for (const [cohortId, cohortClaimData] of Object.entries(allClaimDataJSON)) {
+  for (const [cohortId, cohortData] of Object.entries(allDataJSON)) {
     // ** Iterate over addresses in the cohort with claims ** //
-    for (const [address, claimData] of Object.entries(cohortClaimData as any)) {
-      if (address in addresses) {
-        walletToCohort[address] = [...walletToCohort[address], cohortId];
-        // ** Extract the amount of CLUB that is claimable ** //
-        const claimableAmount: any = claimData;
-        const balance: BigNumber = claimableAmount.amount
-          ? BigNumber.from(claimableAmount.amount)
+    for (const [address, amountData] of Object.entries(cohortData as any)) {
+      if (addresses.includes(address)) {
+        // ** Extract the full amount of CLUB ** //
+        const amount: any = amountData;
+        const fullAmount: BigNumber = amount.amount
+          ? BigNumber.from(amount.amount)
           : BigNumber.from(0);
-        console.log('Claim amount: ', balance);
-        reverseVotingBalance[address.toLowerCase()] = reverseVotingBalance[
-          address.toLowerCase()
-        ]
-          ? reverseVotingBalance[address.toLowerCase()].add(balance)
-          : balance;
+        const indexData: any = amountData;
+        const index: BigNumber = indexData.index
+          ? BigNumber.from(amount.amount)
+          : BigNumber.from(0);
+
+        // ** Create The Vested Amount Call ** //
+        getWalletToVestedAmount.call(address, vesting, 'getClaimableAmount', [
+          cohortId, // cohortId
+          index, // index
+          address, // account
+          fullAmount // fullAmount
+        ]);
+
+        // ** Create The Claimed Call ** //
+        getWalletToClaimedAmount.call(address, vesting, 'getClaimed', [
+          cohortId, // cohortId
+          address // account
+        ]);
       }
     }
   }
 
-  // ** Fetch claimable (vested) $CLUB tokens
-  const getWalletToVestedAmount = new Multicaller(network, provider, abi, {
-    blockTag
-  });
-  for (const walletAddress of addresses) {
-    for (const cohortId of walletToCohort[walletAddress]) {
-      getWalletToVestedAmount.call(
-        walletAddress,
-        vesting,
-        'getClaimableAmount',
-        [
-          cohortId,           // cohortId
-          BigNumber.from(0),  // index
-          walletAddress,      // account
-          BigNumber.from(0)   // fullAmount
-        ]
-      );
-    }
-  }
+  // ** Execute the multicalls ** //
   const walletToVestedAmount: Record<
     string,
     BigNumber
   > = await getWalletToVestedAmount.execute();
+  const walletToClaimedAmount: Record<
+    string,
+    BigNumber
+  > = await getWalletToClaimedAmount.execute();
 
-  // ** Add the claimable/vested amounts to the reverseVotingBalance mapping
-  for (const [walletID, balance] of Object.entries(walletToVestedAmount)) {
-    const address = walletID.split('-')[0];
+  // ** Add claimable and still vesting data to reverseVotingBalance ** //
+  const vestedEntries = Object.entries(walletToVestedAmount);
+  const claimedEntries = Object.entries(walletToClaimedAmount);
+  const listOfFullAmounts = Object.entries(allDataJSON)
+    .map(([cohortId, cohortData]: any) =>
+      Object.entries(cohortData).map(([address, data]: any) => [
+        cohortId,
+        address,
+        data.amount,
+        data.index
+      ])
+    )
+    .reduce((prev, curr) => {
+      return prev.concat(curr);
+    });
+  for (let i = 0; i < Object.entries(walletToVestedAmount).length; i++) {
+    const address = vestedEntries[i][0].split('-')[0];
+    const vestedBalance = vestedEntries[i][1];
+    const claimedBalance = claimedEntries[i][1];
+
+    // ?? voting_power = current_balance +
+    // ??                vested_balance +
+    // ??                0.1 * (fullAmount - vestedBalance - claimedBalance)
+
+    const vestingPower = BigNumber.from(0.1).mul(
+      listOfFullAmounts[i][2].sub(vestedBalance).sub(claimedBalance)
+    );
+    const addedVotingPower = vestedBalance.add(vestingPower);
     reverseVotingBalance[address] = reverseVotingBalance[address]
-      ? reverseVotingBalance[address].add(balance)
-      : balance;
+      ? reverseVotingBalance[address].add(addedVotingPower)
+      : addedVotingPower;
   }
 
   // ** Return [address, balance] pairs ** //
   return Object.fromEntries(
     addresses.map((address) => [
       address,
-      reverseVotingBalance[address.toLowerCase()]
-        ? reverseVotingBalance[address.toLowerCase()]
-        : BigNumber.from(0)
+      reverseVotingBalance[address]
+        ? reverseVotingBalance[address].toBigInt()
+        : 0
     ])
   );
 }
