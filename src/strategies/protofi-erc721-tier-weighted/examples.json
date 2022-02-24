@@ -6,7 +6,8 @@
       "params": {
         "address": "0x1aDB6f30561116B4283169DdD1Ca16ed2A34355A",
         "symbol": "PNFT",
-        "tierToWeight": [10,20,30,40,50]
+        "tierToWeight": [10,20,30,40,50],
+        "countUsed": true
       }
     },
     "network": "250",

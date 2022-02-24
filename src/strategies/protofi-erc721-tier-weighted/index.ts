@@ -7,7 +7,8 @@ export const version = '0.1.0';
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
   'function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256)',
-  'function tokenTier(uint256 index) external view returns (uint256)'
+  'function tokenTier(uint256 index) external view returns (uint256)',
+  'function tokenUsed(uint256 _id) public view virtual returns (bool)'
 ];
 
 export async function strategy(
@@ -71,11 +72,32 @@ export async function strategy(
     number
   > = await callWalletToTiers.execute();
 
+    // Third, given the tokenIds for each token
+    const callWalletToUsed = new Multicaller(network, provider, abi, {
+      blockTag
+    });
+    for (const [walletAddress, tokenId] of Object.entries(walletIDToAddresses)) {
+      callWalletToUsed.call(
+        walletAddress.toString() + '-' + tokenId.toString(),
+        options.address,
+        'tokenUsed',
+        [tokenId]
+      );
+    }
+    const walletIDToUsed: Record<
+      string,
+      boolean
+    > = await callWalletToUsed.execute();
+
   // Third, sum the weights for each tokenId and assign votes based on the
   // trategy parameters
   const walletToLpBalance = {} as Record<string, BigNumber>;
   for (const [walletID, tokenTier] of Object.entries(walletIDToTiers)) {
     const address = walletID.split('-')[0];
+    const used = walletIDToUsed[walletID]
+    if(options.countUsed && used){
+      continue;
+    }
 
     // Voting power given by the tier of NFTs owned
     let tokenIdValue = options.tierToWeight[tokenTier - 1];
