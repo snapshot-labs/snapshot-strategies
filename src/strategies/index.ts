@@ -262,6 +262,7 @@ import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
+import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 
 const strategies = {
@@ -526,6 +527,7 @@ const strategies = {
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
+  'minotaur-money': MinotaurMoney,
   'safety-module-bpt-power': safetyModuleBptPower
 };
 
