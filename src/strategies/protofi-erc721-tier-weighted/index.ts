@@ -72,7 +72,7 @@ export async function strategy(
     number
   > = await callWalletToTiers.execute();
 
-    // Third, given the tokenIds for each token
+    // Third, given the tokenIds for each token get if the token is used
     const callWalletToUsed = new Multicaller(network, provider, abi, {
       blockTag
     });
@@ -89,13 +89,14 @@ export async function strategy(
       boolean
     > = await callWalletToUsed.execute();
 
-  // Third, sum the weights for each tokenId and assign votes based on the
-  // trategy parameters
+  // Ultimately, sum the weights for each tokenId and assign votes based on the
+  // strategy parameters
   const walletToLpBalance = {} as Record<string, BigNumber>;
   for (const [walletID, tokenTier] of Object.entries(walletIDToTiers)) {
     const address = walletID.split('-')[0];
     const used = walletIDToUsed[walletID]
-    if(options.countUsed && used){
+    if(!options.countUsed && used){
+      // Its used and 
       continue;
     }
 
