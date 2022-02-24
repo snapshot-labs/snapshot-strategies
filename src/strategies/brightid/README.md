@@ -1,6 +1,6 @@
 # BrightID
 
-This strategy return a score of 1 for voters verified in a BrightID user registry. You can learn more about the smart contract used on this strategy from the following sources:
+This strategy returns a score of 1 for voters verified in a BrightID user registry. You can learn more about the smart contract used on this strategy from the following sources:
 
 - Official Registry(v5): https://github.com/BrightID/BrightID-SmartContract/blob/v5/snapshot/BrightIDSnapshot.sol
 - Private Registry: https://github.com/clrfund/monorepo/tree/develop/contracts/contracts/userRegistry
