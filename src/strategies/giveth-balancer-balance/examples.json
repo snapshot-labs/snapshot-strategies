@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "giveth-balancer-balance",
+      "params": {
+        "symbol": "GIV",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x839395e20bbb182fa440d08f850e6c7a8f6f0780",
+      "0x960a16c9070a9bbbb03e1bfd418982636d56d77d",
+      "0x00d18ca9782be1caef611017c2fbc1a39779a57c"
+    ],
+    "snapshot": 14036425
+  }
+]
