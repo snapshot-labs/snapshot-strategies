@@ -1,48 +1,44 @@
-import { BigNumber } from '@ethersproject/bignumber';
-import { Multicaller } from '../../utils';
-import fetch from 'cross-fetch';
+const { BigNumber } = require('@ethersproject/bignumber');
+const { Multicaller } = require('../../utils');
+const fetch = require('cross-fetch');
+const { JsonRpcProvider } = require('@ethersproject/providers');
+const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 
-export const author = 'nascentxyz';
-export const version = '0.1.0';
+// Snapshot-level Configuration
+const network = '1';
+const addresses = [
+  '0xC1FDB60CFB2FbbD6EDc9b445D9B508Da2dBF2c9b',
+  '0xD3e9D60e4E4De615124D5239219F32946d10151D',
+  '0xcCd72BeA12f3927063bE3D8798a4b74082713cb5',
+  '0xde1E6A7ED0ad3F61D531a8a78E83CcDdbd6E0c49'
+];
+const provider = new JsonRpcProvider(networks[network].rpc[0]);
+const blockTag = 'latest';
 
+// SeedClub Configuration
+const club = '0xF76d80200226AC250665139B9E435617e4Ba55F9';
+// const vesting = '0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a';
 const abi = [
   'function balanceOf(address owner) external view returns (uint256)',
   'function getClaimableAmount(bytes32 cohortId, uint256 index, address account, uint256 fullAmount) external view returns (uint256)'
 ];
 
-export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
+const main = async () => {
   // ** The full address -> balance mapping ** //
-  const reverseVotingBalance = {} as Record<string, BigNumber>;
-
-  // ** Extract `club` and `vesting` contract addresses ** //
-  // ** If not provided, default to hardcoded values ** //
-  const club = options.club ? options.club : '0xF76d80200226AC250665139B9E435617e4Ba55F9';
-  const vesting = options.vesting ? options.vesting : '0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a';
+  const reverseVotingBalance = {} as Record<string, typeof BigNumber>;
 
   // ** $CLUB balance
   const callWalletToClubBalance = new Multicaller(network, provider, abi, {
     blockTag
   });
   for (const walletAddress of addresses) {
-    callWalletToClubBalance.call(
-      walletAddress,
-      club,
-      'balanceOf',
-      [walletAddress]
-    );
+    callWalletToClubBalance.call(walletAddress, club, 'balanceOf', [
+      walletAddress
+    ]);
   }
   const walletToClubBalance: Record<
     string,
-    BigNumber
+    typeof BigNumber
   > = await callWalletToClubBalance.execute();
 
   for (const [walletID, balance] of Object.entries(walletToClubBalance)) {
@@ -72,7 +68,7 @@ export async function strategy(
       console.log('Collecting Claim Data for Address: ', address);
       // ** Extract the amount of CLUB that is claimable ** //
       const claimableAmount: any = claimData;
-      const balance: BigNumber = claimableAmount.amount
+      const balance: typeof BigNumber = claimableAmount.amount
         ? BigNumber.from(claimableAmount.amount)
         : BigNumber.from(0);
       console.log('Claim amount: ', balance);
@@ -84,37 +80,8 @@ export async function strategy(
     }
   }
 
-  // ** Fetch claimable (vested) $CLUB tokens
-  const getWalletToVestedAmount = new Multicaller(network, provider, abi, {
-    blockTag
-  });
-  for (const walletAddress of addresses) {
-    getWalletToVestedAmount.call(
-      walletAddress,
-      vestedClub,
-      'getClaimableAmount',
-      [
-        // TODO: insert cohortId and other function arguments here
-        walletAddress
-      ]
-    );
-  }
-  const walletToVestedAmount: Record<
-    string,
-    BigNumber
-  > = await getWalletToVestedAmount.execute();
-
-  // ** Add the claimable/vested amounts to the reverseVotingBalance mapping
-  for (const [walletID, balance] of Object.entries(walletToVestedAmount)) {
-    const address = walletID.split('-')[0];
-    reverseVotingBalance[address] = reverseVotingBalance[address]
-      ? reverseVotingBalance[address].add(balance)
-      : balance;
-  }
-
-
   // ** Return [address, balance] pairs ** //
-  return Object.fromEntries(
+  const finalReturnData = Object.fromEntries(
     addresses.map((address) => [
       address,
       reverseVotingBalance[address.toLowerCase()]
@@ -122,4 +89,9 @@ export async function strategy(
         : BigNumber.from(0)
     ])
   );
-}
+  console.log('Final return data', finalReturnData);
+};
+
+main();
+
+export {};
