@@ -262,6 +262,7 @@ import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
+import * as potion from './potion';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -524,7 +525,8 @@ const strategies = {
   'gysr-staking-balance': gysrStakingBalance,
   starsharks,
   'printer-financial': printerFinancial,
-  'ethercats-founders-series': ethercatsFoundersSeries
+  'ethercats-founders-series': ethercatsFoundersSeries,
+  potion
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
