@@ -64,23 +64,27 @@ export async function strategy(
   const allClaimData = await fetch(`https://club.agora.space/api/all-data`);
   const allClaimDataJSON = await allClaimData.json();
 
+  // ** Track which cohorts each wallet is a member of ** //
+  const walletToCohort = {} as Record<string, string[]>;
+
   // ** Loop over all claim data ** //
   for (const [cohortId, cohortClaimData] of Object.entries(allClaimDataJSON)) {
-    console.log('Collecting Claim Data for Cohort: ', cohortId);
     // ** Iterate over addresses in the cohort with claims ** //
     for (const [address, claimData] of Object.entries(cohortClaimData as any)) {
-      console.log('Collecting Claim Data for Address: ', address);
-      // ** Extract the amount of CLUB that is claimable ** //
-      const claimableAmount: any = claimData;
-      const balance: BigNumber = claimableAmount.amount
-        ? BigNumber.from(claimableAmount.amount)
-        : BigNumber.from(0);
-      console.log('Claim amount: ', balance);
-      reverseVotingBalance[address.toLowerCase()] = reverseVotingBalance[
-        address.toLowerCase()
-      ]
-        ? reverseVotingBalance[address.toLowerCase()].add(balance)
-        : balance;
+      if (address in addresses) {
+        walletToCohort[address] = [...walletToCohort[address], cohortId];
+        // ** Extract the amount of CLUB that is claimable ** //
+        const claimableAmount: any = claimData;
+        const balance: BigNumber = claimableAmount.amount
+          ? BigNumber.from(claimableAmount.amount)
+          : BigNumber.from(0);
+        console.log('Claim amount: ', balance);
+        reverseVotingBalance[address.toLowerCase()] = reverseVotingBalance[
+          address.toLowerCase()
+        ]
+          ? reverseVotingBalance[address.toLowerCase()].add(balance)
+          : balance;
+      }
     }
   }
 
@@ -89,15 +93,19 @@ export async function strategy(
     blockTag
   });
   for (const walletAddress of addresses) {
-    getWalletToVestedAmount.call(
-      walletAddress,
-      vestedClub,
-      'getClaimableAmount',
-      [
-        // TODO: insert cohortId and other function arguments here
-        walletAddress
-      ]
-    );
+    for (const cohortId of walletToCohort[walletAddress]) {
+      getWalletToVestedAmount.call(
+        walletAddress,
+        vesting,
+        'getClaimableAmount',
+        [
+          cohortId,           // cohortId
+          BigNumber.from(0),  // index
+          walletAddress,      // account
+          BigNumber.from(0)   // fullAmount
+        ]
+      );
+    }
   }
   const walletToVestedAmount: Record<
     string,
@@ -111,7 +119,6 @@ export async function strategy(
       ? reverseVotingBalance[address].add(balance)
       : balance;
   }
-
 
   // ** Return [address, balance] pairs ** //
   return Object.fromEntries(
