@@ -414,7 +414,7 @@ const strategies = {
   cake,
   aks,
   tomyumswap,
-  'planet-finance': planetFinance,
+  'planet-finance-v2': planetFinance,
   ogn,
   'impossible-finance': impossibleFinance,
   'immutable-x': immutableX,
