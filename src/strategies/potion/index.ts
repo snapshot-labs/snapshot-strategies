@@ -50,7 +50,7 @@ export async function strategy(
   );
   const configs = parseConfigs(await multi.execute());
 
-  const pages = [...Array(4).keys()];
+  const pages = [...Array(6).keys()];
   const params = Object.fromEntries(
     pages.map((page, i) => [
       `_${page}`,
