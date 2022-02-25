@@ -262,6 +262,7 @@ import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
+import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 
 const strategies = {
@@ -526,6 +527,7 @@ const strategies = {
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
+  potion,
   'minotaur-money': MinotaurMoney
 };
 
