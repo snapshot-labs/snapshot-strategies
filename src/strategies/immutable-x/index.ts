@@ -65,9 +65,14 @@ async function getL2Balances(
     receivedLen = 0;
 
   // Until all records are returned
-  while (receivedLen < addresses.length) {
+  // This loop handles both:
+  // 1. server-side paginated requests for all addresses available; and
+  // 2. client-side paginated requests (addresses in json body of requests).
+  // There are separate completion conditions for 1. and 2.
+  while (true) {
     // Build URL
     const apiUrl = buildURL(network, options, block, cursor);
+
     // Send request
     const response = await fetch(apiUrl, {
       method: 'POST',
@@ -79,13 +84,27 @@ async function getL2Balances(
         Accept: 'application/json'
       }
     });
+
     // Decode response
     const resJson = await response.json();
+
+    // Empty response indicates end of results
+    // for requests without specified address in json body
+    const respLen = (resJson as Response).records.length;
+    if (respLen === 0) {
+      break
+    }
     // Store result
     Object.assign(records, mapL2Response(resJson, options));
     // Iterate
+    receivedLen += respLen
+    // This indicates we have received all results for
+    // the addresses we asked for
+    if (receivedLen >= addresses.length) {
+      break
+    }
+    // For paginated requests, continue w/ cursor
     cursor = resJson.cursor;
-    receivedLen += (resJson as Response).records.length;
   }
   return records;
 }

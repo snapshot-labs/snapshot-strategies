@@ -120,6 +120,7 @@ import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
+import * as protofiErc721TierWeighted from './protofi-erc721-tier-weighted';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
@@ -263,6 +264,8 @@ import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
+import * as MinotaurMoney from './minotaur-money';
+import * as safetyModuleBptPower from './safety-module-bpt-power';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -307,6 +310,7 @@ const strategies = {
   erc721,
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
+  'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
@@ -526,7 +530,9 @@ const strategies = {
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
-  potion
+  potion,
+  'safety-module-bpt-power': safetyModuleBptPower,
+  'minotaur-money': MinotaurMoney
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
