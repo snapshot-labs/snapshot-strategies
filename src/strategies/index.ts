@@ -148,7 +148,7 @@ import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
 import * as tomyumswap from './tomyumswap';
-import * as planetFinance from './planet-finance';
+import * as planetFinance from './planet-finance-v2';
 import * as impossibleFinance from './impossible-finance';
 import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
