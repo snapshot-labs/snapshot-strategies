@@ -264,6 +264,7 @@ import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
+import * as safetyModuleBptPower from './safety-module-bpt-power';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -528,6 +529,7 @@ const strategies = {
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
   potion,
+  'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney
 };
 
