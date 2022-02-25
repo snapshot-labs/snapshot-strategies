@@ -529,7 +529,7 @@ const strategies = {
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
-  'ethtrader-gov-weight': ethtraderGovWeight
+  'ethtrader-gov-weight': ethtraderGovWeight,
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney
