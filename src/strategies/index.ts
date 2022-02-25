@@ -263,6 +263,7 @@ import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
+import * as MinotaurMoney from './minotaur-money';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -526,7 +527,8 @@ const strategies = {
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
-  potion
+  potion,
+  'minotaur-money': MinotaurMoney
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
