@@ -1,5 +1,5 @@
 import { getAddress } from '@ethersproject/address';
-import { subgraphRequest } from '../../utils';
+import { Multicaller, subgraphRequest } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.1';
@@ -7,45 +7,28 @@ export const version = '0.1.1';
 const SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/dapp-testing/potion-unlock';
 
-const rarityConfigs = [
-  {
-    startTokenId: 0,
-    endTokenId: 999,
-    vp: 1
-  },
-  {
-    startTokenId: 1000,
-    endTokenId: 1999,
-    vp: 2
-  },
-  {
-    startTokenId: 2000,
-    endTokenId: 2999,
-    vp: 3
-  },
-  {
-    startTokenId: 3000,
-    endTokenId: 3999,
-    vp: 4
-  },
-  {
-    startTokenId: 4000,
-    endTokenId: 4999,
-    vp: 5
-  },
-  {
-    startTokenId: 5000,
-    endTokenId: 5999,
-    vp: 6
-  }
+const abi = [
+  'function rarityConfig(uint256) view returns (uint32 startTokenId, uint32 endTokenId, uint32 secretSegmentStart, uint32 secretSegmentLength, uint32 bytesPerPiece)'
 ];
 
-function tokenIdToVP(tokenId) {
+function parseConfigs(configs) {
+  return Object.values(configs).map((config: any) => {
+    const supply = config[1] - config[0] + 1;
+    return {
+      startTokenId: config[0],
+      endTokenId: config[1],
+      secretSegmentLength: config[3],
+      supply,
+      vp: (config[3] / supply) * 1e3
+    };
+  });
+}
+
+function tokenIdToVP(tokenId, configs) {
   const id = parseInt(tokenId);
   let vp = 0;
-  rarityConfigs.forEach(config => {
-    if (id >= config.startTokenId && id <= config.endTokenId)
-      vp = config.vp;
+  configs.forEach((config) => {
+    if (id >= config.startTokenId && id <= config.endTokenId) vp = config.vp;
   });
   return vp;
 }
@@ -58,6 +41,15 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const rarityCount = [...Array(6).keys()];
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+  rarityCount.forEach((rarity) =>
+    multi.call(rarity, options.address, 'rarityConfig', [rarity])
+  );
+  const configs = parseConfigs(await multi.execute());
+
   const pages = [...Array(4).keys()];
   const params = Object.fromEntries(
     pages.map((page, i) => [
@@ -88,7 +80,7 @@ export async function strategy(
   result.forEach((nft) => {
     const owner = getAddress(nft.owner);
     if (typeof scores[owner] === 'number')
-      scores[owner] += tokenIdToVP(nft.tokenId);
+      scores[owner] += tokenIdToVP(nft.tokenId, configs);
   });
   return scores;
 }
