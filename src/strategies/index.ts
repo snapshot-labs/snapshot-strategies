@@ -263,6 +263,9 @@ import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as ethtraderGovWeight from './ethtrader-gov-weight';
+import * as potion from './potion';
+import * as MinotaurMoney from './minotaur-money';
+import * as safetyModuleBptPower from './safety-module-bpt-power';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -527,6 +530,9 @@ const strategies = {
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
   'ethtrader-gov-weight': ethtraderGovWeight
+  potion,
+  'safety-module-bpt-power': safetyModuleBptPower,
+  'minotaur-money': MinotaurMoney
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
