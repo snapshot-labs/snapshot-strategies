@@ -37,7 +37,7 @@ const aquaGammaLpTokenAddress = '0xcCaF3fcE9f2D7A7031e049EcC65c0C0Cc331EE0D';
 
 const aquaLendingAddress = '0xb7eD4A5AF620B52022fb26035C565277035d4FD7';
 
-const aquaInfinityAddress = '0xfab820B066Ca362536bc3E1c9D9Df1a97f4f2524';
+const aquaInfinityAddress = '0x220940EA8eE1de82083c0329795D2f47C92879dF';
 
 const increase_in_voting = 5; //increase 5 times
 
