@@ -1,0 +1,19 @@
+[{
+  "name": "Example LensProtocol FollowNFT vote",
+  "strategy": {
+    "name": "lens-protocol",
+    "params": {
+      "address": "0xf6bf84e5df229029c9d36dc7abacdbe9c0bd7b4f",
+      "symbol": "LENS",
+      "handle": "zer0dot"
+    }
+  },
+  "network": "80001",
+  "addresses": [
+    "0x2376e9c7c604d1827ba9acb1293dc8b4da2f0db3",
+    "0x63425a866fa081818d6fc22cc7c354f765dc1e4d",
+    "0x1433c2d79682978a135ac2aed459d09a11d93936",
+    "0x7f717141e6b7cd0d76b218b8f390d58c285ef893"
+  ],
+  "snapshot": 25289545
+}]
