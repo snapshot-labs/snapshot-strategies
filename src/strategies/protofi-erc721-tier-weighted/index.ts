@@ -72,36 +72,36 @@ export async function strategy(
     number
   > = await callWalletToTiers.execute();
 
-    // Third, given the tokenIds for each token get if the token is used
-    const callWalletToUsed = new Multicaller(network, provider, abi, {
-      blockTag
-    });
-    for (const [walletAddress, tokenId] of Object.entries(walletIDToAddresses)) {
-      callWalletToUsed.call(
-        walletAddress.toString() + '-' + tokenId.toString(),
-        options.address,
-        'tokenUsed',
-        [tokenId]
-      );
-    }
-    const walletIDToUsed: Record<
-      string,
-      boolean
-    > = await callWalletToUsed.execute();
+  // Third, given the tokenIds for each token get if the token is used
+  const callWalletToUsed = new Multicaller(network, provider, abi, {
+    blockTag
+  });
+  for (const [walletAddress, tokenId] of Object.entries(walletIDToAddresses)) {
+    callWalletToUsed.call(
+      walletAddress.toString() + '-' + tokenId.toString(),
+      options.address,
+      'tokenUsed',
+      [tokenId]
+    );
+  }
+  const walletIDToUsed: Record<
+    string,
+    boolean
+  > = await callWalletToUsed.execute();
 
   // Ultimately, sum the weights for each tokenId and assign votes based on the
   // strategy parameters
   const walletToLpBalance = {} as Record<string, BigNumber>;
   for (const [walletID, tokenTier] of Object.entries(walletIDToTiers)) {
     const address = walletID.split('-')[0];
-    const used = walletIDToUsed[walletID]
-    if(!options.countUsed && used){
-      // Its used and 
+    const used = walletIDToUsed[walletID];
+    if (!options.countUsed && used) {
+      // Its used and
       continue;
     }
 
     // Voting power given by the tier of NFTs owned
-    let tokenIdValue = options.tierToWeight[tokenTier - 1];
+    const tokenIdValue = options.tierToWeight[tokenTier - 1];
 
     walletToLpBalance[address] = walletToLpBalance[address]
       ? walletToLpBalance[address].add(BigNumber.from(tokenIdValue))

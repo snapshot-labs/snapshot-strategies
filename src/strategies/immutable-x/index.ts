@@ -77,7 +77,7 @@ async function getL2Balances(
     const response = await fetch(apiUrl, {
       method: 'POST',
       body: JSON.stringify({
-        ether_keys: addresses.slice(receivedLen, receivedLen+options.pageSize)
+        ether_keys: addresses.slice(receivedLen, receivedLen + options.pageSize)
       }),
       headers: {
         'Content-Type': 'application/json',
@@ -92,16 +92,16 @@ async function getL2Balances(
     // for requests without specified address in json body
     const respLen = (resJson as Response).records.length;
     if (respLen === 0) {
-      break
+      break;
     }
     // Store result
     Object.assign(records, mapL2Response(resJson, options));
     // Iterate
-    receivedLen += respLen
+    receivedLen += respLen;
     // This indicates we have received all results for
     // the addresses we asked for
     if (receivedLen >= addresses.length) {
-      break
+      break;
     }
     // For paginated requests, continue w/ cursor
     cursor = resJson.cursor;
