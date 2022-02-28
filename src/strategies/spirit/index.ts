@@ -30,9 +30,9 @@ async function search_contract_cretion_block(contract_address, provider) {
 }
 
 async function search_contract_creator(contract_address, block, provider) {
-  const block1 = await provider.getBlock(block);
-  var transactions = block1.transactions;
-  if (block1 == -1) {
+  var block = await provider.getBlock(block);
+  var transactions = block.transactions;
+  if (block == -1) {
     return contract_address;
   }
   for (var y = 0; y < transactions.length; y++) {
@@ -46,8 +46,8 @@ async function search_contract_creator(contract_address, block, provider) {
 }
 
 async function find_contract_creator(contract_address, provider) {
-  const block = await search_contract_cretion_block(contract_address, provider);
-  const creator = await search_contract_creator(
+  var block = await search_contract_cretion_block(contract_address, provider);
+  var creator = await search_contract_creator(
     contract_address,
     block,
     provider
@@ -86,7 +86,7 @@ export async function strategy(
   const owner = await find_contract_creator(addresses[0], provider);
 
   return Object.fromEntries(
-    response.map(([value]) => [
+    response.map(([value, i]) => [
       owner,
       parseFloat(
         formatUnits(
