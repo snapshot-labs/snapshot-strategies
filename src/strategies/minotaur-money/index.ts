@@ -12,10 +12,12 @@ const mmfPoolAddressNew = '0x849f97c5452cc4bad1069b8efe2b3561b06694c3';
 
 const erc20ContractAbi = [
   'function balanceOf(address account) external view returns (uint256)',
-  'function totalSupply() external view returns (uint256)',
+  'function totalSupply() external view returns (uint256)'
 ];
 const sMinoContractAbi = ['function index() external view returns (uint256)'];
-const mmfPoolAbi = ['function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)']
+const mmfPoolAbi = [
+  'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
+];
 
 type MultiCallResult = Record<string, BigNumberish>;
 type MultiCallObjectResult = Record<string, any>;
@@ -74,12 +76,18 @@ export async function strategy(
     'userInfo'
   );
 
-  const [minoTotalSupply, index, sMinoBalances, mmfUserInfosOld, mmfUserInfoNew]: [
+  const [
+    minoTotalSupply,
+    index,
+    sMinoBalances,
+    mmfUserInfosOld,
+    mmfUserInfoNew
+  ]: [
     BigNumber,
     BigNumber,
     MultiCallResult,
     MultiCallObjectResult,
-    MultiCallObjectResult,
+    MultiCallObjectResult
   ] = await Promise.all([
     callMinoTotalSupply(),
     callIndex(),
@@ -91,23 +99,31 @@ export async function strategy(
   const scores: Record<string, BigNumber> = {};
 
   for (const address of addresses) {
-    const wsMinoScore = BigNumber.from(mmfUserInfosOld[address] ? BigNumber.from(mmfUserInfosOld[address]['amount']) : 0)
-    .add(mmfUserInfoNew[address] ? BigNumber.from(mmfUserInfoNew[address]['amount']) : 0)
-    .mul(index)
-    .div(BigNumber.from(10).pow(18))
+    const wsMinoScore = BigNumber.from(
+      mmfUserInfosOld[address]
+        ? BigNumber.from(mmfUserInfosOld[address]['amount'])
+        : 0
+    )
+      .add(
+        mmfUserInfoNew[address]
+          ? BigNumber.from(mmfUserInfoNew[address]['amount'])
+          : 0
+      )
+      .mul(index)
+      .div(BigNumber.from(10).pow(18));
 
-    const minoScore = wsMinoScore
-      .add(sMinoBalances[address] || 0)
+    const minoScore = wsMinoScore.add(sMinoBalances[address] || 0);
 
     scores[address] = minoScore;
   }
 
-  const scoresNumber =  Object.fromEntries(
+  const scoresNumber = Object.fromEntries(
     Object.entries(scores).map(([address, balance]) => [
       address,
-      balance.mul(BigNumber.from(10).pow(9)).div(minoTotalSupply).toNumber() / 1000000000
+      balance.mul(BigNumber.from(10).pow(9)).div(minoTotalSupply).toNumber() /
+        1000000000
     ])
   );
 
-  return scoresNumber
+  return scoresNumber;
 }

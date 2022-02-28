@@ -10,7 +10,7 @@ const abi = [
 ];
 
 const official = new Map([
-  ["v5", "0x81591DC4997A76A870c13D383F8491B288E09344"]
+  ['v5', '0x81591DC4997A76A870c13D383F8491B288E09344']
 ]);
 
 async function getIDChainBlock(snapshot, provider) {
@@ -20,7 +20,7 @@ async function getIDChainBlock(snapshot, provider) {
       __args: {
         where: {
           ts: ts,
-          network_in: ["74"]
+          network_in: ['74']
         }
       },
       number: true
@@ -39,11 +39,16 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const isOfficial = options.registry.charAt(0) == "v";
-  const blockTag = typeof snapshot === 'number' ? (isOfficial ? await getIDChainBlock(snapshot, provider) : snapshot) : 'latest';
+  const isOfficial = options.registry.charAt(0) == 'v';
+  const blockTag =
+    typeof snapshot === 'number'
+      ? isOfficial
+        ? await getIDChainBlock(snapshot, provider)
+        : snapshot
+      : 'latest';
   const response = await multicall(
-    isOfficial ? "74" : network,
-    getProvider(isOfficial ? "74" : network),
+    isOfficial ? '74' : network,
+    getProvider(isOfficial ? '74' : network),
     abi,
     addresses.map((address: any) => [
       isOfficial ? official.get(options.registry) : options.registry,
