@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "frwc-weighted-erc721s",
+      "name": "erc721-multi-registry-weighted",
       "params": {
         "symbol": "FRWC",
         "tokens": [
