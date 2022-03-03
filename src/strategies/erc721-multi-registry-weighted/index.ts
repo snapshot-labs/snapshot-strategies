@@ -23,7 +23,7 @@ export async function strategy(
   options.tokens.map((token, idx) => {
     addresses.forEach((address: any) => {
       calls.push([token, 'balanceOf', [address]]);
-      multipliers.push(options.weights[idx])
+      multipliers.push(options.weights[idx] || 1)
     });
   });
 
