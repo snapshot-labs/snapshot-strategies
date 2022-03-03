@@ -17,7 +17,8 @@ export async function strategy(
   _provider,
   addresses,
   options,
-  snapshot
+  snapshot,
+  point
 ) {
   const params = {
     balances: {
@@ -31,8 +32,17 @@ export async function strategy(
 
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params.balances.__args.block = { number: snapshot };
+    params.balances.__args.block = snapshot;
   }
+  if(point){
+    // @ts-ignore
+    params.balances.__args.point = point;
+  }
+  if(addresses && addresses?.length > 0){
+    // @ts-ignore
+    params.balances.__args.addresses = addresses;
+  }
+
   const result = await subgraphRequest(
     FLASHSTAKE_SUBGRAPH_URL[network],
     params
