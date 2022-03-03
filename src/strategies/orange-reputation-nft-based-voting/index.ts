@@ -7,7 +7,7 @@ const abi = [
   'function balanceOf(address owner) view returns (uint256)',
   'function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)',
   'function tokenProperty(uint256 tokenId) view returns (tuple(tuple(string dpdid, string dpTitle, string dpmethod, string dpmethodTitle, string apdid, string apTitle, string apmethod, string apmethodTitle, uint256 validDays, string image) category, uint256 score, uint256 validTo, address originOwner))'
-]
+];
 
 export async function strategy(
   space,
