@@ -235,6 +235,7 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as orangeReputationNftBasedVoting from './orange-reputation-nft-based-voting';
 import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
@@ -504,6 +505,7 @@ const strategies = {
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
   'orange-reputation-based-voting': orangeReputationBasedVoting,
+  'orange-reputation-nft-based-voting': orangeReputationNftBasedVoting,
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
   genart,
