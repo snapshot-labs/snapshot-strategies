@@ -2,7 +2,7 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller, call } from '../../utils';
 
 export const author = 'pepperstepper';
-export const version = '0.0.2';
+export const version = '0.0.3';
 
 const minoContractAddress = '0x3A1138075bd97a33F23A87824b811146FA44288E';
 const sMinoContractAddress = '0xB46fe6791A30d51970EA3B840C9fa5F1F107b86F';
@@ -38,14 +38,6 @@ export async function strategy(
     ]);
   };
 
-  const callMinoTotalSupply = () => {
-    return call(provider, erc20ContractAbi, [
-      minoContractAddress,
-      'totalSupply',
-      []
-    ]);
-  };
-
   const makeMulticaller = (abi, contractAddress, functionSignature) => {
     const multiCaller = new Multicaller(network, provider, abi, {
       blockTag
@@ -55,6 +47,12 @@ export async function strategy(
     );
     return multiCaller;
   };
+
+  const minoMulti = makeMulticaller(
+    erc20ContractAbi,
+    minoContractAddress,
+    'balanceOf'
+  );
 
   const sMinoMulti = makeMulticaller(
     erc20ContractAbi,
@@ -74,16 +72,16 @@ export async function strategy(
     'userInfo'
   );
 
-  const [minoTotalSupply, index, sMinoBalances, mmfUserInfosOld, mmfUserInfoNew]: [
+  const [index, minoBalances, sMinoBalances, mmfUserInfosOld, mmfUserInfoNew]: [
     BigNumber,
-    BigNumber,
+    MultiCallResult,
     MultiCallResult,
     MultiCallObjectResult,
     MultiCallObjectResult,
   ] = await Promise.all([
-    callMinoTotalSupply(),
     callIndex(),
     sMinoMulti.execute(),
+    minoMulti.execute(),
     wsMinoInMMFMultiOld.execute(),
     wsMinoInMMFMultiNew.execute()
   ]);
@@ -98,6 +96,7 @@ export async function strategy(
 
     const minoScore = wsMinoScore
       .add(sMinoBalances[address] || 0)
+      .add(minoBalances[address] || 0)
 
     scores[address] = minoScore;
   }
@@ -105,7 +104,7 @@ export async function strategy(
   const scoresNumber =  Object.fromEntries(
     Object.entries(scores).map(([address, balance]) => [
       address,
-      balance.mul(BigNumber.from(10).pow(9)).div(minoTotalSupply).toNumber() / 1000000000
+      balance.toNumber() / 1000000000
     ])
   );
 
