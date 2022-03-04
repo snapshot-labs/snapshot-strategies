@@ -34,7 +34,12 @@ export async function strategy(
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      parseFloat(formatUnits(value.toString(), options.decimals))
+      parseFloat(
+        formatUnits(
+          options?.output ? value[options.output].toString() : value.toString(),
+          options.decimals
+        )
+      )
     ])
   );
 }
