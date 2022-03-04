@@ -2,33 +2,27 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "erc20-balance-of",
+      "name": "ve-rbn",
       "params": {
-        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-        "symbol": "DAI",
+        "address": "0x6123b0049f904d730db3c36a31167d9d4121fa6b",
+        "symbol": "RBN",
         "decimals": 18
       }
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
-      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
-      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
-      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
-      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
-      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
-      "0x1f254336E5c46639A851b9CfC165697150a6c327",
-      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
-      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
-      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
-      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
-      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
-      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
-      "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
-      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
-      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
-      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
-      "0x38C0039247A31F3939baE65e953612125cB88268"
+      "0x6b98259456fa6ca17df0fe5a8cfa829c30484eee",
+      "0x309c65c98c56c4db478ec67d3d0c91738cbafc36",
+      "0x57d98609d623b9885721a58b896d40c7871e1573",
+      "0xdd00270d347ea0fc0fdd82e9385fbef0682c24f8",
+      "0xcec909e109af27c4220d8c0400ec990126187dce",
+      "0x7d79ab8c86eef9c6d3001822cca2384d314db999",
+      "0x7ce68b8796144c4fd1af5d82d79ed2cbaf8b1ea5",
+      "0x84df85b4678b3ccfb541edc7032bd65174cd8e8d",
+      "0x22f9076c7c3436dae40a05cf4ea7d4174b458629",
+      "0x129e54e3b4c6cc33b68729f01360bd2b379e4b4e",
+      "0xeca52e2690f09678bac416043bc6e1a57d8be6ba",
+      "0xb46d534cc8b4971eb4a2fc2af8d32a9e01f2921b"
     ],
     "snapshot": 11437846
   }

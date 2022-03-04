@@ -1,4 +1,4 @@
-# erc20-balance-of
+# ve-rbn
 
 This is the most common strategy, it returns the RBN balance + locked RBN balance in voting escrow of the voters
 
@@ -6,8 +6,8 @@ Here is an example of parameters:
 
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
+  "address": "0x6123b0049f904d730db3c36a31167d9d4121fa6b",
+  "symbol": "RBN",
   "decimals": 18
 }
 ```
