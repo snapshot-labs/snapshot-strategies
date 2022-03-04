@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "ve-rbn",
+      "name": "ve-ribbon",
       "params": {
         "address": "0x6123b0049f904d730db3c36a31167d9d4121fa6b",
         "symbol": "RBN",
@@ -18,12 +18,12 @@
       "0xcec909e109af27c4220d8c0400ec990126187dce",
       "0x7d79ab8c86eef9c6d3001822cca2384d314db999",
       "0x7ce68b8796144c4fd1af5d82d79ed2cbaf8b1ea5",
-      "0x84df85b4678b3ccfb541edc7032bd65174cd8e8d",
+      "0xba1d28a156b69f0e07961e1adfd1fba24f249443",
       "0x22f9076c7c3436dae40a05cf4ea7d4174b458629",
-      "0x129e54e3b4c6cc33b68729f01360bd2b379e4b4e",
-      "0xeca52e2690f09678bac416043bc6e1a57d8be6ba",
-      "0xb46d534cc8b4971eb4a2fc2af8d32a9e01f2921b"
+      "0xbe370f522c2d8bfda9476048b1d3afc3a3bf537a",
+      "0x4559d6b52b6a736684345b42d5e3ee8405991466",
+      "0xdc212554bf38c0e8e8b2dff80ddba739dfdff5da"
     ],
-    "snapshot": 11437846
+    "snapshot": 14321000
   }
 ]
