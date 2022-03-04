@@ -120,6 +120,7 @@ import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
+import * as protofiErc721TierWeighted from './protofi-erc721-tier-weighted';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
@@ -234,10 +235,12 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as orangeReputationNftBasedVoting from './orange-reputation-nft-based-voting';
 import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as genart from './genart';
+import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as genomesdao from './genomesdao';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
@@ -262,7 +265,9 @@ import * as gysrStakingBalance from './gysr-staking-balance';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
+import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
+import * as safetyModuleBptPower from './safety-module-bpt-power';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -289,6 +294,7 @@ const strategies = {
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
+  'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
@@ -307,6 +313,7 @@ const strategies = {
   erc721,
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
+  'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
@@ -500,6 +507,7 @@ const strategies = {
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
   'orange-reputation-based-voting': orangeReputationBasedVoting,
+  'orange-reputation-nft-based-voting': orangeReputationNftBasedVoting,
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
   genart,
@@ -526,6 +534,8 @@ const strategies = {
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,
+  potion,
+  'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney
 };
 
