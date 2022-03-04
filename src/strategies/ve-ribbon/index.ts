@@ -1,8 +1,8 @@
-import { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'bonustrack';
+export const author = 'chudnov';
 export const version = '0.1.1';
 
 interface LockedBalance {
@@ -42,7 +42,7 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(resultUnlocked).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance.add(resultLocked[address].amount), options.decimals))
+      parseFloat(formatUnits(BigNumber.from(balance).add(BigNumber.from(resultLocked[address].amount)), options.decimals))
     ])
   );
 }
