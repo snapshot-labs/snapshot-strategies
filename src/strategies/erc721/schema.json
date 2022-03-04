@@ -21,7 +21,7 @@
           "maxLength": 42
         }
       },
-      "required": ["symbol", "address"],
+      "required": ["address"],
       "additionalProperties": false
     }
   }
