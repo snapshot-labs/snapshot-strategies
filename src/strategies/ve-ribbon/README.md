@@ -1,6 +1,6 @@
 # ve-rbn
 
-This is the most common strategy, it returns the RBN balance + locked RBN balance in voting escrow of the voters
+This strategy returns the RBN balance + locked RBN balance in voting escrow of the voters
 
 Here is an example of parameters:
 
