@@ -17,13 +17,11 @@ export async function strategy(
   _provider,
   addresses,
   options,
-  snapshot,
-  point
+  snapshot
 ) {
   const params = {
     balances: {
       __args: {
-        where: {}
       },
       address: true,
       point: true
@@ -34,10 +32,7 @@ export async function strategy(
     // @ts-ignore
     params.balances.__args.block = snapshot;
   }
-  if(point){
-    // @ts-ignore
-    params.balances.__args.point = point;
-  }
+
   if(addresses && addresses?.length > 0){
     // @ts-ignore
     params.balances.__args.addresses = addresses;
@@ -55,6 +50,5 @@ export async function strategy(
       score[address] = Number(_data.point);
     });
   }
-
   return score || {};
 }
