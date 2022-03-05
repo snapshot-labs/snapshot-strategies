@@ -1,33 +1,9 @@
-import { subgraphRequest } from '../../utils';
 import { getProvider } from '../../utils';
+import { getSnapshots } from '../../utils/blockfinder';
 import strategies from '..';
 
 export const author = 'kesar';
 export const version = '1.1.0';
-
-async function getBlocks(network, snapshot, provider, options) {
-  const blocks = {};
-  options.strategies.forEach((s) => (blocks[s.network] = 'latest'));
-  if (snapshot === 'latest') return blocks;
-  const block = await provider.getBlock(snapshot);
-  const query = {
-    blocks: {
-      __args: {
-        where: {
-          ts: block.timestamp,
-          network_in: Object.keys(blocks).filter((block) => network !== block)
-        }
-      },
-      network: true,
-      number: true
-    }
-  };
-  const url = 'https://blockfinder.snapshot.org/graphql';
-  const data = await subgraphRequest(url, query);
-  data.blocks.forEach((block) => (blocks[block.network] = block.number));
-  blocks[network] = snapshot;
-  return blocks;
-}
 
 export async function strategy(
   space,
@@ -38,7 +14,12 @@ export async function strategy(
   snapshot
 ) {
   const promises: any = [];
-  const blocks = await getBlocks(network, snapshot, provider, options);
+  const blocks = await getSnapshots(
+    network,
+    snapshot,
+    provider,
+    options.strategies.map((s) => s.network || network)
+  );
 
   for (const strategy of options.strategies) {
     // If snapshot is taken before a network is activated then ignore its strategies
