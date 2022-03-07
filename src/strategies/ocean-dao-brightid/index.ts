@@ -4,7 +4,6 @@ import {
   multicall,
   subgraphRequest
 } from '../../utils';
-import { getDelegations } from '../../utils/delegation';
 
 export const author = 'trizin';
 export const version = '0.1.0';
@@ -49,7 +48,6 @@ export async function strategy(
   snapshot
 ) {
   const chainBlocks = await getBlocks(snapshot, provider, options, network);
-  const delegations = await getDelegations(space, network, addresses, snapshot);
 
   const brightIdNetwork = options.brightIdNetwork || network;
   const response = await multicall(
@@ -67,21 +65,12 @@ export async function strategy(
   const totalScores = {};
 
   for (const chain of Object.keys(options.strategies)) {
-    const allAddresses = Array.from(
-      new Set([
-        ...addresses,
-        ...Object.values(delegations).reduce((a: string[], b: string[]) =>
-          a.concat(b)
-        )
-      ])
-    );
-
     let scores = await getScoresDirect(
       space,
       options.strategies[chain],
       chain,
       getProvider(chain),
-      allAddresses,
+      addresses,
       chainBlocks[chain]
     );
 
@@ -97,17 +86,6 @@ export async function strategy(
       return finalScores;
     }, {});
     // { address: '0x...55', score: 1.0 }
-
-    // sum delegations
-    addresses.forEach((address) => {
-      if (delegations[address] && delegations[address].length > 0) {
-        delegations[address].forEach((delegator) => {
-          // @ts-ignore
-          scores[address] += scores[delegator] ?? 0;
-          scores[delegator] = 0;
-        });
-      }
-    });
 
     for (const key of Object.keys(scores)) {
       totalScores[key] = totalScores[key]
