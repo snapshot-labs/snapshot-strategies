@@ -257,11 +257,13 @@ import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as veRibbon from './ve-ribbon';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
+import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
 import * as ethercatsFoundersSeries from './ethercats-founders-series';
@@ -527,10 +529,12 @@ const strategies = {
   'sandman-dao': sandmanDao,
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
+  've-ribbon': veRibbon,
   chubbykaijudao: chubbykaijudao,
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
+  'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
   'ethercats-founders-series': ethercatsFoundersSeries,

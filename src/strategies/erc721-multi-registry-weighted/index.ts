@@ -23,7 +23,7 @@ export async function strategy(
   options.tokens.map((token, idx) => {
     addresses.forEach((address: any) => {
       calls.push([token, 'balanceOf', [address]]);
-      multipliers.push(options.weights[idx] || 1)
+      multipliers.push(options.weights[idx] || 1);
     });
   });
 
@@ -33,7 +33,8 @@ export async function strategy(
   response.map((value: any, i: number) => {
     const address = calls[i][2][0];
     merged[address] = (merged[address] || 0) as number;
-    merged[address] += parseFloat(formatUnits(value.toString(), 0)) * multipliers[i];
+    merged[address] +=
+      parseFloat(formatUnits(value.toString(), 0)) * multipliers[i];
   });
 
   return merged;
