@@ -67,12 +67,21 @@ export async function strategy(
   const totalScores = {};
 
   for (const chain of Object.keys(options.strategies)) {
+    const allAddresses = Array.from(
+      new Set([
+        ...addresses,
+        ...Object.values(delegations).reduce((a: string[], b: string[]) =>
+          a.concat(b)
+        )
+      ])
+    );
+
     let scores = await getScoresDirect(
       space,
       options.strategies[chain],
       chain,
       getProvider(chain),
-      addresses,
+      allAddresses,
       chainBlocks[chain]
     );
 
@@ -91,10 +100,10 @@ export async function strategy(
 
     // sum delegations
     addresses.forEach((address) => {
-      if (delegations[address]) {
+      if (delegations[address] && delegations[address].length > 0) {
         delegations[address].forEach((delegator) => {
           // @ts-ignore
-          scores[address] += scores[delegator];
+          scores[address] += scores[delegator] ?? 0;
           scores[delegator] = 0;
         });
       }
@@ -113,7 +122,6 @@ export async function strategy(
       addressScore *= response[index][0]
         ? options.brightIdMultiplier // brightId multiplier
         : options.notVerifiedMultiplier; // not verified multiplier
-      if (isNaN(addressScore)) addressScore = 0;
       return [address, addressScore];
     })
   );
