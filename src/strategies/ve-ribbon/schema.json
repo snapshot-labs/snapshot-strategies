@@ -27,7 +27,7 @@
           "examples": ["e.g. 18"]
         }
       },
-      "required": ["symbol", "address", "decimals"],
+      "required": ["address", "decimals"],
       "additionalProperties": false
     }
   }

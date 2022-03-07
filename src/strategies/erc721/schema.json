@@ -10,6 +10,7 @@
           "type": "string",
           "title": "Symbol",
           "examples": ["e.g. DOODLE"],
+          "minLength": 1,
           "maxLength": 16
         },
         "address": {
@@ -21,7 +22,7 @@
           "maxLength": 42
         }
       },
-      "required": ["symbol", "address"],
+      "required": ["address"],
       "additionalProperties": false
     }
   }

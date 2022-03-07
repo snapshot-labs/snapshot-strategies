@@ -9,7 +9,9 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. DFP2"]
+          "examples": ["e.g. DFP2"],
+          "minLength": 1,
+          "maxLength": 16
         },
         "address": {
           "type": "string",
@@ -22,7 +24,7 @@
           "examples": ["e.g. 18"]
         }
       },
-      "required": ["symbol", "address", "decimals"],
+      "required": ["address", "decimals"],
       "additionalProperties": false
     }
   }
