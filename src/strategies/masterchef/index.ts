@@ -130,7 +130,7 @@ export async function strategy(
     const pair = allSushiPools.filter(
       ({ id }) => id == masterchefResult.pools[0].pair
     )[0];
-    console.log(pair);
+    // console.log(pair);
     const token0perUni = pair.reserve0 / pair.totalSupply;
     const token1perUni = pair.reserve1 / pair.totalSupply;
     stakedBalances.forEach((u: any) => {
