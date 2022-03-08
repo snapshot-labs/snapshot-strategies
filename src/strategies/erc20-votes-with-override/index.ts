@@ -8,9 +8,9 @@ export const version = '0.1.0';
 const getVotesName = "getVotes";
 const getVotesABI = ["function getVotes(address account) view returns (uint256)"];
 const balanceOfName = "balanceOf";
-const balanceOfABI = ["function balanceOf(address account) external view returns (uint256)"];
+const balanceOfABI = ["function balanceOf(address account) view returns (uint256)"];
 const delegatesName = "delegates";
-const delegatesABI = ["function delegates(address account) external view returns (address)"];
+const delegatesABI = ["function delegates(address account) view returns (address)"];
 
 /*
   Counts votes from delegates, and also from individual delegators who wish
@@ -90,7 +90,7 @@ export async function strategy(
     addressesLc.map((address: any) => [
       options.address,
       options.balanceOfName || balanceOfName,
-      [address.toLowerCase()]
+      [address]
     ]),
     { blockTag }
   );
