@@ -2,12 +2,20 @@
   {
     "name": "OGN Snapshot strategy",
     "strategy": {
-      "name": "ogn",
+      "name": "delegation",
       "params": {
-        "ognAddress": "0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
-        "stakingAddress": "0x501804B374EF06fa9C427476147ac09F1551B9A0",
         "symbol": "OGN",
-        "decimals": 18
+        "strategies": [
+          {
+            "name": "ogn",
+            "params": {
+              "ognAddress": "0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
+              "stakingAddress": "0x501804B374EF06fa9C427476147ac09F1551B9A0",
+              "symbol": "OGN",
+              "decimals": 18
+            }
+          }
+        ]
       }
     },
     "network": "1",

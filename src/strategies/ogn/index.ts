@@ -1,7 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { getBlockNumber } from '../../utils';
 import { multicall } from '../../utils';
-import { strategy as delegation } from '../delegation';
 
 export const author = 'franckc';
 export const version = '0.1.0';
@@ -61,26 +60,6 @@ export async function strategy(
     scores[address] = parseFloat(
       formatUnits(balance.toString(), options.decimals)
     );
-  });
-
-  const delegatedScores = await delegation(
-    space,
-    network,
-    provider,
-    addresses,
-    {
-      strategies: [
-        {
-          name: 'ogn',
-          params: options
-        }
-      ]
-    },
-    snapshot
-  );
-
-  Object.keys(delegatedScores).forEach((address) => {
-    scores[address] = (address in scores ? scores[address] : 0) + delegatedScores[address]
   });
 
   return scores;
