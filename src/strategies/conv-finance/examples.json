@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Convergence finance LP and staking pool balance",
+    "strategy": {
+      "name": "conv-finance",
+      "params": {
+        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "symbol": "CONV",
+        "decimals": 18,
+        "stakingPoolsAddress": "0x2c46430D4dA467Cf247E49A33ECd27DE1e16F451",
+        "stakingPoolsVersion": "1",
+        "stakingPoolIds": [1, 2, 3, 4],
+        "stakingPoolRewarderIdx": "1",
+        "rewarderAddress": "",
+        "rewarderVersion": "1",
+        "lpTokenAddresses": [
+          "",
+          ""
+        ]
+      }
+    },
+    "network": "1284",
+    "addresses": [
+      "0xc46c67bb7e84490d7ebdd0b8ecdaca68cf3823f4",
+      "0x839395e20bbb182fa440d08f850e6c7a8f6f0780",
+      "0x09fac217f9a9f47b50651fb8c7c641dd0d39efc8",
+      "0xaa989e7f79b1efde9c34d3674f085e489f4c612a",
+      "0x826976d7c600d45fb8287ca1d7c76fc8eb732030",
+      "0x33d2b8460128dfa03d187a919211ce5155a008dd"
+    ],
+    "snapshot": 8953000
+  }
+]
