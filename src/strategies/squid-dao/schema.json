@@ -10,7 +10,6 @@
           "type": "string",
           "title": "Symbol",
           "examples": ["e.g. SQDV"],
-          "minLength": 1,
           "maxLength": 16
         },
         "decimals": {

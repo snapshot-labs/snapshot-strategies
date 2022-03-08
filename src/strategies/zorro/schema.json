@@ -10,7 +10,6 @@
           "type": "string",
           "title": "Symbol",
           "examples": ["e.g. VOTES"],
-          "minLength": 1,
           "maxLength": 16
         },
         "purposeIdentifier": {

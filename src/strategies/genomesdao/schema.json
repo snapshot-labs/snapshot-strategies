@@ -25,7 +25,6 @@
           "type": "string",
           "title": "Symbol",
           "examples": ["e.g. GNOME"],
-          "minLength": 1,
           "maxLength": 16
         },
         "decimals": {
