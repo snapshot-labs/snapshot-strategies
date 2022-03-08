@@ -112,7 +112,7 @@ function getVotesWithOverride(address: string, votes: number, delegators: Object
     // Subtract any overridden votes
     const adjustedVotes = { votes };
     delegates[address].forEach(
-      (delegate: string) => (adjustedVotes.votes -= balances[delegate])
+      (delegator: string) => (adjustedVotes.votes -= balances[delegator])
     );
     return adjustedVotes.votes;
   } else if (isValidAddress(delegators[address])) {
