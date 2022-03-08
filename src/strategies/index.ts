@@ -209,6 +209,7 @@ import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
 import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as veAphra from './ve-aphra';
 import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
@@ -313,7 +314,8 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple':
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
@@ -494,7 +496,8 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers':
+    unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
@@ -522,6 +525,7 @@ const strategies = {
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
   'ethercats-founder-series': ethercatsFounderSeries,
+  've-aphra': veAphra,
   've-balance-of-at': veBalanceOfAt,
   chubbykaijudao: chubbykaijudao,
   revest: revest,
