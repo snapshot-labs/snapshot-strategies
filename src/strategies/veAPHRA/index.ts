@@ -34,7 +34,7 @@ export async function strategy(
   const walletQueryParams = {
     nfts: {
       __args: {
-        first: 1000
+        first: 10000
       },
       tokenID: true,
       tokenURI: true,
