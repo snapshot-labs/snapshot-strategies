@@ -58,22 +58,10 @@ export async function strategy(
     snapshot
   );
 
-  var delegations;
-
   return Object.fromEntries(
-    addresses.map((address) => {
-      const addressScore = delegations[address]
-        ? delegations[address].reduce(
-            (a, b) =>
-              a +
-              erc20Balances[b] +
-              easyStakingBalances[b] +
-              posdaoStakingBalances[b] +
-              erc20BalancesOnXdai[b],
-            0
-          )
-        : 0;
-      return [address, addressScore];
-    })
+    Object.entries(mfndScore).map((address: any) => [
+      address[0],
+      (address[0] in delegationScore) ? address[1] + delegationScore[address[0]] : address[1]
+    ])
   );
 }
