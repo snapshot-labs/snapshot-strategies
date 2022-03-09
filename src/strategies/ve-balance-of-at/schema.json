@@ -9,7 +9,8 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. UNI"]
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
         },
         "address": {
           "type": "string",
@@ -22,7 +23,7 @@
           "examples": ["e.g. 18"]
         }
       },
-      "required": ["symbol", "address", "decimals"],
+      "required": ["address", "decimals"],
       "additionalProperties": false
     }
   }
