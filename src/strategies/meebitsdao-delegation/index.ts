@@ -17,9 +17,8 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const block = await provider.getBlock(blockTag);
 
-  const graphApiUrl = `https://api.coingecko.com/api/v3/coins/${platform}/contract/${address}/market_chart/range?vs_currency=${currency}&from=${
-    block.timestamp - 100000
-  }&to=${block.timestamp}`;
+  const graphApiUrl = `https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation`;
+
   let graphApiData = await fetch(graphApiUrl)
     .then(async (r) => {
       const json = await r.json();
