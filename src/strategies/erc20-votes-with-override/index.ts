@@ -38,7 +38,7 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const addressesLc = addresses.map((address) => address.toLowerCase());
+  const addressesLc = addresses.map((address: any) => lowerCase(address));
   
   const getVotesResponse = await multicall(
     network,
@@ -64,11 +64,11 @@ export async function strategy(
     { blockTag }
   );
   const delegators = Object.fromEntries(delegatesResponse
-    .filter((value: any) => isValidAddress(getFirst(value)))
     .map((value: any, i: number) => [
       addressesLc[i],
-      getFirst(value).toLowerCase()
-  ]));
+      lowerCase(getFirst(value))])
+    .filter(([, delegate]) => isValidAddress(delegate))
+  );
 
   /*
     Create reverse map from delegate to [delegators].
@@ -133,6 +133,10 @@ function getFirst(value: any): any {
     return value.length > 0 ? value[0] : null;
   }
   return value;
+}
+
+function lowerCase(value: any): any {
+  return value ? value.toLowerCase() : value;
 }
 
 function isValidAddress(address: string): boolean {
