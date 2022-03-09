@@ -107,7 +107,7 @@ export async function strategy(
   );
 }
 
-function getVotesWithOverride(address: string, votes: number, delegators: Object, delegates: Object, balances: Object): number {
+function getVotesWithOverride(address: string, votes: number, delegators: Record<string, string>, delegates: Record<string, Array<string>>, balances: Record<string, number>): number {
   if (votes > 0) {
     // Subtract any overridden votes
     const adjustedVotes = { votes };
