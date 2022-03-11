@@ -16,8 +16,6 @@ export async function strategy(
   snapshot
 ) {
 
-  const graphApiUrl = 'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
-
   const params = {
     delegations: {
       __args: {
@@ -30,7 +28,7 @@ export async function strategy(
     }
   }
 
-  let result = await subgraphRequest(graphApiUrl, params);
+  let result = await subgraphRequest(MEEBITSDAO_DELEGATION_SUBGRAPH_URL, params);
 
   result = [].concat.apply([], Object.values(result));
 
