@@ -94,20 +94,20 @@ export async function strategy(
         const beta_ui = Math.min(a_ui, b_ui);
 
         // Print statements variable per address
-        console.log(`==================${addresses[i]}==================`);
-        console.log('Balance veSDT: ', (w_ui / 10 ** DECIMALS).toString());
-        console.log('Balance of sdToken: ', (b_ui / 10 ** DECIMALS).toString());
-        console.log(
-          'Ratio balance/supply veSDT: ',
-          (wRatio * 100).toString(),
-          '%'
-        );
-        console.log(
-          'Calcul inside adjusted balance: ',
-          (a_ui / 10 ** DECIMALS).toString()
-        );
-        console.log('Beta_u: ', (beta_ui / 10 ** DECIMALS).toString());
-        console.log(``);
+        // console.log(`==================${addresses[i]}==================`);
+        // console.log('Balance veSDT: ', (w_ui / 10 ** DECIMALS).toString());
+        // console.log('Balance of sdToken: ', (b_ui / 10 ** DECIMALS).toString());
+        // console.log(
+        //   'Ratio balance/supply veSDT: ',
+        //   (wRatio * 100).toString(),
+        //   '%'
+        // );
+        // console.log(
+        //   'Calcul inside adjusted balance: ',
+        //   (a_ui / 10 ** DECIMALS).toString()
+        // );
+        // console.log('Beta_u: ', (beta_ui / 10 ** DECIMALS).toString());
+        // console.log(``);```
 
         return [
           addresses[i],
