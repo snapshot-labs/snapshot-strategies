@@ -16,8 +16,6 @@ export async function strategy(
   snapshot
 ) {
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
   const graphApiUrl = 'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
 
   const params = {
