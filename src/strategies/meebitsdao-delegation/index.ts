@@ -1,9 +1,11 @@
-import fetch from 'cross-fetch';
 import { strategy as meebitsdao } from '../meebitsdao';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+import { subgraphRequest } from '../../utils';
 
 export const author = 'maikir';
-export const version = '0.0.1';
+export const version = '0.1.0';
+
+const MEEBITSDAO_DELEGATION_SUBGRAPH_URL = 'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
 
 export async function strategy(
   space,
@@ -15,26 +17,31 @@ export async function strategy(
 ) {
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const block = await provider.getBlock(blockTag);
 
-  const graphApiUrl = `https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation`;
+  const graphApiUrl = 'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
 
-  let graphApiData = await fetch(graphApiUrl)
-    .then(async (r) => {
-      const json = await r.json();
-      return json.data.delegations;
-    })
-    .catch((e) => {
-      console.error(e);
-      throw new Error('Strategy meebitsdao-delegation: graph api failed');
-    });
+  const params = {
+    delegations: {
+      __args: {
+        block: snapshot !== 'latest' ? { number: snapshot } : undefined,
+      },
+      id: true,
+      count: true,
+      delegator: true,
+      delegate: true
+    }
+  }
+
+  let result = await subgraphRequest(graphApiUrl, params);
+
+  result = [].concat.apply([], Object.values(result));
 
   const mvoxScore = await erc20BalanceOfStrategy(
     space,
     network,
     provider,
     addresses,
-    options,
+    options.tokenAddresses[0],
     snapshot
   );
 
@@ -53,7 +60,7 @@ export async function strategy(
     network,
     provider,
     addresses,
-    options,
+    options.tokenAddresses[1],
     snapshot
   );
 
