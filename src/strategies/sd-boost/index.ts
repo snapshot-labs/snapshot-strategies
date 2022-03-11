@@ -123,9 +123,9 @@ export async function strategy(
   });
 
   // Print statements variable per address
-  console.log('Total veSDT suppy: ', W / 10 ** DECIMALS);
-  console.log('Sum of all user adjusted balance of sdToken: ', Eb_u);
-  console.log('Total Liquid Locker voting power: ', V / 10 ** DECIMALS);
+ // console.log('Total veSDT suppy: ', W / 10 ** DECIMALS);
+ // console.log('Sum of all user adjusted balance of sdToken: ', Eb_u);
+ // console.log('Total Liquid Locker voting power: ', V / 10 ** DECIMALS);
 
   return Object.fromEntries(
     Array(addresses.length)
