@@ -18,14 +18,16 @@ const delegatesABI = ["function delegates(address account) view returns (address
 
   Makes three multicalls for votes, delegates, and balances.
 
-  If getVotes returns a nonzero value, then that is used. Then any delegators
-  that have individually voted will have their balances subtracted from the
-  result.
+  If an account has any delegated voting power returned from getVotes,
+  adds that value, minus the balances from any delegators that have also
+  individually voted.
 
-  If getVotes returns zero, then it will return the token balance, provided
-  that the address is delegated to a valid address.
+  If an account is delegating to itself, then its own token balance will
+  already be included in the getVotes return value.
 
-  Otherwise, returns zero.
+  If an account is delegating to a different valid address, adds the local
+  token balance. The account must be delegated to another valid address,
+  otherwise the local token balance will not be added.
 
   The function names/ABI can be overridden in the options.
 */
@@ -108,20 +110,31 @@ export async function strategy(
 }
 
 function getVotesWithOverride(address: string, votes: number, delegators: Record<string, string>, delegates: Record<string, Array<string>>, balances: Record<string, number>): number {
+  const adjustedVotes = { votes };
+
   if (votes > 0) {
     // Subtract any overridden votes
-    const adjustedVotes = { votes };
     delegates[address].forEach(
       (delegator: string) => (adjustedVotes.votes -= balances[delegator])
     );
-    return adjustedVotes.votes;
-  } else if (isValidAddress(delegators[address])) {
-    // Delegating to someone else, just return the balance
-    return balances[address];
-  } else {
-    // Not delegating at all
-    return 0;
+
+    /* 
+      This should never happen because the OpenZeppelin getVotes method
+      returns the aggregated balances from all delegators.
+
+      However, still checking just in case a different contract is used.
+    */
+    if (adjustedVotes.votes < 0) {
+      adjustedVotes.votes = 0;
+    }
   }
+
+  if (isValidAddress(delegators[address]) && address !== delegators[address]) {
+    // Delegating to someone else, so add the local balance
+    adjustedVotes.votes += balances[address];
+  }
+
+  return adjustedVotes.votes;
 }
 
 function parseValue(value: any, decimals: number): number {

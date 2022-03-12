@@ -2,9 +2,11 @@
 
 This strategy is similar to [ERC-20 Votes](../erc20-votes), except that it also allows individual delegators to **override** their vote on a particular proposal if they wish. This is most useful for social (off-chain only) proposals.
 
-If an address has any delegated votes, then that amount will be used, minus the balances of any individual delegators who have also voted.
+If an account has any delegated voting power returned from getVotes, adds that value, minus the balances from any delegators that have also individually voted.
 
-If an address has 0 delegated votes, then the current token balance will be used. The address must be delegated to another valid address, otherwise 0 will be returned.
+If an account is delegating to itself, then its own token balance will already be included in the getVotes return value.
+
+If an account is delegating to a different valid address, adds the local token balance. The account must be delegated to another valid address, otherwise the local token balance will not be added.
 
 ## Options
 
