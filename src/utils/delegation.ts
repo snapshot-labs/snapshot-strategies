@@ -1,23 +1,14 @@
 import { getAddress } from '@ethersproject/address';
-import { subgraphRequest } from '../utils';
+import { subgraphRequest, SNAPSHOT_SUBGRAPH_URL } from '../utils';
 
-const SNAPSHOT_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot',
-  '4': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-rinkeby',
-  '42': 'https://api.thegraph.com/subgraphs/name/snapshot-labs/snapshot-kovan'
-};
-
-export async function getDelegations(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
+export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const spaceIn = ['', space];
   if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
+
+  const PAGE_SIZE = 1000;
+  let result = [];
+  let page = 0;
   const params = {
     delegations: {
       __args: {
@@ -26,7 +17,8 @@ export async function getDelegations(
           // delegator_not_in: addressesLc,
           space_in: spaceIn
         },
-        first: 1000
+        first: PAGE_SIZE,
+        skip: 0
       },
       delegator: true,
       space: true,
@@ -37,11 +29,20 @@ export async function getDelegations(
     // @ts-ignore
     params.delegations.__args.block = { number: snapshot };
   }
-  const result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
-  if (!result?.delegations) return {};
+  while (true) {
+    params.delegations.__args.skip = page * PAGE_SIZE;
 
-  const delegations = result.delegations.filter(
-    (delegation) =>
+    const pageResult = await subgraphRequest(
+      SNAPSHOT_SUBGRAPH_URL[network],
+      params
+    );
+    const pageDelegations = pageResult.delegations || [];
+    result = result.concat(pageDelegations);
+    page++;
+    if (pageDelegations.length < PAGE_SIZE) break;
+  }
+  const delegations = result.filter(
+    (delegation: any) =>
       addressesLc.includes(delegation.delegate) &&
       !addressesLc.includes(delegation.delegator)
   );
@@ -49,13 +50,13 @@ export async function getDelegations(
 
   const delegationsReverse = {};
   delegations.forEach(
-    (delegation) =>
+    (delegation: any) =>
       (delegationsReverse[delegation.delegator] = delegation.delegate)
   );
   delegations
-    .filter((delegation) => delegation.space !== '')
+    .filter((delegation: any) => delegation.space !== '')
     .forEach(
-      (delegation) =>
+      (delegation: any) =>
         (delegationsReverse[delegation.delegator] = delegation.delegate)
     );
 

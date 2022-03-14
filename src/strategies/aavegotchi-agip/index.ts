@@ -60,16 +60,26 @@ export async function strategy(
   );
   const multiRes = await multi.execute();
 
+  const args: {
+    where: { id_in: string[] };
+    first: number;
+    block?: { number: number };
+  } = {
+    where: {
+      id_in: addresses.map((addr: string) => addr.toLowerCase())
+    },
+    first: 1000
+  };
+  if (blockTag !== 'latest') args.block = { number: blockTag };
+
   const walletQueryParams = {
     users: {
-      __args: {
-        where: {
-          id_in: addresses.map((addr: string) => addr.toLowerCase())
-        },
-        first: 1000
-      },
+      __args: args,
       id: true,
       gotchisOwned: {
+        __args: {
+          first: 1000
+        },
         baseRarityScore: true,
         equippedWearables: true
       }

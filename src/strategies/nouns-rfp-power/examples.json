@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example of Nouns RFP Power Strategy",
+    "strategy": {
+      "name": "nouns-rfp-power",
+      "params": {
+        "governanceStrategy": "0x50Acc1831E954fB5bB407d7A3CFe1e7769A41ab0",
+        "powerType": "vote",
+        "symbol": "Voting Power",
+        "decimals": 18
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x5BC928BF0DAb1e4A2ddd9e347b0F22e88026D76c",
+      "0xc0768A60Cf71341C942930E077b7EDf390c3E4c7"
+    ],
+    "snapshot": 9647529
+  }
+]
