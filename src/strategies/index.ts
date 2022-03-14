@@ -142,6 +142,7 @@ import * as modefi from './modefi';
 import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
 import * as glide from './glide';
+import * as goldfinchMembership from './goldfinch-membership';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
@@ -259,7 +260,7 @@ import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
-import * as ethercatsFounderSeries from './ethercats-founder-series';
+// import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as veRibbon from './ve-ribbon';
 import * as veRibbonVotingPower from './ve-ribbon-voting-power';
@@ -271,7 +272,7 @@ import * as gysrStakingBalance from './gysr-staking-balance';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
-import * as ethercatsFoundersSeries from './ethercats-founders-series';
+// import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
@@ -429,6 +430,7 @@ const strategies = {
   'xrc20-balance-of': xrc20BalanceOf,
   spookyswap,
   glide,
+  'goldfinch-membership': goldfinchMembership,
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
@@ -544,7 +546,7 @@ const strategies = {
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
   'sandman-dao': sandmanDao,
-  'ethercats-founder-series': ethercatsFounderSeries,
+  // 'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
   've-ribbon': veRibbon,
   've-ribbon-voting-power': veRibbonVotingPower,
@@ -555,7 +557,7 @@ const strategies = {
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
-  'ethercats-founders-series': ethercatsFoundersSeries,
+  // 'ethercats-founders-series': ethercatsFoundersSeries,
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
