@@ -4,6 +4,7 @@ import {
   multicall,
   subgraphRequest
 } from '../../utils';
+import { getDelegations } from '../../utils/delegation';
 
 export const author = 'trizin';
 export const version = '0.1.0';
