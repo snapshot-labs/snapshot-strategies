@@ -8,16 +8,16 @@ Here is an example of parameters:
 {
   "tokenAddresses": [
     {
-      "address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7",
-      "network": "1",
-      "decimals": 0,
-      "minBalance": 1
+      "address": "0x7C1a4c36D9BDa5C568f0E4877CD8E27D74Ae66c6",
+      "symbol": "mVOX",
+      "decimals": 0
     },
     {
       "address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79",
-      "network": "137",
-      "decimals": 0,
-      "minBalance": 1
+      "symbol": "MFND",
+      "apiUrl": "https://api.meebitsdao.com/user/token_status/",
+      "startingTokenId": 1,
+      "endingTokenId": 200
     }
   ]
 }
