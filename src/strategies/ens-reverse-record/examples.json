@@ -2,7 +2,10 @@
   {
     "name": "ENS Reverse Record",
     "strategy": {
-      "name": "ens-reverse-record"
+      "name": "ens-reverse-record",
+      "params": {
+        "symbol": "ENS"
+      }
     },
     "network": "1",
     "addresses": [

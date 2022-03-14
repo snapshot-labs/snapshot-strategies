@@ -1,0 +1,23 @@
+[
+  {
+    "name": "SVS stakers and holders",
+    "strategy": {
+      "name": "svs-staking",
+      "params": {
+        "symbol": "SVS",
+        "decimals": 0,
+        "tokenAddress": "0x219B8aB790dECC32444a6600971c7C3718252539",
+        "stakingAddress": "0x12753244901f9E612A471c15C7E5336e813D2e0B"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x24d19f100ba142543a863fc2294b188e35ab55b9",
+      "0xC0d6d28811df8466E4BAC33CfC9Ed6e745900a07",
+      "0xFdA9F18221d14F5FAD1ff8a0dbA92A716Ba8144D",
+      "0x43522a5abA7c0FEad84b6614C208B5162A1b4ADF",
+      "0xcA50e4211B330295212FF9C1160F5DF3E0Ccd9D8"
+    ],
+    "snapshot": 13449843
+  }
+]

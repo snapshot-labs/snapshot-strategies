@@ -1,0 +1,21 @@
+[
+  {
+    "name": "xKAWA farm balance",
+    "strategy": {
+      "name": "xkawa-farm",
+      "params": {
+        "farm": "0xC68844Cd3BA9d3Ad88F2cC278213F64b8C0bCddf",
+        "token": "0xdC386452F9FFDa7F0d2940e5c60Dc0F9469b1097",
+        "LPxKawa": "0x876692166cAC59506Eac1DB7f01B120F5Da98A50",
+        "symbol": "xKAWA",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x41a1b36fdef3df142d5116e52d6e72c02b904fda",
+      "0x7766ef005ec1b38a8472831e2f0631b12c811a5f"
+    ],
+    "snapshot": 13677274
+  }
+]

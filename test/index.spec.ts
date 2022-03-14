@@ -1,7 +1,9 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
+const fetch = require('cross-fetch');
 const snapshot = require('../').default;
 const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
+const snapshotjs = require('@snapshot-labs/snapshot.js');
 const addresses = require('./addresses.json');
 
 const strategyArg =
@@ -19,7 +21,6 @@ const moreArg =
     .find((arg) => arg.includes('--more='))
     ?.split('--more=')
     ?.pop();
-
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
 if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
@@ -82,6 +83,10 @@ describe(`\nTest strategy "${strategy}"`, () => {
     const provider = snapshot.utils.getProvider(example.network);
     const blockNumber = await snapshot.utils.getBlockNumber(provider);
     expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
+  });
+
+  it('File examples.json must have symbol in its strategy params', async () => {
+    expect(typeof example.strategy.params.symbol).toBe('string');
   });
 
   it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
@@ -157,3 +162,44 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
     });
   }
 );
+
+describe(`\nOthers:`, () => {
+  it('Author in strategy should be a valid github username', async () => {
+    const author = snapshot.strategies[strategy].author;
+    expect(typeof author).toBe('string');
+    const githubUserData = await fetch(
+      `https://api.github.com/users/${author}`
+    );
+    const githubUser = await githubUserData.json();
+    expect(githubUser.message).not.toEqual('Not Found');
+  });
+  it('Version in strategy should be a valid string', async () => {
+    const version = snapshot.strategies[strategy].author;
+    expect(typeof version).toBe('string');
+  });
+
+  let schema;
+  try {
+    schema = require(`../src/strategies/${strategy}/schema.json`);
+  } catch (error) {
+    schema = null;
+  }
+  (schema ? it : it.skip)(
+    'Check schema (if available) is valid with example.json',
+    async () => {
+      expect(typeof schema).toBe('object');
+      expect(
+        snapshotjs.utils.validateSchema(schema, example.strategy.params)
+      ).toBe(true);
+    }
+  );
+  (schema ? it : it.skip)(
+    'Strategy should work even when strategy symbol is null',
+    async () => {
+      delete example.strategy.params.symbol;
+      expect(
+        snapshotjs.utils.validateSchema(schema, example.strategy.params)
+      ).toBe(true);
+    }
+  );
+});
