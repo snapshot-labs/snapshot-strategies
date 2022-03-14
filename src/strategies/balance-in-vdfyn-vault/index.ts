@@ -26,7 +26,7 @@ export async function strategy(
     'ratio',
     []
   ]);
-  console.log('ratio: ', ratio.toString());
+  // console.log('ratio: ', ratio.toString());
   addresses.map((userAddress: any) => {
     callData.push([options.contractAddress, 'balanceOf', [userAddress]]);
   });
