@@ -268,6 +268,7 @@ import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
+import * as meebitsDaoDelegation from './meebitsdao-delegation';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -536,7 +537,8 @@ const strategies = {
   'ethercats-founders-series': ethercatsFoundersSeries,
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
-  'minotaur-money': MinotaurMoney
+  'minotaur-money': MinotaurMoney,
+  'meebits-dao': meebitsDaoDelegation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -32,6 +32,8 @@ export async function strategy(
 
   result = [].concat.apply([], Object.values(result));
 
+  console.debug(result);
+
   const mvoxScore = await erc20BalanceOfStrategy(
     space,
     network,
