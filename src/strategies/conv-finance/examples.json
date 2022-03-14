@@ -4,30 +4,67 @@
     "strategy": {
       "name": "conv-finance",
       "params": {
-        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "address": "0x8006320739fC281da67Ee62eB9b4Ef8ADD5C903a",
         "symbol": "CONV",
         "decimals": 18,
-        "stakingPoolsAddress": "0x2c46430D4dA467Cf247E49A33ECd27DE1e16F451",
-        "stakingPoolsVersion": "1",
-        "stakingPoolIds": [1, 2, 3, 4],
-        "stakingPoolRewarderIdx": "1",
-        "rewarderAddress": "",
-        "rewarderVersion": "1",
         "lpTokenAddresses": [
-          "",
-          ""
+          "0x30059f41bdde4256bf94c29e1ab74648b2a23e7b",
+          "0x7ed6102f2a4d3aa47dcbf6a85abfee6fd2921a27",
+          "0x083a91f24D02201946Ab6B1Ef3ACb60851432D1E",
+          "0xACe46AeC3b4C5a353F44f89fBf0A9d886f27D6a2",
+          "0xfaa5b559cd3dbE9329a5c4E4483c8DcC4B2C07C4"
+        ],
+        "stakingPools": [
+          {
+            "address": "0x72D7965fD3CD2b81Af638BbB0752DFdA362910B5",
+            "version": "2",
+            "pools": [
+              {
+                "poolId": "1",
+                "rewarderIdx": "1"
+              },
+              {
+                "poolId": "2",
+                "rewarderIdx": "1"
+              },
+              {
+                "poolId": "7",
+                "rewarderIdx": "0"
+              },
+              {
+                "poolId": "8",
+                "rewarderIdx": "0"
+              }
+            ]
+          }
+        ],
+        "rewarder": [
+          {
+            "address": "0x5fC40FAd9728B45be4A762C02Fdb574b1E5E9e93",
+            "version": "2",
+            "poolIds": [7]
+          },
+          {
+            "address": "0x823c9f78DD5cf945DB8d81Ac3A959fC0E6233bb9",
+            "version": "2",
+            "poolIds": [1]
+          },
+          {
+            "address": "0x88Cb1456b8325aC99f90eBdadB1826516BfFc79a",
+            "version": "2",
+            "poolIds": [2]
+          }
         ]
       }
     },
     "network": "1284",
     "addresses": [
-      "0xc46c67bb7e84490d7ebdd0b8ecdaca68cf3823f4",
-      "0x839395e20bbb182fa440d08f850e6c7a8f6f0780",
-      "0x09fac217f9a9f47b50651fb8c7c641dd0d39efc8",
-      "0xaa989e7f79b1efde9c34d3674f085e489f4c612a",
-      "0x826976d7c600d45fb8287ca1d7c76fc8eb732030",
-      "0x33d2b8460128dfa03d187a919211ce5155a008dd"
+      "0xa63982283bc992744f8ad978b09bf254aa964c0b",
+      "0x76a743237fdab1c0d80d84fd08ef558dac8776ab",
+      "0x941df80bc611ef10736f16441c36cb232cd07814",
+      "0x873ca57e8236a3fd3834a7ef3fa624afad14a36e",
+      "0xe51231daa306acf16eac34a864564ca36b262a1f"
     ],
-    "snapshot": 8953000
+    "snapshot": 563524
   }
 ]

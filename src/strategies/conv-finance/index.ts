@@ -2,14 +2,40 @@ import { multicall } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
 
-export const author = 'eric-conv';
+export const author = 'eric-convergence';
 export const version = '0.1.0';
+
+interface STRATEGY_OPTIONS {
+  address: string;
+  symbol: string;
+  decimals: number;
+  lpTokenAddresses: string[];
+  stakingPools: STAKING_POOL[];
+  rewarder: REWARDER[];
+}
 
 interface LP_TOKEN {
   [address: string]: {
-    totalSupply: BigNumber,
-    totalToken: BigNumber
-  }
+    totalSupply: BigNumber;
+    totalToken: BigNumber;
+  };
+}
+
+interface STAKING_POOL {
+  address: string;
+  version: string;
+  pools: STAKING_POOL_INFO[];
+}
+
+interface STAKING_POOL_INFO {
+  poolId: string;
+  rewarderIdx?: string;
+}
+
+interface REWARDER {
+  address: string;
+  version: string;
+  poolIds: number[];
 }
 
 const lpTokenContractAbi = [
@@ -18,17 +44,27 @@ const lpTokenContractAbi = [
   'function token1() public view returns (address)',
   'function balanceOf(address account) view returns (uint256)',
   'function totalSupply() public view returns (uint256)'
-]
+];
 
 const stakingPoolsV2ContractAbi = [
   'function getReward(uint256 poolId, address staker, uint8 rewarderIdx) external view returns (uint256)',
   'function userData(uint256 poolId, address staker) view returns (uint256, uint32)',
-  'function poolInfos(uint256 poolId) view returns (uint256, address, uint256, uint256)'
-]
+  'function poolInfos(uint256 poolId) view returns (uint256, uint256, uint256, address)'
+];
 
 const rewarderV2ContractAbi = [
   'function calculateTotalReward(address user, uint256 poolId) external view returns (uint256)'
-]
+];
+
+const stakingPoolsV1ContractAbi = [
+  'function getReward(uint256 poolId, address staker) external view returns (uint256)',
+  'function userData(uint256 poolId, address staker) view returns (uint256, uint256, uint256)',
+  'function poolInfos(uint256 poolId) view returns (uint256, uint256, uint256, uint256, address)'
+];
+
+const rewarderV1ContractAbi = [
+  'function vestingSchedules(address user, uint256 poolId) view returns(uint128, uint32, uint32, uint32, uint32)'
+];
 
 function bn(num: any): BigNumber {
   return BigNumber.from(num.toString());
@@ -39,12 +75,12 @@ export async function strategy(
   network,
   provider,
   addresses,
-  options,
+  options: STRATEGY_OPTIONS,
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  let lpMultiCalls = options.lpTokenAddresses.map((lpAddress: any) => {
+  const lpMultiCalls = options.lpTokenAddresses.map((lpAddress: any) => {
     return multicall(
       network,
       provider,
@@ -61,152 +97,246 @@ export async function strategy(
         ])
       ],
       { blockTag }
-    )
+    );
   });
 
-  let stakingPoolsMultiCalls = [];
+  const stakingPoolsMultiCalls: Promise<any>[] = [];
 
-  // Staking pool version:
-  // 1: Single reward
-  // 2: Multi reward
-  if (options.stakingPoolsVersion === "2"){
-    stakingPoolsMultiCalls = options.stakingPoolIds.map((poolId: any) => {
-      return multicall(
-        network,
-        provider,
-        stakingPoolsV2ContractAbi,
-        [
-          [options.stakingPoolsAddress, 'poolInfos', [poolId]],
-          ...addresses.map((userAddress: any) => [
-            options.stakingPoolsAddress,
-            'userData',
-            [poolId, userAddress]
-          ]),
-          ...addresses.map((userAddress: any) => [
-            options.stakingPoolsAddress,
-            'getReward',
-            [poolId, userAddress, options.stakingPoolRewarderIdx]
-          ])
-        ],
-        { blockTag }
-      )
-    })
-  } else if (options.stakingPoolsVersion === "1"){
+  options.stakingPools.forEach((stakingPool: STAKING_POOL) => {
+    // Staking pool version:
+    // 1: Single reward
+    // 2: Multi reward
+    if (stakingPool.version === '2') {
+      stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
+        stakingPoolsMultiCalls.push(
+          multicall(
+            network,
+            provider,
+            stakingPoolsV2ContractAbi,
+            [
+              [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
+              ...addresses.map((userAddress: any) => [
+                stakingPool.address,
+                'userData',
+                [poolInfo.poolId, userAddress]
+              ]),
+              ...addresses.map((userAddress: any) => [
+                stakingPool.address,
+                'getReward',
+                [poolInfo.poolId, userAddress, poolInfo.rewarderIdx]
+              ])
+            ],
+            { blockTag }
+          )
+        );
+      });
+    } else {
+      stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
+        stakingPoolsMultiCalls.push(
+          multicall(
+            network,
+            provider,
+            stakingPoolsV1ContractAbi,
+            [
+              [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
+              ...addresses.map((userAddress: any) => [
+                stakingPool.address,
+                'userData',
+                [poolInfo.poolId, userAddress]
+              ]),
+              ...addresses.map((userAddress: any) => [
+                stakingPool.address,
+                'getReward',
+                [poolInfo.poolId, userAddress]
+              ])
+            ],
+            { blockTag }
+          )
+        );
+      });
+    }
+  });
 
-  }
+  const stakingPoolRewarderMultiCalls: any[] = [];
 
-  let stakingPoolRewarderMultiCalls = [];
-
-  //  Staking pool rewarder version:
-  // 1: Old rewarder
-  // 2. New rewarder
-  if (options.rewarderVersion === "2"){
-    stakingPoolRewarderMultiCalls = options.stakingPoolIds.map((poolId: any) => {
-      return multicall(
-        network,
-        provider,
-        rewarderV2ContractAbi,
-        [
-          ...addresses.map((userAddress: any) => [
-            options.rewarderAddress,
-            'calculateTotalReward',
-            [userAddress, poolId]
-          ])
-        ],
-        { blockTag }
-      )
-    })
-  }
+  options.rewarder.forEach((rewarder: REWARDER) => {
+    //  Staking pool rewarder version:
+    // 1: Old rewarder
+    // 2. New rewarder
+    if (rewarder.version === '2') {
+      rewarder.poolIds.forEach((id: number) => {
+        stakingPoolRewarderMultiCalls.push(
+          multicall(
+            network,
+            provider,
+            rewarderV2ContractAbi,
+            [
+              ...addresses.map((userAddress: any) => [
+                rewarder.address,
+                'calculateTotalReward',
+                [userAddress, id]
+              ])
+            ],
+            { blockTag }
+          )
+        );
+      });
+    } else {
+      rewarder.poolIds.forEach((id: number) => {
+        stakingPoolRewarderMultiCalls.push(
+          multicall(
+            network,
+            provider,
+            rewarderV1ContractAbi,
+            [
+              ...addresses.map((userAddress: any) => [
+                rewarder.address,
+                'vestingSchedules',
+                [userAddress, id]
+              ])
+            ],
+            { blockTag }
+          )
+        );
+      });
+    }
+  });
 
   let res = await Promise.all([
     ...lpMultiCalls,
     ...stakingPoolsMultiCalls,
     ...stakingPoolRewarderMultiCalls
-  ])
+  ]);
 
-  let usersTokensFromLp: BigNumber[] = [];
-  let lpTokens: LP_TOKEN = {};
+  const usersTokensFromLp: BigNumber[] = [];
+  const lpTokens: LP_TOKEN = {};
 
   // LP Token Calculation
 
-  for(let i = 0; i < options.lpTokenAddresses.length; i++){
-    const token0Addr = res[0];
-    const token1Addr = res[1];
-    const reserve0 = bn(res[2]._reserve0);
-    const reserve1 = bn(res[2]._reserve1);
-    const totalSupply = bn(res[3]);
-    res = res.slice(4);
+  options.lpTokenAddresses.forEach((lpAddress: string, idx) => {
+    let result = res[idx];
+    const token0Addr = result[0][0];
+    const token1Addr = result[1][0];
+    const reserve0 = bn(result[2][0]);
+    const reserve1 = bn(result[2][1]);
+    const totalSupply = bn(result[3]);
+
+    result = result.slice(4);
 
     let tokenInLP = bn(0);
-    if (token0Addr === options.address){
+    if (token0Addr === options.address) {
       tokenInLP = reserve0.mul(bn(2));
     } else if (token1Addr === options.address) {
       tokenInLP = reserve1.mul(bn(2));
     }
 
-    res.slice(0, addresses.length).map((num, i) => {
+    result.slice(0, addresses.length).map((num: BigNumber, i: number) => {
       const lpTokenBal = bn(num);
-      usersTokensFromLp[i] = usersTokensFromLp[i].add(lpTokenBal.mul(tokenInLP).div(totalSupply))
-    })
-    res = res.slice(addresses.length);
+      if (usersTokensFromLp[i] === undefined) {
+        usersTokensFromLp[i] = lpTokenBal.mul(tokenInLP).div(totalSupply);
+      } else {
+        usersTokensFromLp[i] = usersTokensFromLp[i].add(
+          lpTokenBal.mul(tokenInLP).div(totalSupply)
+        );
+      }
+    });
 
-    lpTokens[options.lpTokenAddresses[i]] = {
+    lpTokens[options.lpTokenAddresses[idx].toLowerCase()] = {
       totalSupply,
       totalToken: tokenInLP
-    }
-  }
+    };
+  });
+
+  res = res.slice(options.lpTokenAddresses.length);
 
   // Staking Pools Calculation
-
-  for (let i = 0; i < options.stakingPoolIds.length; i++){
-    const poolToken = res[0].poolToken;
-    res = res.slice(1);
-
-    if (lpTokens[poolToken] === undefined){
-      // single side staking
-      res.slice(0, addresses.length).map((userData, i) => {
-        const stakingBal = bn(userData.stakeAmount);
-        usersTokensFromLp[i] = usersTokensFromLp[i].add(stakingBal);
-      })
-      res = res.slice(addresses.length);
-      res.slice(0, addresses.length).map((num, i) => {
-        const pendingReward = bn(num);
-        usersTokensFromLp[i] = usersTokensFromLp[i].add(pendingReward);
-      })
-      res = res.slice(addresses.length);
-    } else {
-      // LP token staking
-      const totalSupply = lpTokens[poolToken].totalSupply;
-      const totalToken = lpTokens[poolToken].totalToken;
-      res.slice(0, addresses.length).map((userData, i) => {
-        const stakedLPBal = bn(userData.stakeAmount);
-        usersTokensFromLp[i] = usersTokensFromLp[i].add(stakedLPBal.mul(totalToken).div(totalSupply));
-      })
-      res = res.slice(addresses.length);
-      res.slice(0, addresses.length).map((num, i) => {
-        const pendingReward = bn(num);
-        usersTokensFromLp[i] = usersTokensFromLp[i].add(pendingReward);
-      })
-      res = res.slice(addresses.length);
-    }
+  let stakingPoolNumber = 0;
+  for (let i = 0; i < options.stakingPools.length; i++) {
+    stakingPoolNumber += options.stakingPools[i].pools.length;
   }
+
+  options.stakingPools.forEach((stakingPool: STAKING_POOL, idx) => {
+    stakingPool.pools.forEach((poolId, poolIdx) => {
+      let result = res[idx + poolIdx];
+      let poolToken = '';
+      if (stakingPool.version === '2') {
+        poolToken = result[0][3];
+      } else {
+        poolToken = result[0][4];
+      }
+      result = result.slice(1);
+
+      if (poolToken === options.address) {
+        // single side staking
+        result.slice(0, addresses.length).map((userData, idx) => {
+          const stakingBal = bn(userData[0]);
+          usersTokensFromLp[idx] = usersTokensFromLp[idx].add(stakingBal);
+        });
+        result = result.slice(addresses.length);
+        result.slice(0, addresses.length).map((num, idx) => {
+          const pendingReward = bn(num);
+          usersTokensFromLp[idx] = usersTokensFromLp[idx].add(pendingReward);
+        });
+      } else if (lpTokens[poolToken.toLowerCase()] !== undefined) {
+        // CONV LP token staking
+        const totalSupply = lpTokens[poolToken.toLowerCase()].totalSupply;
+        const totalToken = lpTokens[poolToken.toLowerCase()].totalToken;
+        result.slice(0, addresses.length).map((userData, idx) => {
+          const stakedLPBal = bn(userData[0]);
+          usersTokensFromLp[idx] = usersTokensFromLp[idx].add(
+            stakedLPBal.mul(totalToken).div(totalSupply)
+          );
+        });
+        result = result.slice(addresses.length);
+        result.slice(0, addresses.length).map((num, idx) => {
+          const pendingReward = bn(num);
+          usersTokensFromLp[idx] = usersTokensFromLp[idx].add(pendingReward);
+        });
+      } else {
+        // Non-CONV LP token staking, only calculates pending reward
+        result = result.slice(addresses.length);
+        result.slice(0, addresses.length).map((num, idx) => {
+          const pendingReward = bn(num);
+          usersTokensFromLp[idx] = usersTokensFromLp[idx].add(pendingReward);
+        });
+      }
+    });
+  });
+
+  res = res.slice(stakingPoolNumber);
 
   // Rewarder Calculation
-  for (let i = 0; i < options.stakingPoolIds.length; i++){
-    if (options.rewarderVersion === "2"){
-      res.slice(0, addresses.length).map((num, i) => {
-        const rewarderBal = bn(num);
-        usersTokensFromLp[i] = usersTokensFromLp[i].add(rewarderBal);
-      })
-      res = res.slice(addresses.length);
-    } else {
-
-    }
-  }
+  options.rewarder.forEach((rewarder: REWARDER, idx) => {
+    rewarder.poolIds.forEach((poolId, poolIdx) => {
+      const result = res[idx + poolIdx];
+      if (rewarder.version === '2') {
+        result.slice(0, addresses.length).map((num, i) => {
+          const rewarderBal = bn(num);
+          usersTokensFromLp[i] = usersTokensFromLp[i].add(rewarderBal);
+        });
+      } else {
+        result.slice(0, addresses.length).map((vestingSchedule, i) => {
+          const vestingAmount = bn(vestingSchedule[0]);
+          if (vestingAmount.gt(bn(0))) {
+            const startTime = parseInt(vestingSchedule[1]);
+            const endTime = parseInt(vestingSchedule[2]);
+            const lastClaimTime = parseInt(vestingSchedule[4]);
+            const step = parseInt(vestingSchedule[3]);
+            const totalStep = (endTime - startTime) / step;
+            const remainingStep = (endTime - lastClaimTime) / step;
+            const rewarderBal = vestingAmount
+              .div(bn(totalStep))
+              .mul(bn(remainingStep));
+            usersTokensFromLp[i] = usersTokensFromLp[i].add(rewarderBal);
+          }
+        });
+      }
+    });
+  });
 
   return Object.fromEntries(
     usersTokensFromLp.map((sum, i) => {
-      const parsedSum = parseFloat(formatUnits(sum, options.decimal));
+      const parsedSum = parseFloat(formatUnits(sum, options.decimals));
       return [addresses[i], parsedSum];
     })
   );
