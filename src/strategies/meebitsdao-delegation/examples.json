@@ -4,6 +4,7 @@
     "strategy": {
       "name": "meebitsdao-delegation",
       "params": {
+        "symbol": "mVOX, MFND",
         "tokenAddresses": [
           {
             "address": "0x7C1a4c36D9BDa5C568f0E4877CD8E27D74Ae66c6",
@@ -17,20 +18,19 @@
             "startingTokenId": 1,
             "endingTokenId": 200
           }
-        ],
-
+        ]
       }
     },
     "network": "137",
     "addresses": [
-      "0xc5e38233cc0d7cff9340e6139367aba498ec9b18", // 1 mfnd, 2 delegators
-      "0xf134c8f76214c500dcdc9188a21bd405cdaaf4c8", // 1 mfnd, 1 delegator
-      "0x2009a752a50D3CDe486d7b5921944377B729E747", // 1 mfnd, no delegators
-      "0x017a04631caf0bacec325f68caad2838a80dd91d", // 4 mvox, 0xc5e38233cc0d7cff9340e6139367aba498ec9b18 delegate
-      "0x0a1ee64e760ce54d38958e7b9c2a429cfae050c4", // 3 mvox, 0xc5e38233cc0d7cff9340e6139367aba498ec9b18 delegate
-      "0x0cbf9fa338048bb8a8a0ea33f9c59f9d0407d692", // 3 mvox, 0xf134c8f76214c500dcdc9188a21bd405cdaaf4c8 delegate
-      "0xffb6d3c42b07c17ed0b6be1136d2ebc599b2562e" // 1 mvox, no delegation
+      "0xc5e38233cc0d7cff9340e6139367aba498ec9b18",
+      "0xf134c8f76214c500dcdc9188a21bd405cdaaf4c8",
+      "0x2009a752a50D3CDe486d7b5921944377B729E747",
+      "0x017a04631caf0bacec325f68caad2838a80dd91d",
+      "0x0a1ee64e760ce54d38958e7b9c2a429cfae050c4",
+      "0x0cbf9fa338048bb8a8a0ea33f9c59f9d0407d692",
+      "0xffb6d3c42b07c17ed0b6be1136d2ebc599b2562e"
     ],
-    "snapshot": 14382605
+    "snapshot": 25925040
   }
 ]

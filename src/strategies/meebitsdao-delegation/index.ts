@@ -18,21 +18,14 @@ export async function strategy(
 
   const params = {
     delegations: {
-      __args: {
-        block: snapshot !== 'latest' ? { number: snapshot } : undefined,
-      },
+      __args: snapshot !== 'latest' ? { block: { number: snapshot } } : {},
       id: true,
-      count: true,
       delegator: true,
       delegate: true
     }
   }
 
-  let result = await subgraphRequest(MEEBITSDAO_DELEGATION_SUBGRAPH_URL, params);
-
-  result = [].concat.apply([], Object.values(result));
-
-  console.debug(result);
+  const result = await subgraphRequest(MEEBITSDAO_DELEGATION_SUBGRAPH_URL, params);
 
   const mvoxScore = await erc20BalanceOfStrategy(
     space,
@@ -43,16 +36,6 @@ export async function strategy(
     snapshot
   );
 
-  const delegationScore = Object.entries(mvoxScore).reduce((obj, address) => {
-    if (address[0] in delegators) {
-      if (!obj[delegates[address[0]]]) {
-        obj[delegates[address[0]]]=address[1]
-      } else {
-        obj[delegates[address[0]]]+=address[1];
-      }
-    }
-  }, {})
-
   const mfndScore = await meebitsdao(
     space,
     network,
@@ -62,10 +45,37 @@ export async function strategy(
     snapshot
   );
 
+  let delegations = {};
+
+  result.delegations.forEach((delegation) => {
+    if (delegation.delegator in mvoxScore) {
+      (delegation.delegate in delegations) ? (delegations[delegation.delegate]+=mvoxScore[delegation.delegator]) : (delegations[delegation.delegate] = mvoxScore[delegation.delegator])
+    }
+  });
+
   return Object.fromEntries(
     Object.entries(mfndScore).map((address: any) => [
       address[0],
-      (address[0] in delegationScore) ? address[1] + delegationScore[address[0]] : address[1]
+      (address[0] in delegations) ? address[1] + delegations[address[0]] : address[1]
     ])
   );
+
+  //// ignore from here
+
+  // const delegationScore = Object.entries(mvoxScore).reduce((obj, address) => {
+  //   if (address[0] in delegators) {
+  //     if (!obj[delegates[address[0]]]) {
+  //       obj[delegates[address[0]]]=address[1]
+  //     } else {
+  //       obj[delegates[address[0]]]+=address[1];
+  //     }
+  //   }
+  // }, {})
+
+  // return Object.fromEntries(
+  //   Object.entries(mfndScore).map((address: any) => [
+  //     address[0],
+  //     (address[0] in delegationScore) ? address[1] + delegationScore[address[0]] : address[1]
+  //   ])
+  // );
 }

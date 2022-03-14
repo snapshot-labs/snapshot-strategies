@@ -547,7 +547,7 @@ const strategies = {
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
   'sd-boost': sdBoost,
-  'meebits-dao': meebitsDaoDelegation
+  'meebitsdao-delegation': meebitsDaoDelegation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
