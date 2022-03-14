@@ -258,6 +258,7 @@ import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as veRibbon from './ve-ribbon';
+import * as veRibbonVotingPower from './ve-ribbon-voting-power';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
@@ -270,6 +271,7 @@ import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
+import * as sdBoost from './sd-boost';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -530,6 +532,7 @@ const strategies = {
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
   've-ribbon': veRibbon,
+  've-ribbon-voting-power': veRibbonVotingPower,
   chubbykaijudao: chubbykaijudao,
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
@@ -540,7 +543,8 @@ const strategies = {
   'ethercats-founders-series': ethercatsFoundersSeries,
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
-  'minotaur-money': MinotaurMoney
+  'minotaur-money': MinotaurMoney,
+  'sd-boost': sdBoost
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -24,7 +24,8 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. GNOME"]
+          "examples": ["e.g. GNOME"],
+          "maxLength": 16
         },
         "decimals": {
           "type": "number",
@@ -32,7 +33,7 @@
           "examples": ["e.g. 18"]
         }
       },
-      "required": ["symbol", "address", "lpaddress", "decimals"],
+      "required": ["address", "lpaddress", "decimals"],
       "additionalProperties": false
     }
   }
