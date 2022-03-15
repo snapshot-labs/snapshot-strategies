@@ -74,16 +74,13 @@ export async function strategy(
   const delegations = {};
 
   result.delegations.forEach((delegation) => {
-    let meebitsScore = 1;
+    let meebitsScore = 0;
     let mvoxScore = 0;
     if (
       delegation.delegator in mvoxScores &&
       delegation.delegate in meebitsScores
     ) {
-      meebitsScore = Math.max(
-        1,
-        Math.min(20, meebitsScores[delegation.delegate])
-      );
+      meebitsScore = Math.min(20, meebitsScores[delegation.delegate]);
       mvoxScore = mvoxScores[delegation.delegator];
     }
 
@@ -98,7 +95,7 @@ export async function strategy(
     Object.entries(mfndScores).map((address: any) => [
       address[0],
       address[0] in delegations
-        ? address[1] + delegations[address[0]]
+        ? Math.max(address[1], delegations[address[0]])
         : address[1]
     ])
   );
