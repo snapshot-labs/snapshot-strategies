@@ -2,10 +2,8 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const FLASHSTAKE_SUBGRAPH_URL = {
-  '1':
-    'https://score-api.wanakafarm.com/graphql',
-  '56':
-    'https://score-api.wanakafarm.com/graphql'
+  '1': 'https://score-api.wanakafarm.com/graphql',
+  '56': 'https://score-api.wanakafarm.com/graphql'
 };
 
 export const author = 'TranTien139';
@@ -21,8 +19,7 @@ export async function strategy(
 ) {
   const params = {
     balances: {
-      __args: {
-      },
+      __args: {},
       address: true,
       point: true
     }
@@ -33,7 +30,7 @@ export async function strategy(
     params.balances.__args.block = snapshot;
   }
 
-  if(addresses && addresses?.length > 0){
+  if (addresses && addresses?.length > 0) {
     // @ts-ignore
     params.balances.__args.addresses = addresses;
   }

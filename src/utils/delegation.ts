@@ -36,9 +36,10 @@ export async function getDelegations(space, network, addresses, snapshot) {
       SNAPSHOT_SUBGRAPH_URL[network],
       params
     );
-    result = result.concat(pageResult.delegations);
+    const pageDelegations = pageResult.delegations || [];
+    result = result.concat(pageDelegations);
     page++;
-    if (pageResult.delegations.length < PAGE_SIZE) break;
+    if (pageDelegations.length < PAGE_SIZE) break;
   }
   const delegations = result.filter(
     (delegation: any) =>

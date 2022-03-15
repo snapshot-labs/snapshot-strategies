@@ -3,6 +3,7 @@ import path from 'path';
 
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
+import * as erc20VotesWithOverride from './erc20-votes-with-override';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -258,6 +259,7 @@ import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as veRibbon from './ve-ribbon';
+import * as veRibbonVotingPower from './ve-ribbon-voting-power';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
@@ -271,6 +273,7 @@ import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as convFinance from './conv-finance';
+import * as sdBoost from './sd-boost';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -297,6 +300,7 @@ const strategies = {
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
+  'erc20-votes-with-override': erc20VotesWithOverride,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
@@ -531,6 +535,7 @@ const strategies = {
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
   've-ribbon': veRibbon,
+  've-ribbon-voting-power': veRibbonVotingPower,
   chubbykaijudao: chubbykaijudao,
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
@@ -542,7 +547,11 @@ const strategies = {
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
+<<<<<<< HEAD
   'conv-finance': convFinance
+=======
+  'sd-boost': sdBoost
+>>>>>>> snapshot/master
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
