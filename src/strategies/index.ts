@@ -547,11 +547,8 @@ const strategies = {
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
-<<<<<<< HEAD
-  'conv-finance': convFinance
-=======
+  'conv-finance': convFinance,
   'sd-boost': sdBoost
->>>>>>> snapshot/master
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
