@@ -273,6 +273,7 @@ import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as sdBoost from './sd-boost';
+import * as galcx from './galcx';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -546,7 +547,8 @@ const strategies = {
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
-  'sd-boost': sdBoost
+  'sd-boost': sdBoost,
+  galcx
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
