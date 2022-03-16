@@ -102,103 +102,107 @@ export async function strategy(
 
   const stakingPoolsMultiCalls: Promise<any>[] = [];
 
-  options.stakingPools.forEach((stakingPool: STAKING_POOL) => {
-    // Staking pool version:
-    // 1: Single reward
-    // 2: Multi reward
-    if (stakingPool.version === '2') {
-      stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
-        stakingPoolsMultiCalls.push(
-          multicall(
-            network,
-            provider,
-            stakingPoolsV2ContractAbi,
-            [
-              [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
-              ...addresses.map((userAddress: any) => [
-                stakingPool.address,
-                'userData',
-                [poolInfo.poolId, userAddress]
-              ]),
-              ...addresses.map((userAddress: any) => [
-                stakingPool.address,
-                'getReward',
-                [poolInfo.poolId, userAddress, poolInfo.rewarderIdx]
-              ])
-            ],
-            { blockTag }
-          )
-        );
-      });
-    } else {
-      stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
-        stakingPoolsMultiCalls.push(
-          multicall(
-            network,
-            provider,
-            stakingPoolsV1ContractAbi,
-            [
-              [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
-              ...addresses.map((userAddress: any) => [
-                stakingPool.address,
-                'userData',
-                [poolInfo.poolId, userAddress]
-              ]),
-              ...addresses.map((userAddress: any) => [
-                stakingPool.address,
-                'getReward',
-                [poolInfo.poolId, userAddress]
-              ])
-            ],
-            { blockTag }
-          )
-        );
-      });
-    }
-  });
+  if (options.stakingPools.length <= 5){
+    options.stakingPools.forEach((stakingPool: STAKING_POOL) => {
+      // Staking pool version:
+      // 1: Single reward
+      // 2: Multi reward
+      if (stakingPool.version === '2') {
+        stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
+          stakingPoolsMultiCalls.push(
+            multicall(
+              network,
+              provider,
+              stakingPoolsV2ContractAbi,
+              [
+                [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
+                ...addresses.map((userAddress: any) => [
+                  stakingPool.address,
+                  'userData',
+                  [poolInfo.poolId, userAddress]
+                ]),
+                ...addresses.map((userAddress: any) => [
+                  stakingPool.address,
+                  'getReward',
+                  [poolInfo.poolId, userAddress, poolInfo.rewarderIdx]
+                ])
+              ],
+              { blockTag }
+            )
+          );
+        });
+      } else {
+        stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
+          stakingPoolsMultiCalls.push(
+            multicall(
+              network,
+              provider,
+              stakingPoolsV1ContractAbi,
+              [
+                [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
+                ...addresses.map((userAddress: any) => [
+                  stakingPool.address,
+                  'userData',
+                  [poolInfo.poolId, userAddress]
+                ]),
+                ...addresses.map((userAddress: any) => [
+                  stakingPool.address,
+                  'getReward',
+                  [poolInfo.poolId, userAddress]
+                ])
+              ],
+              { blockTag }
+            )
+          );
+        });
+      }
+    });
+  }
 
   const stakingPoolRewarderMultiCalls: any[] = [];
 
   options.rewarder.forEach((rewarder: REWARDER) => {
-    //  Staking pool rewarder version:
-    // 1: Old rewarder
-    // 2. New rewarder
-    if (rewarder.version === '2') {
-      rewarder.poolIds.forEach((id: number) => {
-        stakingPoolRewarderMultiCalls.push(
-          multicall(
-            network,
-            provider,
-            rewarderV2ContractAbi,
-            [
-              ...addresses.map((userAddress: any) => [
-                rewarder.address,
-                'calculateTotalReward',
-                [userAddress, id]
-              ])
-            ],
-            { blockTag }
-          )
-        );
-      });
-    } else {
-      rewarder.poolIds.forEach((id: number) => {
-        stakingPoolRewarderMultiCalls.push(
-          multicall(
-            network,
-            provider,
-            rewarderV1ContractAbi,
-            [
-              ...addresses.map((userAddress: any) => [
-                rewarder.address,
-                'vestingSchedules',
-                [userAddress, id]
-              ])
-            ],
-            { blockTag }
-          )
-        );
-      });
+    if(rewarder.poolIds.length <= 5){
+      //  Staking pool rewarder version:
+      // 1: Old rewarder
+      // 2. New rewarder
+      if (rewarder.version === '2') {
+        rewarder.poolIds.forEach((id: number) => {
+          stakingPoolRewarderMultiCalls.push(
+            multicall(
+              network,
+              provider,
+              rewarderV2ContractAbi,
+              [
+                ...addresses.map((userAddress: any) => [
+                  rewarder.address,
+                  'calculateTotalReward',
+                  [userAddress, id]
+                ])
+              ],
+              { blockTag }
+            )
+          );
+        });
+      } else {
+        rewarder.poolIds.forEach((id: number) => {
+          stakingPoolRewarderMultiCalls.push(
+            multicall(
+              network,
+              provider,
+              rewarderV1ContractAbi,
+              [
+                ...addresses.map((userAddress: any) => [
+                  rewarder.address,
+                  'vestingSchedules',
+                  [userAddress, id]
+                ])
+              ],
+              { blockTag }
+            )
+          );
+        });
+      }
     }
   });
 
