@@ -154,6 +154,7 @@ import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
+import * as oolongswap from './oolongswap';
 import * as zrxVotingPower from './zrx-voting-power';
 import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
@@ -429,6 +430,7 @@ const strategies = {
   tomyumswap,
   'planet-finance': planetFinance,
   ogn,
+  oolongswap,
   'impossible-finance': impossibleFinance,
   'immutable-x': immutableX,
   badgeth,
