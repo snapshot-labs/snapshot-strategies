@@ -4,8 +4,8 @@ import { strategy as erc721Strategy } from '../erc721';
 import { subgraphRequest, getProvider } from '../../utils';
 import { getSnapshots } from '../../utils/blockfinder';
 
-export const author = 'maikir';
-export const version = '0.2.0';
+export const author = 'lightninglu10';
+export const version = '0.1.0';
 
 const MEEBITSDAO_DELEGATION_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
