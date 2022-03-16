@@ -5,8 +5,7 @@ const OOLONGSWAP_SUBGRAPH_URL = {
   '288': 'https://graph.mainnet.boba.network/subgraphs/name/oolongswap/mainnet'
 };
 
-// "Based" (practically a copy) on the "uniswap" strategy created by "vfatouros".
-export const author = 'vfatouros';
+export const author = 'Quantumlyy';
 export const version = '0.1.0';
 
 export async function strategy(
