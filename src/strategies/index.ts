@@ -594,3 +594,4 @@ Object.keys(strategies).forEach(function (strategyName) {
 });
 
 export default strategies;
+npm run test --strategy=<IKON1> // 
