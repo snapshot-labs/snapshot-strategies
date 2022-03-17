@@ -558,7 +558,8 @@ const strategies = {
   'erc20-rebase-wrapper': erc20RebaseWrapper,
   'wanakafarm-land-ingame': wanakafarmLandIngame,
   'meebitsdao-delegation': meebitsDaoDelegation,
-  gno: gno
+  gno: gno,
+  'gno-vote-weight': gno
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

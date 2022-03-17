@@ -15,13 +15,16 @@ export async function strategy(
     users: {
       __args: {
         where: { id_in: addresses },
-        block: { number: snapshot },
         first: 1000
       },
       id: true,
       voteWeight: true
     }
   };
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    params.users.__args.block = { number: snapshot };
+  }
   const result = await subgraphRequest(options.SUBGRAPH_URL[network], params);
   const score = {};
   result.users.map((user) => {
