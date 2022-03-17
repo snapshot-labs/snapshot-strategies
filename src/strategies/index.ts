@@ -154,6 +154,7 @@ import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
+import * as oolongswap from './oolongswap';
 import * as zrxVotingPower from './zrx-voting-power';
 import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
@@ -274,6 +275,7 @@ import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as sdBoost from './sd-boost';
 import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
+import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -430,6 +432,7 @@ const strategies = {
   tomyumswap,
   'planet-finance': planetFinance,
   ogn,
+  oolongswap,
   'impossible-finance': impossibleFinance,
   'immutable-x': immutableX,
   badgeth,
@@ -548,7 +551,8 @@ const strategies = {
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
   'sd-boost': sdBoost,
-  'erc20-rebase-wrapper': erc20RebaseWrapper
+  'erc20-rebase-wrapper': erc20RebaseWrapper,
+  'wanakafarm-land-ingame': wanakafarmLandIngame
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
