@@ -1,8 +1,5 @@
-import { strategy as meebitsdaoStrategy } from '../meebitsdao';
-import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
-import { strategy as erc721Strategy } from '../erc721';
-import { subgraphRequest, getProvider } from '../../utils';
-import { getSnapshots } from '../../utils/blockfinder';
+import { subgraphRequest } from '../../utils';
+import { getScoresDirect } from '../../utils';
 
 export const author = 'lightninglu10';
 export const version = '0.1.0';
@@ -18,12 +15,6 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blocks = await getSnapshots(
-    network,
-    snapshot,
-    provider,
-    options.tokenAddresses.map((s) => s.network || network)
-  );
 
   const params = {
     delegations: {
@@ -39,37 +30,31 @@ export async function strategy(
     params
   );
 
+  // console.log(result);
+
   const mvoxAddresses: string[] = [];
   result.delegations.forEach((delegation) => {
     mvoxAddresses.push(delegation.delegator);
   });
 
-  const mvoxScores = await erc20BalanceOfStrategy(
-    space,
-    network,
-    provider,
-    mvoxAddresses,
-    options.tokenAddresses[0],
-    snapshot
-  );
+  const scores: {} = {};
+  await Promise.all(options.strategies.map(async (strategy) => {
+    const score = (
+      await getScoresDirect(
+        space,
+        [strategy],
+        network,
+        provider,
+        strategy.params.symbol === 'mVOX' ? mvoxAddresses : addresses,
+        snapshot
+      )
+    ).filter((score) => Object.keys(score).length !== 0);
+    scores[strategy.params.symbol] = score[0];
+  }))
 
-  const mfndScores = await meebitsdaoStrategy(
-    space,
-    network,
-    provider,
-    addresses,
-    options.tokenAddresses[1],
-    snapshot
-  );
-
-  const meebitsScores = await erc721Strategy(
-    space,
-    options.tokenAddresses[2].network,
-    getProvider(options.tokenAddresses[2].network),
-    addresses,
-    options.tokenAddresses[2],
-    blocks[options.tokenAddresses[2].network]
-  );
+  const mvoxScores = scores['mVOX'];
+  const mfndScores = scores['MFND'];
+  const meebitsScores = scores['Meebits'];
 
   const delegations = {};
 
