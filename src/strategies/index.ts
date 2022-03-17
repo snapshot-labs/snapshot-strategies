@@ -594,3 +594,11 @@ Object.keys(strategies).forEach(function (strategyName) {
 });
 
 export default strategies;
+npm run test --strategy=<IKON1> // 
+  # Test default strategy (erc20-balance-of)
+yarn test
+# Test strategy with name
+yarn test --strategy=erc20-received
+yarn test --strategy=eth-balance
+# Test with more addresses from addresses.json
+yarn test --strategy=eth-balance --more=200
