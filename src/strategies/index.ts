@@ -274,6 +274,7 @@ import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as sdBoost from './sd-boost';
+import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
 import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 
 const strategies = {
@@ -550,6 +551,7 @@ const strategies = {
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
   'sd-boost': sdBoost,
+  'erc20-rebase-wrapper': erc20RebaseWrapper,
   'wanakafarm-land-ingame': wanakafarmLandIngame
 };
 
