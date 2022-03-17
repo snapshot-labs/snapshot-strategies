@@ -25,10 +25,7 @@
             "symbol": "Meebits",
             "network": "1"
           }
-        ],
-        "graphs": {
-          "137": "https://api.thegraph.com/subgraphs/name/sameepsi/maticblocks"
-        }
+        ]
       }
     },
     "network": "137",

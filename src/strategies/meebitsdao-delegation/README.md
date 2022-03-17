@@ -6,18 +6,26 @@ Here is an example of parameters:
 
 ```json
 {
+  "symbol": "mVOX, MFND, Meebits",
   "tokenAddresses": [
     {
       "address": "0x7C1a4c36D9BDa5C568f0E4877CD8E27D74Ae66c6",
       "symbol": "mVOX",
-      "decimals": 0
+      "decimals": 0,
+      "network": "137"
     },
     {
       "address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79",
       "symbol": "MFND",
       "apiUrl": "https://api.meebitsdao.com/user/token_status/",
       "startingTokenId": 1,
-      "endingTokenId": 200
+      "endingTokenId": 200,
+      "network": "137"
+    },
+    {
+      "address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7",
+      "symbol": "Meebits",
+      "network": "1"
     }
   ]
 }
