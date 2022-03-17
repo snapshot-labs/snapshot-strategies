@@ -5,57 +5,20 @@ This delegation strategy returns the balances of the voters for specific ERC20 [
 Here is an example of parameters:
 
 ```json
-[
-  {
-    "name": "Example query",
-    "strategy": {
-      "name": "meebitsdao-delegation",
-      "params": {
-        "symbol": "mVOX, MFND, Meebits",
-        "strategies": [
-          {
-            "name": "erc20-balance-of",
-            "params": {
-              "address": "0x7C1a4c36D9BDa5C568f0E4877CD8E27D74Ae66c6",
-              "symbol": "mVOX",
-              "decimals": 0
-            },
-            "network": "137"
-          },
-          {
-            "name": "meebitsdao",
-            "params": {
-              "address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79",
-              "symbol": "MFND",
-              "apiUrl": "https://api.meebitsdao.com/user/token_status/",
-              "startingTokenId": 1,
-              "endingTokenId": 200
-            },
-            "network": "137"
-          },
-          {
-            "name": "erc721",
-            "params": {
-              "address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7",
-              "symbol": "Meebits"
-            },
-            "network": "1"
-          }
-        ]
-      }
+{
+  "tokenAddresses": [
+    {
+      "address": "0x7C1a4c36D9BDa5C568f0E4877CD8E27D74Ae66c6",
+      "symbol": "mVOX",
+      "decimals": 0
     },
-    "network": "137",
-    "addresses": [
-      "0xc5e38233cc0d7cff9340e6139367aba498ec9b18",
-      "0xf134c8f76214c500dcdc9188a21bd405cdaaf4c8",
-      "0x2009a752a50D3CDe486d7b5921944377B729E747",
-      "0x017a04631caf0bacec325f68caad2838a80dd91d",
-      "0x0a1ee64e760ce54d38958e7b9c2a429cfae050c4",
-      "0x0cbf9fa338048bb8a8a0ea33f9c59f9d0407d692",
-      "0xffb6d3c42b07c17ed0b6be1136d2ebc599b2562e"
-    ],
-    "snapshot": 25925040
-  }
-]
-
+    {
+      "address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79",
+      "symbol": "MFND",
+      "apiUrl": "https://api.meebitsdao.com/user/token_status/",
+      "startingTokenId": 1,
+      "endingTokenId": 200
+    }
+  ]
+}
 ```
