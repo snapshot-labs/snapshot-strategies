@@ -276,6 +276,7 @@ import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as sdBoost from './sd-boost';
 import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
 import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
+import * as meebitsDaoDelegation from './meebitsdao-delegation';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -552,7 +553,8 @@ const strategies = {
   'minotaur-money': MinotaurMoney,
   'sd-boost': sdBoost,
   'erc20-rebase-wrapper': erc20RebaseWrapper,
-  'wanakafarm-land-ingame': wanakafarmLandIngame
+  'wanakafarm-land-ingame': wanakafarmLandIngame,
+  'meebitsdao-delegation': meebitsDaoDelegation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
