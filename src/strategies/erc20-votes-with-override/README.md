@@ -116,8 +116,8 @@ This override strategy addresses this by retrieving the Snapshot delegations dir
 - [A,B] are added to the total address list, so it becomes [A,B,C]
 - The regular calculations are done, so: {A: 100, B: 200, C: 300}
 - Depending on the value of `isSnapshotDelegatedScore`:
--- If false, only the score for C is returned: {C: 300}
--- If true, the scores for all Snapshot delegators of C are summed up, so {A:100,B:200} is summed and the strategy returns {C: 300}
+  - If false, only the score for C is returned: {C: 300}
+  - If true, the scores for all Snapshot delegators of C are summed up, so {A:100,B:200} is summed and the strategy returns {C: 300}
 - The final score is then C: 300 + 300 delegated, which is correct
 
 
