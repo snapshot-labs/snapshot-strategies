@@ -154,6 +154,7 @@ import * as planetFinance from './planet-finance';
 import * as impossibleFinance from './impossible-finance';
 import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
+import * as oolongswap from './oolongswap';
 import * as zrxVotingPower from './zrx-voting-power';
 import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
@@ -183,6 +184,7 @@ import * as sUmamiHolders from './sumami-holders';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
+import * as hoprStakingS2 from './hopr-staking-s2';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
@@ -274,6 +276,9 @@ import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as convFinance from './conv-finance';
 import * as sdBoost from './sd-boost';
+import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
+import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
+import * as meebitsDaoDelegation from './meebitsdao-delegation';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -430,6 +435,7 @@ const strategies = {
   tomyumswap,
   'planet-finance': planetFinance,
   ogn,
+  oolongswap,
   'impossible-finance': impossibleFinance,
   'immutable-x': immutableX,
   badgeth,
@@ -458,6 +464,7 @@ const strategies = {
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
+  'hopr-staking-s2': hoprStakingS2,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   swapr,
@@ -548,7 +555,10 @@ const strategies = {
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
   'conv-finance': convFinance,
-  'sd-boost': sdBoost
+  'sd-boost': sdBoost,
+  'erc20-rebase-wrapper': erc20RebaseWrapper,
+  'wanakafarm-land-ingame': wanakafarmLandIngame,
+  'meebitsdao-delegation': meebitsDaoDelegation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
