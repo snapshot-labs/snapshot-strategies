@@ -273,6 +273,7 @@ import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
 import * as sdBoost from './sd-boost';
+import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -546,7 +547,8 @@ const strategies = {
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
-  'sd-boost': sdBoost
+  'sd-boost': sdBoost,
+  'wanakafarm-land-ingame': wanakafarmLandIngame
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
