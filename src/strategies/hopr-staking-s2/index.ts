@@ -32,15 +32,13 @@ async function getXdaiBlockNumber(timestamp: number): Promise<number> {
 
 async function stakingSubgraphQuery(
   addresses: string[],
-  blockNumber: number
+  blockNumber: number,
+  snapshot: number | string
 ): Promise<{ [propName: string]: BigNumber }> {
   const query = {
     accounts: {
       __args: {
         first: LIMIT,
-        block: {
-          number: blockNumber
-        },
         where: {
           id_in: addresses.map((adr) => adr.toLowerCase())
         }
@@ -50,6 +48,11 @@ async function stakingSubgraphQuery(
       unclaimedRewards: true
     }
   };
+
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    query.accounts.__args.block = { number: blockNumber };
+  }
   const data = await subgraphRequest(HOPR_STAKING_SUBGRAPH_URL, query);
   // map result (data.accounts) to addresses
   const entries = data.accounts.map((d) => [
@@ -69,7 +72,8 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const isXdai = network === '100'; // either xDAI or ETH mainnet
-  const [block] = await Promise.all([provider.getBlock(blockTag)]);
+  const block = await provider.getBlock(blockTag);
+  console.log(block.number);
 
   // get the block number for subgraph query
   const subgraphBlock = isXdai
@@ -83,7 +87,9 @@ export async function strategy(
   ).map((_e, i) => addresses.slice(i * LIMIT, (i + 1) * LIMIT));
 
   const returnedFromSubgraph = await Promise.all(
-    addressSubsets.map((subset) => stakingSubgraphQuery(subset, subgraphBlock))
+    addressSubsets.map((subset) =>
+      stakingSubgraphQuery(subset, subgraphBlock, snapshot)
+    )
   );
 
   // get and parse balance from subgraph
