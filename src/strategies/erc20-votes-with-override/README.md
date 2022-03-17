@@ -6,7 +6,8 @@
 - [Example With Snapshot Delegations](#example-with-snapshot-delegations)
 - [Options](#options)
 
-### Overview
+
+## Overview
 
 This strategy is similar to [ERC-20 Votes](../erc20-votes), except that it also allows individual delegators to **override** their vote on a particular proposal if they wish. This is most useful for social (off-chain only) proposals.
 
@@ -16,7 +17,8 @@ If an account is delegating to itself, then its own token balance will already b
 
 If an account is delegating to a different valid address, adds the local token balance. The account must be delegated to another valid address, otherwise the local token balance will not be added.
 
-### Example
+
+## Example
 
 Say you have accounts [A,B,C], each with token balances [100,200,300], and they are delegated on-chain like so:
 ![Delegation Example 1](https://i.imgur.com/loMPDiu.png)
@@ -43,7 +45,8 @@ Here are the scores that would be given using this override strategy, depending 
 
 When an account votes, it will have access to its own token balance, and also any delegated voting power, _minus_ the balances of any delegators that have also voted. That's how it ensures that delegators can "override" their delegates but still no double-counting happens.
 
-### Snapshot Delegations
+
+## Snapshot Delegations
 
 Accounts can also delegate [via Snapshot](https://docs.snapshot.org/guides/delegation) as well.
 
@@ -75,7 +78,8 @@ Non-delegated strategy:
 }
 ```
 
-### Example With Snapshot Delegations
+
+## Example With Snapshot Delegations
 
 Take the same example [from above](#example), with accounts [A,B,C], each with token balances [100,200,300]. This time we'll also add some Snapshot delegations:
 ![Delegation Example 2](https://i.imgur.com/bb2rC5J.png)
@@ -103,6 +107,7 @@ So in this case the total scores, when both the regular and delegated strategies
 | A,C | 100 | | 800 |
 | B,C | | 300 | 400 |
 | A,B,C | 100 | 200 | 300 |
+
 You can see that in some scenarios double-counting occurs, in [C], [A,C], and [B,C].
 
 This override strategy addresses this by retrieving the Snapshot delegations directly, and then calculating the scores as if all those delegators were also voting. Take the scenario where only C votes. This strategy will:
@@ -111,11 +116,12 @@ This override strategy addresses this by retrieving the Snapshot delegations dir
 - [A,B] are added to the total address list, so it becomes [A,B,C]
 - The regular calculations are done, so: {A: 100, B: 200, C: 300}
 - Depending on the value of `isSnapshotDelegatedScore`:
-  -- If false, only the score for C is returned: {C: 300}
-  -- If true, the scores for all Snapshot delegators of C are summed up, so {A:100,B:200} is summed and the strategy returns {C: 300}
+-- If false, only the score for C is returned: {C: 300}
+-- If true, the scores for all Snapshot delegators of C are summed up, so {A:100,B:200} is summed and the strategy returns {C: 300}
 - The final score is then C: 300 + 300 delegated, which is correct
 
-### Options
+
+## Options
 
 - **address:** The address of the ERC-20 token contract.
 - **symbol:** The display symbol for the token, e.g. "ENS".
