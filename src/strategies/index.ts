@@ -278,6 +278,7 @@ import * as sdBoost from './sd-boost';
 import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
 import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 import * as meebitsDaoDelegation from './meebitsdao-delegation';
+import * as gno from './gno';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -556,7 +557,8 @@ const strategies = {
   'sd-boost': sdBoost,
   'erc20-rebase-wrapper': erc20RebaseWrapper,
   'wanakafarm-land-ingame': wanakafarmLandIngame,
-  'meebitsdao-delegation': meebitsDaoDelegation
+  'meebitsdao-delegation': meebitsDaoDelegation,
+  gno: gno
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
