@@ -11,7 +11,9 @@ interface STRATEGY_OPTIONS {
   decimals: number;
   lpTokenAddresses: string[];
   stakingPools: STAKING_POOL[];
+  stakingPoolsVersion: string;
   rewarder: REWARDER[];
+  rewarderVersion: string;
 }
 
 interface LP_TOKEN {
@@ -80,12 +82,8 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const lpMultiCalls = options.lpTokenAddresses.map((lpAddress: any) => {
-    return multicall(
-      network,
-      provider,
-      lpTokenContractAbi,
-      [
+  const lpMultiCalls = options.lpTokenAddresses.flatMap((lpAddress: any) => {
+    return [
         [lpAddress, 'token0', []],
         [lpAddress, 'token1', []],
         [lpAddress, 'getReserves', []],
@@ -95,137 +93,150 @@ export async function strategy(
           'balanceOf',
           [userAddress]
         ])
-      ],
-      { blockTag }
-    );
+      ]
   });
 
-  const stakingPoolsMultiCalls: Promise<any>[] = [];
+  const stakingPoolsMultiCalls: any[] = [];
 
-  if (options.stakingPools.length <= 5){
-    options.stakingPools.forEach((stakingPool: STAKING_POOL) => {
-      // Staking pool version:
-      // 1: Single reward
-      // 2: Multi reward
-      if (stakingPool.version === '2') {
-        stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
-          stakingPoolsMultiCalls.push(
-            multicall(
-              network,
-              provider,
-              stakingPoolsV2ContractAbi,
-              [
-                [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
-                ...addresses.map((userAddress: any) => [
-                  stakingPool.address,
-                  'userData',
-                  [poolInfo.poolId, userAddress]
-                ]),
-                ...addresses.map((userAddress: any) => [
-                  stakingPool.address,
-                  'getReward',
-                  [poolInfo.poolId, userAddress, poolInfo.rewarderIdx]
-                ])
-              ],
-              { blockTag }
-            )
-          );
-        });
-      } else {
-        stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
-          stakingPoolsMultiCalls.push(
-            multicall(
-              network,
-              provider,
-              stakingPoolsV1ContractAbi,
-              [
-                [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
-                ...addresses.map((userAddress: any) => [
-                  stakingPool.address,
-                  'userData',
-                  [poolInfo.poolId, userAddress]
-                ]),
-                ...addresses.map((userAddress: any) => [
-                  stakingPool.address,
-                  'getReward',
-                  [poolInfo.poolId, userAddress]
-                ])
-              ],
-              { blockTag }
-            )
-          );
-        });
-      }
-    });
-  }
+  options.stakingPools.forEach((stakingPool: STAKING_POOL) => {
+    // Staking pool version:
+    // 1: Single reward
+    // 2: Multi reward
+    if (options.stakingPoolsVersion === '2') {
+      stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
+        stakingPoolsMultiCalls.push(
+          [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
+          ...addresses.map((userAddress: any) => [
+            stakingPool.address,
+            'userData',
+            [poolInfo.poolId, userAddress]
+          ]),
+          ...addresses.map((userAddress: any) => [
+            stakingPool.address,
+            'getReward',
+            [poolInfo.poolId, userAddress, poolInfo.rewarderIdx]
+          ])
+        );
+      });
+    } else {
+      stakingPool.pools.forEach((poolInfo: STAKING_POOL_INFO) => {
+        stakingPoolsMultiCalls.push(
+          [stakingPool.address, 'poolInfos', [poolInfo.poolId]], // Get pool token
+          ...addresses.map((userAddress: any) => [
+            stakingPool.address,
+            'userData',
+            [poolInfo.poolId, userAddress]
+          ]),
+          ...addresses.map((userAddress: any) => [
+            stakingPool.address,
+            'getReward',
+            [poolInfo.poolId, userAddress]
+          ])
+        );
+      });
+    }
+  });
 
   const stakingPoolRewarderMultiCalls: any[] = [];
 
   options.rewarder.forEach((rewarder: REWARDER) => {
-    if(rewarder.poolIds.length <= 5){
-      //  Staking pool rewarder version:
-      // 1: Old rewarder
-      // 2. New rewarder
-      if (rewarder.version === '2') {
-        rewarder.poolIds.forEach((id: number) => {
-          stakingPoolRewarderMultiCalls.push(
-            multicall(
-              network,
-              provider,
-              rewarderV2ContractAbi,
-              [
-                ...addresses.map((userAddress: any) => [
-                  rewarder.address,
-                  'calculateTotalReward',
-                  [userAddress, id]
-                ])
-              ],
-              { blockTag }
-            )
-          );
-        });
-      } else {
-        rewarder.poolIds.forEach((id: number) => {
-          stakingPoolRewarderMultiCalls.push(
-            multicall(
-              network,
-              provider,
-              rewarderV1ContractAbi,
-              [
-                ...addresses.map((userAddress: any) => [
-                  rewarder.address,
-                  'vestingSchedules',
-                  [userAddress, id]
-                ])
-              ],
-              { blockTag }
-            )
-          );
-        });
-      }
+    //  Staking pool rewarder version:
+    // 1: Old rewarder
+    // 2. New rewarder
+    if (options.rewarderVersion === '2') {
+      rewarder.poolIds.forEach((id: number) => {
+        stakingPoolRewarderMultiCalls.push(
+          ...addresses.map((userAddress: any) => [
+            rewarder.address,
+            'calculateTotalReward',
+            [userAddress, id]
+          ])
+        );
+      });
+    } else {
+      rewarder.poolIds.forEach((id: number) => {
+        stakingPoolRewarderMultiCalls.push(
+          ...addresses.map((userAddress: any) => [
+            rewarder.address,
+            'vestingSchedules',
+            [userAddress, id]
+          ])
+        );
+      });
     }
   });
 
-  let res = await Promise.all([
-    ...lpMultiCalls,
-    ...stakingPoolsMultiCalls,
-    ...stakingPoolRewarderMultiCalls
-  ]);
+  let promiseArray = [
+    multicall(
+      network,
+      provider,
+      lpTokenContractAbi,
+      lpMultiCalls,
+      {blockTag}
+    )
+  ];
+
+  if (options.stakingPoolsVersion === '2') {
+    promiseArray.push(
+      multicall(
+        network,
+        provider,
+        stakingPoolsV2ContractAbi,
+        stakingPoolsMultiCalls,
+        {blockTag}
+      )
+    )
+  } else {
+    promiseArray.push(
+      multicall(
+        network,
+        provider,
+        stakingPoolsV1ContractAbi,
+        stakingPoolsMultiCalls,
+        {blockTag}
+      )
+    )
+  }
+
+  if (options.rewarderVersion === '2'){
+    promiseArray.push(
+      multicall(
+        network,
+        provider,
+        rewarderV2ContractAbi,
+        stakingPoolRewarderMultiCalls,
+        {blockTag}
+      )
+    )
+  } else {
+    promiseArray.push(
+      multicall(
+        network,
+        provider,
+        rewarderV1ContractAbi,
+        stakingPoolRewarderMultiCalls,
+        {blockTag}
+      )
+    )
+  }
+
+  let res = await Promise.all(promiseArray);
 
   const usersTokensFromLp: BigNumber[] = [];
   const lpTokens: LP_TOKEN = {};
 
   // LP Token Calculation
 
-  options.lpTokenAddresses.forEach((lpAddress: string, idx) => {
-    let result = res[idx];
-    const token0Addr = result[0][0];
-    const token1Addr = result[1][0];
-    const reserve0 = bn(result[2][0]);
-    const reserve1 = bn(result[2][1]);
-    const totalSupply = bn(result[3]);
+  let lpTokenResult = res[0];
 
-    result = result.slice(4);
+  options.lpTokenAddresses.forEach((lpAddress: string, idx) => {
+    const token0Addr = lpTokenResult[0][0];
+    const token1Addr = lpTokenResult[1][0];
+    const reserve0 = bn(lpTokenResult[2][0]);
+    const reserve1 = bn(lpTokenResult[2][1]);
+    const totalSupply = bn(lpTokenResult[3][0]);
+
+    lpTokenResult = lpTokenResult.slice(4);
 
     let tokenInLP = bn(0);
     if (token0Addr === options.address) {
@@ -234,8 +245,8 @@ export async function strategy(
       tokenInLP = reserve1.mul(bn(2));
     }
 
-    result.slice(0, addresses.length).map((num: BigNumber, i: number) => {
-      const lpTokenBal = bn(num);
+    lpTokenResult.slice(0, addresses.length).map((num: BigNumber, i: number) => {
+      const lpTokenBal = bn(num[0]);
       if (usersTokensFromLp[i] === undefined) {
         usersTokensFromLp[i] = lpTokenBal.mul(tokenInLP).div(totalSupply);
       } else {
@@ -249,35 +260,32 @@ export async function strategy(
       totalSupply,
       totalToken: tokenInLP
     };
+
+    lpTokenResult = lpTokenResult.slice(addresses.length);
   });
 
-  res = res.slice(options.lpTokenAddresses.length);
+  let stakingPoolResult = res[1];
 
   // Staking Pools Calculation
-  let stakingPoolNumber = 0;
-  for (let i = 0; i < options.stakingPools.length; i++) {
-    stakingPoolNumber += options.stakingPools[i].pools.length;
-  }
 
   options.stakingPools.forEach((stakingPool: STAKING_POOL, idx) => {
     stakingPool.pools.forEach((poolId, poolIdx) => {
-      let result = res[idx + poolIdx];
       let poolToken = '';
-      if (stakingPool.version === '2') {
-        poolToken = result[0][3];
+      if (options.stakingPoolsVersion === '2') {
+        poolToken = stakingPoolResult[0][3];
       } else {
-        poolToken = result[0][4];
+        poolToken = stakingPoolResult[0][4];
       }
-      result = result.slice(1);
+      stakingPoolResult = stakingPoolResult.slice(1);
 
       if (poolToken === options.address) {
         // single side staking
-        result.slice(0, addresses.length).map((userData, idx) => {
+        stakingPoolResult.slice(0, addresses.length).map((userData, idx) => {
           const stakingBal = bn(userData[0]);
           usersTokensFromLp[idx] = usersTokensFromLp[idx].add(stakingBal);
         });
-        result = result.slice(addresses.length);
-        result.slice(0, addresses.length).map((num, idx) => {
+        stakingPoolResult = stakingPoolResult.slice(addresses.length);
+        stakingPoolResult.slice(0, addresses.length).map((num, idx) => {
           const pendingReward = bn(num);
           usersTokensFromLp[idx] = usersTokensFromLp[idx].add(pendingReward);
         });
@@ -285,41 +293,43 @@ export async function strategy(
         // CONV LP token staking
         const totalSupply = lpTokens[poolToken.toLowerCase()].totalSupply;
         const totalToken = lpTokens[poolToken.toLowerCase()].totalToken;
-        result.slice(0, addresses.length).map((userData, idx) => {
+        stakingPoolResult.slice(0, addresses.length).map((userData, idx) => {
           const stakedLPBal = bn(userData[0]);
           usersTokensFromLp[idx] = usersTokensFromLp[idx].add(
             stakedLPBal.mul(totalToken).div(totalSupply)
           );
         });
-        result = result.slice(addresses.length);
-        result.slice(0, addresses.length).map((num, idx) => {
+        stakingPoolResult = stakingPoolResult.slice(addresses.length);
+        stakingPoolResult.slice(0, addresses.length).map((num, idx) => {
           const pendingReward = bn(num);
           usersTokensFromLp[idx] = usersTokensFromLp[idx].add(pendingReward);
         });
       } else {
         // Non-CONV LP token staking, only calculates pending reward
-        result = result.slice(addresses.length);
-        result.slice(0, addresses.length).map((num, idx) => {
+        stakingPoolResult = stakingPoolResult.slice(addresses.length);
+        stakingPoolResult.slice(0, addresses.length).map((num, idx) => {
           const pendingReward = bn(num);
           usersTokensFromLp[idx] = usersTokensFromLp[idx].add(pendingReward);
         });
       }
+      stakingPoolResult = stakingPoolResult.slice(addresses.length);
     });
   });
 
-  res = res.slice(stakingPoolNumber);
+  let rewarderResult = res[2]
+
+  console.log(rewarderResult);
 
   // Rewarder Calculation
   options.rewarder.forEach((rewarder: REWARDER, idx) => {
     rewarder.poolIds.forEach((poolId, poolIdx) => {
-      const result = res[idx + poolIdx];
-      if (rewarder.version === '2') {
-        result.slice(0, addresses.length).map((num, i) => {
+      if (options.rewarderVersion === '2') {
+        rewarderResult.slice(0, addresses.length).map((num, i) => {
           const rewarderBal = bn(num);
           usersTokensFromLp[i] = usersTokensFromLp[i].add(rewarderBal);
         });
       } else {
-        result.slice(0, addresses.length).map((vestingSchedule, i) => {
+        rewarderResult.slice(0, addresses.length).map((vestingSchedule, i) => {
           const vestingAmount = bn(vestingSchedule[0]);
           if (vestingAmount.gt(bn(0))) {
             const startTime = parseInt(vestingSchedule[1]);
@@ -335,6 +345,7 @@ export async function strategy(
           }
         });
       }
+      rewarderResult = rewarderResult.slice(addresses.length);
     });
   });
 
