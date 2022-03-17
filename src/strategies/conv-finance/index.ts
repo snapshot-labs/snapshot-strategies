@@ -25,7 +25,6 @@ interface LP_TOKEN {
 
 interface STAKING_POOL {
   address: string;
-  version: string;
   pools: STAKING_POOL_INFO[];
 }
 
@@ -36,7 +35,6 @@ interface STAKING_POOL_INFO {
 
 interface REWARDER {
   address: string;
-  version: string;
   poolIds: number[];
 }
 
@@ -317,8 +315,6 @@ export async function strategy(
   });
 
   let rewarderResult = res[2]
-
-  console.log(rewarderResult);
 
   // Rewarder Calculation
   options.rewarder.forEach((rewarder: REWARDER, idx) => {

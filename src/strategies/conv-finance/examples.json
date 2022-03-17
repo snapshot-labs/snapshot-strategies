@@ -41,17 +41,14 @@
         "rewarder": [
           {
             "address": "0x5fC40FAd9728B45be4A762C02Fdb574b1E5E9e93",
-            "version": "2",
             "poolIds": [7]
           },
           {
             "address": "0x823c9f78DD5cf945DB8d81Ac3A959fC0E6233bb9",
-            "version": "2",
             "poolIds": [1]
           },
           {
             "address": "0x88Cb1456b8325aC99f90eBdadB1826516BfFc79a",
-            "version": "2",
             "poolIds": [2]
           }
         ],
