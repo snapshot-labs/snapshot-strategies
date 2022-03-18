@@ -151,6 +151,7 @@ import * as cake from './cake';
 import * as aks from './aks';
 import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
+import * as planetFinancev2 from './planet-finance-v2';
 import * as impossibleFinance from './impossible-finance';
 import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
@@ -274,7 +275,9 @@ import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
+import * as convFinance from './conv-finance';
 import * as sdBoost from './sd-boost';
+import * as capitalDaoStaking from './capitaldao-staking';
 import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
 import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 import * as meebitsDaoDelegation from './meebitsdao-delegation';
@@ -433,6 +436,7 @@ const strategies = {
   aks,
   tomyumswap,
   'planet-finance': planetFinance,
+  'planet-finance-v2': planetFinancev2,
   ogn,
   oolongswap,
   'impossible-finance': impossibleFinance,
@@ -553,7 +557,9 @@ const strategies = {
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
+  'conv-finance': convFinance,
   'sd-boost': sdBoost,
+  'capitaldao-staking': capitalDaoStaking,
   'erc20-rebase-wrapper': erc20RebaseWrapper,
   'wanakafarm-land-ingame': wanakafarmLandIngame,
   'meebitsdao-delegation': meebitsDaoDelegation
