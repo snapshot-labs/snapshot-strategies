@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-erc721-conditional",
+      "params": {
+        "address": "0x0d500B1d8E8eF31E21C99d1Db9A6444d3ADf1270",
+        "symbol": "WMatic",
+        "decimals": 18,
+        "address_erc721": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+        "symbol_erc721": "NFT",
+        "network_erc721": "1",
+        "snapshot_erc721": 14411063
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x0000000000000000000000000000000000baddad",
+      "0x4E9B1c9e75D059cF56e4E670aC20f3d67b4824E2",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0xBA2E7Fed597fd0E3e70f5130BcDbbFE06bB94fe1"
+    ],
+    "snapshot": 26077497
+  }
+]
