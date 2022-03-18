@@ -275,6 +275,7 @@ import * as ethercatsFoundersSeries from './ethercats-founders-series';
 import * as potion from './potion';
 import * as MinotaurMoney from './minotaur-money';
 import * as safetyModuleBptPower from './safety-module-bpt-power';
+import * as convFinance from './conv-finance';
 import * as sdBoost from './sd-boost';
 import * as capitalDaoStaking from './capitaldao-staking';
 import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
@@ -556,6 +557,7 @@ const strategies = {
   potion,
   'safety-module-bpt-power': safetyModuleBptPower,
   'minotaur-money': MinotaurMoney,
+  'conv-finance': convFinance,
   'sd-boost': sdBoost,
   'capitaldao-staking': capitalDaoStaking,
   'erc20-rebase-wrapper': erc20RebaseWrapper,
