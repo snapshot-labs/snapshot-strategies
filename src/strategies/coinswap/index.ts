@@ -41,7 +41,6 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   /*
@@ -63,10 +62,7 @@ export async function strategy(
   });
 
   addresses.forEach((address) =>
-    multiMasterCSS.call(address, options.masterCSS, 'userInfo', [
-      '0',
-      address
-    ])
+    multiMasterCSS.call(address, options.masterCSS, 'userInfo', ['0', address])
   );
   const resultMasterCSS: Record<
     string,
@@ -77,12 +73,17 @@ export async function strategy(
     Balance in Launch pools
     from params.communityStakeCSS
   */
-  const multiCommunityStake = new Multicaller(network, provider, communityStakeAbi, {
-    blockTag
-  });
+  const multiCommunityStake = new Multicaller(
+    network,
+    provider,
+    communityStakeAbi,
+    {
+      blockTag
+    }
+  );
   options.communityStake.forEach((communityStakeAddress) => {
     addresses.forEach((address) =>
-    multiCommunityStake.call(
+      multiCommunityStake.call(
         communityStakeAddress + '-' + address,
         communityStakeAddress,
         'userInfo',

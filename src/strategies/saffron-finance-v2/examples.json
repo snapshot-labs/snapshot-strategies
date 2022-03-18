@@ -8,7 +8,10 @@
         "decimals": 18,
         "multiplier": 1.1,
         "stakingPool": "0x4eB4C5911e931667fE1647428F38401aB1661763",
-        "singleAssets": [ "0xb753428af26E81097e7fD17f40c88aaA3E04902c", "0xf34960d9d60be18cc1d5afc1a6f012a723a28811" ]
+        "singleAssets": [
+          "0xb753428af26E81097e7fD17f40c88aaA3E04902c",
+          "0xf34960d9d60be18cc1d5afc1a6f012a723a28811"
+        ]
       }
     },
     "network": "1",

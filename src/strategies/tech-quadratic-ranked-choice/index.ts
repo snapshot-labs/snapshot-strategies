@@ -42,7 +42,7 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(sqrt(balance), options.decimals))
+      parseFloat(formatUnits(sqrt(balance), options.decimals / 2))
     ])
   );
 }

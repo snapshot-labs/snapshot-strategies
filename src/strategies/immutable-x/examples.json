@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Immutable X (L1 + L2) vote weighting strategy",
+    "strategy": {
+      "name": "immutable-x",
+      "params": {
+        "symbol": "imx",
+        "address": "0x26b81657e09d3a6a18ff1c6d776fd09f4bb9ee80",
+        "decimals": 18,
+        "pageSize": 100
+      }
+    },
+    "network": "3",
+    "addresses": [
+      "0x6f78046c7441c9ae8063f78af53ef29b47871a3e",
+      "0xed6f74e896e6853959a02f27634d4ff0b58286ff",
+      "0x9f797c209fa19627cb4cb52232b5a615dd04f3f8",
+      "0x60bdc16bd3b001a4c7fb3ef598f4b075ad586d5d",
+      "0xc8714f989ce817e5d21349888077aa5db4a9bcf6",
+      "0x49632a466ee268ebb756fc4d963af98143f259d0",
+      "0x6b32a7add2673a3bc84bd7c5f3bccfb3e96fd611",
+      "0xca65c6c80562163d49bd12690c2c7ae7d005c6fb",
+      "0x2d7e665acb06d5907b0b169bbea61ddf5e206b95",
+      "0x2915f444dca40cf23e0050e12e30e35d864fb451",
+      "0x973eb49bbdd2754609ba5f3da0b7836948636e62",
+      "0xdb0d4032c8e03f946477eca6336fac87d1e8ef2f",
+      "0xed6f74e896e6853959a02f27634d4ff0b58286ff",
+      "0xdb0d4032c8e03f946477eca6336fac87d1e8ef2f",
+      "0xca65c6c80562163d49bd12690c2c7ae7d005c6fb",
+      "0xc8714f989ce817e5d21349888077aa5db4a9bcf6",
+      "0x9f797c209fa19627cb4cb52232b5a615dd04f3f8",
+      "0x973eb49bbdd2754609ba5f3da0b7836948636e62",
+      "0x6f78046c7441c9ae8063f78af53ef29b47871a3e",
+      "0x6b32a7add2673a3bc84bd7c5f3bccfb3e96fd611",
+      "0x60bdc16bd3b001a4c7fb3ef598f4b075ad586d5d",
+      "0x49632a466ee268ebb756fc4d963af98143f259d0",
+      "0x2d7e665acb06d5907b0b169bbea61ddf5e206b95",
+      "0x2915f444dca40cf23e0050e12e30e35d864fb451",
+      "0xed6f74e896e6853959a02f27634d4ff0b58286ff",
+      "0xdb0d4032c8e03f946477eca6336fac87d1e8ef2f",
+      "0xca65c6c80562163d49bd12690c2c7ae7d005c6fb",
+      "0xc8714f989ce817e5d21349888077aa5db4a9bcf6",
+      "0x9f797c209fa19627cb4cb52232b5a615dd04f3f8",
+      "0x973eb49bbdd2754609ba5f3da0b7836948636e62"
+    ],
+    "snapshot": 11850372
+  }
+]

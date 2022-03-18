@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Voting shares of VOLT token stakers and holders",
+    "strategy": {
+      "name": "volt-voting-power",
+      "params": {
+        "symbol": "VOLT",
+        "tokenDecimals": 18,
+        "lpTokenAddress": "0x1071392e4cdf7c01d433b87be92beb1f8fd663a8",
+        "voltAddress": "0x8df95e66cb0ef38f91d2776da3c921768982fba0",
+        "network": "82"
+      }
+    },
+
+    "network": "82",
+    "addresses": [
+      "0xc1a39d256959aa5e97784200f91ce63501dbd990",
+      "0x8cafd0397e1b09199A1B1239030Cc6b011AE696d"
+    ],
+    "snapshot": 12140940
+  }
+]

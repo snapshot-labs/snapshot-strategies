@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "spacey2025",
+      "params": {
+        "address": "0x230185C3B02b897B89cb1e62717AD7772b8319DA",
+        "symbol": "NFT"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xBAB298D0Dcb2589a1c24B6c88fb10BD08eFe3265",
+      "0x71c06f42637489844cdb9238e9f6e6e5e0be0fc7",
+      "0xcb02df5930d55f8ad9fdb37c0c24509ccb378f06"
+    ],
+    "snapshot": 14713766
+  }
+]

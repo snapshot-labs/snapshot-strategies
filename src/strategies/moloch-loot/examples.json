@@ -4,6 +4,7 @@
     "strategy": {
       "name": "moloch-loot",
       "params": {
+        "symbol": "LOOT",
         "address": "0xb152b115c94275b54a3f0b08c1aa1d21f32a659a",
         "decimals": 0
       }

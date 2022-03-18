@@ -4,6 +4,7 @@
     "strategy": {
       "name": "erc1155-balance-of-cv",
       "params": {
+        "symbol": "ABC",
         "address": "0xE18a32192ED95b0FE9D70D19e5025f103475d7BA",
         "tokenId": "0x8000000000000000000000000000000200000000000000000000000000000000",
         "decimals": 0

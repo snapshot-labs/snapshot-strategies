@@ -48,8 +48,12 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, { blockTag });
   const pools = new Array<PoolInfo>();
-  const stakingPool = options.stakingPool ? options.stakingPool : SAFF_STAKING_V2;
-  const singleAssets = options.singleAssets ? options.singleAssets : SINGLE_ASSETS_DEFAULT;
+  const stakingPool = options.stakingPool
+    ? options.stakingPool
+    : SAFF_STAKING_V2;
+  const singleAssets = options.singleAssets
+    ? options.singleAssets
+    : SINGLE_ASSETS_DEFAULT;
   const votingDecimals = options.decimals ? options.decimals : SFI_DECIMALS;
 
   // ========== Prepare pools' lp token data ==========
@@ -79,7 +83,11 @@ export async function strategy(
 
   for (let i = 0; i < poolLength; i++) {
     const lpAddress = pools[i].lpToken.lpAddress;
-    if (singleAssets.find(item => item.toLowerCase() === lpAddress.toLowerCase())) {
+    if (
+      singleAssets.find(
+        (item) => item.toLowerCase() === lpAddress.toLowerCase()
+      )
+    ) {
       multi.call(`reserves[${i}]`, lpAddress, 'balanceOf', [stakingPool]);
       multi.call(`supply[${i}]`, lpAddress, 'totalSupply', []);
     } else {
@@ -115,7 +123,12 @@ export async function strategy(
   // ====== retrieve user info for each pool ============
   addresses.forEach((address) => {
     pools.forEach((pool) =>
-      multi.call(`userInfo.${address}[${pool.id.toNumber()}]`, stakingPool, 'userInfo', [pool.id, address])
+      multi.call(
+        `userInfo.${address}[${pool.id.toNumber()}]`,
+        stakingPool,
+        'userInfo',
+        [pool.id, address]
+      )
     );
   });
   const userInfoResult = await multi.execute();
@@ -126,7 +139,8 @@ export async function strategy(
   addresses.forEach((address) => {
     let total = BigNumber.from(0);
     pools.forEach((pool) => {
-      const userInfo = userInfoResult.userInfo[`${address}`][pool.id.toNumber()];
+      const userInfo =
+        userInfoResult.userInfo[`${address}`][pool.id.toNumber()];
       const poolTotal = userInfo.amount
         .mul(tenTo18)
         .mul(pools[pool.id.toNumber()].lpToken.sfiReserve)
@@ -138,7 +152,8 @@ export async function strategy(
   });
 
   const formatted = new Map<string, number>();
-  const votingMultiplier = 'multiplier' in options ? options.multiplier : STAKING_VOTE_BOOST_DEFAULT;
+  const votingMultiplier =
+    'multiplier' in options ? options.multiplier : STAKING_VOTE_BOOST_DEFAULT;
   result.forEach((balance, address) => {
     const rawVote = parseFloat(formatUnits(balance, votingDecimals));
     const calculatedVote = rawVote * votingMultiplier;
