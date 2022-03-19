@@ -1,5 +1,4 @@
-import fetch from 'cross-fetch';
-import { subgraphRequest } from '../../utils';
+import { subgraphRequest, customFetch } from '../../utils';
 
 export const author = 'pancake-swap';
 export const version = '0.0.1';
@@ -28,7 +27,7 @@ const fetchVotingPower = async (
   block: number,
   poolAddresses: string[]
 ): Promise<VotingResponse> => {
-  const response = await fetch(VOTING_API_URL, {
+  const response = await customFetch(VOTING_API_URL, {
     method: 'POST',
     body: JSON.stringify({
       block,
