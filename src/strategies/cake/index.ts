@@ -27,14 +27,18 @@ const fetchVotingPower = async (
   block: number,
   poolAddresses: string[]
 ): Promise<VotingResponse> => {
-  const response = await customFetch(VOTING_API_URL, {
-    method: 'POST',
-    body: JSON.stringify({
-      block,
-      address,
-      poolAddresses
-    })
-  });
+  const response = await customFetch(
+    VOTING_API_URL,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        block,
+        address,
+        poolAddresses
+      })
+    },
+    15000
+  );
 
   const payload = await response.json();
   return payload.data;
@@ -74,27 +78,23 @@ export async function strategy(
     return;
   }
 
-  try {
-    const poolAddresses = results.smartChefs.map((pool) => pool.id);
-    const promises = addresses.map((address) => {
-      return fetchVotingPower(address, blockTag, poolAddresses);
-    }) as ReturnType<typeof fetchVotingPower>[];
-    const votingPowerResults = await Promise.all(promises);
+  const poolAddresses = results.smartChefs.map((pool) => pool.id);
+  const promises = addresses.map((address) => {
+    return fetchVotingPower(address, blockTag, poolAddresses);
+  }) as ReturnType<typeof fetchVotingPower>[];
+  const votingPowerResults = await Promise.all(promises);
 
-    const calculatedPower = votingPowerResults.reduce(
-      (accum, response, index) => {
-        const address = addresses[index];
-        const total = parseFloat(response.total);
+  const calculatedPower = votingPowerResults.reduce(
+    (accum, response, index) => {
+      const address = addresses[index];
+      const total = parseFloat(response.total);
 
-        return {
-          ...accum,
-          [address]: total <= MINIUM_VOTING_POWER ? MINIUM_VOTING_POWER : total
-        };
-      },
-      {}
-    );
-    return calculatedPower;
-  } catch {
-    return [];
-  }
+      return {
+        ...accum,
+        [address]: total <= MINIUM_VOTING_POWER ? MINIUM_VOTING_POWER : total
+      };
+    },
+    {}
+  );
+  return calculatedPower;
 }
