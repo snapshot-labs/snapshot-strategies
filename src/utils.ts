@@ -57,8 +57,7 @@ export async function getScoresDirect(
   }
 }
 
-export function customFetch(url, options): Promise<any> {
-  const timeout = 25000;
+export function customFetch(url, options, timeout = 20000): Promise<any> {
   return Promise.race([
     fetch(url, options),
     new Promise((_, reject) =>

@@ -27,14 +27,18 @@ const fetchVotingPower = async (
   block: number,
   poolAddresses: string[]
 ): Promise<VotingResponse> => {
-  const response = await customFetch(VOTING_API_URL, {
-    method: 'POST',
-    body: JSON.stringify({
-      block,
-      address,
-      poolAddresses
-    })
-  });
+  const response = await customFetch(
+    VOTING_API_URL,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        block,
+        address,
+        poolAddresses
+      })
+    },
+    15000
+  );
 
   const payload = await response.json();
   return payload.data;
