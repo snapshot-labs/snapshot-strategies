@@ -23,11 +23,12 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   multi.call('exchangeRate', options.wrapperAddress, 'exchangeRate');
-  multi.call('exchangeRatePrecision', options.wrapperAddress, 'exchangeRatePrecision');
-  const {
-    exchangeRate,
-    exchangeRatePrecision
-  } = await multi.execute();
+  multi.call(
+    'exchangeRatePrecision',
+    options.wrapperAddress,
+    'exchangeRatePrecision'
+  );
+  const { exchangeRate, exchangeRatePrecision } = await multi.execute();
   const rate = parseFloat(exchangeRate) / parseFloat(exchangeRatePrecision);
 
   addresses.forEach((address) =>

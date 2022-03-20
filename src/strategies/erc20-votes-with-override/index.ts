@@ -6,12 +6,18 @@ import { getDelegations } from '../../utils/delegation';
 export const author = 'serenae-fansubs';
 export const version = '0.1.0';
 
-const getVotesName = "getVotes";
-const getVotesABI = ["function getVotes(address account) view returns (uint256)"];
-const balanceOfName = "balanceOf";
-const balanceOfABI = ["function balanceOf(address account) view returns (uint256)"];
-const delegatesName = "delegates";
-const delegatesABI = ["function delegates(address account) view returns (address)"];
+const getVotesName = 'getVotes';
+const getVotesABI = [
+  'function getVotes(address account) view returns (uint256)'
+];
+const balanceOfName = 'balanceOf';
+const balanceOfABI = [
+  'function balanceOf(address account) view returns (uint256)'
+];
+const delegatesName = 'delegates';
+const delegatesABI = [
+  'function delegates(address account) view returns (address)'
+];
 
 /*
   Counts votes from delegates, and also from individual delegators who wish
@@ -53,10 +59,18 @@ export async function strategy(
   const addressesLc = addresses.map((address: any) => lowerCase(address));
 
   const includeSnapshotDelegations = !!options.includeSnapshotDelegations;
-  const isSnapshotDelegatedScore = includeSnapshotDelegations && !!options.isSnapshotDelegatedScore;
+  const isSnapshotDelegatedScore =
+    includeSnapshotDelegations && !!options.isSnapshotDelegatedScore;
 
   // If enabled, get Snapshot delegations. This will not include any delegators that are already in the addresses list.
-  const snapshotDelegations = includeSnapshotDelegations ? await getDelegations(options.delegationSpace || space, network, addressesLc, snapshot) : {};
+  const snapshotDelegations = includeSnapshotDelegations
+    ? await getDelegations(
+        options.delegationSpace || space,
+        network,
+        addressesLc,
+        snapshot
+      )
+    : {};
   if (Object.keys(snapshotDelegations).length > 0) {
     /*
       If any Snapshot delegations were retrieved, add the delegators to the addresses list.
@@ -64,7 +78,11 @@ export async function strategy(
       The on-chain delegations, balances, and overridden voting power will be retrieved and
       calculated with all these addresses present.
     */
-    Object.entries(snapshotDelegations).forEach(([, delegators]) => (delegators.forEach((delegator: string) => addressesLc.push(lowerCase(delegator)))));
+    Object.entries(snapshotDelegations).forEach(([, delegators]) =>
+      delegators.forEach((delegator: string) =>
+        addressesLc.push(lowerCase(delegator))
+      )
+    );
   }
 
   const delegatesResponse = await multicall(
@@ -78,11 +96,13 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  const delegators = Object.fromEntries(delegatesResponse
-    .map((value: any, i: number) => [
-      addressesLc[i],
-      lowerCase(getFirst(value))])
-    .filter(([, delegate]) => isValidAddress(delegate))
+  const delegators = Object.fromEntries(
+    delegatesResponse
+      .map((value: any, i: number) => [
+        addressesLc[i],
+        lowerCase(getFirst(value))
+      ])
+      .filter(([, delegate]) => isValidAddress(delegate))
   );
 
   /*
@@ -93,7 +113,10 @@ export async function strategy(
     addressesLc.map((address: string) => [
       address,
       Object.entries(delegators)
-        .filter(([delegator, delegate]) => address === delegate && delegator !== delegate)
+        .filter(
+          ([delegator, delegate]) =>
+            address === delegate && delegator !== delegate
+        )
         .map(([delegator]) => delegator)
     ])
   );
@@ -109,10 +132,12 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  const balances = Object.fromEntries(balanceOfResponse.map((value: any, i: number) => [
-    addressesLc[i],
-    parseValue(value, options.decimals)
-  ]));
+  const balances = Object.fromEntries(
+    balanceOfResponse.map((value: any, i: number) => [
+      addressesLc[i],
+      parseValue(value, options.decimals)
+    ])
+  );
 
   const getVotesResponse = await multicall(
     network,
@@ -129,7 +154,13 @@ export async function strategy(
   const votes = Object.fromEntries(
     getVotesResponse.map((value: any, i: number) => [
       addressesLc[i],
-      getVotesWithOverride(addressesLc[i], parseValue(value, options.decimals), delegators, delegates, balances)
+      getVotesWithOverride(
+        addressesLc[i],
+        parseValue(value, options.decimals),
+        delegators,
+        delegates,
+        balances
+      )
     ])
   );
 
@@ -137,12 +168,22 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address: any) => [
       address,
-      getScore(isSnapshotDelegatedScore, lowerCase(address), votes, snapshotDelegations)
+      getScore(
+        isSnapshotDelegatedScore,
+        lowerCase(address),
+        votes,
+        snapshotDelegations
+      )
     ])
   );
 }
 
-function getScore(isSnapshotDelegatedScore: boolean, address: string, votes: Record<string, number>, snapshotDelegations: Record<string, Array<string>>): number {
+function getScore(
+  isSnapshotDelegatedScore: boolean,
+  address: string,
+  votes: Record<string, number>,
+  snapshotDelegations: Record<string, Array<string>>
+): number {
   /*
     If the Snapshot delegated score is being used, defer to that method to calculate it.
     Otherwise, just return the voting power calculated before.
@@ -154,19 +195,32 @@ function getScore(isSnapshotDelegatedScore: boolean, address: string, votes: Rec
   }
 }
 
-function getSnapshotDelegatedScore(address: string, votes: Record<string, number>, snapshotDelegations: Record<string, Array<string>>): number {
+function getSnapshotDelegatedScore(
+  address: string,
+  votes: Record<string, number>,
+  snapshotDelegations: Record<string, Array<string>>
+): number {
   const delegatedScore = { score: 0 };
 
   // Sum up the voting power from all accounts that have delegated to this address via Snapshot
   const snapshotDelegators = snapshotDelegations[address];
   if (snapshotDelegators) {
-    snapshotDelegators.forEach((delegator: string) => delegatedScore.score += votes[lowerCase(delegator)]);
+    snapshotDelegators.forEach(
+      (delegator: string) =>
+        (delegatedScore.score += votes[lowerCase(delegator)])
+    );
   }
 
   return delegatedScore.score;
 }
 
-function getVotesWithOverride(address: string, votes: number, delegators: Record<string, string>, delegates: Record<string, Array<string>>, balances: Record<string, number>): number {
+function getVotesWithOverride(
+  address: string,
+  votes: number,
+  delegators: Record<string, string>,
+  delegates: Record<string, Array<string>>,
+  balances: Record<string, number>
+): number {
   const adjustedVotes = { votes };
 
   if (votes > 0) {
@@ -210,5 +264,8 @@ function lowerCase(value: any): any {
 }
 
 function isValidAddress(address: string): boolean {
-  return isAddress(address) && address != "0x0000000000000000000000000000000000000000";
+  return (
+    isAddress(address) &&
+    address != '0x0000000000000000000000000000000000000000'
+  );
 }
