@@ -82,16 +82,16 @@ export async function strategy(
 
   const lpMultiCalls = options.lpTokenAddresses.flatMap((lpAddress: any) => {
     return [
-        [lpAddress, 'token0', []],
-        [lpAddress, 'token1', []],
-        [lpAddress, 'getReserves', []],
-        [lpAddress, 'totalSupply', []],
-        ...addresses.map((userAddress: any) => [
-          lpAddress,
-          'balanceOf',
-          [userAddress]
-        ])
-      ]
+      [lpAddress, 'token0', []],
+      [lpAddress, 'token1', []],
+      [lpAddress, 'getReserves', []],
+      [lpAddress, 'totalSupply', []],
+      ...addresses.map((userAddress: any) => [
+        lpAddress,
+        'balanceOf',
+        [userAddress]
+      ])
+    ];
   });
 
   const stakingPoolsMultiCalls: any[] = [];
@@ -164,14 +164,8 @@ export async function strategy(
     }
   });
 
-  let promiseArray = [
-    multicall(
-      network,
-      provider,
-      lpTokenContractAbi,
-      lpMultiCalls,
-      {blockTag}
-    )
+  const promiseArray = [
+    multicall(network, provider, lpTokenContractAbi, lpMultiCalls, { blockTag })
   ];
 
   if (options.stakingPoolsVersion === '2') {
@@ -181,9 +175,9 @@ export async function strategy(
         provider,
         stakingPoolsV2ContractAbi,
         stakingPoolsMultiCalls,
-        {blockTag}
+        { blockTag }
       )
-    )
+    );
   } else {
     promiseArray.push(
       multicall(
@@ -191,21 +185,21 @@ export async function strategy(
         provider,
         stakingPoolsV1ContractAbi,
         stakingPoolsMultiCalls,
-        {blockTag}
+        { blockTag }
       )
-    )
+    );
   }
 
-  if (options.rewarderVersion === '2'){
+  if (options.rewarderVersion === '2') {
     promiseArray.push(
       multicall(
         network,
         provider,
         rewarderV2ContractAbi,
         stakingPoolRewarderMultiCalls,
-        {blockTag}
+        { blockTag }
       )
-    )
+    );
   } else {
     promiseArray.push(
       multicall(
@@ -213,12 +207,12 @@ export async function strategy(
         provider,
         rewarderV1ContractAbi,
         stakingPoolRewarderMultiCalls,
-        {blockTag}
+        { blockTag }
       )
-    )
+    );
   }
 
-  let res = await Promise.all(promiseArray);
+  const res = await Promise.all(promiseArray);
 
   const usersTokensFromLp: BigNumber[] = [];
   const lpTokens: LP_TOKEN = {};
@@ -243,16 +237,18 @@ export async function strategy(
       tokenInLP = reserve1.mul(bn(2));
     }
 
-    lpTokenResult.slice(0, addresses.length).map((num: BigNumber, i: number) => {
-      const lpTokenBal = bn(num[0]);
-      if (usersTokensFromLp[i] === undefined) {
-        usersTokensFromLp[i] = lpTokenBal.mul(tokenInLP).div(totalSupply);
-      } else {
-        usersTokensFromLp[i] = usersTokensFromLp[i].add(
-          lpTokenBal.mul(tokenInLP).div(totalSupply)
-        );
-      }
-    });
+    lpTokenResult
+      .slice(0, addresses.length)
+      .map((num: BigNumber, i: number) => {
+        const lpTokenBal = bn(num[0]);
+        if (usersTokensFromLp[i] === undefined) {
+          usersTokensFromLp[i] = lpTokenBal.mul(tokenInLP).div(totalSupply);
+        } else {
+          usersTokensFromLp[i] = usersTokensFromLp[i].add(
+            lpTokenBal.mul(tokenInLP).div(totalSupply)
+          );
+        }
+      });
 
     lpTokens[options.lpTokenAddresses[idx].toLowerCase()] = {
       totalSupply,
@@ -314,7 +310,7 @@ export async function strategy(
     });
   });
 
-  let rewarderResult = res[2]
+  let rewarderResult = res[2];
 
   // Rewarder Calculation
   options.rewarder.forEach((rewarder: REWARDER, idx) => {
