@@ -281,6 +281,7 @@ import * as capitalDaoStaking from './capitaldao-staking';
 import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
 import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 import * as meebitsDaoDelegation from './meebitsdao-delegation';
+import * as gno from './gno';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -562,7 +563,9 @@ const strategies = {
   'capitaldao-staking': capitalDaoStaking,
   'erc20-rebase-wrapper': erc20RebaseWrapper,
   'wanakafarm-land-ingame': wanakafarmLandIngame,
-  'meebitsdao-delegation': meebitsDaoDelegation
+  'meebitsdao-delegation': meebitsDaoDelegation,
+  gno: gno,
+  'gno-vote-weight': gno
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
