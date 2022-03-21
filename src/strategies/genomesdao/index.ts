@@ -29,6 +29,11 @@ export async function strategy(
   const result: Record<string, BigNumberish> = await multi.execute();
 
   addresses.forEach((address: any) =>
+    multi.call(address, options.veaddress, 'balanceOf', [address])
+  );
+  const veresult: Record<string, BigNumberish> = await multi.execute();
+
+  addresses.forEach((address: any) =>
     multi.call(address, options.lpaddress, 'balanceOf', [address])
   );
   const resultLP1: Record<string, BigNumberish> = await multi.execute();
@@ -55,7 +60,7 @@ export async function strategy(
         .add(resultLP2[address])
         .mul(totalGnomeAmount)
         .div(totalSupply);
-      bal = bal.add(result[address]);
+      bal = bal.add(result[address]).add(BigNumber.from(veresult[address]).mul(5));
       return [address, parseFloat(formatUnits(bal, options.decimals))];
     })
   );
