@@ -7,6 +7,7 @@
         "address": "0x6E8a8726639d12935b3219892155520bdC57366B",
         "lpaddress": "0xc1214b61965594b3e08Ea4950747d5A077Cd1886",
         "harvaddress": "0x0a0be71cfce12ecb966dc762016c28ef5640b56a",
+        "veaddress": "0xae059C276904B9E885710c4a68434b4Bc437da6e",
         "symbol": "GNOME",
         "decimals": 18
       }
@@ -35,6 +36,6 @@
       "0x74ddd85389f4fd0069c922273498b4e28cdc9ccc",
       "0x0057ff99a06f82cd876c4f7f1718bd9a4f2e74b6"
     ],
-    "snapshot": 23999817
+    "snapshot": 26201867
   }
 ]
