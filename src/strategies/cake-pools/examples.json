@@ -1,0 +1,43 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "cake-pools",
+      "params": {
+        "symbol": "CAKE",
+        "chefAddresses": [
+          {
+            "address": "0x1c9E3972fdBa29b40954Bb7594Da6611998F8830"
+          },
+          {
+            "address": "0x6e0272A70075f6782F6842730107E9ABf74C5CC7"
+          },
+          {
+            "address": "0xe76a31cF974BA5819ce86cB4667a4bf05174bC59"
+          },
+          {
+            "address": "0xA581349F26dE887700045F9B7d148775d422fDA2"
+          },
+          {
+            "address": "0x60c4998C058BaC8042712B54E7e43b892Ab0B0c4"
+          },
+          {
+            "address": "0xD1D03A3D4C27884a8703Cdb78504737C9E9A159e"
+          }
+        ]
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xDd7AAf336CC630d6B2C30B41aB83d3A771e67AeB",
+      "0x9EdC65727D59217095e21e85c3434D62e125025f",
+      "0xFDe626F14fB6f3C12710Cd687538F44Ac65e52Bb",
+      "0x86EF92E17D1c0779F0E48bFf211702E73a72E577",
+      "0x52be3580601524652978648E872D0aA448aFC928",
+      "0x00B7C2C77008D22c688b7bD9a62caB4ACC919382",
+      "0x57764F39Fc0E3a39Ea6936FaCAcE0e92e9fA7eEe",
+      "0x4406183fF655D402C267B2BB67c59276f78Cf0d5"
+    ],
+    "snapshot": 16048211
+  }
+]

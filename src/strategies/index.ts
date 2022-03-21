@@ -148,6 +148,7 @@ import * as balancerDelegation from './balancer-delegation';
 import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
+import * as cakePools from './cake-pools';
 import * as aks from './aks';
 import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
@@ -434,6 +435,7 @@ const strategies = {
   'infinityprotocol-liquidity-pools': infinityProtocolPools,
   'aave-governance-power': aaveGovernancePower,
   cake,
+  'cake-pools': cakePools,
   aks,
   tomyumswap,
   'planet-finance': planetFinance,
