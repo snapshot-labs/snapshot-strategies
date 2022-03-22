@@ -94,9 +94,12 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(mfndScores).map((address: any) => [
       address[0],
-      address[0] in delegations
+      Math.min(
+        (address[0] in delegations
         ? Math.max(address[1], delegations[address[0]])
-        : address[1]
+        : address[1]),
+        1000
+      )
     ])
   );
 }
