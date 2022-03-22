@@ -12,7 +12,7 @@ or the [SFI Hodl Contract](https://etherscan.io/address/0x4e5ee20900898054e998fd
 To run Snapshot tests:
 
 ```bash
-npm run test --strategy=saffron-finance-v2 --more=500
+yarn test --strategy=saffron-finance-v2 --more=500
 ```
 
 ## Strategy Parameters
