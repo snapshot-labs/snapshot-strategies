@@ -18,7 +18,7 @@ const bep20Abi: any = [
 
 const aquaInfinityAbi = [
   'function getUserGtokenBal(address) view returns (uint256)'
-]
+];
 
 const aquaLendingAbi = [
   'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)'
@@ -127,25 +127,22 @@ export async function strategy(
   const res = Object.fromEntries(
     Object.entries(score).map((address: any, index) => {
       return [
-      
         address[0],
-  
+
         address[1] +
-          
-          (parseFloat(formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)) / parseFloat(formatUnits(totalSupply, 18))) 
-          * parseFloat(formatUnits(contractAquaBalance, 18)) 
-          
-          +
-          
-          parseFloat(formatUnits(usergAquaBalInAquaInfinityVault[index].toString(),18)) *
-          parseFloat(formatUnits(usersAquaInLending[index]['3'], 18)) *
-          increase_in_voting
-          
-          +
-          
+          (parseFloat(
+            formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)
+          ) /
+            parseFloat(formatUnits(totalSupply, 18))) *
+            parseFloat(formatUnits(contractAquaBalance, 18)) +
+          parseFloat(
+            formatUnits(usergAquaBalInAquaInfinityVault[index].toString(), 18)
+          ) *
+            parseFloat(formatUnits(usersAquaInLending[index]['3'], 18)) *
+            increase_in_voting +
           parseFloat(formatUnits(usersAquaInLending[index]['1'], 18)) *
-          parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
-      ]
+            parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
+      ];
     })
   );
   return res;
