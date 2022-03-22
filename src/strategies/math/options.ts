@@ -3,6 +3,7 @@ export type Operand = StrategyOperand | ConstantOperand;
 export interface Options {
   operands: Operand[];
   operation: Operation;
+  multiplier: number;
 }
 
 export interface StrategyOperand {
@@ -28,7 +29,8 @@ export enum Operation {
   AIfLtB = 'a-if-lt-b',
   AIfLteB = 'a-if-lte-b',
   AIfGtB = 'a-if-gt-b',
-  AIfGteB = 'a-if-gte-b'
+  AIfGteB = 'a-if-gte-b',
+  Multiply = 'multiply'
 }
 
 interface LegacyFields {
@@ -40,6 +42,7 @@ export type OptionalOperand = OptionalStrategyOperand | OptionalConstantOperand;
 export interface OptionalOptions {
   operands: OptionalOperand[] | undefined;
   operation: Operation | undefined;
+  multiplier: number | undefined;
 }
 
 export interface OptionalStrategyOperand {
@@ -55,6 +58,7 @@ export interface OptionalConstantOperand {
 const operandCountByOperation: Record<Operation, number> = {
   [Operation.SquareRoot]: 1,
   [Operation.CubeRoot]: 1,
+  [Operation.Multiply]: 1,
   [Operation.Min]: 2,
   [Operation.Max]: 2,
   [Operation.AIfLtB]: 3,
@@ -78,7 +82,8 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
     rawOptions.operation !== Operation.AIfLtB &&
     rawOptions.operation !== Operation.AIfLteB &&
     rawOptions.operation !== Operation.AIfGtB &&
-    rawOptions.operation !== Operation.AIfGteB
+    rawOptions.operation !== Operation.AIfGteB &&
+    rawOptions.operation !== Operation.Multiply
   ) {
     throw new Error('Invalid `operation`');
   }
@@ -90,7 +95,8 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
 
   const options: Options = {
     operands: [],
-    operation: rawOptions.operation
+    operation: rawOptions.operation,
+    multiplier: rawOptions.multiplier ? rawOptions.multiplier : 1
   };
 
   for (const operand of rawOptions.operands) {
@@ -138,7 +144,8 @@ export function migrateLegacyOptions(
           strategy: options.strategy
         }
       ],
-      operation: options.operation
+      operation: options.operation,
+      multiplier: options.multiplier
     };
   } else {
     return options;

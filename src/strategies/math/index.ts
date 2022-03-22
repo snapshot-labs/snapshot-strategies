@@ -38,7 +38,8 @@ export async function strategy(
 
   const finalResult: Record<string, number> = resolveOperation(
     strategyOptions.operation,
-    resolvedOperands
+    resolvedOperands,
+    strategyOptions.multiplier
   );
 
   return finalResult;
@@ -46,7 +47,8 @@ export async function strategy(
 
 function resolveOperation(
   operation: Operation,
-  resolvedOperands: Record<string, number>[]
+  resolvedOperands: Record<string, number>[],
+  multiplier: number
 ): Record<string, number> {
   switch (operation) {
     case Operation.SquareRoot: {
@@ -134,6 +136,16 @@ function resolveOperation(
           score >= resolvedOperands[2][address]
             ? resolvedOperands[1][address]
             : score
+        ])
+      );
+    }
+    case Operation.Multiply: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score * multiplier
         ])
       );
     }
