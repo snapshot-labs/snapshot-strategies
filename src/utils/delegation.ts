@@ -71,7 +71,7 @@ export async function getDelegations(space, network, addresses, snapshot) {
 	}
 
   const delegations = result.filter(
-    (delegation) =>
+    (delegation: any) =>
       addressesLc.includes(delegation.delegate) &&
       !addressesLc.includes(delegation.delegator)
   );
@@ -79,13 +79,13 @@ export async function getDelegations(space, network, addresses, snapshot) {
 
   const delegationsReverse = {};
   delegations.forEach(
-    (delegation) =>
+    (delegation: any) =>
       (delegationsReverse[delegation.delegator] = delegation.delegate)
   );
   delegations
-    .filter((delegation) => delegation.space !== '')
+    .filter((delegation: any) => delegation.space !== '')
     .forEach(
-      (delegation) =>
+      (delegation: any) =>
         (delegationsReverse[delegation.delegator] = delegation.delegate)
     );
 
