@@ -80,7 +80,7 @@ export async function strategy(
       delegation.delegator in mvoxScores &&
       delegation.delegate in meebitsScores
     ) {
-      meebitsScore = Math.min(20, meebitsScores[delegation.delegate]);
+      meebitsScore = Math.max(1, Math.min(20, meebitsScores[delegation.delegate]));
       mvoxScore = mvoxScores[delegation.delegator];
     }
 
