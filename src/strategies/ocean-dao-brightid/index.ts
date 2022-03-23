@@ -57,28 +57,29 @@ export async function strategy(
     snapshot
   );
 
+  const totalScores = {};
+  const delegatorAddresses = Object.values(
+    delegations
+  ).reduce((a: string[], b: string[]) => a.concat(b));
+  console.log('Delegator addressess:', delegatorAddresses);
+
+  // remove duplicates
+  const allAddresses = addresses
+    .concat(delegatorAddresses)
+    .filter((address, index, self) => self.indexOf(address) === index); // Remove duplicates
+
   const brightIdNetwork = options.brightIdNetwork || network;
   const response = await multicall(
     brightIdNetwork,
     getProvider(brightIdNetwork),
     abi,
-    addresses.map((address: any) => [
+    allAddresses.map((address: any) => [
       options.registry,
       'isVerifiedUser',
       [address]
     ]),
     { blockTag: chainBlocks[brightIdNetwork] }
   );
-
-  const totalScores = {};
-  const delegatorAddresses = Object.values(
-    delegations
-  ).reduce((a: string[], b: string[]) => a.concat(b));
-
-  // remove duplicates
-  const allAddresses = addresses
-    .concat(delegatorAddresses)
-    .filter((address, index, self) => self.indexOf(address) === index); // Remove duplicates
 
   for (const chain of Object.keys(options.strategies)) {
     let scores = await getScoresDirect(
