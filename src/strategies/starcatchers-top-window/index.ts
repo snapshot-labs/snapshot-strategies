@@ -21,16 +21,19 @@ export async function strategy(
     options.delegateLimit = 35;
   }
   if (!options.delegateDuration) {
-    let bpd = 6500; // Estimated blocks produced per day.
+    const bpd = 6500; // Estimated blocks produced per day.
     options.delegateDuration = 14 * bpd; // 2w
   }
   // Based on snapshot or current block height, calculates delegate cycles that
   // have passed, then determines block height for current delegate cycle.
-  const blockNumber:number =
+  const blockNumber: number =
     typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
-  let cyclesPassed:number = (blockNumber - Number(options.origin))
-    / Number(options.delegateDuration) | 0;
-  let voteBlock:number = Number(options.origin) + (cyclesPassed * Number(options.delegateDuration));
+  const cyclesPassed: number =
+    ((blockNumber - Number(options.origin)) /
+      Number(options.delegateDuration)) |
+    0;
+  const voteBlock: number =
+    Number(options.origin) + cyclesPassed * Number(options.delegateDuration);
 
   const query = {
     voteWeights: {
@@ -43,7 +46,7 @@ export async function strategy(
         }
       },
       id: true,
-      weight: true,
+      weight: true
     }
   };
   const results = await subgraphRequest(SC_GRAPH_URL, query);
@@ -51,7 +54,7 @@ export async function strategy(
     return;
   }
 
-  let delegates = {};
+  const delegates = {};
   addresses.forEach((address: string) => {
     delegates[address] = 0;
     for (let i = 0; i < Number(options.delegateLimit); i++) {
