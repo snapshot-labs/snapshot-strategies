@@ -58,7 +58,7 @@ async function getL2Balances(
   const records: Record<string, number> = {};
 
   // Sanitize pageSize
-  options.pageSize ??= defaultPageSize;
+  options.pageSize = options.pageSize || defaultPageSize;
 
   // Loop variables
   let cursor = '',

@@ -9,7 +9,8 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. PSP"]
+          "examples": ["e.g. PSP"],
+          "maxLength": 16
         },
         "balancerPoolId": {
           "type": "string",
@@ -58,7 +59,7 @@
           }
         }
       },
-      "required": ["symbol", "balancerPoolId", "safetyModule", "votingToken"],
+      "required": ["balancerPoolId", "safetyModule", "votingToken"],
       "additionalProperties": false
     }
   }

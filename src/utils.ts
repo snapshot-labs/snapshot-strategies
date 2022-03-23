@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
@@ -54,6 +55,15 @@ export async function getScoresDirect(
   } catch (e) {
     return Promise.reject(e);
   }
+}
+
+export function customFetch(url, options, timeout = 20000): Promise<any> {
+  return Promise.race([
+    fetch(url, options),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('API request timeout')), timeout)
+    )
+  ]);
 }
 
 export const {

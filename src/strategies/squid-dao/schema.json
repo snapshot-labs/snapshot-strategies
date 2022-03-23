@@ -9,7 +9,8 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. SQDV"]
+          "examples": ["e.g. SQDV"],
+          "maxLength": 16
         },
         "decimals": {
           "type": "number",
@@ -17,7 +18,7 @@
           "examples": ["e.g. 4"]
         }
       },
-      "required": ["symbol", "decimals"],
+      "required": ["decimals"],
       "additionalProperties": false
     }
   }
