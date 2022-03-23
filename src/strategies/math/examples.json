@@ -17,10 +17,13 @@
                 "decimals": 18
               }
             }
+          },
+          {
+            "type": "constant",
+            "value": 6
           }
         ],
-        "operation": "multiply",
-        "multiplier": 6
+        "operation": "multiply"
       }
     },
     "network": "1",

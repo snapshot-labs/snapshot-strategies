@@ -3,7 +3,6 @@ export type Operand = StrategyOperand | ConstantOperand;
 export interface Options {
   operands: Operand[];
   operation: Operation;
-  multiplier: number;
 }
 
 export interface StrategyOperand {
@@ -42,7 +41,6 @@ export type OptionalOperand = OptionalStrategyOperand | OptionalConstantOperand;
 export interface OptionalOptions {
   operands: OptionalOperand[] | undefined;
   operation: Operation | undefined;
-  multiplier: number | undefined;
 }
 
 export interface OptionalStrategyOperand {
@@ -58,7 +56,7 @@ export interface OptionalConstantOperand {
 const operandCountByOperation: Record<Operation, number> = {
   [Operation.SquareRoot]: 1,
   [Operation.CubeRoot]: 1,
-  [Operation.Multiply]: 1,
+  [Operation.Multiply]: 2,
   [Operation.Min]: 2,
   [Operation.Max]: 2,
   [Operation.AIfLtB]: 3,
@@ -95,8 +93,7 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
 
   const options: Options = {
     operands: [],
-    operation: rawOptions.operation,
-    multiplier: rawOptions.multiplier ? rawOptions.multiplier : 1
+    operation: rawOptions.operation
   };
 
   for (const operand of rawOptions.operands) {
@@ -144,8 +141,7 @@ export function migrateLegacyOptions(
           strategy: options.strategy
         }
       ],
-      operation: options.operation,
-      multiplier: options.multiplier
+      operation: options.operation
     };
   } else {
     return options;
