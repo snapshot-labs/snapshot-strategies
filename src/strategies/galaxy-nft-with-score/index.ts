@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'alberthaotan';
-export const version = '0.2.1';
+export const version = '0.3.2';
 
 const Networks: {
   [network: string]: {
@@ -14,25 +14,18 @@ const Networks: {
   '1': {
     name: 'ETHEREUM',
     graphql: 'https://graphigo.prd.galaxy.eco/query',
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/alexvorobiov/eip1155subgraph'
+    subgraph: 'https://api.thegraph.com/subgraphs/name/alberthaotan/nft-eth'
   },
   '56': {
     name: 'BSC',
     graphql: 'https://graphigo.prd.galaxy.eco/query',
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/nftgalaxy/eip1155-bsc-subgraph'
+    subgraph: 'https://api.thegraph.com/subgraphs/name/alberthaotan/nft-bsc'
+  },
+  '137': {
+    name: 'MATIC',
+    graphql: 'https://graphigo.prd.galaxy.eco/query',
+    subgraph: 'https://api.thegraph.com/subgraphs/name/alberthaotan/nft-matic'
   }
-  // '137': {
-  //   name: 'MATIC',
-  //   graphql: 'https://graphigo.prd.galaxy.eco/query',
-  //   subgraph: ''
-  // },
-  // '250': {
-  //   name: 'FANTOM',
-  //   graphql: 'https://graphigo.prd.galaxy.eco/query',
-  //   subgraph: ''
-  // }
 };
 
 interface Config {
@@ -69,25 +62,29 @@ export async function strategy(
     map[address.toLowerCase()] = address;
     return map;
   }, {});
+  //addresses.map((a) => a.toLowerCase())
 
   const subgraphParams = {
-    accounts: {
+    nftContracts: {
       __args: {
         where: {
-          id_in: addresses.map((a) => a.toLowerCase())
+          id_in: options.params.NFTCoreAddress.map((a) => a.toLowerCase())
         }
       },
       id: true,
-      balances: {
-        token: {
-          id: true,
-          identifier: true
+      nfts: {
+        __args: {
+          first: 1000
+        },
+        tokenID: true,
+        ownership: {
+          owner: true
         }
       }
     }
   };
   if (snapshot !== 'latest') {
-    subgraphParams.accounts.__args['block'] = { number: snapshot };
+    subgraphParams.nftContracts.__args['block'] = { number: snapshot };
   }
 
   const graphqlParams = {
@@ -123,7 +120,9 @@ export async function strategy(
 
   const graphqlPromise = fetch(Networks[network].graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(
-    options.params.subgraph ? options.params.subgraph : Networks[network].subgraph,
+    options.params.subgraph
+      ? options.params.subgraph
+      : Networks[network].subgraph,
     subgraphParams
   );
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
@@ -135,16 +134,13 @@ export async function strategy(
   const ownerToNftCount: OwnerToNftCount = Object.fromEntries(
     addresses.map((addr) => [addr.toLowerCase(), {}])
   );
+
   const ownerToScore: OwnerToScore = {};
-  const ownersWithNfts: OwnerWithNfts[] = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
+  const ownersWithNfts: OwnerWithNfts = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
     (map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
         if (!options.params.blacklistNFTID?.includes(i.id)) {
-          m[
-            i.nftCore.contractAddress.toLowerCase() +
-              '-0x' +
-              Number.parseInt(i.id).toString(16)
-          ] = i.name;
+          m[i.nftCore.contractAddress.toLowerCase() + '-' + i.id] = i.name;
         }
         return m;
       }, {});
@@ -152,16 +148,18 @@ export async function strategy(
     },
     {}
   );
-  const subgraphOwnersWithNfts: OwnerWithNfts[] = subgraphData.accounts.reduce(
-    (map, item) => {
-      map[item.id] = item.balances.reduce((m, i) => {
-        m[i.token.id] = '';
-        return m;
-      }, {});
-      return map;
-    },
-    {}
-  );
+
+  const subgraphOwnersWithNfts: OwnerWithNfts = {};
+  subgraphData.nftContracts.forEach((nftContract) => {
+    nftContract.nfts.forEach((nft) => {
+      if (!(nft.ownership[0].owner in subgraphOwnersWithNfts)) {
+        subgraphOwnersWithNfts[nft.ownership[0].owner] = {};
+      }
+      subgraphOwnersWithNfts[nft.ownership[0].owner][
+        nftContract.id + '-' + nft.tokenID
+      ] = '';
+    });
+  });
 
   // Intersect nft holdings of owners from graphql and subgraph returns
   Object.keys(subgraphOwnersWithNfts).forEach((owner) => {
@@ -176,10 +174,12 @@ export async function strategy(
   Object.keys(subgraphOwnersWithNfts).forEach((owner) => {
     Object.keys(subgraphOwnersWithNfts[owner]).forEach((tokenId) => {
       const nftName = subgraphOwnersWithNfts[owner][tokenId];
-      if (nftName in ownerToNftCount[owner]) {
-        ownerToNftCount[owner][nftName]++;
-      } else {
-        ownerToNftCount[owner][nftName] = 1;
+      if (nftName != '') {
+        if (nftName in ownerToNftCount[owner]) {
+          ownerToNftCount[owner][nftName]++;
+        } else {
+          ownerToNftCount[owner][nftName] = 1;
+        }
       }
     });
   });

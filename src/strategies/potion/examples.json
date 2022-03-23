@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "potion",
+      "params": {
+        "address": "0xEDAC702337b70f176423175d2f30fDf9c7a613A4",
+        "symbol": "SECRET"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xDbaaE747346488f372F0168A2D515B63Eb6586ba",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x9C732F0ABd5961b2c7E23FF646cad187D2687e80",
+      "0xAF1bff74708098dB603e48aaEbEC1BBAe03Dcf11",
+      "0x149Df72C9B65E99897FFa6b988cEFcEb87fF0E91",
+      "0xB4ACa4d18C3F3AD9Bfddd0A0dc8F669d51798dEA",
+      "0x9aADd82015413781D4b030aB839E965b1Ae0b264",
+      "0x2a20D21eAf90F14c0662ec94b3f1a192bbA17991"
+    ],
+    "snapshot": 14275528
+  }
+]

@@ -13,6 +13,7 @@ export const version = '0.1.0';
  *    - if the uniPairAddress option is provided, converts staked LP token balance to base token balance
  *      (based on the pair total supply and base token reserve)
  *    - if uniPairAddress is null or undefined, returns staked token balance as is
+ * - tokenIndex: index of a token in LP pair, optional, by default 0
  * - weight: integer multiplier of the result (for combining strategies with different weights, totally optional)
  */
 
@@ -120,11 +121,11 @@ function processValues(values: any[], options: any): number {
     BigNumber.from(options.weightDecimals || 0)
   );
   let result: BigNumber;
-  if (options.uniPairAddress == null) {
+  if (!options.uniPairAddress) {
     result = poolStaked.mul(weight).div(weightDecimals);
   } else {
     const uniTotalSupply = values[1][0];
-    const uniReserve = values[2][0];
+    const uniReserve = values[2][options.tokenIndex || 0];
     const precision = BigNumber.from(10).pow(18);
     const tokensPerLp = uniReserve.mul(precision).div(uniTotalSupply);
     result = poolStaked

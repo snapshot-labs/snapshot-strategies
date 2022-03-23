@@ -2,7 +2,10 @@
   {
     "name": "Badgeth",
     "strategy": {
-      "name": "badgeth"
+      "name": "badgeth",
+      "params": {
+        "symbol": "BADGETH"
+      }
     },
     "network": "4",
     "snapshot": 8876318,

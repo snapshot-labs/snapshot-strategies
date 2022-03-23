@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "path-balance-staked-and-locked",
+      "params": {
+        "tokenAddress": "0x2a2550e0a75acec6d811ae3930732f7f3ad67588",
+        "stakingAddress": "0x0bF6eeA205F46d796458D090F3aA333149287854",
+        "lockedAddresses": [
+          "0xDe48716A14C4CBc09656E21CE7F40FC1a02b3a25",
+          "0x67f0260254FB3Cee97dA18077927888Ed72D1f17",
+          "0xeE729DB66431e4401D63A38a2048d8CE0DF96eC3",
+          "0x8923f2A0465287E2F8564F85a7f62ed34d947594",
+          "0xfB05dc346f36eE88680e885CaC881983FAdEcBD4",
+          "0x9A319F461A84EA5b508AE1e97113fD1743ED691D"
+        ],
+        "methodABI": [
+          "function getRemainingAmount(address _recipient) external view returns (uint256 amount)"
+        ],
+        "symbol": "PATH",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x37672dda85f3cb8da4098baac5d84e00960cb081",
+      "0x1f31959dee51359ea01d3269acfd480f1746ec53",
+      "0xd54467dc24040f72fa163cbb491b4ab17c882781",
+      "0x7171dc086581b5ecf44c95bb31df10e9f1846571",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
+      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
+      "0x38C0039247A31F3939baE65e953612125cB88268"
+    ],
+    "snapshot": 13839820
+  }
+]

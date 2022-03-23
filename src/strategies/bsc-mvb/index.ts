@@ -12,7 +12,8 @@ const Endpoint: {
 } = {
   name: 'BSC',
   graphql: 'https://graphigo.prd.galaxy.eco/query',
-  subgraph: 'https://api.thegraph.com/subgraphs/name/nftgalaxy/bsc-ticket-erc1155',
+  subgraph:
+    'https://api.thegraph.com/subgraphs/name/nftgalaxy/bsc-ticket-erc1155',
   contract: '0x56535d2273e2eC8c2CdC65f71e3981Bf6301ae8D'
 };
 
@@ -94,7 +95,9 @@ export async function strategy(
       }`,
       variables: {
         option: {
-          nftCoreAddresses: options.params.NFTCoreAddress?options.params.NFTCoreAddress:[Endpoint.contract],
+          nftCoreAddresses: options.params.NFTCoreAddress
+            ? options.params.NFTCoreAddress
+            : [Endpoint.contract],
           chain: Endpoint.name,
           owners: addresses
         }
@@ -103,10 +106,7 @@ export async function strategy(
   };
 
   const graphqlPromise = fetch(Endpoint.graphql, graphqlParams);
-  const subgraphPromise = subgraphRequest(
-    Endpoint.subgraph,
-    subgraphParams
-  );
+  const subgraphPromise = subgraphRequest(Endpoint.subgraph, subgraphParams);
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
   const graphqlData = await promisesRes[0].json();
   const subgraphData = promisesRes[1];

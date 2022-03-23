@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "governor-delegator",
+      "params": {
+        "delegate": "0xb8c2c29ee19d8307cb7255e1cd9cbde883a267d5",
+        "address": "0xc18360217d8f7ab5e7c516566761ea12ce7f9d72",
+        "symbol": "ENS",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xf6b6f07862a02c85628b3a9688beae07fea9c863",
+      "0x0d24f692c05036602076b3f51242b5a34c55ee38",
+      "0xcafebabe86cbb8534134d96f746dccefcfe3babe",
+      "0xb8c2c29ee19d8307cb7255e1cd9cbde883a267d5",
+      "0x27e5343620b95645448de3710ca4162055670109"
+    ],
+    "snapshot": 13613058
+  }
+]

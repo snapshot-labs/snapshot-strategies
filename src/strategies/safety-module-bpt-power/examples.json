@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Example safety module bpt query",
+    "strategy": {
+      "name": "safety-module-bpt-power",
+      "params": {
+        "symbol": "PSP",
+        "balancerPoolId": "0xcb0e14e96f2cefa8550ad8e4aea344f211e5061d00020000000000000000011a",
+        "safetyModule": {
+          "address": "0xC8DC2Ec5f5e02bE8b37A8444a1931F02374A17ab",
+          "decimals": 18
+        },
+        "votingToken": {
+          "address": "0xcAfE001067cDEF266AfB7Eb5A286dCFD277f3dE5",
+          "decimals": 18
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x0ddc793680ff4f5793849c8c6992be1695cbe72a",
+      "0x9c0d72f2ac26420cb7eeb155bf401b672840e87b",
+      "0x7494eb2916cad8649f4f91eb1db6e20be605dad6",
+      "0xb7b65acf585c29070b9926c089fcfa1eb9983d3d",
+      "0x9824697f7c12cabada9b57842060931c48dea969",
+      "0x5b52e503c9e1440b47991bc0a64599c1c916084c",
+      "0x3ce06981bc523f950e3df346878216365b24b6fe",
+      "0xf2078c58d6c38c893af4e40d7b09843ec3b7d26c",
+      "0xcff61382e659603046358f86a119efd127d5bb48",
+      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
+      "0x38C0039247A31F3939baE65e953612125cB88268"
+    ],
+    "snapshot": 14215928
+  }
+]

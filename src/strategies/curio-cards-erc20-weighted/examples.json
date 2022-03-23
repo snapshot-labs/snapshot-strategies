@@ -3,7 +3,9 @@
     "name": "Example query",
     "strategy": {
       "name": "curio-cards-erc20-weighted",
-      "params": {}
+      "params": {
+        "symbol": "CARD"
+      }
     },
     "network": "1",
     "addresses": [

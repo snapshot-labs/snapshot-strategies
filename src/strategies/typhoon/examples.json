@@ -4,6 +4,7 @@
     "strategy": {
       "name": "typhoon",
       "params": {
+        "symbol": "TYP",
         "token": "0x79256DB1BDB6259315a1a3D7Dd237F69cADFd8FC",
         "micLP": "0x73F0D7D96206eE96F4A46eF3587A1BBd4385711e",
         "micRewardPool": "0x7D66Dcd9064272051656D961a25170DD50cDe526",

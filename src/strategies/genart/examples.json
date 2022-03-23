@@ -1,0 +1,20 @@
+[
+  {
+    "name": "GEN.ART",
+    "strategy": {
+      "name": "genart",
+      "params": {
+        "tokenAddress": "0xccdcfced87f8d91028b4fbbb589fb4cdc24d08fa",
+        "membershipAddress": "0xbadc470f2e159f01396a546fc63d8c0db2697f3b",
+        "symbol": "GENART",
+        "decimals": 18
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x8939a7106957dD14bf3D3aCc9151b96E4bD81bC6",
+      "0x7C804f539De39Fd3E7d6F2834eebA24d52a30Ca4"
+    ],
+    "snapshot": 9787953
+  }
+]
