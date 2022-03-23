@@ -1,52 +1,32 @@
 import { multicall } from '../../utils';
 import _strategies from '..';
+import { formatUnits } from '@ethersproject/units';
 
 export const author = 'blakewest';
 export const version = '0.1.0';
 
-const LP_STAKING_REWARDS = '0xFD6FF39DA508d281C2d255e9bBBfAb34B6be60c3';
 const COMMUNITY_REWARDS = '0x0Cd73c18C085dEB287257ED2307eC713e9Af3460';
 const GFI = '0xdab396cCF3d84Cf2D07C4454e10C8A6F5b008D2b';
-const LP_STAKING_REWARDS_ABI = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'tokenId',
-        type: 'uint256'
-      }
-    ],
-    name: 'earnedSinceLastCheckpoint',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'tokenId',
-        type: 'uint256'
-      }
-    ],
-    name: 'claimableRewards',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'rewards',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+
+const COMMUNITY_REWARDS_ABI = {
+  inputs: [
+    {
+      internalType: 'address',
+      name: 'owner',
+      type: 'address'
+    }
+  ],
+  name: 'totalUnclaimed',
+  outputs: [
+    {
+      internalType: 'uint256',
+      name: '',
+      type: 'uint256'
+    }
+  ],
+  stateMutability: 'view',
+  type: 'function'
+};
 
 export async function strategy(
   space,
@@ -73,31 +53,27 @@ export async function strategy(
   );
 
   // Locked amount in Community Rewards
-  // 1.) Get tokenIds
-  // 2.) Check totalGranted - totalClaimed
-  const goListResult = await multicall(
+  const unclaimedCommunityRewards = await multicall(
     network,
     provider,
-    [goListAbi],
+    [COMMUNITY_REWARDS_ABI],
     addresses.map((address: any) => [
-      LP_STAKING_REWARDS,
-      'goList',
+      COMMUNITY_REWARDS,
+      'totalUnclaimed',
       [address]
     ]),
     { blockTag }
   );
 
+  // Unclaimed Fidu staking GFI is ignored until smart contract
+  // can be upgraded with a view function to minimize calls here
 
-  // Unclaimed Fidu staking GFI
-  // 1.) Get tokenIds
-  // 2.) call claimable + earnedSinceLastCheckPoint
-
-  // If you don't have a UID, but are on the goList, that's OK.
   addresses.forEach((address, index) => {
-    if (!uidResult[address] && goListResult[index][0]) {
-      uidResult[address] = 1;
-    }
+    const parsedCommunityRewards = parseFloat(
+      formatUnits(unclaimedCommunityRewards[index][0], options.decimals)
+    );
+    gfiResult[address] = gfiResult[address] + parsedCommunityRewards;
   });
 
-  return uidResult;
+  return gfiResult;
 }
