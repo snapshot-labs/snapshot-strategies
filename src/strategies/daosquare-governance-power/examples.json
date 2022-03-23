@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "daosquare-governance-power",
+      "params": {
+        "symbol": "RICE",
+        "address": "0x97193AD067EC41cA16119D9b3077745414DDaD8E",
+        "tokenId": "1",
+        "decimals": 18,
+        "NFTaddress": "0x5e2Ed8c1FaE87F94EC1827517952a861eF111E70",
+        "ids": [
+          "38"
+        ]
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x9ac9c636404C8d46D9eb966d7179983Ba5a3941A",
+      "0xb7a0f269468DA74E4b71569c903cf20ce4a507A8",
+      "0x9Ab302974aBd84C875343D6BeeA05309BEDE2f10",
+      "0xc9Df049CF23F1B4c51b0772e98427f2084760a4E",
+      "0x0B7056e2D9064f2ec8647F1ae556BAcc06da6Db4"
+    ],
+    "snapshot": 21253712
+  }
+]
