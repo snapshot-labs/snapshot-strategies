@@ -137,6 +137,16 @@ function resolveOperation(
         ])
       );
     }
+    case Operation.Multiply: {
+      return Object.fromEntries(
+        Object.entries(
+          resolvedOperands[0]
+        ).map(([address, score]: [string, number]) => [
+          address,
+          score * resolvedOperands[1][address]
+        ])
+      );
+    }
   }
 }
 
