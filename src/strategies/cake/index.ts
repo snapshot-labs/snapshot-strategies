@@ -2,6 +2,11 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
+const chunk = (arr, size) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
+
 export const author = 'pancake-swap';
 export const version = '0.0.1';
 
@@ -45,17 +50,20 @@ export async function strategy(
     blockTag === 'latest' ||
     (typeof blockTag === 'number' && blockTag >= onChainVPBlockNumber)
   ) {
-    const response = await multicall(
-      network,
-      provider,
-      abi,
-      addresses.map((address: any) => [
-        onChainVPAddress,
-        'getVotingPowerWithoutPool',
-        [address.toLowerCase()]
-      ]),
-      { blockTag }
-    );
+    let callData = addresses.map((address: any) => [
+      onChainVPAddress,
+      'getVotingPowerWithoutPool',
+      [address.toLowerCase()]
+    ]);
+
+    callData = [...chunk(callData, options.max || 400)];
+    const response: any[] = [];
+    for (const call of callData) {
+      const multiRes = await multicall(network, provider, abi, call, {
+        blockTag
+      });
+      response.push(...multiRes);
+    }
     return Object.fromEntries(
       response.map((value, i) => [
         addresses[i],
