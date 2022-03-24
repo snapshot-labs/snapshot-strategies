@@ -143,7 +143,6 @@ import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
 import * as glide from './glide';
 import * as goldfinchMembership from './goldfinch-membership';
-import * as goldfinchVotingPower from './goldfinch-voting-power';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
@@ -432,7 +431,6 @@ const strategies = {
   spookyswap,
   glide,
   'goldfinch-membership': goldfinchMembership,
-  'goldfinch-voting-power': goldfinchVotingPower,
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
