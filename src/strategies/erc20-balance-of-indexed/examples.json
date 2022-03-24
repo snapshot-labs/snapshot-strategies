@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Indexed Example",
+    "strategy": {
+      "name": "erc20-balance-of-indexed",
+      "params": {
+        "symbol": "wsKLIMA",
+        "address": "0x6f370dba99E32A3cAD959b341120DB3C9E280bA6",
+        "indexAddress": "0x25d28a24Ceb6F81015bB0b2007D795ACAc411b4d",
+        "decimals": 18,
+        "indexDecimals": 9
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x981d9439472DdF3f42613548b5589e46D6BBB8E8",
+      "0x1069B123853f835c0F12334f67771BDd5B3F4f45",
+      "0xbe80fd79e26ce0a605e5d2803e876f1b009d70cc",
+      "0x55c307cbe54a1c1c105838a9d0fd60b75d7ff951",
+      "0xD24FF5e32DE12be154B1C2eE7B731CBC45540E50"
+    ],
+    "snapshot": 23375927
+  }
+]

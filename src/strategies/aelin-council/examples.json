@@ -5,14 +5,20 @@
       "name": "aelin-council",
       "params": {
         "address": "0x023c66b7e13d30a3c46aa433fd2829763d5817c5",
-        "symbol": "WD"
+        "symbol": "WD",
+        "blockL1": 14445666,
+        "blockL2": 4765677
       }
     },
     "network": "1",
     "addresses": [
-      "0xcAc59F91E4536Bc0E79aB816a5cD54e89f10433C",
-      "0x935D2fD458fdf41B6F7B62471f593797866a3Ce6"
+      "0x02be99141f66c065e165caf2dbf6a987c8d107a5",
+      "0x93b220bc7c36ea8e4c64192301b680273a184ec3",
+      "0x30f1d1ffad34b24bb8310ad9dd237b854b4daea7",
+      "0x961c18a23306fe44c4323adcb3bc343b0d193670",
+      "0x5298f608567297f8644fcf097e0e7fe52f8aeac3",
+      "0x10e19ba32927b28eb5424f7b6a3e2eaa5a607f47"
     ],
-    "snapshot": 13764062
+    "snapshot": 14445666
   }
 ]

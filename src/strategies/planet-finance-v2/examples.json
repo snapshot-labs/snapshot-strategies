@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "planet-finance-v2",
+      "params": {
+        "address": "0x72B7D61E8fC8cF971960DD9cfA59B8C829D91991",
+        "symbol": "AQUA",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": ["0xc358615Fb090Db0284a73Ac690B264BFDCa141f0"],
+    "snapshot": 16110697
+  }
+]
