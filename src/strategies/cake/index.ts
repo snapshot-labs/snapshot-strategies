@@ -16,25 +16,7 @@ const onChainVPBlockNumber = 16300686;
 const onChainVPAddress = '0xc0FeBE244cE1ea66d27D23012B3D616432433F42';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_user',
-        type: 'address'
-      }
-    ],
-    name: 'getVotingPowerWithoutPool',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
 ];
 
 export async function strategy(
