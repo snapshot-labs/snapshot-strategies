@@ -74,7 +74,7 @@ export async function strategy(
   const delegatorAddresses = Object.values(
     delegations
   ).reduce((a: string[], b: string[]) => a.concat(b));
-  
+
   // remove duplicates
   const allAddresses = addresses
     .concat(delegatorAddresses)
