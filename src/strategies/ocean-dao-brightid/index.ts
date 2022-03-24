@@ -7,7 +7,7 @@ import {
 import { getDelegations } from '../../utils/delegation';
 
 export const author = 'trizin';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const abi = [
   'function isVerifiedUser(address _user) external view returns (bool)'
@@ -57,29 +57,28 @@ export async function strategy(
     snapshot
   );
 
-  const totalScores = {};
-  const delegatorAddresses = Object.values(
-    delegations
-  ).reduce((a: string[], b: string[]) => a.concat(b));
-  console.log('Delegator addressess:', delegatorAddresses);
-
-  // remove duplicates
-  const allAddresses = addresses
-    .concat(delegatorAddresses)
-    .filter((address, index, self) => self.indexOf(address) === index); // Remove duplicates
-
   const brightIdNetwork = options.brightIdNetwork || network;
   const response = await multicall(
     brightIdNetwork,
     getProvider(brightIdNetwork),
     abi,
-    allAddresses.map((address: any) => [
+    addresses.map((address: any) => [
       options.registry,
       'isVerifiedUser',
       [address]
     ]),
     { blockTag: chainBlocks[brightIdNetwork] }
   );
+
+  const totalScores = {};
+  const delegatorAddresses = Object.values(
+    delegations
+  ).reduce((a: string[], b: string[]) => a.concat(b));
+
+  // remove duplicates
+  const allAddresses = addresses
+    .concat(delegatorAddresses)
+    .filter((address, index, self) => self.indexOf(address) === index); // Remove duplicates
 
   for (const chain of Object.keys(options.strategies)) {
     let scores = await getScoresDirect(
@@ -106,6 +105,7 @@ export async function strategy(
 
     // sum delegations
     addresses.forEach((address) => {
+      if (!scores[address]) scores[address] = 0;
       if (delegations[address]) {
         delegations[address].forEach((delegator: string) => {
           scores[address] += scores[delegator] ?? 0; // add delegator score
