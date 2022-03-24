@@ -2,8 +2,8 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const FLASHSTAKE_SUBGRAPH_URL = {
-  '1': 'https://score-api.wanakafarm.com/graphql',
-  '56': 'https://score-api.wanakafarm.com/graphql'
+  '1': 'https://score-api.wanakafarm.com/land-ingame/graphql',
+  '56': 'https://score-api.wanakafarm.com/land-ingame/graphql'
 };
 
 export const author = 'TranTien139';

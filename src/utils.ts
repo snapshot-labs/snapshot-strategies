@@ -1,9 +1,16 @@
+import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
 import { getSnapshots } from './utils/blockfinder';
 
 async function callStrategy(space, network, addresses, strategy, snapshot) {
+  if (
+    (snapshot !== 'latest' && strategy.params?.start > snapshot) ||
+    (strategy.params?.end &&
+      (snapshot === 'latest' || snapshot > strategy.params?.end))
+  )
+    return {};
   const score: any = await _strategies[strategy.name].strategy(
     space,
     network,
@@ -12,16 +19,13 @@ async function callStrategy(space, network, addresses, strategy, snapshot) {
     strategy.params,
     snapshot
   );
-
-  // Filter score object to have only the addresses requested
-  return Object.keys(score)
-    .filter((key) =>
-      addresses.map((a) => a.toLowerCase()).includes(key.toLowerCase())
+  const addressesLc = addresses.map((address) => address.toLowerCase());
+  return Object.fromEntries(
+    Object.entries(score).filter(
+      ([address, vp]: any[]) =>
+        vp > 0 && addressesLc.includes(address.toLowerCase())
     )
-    .reduce((obj, key) => {
-      obj[key] = score[key];
-      return obj;
-    }, {});
+  );
 }
 
 export async function getScoresDirect(
@@ -35,25 +39,31 @@ export async function getScoresDirect(
   try {
     const networks = strategies.map((s) => s.network || network);
     const snapshots = await getSnapshots(network, snapshot, provider, networks);
+    // @ts-ignore
+    if (addresses.length === 0) return strategies.map(() => ({}));
     return await Promise.all(
       strategies.map((strategy) =>
-        (snapshot !== 'latest' && strategy.params?.start > snapshot) ||
-        (strategy.params?.end &&
-          (snapshot === 'latest' || snapshot > strategy.params?.end)) ||
-        addresses.length === 0
-          ? {}
-          : callStrategy(
-              space,
-              strategy.network || network,
-              addresses,
-              strategy,
-              snapshots[strategy.network || network]
-            )
+        callStrategy(
+          space,
+          strategy.network || network,
+          addresses,
+          strategy,
+          snapshots[strategy.network || network]
+        )
       )
     );
   } catch (e) {
     return Promise.reject(e);
   }
+}
+
+export function customFetch(url, options, timeout = 20000): Promise<any> {
+  return Promise.race([
+    fetch(url, options),
+    new Promise((_, reject) =>
+      setTimeout(() => reject(new Error('API request timeout')), timeout)
+    )
+  ]);
 }
 
 export const {

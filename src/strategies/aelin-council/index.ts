@@ -1,65 +1,100 @@
 import { getAddress } from '@ethersproject/address';
-import { BigNumber } from '@ethersproject/bignumber';
 import { Contract } from '@ethersproject/contracts';
-import { Provider } from '@ethersproject/providers';
+import { JsonRpcProvider } from '@ethersproject/providers';
 import { subgraphRequest } from '../../utils';
-import {
-  DebtCacheABI,
-  debtL1,
-  debtL2,
-  returnGraphParams,
-  SNXHoldersResult,
-  SynthetixStateABI
-} from '../synthetix/helper';
+import fetch from 'cross-fetch';
 
-export const author = 'andytcf';
+export const author = '0xcdb';
 export const version = '1.0.0';
 
-const MED_PRECISE_UNIT = 1e18;
-
-// @TODO: check if most-up-to-date version (using https://contracts.synthetix.io/SynthetixState)
-const SynthetixStateContractAddress =
-  '0x4b9Ca5607f1fF8019c1C6A3c2f0CC8de622D5B82';
-// @TODO: check if most-up-to-date version (using http://contracts.synthetix.io/DebtCache)
-const DebtCacheContractAddress = '0x9D5551Cd3425Dd4585c3E7Eb7E4B98902222521E';
-
-const defaultGraphs = {
-  '1': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/synthetix',
-  '10': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-main'
+const GRAPH_API_URL = {
+  uniswap: {
+    mainnet: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+  },
+  aelin: {
+    mainnet: 'https://api.thegraph.com/subgraphs/name/0xcdb/aelin-governance',
+    optimism:
+      'https://api.thegraph.com/subgraphs/name/0xcdb/aelin-governance-optimism'
+  }
 };
 
-const loadLastDebtLedgerEntry = async (
-  provider: Provider,
-  snapshot: number | string
-) => {
-  const contract = new Contract(
-    SynthetixStateContractAddress,
-    SynthetixStateABI,
-    provider
+const GELATO_POOL_ADDRESS = '0x665d8D87ac09Bdbc1222B8B9E72Ddcb82f76B54A';
+
+const gelatoPoolAbi = [
+  'function getUnderlyingBalances() external view returns (uint256 amount0Current, uint256 amount1Current)',
+  'function totalSupply() external view returns (uint256)'
+];
+
+function returnGraphParams(snapshot: number | string, addresses: string[]) {
+  return {
+    aelinStakers: {
+      __args: {
+        where: {
+          id_in: addresses.map((address: string) => address.toLowerCase())
+        },
+        first: 1000,
+        block: {
+          number: snapshot
+        }
+      },
+      id: true,
+      balancePool1: true,
+      balancePool2: true
+    }
+  };
+}
+
+const getTokenRates = async () => {
+  const results = await fetch(
+    'https://api.coingecko.com/api/v3/simple/price?ids=aelin%2Cethereum&vs_currencies=usd'
   );
-
-  const lastDebtLedgerEntry = await contract.lastDebtLedgerEntry({
-    blockTag: snapshot
-  });
-
-  return BigNumber.from(lastDebtLedgerEntry);
+  const rates = await results.json();
+  const {
+    aelin: { usd: aelinRate },
+    ethereum: { usd: ethRate }
+  } = rates;
+  return { aelinRate, ethRate };
 };
 
-const loadL1TotalDebt = async (
-  provider: Provider,
-  snapshot: number | string
-) => {
-  const contract = new Contract(
-    DebtCacheContractAddress,
-    DebtCacheABI,
-    provider
-  );
+const getGUniRate = async (contract, aelinRate, ethRate, snapshot) => {
+  const [balances, gUNITotalSupply] = await Promise.all([
+    contract.getUnderlyingBalances({ blockTag: snapshot }),
+    contract.totalSupply({ blockTag: snapshot })
+  ]);
 
-  const currentDebtObject = await contract.currentDebt({
-    blockTag: snapshot
+  const { amount0Current, amount1Current } = balances;
+  const totalValueInPool =
+    (amount0Current / 1e18) * ethRate + (amount1Current / 1e18) * aelinRate;
+  return totalValueInPool / (gUNITotalSupply / 1e18);
+};
+
+const getUniV2Rate = async (aelinRate, ethRate, snapshot) => {
+  const results = await subgraphRequest(GRAPH_API_URL.uniswap.mainnet, {
+    pairs: {
+      __args: {
+        where: {
+          id: '0x974d51fafc9013e42cbbb9465ea03fe097824bcc'
+        },
+        first: 1000,
+        block: {
+          number: snapshot
+        }
+      },
+      token0Price: true,
+      token1Price: true,
+      reserve0: true,
+      reserve1: true,
+      totalSupply: true
+    }
   });
-
-  return Number(currentDebtObject.debt) / MED_PRECISE_UNIT;
+  const {
+    reserve0: amount0,
+    reserve1: amount1,
+    totalSupply
+  } = results.pairs[0];
+  const totalValueInPool =
+    Number(amount0) * aelinRate + Number(amount1) * ethRate;
+  return totalValueInPool / Number(totalSupply);
 };
 
 export async function strategy(
@@ -67,84 +102,86 @@ export async function strategy(
   _network,
   _provider,
   _addresses,
-  _,
-  snapshot
+  _options
 ) {
+  const L1_SNAPSHOT = _options.blockL1;
+  const L2_SNAPSHOT = _options.blockL2;
   const score = {};
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const squaredScore = {};
 
-  /* Global Constants */
+  const [l1Stakers, l2Stakers] = await Promise.all([
+    subgraphRequest(
+      GRAPH_API_URL.aelin.mainnet,
+      returnGraphParams(L1_SNAPSHOT, _addresses)
+    ),
+    subgraphRequest(
+      GRAPH_API_URL.aelin.optimism,
+      returnGraphParams(L2_SNAPSHOT, _addresses)
+    )
+  ]);
 
-  const totalL1Debt = await loadL1TotalDebt(_provider, snapshot); // (high-precision 1e18)
-  const lastDebtLedgerEntry = await loadLastDebtLedgerEntry(
-    _provider,
-    snapshot
+  // We start by mapping all the Pool 1 balances
+  (l1Stakers?.aelinStakers ?? []).forEach(({ balancePool1, id }) => {
+    score[getAddress(id)] = balancePool1 / 1e18;
+  });
+
+  (l2Stakers?.aelinStakers ?? []).forEach(({ balancePool1, id }) => {
+    const key = getAddress(id);
+    const balance = balancePool1 / 1e18;
+    if (!!score[key]) {
+      score[key] += balance;
+    } else {
+      score[key] = balance;
+    }
+  });
+
+  // For Pool 2, we need to calculate the price of each staked token (g-uni for OP and uni-v2 for Mainnet)
+  const optimismProvider = new JsonRpcProvider(
+    'https://mainnet.optimism.io',
+    'optimism'
+  );
+  const gelatoPoolContract = new Contract(
+    GELATO_POOL_ADDRESS,
+    gelatoPoolAbi,
+    optimismProvider
   );
 
-  /* EDIT THESE FOR OVM */
+  const { aelinRate, ethRate } = await getTokenRates();
+  const gUNIRate = await getGUniRate(
+    gelatoPoolContract,
+    aelinRate,
+    ethRate,
+    L2_SNAPSHOT
+  );
+  const uniV2Rate = await getUniV2Rate(aelinRate, ethRate, L1_SNAPSHOT);
 
-  // @TODO update the currentDebt for the snapshot from (https://contracts.synthetix.io/ovm/DebtCache)
-  const totalL2Debt = 48646913;
-  // @TODO update the lastDebtLedgerEntry from (https://contracts.synthetix.io/ovm/SynthetixState)
-  const lastDebtLedgerEntryL2 = 9773647546760863848975891;
-  // @TODO update the comparison between OVM:ETH c-ratios at the time of snapshot
-  const normalisedL2CRatio = 500 / 400;
-  // @TODO update the L2 block number to use
-  const L2BlockNumber = 919219;
-
-  const scaledTotalL2Debt = totalL2Debt * normalisedL2CRatio;
-
-  /* --------------- */
-
-  /* Using the subgraph, we get the relevant L1 calculations */
-
-  const l1Results = (await subgraphRequest(
-    defaultGraphs[1],
-    returnGraphParams(blockTag, _addresses)
-  )) as SNXHoldersResult;
-
-  if (l1Results && l1Results.snxholders) {
-    for (let i = 0; i < l1Results.snxholders.length; i++) {
-      const holder = l1Results.snxholders[i];
-      const vote = await debtL1(
-        holder.initialDebtOwnership,
-        holder.debtEntryAtIndex,
-        totalL1Debt,
-        scaledTotalL2Debt,
-        lastDebtLedgerEntry,
-        true
-      );
-      score[getAddress(holder.id)] = vote;
+  (l2Stakers?.aelinStakers ?? []).forEach(async ({ balancePool2, id }) => {
+    const gUNIValue = gUNIRate * (balancePool2 / 1e18);
+    // We divide by 2 because it's a 50-50 pool. Only half the value is in Aelin.
+    const aelinAmount = gUNIValue / (2 * aelinRate);
+    const key = getAddress(id);
+    if (!!score[key]) {
+      score[key] += aelinAmount;
+    } else {
+      score[key] = aelinAmount;
     }
-  }
+  });
 
-  /* Using the subgraph, we get the relevant L2 calculations */
-
-  const l2Results = (await subgraphRequest(
-    defaultGraphs[10],
-    returnGraphParams(L2BlockNumber, _addresses)
-  )) as SNXHoldersResult;
-
-  if (l2Results && l2Results.snxholders) {
-    for (let i = 0; i < l2Results.snxholders.length; i++) {
-      const holder = l2Results.snxholders[i];
-
-      const vote = await debtL2(
-        holder.initialDebtOwnership,
-        holder.debtEntryAtIndex,
-        totalL1Debt,
-        scaledTotalL2Debt,
-        lastDebtLedgerEntryL2,
-        true
-      );
-
-      if (score[getAddress(holder.id)]) {
-        score[getAddress(holder.id)] += vote;
-      } else {
-        score[getAddress(holder.id)] = vote;
-      }
+  (l1Stakers?.aelinStakers ?? []).forEach(async ({ balancePool2, id }) => {
+    const uniV2Value = uniV2Rate * (balancePool2 / 1e18);
+    // We divide by 2 because it's a 50-50 pool. Only half the value is in Aelin.
+    const aelinAmount = uniV2Value / (2 * aelinRate);
+    const key = getAddress(id);
+    if (!!score[key]) {
+      score[key] += aelinAmount;
+    } else {
+      score[key] = aelinAmount;
     }
-  }
+  });
 
-  return score || {};
+  Object.keys(score).forEach(
+    (address) => (squaredScore[address] = Math.sqrt(score[address]))
+  );
+
+  return squaredScore;
 }

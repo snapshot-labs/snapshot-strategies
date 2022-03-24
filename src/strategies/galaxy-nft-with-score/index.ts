@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'alberthaotan';
-export const version = '0.3.1';
+export const version = '0.3.2';
 
 const Networks: {
   [network: string]: {
@@ -73,6 +73,9 @@ export async function strategy(
       },
       id: true,
       nfts: {
+        __args: {
+          first: 1000
+        },
         tokenID: true,
         ownership: {
           owner: true
