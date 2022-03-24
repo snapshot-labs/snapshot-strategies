@@ -1,32 +1,16 @@
 import { multicall } from '../../utils';
-import _strategies from '..';
+import { strategy as erc20BalanceOf } from '../erc20-balance-of';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'blakewest';
+export const author = 'sanjayprabhu';
 export const version = '0.1.0';
 
 const COMMUNITY_REWARDS = '0x0Cd73c18C085dEB287257ED2307eC713e9Af3460';
 const GFI = '0xdab396cCF3d84Cf2D07C4454e10C8A6F5b008D2b';
 
-const COMMUNITY_REWARDS_ABI = {
-  inputs: [
-    {
-      internalType: 'address',
-      name: 'owner',
-      type: 'address'
-    }
-  ],
-  name: 'totalUnclaimed',
-  outputs: [
-    {
-      internalType: 'uint256',
-      name: '',
-      type: 'uint256'
-    }
-  ],
-  stateMutability: 'view',
-  type: 'function'
-};
+const COMMUNITY_REWARDS_ABI = [
+  'function totalUnclaimed(address owner) view returns (uint256)'
+];
 
 export async function strategy(
   space,
@@ -39,8 +23,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // Held GFI
-  const strategyFn = _strategies['erc20-balance-of'].strategy;
-  const gfiResult: { [address: string]: number } = await strategyFn(
+  const gfiResult: { [address: string]: number } = await erc20BalanceOf(
     space,
     network,
     provider,
@@ -56,7 +39,7 @@ export async function strategy(
   const unclaimedCommunityRewards = await multicall(
     network,
     provider,
-    [COMMUNITY_REWARDS_ABI],
+    COMMUNITY_REWARDS_ABI,
     addresses.map((address: any) => [
       COMMUNITY_REWARDS,
       'totalUnclaimed',
