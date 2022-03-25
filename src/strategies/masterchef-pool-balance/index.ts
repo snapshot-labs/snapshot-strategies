@@ -1,5 +1,5 @@
 import { formatUnits } from '@ethersproject/units';
-import { multicall, Multicaller } from '../../utils';
+import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'my-swarm';
@@ -91,8 +91,6 @@ const abi = [
   }
 ];
 
-const test = ['function index() public view returns (uint256)'];
-
 // calls is a 1-dimensional array so we just push 3 calls for every address
 const getCalls = (addresses: any[], options: any) => {
   const result: any[] = [];
@@ -148,13 +146,6 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const multi = new Multicaller(network, provider, test, { blockTag });
-  multi.call('index', options.indexAddress, 'index');
-
-  const result = await multi.execute();
-  const index = parseFloat(formatUnits(result.index, options.indexDecimals));
-  console.log('index', index);
   const response = await multicall(
     network,
     provider,
