@@ -9,7 +9,7 @@ Can be used instead of the erc20-balance-of strategy, the space config will look
 ```JSON
 {
   "strategies": [
-    ["synthetix-non-quadratic_1"]
+    ["synthetix-non-quadratic_2"]
   ]
 }
 ```

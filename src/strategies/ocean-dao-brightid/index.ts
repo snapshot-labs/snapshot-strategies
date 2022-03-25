@@ -7,7 +7,7 @@ import {
 import { getDelegations } from '../../utils/delegation';
 
 export const author = 'trizin';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const abi = [
   'function isVerifiedUser(address _user) external view returns (bool)'
@@ -105,6 +105,7 @@ export async function strategy(
 
     // sum delegations
     addresses.forEach((address) => {
+      if (!scores[address]) scores[address] = 0;
       if (delegations[address]) {
         delegations[address].forEach((delegator: string) => {
           scores[address] += scores[delegator] ?? 0; // add delegator score

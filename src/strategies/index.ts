@@ -47,8 +47,10 @@ import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
 import * as synthetixQuadraticOne from './synthetix-quadratic_1';
+import * as synthetixQuadraticTwo from './synthetix-quadratic_2';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
+import * as synthetixNonQuadraticTwo from './synthetix-non-quadratic_2';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -143,6 +145,7 @@ import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
 import * as glide from './glide';
 import * as goldfinchVotingPower from './goldfinch-voting-power';
+import * as goldfinchMembership from './goldfinch-membership';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
@@ -353,8 +356,10 @@ const strategies = {
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
   'synthetix-quadratic_1': synthetixQuadraticOne,
+  'synthetix-quadratic_2': synthetixQuadraticTwo,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
+  'synthetix-non-quadratic_2': synthetixNonQuadraticTwo,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
@@ -431,6 +436,7 @@ const strategies = {
   spookyswap,
   glide,
   'goldfinch-voting-power': goldfinchVotingPower,
+  'goldfinch-membership': goldfinchMembership,
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
