@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Multichain Voting Indexed",
+    "strategy": {
+      "name": "multichain-indexed",
+      "params": {
+        "symbol": "gOHM",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "network": "1",
+            "params": {
+              "address": "0x0ab87046fBb341D058F17CBC4c1133F25a20a52f",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "42161",
+            "params": {
+              "address": "0x8D9bA570D6cb60C7e3e0F31343Efe75AB8E65FB1",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "43114",
+            "params": {
+              "address": "0x321e7092a180bb43555132ec53aaa65a5bf84251",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "137",
+            "params": {
+              "address": "0xd8cA34fd379d9ca3C6Ee3b3905678320F5b45195",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "250",
+            "params": {
+              "address": "0x91fa20244fb509e8289ca630e5db3e9166233fdc",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "10",
+            "params": {
+              "address": "0x0b5740c6b4a97f90eF2F0220651Cca420B868FfB",
+              "decimals": 18
+            }
+          }
+        ],
+        "indexAddress": "0x0ab87046fBb341D058F17CBC4c1133F25a20a52f",
+        "indexDecimals": 9
+      }
+    },
+    "network": "1",
+    "addresses": ["0x0ab87046fBb341D058F17CBC4c1133F25a20a52f"],
+    "snapshot": 14452779
+  }
+]
