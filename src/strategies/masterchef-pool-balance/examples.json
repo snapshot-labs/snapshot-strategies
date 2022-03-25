@@ -6,6 +6,8 @@
       "params": {
         "symbol": "CHEF",
         "chefAddress": "0xD38abbAeC03a9FF287eFc9a5F0d0580E07335D1D",
+        "indexAddress": "0x0ab87046fBb341D058F17CBC4c1133F25a20a52f",
+        "indexDecimals": 9,
         "uniPairAddress": null,
         "tokenIndex": null,
         "pid": "0",
@@ -29,13 +31,15 @@
         "symbol": "CHEF LP",
         "chefAddress": "0xD38abbAeC03a9FF287eFc9a5F0d0580E07335D1D",
         "uniPairAddress": "0xe0b1433e0174b47e8879ee387f1069a0dbf94137",
+        "indexAddress": "0x0ab87046fBb341D058F17CBC4c1133F25a20a52f",
+        "indexDecimals": 9,
         "tokenIndex": 0,
         "pid": "1",
         "weight": 5,
         "weightDecimals": 1
       }
     },
-    "network": "1",
+    "network": "42161",
     "addresses": [
       "0xfCA5a27d4cfF104FC276897CA3f32cFeDc6f50BA",
       "0x577bfa0898187c10bbbbb3d001c94aafb5cfc0e4",

@@ -113,6 +113,7 @@ import * as pepemon from './pepemon';
 import * as erc1155AllBalancesOf from './erc1155-all-balances-of';
 import * as trancheStakingLP from './tranche-staking-lp';
 import * as masterchefPoolBalance from './masterchef-pool-balance';
+import * as masterchefPoolBalanceIndexed from './masterchef-pool-balance-indexed';
 import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
@@ -413,6 +414,7 @@ const strategies = {
   'saffron-finance-v2': saffronFinanceV2,
   'tranche-staking-lp': trancheStakingLP,
   'masterchef-pool-balance': masterchefPoolBalance,
+  'masterchef-pool-balance-indexed': masterchefPoolBalanceIndexed,
   'masterchef-pool-balance-price': masterchefPoolBalancePrice,
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,

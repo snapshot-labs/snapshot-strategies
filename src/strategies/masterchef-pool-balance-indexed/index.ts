@@ -1,9 +1,9 @@
 import { formatUnits } from '@ethersproject/units';
-import { multicall, Multicaller } from '../../utils';
+import { getProvider, multicall, Multicaller } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
-export const author = 'my-swarm';
-export const version = '0.1.0';
+export const author = 'brightiron';
+export const version = '0.0.1';
 
 /*
  * Generic masterchef pool balance strategy. Accepted options:
@@ -18,80 +18,15 @@ export const version = '0.1.0';
  */
 
 const abi = [
-  // to get a user/pool balance from masterchef
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  // to get supply/reserve from uni pair
-  {
-    constant: true,
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'getReserves',
-    outputs: [
-      {
-        internalType: 'uint112',
-        name: '_reserve0',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint112',
-        name: '_reserve1',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint32',
-        name: '_blockTimestampLast',
-        type: 'uint32'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function totalSupply() view returns (uint256)',
+  'function getReserves() view returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast)',
+  'function token0() view returns (address)',
+  'function token1() view returns (address)',
+  'function decimals() view returns (uint8)'
 ];
 
-const test = ['function index() public view returns (uint256)'];
+const indexAbi = ['function index() public view returns (uint256)'];
 
 // calls is a 1-dimensional array so we just push 3 calls for every address
 const getCalls = (addresses: any[], options: any) => {
@@ -116,7 +51,7 @@ function arrayChunk<T>(arr: T[], chunkSize: number): T[][] {
 
 // values is an array of (chunked) call results for every input address
 // for setups with uniPairAddress each chunk has 3 items, for setups without, only 1 item
-function processValues(values: any[], options: any): number {
+function processValues(values: any[], options: any, index: number): number {
   const poolStaked = values[0][0];
   const weight: BigNumber = BigNumber.from(options.weight || 1);
   const weightDecimals: BigNumber = BigNumber.from(10).pow(
@@ -136,7 +71,23 @@ function processValues(values: any[], options: any): number {
       .div(weightDecimals)
       .div(precision);
   }
-  return parseFloat(formatUnits(result.toString(), options.decimals || 18));
+  return (
+    parseFloat(formatUnits(result.toString(), options.decimals || 18)) * index
+  );
+}
+
+async function returnIndex(options: any) {
+  const multi = new Multicaller(
+    options.indexNetwork,
+    getProvider(options.indexNetwork),
+    indexAbi,
+    { blockTag: 'latest' }
+  );
+  multi.call('index', options.indexAddress, 'index');
+
+  const result = await multi.execute();
+  const index = parseFloat(formatUnits(result.index, options.indexDecimals));
+  return index;
 }
 
 export async function strategy(
@@ -148,13 +99,7 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const multi = new Multicaller(network, provider, test, { blockTag });
-  multi.call('index', options.indexAddress, 'index');
-
-  const result = await multi.execute();
-  const index = parseFloat(formatUnits(result.index, options.indexDecimals));
-  console.log('index', index);
+  const index = await returnIndex(options);
   const response = await multicall(
     network,
     provider,
@@ -167,6 +112,6 @@ export async function strategy(
     arrayChunk(
       response,
       options.uniPairAddress == null ? 1 : 3
-    ).map((value, i) => [addresses[i], processValues(value, options)])
+    ).map((value, i) => [addresses[i], processValues(value, options, index)])
   );
 }

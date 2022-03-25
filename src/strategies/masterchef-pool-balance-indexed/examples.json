@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "masterchef-pool-balance-indexed",
+      "params": {
+        "symbol": "gOHM",
+        "chefAddress": "0xF4d73326C13a4Fc5FD7A064217e12780e9Bd62c3",
+        "uniPairAddress": "0xaa5bD49f2162ffdC15634c87A77AC67bD51C6a6D",
+        "indexAddress": "0x0ab87046fBb341D058F17CBC4c1133F25a20a52f",
+        "indexDecimals": 9,
+        "tokenIndex": null,
+        "pid": "12",
+        "weight": 1,
+        "weightDecimals": 0,
+        "indexNetwork": "1"
+      }
+    },
+    "network": "42161",
+    "addresses": ["0x750Ad4810fFDF027575ECf20C4Be9764FE687886"],
+    "snapshot": 8547093
+  }
+]
