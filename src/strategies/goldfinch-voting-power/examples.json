@@ -3,7 +3,7 @@
     "name": "Goldfinch Voting Power",
     "strategy": {
       "name": "goldfinch-voting-power",
-      "params": {"symbol": "GFI", "decimals": 18}
+      "params": { "symbol": "GFI", "decimals": 18 }
     },
     "network": "1",
     "addresses": [
