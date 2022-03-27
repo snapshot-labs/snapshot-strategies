@@ -3,7 +3,7 @@
     "name": "Goldfinch Membership",
     "strategy": {
       "name": "goldfinch-membership",
-      "params": {"symbol": "UID"}
+      "params": { "symbol": "UID" }
     },
     "network": "1",
     "addresses": [
