@@ -50,7 +50,6 @@ import * as synthetixQuadraticOne from './synthetix-quadratic_1';
 import * as synthetixOne from './synthetix_1';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
-import * as synthetixNonQuadraticTwo from './synthetix-non-quadratic_2';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -357,7 +356,6 @@ const strategies = {
   synthetix_1: synthetixOne,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
-  'synthetix-non-quadratic_2': synthetixNonQuadraticTwo,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
