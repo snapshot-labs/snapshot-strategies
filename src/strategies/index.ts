@@ -48,6 +48,7 @@ import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
 import * as synthetixQuadraticOne from './synthetix-quadratic_1';
 import * as synthetixQuadraticTwo from './synthetix-quadratic_2';
+import * as synthetixOne from './synthetix_1';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
 import * as synthetixNonQuadraticTwo from './synthetix-non-quadratic_2';
@@ -357,6 +358,7 @@ const strategies = {
   'synthetix-quadratic': synthetixQuadratic,
   'synthetix-quadratic_1': synthetixQuadraticOne,
   'synthetix-quadratic_2': synthetixQuadraticTwo,
+  synthetix_1: synthetixOne,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
   'synthetix-non-quadratic_2': synthetixNonQuadraticTwo,
