@@ -25,7 +25,7 @@ export async function strategy(
     // @ts-ignore
     params.users.__args.block = { number: snapshot };
   }
-  const result = await subgraphRequest(options.SUBGRAPH_URL[network], params);
+  const result = await subgraphRequest(options.SUBGRAPH_URL, params);
   const score = {};
   result.users.map((user) => {
     score[user.id] = Number(user.voteWeight);

@@ -5,9 +5,7 @@
       "name": "gno",
       "params": {
         "symbol": "GNO",
-        "SUBGRAPH_URL": {
-          "100": "https://api.thegraph.com/subgraphs/name/auryn-macmillan/gno-vote-weight"
-        }
+        "SUBGRAPH_URL": "https://api.thegraph.com/subgraphs/name/auryn-macmillan/gno-vote-weight"
       }
     },
     "network": "100",
