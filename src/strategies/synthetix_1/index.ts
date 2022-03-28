@@ -1,9 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { JsonRpcProvider } from '@ethersproject/providers';
 import { formatEther } from '@ethersproject/units';
 import { Contract } from '@ethersproject/contracts';
 import { Provider } from '@ethersproject/providers';
-import { Multicaller } from '../../utils';
+import { getProvider, Multicaller } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'andytcf';
@@ -61,10 +60,7 @@ export async function strategy(
       ? _options.L2BlockNumber
       : 'latest';
 
-  const optimismProvider = new JsonRpcProvider(
-    'https://mainnet.optimism.io',
-    'optimism'
-  );
+  const optimismProvider = getProvider('10');
 
   const L1SDSValue = await calculateSDSValue(
     _provider,
