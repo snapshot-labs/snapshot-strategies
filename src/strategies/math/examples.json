@@ -9,6 +9,45 @@
           {
             "type": "strategy",
             "strategy": {
+              "network": "1",
+              "name": "erc20-balance-of",
+              "params": {
+                "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+                "symbol": "DAI",
+                "decimals": 18
+              }
+            }
+          },
+          {
+            "type": "constant",
+            "value": 6
+          }
+        ],
+        "operation": "multiply"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0xCba1A275e2D858EcffaF7a87F606f74B719a8A93",
+      "0x35137867d87Bf78f8c4340C00872930CBb5f92e0",
+      "0x2802247b16c302B811988Bf4Ac0e8DBFB85CDe36",
+      "0x5ef01a9aB62f700BB0BCC0F11f9CF7aa8fc543fd"
+    ],
+    "snapshot": 14400123
+  },
+  {
+    "name": "Example nested query",
+    "strategy": {
+      "name": "math",
+      "params": {
+        "symbol": "MATH",
+        "operands": [
+          {
+            "type": "strategy",
+            "strategy": {
               "name": "math",
               "network": "1",
               "symbol": "MATH",
