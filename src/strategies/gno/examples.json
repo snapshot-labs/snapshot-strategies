@@ -3,20 +3,22 @@
     "name": "GNO Token Votes",
     "strategy": {
       "name": "gno",
+      "network": "1",
       "params": {
         "symbol": "GNO",
-        "SUBGRAPH_URL": "https://api.thegraph.com/subgraphs/name/auryn-macmillan/gno-vote-weight"
+        "decimals": 18,
+        "SUBGRAPH_URL": "https://api.thegraph.com/subgraphs/id/QmfZ5cepEwspcrLLwtA3i5M6qEnv3WKDkpAtC65t8VpY6M"
       }
     },
     "network": "100",
     "addresses": [
-      "0x0000000034bc2b18f774362282b3319e78ea4ede",
-      "0x00085562256cca21f315e9cbcfb236585aca7b86",
-      "0x001952267361e3e8e831a58ac61df064b0d102da",
-      "0x00248c162125435c1e2ee5a0d8cb1e5688eb75c1",
-      "0x0027ad3bee42b9b6f33509713b453e3a0d41b0f2",
-      "0x002e7ea05d6721a04cd36ab5e9f2c72338d7f7f3"
+      "0x53bcFaEd43441C7bB6149563eC11f756739C9f6A",
+      "0x000000000000541e251335090ac5b47176af4f7e",
+      "0x0000000000007f150bd6f54c40a34d7c3d5e9f56",
+      "0x0000000000051666bbfbb42925c3ee5d50cf6b10",
+      "0x00000000003b3cc22af3ae1eac0440bcee416b40",
+      "0x000000000dfde7deaf24138722987c9a6991e2d4"
     ],
-    "snapshot": 20159325
+    "snapshot": 14476000
   }
 ]
