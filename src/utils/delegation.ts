@@ -42,25 +42,25 @@ export async function getDelegations(space, network, addresses, snapshot) {
     if (pageDelegations.length < PAGE_SIZE) break;
   }
 
-  // // Global delegations are null in decentralized subgraph
-  // page = 0;
-  // delete params.delegations.__args.where.space_in;
+  // Global delegations are null in decentralized subgraph
+  page = 0;
+  delete params.delegations.__args.where.space_in;
 
-  // while (true) {
-  //   params.delegations.__args.skip = page * PAGE_SIZE;
-  //   // @ts-ignore
-  //   params.delegations.__args.where.space = null;
-  //   const pageResult = await subgraphRequest(
-  //     SNAPSHOT_SUBGRAPH_URL[network],
-  //     params
-  //   );
-  //   result = result.concat(pageResult);
+  while (true) {
+    params.delegations.__args.skip = page * PAGE_SIZE;
+    // @ts-ignore
+    params.delegations.__args.where.space = null;
+    const pageResult = await subgraphRequest(
+      SNAPSHOT_SUBGRAPH_URL[network],
+      params
+    );
+    result = result.concat(pageResult);
 
-  //   const pageDelegations = pageResult.delegations || [];
-  //   result = result.concat(pageDelegations);
-  //   page++;
-  //   if (pageDelegations.length < PAGE_SIZE) break;
-  // }
+    const pageDelegations = pageResult.delegations || [];
+    result = result.concat(pageDelegations);
+    page++;
+    if (pageDelegations.length < PAGE_SIZE) break;
+  }
 
   const delegations = result.filter(
     (delegation: any) =>
