@@ -9,9 +9,7 @@
     },
     "network": "56",
     "addresses": [
-      "0xc345DCdD82755381106C5e3020dabF4F093f6C85",
-      "",
-      ""
+      "0xc345DCdD82755381106C5e3020dabF4F093f6C85"
     ],
     "snapshot": 16509855
   }
