@@ -9,7 +9,8 @@ const abi = [
   'function balanceOf(address account) external view returns (uint256)',
   'function totalSupply() external view returns (uint256)',
   'function token0() external view returns (address)',
-  'function getReserves() external view returns (uint112, uint112, uint32)'
+  'function getReserves() external view returns (uint112, uint112, uint32)',
+  'function lockEntries(address account) external view returns (uint256, uint256, uint256)'
 ];
 
 export async function strategy(
@@ -21,6 +22,7 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const votingAddress = "0x48D1CcB09f771788F59c8aAAB613936eDfA267b7"; // voting contract
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address: any) =>
@@ -32,6 +34,16 @@ export async function strategy(
     multi.call(address, options.veaddress, 'balanceOf', [address])
   );
   const veresult: Record<string, BigNumberish> = await multi.execute();
+
+  addresses.forEach((address: any) =>
+    multi.call(address, votingAddress, 'lockEntries', [address])
+  );
+  const lockresult: Record<string, BigNumberish> = await multi.execute();
+
+  addresses.forEach((address: any) =>
+    multi.call(address, votingAddress, 'balanceOf', [address])
+  );
+  const lockedamountresult: Record<string, BigNumberish> = await multi.execute();
 
   addresses.forEach((address: any) =>
     multi.call(address, options.lpaddress, 'balanceOf', [address])
@@ -60,7 +72,12 @@ export async function strategy(
         .add(resultLP2[address])
         .mul(totalGnomeAmount)
         .div(totalSupply);
-      bal = bal.add(result[address]).add(BigNumber.from(veresult[address]).mul(5));
+      bal = bal.add(result[address]);
+      if (BigNumber.from(lockresult[address][1]).gte(365))
+        bal = bal.add(BigNumber.from(veresult[address]).mul(5));
+      if (BigNumber.from(lockresult[address][1]).gte(1)) {
+        bal = bal.add(BigNumber.from(lockedamountresult[address]).mul(110).div(100));
+      }
       return [address, parseFloat(formatUnits(bal, options.decimals))];
     })
   );

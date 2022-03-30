@@ -24,7 +24,7 @@
         "veaddress": {
           "type": "string",
           "title": "veGNOME Token Contract Address",
-          "examples": ["e.g. 0xae059C276904B9E885710c4a68434b4Bc437da6e"]
+          "examples": ["e.g. 0x13c3b73f24E30B364fA7A5eDff4a752f7771696e"]
         },
         "symbol": {
           "type": "string",
