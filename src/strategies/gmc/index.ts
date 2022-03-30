@@ -35,6 +35,7 @@ export async function strategy(
   ) {
     let callData = addresses.map((address: any) => [
       onChainVPAddress,
+      'getVotingPowerWithoutPool',
       [address.toLowerCase()]
     ]);
 
