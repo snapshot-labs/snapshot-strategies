@@ -9,7 +9,7 @@ export async function getDelegations(space, network, addresses, snapshot) {
   const PAGE_SIZE = 1000;
   let result = [];
   let page = 0;
-  const params = {
+  const params: any = {
     delegations: {
       __args: {
         where: {
@@ -41,6 +41,26 @@ export async function getDelegations(space, network, addresses, snapshot) {
     page++;
     if (pageDelegations.length < PAGE_SIZE) break;
   }
+
+  // Global delegations are null in decentralized subgraph
+  page = 0;
+  delete params.delegations.__args.where.space_in;
+
+  while (true) {
+    params.delegations.__args.skip = page * PAGE_SIZE;
+    params.delegations.__args.where.space = null;
+    const pageResult = await subgraphRequest(
+      SNAPSHOT_SUBGRAPH_URL[network],
+      params
+    );
+    result = result.concat(pageResult);
+
+    const pageDelegations = pageResult.delegations || [];
+    result = result.concat(pageDelegations);
+    page++;
+    if (pageDelegations.length < PAGE_SIZE) break;
+  }
+
   const delegations = result.filter(
     (delegation: any) =>
       addressesLc.includes(delegation.delegate) &&
