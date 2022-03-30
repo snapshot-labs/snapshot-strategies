@@ -48,7 +48,6 @@ export async function getDelegations(space, network, addresses, snapshot) {
 
   while (true) {
     params.delegations.__args.skip = page * PAGE_SIZE;
-    // @ts-ignore
     params.delegations.__args.where.space = null;
     const pageResult = await subgraphRequest(
       SNAPSHOT_SUBGRAPH_URL[network],
