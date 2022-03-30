@@ -39,15 +39,15 @@ export async function strategy(
   const callWalletToFirstTokenID = new Multicaller(network, provider, abi, {
     blockTag
   });
-  for (const [walletAddress] of Object.entries(walletToBalanceOf)) {
-    // if (count.toNumber() > 0) {
+  for (const [walletAddress, count] of Object.entries(walletToBalanceOf)) {
+    if (count.toNumber() > 0) {
       callWalletToFirstTokenID.call(
         walletAddress.toString(),
         options.address,
         'tokenOfOwnerByIndex',
         [walletAddress, 0]
       );
-    // }
+    }
   }
   const walletToFirstTokenID: Record<
     string,
