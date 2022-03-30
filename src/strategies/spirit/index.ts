@@ -6,7 +6,7 @@ export const version = '0.1.0';
 
 async function search_contract_cretion_block(contract_address, provider) {
   var highest_block = await provider.getBlockNumber();
-  var lowest_block = 13691035;
+  var lowest_block = 13691033;
 
   var contract_code = await provider.getCode(contract_address, highest_block);
 
@@ -83,10 +83,10 @@ export async function strategy(
     { blockTag }
   );
 
-  const owner = await find_contract_creator(addresses[0], provider);
-
+  const owner: string = await find_contract_creator(addresses[0],provider)
+  
   return Object.fromEntries(
-    response.map(([value, i]) => [
+    await response.map(([value, i]) => [
       owner,
       parseFloat(
         formatUnits(
