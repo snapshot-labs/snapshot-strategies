@@ -1,0 +1,19 @@
+[
+    {
+        "name": "Example query",
+        "strategy": {
+            "name": "erc721-with-metadata-attribute",
+            "params": {
+                "address": "0xedCbF9D4CC3BA9aAA896adADeac1b6DF6326f7D8",
+                "symbol": "KAP-NFT",
+                "attributeName": "level"
+            }
+        },
+        "network": "4",
+        "addresses": [
+            "0xa976C336B790CA8BA18c112aa9D8C4308De09632",
+            "0xcCeD38F12C9236AfCaae0a0020E32EFcC4E9841d"
+        ],
+        "snapshot": 10415558
+    }
+]
