@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-rebase-wrapper",
+      "params": {
+        "wrapperAddress": "0x93Dede06AE3B5590aF1d4c111BC54C3f717E4b35",
+        "symbol": "gALCX",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": ["0x628Ece38B0FF97e1e98F4F79aD5500596deF66F9"],
+    "snapshot": 14399823
+  }
+]

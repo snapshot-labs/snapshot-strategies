@@ -28,7 +28,8 @@ export enum Operation {
   AIfLtB = 'a-if-lt-b',
   AIfLteB = 'a-if-lte-b',
   AIfGtB = 'a-if-gt-b',
-  AIfGteB = 'a-if-gte-b'
+  AIfGteB = 'a-if-gte-b',
+  Multiply = 'multiply'
 }
 
 interface LegacyFields {
@@ -55,6 +56,7 @@ export interface OptionalConstantOperand {
 const operandCountByOperation: Record<Operation, number> = {
   [Operation.SquareRoot]: 1,
   [Operation.CubeRoot]: 1,
+  [Operation.Multiply]: 2,
   [Operation.Min]: 2,
   [Operation.Max]: 2,
   [Operation.AIfLtB]: 3,
@@ -78,7 +80,8 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
     rawOptions.operation !== Operation.AIfLtB &&
     rawOptions.operation !== Operation.AIfLteB &&
     rawOptions.operation !== Operation.AIfGtB &&
-    rawOptions.operation !== Operation.AIfGteB
+    rawOptions.operation !== Operation.AIfGteB &&
+    rawOptions.operation !== Operation.Multiply
   ) {
     throw new Error('Invalid `operation`');
   }

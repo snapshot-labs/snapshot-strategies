@@ -193,4 +193,13 @@ describe(`\nOthers:`, () => {
       ).toBe(true);
     }
   );
+  (schema ? it : it.skip)(
+    'Strategy should work even when strategy symbol is null',
+    async () => {
+      delete example.strategy.params.symbol;
+      expect(
+        snapshotjs.utils.validateSchema(schema, example.strategy.params)
+      ).toBe(true);
+    }
+  );
 });
