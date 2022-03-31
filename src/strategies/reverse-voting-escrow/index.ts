@@ -19,8 +19,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  // const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const blockTag = 'latest';
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // ** The full address -> balance mapping ** //
   const reverseVotingBalance = {} as Record<string, BigNumber>;

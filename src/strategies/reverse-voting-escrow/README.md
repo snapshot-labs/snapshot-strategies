@@ -2,7 +2,7 @@
 
 This strategy calculates voting power using the token contract address and a vesting contract.
 
-It is custom-built for [SeedClub]().
+It is custom-built for [SeedClub](https://seedclub.xyz/).
 
 ## Overview
 
