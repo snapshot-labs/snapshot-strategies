@@ -114,8 +114,6 @@ export async function strategy(
     ];
   });
 
-  console.log('entries', entries);
-
   const score = Object.fromEntries(entries);
 
   return score || {}
