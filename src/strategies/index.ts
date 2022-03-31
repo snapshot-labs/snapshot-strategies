@@ -3,6 +3,7 @@ import path from 'path';
 
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
+import * as erc20VotesWithOverride from './erc20-votes-with-override';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balance-of';
@@ -46,8 +47,11 @@ import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
 import * as synthetixQuadraticOne from './synthetix-quadratic_1';
+import * as synthetixQuadraticTwo from './synthetix-quadratic_2';
+import * as synthetixOne from './synthetix_1';
 import * as synthetixNonQuadratic from './synthetix-non-quadratic';
 import * as synthetixNonQuadraticOne from './synthetix-non-quadratic_1';
+import * as synthetixNonQuadraticTwo from './synthetix-non-quadratic_2';
 import * as ctoken from './ctoken';
 import * as cream from './cream';
 import * as esd from './esd';
@@ -121,6 +125,7 @@ import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
+import * as protofiErc721TierWeighted from './protofi-erc721-tier-weighted';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
@@ -141,6 +146,8 @@ import * as modefi from './modefi';
 import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
 import * as glide from './glide';
+import * as goldfinchVotingPower from './goldfinch-voting-power';
+import * as goldfinchMembership from './goldfinch-membership';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
@@ -150,9 +157,11 @@ import * as cake from './cake';
 import * as aks from './aks';
 import * as tomyumswap from './tomyumswap';
 import * as planetFinance from './planet-finance';
+import * as planetFinancev2 from './planet-finance-v2';
 import * as impossibleFinance from './impossible-finance';
 import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
+import * as oolongswap from './oolongswap';
 import * as zrxVotingPower from './zrx-voting-power';
 import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
@@ -182,6 +191,7 @@ import * as sUmamiHolders from './sumami-holders';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
+import * as hoprStakingS2 from './hopr-staking-s2';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
@@ -235,10 +245,12 @@ import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
 import * as orangeReputationBasedVoting from './orange-reputation-based-voting';
+import * as orangeReputationNftBasedVoting from './orange-reputation-nft-based-voting';
 import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
 import * as genart from './genart';
+import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as genomesdao from './genomesdao';
 import * as zorro from './zorro';
 import * as voltVotingPower from './volt-voting-power';
@@ -255,9 +267,28 @@ import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as veRibbon from './ve-ribbon';
+import * as veRibbonVotingPower from './ve-ribbon-voting-power';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
+import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
+import * as gysrStakingBalance from './gysr-staking-balance';
+import * as wanakafarmStaking from './wanakafarm-staking';
+import * as starsharks from './starsharks';
+import * as printerFinancial from './printer-financial';
+import * as ethercatsFoundersSeries from './ethercats-founders-series';
+import * as potion from './potion';
+import * as MinotaurMoney from './minotaur-money';
+import * as safetyModuleBptPower from './safety-module-bpt-power';
+import * as convFinance from './conv-finance';
+import * as sdBoost from './sd-boost';
+import * as capitalDaoStaking from './capitaldao-staking';
+import * as erc20RebaseWrapper from './erc20-rebase-wrapper';
+import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
+import * as meebitsDaoDelegation from './meebitsdao-delegation';
+import * as starcatchersTopWindow from './starcatchers-top-window';
+import * as gno from './gno';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -284,6 +315,8 @@ const strategies = {
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
+  'erc20-votes-with-override': erc20VotesWithOverride,
+  'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
@@ -302,6 +335,7 @@ const strategies = {
   erc721,
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
+  'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
@@ -324,8 +358,11 @@ const strategies = {
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
   'synthetix-quadratic_1': synthetixQuadraticOne,
+  'synthetix-quadratic_2': synthetixQuadraticTwo,
+  synthetix_1: synthetixOne,
   'synthetix-non-quadratic': synthetixNonQuadratic,
   'synthetix-non-quadratic_1': synthetixNonQuadraticOne,
+  'synthetix-non-quadratic_2': synthetixNonQuadraticTwo,
   ctoken,
   cream,
   'staked-uniswap': stakedUniswap,
@@ -402,6 +439,8 @@ const strategies = {
   'xrc20-balance-of': xrc20BalanceOf,
   spookyswap,
   glide,
+  'goldfinch-voting-power': goldfinchVotingPower,
+  'goldfinch-membership': goldfinchMembership,
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
@@ -411,7 +450,9 @@ const strategies = {
   aks,
   tomyumswap,
   'planet-finance': planetFinance,
+  'planet-finance-v2': planetFinancev2,
   ogn,
+  oolongswap,
   'impossible-finance': impossibleFinance,
   'immutable-x': immutableX,
   badgeth,
@@ -440,6 +481,7 @@ const strategies = {
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
+  'hopr-staking-s2': hoprStakingS2,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   swapr,
@@ -496,6 +538,7 @@ const strategies = {
   'xkawa-farm': xkawaFarm,
   'darkforest-score': darkforestScore,
   'orange-reputation-based-voting': orangeReputationBasedVoting,
+  'orange-reputation-nft-based-voting': orangeReputationNftBasedVoting,
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
   genart,
@@ -515,8 +558,28 @@ const strategies = {
   'sandman-dao': sandmanDao,
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
+  've-ribbon': veRibbon,
+  've-ribbon-voting-power': veRibbonVotingPower,
   chubbykaijudao: chubbykaijudao,
-  revest: revest
+  revest: revest,
+  'staking-claimed-unclaimed': stakingClaimedUnclaimed,
+  'gysr-staking-balance': gysrStakingBalance,
+  'wanakafarm-staking': wanakafarmStaking,
+  starsharks,
+  'printer-financial': printerFinancial,
+  'ethercats-founders-series': ethercatsFoundersSeries,
+  potion,
+  'safety-module-bpt-power': safetyModuleBptPower,
+  'minotaur-money': MinotaurMoney,
+  'conv-finance': convFinance,
+  'sd-boost': sdBoost,
+  'capitaldao-staking': capitalDaoStaking,
+  'erc20-rebase-wrapper': erc20RebaseWrapper,
+  'wanakafarm-land-ingame': wanakafarmLandIngame,
+  'meebitsdao-delegation': meebitsDaoDelegation,
+  'starcatchers-top-window': starcatchersTopWindow,
+  gno: gno,
+  'gno-vote-weight': gno
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

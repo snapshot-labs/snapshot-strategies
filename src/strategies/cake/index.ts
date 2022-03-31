@@ -1,45 +1,23 @@
-import fetch from 'cross-fetch';
-import { subgraphRequest } from '../../utils';
+import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+import { formatUnits } from '@ethersproject/units';
+import { multicall } from '../../utils';
+
+const chunk = (arr, size) =>
+  Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
+    arr.slice(i * size, i * size + size)
+  );
 
 export const author = 'pancake-swap';
 export const version = '0.0.1';
 
-type VotingResponse = {
-  verificationHash: string;
-  block: number;
-  cakeBalance: string;
-  cakeVaultBalance: string;
-  cakePoolBalance: string;
-  cakeBnbLpBalance: string;
-  poolsBalance: string;
-  total: string;
-};
+const CAKE_ADDRESS = '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82';
 
-const MINIUM_VOTING_POWER = 0.01;
-const SMART_CHEF_URL =
-  'https://api.thegraph.com/subgraphs/name/pancakeswap/smartchef';
-const VOTING_API_URL = 'https://voting-api.pancakeswap.info/api/power';
+const onChainVPBlockNumber = 16300686;
+const onChainVPAddress = '0xc0FeBE244cE1ea66d27D23012B3D616432433F42';
 
-/**
- * Fetches voting power of one address
- */
-const fetchVotingPower = async (
-  address: string,
-  block: number,
-  poolAddresses: string[]
-): Promise<VotingResponse> => {
-  const response = await fetch(VOTING_API_URL, {
-    method: 'POST',
-    body: JSON.stringify({
-      block,
-      address,
-      poolAddresses
-    })
-  });
-
-  const payload = await response.json();
-  return payload.data;
-};
+const abi = [
+  'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
+];
 
 export async function strategy(
   space,
@@ -49,53 +27,43 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag =
-    typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  if (
+    blockTag === 'latest' ||
+    (typeof blockTag === 'number' && blockTag >= onChainVPBlockNumber)
+  ) {
+    let callData = addresses.map((address: any) => [
+      onChainVPAddress,
+      'getVotingPowerWithoutPool',
+      [address.toLowerCase()]
+    ]);
 
-  const params = {
-    smartChefs: {
-      __args: {
-        where: {
-          startBlock_lte: blockTag,
-          endBlock_gte: blockTag
-        },
-        first: 1000,
-        orderBy: 'block',
-        orderDirection: 'desc'
-      },
-      id: true,
-      startBlock: true,
-      endBlock: true
+    callData = [...chunk(callData, options.max || 400)];
+    const response: any[] = [];
+    for (const call of callData) {
+      const multiRes = await multicall(network, provider, abi, call, {
+        blockTag
+      });
+      response.push(...multiRes);
     }
-  };
-
-  const results = await subgraphRequest(SMART_CHEF_URL, params);
-
-  if (!results) {
-    return;
-  }
-
-  try {
-    const poolAddresses = results.smartChefs.map((pool) => pool.id);
-    const promises = addresses.map((address) => {
-      return fetchVotingPower(address, blockTag, poolAddresses);
-    }) as ReturnType<typeof fetchVotingPower>[];
-    const votingPowerResults = await Promise.all(promises);
-
-    const calculatedPower = votingPowerResults.reduce(
-      (accum, response, index) => {
-        const address = addresses[index];
-        const total = parseFloat(response.total);
-
-        return {
-          ...accum,
-          [address]: total <= MINIUM_VOTING_POWER ? MINIUM_VOTING_POWER : total
-        };
-      },
-      {}
+    return Object.fromEntries(
+      response.map((value, i) => [
+        addresses[i],
+        parseFloat(formatUnits(value.toString(), options.decimals))
+      ])
     );
-    return calculatedPower;
-  } catch {
-    return [];
   }
+
+  return erc20BalanceOfStrategy(
+    space,
+    network,
+    provider,
+    addresses,
+    {
+      address: CAKE_ADDRESS,
+      symbol: 'CAKE',
+      decimals: 18
+    },
+    snapshot
+  );
 }

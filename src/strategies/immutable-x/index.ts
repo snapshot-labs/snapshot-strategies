@@ -17,7 +17,7 @@ const networkMapping = {
   3: 'https://api.ropsten.x.immutable.com'
 };
 
-const defaultPageSize = 100;
+const defaultPageSize = 1000;
 
 interface Response {
   records: Score[];
@@ -57,23 +57,54 @@ async function getL2Balances(
 ): Promise<Record<string, number>> {
   const records: Record<string, number> = {};
 
-  let cursor = '',
-    recordsLen = addresses.length; // assume all addresses exist
+  // Sanitize pageSize
+  options.pageSize = options.pageSize || defaultPageSize;
 
-  while (recordsLen != 0) {
+  // Loop variables
+  let cursor = '',
+    receivedLen = 0;
+
+  // Until all records are returned
+  // This loop handles both:
+  // 1. server-side paginated requests for all addresses available; and
+  // 2. client-side paginated requests (addresses in json body of requests).
+  // There are separate completion conditions for 1. and 2.
+  while (true) {
+    // Build URL
     const apiUrl = buildURL(network, options, block, cursor);
+
+    // Send request
     const response = await fetch(apiUrl, {
       method: 'POST',
-      body: JSON.stringify({ ether_keys: addresses }),
+      body: JSON.stringify({
+        ether_keys: addresses.slice(receivedLen, receivedLen + options.pageSize)
+      }),
       headers: {
         'Content-Type': 'application/json',
         Accept: 'application/json'
       }
     });
+
+    // Decode response
     const resJson = await response.json();
+
+    // Empty response indicates end of results
+    // for requests without specified address in json body
+    const respLen = (resJson as Response).records.length;
+    if (respLen === 0) {
+      break;
+    }
+    // Store result
     Object.assign(records, mapL2Response(resJson, options));
+    // Iterate
+    receivedLen += respLen;
+    // This indicates we have received all results for
+    // the addresses we asked for
+    if (receivedLen >= addresses.length) {
+      break;
+    }
+    // For paginated requests, continue w/ cursor
     cursor = resJson.cursor;
-    recordsLen = (resJson as Response).records.length;
   }
   return records;
 }
@@ -86,9 +117,7 @@ function buildURL(
 ): string {
   let apiUrl = networkMapping[network] + snapshotPath;
   apiUrl += '/' + options.address.toLowerCase();
-  apiUrl += `?page_size=${
-    'pageSize' in options ? options.pageSize : defaultPageSize
-  }`;
+  apiUrl += `?page_size=${options.pageSize}`;
   apiUrl += typeof block === 'number' ? `&block=${block}` : '';
   apiUrl += cursor || cursor != '' ? `&cursor=${cursor}` : '';
   return apiUrl;

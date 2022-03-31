@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Goldfinch Voting Power",
+    "strategy": {
+      "name": "goldfinch-voting-power",
+      "params": { "symbol": "GFI", "decimals": 18 }
+    },
+    "network": "1",
+    "addresses": [
+      "0x526C7665C5dd9cD7102C6d42D407a0d9DC1e431d",
+      "0x721931508df2764fd4f70c53da646cb8aed16ace",
+      "0x4902b20bB3B8e7776CBcDCB6e3397E7F6b4e449E",
+      "0x6C3FB1A2A55fdcFb620Ae8f19b6fc332622050DD"
+    ],
+    "snapshot": 14440657
+  }
+]
