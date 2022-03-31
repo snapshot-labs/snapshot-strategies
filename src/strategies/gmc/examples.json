@@ -2,18 +2,20 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "GokuMarket Credit",
+      "name": "gmc",
       "params": {
-        "symbol": "GMC"
+        "address": "0xd3E7C41b39Bb252d909Fb64D2433Abf225Eaf49E",
+        "symbol": "GMC",
+        "decimals": 18
       }
     },
     "network": "56",
     "addresses": [
-      "0x3b7579c6afab756dd740d715a78201100f85c639",
-      "0x58fc3397d627d9e4242bc680092e5b1c78695c8d",
+      "0x89eec8dbd320dc673967eb43d88cd77fb2fe1505",
       "0x4a08a9f8d793155ec5618779844ca133b09d6073",
-      "0x89eec8dbd320dc673967eb43d88cd77fb2fe1505"
+      "0x58fc3397d627d9e4242bc680092e5b1c78695c8d",
+      "0x3b7579c6afab756dd740d715a78201100f85c639"
     ],
-    "snapshot": 16509855
+    "snapshot": 16474316
   }
 ]
