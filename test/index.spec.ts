@@ -40,6 +40,14 @@ describe(`\nTest strategy "${strategy}"`, () => {
   let scores = null;
   let getScoresTime = null;
 
+  it('Strategy name should be lowercase and should not contain any special char expect hyphen', () => {
+    expect(strategy).toMatch(/^[a-z0-9\-]+$/);
+  });
+
+  it('Strategy name should be same as in example.json', () => {
+    expect(example.strategy.name).toBe(strategy);
+  });
+
   it('Strategy should run without any errors', async () => {
     const getScoresStart = performance.now();
     scores = await callGetScores(example);
