@@ -7,13 +7,16 @@ const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 // Snapshot-level Configuration
 const network = '1';
 const addresses = [
-  '0xC1FDB60CFB2FbbD6EDc9b445D9B508Da2dBF2c9b',
-  '0xD3e9D60e4E4De615124D5239219F32946d10151D',
-  '0xcCd72BeA12f3927063bE3D8798a4b74082713cb5',
-  '0xde1E6A7ED0ad3F61D531a8a78E83CcDdbd6E0c49',
+  '0x135C21b2DA426760718E39DA954974c4572AE9f6',
   '0x05e57688C639b0742ea3E940b4E9DC0fb69B1B88',
-  '0x135C21b2DA426760718E39DA954974c4572AE9f6'
+  '0x14cEE90aF8f4ad904EdE3650dBEB89E1F26144ab',
+  '0x1A4b0923B0F150b5Fa8CdFb2138D0D78b1EC85fC',
+  '0x1e341Aa44c293d95d13d778492D417D1BE4E63D5',
+  '0xd08b7e82942fac71d96fecaa99ed7323a95d9a79',
+  '0xD76F585b6B94202430875aE748fF8C038Dc64111',
+  '0x013040bcc92ca0bec2670d61f06da7c36678222a'
 ];
+
 const provider = new JsonRpcProvider(networks[network].rpc[0]);
 const blockTag = 'latest';
 
@@ -63,21 +66,24 @@ const main = async () => {
   const allData = await fetch(`https://club.agora.space/api/all-data`);
   const allDataJSON = await allData.json();
 
-  // ** Claimable (vested) $CLUB tokens ** //
-  const getWalletToVestedAmount = new Multicaller(network, provider, abi, {
-    blockTag
-  });
-
   // ** Claimed $CLUB tokens ** //
   const getWalletToClaimedAmount = new Multicaller(network, provider, abi, {
     blockTag
   });
+
+  // ** Vested Mapping ** //
+  let walletToVestedAmount: any = {} as Record<string, typeof BigNumber>;
 
   console.log('Addresses:', addresses);
   // const lowerCaseAddresses = addresses.map((address) => address.toLowerCase());
 
   // ** Loop over all claim data ** //
   for (const [cohortId, cohortData] of Object.entries(allDataJSON)) {
+    // ** Claimable (vested) $CLUB tokens ** //
+    const getWalletToVestedAmount = new Multicaller(network, provider, abi, {
+      blockTag
+    });
+
     // ** Iterate over addresses in the cohort with claims ** //
     for (const [address, amountData] of Object.entries(cohortData as any)) {
       // console.log('Checking address', address);
@@ -90,10 +96,14 @@ const main = async () => {
           : BigNumber.from(0);
         const indexData: any = amountData;
         const index: typeof BigNumber = indexData.index
-          ? BigNumber.from(amount.amount)
+          ? BigNumber.from(amount.index)
           : BigNumber.from(0);
 
         // ** Create The Vested Amount Call ** //
+        console.log('Calling getClaimableAmount for', address);
+        console.log('CohortId:', cohortId);
+        console.log('Index:', index);
+        console.log('FullAmount:', fullAmount);
         getWalletToVestedAmount.call(address, vesting, 'getClaimableAmount', [
           cohortId, // cohortId
           index, // index
@@ -108,23 +118,33 @@ const main = async () => {
         ]);
       }
     }
+
+    // ** Execute the vested multicall ** //
+    try {
+      // This should return a mapping of wallet addresses to vested amounts
+      const tempWalletVestedAmounts: Record<
+        string,
+        typeof BigNumber
+      > = await getWalletToVestedAmount.execute();
+      console.log('Got temp wallet vested amount:', tempWalletVestedAmounts);
+      walletToVestedAmount = Object.assign(
+        walletToVestedAmount,
+        tempWalletVestedAmounts
+      );
+    } catch (e) {
+      console.log('multicall errored!');
+      console.log(e);
+      // !! IGNORE Multicall REVERTS !! //
+    }
   }
 
-  // ** Execute the multicalls ** //
-  const walletToVestedAmount: Record<
-    string,
-    typeof BigNumber
-  > = await getWalletToVestedAmount.execute();
+  // ** Execute the claimed multicall ** //
   const walletToClaimedAmount: Record<
     string,
     typeof BigNumber
   > = await getWalletToClaimedAmount.execute();
 
-  // ** Add claimable and still vesting data to reverseVotingBalance ** //
-  const vestedEntries = Object.entries(walletToVestedAmount);
-  console.log('Vested Entries:', vestedEntries);
-  const claimedEntries = Object.entries(walletToClaimedAmount);
-  console.log('Claimed Entries:', claimedEntries);
+  // ** Map address to its full amount of claimable tokens ** //
   const listOfFullAmounts = Object.entries(allDataJSON)
     .map(([cohortId, cohortData]: any) =>
       Object.entries(cohortData).map(([address, data]: any) => [
@@ -137,33 +157,43 @@ const main = async () => {
     .reduce((prev, curr) => {
       return prev.concat(curr);
     });
-  // console.log('List of Full Amounts: ', listOfFullAmounts);
-  for (let i = 0; i < Object.entries(walletToVestedAmount).length; i++) {
-    const address = vestedEntries[i][0].split('-')[0];
-    const vestedBalance = vestedEntries[i][1];
-    const claimedBalance = claimedEntries[i][1];
+  const fullAmounts: Map<string, typeof BigNumber> = new Map(
+    listOfFullAmounts.map(([, address, amount]) => [address, amount])
+  );
+  console.log('Iterating over full amounts...');
+
+  // ** Iterate over the full amounts mapping from address -> total claim amount **//
+  fullAmounts.forEach((amount, address) => {
+    const vestedBalance: typeof BigNumber =
+      walletToVestedAmount[address] || BigNumber.from(0);
+    console.log('Address', address, 'has vestedBalance:', vestedBalance);
+    const claimedBalance: typeof BigNumber =
+      walletToClaimedAmount[address] || BigNumber.from(0);
+    console.log('Address', address, 'has claimedBalance:', claimedBalance);
 
     // ?? voting_power = current_balance +
     // ??                vested_balance +
     // ??                0.1 * (fullAmount - vestedBalance - claimedBalance)
 
-    const vestingPower = BigNumber.from(0.1).mul(
-      listOfFullAmounts[i][2].sub(vestedBalance).sub(claimedBalance)
-    );
-    console.log('Vesting power:', vestingPower.toBigInt());
+    console.log('Address', address, 'has amount:', BigNumber.from(amount));
+    const vestingPower = BigNumber.from(amount)
+      .sub(vestedBalance)
+      .sub(claimedBalance)
+      .div(BigNumber.from(10));
+    console.log('Vesting power:', vestingPower);
     const addedVotingPower = vestedBalance.add(vestingPower);
-    console.log('Added Voting Power:', addedVotingPower.toBigInt());
+    console.log('Added Voting Power:', addedVotingPower);
     reverseVotingBalance[address] = reverseVotingBalance[address]
       ? reverseVotingBalance[address].add(addedVotingPower)
       : addedVotingPower;
-  }
+  });
 
   // ** Return [address, balance] pairs ** //
   const finalReturnData = Object.fromEntries(
     addresses.map((address) => [
       address,
       reverseVotingBalance[address]
-        ? reverseVotingBalance[address].toBigInt()
+        ? parseFloat(reverseVotingBalance[address].toString())
         : 0
     ])
   );
