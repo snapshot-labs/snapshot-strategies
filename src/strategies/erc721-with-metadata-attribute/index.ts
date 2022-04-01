@@ -36,31 +36,33 @@ export async function strategy(
   > = await callWalletToBalanceOf.execute();
 
   // 2nd, get the first tokenId for each address
-  const callWalletToFirstTokenID = new Multicaller(network, provider, abi, {
+  const callWalletIdToFirstTokenID = new Multicaller(network, provider, abi, {
     blockTag
   });
   for (const [walletAddress, count] of Object.entries(walletToBalanceOf)) {
     if (count.toNumber() > 0) {
-      callWalletToFirstTokenID.call(
-        walletAddress.toString(),
-        options.address,
-        'tokenOfOwnerByIndex',
-        [walletAddress, 0]
-      );
+      for (let index = 0; index < count.toNumber(); index++) {
+        callWalletIdToFirstTokenID.call(
+          walletAddress.toString() + '-' + index.toString(),
+          options.address,
+          'tokenOfOwnerByIndex',
+          [walletAddress, index]
+        );
+      }
     }
   }
-  const walletToFirstTokenID: Record<
+  const walletIdToFirstTokenID: Record<
     string,
     BigNumber
-  > = await callWalletToFirstTokenID.execute();
+  > = await callWalletIdToFirstTokenID.execute();
 
   // 3rd, get the tokenURI for each token
   const callWalletToFirstTokenURI = new Multicaller(network, provider, abi, {
     blockTag
   });
-  for (const [walletAddress, tokenId] of Object.entries(walletToFirstTokenID)) {
+  for (const [walletId, tokenId] of Object.entries(walletIdToFirstTokenID)) {   
     callWalletToFirstTokenURI.call(
-      walletAddress.toString(),
+      walletId.toString(),
       options.address,
       'tokenURI',
       [tokenId]
@@ -72,8 +74,8 @@ export async function strategy(
   > = await callWalletToFirstTokenURI.execute();
 
   // 4th, get the attributes, and parse the specified field from tokenURI
-  const walletToAttributeValue = {} as Record<string, Number>;
-  for (const [walletAddress, tokenURI] of Object.entries(walletToFirstTokenURI)) {
+  const walletToAttributeValue = {} as Record<string, number>;
+  for (const [walletId, tokenURI] of Object.entries(walletToFirstTokenURI)) {
     const response = await fetch(tokenURI, {
       method: 'GET',
       headers: {
@@ -85,10 +87,12 @@ export async function strategy(
     let attributeValue = 0
     for (const attribute of data.attributes) {
       if (attribute.trait_type === options.attributeName) {
-        attributeValue = parseInt(attribute.value)
+        attributeValue = Number(attribute.value)
       }
     }
-    walletToAttributeValue[walletAddress] = attributeValue;
+
+    const walletAddress = walletId.split('-')[0];
+    walletToAttributeValue[walletAddress] = (walletToAttributeValue[walletAddress] || 0) + attributeValue;
   }
 
   return Object.fromEntries(

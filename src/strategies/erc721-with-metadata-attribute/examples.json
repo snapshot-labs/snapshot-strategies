@@ -12,6 +12,7 @@
         "network": "4",
         "addresses": [
             "0xa976C336B790CA8BA18c112aa9D8C4308De09632",
+            "0xb0b085dd0fe6c9632058f9ef088375c16f3aff12",
             "0x7f16D5c969380E3420E17B4c3456A3844745A578"
         ],
         "snapshot": 10415558
