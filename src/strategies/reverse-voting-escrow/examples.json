@@ -6,7 +6,8 @@
       "params": {
         "symbol": "RVE",
         "club": "0xF76d80200226AC250665139B9E435617e4Ba55F9",
-        "vesting": "0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a"
+        "vesting": "0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a",
+        "decimals": 18
       }
     },
     "network": "1",
