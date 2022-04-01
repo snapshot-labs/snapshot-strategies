@@ -35,14 +35,14 @@ export async function strategy(
     BigNumber
   > = await callWalletToBalanceOf.execute();
 
-  // 2nd, get the first tokenId for each address
-  const callWalletIdToFirstTokenID = new Multicaller(network, provider, abi, {
+  // 2nd, get tokenIds for each address, and index
+  const callWalletIdToTokenID = new Multicaller(network, provider, abi, {
     blockTag
   });
   for (const [walletAddress, count] of Object.entries(walletToBalanceOf)) {
     if (count.toNumber() > 0) {
       for (let index = 0; index < count.toNumber(); index++) {
-        callWalletIdToFirstTokenID.call(
+        callWalletIdToTokenID.call(
           walletAddress.toString() + '-' + index.toString(),
           options.address,
           'tokenOfOwnerByIndex',
@@ -51,31 +51,31 @@ export async function strategy(
       }
     }
   }
-  const walletIdToFirstTokenID: Record<
+  const walletIdToTokenID: Record<
     string,
     BigNumber
-  > = await callWalletIdToFirstTokenID.execute();
+  > = await callWalletIdToTokenID.execute();
 
   // 3rd, get the tokenURI for each token
-  const callWalletToFirstTokenURI = new Multicaller(network, provider, abi, {
+  const callWalletIdToTokenURI = new Multicaller(network, provider, abi, {
     blockTag
   });
-  for (const [walletId, tokenId] of Object.entries(walletIdToFirstTokenID)) {   
-    callWalletToFirstTokenURI.call(
+  for (const [walletId, tokenId] of Object.entries(walletIdToTokenID)) {   
+    callWalletIdToTokenURI.call(
       walletId.toString(),
       options.address,
       'tokenURI',
       [tokenId]
     );
   }
-  const walletToFirstTokenURI: Record<
-    string, // address
+  const walletIdToTokenURI: Record<
+    string, // address + index
     string  // tokenURI
-  > = await callWalletToFirstTokenURI.execute();
+  > = await callWalletIdToTokenURI.execute();
 
   // 4th, get the attributes, and parse the specified field from tokenURI
   const walletToAttributeValue = {} as Record<string, number>;
-  for (const [walletId, tokenURI] of Object.entries(walletToFirstTokenURI)) {
+  for (const [walletId, tokenURI] of Object.entries(walletIdToTokenURI)) {
     const response = await fetch(tokenURI, {
       method: 'GET',
       headers: {
