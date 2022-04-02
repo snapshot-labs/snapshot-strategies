@@ -1,6 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import fetch from 'cross-fetch';
+import { formatUnits } from '@ethersproject/units';
 
 export const author = 'nascentxyz';
 export const version = '0.1.0';
@@ -170,12 +171,17 @@ export async function strategy(
       : addedVotingPower;
   });
 
-  // ** Return [address, balance] pairs ** //
+  // ** Return address, balance mapping ** //
   const scores = Object.fromEntries(
     addresses.map((address) => [
       address,
       reverseVotingBalance[address]
-        ? parseFloat(reverseVotingBalance[address].toString())
+        ? parseFloat(
+            formatUnits(
+              reverseVotingBalance[address].toString(),
+              options.decimals
+            )
+          )
         : 0
     ])
   );
