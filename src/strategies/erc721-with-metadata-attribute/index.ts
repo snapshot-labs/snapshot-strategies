@@ -1,6 +1,6 @@
 import { Multicaller } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
-import fetch from 'cross-fetch';
+import snapshots from '@snapshot-labs/snapshot.js';
 
 export const author = 'allmysmarts';
 export const version = '0.1.0';
@@ -76,14 +76,7 @@ export async function strategy(
   // 4th, get the attributes, and parse the specified field from tokenURI
   const walletToAttributeValue = {} as Record<string, number>;
   for (const [walletId, tokenURI] of Object.entries(walletIdToTokenURI)) {
-    const response = await fetch(tokenURI, {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json'
-      }
-    });
-    const data = await response.json();
+    const data = await snapshots.utils.getJSON(tokenURI);
     let attributeValue = 0
     for (const attribute of data.attributes) {
       if (attribute.trait_type === options.attributeName) {
