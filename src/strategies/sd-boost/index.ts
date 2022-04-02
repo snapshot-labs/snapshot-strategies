@@ -1,8 +1,7 @@
-import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
 export const author = 'clement-ux';
-export const version = '0.0.2';
+export const version = '0.0.3';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
@@ -11,7 +10,6 @@ const abi = [
 ];
 
 const veSDT = '0x0C30476f66034E11782938DF8e4384970B6c9e8a';
-const DECIMALS = 18;
 
 const F1 = 0.4;
 const F2 = 0.6;
@@ -122,10 +120,7 @@ export async function strategy(
         //  (workingSupply / 10 ** DECIMALS).toString()
         //);
         // console.log(``);```
-        return [
-          addresses[i],
-          parseFloat(formatUnits(adjustedBalance_i.toString(), DECIMALS))
-        ];
+        return [addresses[i], adjustedBalance_i / 10 ** options.decimals];
       })
   );
 
