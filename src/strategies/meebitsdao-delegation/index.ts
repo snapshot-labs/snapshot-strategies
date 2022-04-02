@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { strategy as meebitsdaoStrategy } from '../meebitsdao';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import { strategy as erc721Strategy } from '../erc721';
@@ -34,6 +35,12 @@ export async function strategy(
     }
   };
 
+  const lowerCaseAddresses: string[] = [];
+
+  addresses.forEach((address) => {
+    lowerCaseAddresses.push(address);
+  });
+
   const result = await subgraphRequest(
     MEEBITSDAO_DELEGATION_SUBGRAPH_URL,
     params
@@ -57,7 +64,7 @@ export async function strategy(
     space,
     network,
     provider,
-    addresses,
+    lowerCaseAddresses,
     options.tokenAddresses[1],
     snapshot
   );
@@ -66,7 +73,7 @@ export async function strategy(
     space,
     options.tokenAddresses[2].network,
     getProvider(options.tokenAddresses[2].network),
-    addresses,
+    lowerCaseAddresses,
     options.tokenAddresses[2],
     blocks[options.tokenAddresses[2].network]
   );
@@ -94,15 +101,20 @@ export async function strategy(
     }
   });
 
-  return Object.fromEntries(
-    Object.entries(mfndScores).map((address: any) => [
-      address[0],
+  const entries = Object.entries(mfndScores).map((address: any) => {
+    const founderAddress = address[0].toLowerCase();
+    return [
+      getAddress(founderAddress),
       Math.min(
-        address[0] in delegations
-          ? Math.max(address[1], delegations[address[0]])
-          : address[1],
+        (founderAddress in delegations
+        ? Math.max(address[1], delegations[founderAddress])
+        : address[1]),
         1000
       )
-    ])
-  );
+    ];
+  });
+
+  const score = Object.fromEntries(entries);
+
+  return score || {}
 }
