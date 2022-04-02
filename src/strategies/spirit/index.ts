@@ -17,12 +17,7 @@ async function search_contract_cretion_block(contract_address, provider) {
   while (lowest_block <= highest_block) {
     let search_block = Math.floor((lowest_block + highest_block) / 2);
     contract_code = await provider.getCode(contract_address, search_block);
-    if (contract_code != '0x') {
-      highest_block = search_block;
-    } else if (contract_code == '0x') {
-      lowest_block = search_block;
-    }
-
+    contract_code != '0x'?highest_block = search_block:lowest_block = search_block;
     if (highest_block == lowest_block + 1) {
       return highest_block;
     }
