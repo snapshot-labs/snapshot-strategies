@@ -41,7 +41,7 @@ export async function strategy(
   });
   for (const [walletAddress, count] of Object.entries(walletToBalanceOf)) {
     if (count.toNumber() > 0) {
-      for (let index = 0; index < count.toNumber(); index++) {
+      for (let index = 0; index < Math.min(count.toNumber(), 2); index++) {
         callWalletIdToTokenID.call(
           walletAddress.toString() + '-' + index.toString(),
           options.address,
