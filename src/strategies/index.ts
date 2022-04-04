@@ -108,6 +108,7 @@ import * as curioCardsErc20Weighted from './curio-cards-erc20-weighted';
 import * as saffronFinance from './saffron-finance';
 import * as saffronFinanceV2 from './saffron-finance-v2';
 import * as renNodes from './ren-nodes';
+import * as reverseVotingEscrow from './reverse-voting-escrow';
 import * as multisigOwners from './multisig-owners';
 import * as trancheStaking from './tranche-staking';
 import * as pepemon from './pepemon';
@@ -408,6 +409,7 @@ const strategies = {
   mushrooms: mushrooms,
   'curio-cards-erc20-weighted': curioCardsErc20Weighted,
   'ren-nodes': renNodes,
+  'reverse-voting-escrow': reverseVotingEscrow,
   'multisig-owners': multisigOwners,
   'tranche-staking': trancheStaking,
   pepemon,

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Reverse Voting Escrow Strategy Example",
+    "strategy": {
+      "name": "reverse-voting-escrow",
+      "params": {
+        "symbol": "RVE",
+        "club": "0xF76d80200226AC250665139B9E435617e4Ba55F9",
+        "vesting": "0xD46f00d9F1f6d2e65D9572F9ce283ba925FE591a",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x05e57688C639b0742ea3E940b4E9DC0fb69B1B88",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x135C21b2DA426760718E39DA954974c4572AE9f6"
+    ],
+    "snapshot": 14490773
+  }
+]
