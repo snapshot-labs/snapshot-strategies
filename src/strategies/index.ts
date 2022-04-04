@@ -289,6 +289,7 @@ import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 import * as meebitsDaoDelegation from './meebitsdao-delegation';
 import * as starcatchersTopWindow from './starcatchers-top-window';
 import * as gno from './gno';
+import * as umaVoting from './uma-voting';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -579,7 +580,8 @@ const strategies = {
   'meebitsdao-delegation': meebitsDaoDelegation,
   'starcatchers-top-window': starcatchersTopWindow,
   gno: gno,
-  'gno-vote-weight': gno
+  'gno-vote-weight': gno,
+  'uma-voting': umaVoting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
