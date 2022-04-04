@@ -106,9 +106,9 @@ export async function strategy(
     return [
       getAddress(founderAddress),
       Math.min(
-        (founderAddress in delegations
-        ? Math.max(address[1], delegations[founderAddress])
-        : address[1]),
+        founderAddress in delegations
+          ? Math.max(address[1], delegations[founderAddress])
+          : address[1],
         1000
       )
     ];
@@ -116,5 +116,5 @@ export async function strategy(
 
   const score = Object.fromEntries(entries);
 
-  return score || {}
+  return score || {};
 }

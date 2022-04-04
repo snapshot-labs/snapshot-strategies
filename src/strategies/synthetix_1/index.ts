@@ -29,7 +29,7 @@ const calculateSDSValue = async (
     provider
   );
 
-  let currentDebt = await DebtCacheContract.currentDebt({
+  const currentDebt = await DebtCacheContract.currentDebt({
     blockTag
   });
 
