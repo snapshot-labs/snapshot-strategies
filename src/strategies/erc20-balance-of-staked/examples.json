@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-staked",
+      "params": {
+        "address": "0x410a56541bD912F9B60943fcB344f1E3D6F09567",
+        "symbol": "BTCMT",
+        "decimals": 18,
+        "stakingAddress": "0x78ae303182FCA96A4629A78Ee13235e6525EbcFb",
+        "autoStakingAddress": "0xE751ffdC2a684EEbcaB9Dc95fEe05c083F963Bf1"
+      }
+    },
+    "network": "128",
+    "addresses": [
+      "0x05903a958710ec752dd4a25dd3157ccee9d6c92e",
+      "0x03bb74c32acb025effab4d31e579d3751363c216",
+      "0x0369a66d5d25734a9aef4689546a809888fe5bfe",
+      "0x0743a7eb79cf4b478ba0bba22bdf2f11bc8ad5de"
+    ],
+    "snapshot": 11437846
+  }
+]
