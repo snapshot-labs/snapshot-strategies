@@ -5,15 +5,7 @@ export const author = 'abg4';
 export const version = '0.1.0';
 
 const designatedVotingContractAbi = [
-  {
-    inputs: [{ internalType: 'address', name: '', type: 'address' }],
-    name: 'designatedVotingContracts',
-    outputs: [
-      { internalType: 'contract DesignatedVoting', name: '', type: 'address' }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function designatedVotingContracts(address) view returns (address)'
 ];
 
 function getArgs(options, address: string) {

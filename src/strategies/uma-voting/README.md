@@ -1,4 +1,4 @@
-# Contract call strategy
+# uma-voting strategy
 
 This strategy returns the UMA balance of the voting wallet for the hot wallet.
 
