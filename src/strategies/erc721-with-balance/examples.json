@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "erc721-one-vote-per-account-balance",
+      "name": "erc721-with-balance",
       "params": {
         "address": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
         "symbol": "PUNK"

@@ -1,4 +1,4 @@
-# erc721-one-vote-per-account-balance
+# erc721-with-balance
 
 This strategy return the balances of the voters for a specific ERC721 NFT. The 
 voting power is limited to one per account, where balance exists.
