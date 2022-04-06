@@ -291,6 +291,7 @@ import * as meebitsDaoDelegation from './meebitsdao-delegation';
 import * as starcatchersTopWindow from './starcatchers-top-window';
 import * as gno from './gno';
 import * as umaVoting from './uma-voting';
+import * as erc721OneVotePerAccountBalance from './erc721-one-vote-per-account-balance';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -344,6 +345,7 @@ const strategies = {
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-multi-registry': erc721MultiRegistry,
+  'erc721-one-vote-per-account-balance': erc721OneVotePerAccountBalance,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   multichain,
