@@ -4,7 +4,8 @@ import { multicall } from '../../utils';
 export const author = 'abg4';
 export const version = '0.1.0';
 
-const designatedVotingContractAbi = [
+const abi = [
+  'function balanceOf(address account) external view returns (uint256)',
   'function designatedVotingContracts(address) view returns (address)'
 ];
 
@@ -28,7 +29,7 @@ export async function strategy(
   const votingAddress = await multicall(
     network,
     provider,
-    designatedVotingContractAbi,
+    abi,
     addresses.map((address: any) => [
       options.votingFactoryAddress,
       'designatedVotingContracts',
@@ -40,14 +41,15 @@ export async function strategy(
   const response = await multicall(
     network,
     provider,
-    [options.methodABI],
+    abi,
     votingAddress.map((address: any) => [
       options.address,
-      options.methodABI.name,
+      'balanceOf',
       getArgs(options, address)
     ]),
     { blockTag }
   );
+
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],

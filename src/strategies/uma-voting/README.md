@@ -16,26 +16,7 @@ Here is an example of parameters:
         "address": "0x04Fa0d235C4abf4BcF4787aF4CF447DE572eF828",
         "votingFactoryAddress": "0xDE7c02aD2b925587Bd16724810f994a2948c4a38",
         "symbol": "UMA",
-        "decimals": 18,
-        "methodABI": {
-          "inputs": [
-            {
-              "internalType": "address",
-              "name": "account",
-              "type": "address"
-            }
-          ],
-          "name": "balanceOf",
-          "outputs": [
-            {
-              "internalType": "uint256",
-              "name": "",
-              "type": "uint256"
-            }
-          ],
-          "stateMutability": "view",
-          "type": "function"
-        }
+        "decimals": 18
       }
     },
     "network": "1",
