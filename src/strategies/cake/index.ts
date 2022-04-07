@@ -1,9 +1,9 @@
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import { strategy as masterChefPoolBalanceStrategy } from '../masterchef-pool-balance';
 import { formatEther } from '@ethersproject/units';
-import { Zero } from '@ethersproject/constants';
+import { Zero, WeiPerEther } from '@ethersproject/constants';
 import { BigNumber } from '@ethersproject/bignumber';
-import { multicall, subgraphRequest } from '../../utils';
+import { multicall, subgraphRequest, call } from '../../utils';
 
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -16,6 +16,9 @@ export const author = 'pancake-swap';
 export const version = '0.0.1';
 
 const CAKE_ADDRESS = '0x0E09FaBB73Bd3Ade0a17ECC321fD13a19e81cE82';
+const CAKE_VAULT_ADDRESS = '0xa80240Eb5d7E05d3F250cF000eEc0891d00b51CC';
+const IFO_POOL_START_BLOCK = 13463954;
+const IFO_POOL_ADDRESS = '0x1B2A2f6ed4A1401E8C73B4c2B6172455ce2f78E8';
 const CAKE_BNB_LP_ADDRESS = '0x0eD7e52944161450477ee417DE9Cd3a859b14fD0';
 
 const MASTER_CHEF_ADDRESS = {
@@ -27,6 +30,11 @@ const onChainVPAddress = '0xc0FeBE244cE1ea66d27D23012B3D616432433F42';
 
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
+];
+
+const vaultAbi = [
+  'function getPricePerFullShare() view returns (uint256)',
+  'function userInfo(address) view returns (uint256 shares, uint256 lastDepositedTime, uint256 cakeAtLastUserAction, uint256 lastUserActionTime)'
 ];
 
 const smartChefUrl =
@@ -56,7 +64,7 @@ async function getPools(provider, snapshot: any) {
   return pools.smartChefs;
 }
 
-async function getStakedCakeAmount(
+async function getSmartChefStakedCakeAmount(
   snapshot: any,
   poolAddresses: string[],
   addresses: string[]
@@ -122,7 +130,7 @@ export async function strategy(
 ) {
   const pools = await getPools(provider, snapshot);
 
-  const userPoolBalance = await getStakedCakeAmount(
+  const userPoolBalance = await getSmartChefStakedCakeAmount(
     snapshot,
     pools.map((p) => p.id),
     addresses
@@ -191,12 +199,74 @@ export async function strategy(
     snapshot
   );
 
+  const cakeVaultBalance = await getVaultBalance(
+    network,
+    provider,
+    addresses,
+    blockTag,
+    CAKE_VAULT_ADDRESS
+  );
+  let ifoVaultBalance;
+  if (blockTag >= IFO_POOL_START_BLOCK) {
+    ifoVaultBalance = await getVaultBalance(
+      network,
+      provider,
+      addresses,
+      blockTag,
+      IFO_POOL_ADDRESS
+    );
+  }
+
   return Object.fromEntries(
     addresses.map((address) => [
       address,
       erc20Balance[address] +
         cakeBnbLpBalance[address] +
-        parseFloat(formatEther(userPoolBalance[address.toLowerCase()] || Zero))
+        parseFloat(
+          formatEther(
+            (userPoolBalance[address.toLowerCase()] || Zero)
+              .add(cakeVaultBalance[address] || Zero)
+              .add(ifoVaultBalance[address] || Zero)
+          )
+        )
+    ])
+  );
+}
+
+async function getVaultBalance(
+  network,
+  provider,
+  addresses,
+  blockTag,
+  vaultAddress
+) {
+  const cakeVaultPricePerShare = await call(
+    provider,
+    vaultAbi,
+    [vaultAddress, 'getPricePerFullShare'],
+    {
+      blockTag
+    }
+  );
+
+  const userInfoMulti = await multicall(
+    network,
+    provider,
+    vaultAbi,
+    addresses.map((address: any) => [
+      vaultAddress,
+      'userInfo',
+      [address.toLowerCase()]
+    ]),
+    {
+      blockTag
+    }
+  );
+
+  return Object.fromEntries<BigNumber>(
+    userInfoMulti.map((value, i) => [
+      addresses[i],
+      cakeVaultPricePerShare.mul(value.shares).div(WeiPerEther)
     ])
   );
 }
