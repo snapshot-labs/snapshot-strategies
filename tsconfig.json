@@ -6,12 +6,17 @@
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
-    "noUnusedLocals": true,
+    //TODO: set true after test
+    "noUnusedLocals": false,
     "esModuleInterop": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": ["src"],
-  "files": ["./src/typings.d.ts"]
+  "include": [
+    "src"
+  ],
+  "files": [
+    "./src/typings.d.ts"
+  ]
 }
