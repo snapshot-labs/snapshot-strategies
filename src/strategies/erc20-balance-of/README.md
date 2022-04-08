@@ -10,4 +10,4 @@ Here is an example of parameters:
   "symbol": "DAI",
   "decimals": 18
 }
-```
+```(0x0ae4cAcDe6b5a0d31369b311658e5897ED6b9938)
