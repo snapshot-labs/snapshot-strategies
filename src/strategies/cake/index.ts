@@ -155,7 +155,7 @@ export async function strategy(
       });
       response.push(...multiRes);
     }
-    const result = Object.fromEntries(
+    return Object.fromEntries(
       response.map((value, i) => [
         addresses[i],
         parseFloat(
@@ -167,8 +167,6 @@ export async function strategy(
         )
       ])
     );
-
-    return result;
   }
 
   const erc20Balance = await erc20BalanceOfStrategy(
