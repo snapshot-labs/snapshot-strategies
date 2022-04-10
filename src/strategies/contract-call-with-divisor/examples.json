@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "contract-call-with-divisor",
+      "params": {
+        "address": "0xc24A365A870821EB83Fd216c9596eDD89479d8d7",
+        "symbol": "gPOLS",
+        "decimals": 18,
+        "divisor" : "86400000",
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "userTotalRewards",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "1",
+    "addresses": ["0xb748910Bf3926DC2eE18ddB7c8b279eE9331955c"],
+    "snapshot": 14558113
+  }
+]
