@@ -55,7 +55,7 @@ You can call methods with multiple inputs in any contract:
       "decimals": 18,
       // strategy symbol
       "symbol": "mySCORE",
-            // divisor
+      // divisor
       "divisor" : "86400000",
       // arguments are passed to the method; "%{address}" is replaced with the voter's address; default value ["%{address}"]
       "args": ["0x6887DF2f4296e8B772cb19479472A16E836dB9e0", "%{address}"], 
