@@ -3,7 +3,7 @@ import { strategy as masterChefPoolBalanceStrategy } from '../masterchef-pool-ba
 import { formatEther } from '@ethersproject/units';
 import { Zero, WeiPerEther } from '@ethersproject/constants';
 import { BigNumber } from '@ethersproject/bignumber';
-import { multicall, subgraphRequest, call } from '../../utils';
+import { multicall, subgraphRequest, Multicaller } from '../../utils';
 
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -201,19 +201,8 @@ export async function strategy(
     network,
     provider,
     addresses,
-    blockTag,
-    CAKE_VAULT_ADDRESS
+    blockTag
   );
-  let ifoVaultBalance;
-  if (blockTag >= IFO_POOL_START_BLOCK) {
-    ifoVaultBalance = await getVaultBalance(
-      network,
-      provider,
-      addresses,
-      blockTag,
-      IFO_POOL_ADDRESS
-    );
-  }
 
   return Object.fromEntries(
     addresses.map((address) => [
@@ -222,49 +211,61 @@ export async function strategy(
         cakeBnbLpBalance[address] +
         parseFloat(
           formatEther(
-            (userPoolBalance[address.toLowerCase()] || Zero)
-              .add(cakeVaultBalance[address] || Zero)
-              .add(ifoVaultBalance[address] || Zero)
+            (userPoolBalance[address.toLowerCase()] || Zero).add(
+              cakeVaultBalance[address] || Zero
+            )
           )
         )
     ])
   );
 }
 
-async function getVaultBalance(
-  network,
-  provider,
-  addresses,
-  blockTag,
-  vaultAddress
-) {
-  const cakeVaultPricePerShare = await call(
-    provider,
-    vaultAbi,
-    [vaultAddress, 'getPricePerFullShare'],
-    {
-      blockTag
-    }
+async function getVaultBalance(network, provider, addresses, blockTag) {
+  const vaultMulti = new Multicaller(network, provider, vaultAbi, { blockTag });
+
+  vaultMulti.call(
+    CAKE_VAULT_ADDRESS,
+    CAKE_VAULT_ADDRESS,
+    'getPricePerFullShare'
   );
 
-  const userInfoMulti = await multicall(
-    network,
-    provider,
-    vaultAbi,
-    addresses.map((address: any) => [
-      vaultAddress,
+  addresses.forEach((address) =>
+    vaultMulti.call(
+      `${CAKE_VAULT_ADDRESS}-${address}`,
+      CAKE_VAULT_ADDRESS,
       'userInfo',
-      [address.toLowerCase()]
-    ]),
-    {
-      blockTag
-    }
+      [address]
+    )
   );
+
+  if (blockTag >= IFO_POOL_START_BLOCK) {
+    vaultMulti.call(IFO_POOL_ADDRESS, IFO_POOL_ADDRESS, 'getPricePerFullShare');
+
+    addresses.forEach((address) => {
+      vaultMulti.call(
+        `${IFO_POOL_ADDRESS}-${address}`,
+        IFO_POOL_ADDRESS,
+        'userInfo',
+        [address]
+      );
+    });
+  }
+
+  const vaultMultiRes = await vaultMulti.execute();
 
   return Object.fromEntries<BigNumber>(
-    userInfoMulti.map((value, i) => [
-      addresses[i],
-      cakeVaultPricePerShare.mul(value.shares).div(WeiPerEther)
+    addresses.map((address) => [
+      address,
+      (vaultMultiRes[CAKE_VAULT_ADDRESS] || Zero)
+        .mul(vaultMultiRes[`${CAKE_VAULT_ADDRESS}-${address}`]?.shares || Zero)
+        .div(WeiPerEther)
+        .add(
+          (vaultMultiRes[IFO_POOL_ADDRESS] || Zero)
+            .mul(
+              vaultMultiRes[`${IFO_POOL_ADDRESS}-${address}`]?.shares || Zero
+            )
+            .div(WeiPerEther)
+        )
     ])
   );
 }
