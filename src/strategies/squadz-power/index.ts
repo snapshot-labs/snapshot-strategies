@@ -24,7 +24,7 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  if (Object.keys(engineAddresses).includes(network))
+  if (!Object.keys(engineAddresses).includes(network))
     console.warn('Invalid network:', network, 'not in', Object.keys(engineAddresses));
 
   const engineAddress = engineAddresses[network];
