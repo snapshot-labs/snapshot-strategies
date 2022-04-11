@@ -14,7 +14,7 @@ const stakingAbi = [
 ];
 
 const autoStakingAbi = [
-  'function userStake(address account) external view returns (uint112, uint256, uint256)'
+  'function userStake(address account) external view returns (uint256, uint256, uint256)'
 ];
 
 export async function strategy(
@@ -39,32 +39,23 @@ export async function strategy(
   addresses.forEach((address) => {
     multi.call(address, options.address, 'balanceOf', [address]);
     multiStaking.call(address, options.stakingAddress, 'userStakes', [address]);
-    // multiAutoStaking.call(address, options.stakingAddress, 'userStake', [
-    //   address
-    // ]);
+    multiAutoStaking.call(address, options.autoStakingAddress, 'userStake', [
+      address
+    ]);
   });
 
-  const [result, resultstaking] = await Promise.all([
+  const [result, resultStaking, resultAutoStaking] = await Promise.all([
     multi.execute(),
-    multiStaking.execute()
+    multiStaking.execute(),
+    multiAutoStaking.execute()
   ]);
 
-  // const stakingObj = Object.fromEntries(
-  //   Object.entries(resultStaking).map(([address, balance]) => [
-  //     address,
-  //     parseFloat(formatUnits(balance, options.decimals))
-  //   ])
-  // );
-  // const balanceObj = Object.fromEntries(
-  //   Object.entries(result).map(([address, balance]) => [
-  //     address,
-  //     parseFloat(formatUnits(balance, options.decimals))
-  //   ])
-  // );
   return Object.fromEntries(
     addresses.map((address) => {
       const sum =
-        parseFloat(result[address]) + parseFloat(resultstaking[address]);
+        parseFloat(result[address]) +
+        parseFloat(resultStaking[address]) +
+        parseFloat(resultAutoStaking[address]);
       return [address, sum];
     })
   );
