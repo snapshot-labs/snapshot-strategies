@@ -1,12 +1,11 @@
-import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'semdestroyer';
+export const author = 'btcmt-minto';
 export const version = '0.1.0';
 
 const abi = [
-  'function balanceOf(address account) external view returns (uint256)'
+  'function balanceOfSum(address account) external view returns (uint256)'
 ];
 
 const stakingAbi = [
@@ -37,7 +36,7 @@ export async function strategy(
   });
 
   addresses.forEach((address) => {
-    multi.call(address, options.address, 'balanceOf', [address]);
+    multi.call(address, options.address, 'balanceOfSum', [address]);
     multiStaking.call(address, options.stakingAddress, 'userStakes', [address]);
     multiAutoStaking.call(address, options.autoStakingAddress, 'userStake', [
       address
@@ -53,9 +52,11 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address) => {
       const sum =
-        parseFloat(result[address]) +
-        parseFloat(resultStaking[address]) +
-        parseFloat(resultAutoStaking[address]);
+        parseFloat(formatUnits(result[address], options.decimals)) +
+        parseFloat(formatUnits(resultStaking[address][1], options.decimals)) +
+        parseFloat(
+          formatUnits(resultAutoStaking[address][0], options.decimals)
+        );
       return [address, sum];
     })
   );

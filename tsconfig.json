@@ -6,8 +6,7 @@
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
-    //TODO: set true after test
-    "noUnusedLocals": false,
+    "noUnusedLocals": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
