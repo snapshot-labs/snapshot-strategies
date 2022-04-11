@@ -62,8 +62,10 @@ export async function strategy(
   const walletToAttributeValue = {} as Record<string, number>;
   for (const [walletId, tokenID] of Object.entries(walletIdToTokenID)) {
     const walletAddress = walletId.split('-')[0];
-    const tokenData = metadata.find(x => x[tokenID.toString()])
-    walletToAttributeValue[walletAddress] = (walletToAttributeValue[walletAddress] || 0) + tokenData[tokenID.toString()];
+    const tokenData = metadata.find((x) => x[tokenID.toString()]);
+    walletToAttributeValue[walletAddress] =
+      (walletToAttributeValue[walletAddress] || 0) +
+      tokenData[tokenID.toString()];
   }
 
   return Object.fromEntries(
