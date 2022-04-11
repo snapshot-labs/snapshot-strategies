@@ -10,7 +10,6 @@ Here is an example of parameters:
   "symbol": "BTCMT",
   "decimals": 18,
   "stakingAddress": "0x78ae303182FCA96A4629A78Ee13235e6525EbcFb",
-  "autoStakingAddress": "0xE751ffdC2a684EEbcaB9Dc95fEe05c083F963Bf1",
-  "autoStakeBlock": 11437846
+  "autoStakingAddress": "0xE751ffdC2a684EEbcaB9Dc95fEe05c083F963Bf1"
 }
 ```
