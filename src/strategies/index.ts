@@ -292,6 +292,7 @@ import * as starcatchersTopWindow from './starcatchers-top-window';
 import * as gno from './gno';
 import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
+import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -586,6 +587,7 @@ const strategies = {
   'gno-vote-weight': gno,
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
+  'rocketpool-node-operator': rocketpoolNodeOperator,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rocketpool-node-operator",
+      "params": {
+        "address": "0xD33526068D116cE69F19A9ee46F0bd304F21A51f",
+        "symbol": "RPL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x17Fa597cEc16Ab63A7ca00Fb351eb4B29Ffa6f46",
+      "0xca317A4ecCbe0Dd5832dE2A7407e3c03F88b2CdD",
+      "0x327260c50634136551bfE4e4eB082281555AAfAE",
+      "0x5d8172792a9e649053c07366E3a7C24a37F0C534",
+      "0x701F4dcEAD1049FA01F321d49F6dca525cF4A5A5",
+      "0xb8ed9ea221bf33d37360A76DDD52bA7b1E66AA5C",
+      "0xbfaf9BFa09F26EF8104A6d5FF09afdCC9300E5bc",
+      "0x174E0b45C03318B0C9bc03573028605B26764931"
+    ],
+    "snapshot": 14490773
+  }
+]
