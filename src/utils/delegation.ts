@@ -1,67 +1,11 @@
 import { getAddress } from '@ethersproject/address';
-import { subgraphRequest, SNAPSHOT_SUBGRAPH_URL } from '../utils';
+import { getDelegatesBySpace } from '../utils';
 
 export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
-  const spaceIn = ['', space];
-  if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
+  const delegatesBySpace = await getDelegatesBySpace(space, network, snapshot);
 
-  const PAGE_SIZE = 1000;
-  let result = [];
-  let page = 0;
-  const params: any = {
-    delegations: {
-      __args: {
-        where: {
-          // delegate_in: addressesLc,
-          // delegator_not_in: addressesLc,
-          space_in: spaceIn
-        },
-        first: PAGE_SIZE,
-        skip: 0
-      },
-      delegator: true,
-      space: true,
-      delegate: true
-    }
-  };
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    params.delegations.__args.block = { number: snapshot };
-  }
-  while (true) {
-    params.delegations.__args.skip = page * PAGE_SIZE;
-
-    const pageResult = await subgraphRequest(
-      SNAPSHOT_SUBGRAPH_URL[network],
-      params
-    );
-    const pageDelegations = pageResult.delegations || [];
-    result = result.concat(pageDelegations);
-    page++;
-    if (pageDelegations.length < PAGE_SIZE) break;
-  }
-
-  // Global delegations are null in decentralized subgraph
-  page = 0;
-  delete params.delegations.__args.where.space_in;
-
-  while (true) {
-    params.delegations.__args.skip = page * PAGE_SIZE;
-    params.delegations.__args.where.space = null;
-    const pageResult = await subgraphRequest(
-      SNAPSHOT_SUBGRAPH_URL[network],
-      params
-    );
-    result = result.concat(pageResult);
-
-    const pageDelegations = pageResult.delegations || [];
-    result = result.concat(pageDelegations);
-    page++;
-    if (pageDelegations.length < PAGE_SIZE) break;
-  }
-
-  const delegations = result.filter(
+  const delegations = delegatesBySpace.filter(
     (delegation: any) =>
       addressesLc.includes(delegation.delegate) &&
       !addressesLc.includes(delegation.delegator)
