@@ -72,6 +72,7 @@ export const {
   subgraphRequest,
   ipfsGet,
   call,
+  getDelegatesBySpace,
   getBlockNumber,
   getProvider,
   SNAPSHOT_SUBGRAPH_URL
@@ -84,6 +85,7 @@ export default {
   subgraphRequest,
   ipfsGet,
   call,
+  getDelegatesBySpace,
   getBlockNumber,
   getProvider,
   getDelegations,
