@@ -1,9 +1,9 @@
 import { getAddress } from '@ethersproject/address';
-import { getDelegatesBySpace } from '../utils';
+import { getDelegatesBySpace, SNAPSHOT_SUBGRAPH_URL } from '../utils';
 
 export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
-  const delegatesBySpace = await getDelegatesBySpace(space, network, snapshot);
+  const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
 
   const delegations = delegatesBySpace.filter(
     (delegation: any) =>
