@@ -146,6 +146,7 @@ import * as inverseXINV from './inverse-xinv';
 import * as modefi from './modefi';
 import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
+import * as squadzPower from './squadz-power';
 import * as glide from './glide';
 import * as goldfinchVotingPower from './goldfinch-voting-power';
 import * as goldfinchMembership from './goldfinch-membership';
@@ -443,6 +444,7 @@ const strategies = {
   'iotex-staked-balance': iotexStakedBalance,
   'xrc20-balance-of': xrc20BalanceOf,
   spookyswap,
+  'squadz-power': squadzPower,
   glide,
   'goldfinch-voting-power': goldfinchVotingPower,
   'goldfinch-membership': goldfinchMembership,
