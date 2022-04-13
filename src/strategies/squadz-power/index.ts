@@ -25,7 +25,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   if (!Object.keys(engineAddresses).includes(network))
-    throw new Error('Invalid network:', network, 'not in', Object.keys(engineAddresses));
+    throw new Error('Invalid network:' + network + 'not in' + Object.keys(engineAddresses));
 
   const engineAddress = engineAddresses[network];
   const forkNumber = options.forkNumber ?? 0;
