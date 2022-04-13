@@ -1,5 +1,5 @@
 import { getAddress } from '@ethersproject/address';
-import { getDelegatesBySpace, SNAPSHOT_SUBGRAPH_URL } from '../utils';
+import { getDelegatesBySpace } from '../utils';
 
 export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
