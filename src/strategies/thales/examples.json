@@ -8,7 +8,7 @@
         "decimals": 18
       }
     },
-    "network": "1",
+    "network": "10",
     "addresses": [
       "0x9f8e4ee788D9b00A3409584E18034aA7B736C396",
       "0x0bc3668d2AaFa53eD5E5134bA13ec74ea195D000",
@@ -19,6 +19,6 @@
       "0x49be88f0fcc3a8393a59d3688480d7d253c37d2a",
       "0x27Cc4d6bc95b55a3a981BF1F1c7261CDa7bB0931"
     ],
-    "snapshot": 13562150
+    "snapshot": 5003555
   }
 ]

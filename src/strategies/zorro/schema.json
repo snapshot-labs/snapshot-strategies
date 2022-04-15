@@ -9,7 +9,8 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. VOTES"]
+          "examples": ["e.g. VOTES"],
+          "maxLength": 16
         },
         "purposeIdentifier": {
           "type": "string",
@@ -22,7 +23,7 @@
           "examples": ["e.g. 1000"]
         }
       },
-      "required": ["symbol"],
+      "required": [],
       "additionalProperties": false
     }
   }

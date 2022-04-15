@@ -20,7 +20,6 @@ export async function strategy(
     snapshot
   );
   if (Object.keys(delegations).length === 0) return {};
-  console.debug('Delegations', delegations);
 
   const score = await erc20BalanceOfStrategy(
     space,
@@ -32,7 +31,6 @@ export async function strategy(
     options,
     snapshot
   );
-  console.debug('Delegators score', score);
 
   return Object.fromEntries(
     addresses.map((address) => {

@@ -21,10 +21,16 @@
           "title": "Harvest Token Contract Address",
           "examples": ["e.g. 0x0a0be71cfce12ecb966dc762016c28ef5640b56a"]
         },
+        "veaddress": {
+          "type": "string",
+          "title": "veGNOME Token Contract Address",
+          "examples": ["e.g. 0xae059C276904B9E885710c4a68434b4Bc437da6e"]
+        },
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. GNOME"]
+          "examples": ["e.g. GNOME"],
+          "maxLength": 16
         },
         "decimals": {
           "type": "number",
@@ -32,7 +38,7 @@
           "examples": ["e.g. 18"]
         }
       },
-      "required": ["symbol", "address", "lpaddress", "decimals"],
+      "required": ["address", "lpaddress", "decimals"],
       "additionalProperties": false
     }
   }
