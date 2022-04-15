@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example SamuraiLegends Query",
+    "strategy": {
+      "name": "samurailegends-smg-staking-balance",
+      "params": {
+        "address": "0x4025b6B754Db889e9EeeA3DF1F04a33CC51Eea1E"
+      }
+    },
+    "network": "97",
+    "addresses": [
+      "0x77a8e03bbA3F669A56C3F5e0194654b96C0d8449"
+    ],
+    "snapshot": 18475630
+  }
+]

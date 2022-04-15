@@ -294,6 +294,7 @@ import * as gno from './gno';
 import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
 import * as proofOfHumanity from './proof-of-humanity';
+import * as samuraiLegendsSmgStakingBalance from './samurailegends-smg-staking-balance';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -589,7 +590,8 @@ const strategies = {
   'gno-vote-weight': gno,
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
-  'proof-of-humanity': proofOfHumanity
+  'proof-of-humanity': proofOfHumanity,
+  'samurailegends-smg-staking-balance': samuraiLegendsSmgStakingBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
