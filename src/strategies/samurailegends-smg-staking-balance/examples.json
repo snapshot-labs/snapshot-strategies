@@ -4,13 +4,13 @@
     "strategy": {
       "name": "samurailegends-smg-staking-balance",
       "params": {
-        "address": "0x4025b6B754Db889e9EeeA3DF1F04a33CC51Eea1E"
+        "address": "0x94fAb5C81E760B32d14aD70Cf5c79a4BdA702981"
       }
     },
-    "network": "97",
+    "network": "56",
     "addresses": [
-      "0x77a8e03bbA3F669A56C3F5e0194654b96C0d8449"
+      "0x5812FF2fFc55ab1C00ED0b2C83c210a27e71fFDb"
     ],
-    "snapshot": 18475630
+    "snapshot": 17026112
   }
 ]
