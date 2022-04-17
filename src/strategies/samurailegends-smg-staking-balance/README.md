@@ -10,7 +10,7 @@ Score gets calculated from:
 Example parameters for executing this strategy should be something like:
 ```json
 {
-  "address": "0x4025b6B754Db889e9EeeA3DF1F04a33CC51Eea1E"
+  "address": "0x94fAb5C81E760B32d14aD70Cf5c79a4BdA702981"
 }
 ```
 > Note: Since the required address should be a contract it doesn't need a ticker
