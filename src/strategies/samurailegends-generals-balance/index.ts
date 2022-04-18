@@ -19,12 +19,12 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) => {
+  addresses.forEach((address) =>
     multi.call(address, options.address, 'erc721GetAllTokensOfOwner', [
       options.nftAddress,
       address
-    ]);
-  });
+    ])
+  );
   const result: Record<string, BigNumberish> = await multi.execute();
 
   return Object.fromEntries(
