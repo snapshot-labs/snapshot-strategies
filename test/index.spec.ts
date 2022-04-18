@@ -26,6 +26,8 @@ if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
 function callGetScores(example) {
+  console.log('TEST')
+  console.log(example)
   return snapshot.utils.getScoresDirect(
     'yam.eth',
     [example.strategy],

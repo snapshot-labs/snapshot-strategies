@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "fantomstarter-owned-nft",
+      "params": {
+        "symbol": "FS",
+        "address": "0x4Aa7324857b02Ed50bbD490D254918Db8708D8c0",
+        "ids": ["1","2","3","4","5","6","7"]
+      }
+    },
+    "network": "250",
+    "addresses": ["0x69794735cA88dE2eC2426fB20F416FA00F64Ad37"],
+    "snapshot": 36366655
+  }
+]

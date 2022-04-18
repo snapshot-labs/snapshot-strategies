@@ -294,6 +294,8 @@ import * as gno from './gno';
 import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
 import * as proofOfHumanity from './proof-of-humanity';
+import * as fantomStarterStakedNFT from './fantomstarter-staked-nft';
+import * as fantomStarterOwnedNFT from './fantomstarter-owned-nft';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -589,7 +591,9 @@ const strategies = {
   'gno-vote-weight': gno,
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
-  'proof-of-humanity': proofOfHumanity
+  'proof-of-humanity': proofOfHumanity,
+  'fantomstarter-staked-nft': fantomStarterStakedNFT,
+  'fantomstarter-owned-nft': fantomStarterOwnedNFT
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
