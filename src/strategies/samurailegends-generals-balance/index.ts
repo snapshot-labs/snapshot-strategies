@@ -28,7 +28,10 @@ export async function strategy(
 
   return Object.fromEntries(
     Object.entries(result).map(([address, nftBalance]) => {
-      const balance = nftBalance.reduce((prev, curr) => curr >= 0 && curr < 5000 ? prev + 1 : prev, 0);
+      const balance = nftBalance.reduce((prev, curr) => {
+        if (curr >= 0 && curr < 5000) return prev + 1;
+        return prev;
+      }, 0);
       return [address, balance];
     })
   );
