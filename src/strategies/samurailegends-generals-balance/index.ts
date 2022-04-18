@@ -2,7 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'Samurai Legends';
+export const author = 'Samurai-Legends';
 export const version = '0.1.0';
 
 const abi = [
@@ -22,9 +22,6 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
   process.stdout.write(`\nMulticall: ${JSON.stringify(multi)}\n`);
   addresses.forEach((address) => {
-    process.stdout.write(`\nContract Address: ${options.address}\n`);
-    process.stdout.write(`\nUser Address: ${address}\n`);
-    process.stdout.write(`\nNft Address: ${options.nftAddress}\n`);
     multi.call(address, options.address, 'erc721GetAllTokensOfOwner', [
       options.nftAddress,
       address
@@ -33,9 +30,16 @@ export async function strategy(
   const result: Record<string, BigNumberish> = await multi.execute();
 
   return Object.fromEntries(
-    Object.entries(result).map(([address, balance]) => [
-      address,
-      parseFloat(formatUnits(balance, options.decimals))
-    ])
+    Object.entries(result).map(([address, nftBalance]) => {
+      const ids = nftBalance.toString().split(',');
+
+      const balance = ids.reduce((prev, curr) => {
+        const id = parseInt(curr) || -1;
+        if (id >= 0 && id < 5000) return prev + 1;
+        return prev;
+      }, 0);
+
+      return [address, parseFloat(formatUnits(balance, options.decimals))];
+    })
   );
 }
