@@ -1,4 +1,3 @@
-import { BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
 export const author = 'Samurai-Legends';
@@ -25,18 +24,11 @@ export async function strategy(
       address
     ])
   );
-  const result: Record<string, BigNumberish> = await multi.execute();
+  const result: Record<string, number[]> = await multi.execute();
 
   return Object.fromEntries(
     Object.entries(result).map(([address, nftBalance]) => {
-      const ids = nftBalance.toString().split(',');
-
-      const balance = ids.reduce((prev, curr) => {
-        const id = parseInt(curr) || -1;
-        if (id >= 0 && id < 5000) return prev + 1;
-        return prev;
-      }, 0);
-
+      const balance = nftBalance.reduce((prev, curr) => curr >= 0 && curr < 5000 ? prev + 1 : prev, 0);
       return [address, balance];
     })
   );
