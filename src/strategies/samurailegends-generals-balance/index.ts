@@ -1,9 +1,8 @@
 import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'Samurai-Legends';
-export const version = '0.1.0';
+export const version = '0.1.2';
 
 const abi = [
   'function erc721GetAllTokensOfOwner(address nftAddress, address user) external view returns (uint[] memory)'
@@ -20,7 +19,6 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  process.stdout.write(`\nMulticall: ${JSON.stringify(multi)}\n`);
   addresses.forEach((address) => {
     multi.call(address, options.address, 'erc721GetAllTokensOfOwner', [
       options.nftAddress,
@@ -39,7 +37,7 @@ export async function strategy(
         return prev;
       }, 0);
 
-      return [address, parseFloat(formatUnits(balance, options.decimals))];
+      return [address, balance];
     })
   );
 }
