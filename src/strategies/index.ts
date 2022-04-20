@@ -222,6 +222,7 @@ import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
 import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as gatenetTotalStaked from './gatenet-total-staked';
 import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
@@ -520,6 +521,7 @@ const strategies = {
   'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
+  'gatenet-total-staked': gatenetTotalStaked,
   vesper,
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
