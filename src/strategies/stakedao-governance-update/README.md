@@ -1,4 +1,4 @@
-# sd-boost
+# stakedao-governance-update
 
 This strategy is used by StakeDAO to vote for the governance on the protocol.
 Here is an example of parameters:
