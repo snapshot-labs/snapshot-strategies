@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Stakers and Holders",
+    "strategy": {
+      "name": "stakers-and-holders",
+      "params": {
+        "staking": "0x611D4fe3773606C7680020D1a59a2e8c5D43e682",
+        "token": "0x79104Beca59CAe0EeeDd5ecB9fbc1AAD90cA40FE",
+        "symbol": "HBC",
+        "decimals": 0
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x5a0270Cf694a5b1e645dd5812f8d497B6bb87e07",
+      "0x4C766160428cF0EE82b4dD677be90824A58E4855",
+      "0x8Ba7789Bb5B4389904cEa64aB4942F55c464C2c5",
+      "0x351A859bBA58C0E0589310D76E009F8d62Ae225A",
+      "0xEe44B0dC609A670f99629eC400B27D61489b7bb1",
+      "0x17af5cED4B2bA9F95E66EF22372900d367351A41"
+    ],
+    "snapshot": 24249987
+  }
+]

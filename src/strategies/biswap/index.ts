@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
 
 export const author = 'biswap-dex';
-export const version = '0.0.1';
+export const version = '0.0.2';
 export const examples = examplesFile;
 
 const abi = [
@@ -67,12 +67,28 @@ export async function strategy(
     blockTag
   });
   multicallAutoCompound.call(
-    'priceShare',
+    'priceShare_1',
     options.autoBsw,
     'getPricePerFullShare'
   );
+  multicallAutoCompound.call(
+    'priceShare_2',
+    options.autoBswSecond,
+    'getPricePerFullShare'
+  );
   addresses.forEach((address) => {
-    multicallAutoCompound.call(address, options.autoBsw, 'userInfo', [address]);
+    multicallAutoCompound.call(
+      `autoPool_1.${address}`,
+      options.autoBsw,
+      'userInfo',
+      [address]
+    );
+    multicallAutoCompound.call(
+      `autoPool_2.${address}`,
+      options.autoBswSecond,
+      'userInfo',
+      [address]
+    );
   });
 
   const resultAutoBsw = await multicallAutoCompound.execute();
@@ -89,8 +105,15 @@ export async function strategy(
     addUserBalance(
       userBalances,
       address,
-      resultAutoBsw[address][0]
-        .mul(resultAutoBsw.priceShare)
+      resultAutoBsw.autoPool_1[address][0]
+        .mul(resultAutoBsw.priceShare_1)
+        .div(bn(parseUnits('1', options.decimals)))
+    );
+    addUserBalance(
+      userBalances,
+      address,
+      resultAutoBsw.autoPool_2[address][0]
+        .mul(resultAutoBsw.priceShare_2)
         .div(bn(parseUnits('1', options.decimals)))
     );
     options.bswLPs.forEach((lp: { address: string; pid: number }) => {

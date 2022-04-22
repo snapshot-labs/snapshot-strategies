@@ -10,6 +10,7 @@ Currently supported operations are:
 | ------------- | ------------- | ------------------------------------------ |
 | `square-root` | 1             | takes the square root of the operand       |
 | `cube-root`   | 1             | takes the cube root of the operand         |
+| `multiply`    | 2             | x * a                                      |
 | `min`         | 2             | takes the smaller number of the 2 operands |
 | `max`         | 2             | takes the larger number of the 2 operands  |
 | `a-if-lt-b`   | 3             | (x, a, b) = x < b ? a : x                  |

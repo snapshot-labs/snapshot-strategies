@@ -4,86 +4,100 @@
     "strategy": {
       "name": "ocean-dao-brightid",
       "params": {
-        "brightIdMultiplier": 5,
+        "brightIdMultiplier": 4,
         "notVerifiedMultiplier": 1,
+        "brightIdNetwork": "1",
         "registry": "0xc37F8341Ac6e4a94538302bCd4d49Cf0852D30C0",
         "symbol": "OCEAN",
-        "strategies": [
-          {
-            "name": "erc20-balance-of",
-            "params": {
-              "symbol": "OCEAN",
-              "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
-              "decimals": 18
-            }
-          },
-          {
-            "name": "ocean-marketplace",
-            "params": {
-              "symbol": "OCEAN",
-              "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
-              "decimals": 18
-            }
-          },
-          {
-            "name": "sushiswap",
-            "params": {
-              "symbol": "OCEAN",
-              "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
-              "decimals": 18
-            }
-          },
-          {
-            "name": "uniswap",
-            "params": {
-              "symbol": "OCEAN",
-              "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
-              "decimals": 18
-            }
-          },
-          {
-            "name": "contract-call",
-            "params": {
-              "address": "0x9712Bb50DC6Efb8a3d7D12cEA500a50967d2d471",
-              "args": [
-                "%{address}",
-                "0xCDfF066eDf8a770E9b6A7aE12F7CFD3DbA0011B5",
-                "0x967da4048cD07aB37855c090aAF366e4ce1b9F48"
-              ],
-              "decimals": 18,
-              "symbol": "OCEAN",
-              "methodABI": {
-                "inputs": [
-                  {
-                    "internalType": "address",
-                    "name": "provider",
-                    "type": "address"
-                  },
-                  {
-                    "internalType": "address",
-                    "name": "poolToken",
-                    "type": "address"
-                  },
-                  {
-                    "internalType": "address",
-                    "name": "reserveToken",
-                    "type": "address"
-                  }
-                ],
-                "name": "totalProviderAmount",
-                "outputs": [
-                  {
-                    "internalType": "uint256",
-                    "name": "",
-                    "type": "uint256"
-                  }
-                ],
-                "stateMutability": "view",
-                "type": "function"
+        "delegationSpace": "officialoceandao.eth",
+        "strategies": {
+          "137": [
+            {
+              "name": "erc20-balance-of",
+              "params": {
+                "symbol": "OCEAN",
+                "address": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
+                "decimals": 18
               }
             }
-          }
-        ]
+          ],
+          "1": [
+            {
+              "name": "erc20-balance-of",
+              "params": {
+                "symbol": "OCEAN",
+                "address": "0x967da4048cd07ab37855c090aaf366e4ce1b9f48",
+                "decimals": 18
+              }
+            },
+            {
+              "name": "ocean-marketplace",
+              "params": {
+                "symbol": "OCEAN",
+                "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
+                "decimals": 18
+              }
+            },
+            {
+              "name": "sushiswap",
+              "params": {
+                "symbol": "OCEAN",
+                "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
+                "decimals": 18
+              }
+            },
+            {
+              "name": "uniswap",
+              "params": {
+                "symbol": "OCEAN",
+                "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
+                "decimals": 18
+              }
+            },
+            {
+              "name": "contract-call",
+              "params": {
+                "address": "0x9712Bb50DC6Efb8a3d7D12cEA500a50967d2d471",
+                "args": [
+                  "%{address}",
+                  "0xCDfF066eDf8a770E9b6A7aE12F7CFD3DbA0011B5",
+                  "0x967da4048cD07aB37855c090aAF366e4ce1b9F48"
+                ],
+                "decimals": 18,
+                "symbol": "OCEAN",
+                "methodABI": {
+                  "inputs": [
+                    {
+                      "internalType": "address",
+                      "name": "provider",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "poolToken",
+                      "type": "address"
+                    },
+                    {
+                      "internalType": "address",
+                      "name": "reserveToken",
+                      "type": "address"
+                    }
+                  ],
+                  "name": "totalProviderAmount",
+                  "outputs": [
+                    {
+                      "internalType": "uint256",
+                      "name": "",
+                      "type": "uint256"
+                    }
+                  ],
+                  "stateMutability": "view",
+                  "type": "function"
+                }
+              }
+            }
+          ]
+        }
       }
     },
     "network": "1",
@@ -117,8 +131,11 @@
       "0x12BD31628075C20919BA838b89F414241b8c4869",
       "0xf88bD9c3F81f7148E4076bBB8b2e2B0951A8cE38",
       "0xAAB9EaBa1AA2653c1Dda9846334700b9F5e14E44",
-      "0xB9b14C4d0cbc18FC5f54701D578e85968cf19FD5"
+      "0xB9b14C4d0cbc18FC5f54701D578e85968cf19FD5",
+      "0xceE1C921067E5fe65CD71fb8c0627d86Ce91d746",
+      "0xde1E6A7ED0ad3F61D531a8a78E83CcDdbd6E0c49",
+      "0x830dff6a094b417ff5a78f989054a873dfd8fa2b"
     ],
-    "snapshot": 13803684
+    "snapshot": 14048401
   }
 ]

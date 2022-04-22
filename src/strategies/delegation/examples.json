@@ -5,6 +5,7 @@
       "name": "delegation",
       "params": {
         "symbol": "YFI (delegated)",
+        "delegationSpace": "yam.eth",
         "strategies": [
           {
             "name": "erc20-balance-of",

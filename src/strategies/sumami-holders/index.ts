@@ -23,7 +23,6 @@ export async function strategy(
   if (options.marinateLevels.length > 4) {
     return [];
   }
-  
   const sUmamiBalances = await erc20BalanceOfStrategy(
     space,
     network,
@@ -49,12 +48,18 @@ export async function strategy(
       )
     )
   );
-  
+
   const totalMarinateBalances = marinateBalances.reduce(
     //@ts-ignore
-    (prev, cur) => cur.map((balance, idx) => (prev[idx] || 0) + parseFloat(formatUnits(balance.toString(), options.decimals))), []
+    (prev: any, cur: any) =>
+      cur.map(
+        (balance, idx) =>
+          (prev[idx] || 0) +
+          parseFloat(formatUnits(balance.toString(), options.decimals))
+      ),
+    []
   );
-  
+
   return Object.fromEntries(
     Object.entries(sUmamiBalances).map((address, index) => [
       address[0],

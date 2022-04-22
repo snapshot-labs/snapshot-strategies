@@ -2,8 +2,8 @@ import { formatUnits } from '@ethersproject/units';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'saffron.finance';
-export const version = '2.0.0';
+export const author = 'turpintinz';
+export const version = '2.0.1';
 
 const SAFF_STAKING_V2 = '0x4eB4C5911e931667fE1647428F38401aB1661763';
 const SFI = '0xb753428af26E81097e7fD17f40c88aaA3E04902c';
@@ -100,7 +100,11 @@ export async function strategy(
   const reservesResult = await multi.execute();
   for (let i = 0; i < poolLength; i++) {
     const pool = pools[i];
-    if (pool.lpToken.lpAddress === SFI) {
+    if (
+      singleAssets.find(
+        (item) => item.toLowerCase() === pool.lpToken.lpAddress.toLowerCase()
+      )
+    ) {
       pool.lpToken.sfiReserve = reservesResult.reserves[i];
     } else {
       let sfiReserve = BigNumber.from(0);
@@ -141,11 +145,22 @@ export async function strategy(
     pools.forEach((pool) => {
       const userInfo =
         userInfoResult.userInfo[`${address}`][pool.id.toNumber()];
-      const poolTotal = userInfo.amount
-        .mul(tenTo18)
-        .mul(pools[pool.id.toNumber()].lpToken.sfiReserve)
-        .div(pools[pool.id.toNumber()].lpToken.totalSupply)
-        .div(tenTo18);
+
+      let poolTotal;
+      if (
+        singleAssets.find(
+          (item) => item.toLowerCase() === pool.lpToken.lpAddress.toLowerCase()
+        )
+      ) {
+        poolTotal = userInfo.amount;
+      } else {
+        poolTotal = userInfo.amount
+          .mul(tenTo18)
+          .mul(pools[pool.id.toNumber()].lpToken.sfiReserve)
+          .div(pools[pool.id.toNumber()].lpToken.totalSupply)
+          .div(tenTo18);
+      }
+
       total = total.add(poolTotal);
     });
     result.set(address, total);
