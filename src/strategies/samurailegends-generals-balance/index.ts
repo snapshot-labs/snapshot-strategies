@@ -32,7 +32,7 @@ export async function strategy(
         if (curr >= 0 && curr < 5000) return prev + 1;
         return prev;
       }, 0);
-      return [address, balance];
+      return [address, balance * options.multiplier];
     })
   );
 }
