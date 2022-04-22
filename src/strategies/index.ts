@@ -10,6 +10,7 @@ import * as balancerErc20InternalBalanceOf from './balancer-erc20-internal-balan
 import * as sunder from './sunder';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
+import * as contractCallWeighted from './contract-call-weighted';
 import * as dextfVaults from './dextf-staked-in-vaults';
 import * as dfynFarms from './dfyn-staked-in-farms';
 import * as dfynVaults from './dfyn-staked-in-vaults';
@@ -312,6 +313,7 @@ const strategies = {
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'contract-call-weighted': contractCallWeighted,
   defiplaza: defiplaza,
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
