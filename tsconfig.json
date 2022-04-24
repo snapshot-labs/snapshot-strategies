@@ -12,10 +12,6 @@
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true
   },
-  "include": [
-    "src"
-  ],
-  "files": [
-    "./src/typings.d.ts"
-  ]
+  "include": ["src"],
+  "files": ["./src/typings.d.ts"]
 }
