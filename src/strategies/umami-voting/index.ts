@@ -22,7 +22,7 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  
+
   // Balance of mUMAMI in wallets
   const mUmamiBalance = await erc20BalanceOfStrategy(
     space,
@@ -40,7 +40,7 @@ export async function strategy(
     abi,
     addresses.map((address: any) => [
       options.cmUMAMIAddress,
-      "balanceOf",
+      'balanceOf',
       [address]
     ]),
     { blockTag }
@@ -53,29 +53,31 @@ export async function strategy(
     abi,
     addresses.map((address: any) => [
       options.stakedcmUMAMIAddress,
-      "stakedBalance",
+      'stakedBalance',
       [address]
     ]),
     { blockTag }
   );
 
   // Ratio of mUMAMI per cmUMAMI
-  const ratio = await call(
-    provider,
-    abi,
-    [
-      options.cmUMAMIAddress,
-      'getDepositTokensForShares',
-      ["1000000000000000000"]
-    ]
-  );
+  const ratio = await call(provider, abi, [
+    options.cmUMAMIAddress,
+    'getDepositTokensForShares',
+    ['1000000000000000000']
+  ]);
 
   return Object.fromEntries(
     Object.entries(mUmamiBalance).map(([address, balance], index) => [
       address,
-      balance + 
-      ( parseFloat(formatUnits(cmUmamiBalance[index][0], options.decimals)) * ratio/1000000000000000000 ) + 
-      ( parseFloat(formatUnits(stakedcmUmamiBalance[index][0], options.decimals)) * ratio/1000000000000000000 )
+      balance +
+        (parseFloat(formatUnits(cmUmamiBalance[index][0], options.decimals)) *
+          ratio) /
+          1000000000000000000 +
+        (parseFloat(
+          formatUnits(stakedcmUmamiBalance[index][0], options.decimals)
+        ) *
+          ratio) /
+          1000000000000000000
     ])
   );
 }
