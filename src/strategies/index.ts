@@ -297,6 +297,8 @@ import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no
 import * as proofOfHumanity from './proof-of-humanity';
 import * as samuraiLegendsGeneralsBalance from './samurailegends-generals-balance';
 import * as dogsUnchained from './dogs-unchained';
+import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
+import * as umamiVoting from './umami-voting';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -595,7 +597,9 @@ const strategies = {
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
-  'dogs-unchained': dogsUnchained
+  'dogs-unchained': dogsUnchained,
+  'stakedao-governance-update': stakeDAOGovernanceUpdate,
+  'umami-voting': umamiVoting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
