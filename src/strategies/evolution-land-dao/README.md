@@ -1,4 +1,13 @@
 # Evolution Land Dao strategy
+### why need this strategy
+1. Because different NFTs belong to the same contract, different votes need to be given according to the type of NFT.
+2. In order to get the NFT on the user's address, we need to iterate over all the NFTs on the address. This may result in a `execution reverted` error, so we use a paging query.
+3. Since the Heco network public RPC is not available, we can obtain voting power for the chain from the specified `api-host`
+4. We need this strategy to be multi-chain.
+
+### how strategy count the voting power
+`voting power = (land number * land_multiplier) + (apostle number * land_multiplier)`
+
 
 Here is an example of parameters:
 ```json
