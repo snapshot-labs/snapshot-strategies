@@ -4,11 +4,11 @@
     "strategy": {
       "name": "dogs-unchained",
       "params": {
-        "boom":"0x1f17996beacc0803841d5f8cecc753e688fb5084",
-        "dogs":"0x9c0ffc9088abeb2ea220d642218874639229fa7a",
-        "steaks":"0xcab65c60d9dc47e1d450c7e9074f73f1ff75f181",
-        "puppies":"0x948bc723d7e33575427270ac4f26c73b8ba938aa",
-        "staking":"0xD742193C84062c1e0488545FB91A32D220Ec6c76",
+        "boom": "0x1f17996beacc0803841d5f8cecc753e688fb5084",
+        "dogs": "0x9c0ffc9088abeb2ea220d642218874639229fa7a",
+        "steaks": "0xcab65c60d9dc47e1d450c7e9074f73f1ff75f181",
+        "puppies": "0x948bc723d7e33575427270ac4f26c73b8ba938aa",
+        "staking": "0xD742193C84062c1e0488545FB91A32D220Ec6c76",
         "decimals": 18
       }
     },
