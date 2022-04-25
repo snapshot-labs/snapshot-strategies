@@ -296,6 +296,7 @@ import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
 import * as proofOfHumanity from './proof-of-humanity';
 import * as samuraiLegendsGeneralsBalance from './samurailegends-generals-balance';
+import * as dogsUnchained from './dogs-unchained';
 import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
 import * as umamiVoting from './umami-voting';
 
@@ -596,6 +597,7 @@ const strategies = {
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
+  'dogs-unchained': dogsUnchained,
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
   'umami-voting': umamiVoting
 };
