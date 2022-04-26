@@ -287,6 +287,11 @@
     exec-sh "^0.3.2"
     minimist "^1.2.0"
 
+"@ensdomains/eth-ens-namehash@^2.0.15":
+  version "2.0.15"
+  resolved "https://registry.yarnpkg.com/@ensdomains/eth-ens-namehash/-/eth-ens-namehash-2.0.15.tgz#5e5f2f24ba802aff8bc19edd822c9a11200cdf4a"
+  integrity sha512-JRDFP6+Hczb1E0/HhIg0PONgBYasfGfDheujmfxaZaAv/NAH4jE6Kf48WbqfRZdxt4IZI3jl3Ri7sZ1nP09lgw==
+
 "@ethersproject/abi@^5.0.12", "@ethersproject/abi@^5.0.4", "@ethersproject/abi@^5.5.0":
   version "5.5.0"
   resolved "https://registry.yarnpkg.com/@ethersproject/abi/-/abi-5.5.0.tgz#fb52820e22e50b854ff15ce1647cc508d6660613"
@@ -854,11 +859,12 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snapshot-labs/snapshot.js@^0.3.33":
-  version "0.3.33"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.3.33.tgz#3d5a3b759272bcadce5f292e7d6f6982f25987a0"
-  integrity sha512-pnB9Ri+/9fezUxwve3Yc09iwmpP1wOVQkcITe7Z+d8bjbFFWLR+9xe4hMQTEKpn5X7lAzSSXNoPM/onOz4N98g==
+"@snapshot-labs/snapshot.js@^0.3.74":
+  version "0.3.74"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.3.74.tgz#5124ae440159f7f8eaffe7f0b60ab039824443bb"
+  integrity sha512-w0olBxspKj4PtPXHpA6liymdeNkcNvtAScSAm0C2D7Ht9A54mH20Y7NtLkpPdOgY4nkvgnx6vmRVJh+ohZkwZA==
   dependencies:
+    "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.0.4"
     "@ethersproject/bytes" "^5.0.8"
     "@ethersproject/contracts" "^5.0.3"

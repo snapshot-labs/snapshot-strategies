@@ -1,0 +1,59 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "meebitsdao-delegation",
+      "params": {
+        "symbol": "mVOX, MFND, Meebits",
+        "tokenAddresses": [
+          {
+            "address": "0x7C1a4c36D9BDa5C568f0E4877CD8E27D74Ae66c6",
+            "symbol": "mVOX",
+            "decimals": 0,
+            "network": "137"
+          },
+          {
+            "address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79",
+            "symbol": "MFND",
+            "apiUrl": "https://api.meebitsdao.com/user/token_status/",
+            "startingTokenId": 1,
+            "endingTokenId": 200,
+            "network": "137"
+          },
+          {
+            "address": "0x7Bd29408f11D2bFC23c34f18275bBf23bB716Bc7",
+            "symbol": "Meebits",
+            "network": "1"
+          }
+        ]
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x35001a8bdb3a224d05f086094c12fd4c9009986d",
+      "0x22ad49d3e1f81a2a626e2df64fbdabe1536cab07",
+      "0x22aD49d3E1F81A2A626E2DF64Fbdabe1536CaB07",
+      "0x6f35b0cfc58eb1e21eef8a439bbb0ce4c929d32a",
+      "0xede64a571cfe98b936271b935a955620f387e05a",
+      "0x4613739e5bcea4730f2a4983ce2100432415b01b",
+      "0xd0fd6d1c05b15f5b141253f13855c86cc3e655b8",
+      "0x2d1547d6c43eb8185379d11cf1a6ddaf2780b62a",
+      "0xc842ce7214a14fa98186a010bcb43c7e99e4caf3",
+      "0x8f903cfc0af3c2ec0d872c57538af5e071544a57",
+      "0x19ffa65cf48b8d0cd9081958e69b7a170824955c",
+      "0xf4ff19c30c98533fd6d3cecf09b3d6802e470dd0",
+      "0xc03a694c5f7bdf2d32583f4e2421e3fb3426d3ad",
+      "0xc1dfedd7b8fc3010a42466e51c773068fb95f485",
+      "0x614b89f072ea263a9387460963142e73548fbaf1",
+      "0x2f28c719768f71ad3657463f230292a0b63b65d0",
+      "0xc5e38233cc0d7cff9340e6139367aba498ec9b18",
+      "0xf134c8f76214c500dcdc9188a21bd405cdaaf4c8",
+      "0x2009a752a50D3CDe486d7b5921944377B729E747",
+      "0x017a04631caf0bacec325f68caad2838a80dd91d",
+      "0x0a1ee64e760ce54d38958e7b9c2a429cfae050c4",
+      "0x0cbf9fa338048bb8a8a0ea33f9c59f9d0407d692",
+      "0xffb6d3c42b07c17ed0b6be1136d2ebc599b2562e"
+    ],
+    "snapshot": 25925040
+  }
+]

@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "protofi-erc721-tier-weighted",
+      "params": {
+        "address": "0x1aDB6f30561116B4283169DdD1Ca16ed2A34355A",
+        "symbol": "PNFT",
+        "tierToWeight": [10, 20, 30, 40, 50],
+        "countUsed": false
+      }
+    },
+    "network": "250",
+    "addresses": [
+      "0x5bF13Edc7De3E95029ffDC0C65C193E9bBEBcead",
+      "0x6f3064d973C08Dd9c88D43080549F474E5827d71",
+      "0x7751f0B8CfbC18b8931Ae54E234F908014D6D46d",
+      "0x346F59ac0aF2C85DB1250322b2beD4eEb4c61313",
+      "0x8a347ec3cB809D9a53d2B8d74e23f08d908e19dc"
+    ],
+    "snapshot": 31508266
+  }
+]
