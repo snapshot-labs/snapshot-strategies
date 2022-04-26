@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "landdao-token-tiers",
+      "params": {
+        "address": "0xEa25e2b3E35c67876957EE00a28Cd912ff113F54",
+        "symbol": "LAND",
+        "tokenWeightIPFS": "QmXrDNrjX8xZu9bdNA1iiW7Ee12RADQFwwhCeLQnwqG2TJ"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x863379Ab401d454834E1FE2eCe48F51a29eE9d7A",
+      "0x7374DDf849566c28372AD830DA45a1c9D088453B",
+      "0x0F98A3F6BB46e30013E8967b3615296c0adb9037",
+      "0x8e7795f783635ea08097d2aaf19da672bf79dde0",
+      "0xabab67aed584bdcfc6c9d59740b4181820cd04ac",
+      "0xbd8a92e249090249c5fb2ff71e47b69fb650d3af",
+      "0x67f72412a592d066a2e688e62664116deabeab29"
+    ],
+    "snapshot": 14100000
+  }
+]

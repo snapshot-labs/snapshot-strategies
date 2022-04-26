@@ -2,8 +2,8 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'Charles-repo';
+export const version = '0.1.2';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
@@ -27,6 +27,11 @@ export async function strategy(
     multi.call(address, options.address, 'balanceOf', [address])
   );
   const result: Record<string, BigNumberish> = await multi.execute();
+
+  addresses.forEach((address: any) =>
+    multi.call(address, options.veaddress, 'balanceOf', [address])
+  );
+  const veresult: Record<string, BigNumberish> = await multi.execute();
 
   addresses.forEach((address: any) =>
     multi.call(address, options.lpaddress, 'balanceOf', [address])
@@ -55,7 +60,9 @@ export async function strategy(
         .add(resultLP2[address])
         .mul(totalGnomeAmount)
         .div(totalSupply);
-      bal = bal.add(result[address]);
+      bal = bal
+        .add(result[address])
+        .add(BigNumber.from(veresult[address]).mul(5));
       return [address, parseFloat(formatUnits(bal, options.decimals))];
     })
   );
