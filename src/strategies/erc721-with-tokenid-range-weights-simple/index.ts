@@ -1,14 +1,27 @@
+import { strategy as erc721WithMultiplier } from '../erc721-with-multiplier';
 import { multicall } from '../../utils';
+import { WeightRange } from './types';
 
-export const author = 'gregegan';
-export const version = '0.1.0';
+export const author = 'FeSens';
+export const version = '0.2.0';
 
 const abi = [
-  'function ownerOf(uint256 tokenId) public view returns (address owner)'
+  'function ownerOf(uint256 tokenId) public view returns (address owner)',
+  'function balanceOf(address account) external view returns (uint256)',
 ];
 
-const range = (start, end, step) =>
+const range = (start, end, step) => 
   Array.from({ length: (end - start) / step + 1 }, (_, i) => start + i * step);
+
+const flattenTokenIdWeightRanges = (tokenIdWeightRanges: WeightRange[]): {ids: number[], weights: number[]} => {
+  const ranges = tokenIdWeightRanges.map((tokenIdWeightRange) => {
+    const { start, end, weight } = tokenIdWeightRange;
+    const ids = range(start, end, 1);
+    const weights = Array(ids.length).fill(weight);
+    return { ids, weights }
+  })
+  return ranges.reduce((prev, curr) => ({ ids: [...prev.ids, ...curr.ids], weights: [...prev.weights, ...curr.weights] }))
+}
 
 export async function strategy(
   space,
@@ -18,49 +31,43 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const { tokenIdWeightRanges } = options;
-  if (tokenIdWeightRanges.length > 5) {
-    throw new Error('Strategy cannot have > 5 different ranges');
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest'
+  const { tokenIdWeightRanges, defaultWeight } = options;
+  let erc721WeightedBalance = {}
+  
+  const getDataFromBlockChain = async (contractCalls: [string, string, [number]][]) => {
+    return multicall(network,
+      provider,
+      abi,
+      contractCalls,
+      { blockTag }
+    );
   }
 
-  const responses: Array<any> = await Promise.all(
-    tokenIdWeightRanges.map(async (tokenIdWeightRange) => {
-      const { start, end, weight } = tokenIdWeightRange;
-      if (end - start > 7000) {
-        throw new Error('Strategy range too large');
-      }
-      return {
-        weight,
-        multicall: await multicall(
-          network,
-          provider,
-          abi,
-          range(start, end, 1).map((id: any) => [
-            options.address,
-            'ownerOf',
-            [id]
-          ]),
-          { blockTag }
-        )
-      };
-    })
-  );
+  const filterUnusedAddresses = (addressesToFilter: string[]): string[] =>
+    addressesToFilter.filter((address: string) => addresses.map((address: string) => address.toLowerCase()).includes(address.toLowerCase()));
 
-  return Object.fromEntries(
-    addresses.map((address: any) => [
-      address,
-      responses.reduce(
-        (prev, curr) =>
-          prev +
-          curr.multicall.filter(
-            (element: any) =>
-              element.owner.toLowerCase() === address.toLowerCase()
-          ).length *
-            curr.weight,
-        0
-      )
-    ])
-  );
+  const multiplyOccurrencesByWeights = async (contractCallResponse: [string, {owner: string}], weights: number[]) => 
+    contractCallResponse.map((address, index) => Array(weights[index]).fill(address[0])).flat();
+
+  const countOccurrences = (array: string[]) => 
+    array.reduce((prev, curr) => (prev[curr] ? ++prev[curr] : prev[curr] = 1, prev), {});
+
+  const getCustomRangeBalance = async (): Promise<{[address: string]: number}> => {
+    const {ids, weights} = flattenTokenIdWeightRanges(tokenIdWeightRanges);
+    const contractCalls = ids.map((id: number) => [options.address, 'ownerOf', [id]]) as [string, string, [number]][]
+    const customRangeResponse = await getDataFromBlockChain(contractCalls)
+    const customRangeResponseWeighted = await multiplyOccurrencesByWeights(customRangeResponse, weights);
+    const customRangeResponseWeightedFiltered = filterUnusedAddresses(customRangeResponseWeighted);
+    
+    return countOccurrences(customRangeResponseWeightedFiltered);
+  }
+  
+  if (defaultWeight) erc721WeightedBalance = 
+    await erc721WithMultiplier(space, network, provider, addresses, {...options, multiplier: defaultWeight}, snapshot);
+
+  const customRangeBalance = await getCustomRangeBalance();
+
+  return { ...erc721WeightedBalance, ...customRangeBalance}
 }
