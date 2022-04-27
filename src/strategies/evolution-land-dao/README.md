@@ -19,43 +19,15 @@ Here is an example of parameters:
       "params": {
         "symbol": "EvolutionLand",
         "row": 800,
-        "strategies": [
-          {
-            "name": "erc721-balance-of",
-            "network": "44",
-            "api_host": "",
-            "params": {
-              "address": "0x6Ab81AF040fec3c13685ccFB26eC50C8aAB46445",
-              "decimals": 18,
-              "land_multiplier": 1,
-              "apostle_multiplier": 1
-            }
-          },
-          {
-            "name": "erc721-balance-of",
-            "network": "80001",
-            "params": {
-              "address": "0xCB41aA8585A1D9bC1E824478BA3594e34C5008e3",
-              "decimals": 18,
-              "land_multiplier": 1,
-              "apostle_multiplier": 1
-            }
-          },
-          {
-            "name": "erc721-balance-of",
-            "network": "256",
-            "api_host": "api-host",
-            "params": {
-              "address": "",
-              "decimals": 18,
-              "land_multiplier": 1,
-              "apostle_multiplier": 1
-            }
-          }
-        ]
+        "name": "erc721-balance-of",
+        "api_host": "",
+        "address": "0x6Ab81AF040fec3c13685ccFB26eC50C8aAB46445",
+        "decimals": 18,
+        "land_multiplier": 100,
+        "apostle_multiplier": 1
       }
     },
-    "network": "3",
+    "network": "44",
     "addresses": [
       "0x84f4e9b619f1f456b67369369418e428e7ceab3c",
       "0x7eef076bc5c57afd42ac3cbf3e29b13a7baf4cac",
@@ -69,5 +41,4 @@ Here is an example of parameters:
     "snapshot": 12208926
   }
 ]
-
 ```
