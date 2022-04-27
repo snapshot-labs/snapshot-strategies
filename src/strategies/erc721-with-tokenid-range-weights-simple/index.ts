@@ -6,8 +6,7 @@ export const author = 'FeSens';
 export const version = '0.2.0';
 
 const abi = [
-  'function ownerOf(uint256 tokenId) public view returns (address owner)',
-  'function balanceOf(address account) external view returns (uint256)'
+  'function ownerOf(uint256 tokenId) public view returns (address owner)'
 ];
 
 const range = (start, end, step) =>
