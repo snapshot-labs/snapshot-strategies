@@ -6,7 +6,6 @@ export const version = '0.2.0';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
-  //   137: 'https://api.thegraph.com/subgraphs/name/froid1911/aavegotchi-lending'
 };
 
 const prices = {
@@ -329,6 +328,7 @@ const prices = {
 };
 
 const tokenAbi = [
+  'function balanceOf(address account) view returns (uint256)',
   {
     inputs: [{ internalType: 'address', name: '_account', type: 'address' }],
     name: 'itemBalances',
@@ -359,16 +359,23 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, tokenAbi, { blockTag });
-  addresses.map((addr: string) =>
+  addresses.map((addr: string) => {
     multi.call(
-      `${options.tokenAddress}.${addr.toLowerCase()}`,
+      `${options.tokenAddress}.${addr.toLowerCase()}.itemBalances`,
       options.tokenAddress,
       'itemBalances',
       [addr]
-    )
-  );
+    );
+    multi.call(
+      `${options.tokenAddress}.${addr.toLowerCase()}.balanceOf`,
+      options.tokenAddress,
+      'balanceOf',
+      [addr]
+    );
+  });
   const multiRes = await multi.execute();
 
+  const maxResultsPerQuery = 1000;
   const walletQueryParams = (user: string) => {
     user = user.toLowerCase();
 
@@ -377,11 +384,18 @@ export async function strategy(
     } = {};
     if (blockTag !== 'latest') args.block = { number: blockTag };
 
-    return {
-      [`aavegotchis_${user}`]: {
+    const balanceOfGotchis = Number(
+      multiRes[options.tokenAddress][user]['balanceOf'].toString()
+    );
+    const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
+    const res = {};
+    for (let i = 0; i < queriesNeeded; i++) {
+      const userKey = `${user}_${i * maxResultsPerQuery}`;
+      res[['aavegotchis', userKey].join('_')] = {
         __aliasFor: 'aavegotchis',
         __args: {
           ...args,
+          skip: i * maxResultsPerQuery,
           first: 1000,
           where: {
             owner: user
@@ -389,22 +403,37 @@ export async function strategy(
         },
         baseRarityScore: true,
         equippedWearables: true
-      },
-      [`gotchiLendings_${user}`]: {
-        __aliasFor: 'gotchiLendings',
-        __args: {
-          ...args,
-          first: 1000,
-          where: {
-            lender: user
-          }
-        },
-        gotchi: {
-          baseRarityScore: true,
-          equippedWearables: true
-        }
-      }
-    };
+      };
+    }
+    return res;
+    // return {
+    //   [`aavegotchis_${user}`]: {
+    //     __aliasFor: 'aavegotchis',
+    //     __args: {
+    //       ...args,
+    //       first: 1000,
+    //       where: {
+    //         owner: user
+    //       }
+    //     },
+    //     baseRarityScore: true,
+    //     equippedWearables: true
+    //   }
+    //   // [`gotchiLendings_${user}`]: {
+    //   //   __aliasFor: 'gotchiLendings',
+    //   //   __args: {
+    //   //     ...args,
+    //   //     first: 1000,
+    //   //     where: {
+    //   //       lender: user
+    //   //     }
+    //   //   },
+    //   //   gotchi: {
+    //   //     baseRarityScore: true,
+    //   //     equippedWearables: true
+    //   //   }
+    //   // }
+    // };
   };
 
   const result = await subgraphRequest(
@@ -412,31 +441,53 @@ export async function strategy(
     addresses.map((addr: string) => walletQueryParams(addr))
   );
 
-  const walletScores = Object.fromEntries(
+  return Object.fromEntries(
     addresses.map((address: string) => {
       const lowercaseAddr = address.toLowerCase();
-      const gotchisOwned = result['aavegotchis_' + lowercaseAddr];
-      const gotchisRenting = result['gotchiLendings_' + lowercaseAddr].map(
-        ({ gotchi }) => gotchi
+      const balanceOfGotchis = Number(
+        multiRes[options.tokenAddress][lowercaseAddr]['balanceOf'].toString()
       );
-      const allGotchiInfo = [...gotchisOwned, ...gotchisRenting];
+      const queriesMade = balanceOfGotchis / maxResultsPerQuery;
+      const gotchisOwned: any[] = [];
+      for (let i = 0; i < queriesMade; i++) {
+        gotchisOwned.push(
+          ...result[
+            ['aavegotchis', lowercaseAddr, i * maxResultsPerQuery].join('_')
+          ]
+        );
+      }
+      // const gotchisRenting = result['gotchiLendings_' + lowercaseAddr].map(
+      //   ({ gotchi }) => gotchi
+      // );
 
       let gotchisBrsEquipValue = 0;
-      if (allGotchiInfo.length > 0)
-        allGotchiInfo.map((gotchi) => {
-          const brs = parseInt(gotchi.baseRarityScore);
-          gotchisBrsEquipValue += brs;
-          gotchi.equippedWearables
-            .filter((itemId: number) => itemId != 0)
-            .map((itemId) => {
-              let shopCost = prices[itemId];
-              if (isNaN(shopCost)) shopCost = 0;
-              gotchisBrsEquipValue += shopCost;
-            });
-        });
+      if (
+        gotchisOwned.length > 0
+        // ||
+        // gotchisRenting.length > 0
+      ) {
+        const allGotchiInfo = [
+          ...gotchisOwned
+          // ...gotchisRenting
+        ];
+
+        if (allGotchiInfo.length > 0)
+          allGotchiInfo.map((gotchi) => {
+            const brs = parseInt(gotchi.baseRarityScore);
+            gotchisBrsEquipValue += brs;
+            gotchi.equippedWearables
+              .filter((itemId: number) => itemId != 0)
+              .map((itemId) => {
+                let shopCost = prices[itemId];
+                if (isNaN(shopCost)) shopCost = 0;
+                gotchisBrsEquipValue += shopCost;
+              });
+          });
+      }
 
       let ownerItemValue = 0;
-      const ownerItemInfo = multiRes[options.tokenAddress][address];
+      const ownerItemInfo =
+        multiRes[options.tokenAddress][lowercaseAddr]['itemBalances'];
       if (ownerItemInfo.length > 0)
         ownerItemInfo.map((itemInfo) => {
           const amountOwned = parseInt(itemInfo.balance.toString());
@@ -454,10 +505,4 @@ export async function strategy(
       return [addr, ownerItemValue + gotchisBrsEquipValue];
     })
   );
-
-  addresses.map((addr) => {
-    if (!walletScores[addr]) walletScores[addr] = 0;
-  });
-
-  return walletScores;
 }
