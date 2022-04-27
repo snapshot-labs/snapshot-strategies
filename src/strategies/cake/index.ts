@@ -25,8 +25,16 @@ const MASTER_CHEF_ADDRESS = {
   v1: '0x73feaa1eE314F8c655E354234017bE2193C9E24E'
 };
 
-const onChainVPBlockNumber = 16300686;
-const onChainVPAddress = '0xc0FeBE244cE1ea66d27D23012B3D616432433F42';
+const onChainVotingPower = {
+  v0: {
+    blockNumber: 16300686,
+    address: '0xc0FeBE244cE1ea66d27D23012B3D616432433F42'
+  },
+  v1: {
+    blockNumber: 17137653,
+    address: '0x67Dfbb197602FDB9A9D305cC7A43b95fB63a0A56'
+  }
+};
 
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
@@ -139,10 +147,14 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   if (
     blockTag === 'latest' ||
-    (typeof blockTag === 'number' && blockTag >= onChainVPBlockNumber)
+    (typeof blockTag === 'number' &&
+      blockTag >= onChainVotingPower.v0.blockNumber)
   ) {
     let callData = addresses.map((address: any) => [
-      onChainVPAddress,
+      typeof blockTag === 'number' &&
+      blockTag >= onChainVotingPower.v1.blockNumber
+        ? onChainVotingPower.v1.address
+        : onChainVotingPower.v0.address,
       'getVotingPowerWithoutPool',
       [address.toLowerCase()]
     ]);
