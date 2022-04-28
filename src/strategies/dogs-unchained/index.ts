@@ -1,3 +1,5 @@
+import { 
+  ress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { multicall, subgraphRequest } from '../../utils';
 
@@ -107,18 +109,10 @@ export async function strategy(
     totalBOOM += parseFloat(formatUnits(value.toString(), 18));
   });
 
-  const convertAddress = (address) => {
-    for (const i in addresses) {
-      if (addresses[i].toLowerCase() == address.toLowerCase())
-        return addresses[i];
-    }
-    return address;
-  };
-
   const merged = {};
 
   response721.map((value: any, i: number) => {
-    const address = convertAddress(calls721[i][2][0]);
+    const address = getAddress(calls721[i][2][0]);
     if (address == options.staking) return;
     merged[address] = (merged[address] || 0) as number;
     merged[address] += parseFloat(formatUnits(value.toString(), 0)) * NFT_VALUE;
@@ -128,7 +122,7 @@ export async function strategy(
   for (const key in dogsResult) {
     dogsResult[key].map((value: any) => {
       if (!value.owner) return;
-      const address = convertAddress(value.owner.id);
+      const address = getAddress(value.owner.id);
       merged[address] = (merged[address] || 0) as number;
       merged[address] += NFT_VALUE;
       totalNFTs += NFT_VALUE;
@@ -138,7 +132,7 @@ export async function strategy(
   for (const key in puppiesResult) {
     puppiesResult[key].map((value: any) => {
       if (!value.owner) return;
-      const address = convertAddress(value.owner.id);
+      const address = getAddress(value.owner.id);
       merged[address] = (merged[address] || 0) as number;
       merged[address] += NFT_VALUE;
       totalNFTs += NFT_VALUE;
@@ -148,7 +142,7 @@ export async function strategy(
   for (const key in stakesResult) {
     stakesResult[key].map((value: any) => {
       if (!value.owner) return;
-      const address = convertAddress(value.owner.id);
+      const address = getAddress(value.owner.id);
       merged[address] = (merged[address] || 0) as number;
       merged[address] += NFT_VALUE;
       totalNFTs += NFT_VALUE;
@@ -157,7 +151,7 @@ export async function strategy(
 
   const BOOM_TO_NFT = totalNFTs / totalBOOM;
   response20.map((value: any, i: number) => {
-    const address = convertAddress(calls20[i][2][0]);
+    const address = getAddress(calls20[i][2][0]);
     merged[address] = (merged[address] || 0) as number;
     merged[address] +=
       parseFloat(formatUnits(value.toString(), 18)) * BOOM_TO_NFT;
