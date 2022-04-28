@@ -106,7 +106,17 @@ async function getSmartChefStakedCakeAmount(
       // @ts-ignore
       delete params.users.__args.block;
     }
-    const result = await subgraphRequest(smartChefUrl, params);
+    let result;
+    try {
+      result = await subgraphRequest(smartChefUrl, params);
+    } catch (error) {
+      if (!triedBlockNumber) {
+        triedBlockNumber = true;
+        continue;
+      } else {
+        throw error;
+      }
+    }
     if (!Array.isArray(result.users) && !triedBlockNumber) {
       triedBlockNumber = true;
       continue;
