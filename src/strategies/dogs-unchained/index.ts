@@ -1,5 +1,4 @@
-import { 
-  ress } from '@ethersproject/address';
+import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { multicall, subgraphRequest } from '../../utils';
 
