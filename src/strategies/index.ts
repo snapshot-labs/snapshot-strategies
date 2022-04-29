@@ -31,6 +31,7 @@ import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
+import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
@@ -339,6 +340,7 @@ const strategies = {
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
+  thresholds,
   'eth-balance': ethBalance,
   'eth-with-balance': ethWithBalance,
   'eth-wallet-age': ethWalletAge,
