@@ -14,8 +14,8 @@ Here is an example of parameters:
   "strategy": {
     "name": "erc20-balance-of",
     "params": {
-      "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-      "decimals": 18
+      "address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+      "decimals": 0
     }
   },
   "thresholds": [
