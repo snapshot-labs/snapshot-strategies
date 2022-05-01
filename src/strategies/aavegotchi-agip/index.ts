@@ -5,7 +5,7 @@ export const author = 'candoizo';
 export const version = '0.2.0';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
-  137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
+  137: 'https://api.thegraph.com/subgraphs/id/QmXb4Wsaj3LFMZicuRmGRg9xTNFjL6pYEXbwktdF7JXYGH'
 };
 
 const prices = {
@@ -405,35 +405,25 @@ export async function strategy(
         equippedWearables: true
       };
     }
+    for (let i = 0; i < 5; i++) {
+      const userKey = `${user}_${i * maxResultsPerQuery}`;
+      res[['gotchiLendings', userKey].join('_')] = {
+        __aliasFor: 'gotchiLendings',
+        __args: {
+          ...args,
+          skip: i * maxResultsPerQuery,
+          first: 1000,
+          where: {
+            lender: user,
+            timeAgreed_gt: 0,
+            completed: false,
+            cancelled: false
+          }
+        },
+        gotchi: { baseRarityScore: true, equippedWearables: true }
+      };
+    }
     return res;
-    // return {
-    //   [`aavegotchis_${user}`]: {
-    //     __aliasFor: 'aavegotchis',
-    //     __args: {
-    //       ...args,
-    //       first: 1000,
-    //       where: {
-    //         owner: user
-    //       }
-    //     },
-    //     baseRarityScore: true,
-    //     equippedWearables: true
-    //   }
-    //   // [`gotchiLendings_${user}`]: {
-    //   //   __aliasFor: 'gotchiLendings',
-    //   //   __args: {
-    //   //     ...args,
-    //   //     first: 1000,
-    //   //     where: {
-    //   //       lender: user
-    //   //     }
-    //   //   },
-    //   //   gotchi: {
-    //   //     baseRarityScore: true,
-    //   //     equippedWearables: true
-    //   //   }
-    //   // }
-    // };
   };
 
   const result = await subgraphRequest(
@@ -456,20 +446,18 @@ export async function strategy(
           ]
         );
       }
-      // const gotchisRenting = result['gotchiLendings_' + lowercaseAddr].map(
-      //   ({ gotchi }) => gotchi
-      // );
+
+      for (let i = 0; i < 5; i++) {
+        gotchisOwned.push(
+          ...result[
+            ['gotchiLendings', lowercaseAddr, i * maxResultsPerQuery].join('_')
+          ].map(({ gotchi }) => gotchi)
+        );
+      }
 
       let gotchisBrsEquipValue = 0;
-      if (
-        gotchisOwned.length > 0
-        // ||
-        // gotchisRenting.length > 0
-      ) {
-        const allGotchiInfo = [
-          ...gotchisOwned
-          // ...gotchisRenting
-        ];
+      if (gotchisOwned.length > 0) {
+        const allGotchiInfo = gotchisOwned;
 
         if (allGotchiInfo.length > 0)
           allGotchiInfo.map((gotchi) => {
@@ -498,11 +486,7 @@ export async function strategy(
           ownerItemValue += cost;
         });
 
-      const addr = addresses.find(
-        (addrOption: string) => addrOption.toLowerCase() === address
-      );
-
-      return [addr, ownerItemValue + gotchisBrsEquipValue];
+      return [address, ownerItemValue + gotchisBrsEquipValue];
     })
   );
 }
