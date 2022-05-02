@@ -431,6 +431,9 @@ export async function strategy(
     addresses.map((addr: string) => walletQueryParams(addr))
   );
 
+  const userKey = (key: string, addr: string, queryKey: string | number) =>
+    [key, addr, queryKey].join('_');
+
   return Object.fromEntries(
     addresses.map((address: string) => {
       const lowercaseAddr = address.toLowerCase();
@@ -440,19 +443,18 @@ export async function strategy(
       const queriesMade = balanceOfGotchis / maxResultsPerQuery;
       const gotchisOwned: any[] = [];
       for (let i = 0; i < queriesMade; i++) {
-        gotchisOwned.push(
-          ...result[
-            ['aavegotchis', lowercaseAddr, i * maxResultsPerQuery].join('_')
-          ]
-        );
+        const info =
+          result[userKey('aavegotchis', lowercaseAddr, i * maxResultsPerQuery)];
+        if (info?.length > 0) gotchisOwned.push(...info);
       }
 
       for (let i = 0; i < 5; i++) {
-        gotchisOwned.push(
-          ...result[
-            ['gotchiLendings', lowercaseAddr, i * maxResultsPerQuery].join('_')
-          ].map(({ gotchi }) => gotchi)
-        );
+        const info =
+          result[
+            userKey('gotchiLendings', lowercaseAddr, i * maxResultsPerQuery)
+          ];
+        if (info?.length > 0)
+          gotchisOwned.push(...info.map(({ gotchi }) => gotchi));
       }
 
       let gotchisBrsEquipValue = 0;
