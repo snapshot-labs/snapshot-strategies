@@ -2,11 +2,11 @@ import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'vladan';
-export const version = '1.0.0';
+export const author = 'vpoklopic';
+export const version = '1.0.1';
 
 const THALES_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/thales-markets/thales-options';
+  'https://api.thegraph.com/subgraphs/name/thales-markets/thales-optimism';
 
 export async function strategy(
   _space,

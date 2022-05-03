@@ -40,6 +40,14 @@ describe(`\nTest strategy "${strategy}"`, () => {
   let scores = null;
   let getScoresTime = null;
 
+  it('Strategy name should be lowercase and should not contain any special char expect hyphen', () => {
+    expect(strategy).toMatch(/^[a-z0-9\-]+$/);
+  });
+
+  it('Strategy name should be same as in example.json', () => {
+    expect(example.strategy.name).toBe(strategy);
+  });
+
   it('Strategy should run without any errors', async () => {
     const getScoresStart = performance.now();
     scores = await callGetScores(example);
@@ -83,10 +91,6 @@ describe(`\nTest strategy "${strategy}"`, () => {
     const provider = snapshot.utils.getProvider(example.network);
     const blockNumber = await snapshot.utils.getBlockNumber(provider);
     expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
-  });
-
-  it('File examples.json must have symbol in its strategy params', async () => {
-    expect(typeof example.strategy.params.symbol).toBe('string');
   });
 
   it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
