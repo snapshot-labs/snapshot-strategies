@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall, subgraphRequest } from '../../utils';
 
 export const author = 'dogsunchained';
-export const version = '0.0.1';
+export const version = '0.1.1';
 
 const abi721or20 = [
   'function balanceOf(address account) external view returns (uint256)',
