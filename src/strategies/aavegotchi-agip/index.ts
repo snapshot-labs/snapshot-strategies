@@ -348,6 +348,9 @@ const tokenAbi = [
   }
 ];
 
+const userKey = (key: string, addr: string, queryKey: string | number) =>
+  [key, addr, queryKey].join('_');
+
 export async function strategy(
   _space,
   network,
@@ -390,8 +393,7 @@ export async function strategy(
     const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
     const res = {};
     for (let i = 0; i < queriesNeeded; i++) {
-      const userKey = `${user}_${i * maxResultsPerQuery}`;
-      res[['aavegotchis', userKey].join('_')] = {
+      res[userKey('aavegotchis', user, i * maxResultsPerQuery)] = {
         __aliasFor: 'aavegotchis',
         __args: {
           ...args,
@@ -402,12 +404,27 @@ export async function strategy(
           }
         },
         baseRarityScore: true,
-        equippedWearables: true
+        equippedWearables: true,
+        gotchiId: true
+      };
+      res[userKey('gotchiBorrowExclusions', user, i * maxResultsPerQuery)] = {
+        __aliasFor: 'gotchiLendings',
+        __args: {
+          ...args,
+          skip: i * maxResultsPerQuery,
+          first: 1000,
+          where: {
+            borrower: user,
+            timeAgreed_gt: 0,
+            completed: false,
+            cancelled: false
+          }
+        },
+        gotchi: { gotchiId: true }
       };
     }
     for (let i = 0; i < 5; i++) {
-      const userKey = `${user}_${i * maxResultsPerQuery}`;
-      res[['gotchiLendings', userKey].join('_')] = {
+      res[userKey('gotchiLendings', user, i * maxResultsPerQuery)] = {
         __aliasFor: 'gotchiLendings',
         __args: {
           ...args,
@@ -431,9 +448,6 @@ export async function strategy(
     addresses.map((addr: string) => walletQueryParams(addr))
   );
 
-  const userKey = (key: string, addr: string, queryKey: string | number) =>
-    [key, addr, queryKey].join('_');
-
   return Object.fromEntries(
     addresses.map((address: string) => {
       const lowercaseAddr = address.toLowerCase();
@@ -442,10 +456,24 @@ export async function strategy(
       );
       const queriesMade = balanceOfGotchis / maxResultsPerQuery;
       const gotchisOwned: any[] = [];
+      const gotchisExcluded: number[] = [];
       for (let i = 0; i < queriesMade; i++) {
         const info =
           result[userKey('aavegotchis', lowercaseAddr, i * maxResultsPerQuery)];
         if (info?.length > 0) gotchisOwned.push(...info);
+
+        const excludeInfo =
+          result[
+            userKey(
+              'gotchiBorrowExclusions',
+              lowercaseAddr,
+              i * maxResultsPerQuery
+            )
+          ];
+        if (excludeInfo?.length > 0)
+          gotchisExcluded.push(
+            ...excludeInfo.map(({ gotchi }) => gotchi.gotchiId)
+          );
       }
 
       for (let i = 0; i < 5; i++) {
@@ -459,7 +487,9 @@ export async function strategy(
 
       let gotchisBrsEquipValue = 0;
       if (gotchisOwned.length > 0) {
-        const allGotchiInfo = gotchisOwned;
+        const allGotchiInfo = gotchisOwned.filter(
+          ({ gotchiId }) => gotchisExcluded.includes(gotchiId) == false
+        );
 
         if (allGotchiInfo.length > 0)
           allGotchiInfo.map((gotchi) => {
