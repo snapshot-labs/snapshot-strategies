@@ -196,6 +196,7 @@ import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprStakingS2 from './hopr-staking-s2';
+import * as hoprStakingBySeason from './hopr-staking-by-season';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
@@ -497,6 +498,7 @@ const strategies = {
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
   'hopr-staking-s2': hoprStakingS2,
+  'hopr-staking-by-season': hoprStakingBySeason,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   swapr,
