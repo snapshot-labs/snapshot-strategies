@@ -1,6 +1,6 @@
-# GATENet total staked strategy
+# GATENet Total Staked Strategy
 
-GATENet total staked strategy to calculate quorum based on total staked for wallet's address.
+A custom GATENet Total Staked Strategy to calculate quorum based on the total staked for a wallet's address, based on the GATENet Staking Platform (https://staking.gatenet.io/).
 
 ```json
 {
