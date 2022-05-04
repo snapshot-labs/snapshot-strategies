@@ -23,7 +23,6 @@ export async function strategy(
   if (options.marinateLevels.length > 4) {
     return [];
   }
-
   const sUmamiBalances = await erc20BalanceOfStrategy(
     space,
     network,

@@ -31,6 +31,7 @@ import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
+import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
@@ -195,6 +196,7 @@ import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprStakingS2 from './hopr-staking-s2';
+import * as hoprStakingBySeason from './hopr-staking-by-season';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
@@ -297,6 +299,9 @@ import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
 import * as proofOfHumanity from './proof-of-humanity';
 import * as samuraiLegendsGeneralsBalance from './samurailegends-generals-balance';
+import * as dogsUnchained from './dogs-unchained';
+import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
+import * as umamiVoting from './umami-voting';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -337,6 +342,7 @@ const strategies = {
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
+  thresholds,
   'eth-balance': ethBalance,
   'eth-with-balance': ethWithBalance,
   'eth-wallet-age': ethWalletAge,
@@ -493,6 +499,7 @@ const strategies = {
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
   'hopr-staking-s2': hoprStakingS2,
+  'hopr-staking-by-season': hoprStakingBySeason,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   swapr,
@@ -595,7 +602,10 @@ const strategies = {
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
-  'samurailegends-generals-balance': samuraiLegendsGeneralsBalance
+  'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
+  'dogs-unchained': dogsUnchained,
+  'stakedao-governance-update': stakeDAOGovernanceUpdate,
+  'umami-voting': umamiVoting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
