@@ -1,5 +1,4 @@
 import { Multicaller, subgraphRequest } from '../../utils';
-import abis from './abis/Compound';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 
@@ -13,7 +12,7 @@ const REWARD_ADDED = 'Reward';
 const CLAIM = 'Claim';
 const OTHERS = 'others';
 
-const abi = abis;
+const abi = ['function LOCK_PERIOD() view returns (uint256)'];
 
 const getTransactionType = (transaction) => {
   switch (transaction.__typename) {
@@ -234,12 +233,10 @@ export async function strategy(
       result[address] = BigNumber.from(0);
     }
   }
-  const retObj = Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
       parseFloat(formatUnits(balance, options.decimals))
     ])
   );
-
-  return retObj;
 }
