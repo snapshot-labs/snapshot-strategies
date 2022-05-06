@@ -4,7 +4,7 @@ import { strategy as erc721Strategy } from '../erc721';
 import { subgraphRequest, getProvider } from '../../utils';
 import { getSnapshots } from '../../utils/blockfinder';
 
-export const author = 'lightninglu10';
+export const author = 'maikir';
 export const version = '0.1.0';
 
 const MEEBITSDAO_DELEGATION_SUBGRAPH_URL =
@@ -25,24 +25,48 @@ export async function strategy(
     options.tokenAddresses.map((s) => s.network || network)
   );
 
-  const params = {
+  const PAGE_SIZE = 1000;
+  let result: any = [];
+  let page = 0;
+  const params: any = {
     delegations: {
-      __args: snapshot !== 'latest' ? { block: { number: snapshot } } : {},
-      id: true,
+      __args: {
+        first: PAGE_SIZE,
+        skip: 0
+      },
       delegator: true,
       delegate: true
     }
   };
+  if (snapshot !== 'latest') {
+    params.delegations.__args.block = { number: snapshot };
+  }
 
-  const result = await subgraphRequest(
-    MEEBITSDAO_DELEGATION_SUBGRAPH_URL,
-    params
-  );
+  while (true) {
+    params.delegations.__args.skip = page * PAGE_SIZE;
+    console.log("here");
+    const pageResult = await subgraphRequest(
+      MEEBITSDAO_DELEGATION_SUBGRAPH_URL,
+      params
+    );
+    const pageDelegations = pageResult.delegations || [];
+    result = result.concat(pageDelegations);
+    page++;
+    if (pageDelegations.length < PAGE_SIZE) break;
+  }
+
+  // const result = await subgraphRequest(
+  //   MEEBITSDAO_DELEGATION_SUBGRAPH_URL,
+  //   params
+  // );
+
+  console.log(result);
 
   const mvoxAddresses: string[] = [];
-  result.delegations.forEach((delegation) => {
+  result.forEach((delegation) => {
     mvoxAddresses.push(delegation.delegator);
   });
+
 
   const mvoxScores = await erc20BalanceOfStrategy(
     space,
@@ -52,6 +76,7 @@ export async function strategy(
     options.tokenAddresses[0],
     snapshot
   );
+
 
   const mfndScores = await meebitsdaoStrategy(
     space,
@@ -73,7 +98,7 @@ export async function strategy(
 
   const delegations = {};
 
-  result.delegations.forEach((delegation) => {
+  result.forEach((delegation) => {
     let meebitsScore = 0;
     let mvoxScore = 0;
     if (
