@@ -6,7 +6,8 @@
       "params": {
         "address": "0xB53E4B0F128B231B8728525C616c26E0E59407A1",
         "symbol": "GATE",
-        "decimals": 18
+        "decimals": 18,
+        "subgraph": "https://api.studio.thegraph.com/query/17252/gatenet-cvm/v0.6.1"
       }
     },
     "network": "4",

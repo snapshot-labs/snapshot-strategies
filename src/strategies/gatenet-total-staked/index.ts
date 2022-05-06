@@ -86,10 +86,7 @@ export async function strategy(
       unStakeIndex: true
     }
   };
-  const transactionsList = await subgraphRequest(
-    'https://api.studio.thegraph.com/query/17252/gatenet-cvm/v0.6.1',
-    query
-  );
+  const transactionsList = await subgraphRequest(options.subgraph, query);
 
   for (const address of addresses) {
     let feePerShare = BigNumber.from(0);
