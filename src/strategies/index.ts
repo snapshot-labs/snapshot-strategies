@@ -136,6 +136,7 @@ import * as erc721WithMetadata from './erc721-with-metadata';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
+import * as erc721BalanceERC20 from './erc721-balance-erc20';
 import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
@@ -356,6 +357,7 @@ const strategies = {
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-multi-registry': erc721MultiRegistry,
+  'erc721-balance-erc20': erc721BalanceERC20,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   multichain,

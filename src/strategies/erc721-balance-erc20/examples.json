@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-balance-erc20",
+      "params": {
+        "address": "0x08e253270240509E57B9543c0453F0bAc839d0a1",
+        "symbol": "KLIMAxSVN:CO2C",
+        "erc20Address": "0xb0C22d8D350C67420f06F48936654f567C73E8C8",
+        "erc20Decimals": 9
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xa53A13A80D72A855481DE5211E7654fAbDFE3526",
+      "0x51688cd36c18891167e8036bde2a8fb10ec80c43"
+    ],
+    "snapshot": 22220000
+  }
+]
