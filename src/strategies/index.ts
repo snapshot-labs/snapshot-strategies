@@ -27,6 +27,7 @@ import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
+import * as erc20BalanceOfIndexedVault from './erc20-balance-of-indexed-vault';
 import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
@@ -338,6 +339,7 @@ const strategies = {
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'minto-balance-of-all': mintoBalanceAll,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
+  'erc20-balance-of-indexed-vault': erc20BalanceOfIndexedVault,
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,

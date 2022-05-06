@@ -1,0 +1,43 @@
+[
+    {
+        "name": "Indexed Vault Example",
+        "strategy": {
+            "name": "erc20-balance-of-indexed-vault",
+            "params": {
+                "symbol": "wsKLIMA",
+                "address": "0x6f370dba99E32A3cAD959b341120DB3C9E280bA6",
+                "indexAddress": "0x25d28a24Ceb6F81015bB0b2007D795ACAc411b4d",
+                "decimals": 18,
+                "indexDecimals": 9,
+                "vaultAddress": "0xe02efadA566Af74c92b6659d03BAaCb4c06Cc856",
+                "vaultBalanceExtraArgs": [],
+                "vaultBalanceABI": {
+                    "inputs": [
+                        {
+                            "internalType": "address",
+                            "name": "account",
+                            "type": "address"
+                        }
+                    ],
+                    "name": "lockedLiquidityOf",
+                    "outputs": [
+                        {
+                            "internalType": "uint256",
+                            "name": "",
+                            "type": "uint256"
+                        }
+                    ],
+                    "stateMutability": "view",
+                    "type": "function"
+                }
+            }
+        },
+        "network": "137",
+        "addresses": [
+            "0x9ad280045b9899e2dabed802b964b44702beb333",
+            "0x8f619d631c90fd5f7e9e7accb2d539c85d6182f3",
+            "0x08ca875c08ff0625032cf9fa96e898214e18b29f"
+        ],
+        "snapshot": 27977345
+    }
+]
