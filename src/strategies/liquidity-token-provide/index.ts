@@ -53,31 +53,23 @@ export async function strategy(
   );
   const score = {};
   if (result && result.liquidityPositions) {
-    console.log(
-      result.liquidityPositions.filter(
-        (lp) =>
-          lp.pair.token0.id == tokenAddress || lp.pair.token1.id == tokenAddress
+    result.liquidityPositions.forEach((lp) => {
+      if (
+        lp.pair.token0.id !== tokenAddress &&
+        lp.pair.token1.id !== tokenAddress
       )
-    );
-    result.liquidityPositions
-      .filter(
-        (lp) =>
-          lp.pair.token0.id == tokenAddress || lp.pair.token1.id == tokenAddress
-      )
-      .forEach((lp) => {
-        const token0perShard = lp.pair.reserve0 / lp.pair.totalSupply;
-        const token1perShard = lp.pair.reserve1 / lp.pair.totalSupply;
-        let userScore =
-          lp.pair.token0.id == tokenAddress
-            ? token0perShard * lp.liquidityTokenBalance
-            : token1perShard * lp.liquidityTokenBalance;
-        if (options.scoreMultiplier) {
-          userScore = userScore * options.scoreMultiplier;
-        }
-        const userAddress = getAddress(lp.user.id);
-        if (!score[userAddress]) score[userAddress] = 0;
-        score[userAddress] = score[userAddress] + userScore;
-      });
+        return;
+      let userScore =
+        lp.pair.token0.id == tokenAddress
+          ? (lp.pair.reserve0 / lp.pair.totalSupply) * lp.liquidityTokenBalance
+          : (lp.pair.reserve1 / lp.pair.totalSupply) * lp.liquidityTokenBalance;
+      if (options.scoreMultiplier) {
+        userScore = userScore * options.scoreMultiplier;
+      }
+      const userAddress = getAddress(lp.user.id);
+      if (!score[userAddress]) score[userAddress] = 0;
+      score[userAddress] = score[userAddress] + userScore;
+    });
   }
   return score || {};
 }
