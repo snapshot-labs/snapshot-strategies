@@ -394,7 +394,8 @@ export async function strategy(
     const balanceOfGotchis = Number(
       multiRes[options.tokenAddress][user]['balanceOf'].toString()
     );
-    const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
+    let queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
+    if (queriesNeeded == 0) queriesNeeded = 1;
     const res = {};
     for (let i = 0; i < queriesNeeded; i++) {
       res[userKey('aavegotchis', user, i * maxResultsPerQuery)] = {
@@ -467,12 +468,7 @@ export async function strategy(
 
   const result = await subgraphRequest(
     AAVEGOTCHI_SUBGRAPH_URL[network],
-    addresses
-      .map((addr: string) => walletQueryParams(addr))
-      .filter(
-        (res: { [key: string]: Record<string, unknown> }) =>
-          Object.entries(res).length > 0
-      )
+    addresses.map((addr: string) => walletQueryParams(addr))
   );
 
   const lendingResult = await subgraphRequest(
