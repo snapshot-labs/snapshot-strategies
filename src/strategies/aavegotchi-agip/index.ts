@@ -2,9 +2,13 @@ import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'candoizo';
-export const version = '0.2.0';
+export const version = '0.2.1';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
+  137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
+};
+
+const AAVEGOTCHI_LENDING_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/id/QmXb4Wsaj3LFMZicuRmGRg9xTNFjL6pYEXbwktdF7JXYGH'
 };
 
@@ -390,7 +394,8 @@ export async function strategy(
     const balanceOfGotchis = Number(
       multiRes[options.tokenAddress][user]['balanceOf'].toString()
     );
-    const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
+    let queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
+    if (queriesNeeded == 0) queriesNeeded = 1;
     const res = {};
     for (let i = 0; i < queriesNeeded; i++) {
       res[userKey('aavegotchis', user, i * maxResultsPerQuery)] = {
@@ -407,6 +412,24 @@ export async function strategy(
         equippedWearables: true,
         gotchiId: true
       };
+    }
+    return res;
+  };
+
+  const walletLendingQueryParams = (user: string) => {
+    user = user.toLowerCase();
+
+    const args: {
+      block?: { number: number };
+    } = {};
+    if (blockTag !== 'latest') args.block = { number: blockTag };
+
+    const balanceOfGotchis = Number(
+      multiRes[options.tokenAddress][user]['balanceOf'].toString()
+    );
+    const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
+    const res = {};
+    for (let i = 0; i < queriesNeeded; i++) {
       res[userKey('gotchiBorrowExclusions', user, i * maxResultsPerQuery)] = {
         __aliasFor: 'gotchiLendings',
         __args: {
@@ -448,6 +471,11 @@ export async function strategy(
     addresses.map((addr: string) => walletQueryParams(addr))
   );
 
+  const lendingResult = await subgraphRequest(
+    AAVEGOTCHI_LENDING_SUBGRAPH_URL[network],
+    addresses.map((addr: string) => walletLendingQueryParams(addr))
+  );
+
   return Object.fromEntries(
     addresses.map((address: string) => {
       const lowercaseAddr = address.toLowerCase();
@@ -463,7 +491,7 @@ export async function strategy(
         if (info?.length > 0) gotchisOwned.push(...info);
 
         const excludeInfo =
-          result[
+          lendingResult[
             userKey(
               'gotchiBorrowExclusions',
               lowercaseAddr,
@@ -478,7 +506,7 @@ export async function strategy(
 
       for (let i = 0; i < 5; i++) {
         const info =
-          result[
+          lendingResult[
             userKey('gotchiLendings', lowercaseAddr, i * maxResultsPerQuery)
           ];
         if (info?.length > 0)
