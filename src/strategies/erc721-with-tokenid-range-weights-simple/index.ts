@@ -9,6 +9,15 @@ const abi = [
   'function ownerOf(uint256 tokenId) public view returns (address owner)'
 ];
 
+const calculateRangeSize = (tokenIdWeightRanges: WeightRange[]) => {
+  return tokenIdWeightRanges.reduce((prev, curr) => {
+    const { start, end } = curr;
+    if(start > end) throw new Error("Range start tokenID must always be equal or smaller than the final tokenID");
+    prev += end - start + 1;
+    return prev;
+  }, 0);
+}
+
 const range = (start, end, step) =>
   Array.from({ length: (end - start) / step + 1 }, (_, i) => start + i * step);
 
@@ -39,8 +48,14 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const { tokenIdWeightRanges, defaultWeight } = options;
+  const maximumNumberOfBatches = 4;
+  const batchSize = 8000;
+  const maximumAllowedRange = maximumNumberOfBatches * batchSize
   let erc721WeightedBalance = {};
+  let customRangeBalance = {};
 
+  if (calculateRangeSize(tokenIdWeightRanges) > maximumAllowedRange) throw new Error(`Range is too big, the maximum allowed combined range is ${maximumAllowedRange}`);
+  
   const getDataFromBlockChain = async (
     contractCalls: [string, string, [number]][]
   ) => multicall(network, provider, abi, contractCalls, { blockTag });
@@ -59,17 +74,17 @@ export async function strategy(
     contractCallResponse
       .map((address, index) => Array(weights[index]).fill(address[0]))
       .flat();
-
-  const countOccurrences = (array: string[]) =>
-    array.reduce(
+    
+  const countAndAccumulateOccurrences = (array: string[]) => 
+    customRangeBalance = array.reduce(
       (prev, curr) => (prev[curr] ? ++prev[curr] : (prev[curr] = 1), prev),
-      {}
+      customRangeBalance
     );
 
-  const getCustomRangeBalance = async (): Promise<{
+  const accumulateCustomRangeBalance = async ({ ids, weights }): Promise<{
     [address: string]: number;
   }> => {
-    const { ids, weights } = flattenTokenIdWeightRanges(tokenIdWeightRanges);
+    
     const contractCalls = ids.map((id: number) => [
       options.address,
       'ownerOf',
@@ -84,8 +99,16 @@ export async function strategy(
       customRangeResponseWeighted
     );
 
-    return countOccurrences(customRangeResponseWeightedFiltered);
+    return countAndAccumulateOccurrences(customRangeResponseWeightedFiltered);
   };
+
+  const makeBatch = ({batchSize}) => {
+    const { ids, weights } = flattenTokenIdWeightRanges(tokenIdWeightRanges);
+    const batchedIds = [...Array(Math.ceil(ids.length / batchSize))].map(_ => ids.splice(0,batchSize))
+    const batchedWeights = [...Array(Math.ceil(weights.length / batchSize))].map(_ => weights.splice(0,batchSize))
+    const batches = batchedIds.map((e, i) => ( { ids: e, weights: batchedWeights[i] }));
+    return batches
+  }
 
   if (defaultWeight)
     erc721WeightedBalance = await erc721WithMultiplier(
@@ -96,8 +119,11 @@ export async function strategy(
       { ...options, multiplier: defaultWeight },
       snapshot
     );
-
-  const customRangeBalance = await getCustomRangeBalance();
+  
+  const batches = makeBatch({ batchSize: batchSize });
+  for (let i = 0; i < batches.length; i++) {
+    await accumulateCustomRangeBalance({...batches[i]})
+  }
 
   return { ...erc721WeightedBalance, ...customRangeBalance };
 }
