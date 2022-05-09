@@ -2,7 +2,10 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+  '1':
+    'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-mainnet',
+  '137':
+    'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-polygon'
 };
 
 export const author = 'weizard';
@@ -47,10 +50,12 @@ export async function strategy(
     params.liquidityPositions.__args.block = { number: snapshot };
   }
   const tokenAddress = options.address.toLowerCase();
+  console.time('subgraph');
   const result = await subgraphRequest(
     options.subGraphURL ? options.subGraphURL : SUBGRAPH_URL[network],
     params
   );
+  console.timeEnd('subgraph');
   const score = {};
   if (result && result.liquidityPositions) {
     result.liquidityPositions.forEach((lp) => {
