@@ -5,7 +5,7 @@ import { subgraphRequest, getProvider } from '../../utils';
 import { getSnapshots } from '../../utils/blockfinder';
 
 export const author = 'maikir';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const MEEBITSDAO_DELEGATION_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
@@ -42,9 +42,9 @@ export async function strategy(
     params.delegations.__args.block = { number: snapshot };
   }
 
+
   while (true) {
     params.delegations.__args.skip = page * PAGE_SIZE;
-    console.log("here");
     const pageResult = await subgraphRequest(
       MEEBITSDAO_DELEGATION_SUBGRAPH_URL,
       params
@@ -54,13 +54,6 @@ export async function strategy(
     page++;
     if (pageDelegations.length < PAGE_SIZE) break;
   }
-
-  // const result = await subgraphRequest(
-  //   MEEBITSDAO_DELEGATION_SUBGRAPH_URL,
-  //   params
-  // );
-
-  console.log(result);
 
   const mvoxAddresses: string[] = [];
   result.forEach((delegation) => {
