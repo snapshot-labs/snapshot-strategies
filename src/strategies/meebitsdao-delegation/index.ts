@@ -42,7 +42,7 @@ export async function strategy(
     params.delegations.__args.block = { number: snapshot };
   }
 
-
+  //This function may only run to 6000 queries total (first: 1000 * 6 pages). After that, the query may return 0 results even though there may be more.
   while (true) {
     params.delegations.__args.skip = page * PAGE_SIZE;
     const pageResult = await subgraphRequest(
