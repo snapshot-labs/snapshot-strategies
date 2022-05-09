@@ -54,7 +54,6 @@ export async function strategy(
     options.subGraphURL ? options.subGraphURL : SUBGRAPH_URL[network],
     params
   );
-  console.timeEnd('subgraph');
   const score = {};
   if (result && result.liquidityPositions) {
     result.liquidityPositions.forEach((lp) => {
