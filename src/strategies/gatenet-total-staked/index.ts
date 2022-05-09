@@ -42,20 +42,21 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
   const multi = new Multicaller(network, provider, abi, { blockTag });
   multi.call('lockPeriod', options.address, 'LOCK_PERIOD');
   const multiResult = await multi.execute();
   const lockPeriod = Number(multiResult.lockPeriod);
-
   const result: Record<string, BigNumberish> = {};
-  const args: {
-    where: { sender_in: any };
-  } = {
+  const args = {
     where: {
       sender_in: addresses
     }
   };
+
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    args.block = { number: blockTag };
+  }
 
   const query = {
     compoundDeposits: {
