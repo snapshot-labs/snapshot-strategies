@@ -301,6 +301,7 @@ import * as samuraiLegendsGeneralsBalance from './samurailegends-generals-balanc
 import * as dogsUnchained from './dogs-unchained';
 import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
 import * as umamiVoting from './umami-voting';
+import * as liquidityTokenProvide from './liquidity-token-provide';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -603,7 +604,8 @@ const strategies = {
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
   'dogs-unchained': dogsUnchained,
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
-  'umami-voting': umamiVoting
+  'umami-voting': umamiVoting,
+  'liquidity-token-provide': liquidityTokenProvide
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
