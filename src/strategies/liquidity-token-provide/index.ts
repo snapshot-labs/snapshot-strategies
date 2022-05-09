@@ -50,7 +50,6 @@ export async function strategy(
     params.liquidityPositions.__args.block = { number: snapshot };
   }
   const tokenAddress = options.address.toLowerCase();
-  console.time('subgraph');
   const result = await subgraphRequest(
     options.subGraphURL ? options.subGraphURL : SUBGRAPH_URL[network],
     params
