@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-sdl-voting-power",
+      "params": {
+        "address": "[TBD: Pending deployment of VotingEscrow contract for veSDL]",
+        "symbol": "veSDL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+    ],
+    "snapshot": 14357198
+  }
+]
