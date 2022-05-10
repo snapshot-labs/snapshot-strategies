@@ -55,7 +55,7 @@ export async function strategy(
 
   if (snapshot !== 'latest') {
     // @ts-ignore
-    args.block = { number: blockTag };
+    args.where.time_lte = (await provider.getBlock(snapshot)).timestamp;
   }
 
   const query = {
