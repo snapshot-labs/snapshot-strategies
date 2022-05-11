@@ -9,10 +9,17 @@ type ScoresByAddress = {
 };
 
 type Params = {
+  // Token Label
   symbol: string;
+  // Contract Address
   address: string;
+  // Token to measure holdings of
   tokenId: number;
+  // Decimal places used by token
   decimals: number;
+  // Strategy is extensible to Plural Voting by setting >1.
+  // see https://www.radicalxchange.org/concepts/plural-voting/
+  voiceCredits?: number;
 };
 
 const author = 'citydao';
@@ -43,9 +50,12 @@ async function strategy(
     snapshot
   );
 
+  // Support Plural Voting
+  const magnitude = params.voiceCredits || 1;
+
   // Update in place, rounding down.
   for (const address in scores) {
-    scores[address] = Math.floor(Math.sqrt(scores[address]));
+    scores[address] = Math.floor(Math.sqrt(scores[address] * magnitude));
   }
 
   return scores;
