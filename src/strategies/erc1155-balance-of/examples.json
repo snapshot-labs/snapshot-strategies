@@ -12,9 +12,10 @@
     },
     "network": "1",
     "addresses": [
-      "0x0B7056e2D9064f2ec8647F1ae556BAcc06da6Db4",
-      "0xcc5Ddc8CCD5B1E90Bc42F998ec864Ead0090A12B",
-      "0x0154d25120ed20a516fe43991702e7463c5a6f6e"
+      "0x63be293e63Da3E4a157Cac97A2C8aD17507231E8",
+      "0x0d7FDfd2B4D471b5A9834E9868bc346DEB94c337",
+      "0x542a7e1741adcCfA0DCf97aDE698A02b495C11E8",
+      "0x0848F011d99C5aA0abf0E8a43c72d8b573383f2B"
     ],
     "snapshot": 11992257
   }
