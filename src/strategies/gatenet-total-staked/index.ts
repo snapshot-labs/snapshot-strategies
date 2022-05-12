@@ -178,7 +178,6 @@ export async function strategy(
               }
             }
             transactionTypeTemp = type;
-            //          amount = amount.toNumber();
             return amount
               ? {
                   name: type,
