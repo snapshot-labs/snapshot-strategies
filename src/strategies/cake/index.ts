@@ -166,9 +166,9 @@ export async function strategy(
   ) {
     let callData = addresses.map((address: any) => [
       typeof blockTag === 'number' &&
-      blockTag >= onChainVotingPower.v1.blockNumber
-        ? onChainVotingPower.v1.address
-        : onChainVotingPower.v0.address,
+      blockTag < onChainVotingPower.v1.blockNumber
+        ? onChainVotingPower.v0.address
+        : onChainVotingPower.v1.address,
       'getVotingPowerWithoutPool',
       [address.toLowerCase()]
     ]);
