@@ -96,7 +96,6 @@ export async function strategy(
     let waitingRewards = BigNumber.from(0);
     let currentShares = BigNumber.from(0);
     let transactionTypeTemp = '';
-    let sign = '~';
     const ether = BigNumber.from(10).pow(18);
 
     const compoundDeposits = transactionsList.compoundDeposits.filter(
@@ -124,7 +123,6 @@ export async function strategy(
                   currentShares
                 );
                 amount = BigNumber.from(transaction.amount);
-                sign = '+';
                 break;
               }
 
@@ -141,7 +139,6 @@ export async function strategy(
                   feePerShare.sub(previousFeePerShare).div(ether)
                 );
                 waitingFees = waitingFees.add(amount);
-                sign = '+';
                 break;
               }
 
@@ -156,7 +153,6 @@ export async function strategy(
 
                 amount = currentShares.mul(rewardRate.sub(previousRewardRate));
                 waitingRewards = waitingRewards.add(amount);
-                sign = '+';
                 break;
               }
               case UNSTAKE: {
@@ -164,14 +160,12 @@ export async function strategy(
                   BigNumber.from(transaction.shares || 0)
                 );
                 amount = BigNumber.from(transaction.amount);
-                sign = '-';
                 break;
               }
               case 'Claim': {
                 if (transaction.user.toUpperCase() === address.toUpperCase()) {
                   if (transactionTypeTemp !== UNSTAKE) {
                     amount = BigNumber.from(transaction.amount);
-                    sign = '-';
                   }
                 }
                 break;
@@ -182,17 +176,7 @@ export async function strategy(
               ? {
                   name: type,
                   timeStamp: transaction.time,
-                  time: new Date(transaction.time * 1000).toLocaleTimeString(),
-                  amount,
-                  date: new Date(transaction.time * 1000).toLocaleString(
-                    'en-GB',
-                    {
-                      year: 'numeric',
-                      month: 'long',
-                      day: 'numeric'
-                    }
-                  ),
-                  sign
+                  amount
                 }
               : null;
           }
