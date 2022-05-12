@@ -173,7 +173,7 @@ export async function strategy(
       [address.toLowerCase()]
     ]);
 
-    callData = [...chunk(callData, options.max || 400)];
+    callData = [...chunk(callData, options.max || 300)];
     const response: any[] = [];
     for (const call of callData) {
       const multiRes = await multicall(network, provider, abi, call, {
