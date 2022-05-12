@@ -10,8 +10,8 @@ const stakingAbi = [
   'function totalStakeTokenDeposited(address user) view returns (uint256)'
 ];
 const liquidityPoolAbi = [
-  { "constant": true, "inputs": [], "name": "getReserves", "outputs": [{ "internalType": "uint112", "name": "_reserve0", "type": "uint112" }, { "internalType": "uint112", "name": "_reserve1", "type": "uint112" }, { "internalType": "uint32", "name": "_blockTimestampLast", "type": "uint32" }], "payable": false, "stateMutability": "view", "type": "function" },
-  { "constant": true, "inputs": [], "name": "totalSupply", "outputs": [{ "internalType": "uint256", "name": "", "type": "uint256" }], "payable": false,"stateMutability": "view","type": "function"}
+  'function getReserves() view returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast)',
+  'function totalSupply() view returns (uint256)'
 ];
 
 export async function strategy(
