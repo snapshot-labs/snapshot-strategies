@@ -2,8 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { strategy as meebitsdaoStrategy } from '../meebitsdao';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import { strategy as erc721Strategy } from '../erc721';
-import { subgraphRequest, getProvider } from '../../utils';
-import { getSnapshots } from '../../utils/blockfinder';
+import { subgraphRequest, getProvider, getSnapshots } from '../../utils';
 
 export const author = 'maikir';
 export const version = '0.2.0';
