@@ -1,0 +1,18 @@
+[
+  {
+    "name": "ParaState Staking",
+    "strategy": {
+      "name": "parastate",
+      "params": {
+        "address": "0x2Fcd20F97F27c3Ef78AC98189C3C1f22678A955E",
+        "symbol": "STATE",
+        "decimals": 18
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x0b23E3588c906C3F723C58Ef4d6baEe7840A977c"
+    ],
+    "snapshot": 6778041
+  }
+]
