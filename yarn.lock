@@ -859,10 +859,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snapshot-labs/snapshot.js@^0.3.80":
-  version "0.3.80"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.3.80.tgz#eafcf69e7edb3407df1ff60e3d620bf5fb21fba6"
-  integrity sha512-YO4me7U7bJdWcr5PCb2abbnQcmKpoKvIAuo8Xm3NnTyQvURqxK2jEqpHEtdp0yiEUym7xGBapj3agZ7HIXYoaA==
+"@snapshot-labs/snapshot.js@^0.3.81":
+  version "0.3.81"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.3.81.tgz#f980c7f96d091189c02730ce03088795e7cb4b11"
+  integrity sha512-pG+lQ298iP3q6B51LdatnvDUgy4vqQ/Y3mKR3iEuDroiSygTGby0JsHsPpll9JxvGP+EVhgv7NreKNbjNpCj+Q==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.0.4"
