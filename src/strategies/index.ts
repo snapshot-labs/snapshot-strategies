@@ -304,6 +304,7 @@ import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
 import * as umamiVoting from './umami-voting';
 import * as liquidityTokenProvide from './liquidity-token-provide';
 import * as citydaoSquareRoot from './citydao-square-root';
+import * as dvisionDao from './dvision-dao';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -609,7 +610,8 @@ const strategies = {
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
   'umami-voting': umamiVoting,
   'liquidity-token-provide': liquidityTokenProvide,
-  'citydao-square-root': citydaoSquareRoot
+  'citydao-square-root': citydaoSquareRoot,
+  'dvision-dao': dvisionDao
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
