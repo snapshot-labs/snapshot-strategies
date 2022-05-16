@@ -214,10 +214,17 @@ export async function strategy(
       result[address] = BigNumber.from(0);
     }
   }
-  return Object.fromEntries(
+  const score = Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
       parseFloat(formatUnits(balance, options.decimals))
     ])
   );
+
+  Object.keys(score).forEach((key) => {
+    if (score[key] >= (options.minBalance || 0)) score[key] = score[key];
+    else score[key] = 0;
+  });
+
+  return score;
 }
