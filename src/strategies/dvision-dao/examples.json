@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Dvision Dao",
+    "strategy": {
+      "name": "dvision-dao",
+      "params": {
+        "url": "http://localhost:3000"
+      }
+    },
+    "network": "97",
+    "addresses": [
+      "0x1904BFcb93EdC9BF961Eead2e5c0de81dCc1D37D"
+    ],
+    "snapshot": 19343418
+  }
+]
