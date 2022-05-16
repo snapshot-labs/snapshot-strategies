@@ -4,12 +4,14 @@
     "strategy": {
       "name": "dvision-dao",
       "params": {
-        "url": "http://localhost:3000"
+        "url": "https://dvision-dao-api.sotatek.works",
+        "address": "0x959e104e1a4db6317fa58f8295f586e1a978c297",
+        "symbol": "vp"
       }
     },
     "network": "97",
     "addresses": [
-      "0x1904BFcb93EdC9BF961Eead2e5c0de81dCc1D37D"
+      "0x48BBe8A2FDe189f49CcEc2d76fcc93294f4C8974"
     ],
     "snapshot": 19343418
   }

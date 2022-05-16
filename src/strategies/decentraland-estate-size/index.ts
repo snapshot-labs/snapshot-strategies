@@ -59,6 +59,7 @@ export async function strategy(
     params.nfts.__args.skip += params.nfts.__args.first;
     hasNext = nfts.length === params.nfts.__args.first;
   }
-
+  console.log('===============================');
+  console.log(score);
   return score;
 }
