@@ -6,7 +6,7 @@ export const version = '0.0.1';
 export async function strategy(space, network, provider, addresses, options) {
   const score = {};
   const response = await fetch(
-    `${options.url}/api/votepower?wallet=${addresses[0]}`,
+    `${options.url}/api/votepower?wallet=${addresses[0]}&network=${network}`,
     {
       method: 'GET',
       headers: {
