@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sd-boost-twavp",
+      "params": {
+        "api":"http://localhost:4000/",
+        "sdToken": "0x402F878BDd1f5C66FdAF0fabaBcF74741B68ac36",
+        "veToken": "0xc8418aF6358FFddA74e09Ca9CC3Fe03Ca6aDC5b0",
+        "lockerToken": "0xCd3a267DE09196C48bbB1d9e842D7D7645cE448f",
+        "gauge": "0xF3C6e8fbB946260e8c2a55d48a5e01C82fD63106",
+        "symbol": "sdToken",
+        "decimals": 18,
+        "sampleSize": 30,
+        "sampleStep": 30
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xb36a0671b3d49587236d7833b01e79798175875f",
+      "0x10c16c7b8b1ddcfe65990ec822de4379dd8a86de"
+    ],
+    "snapshot": 14674771
+  }
+]
