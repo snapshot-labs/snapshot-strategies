@@ -3,7 +3,7 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'usagar80';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const UNSTAKE = 'Unstake';
 const STAKE = 'Stake';

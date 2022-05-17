@@ -32,7 +32,7 @@
         },
         "minBalance": {
           "type": "number",
-          "title": "Decimals",
+          "title": "Minimum token staked",
           "examples": ["e.g. 18"]
         }
       },
