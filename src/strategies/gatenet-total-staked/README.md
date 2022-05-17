@@ -1,6 +1,6 @@
 # GATENet Total Staked Strategy
 
-A custom GATENet Total Staked Strategy to calculate quorum based on the total staked for a wallet's address, based on the GATENet Staking Platform (https://staking.gatenet.io/).
+A custom GATENet Total Staked Strategy to calculate total staked (voting power) for a wallet's address on the GATENet Staking Platform (https://staking.gatenet.io/).
 
 ```json
 {
@@ -12,8 +12,8 @@ A custom GATENet Total Staked Strategy to calculate quorum based on the total st
 ```
 ### Definitions
 - Address → Smart Contract Address
-- Symbol → Symbol of currency
-- Decimals → Decimal to round 18 = 1e18
-- Minimum Balance → Minimum balance / staked token to vote. 
+- Symbol → Symbol of token
+- Decimals → Number of decinals of the token
+- Minimum Balance → Minimum balance / staked tokens required to vote. 
 If staked value is <= minBalance it will result 0 (zero) voting power.
 
