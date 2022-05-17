@@ -4,7 +4,7 @@
     "strategy": {
       "name": "dvision-dao",
       "params": {
-        "url": "http://localhost:3000",
+        "url": "https://dvision-dao-api.sotatek.works",
         "address": "0x959e104e1a4db6317fa58f8295f586e1a978c297",
         "symbol": "vp"
       }
