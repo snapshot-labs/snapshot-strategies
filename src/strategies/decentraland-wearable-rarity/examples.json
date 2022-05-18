@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "decentraland-wearable-rarity",
+      "params": {
+        "symbol": "WEARABLE",
+        "multipliers": {
+          "unique": 1000000,
+          "mythic": 100000,
+          "legendary": 10000,
+          "epic": 1000,
+          "rare": 100,
+          "uncommon": 10,
+          "common": 1
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xd210dc1dd26751503cbf1b8c9154224707820da8",
+      "0xa65be351527ebcf8c1707d1e444dac38b41a5faf",
+      "0xa89473630bc2d2724279d1002ebdcfb000ad708c"
+    ],
+    "snapshot": 12453375
+  }
+]
