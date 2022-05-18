@@ -303,6 +303,7 @@ import * as dogsUnchained from './dogs-unchained';
 import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
 import * as umamiVoting from './umami-voting';
 import * as liquidityTokenProvide from './liquidity-token-provide';
+import * as gamiumVoting from './gamium-voting';
 import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 
@@ -611,6 +612,7 @@ const strategies = {
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
   'umami-voting': umamiVoting,
   'liquidity-token-provide': liquidityTokenProvide,
+  'gamium-voting': gamiumVoting,
   'citydao-square-root': citydaoSquareRoot
 };
 
