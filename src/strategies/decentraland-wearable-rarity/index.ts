@@ -52,6 +52,11 @@ export async function strategy(
     }
   };
 
+  if (options.collections) {
+    // @ts-ignore
+    params.nfts.__args.where.collection_in = options.collections
+  }
+
   if (snapshot !== 'latest') {
     // @ts-ignore
     params.nfts.__args.block = { number: snapshot };
