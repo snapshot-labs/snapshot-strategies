@@ -4,7 +4,7 @@ import { subgraphRequest } from '../../utils';
 export const author = '2fd';
 export const version = '0.1.0';
 
-const DECENTRALAND_MARKETPLACE_SUBGRAPH_URL = {
+const DECENTRALAND_COLLECTIONS_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet',
   '3': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten',
   '137': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mainnet',
@@ -27,7 +27,7 @@ export async function strategy(
   }
 
   // if graph doesn't exists return automaticaly
-  if (!DECENTRALAND_MARKETPLACE_SUBGRAPH_URL[network]) {
+  if (!DECENTRALAND_COLLECTIONS_SUBGRAPH_URL[network]) {
     return scores
   }
 
@@ -61,7 +61,7 @@ export async function strategy(
   let hasNext = true;
   while (hasNext) {
     const result = await subgraphRequest(
-      DECENTRALAND_MARKETPLACE_SUBGRAPH_URL[network],
+      DECENTRALAND_COLLECTIONS_SUBGRAPH_URL[network],
       params
     );
 
