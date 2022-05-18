@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "citydao-one-human-one-vote",
+      "params": {
+        "proofOfHumanityContract": "0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb",
+        "cityDaoCitizenNftContract": "0x7eef591a6cc0403b9652e98e88476fe1bf31ddeb",
+        "cityDaoCitizenNftTokenId": 42
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1db3439a222c519ab44bb1144fc28167b4fa6ee6",
+      "0xf4d895311987faebd839908a0793461087b229c6",
+      "0x99A5A6010e81d3Efa13d5832043E9C3B6c11Ef3d"
+    ],
+    "snapshot": 14779603
+  }
+]
