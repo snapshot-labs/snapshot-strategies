@@ -305,8 +305,10 @@ import * as umamiVoting from './umami-voting';
 import * as liquidityTokenProvide from './liquidity-token-provide';
 import * as citydaoSquareRoot from './citydao-square-root';
 import * as sdBoostTWAVP from './sd-boost-twavp';
+import * as recusalList from './recusal-list';
 
 const strategies = {
+  'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
