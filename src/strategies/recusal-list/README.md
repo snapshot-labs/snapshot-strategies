@@ -1,4 +1,4 @@
-# erc20-balance-of
+# recusal-list
 
 This is strategy for disallowing certain address from voting due to conflict of interest or other reasons for recusal.
 
