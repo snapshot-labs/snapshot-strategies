@@ -37,7 +37,7 @@ export async function strategy(
     nfts: {
       __args: {
         where: {
-          itemType_in: ['wearable_v1',  'wearable_v2', 'smart_wearable_v1'],
+          itemType_in: ['wearable_v1',  'wearable_v2', 'smart_wearable_v1', 'emote_v1'],
           owner_in: addresses.map((address) => address.toLowerCase()),
           id_gt: '',
         },
