@@ -1,10 +1,10 @@
 # Decentraland Wearable Rarity
 
-This strategy allows users to calculate the total amount of Decentraland wearables and apply a multiply to each rarity. Additionally you can limit the collections that will be take into account using a list of ids.
+This strategy allows users to calculate the total amount of Decentraland wearables and apply a multiplier to each rarity. Additionally you can limit the collections that will be taken into account using a list of ids.
 
 ## Example
 
-The should should look like this:
+The parameters should look like this:
 
 ```json
 {
@@ -21,7 +21,7 @@ The should should look like this:
 }
 ```
 
-If you want to restrict which collection is take into account should looks like this:
+If you want to restrict which collection is taken into account, parameters should look like this:
 
 ```json
 {

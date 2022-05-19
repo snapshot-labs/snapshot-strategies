@@ -4,7 +4,7 @@ This strategy allows users to calculate the total amount of Decentraland lands i
 
 ## Example
 
-The should should look like this:
+The parameters should look like this:
 
 ```json
 {
