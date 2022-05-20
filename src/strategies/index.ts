@@ -140,6 +140,7 @@ import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
+import * as decentralandWearableRariry from './decentraland-wearable-rarity';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
 import * as xrc20BalanceOf from './xrc20-balance-of';
@@ -451,6 +452,7 @@ const strategies = {
   apescape,
   liftkitchen,
   'decentraland-estate-size': decentralandEstateSize,
+  'decentraland-wearable-rarity': decentralandWearableRariry,
   brightid,
   'inverse-xinv': inverseXINV,
   modefi,
