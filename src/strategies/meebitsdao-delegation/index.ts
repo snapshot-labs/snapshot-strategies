@@ -58,7 +58,7 @@ export async function strategy(
   const lowerCaseAddresses: string[] = [];
 
   addresses.forEach((address) => {
-    lowerCaseAddresses.push(address);
+    lowerCaseAddresses.push(address.toLowerCase());
   });
 
   const mvoxAddresses: string[] = [];
