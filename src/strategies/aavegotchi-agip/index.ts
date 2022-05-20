@@ -388,9 +388,6 @@ export async function strategy(
   const multiRes = await multi.execute();
 
   const gotchiParams = {};
-  const lendingParams = {};
-  const borrowExcludeParams = {};
-
   const gotchiQueryParams = (user: string) => {
     user = user.toLowerCase();
     const balanceOfGotchis = Number(
@@ -417,60 +414,8 @@ export async function strategy(
     }
   };
 
-  const walletLendingQueryParams = (user: string) => {
-    user = user.toLowerCase();
-    for (let i = 0; i < 1; i++) {
-      const startIndex = i * maxResultsPerQuery;
-      const uniqueKey = userKey('gotchiLendings', user, startIndex);
-      lendingParams[uniqueKey] = {
-        __aliasFor: 'gotchiLendings',
-        __args: {
-          ...args,
-          skip: startIndex,
-          first: 1,
-          where: {
-            lender: user,
-            timeAgreed_gt: 0,
-            completed: false,
-            cancelled: false
-          }
-        },
-        gotchi: { baseRarityScore: true, equippedWearables: true }
-      };
-    }
-  };
-
-  const walletBorrowExcludeQueryParams = (user: string) => {
-    user = user.toLowerCase();
-    const balanceOfGotchis = Number(
-      multiRes[options.tokenAddress][user]['balanceOf'].toString()
-    );
-    const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
-    for (let i = 0; i < queriesNeeded; i++) {
-      const startIndex = i * maxResultsPerQuery;
-      const uniqueKey = userKey('gotchiBorrowExclusions', user, startIndex);
-      borrowExcludeParams[uniqueKey] = {
-        __aliasFor: 'gotchiLendings',
-        __args: {
-          ...args,
-          skip: startIndex,
-          first: 1,
-          where: {
-            borrower: user,
-            timeAgreed_gt: 0,
-            completed: false,
-            cancelled: false
-          }
-        },
-        gotchi: { gotchiId: true }
-      };
-    }
-  };
-
   addresses.map((addr: string) => {
     gotchiQueryParams(addr);
-    walletLendingQueryParams(addr);
-    walletBorrowExcludeQueryParams(addr);
   });
 
   const entries = Object.entries(gotchiParams);
@@ -479,66 +424,99 @@ export async function strategy(
       ? await subgraphRequest(AAVEGOTCHI_SUBGRAPH_URL[network], gotchiParams)
       : {};
 
-  const lendingEntries = Object.entries(lendingParams);
-  const lendingResult =
-    lendingEntries.length > 0
-      ? await subgraphRequest(
-          AAVEGOTCHI_LENDING_SUBGRAPH_URL[network],
-          lendingParams
-        )
-      : {};
-  console.log(`b lens`, addresses.length, addresses);
+  const activeAgreementsQuery = {};
+  for (let i = 0; i < 6; i++) {
+    activeAgreementsQuery['gotchiLendings_' + i] = {
+      __aliasFor: 'gotchiLendings',
+      __args: {
+        ...args,
+        skip: i * maxResultsPerQuery,
+        first: maxResultsPerQuery,
+        orderBy: 'id',
+        where: {
+          timeAgreed_gt: 0,
+          cancelled: false,
+          completed: false
+        }
+      },
+      gotchi: {
+        gotchiId: true,
+        baseRarityScore: true,
+        equippedWearables: true
+      },
+      lender: true,
+      borrower: true
+    };
+  }
 
-  const borrowEntries = Object.entries(borrowExcludeParams);
-  const borrowResult =
-    borrowEntries.length > 0
-      ? await subgraphRequest(
-          AAVEGOTCHI_LENDING_SUBGRAPH_URL[network],
-          borrowExcludeParams
-        )
-      : {};
-  // console.log(`c lens`, addresses.length, addresses, borrowResult);
+  const borrowedTokenMap: {
+    [key: string]: number[];
+  } = {};
 
-  const t = Object.fromEntries(
+  const lendingUserMap: {
+    [key: string]: {
+      gotchiId: string;
+      baseRarityScore: string;
+      equippedWearables: number[];
+    }[];
+  } = {};
+
+  Object.values(
+    await subgraphRequest(
+      AAVEGOTCHI_LENDING_SUBGRAPH_URL[network],
+      activeAgreementsQuery
+    )
+  )
+    .flat(1)
+    .map((item) => {
+      const { lender, gotchi, borrower } = item as {
+        gotchi: {
+          gotchiId: string;
+          baseRarityScore: string;
+          equippedWearables: number[];
+        };
+        lender: string;
+        borrower: string;
+      };
+      if (lendingUserMap[lender]) lendingUserMap[lender].push(gotchi);
+      else lendingUserMap[lender] = [gotchi];
+
+      if (borrowedTokenMap[borrower])
+        borrowedTokenMap[borrower].push(Number(gotchi.gotchiId));
+      else borrowedTokenMap[borrower] = [Number(gotchi.gotchiId)];
+    });
+
+  return Object.fromEntries(
     addresses.map((address: string) => {
       const lowercaseAddr = address.toLowerCase();
       const balanceOfGotchis = Number(
         multiRes[options.tokenAddress][lowercaseAddr]['balanceOf'].toString()
       );
       const queriesMade = balanceOfGotchis / maxResultsPerQuery;
-      const gotchisOwned: any[] = [];
+      const gotchisOwned: {
+        gotchiId: string;
+        baseRarityScore: string;
+        equippedWearables: number[];
+      }[] = [];
       const gotchisExcluded: number[] = [];
       for (let i = 0; i < queriesMade; i++) {
         const info =
           result[userKey('aavegotchis', lowercaseAddr, i * maxResultsPerQuery)];
+
         if (info?.length > 0) gotchisOwned.push(...info);
-        const excludeInfo =
-          borrowResult[
-            userKey(
-              'gotchiBorrowExclusions',
-              lowercaseAddr,
-              i * maxResultsPerQuery
-            )
-          ];
-        if (excludeInfo?.length > 0)
-          gotchisExcluded.push(
-            ...excludeInfo.map(({ gotchi }) => gotchi.gotchiId)
-          );
+        const excludeInfo = borrowedTokenMap[lowercaseAddr];
+        if (excludeInfo?.length > 0) gotchisExcluded.push(...excludeInfo);
       }
 
       for (let i = 0; i < 5; i++) {
-        const info =
-          lendingResult[
-            userKey('gotchiLendings', lowercaseAddr, i * maxResultsPerQuery)
-          ];
-        if (info?.length > 0)
-          gotchisOwned.push(...info.map(({ gotchi }) => gotchi));
+        const info = lendingUserMap[lowercaseAddr];
+        if (info?.length > 0) gotchisOwned.push(...info);
       }
 
       let gotchisBrsEquipValue = 0;
       if (gotchisOwned.length > 0) {
         const allGotchiInfo = gotchisOwned.filter(
-          ({ gotchiId }) => gotchisExcluded.includes(gotchiId) == false
+          ({ gotchiId }) => gotchisExcluded.includes(Number(gotchiId)) == false
         );
 
         if (allGotchiInfo.length > 0)
@@ -571,6 +549,4 @@ export async function strategy(
       return [address, ownerItemValue + gotchisBrsEquipValue];
     })
   );
-  // console.log(t);
-  return t;
 }
