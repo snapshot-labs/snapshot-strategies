@@ -12,12 +12,12 @@
         "decimals": 18
       }
     },
-  "network": "56",
+    "network": "56",
     "addresses": [
       "0xbf9Cd2f0902e1c09A096384b3D673728BcEB5a48",
       "0xD662F69daA8acD8A4eBD7E25fcF1cFc054106Ce9",
       "0x02622882eDE73f887D5602B2F8285a43A528a120",
-      "0xcE12c8FdFa479FD9e1B37327ee960ea441E4bc80"   
+      "0xcE12c8FdFa479FD9e1B37327ee960ea441E4bc80"
     ],
     "snapshot": 17342974
   }

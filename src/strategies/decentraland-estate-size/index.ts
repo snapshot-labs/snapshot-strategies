@@ -17,16 +17,15 @@ export async function strategy(
   options,
   snapshot
 ) {
-
   // initialize scores
   const scores = {};
   for (const address of addresses) {
-    scores[getAddress(address)] = 0
+    scores[getAddress(address)] = 0;
   }
 
   // if graph doesn't exists return automaticaly
   if (!DECENTRALAND_MARKETPLACE_SUBGRAPH_URL[network]) {
-    return scores
+    return scores;
   }
 
   const multipler = options.multiplier || 1;
