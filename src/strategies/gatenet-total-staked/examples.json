@@ -8,7 +8,7 @@
         "symbol": "GATE",
         "decimals": 18,
         "subgraph": "https://api.studio.thegraph.com/query/17252/gatenet-cvm/v0.6.1",
-        "minBalance" : 10000
+        "minBalance": 10000
       }
     },
     "network": "4",
