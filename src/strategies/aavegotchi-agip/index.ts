@@ -1,7 +1,7 @@
 import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
 export const author = 'candoizo';
-export const version = '0.2.2';
+export const version = '0.2.3';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
@@ -508,10 +508,8 @@ export async function strategy(
         if (excludeInfo?.length > 0) gotchisExcluded.push(...excludeInfo);
       }
 
-      for (let i = 0; i < 5; i++) {
-        const info = lendingUserMap[lowercaseAddr];
-        if (info?.length > 0) gotchisOwned.push(...info);
-      }
+      const info = lendingUserMap[lowercaseAddr];
+      if (info?.length > 0) gotchisOwned.push(...info);
 
       let gotchisBrsEquipValue = 0;
       if (gotchisOwned.length > 0) {
