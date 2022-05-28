@@ -2,7 +2,7 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'Kanga';
+export const author = 'npbroo';
 export const version = '0.1.0';
 
 const ERC20_ABI = [
