@@ -48,9 +48,7 @@ export async function strategy(
     });
   });
 
-  const [stakedRewardsResponse]: [
-    Record<string, BigNumberish[]>,
-  ] = await Promise.all([stakingPool.execute()]);
+  const stakedRewardsResponse: Record<string, BigNumberish[]> = await stakingPool.execute();
 
   return Object.fromEntries(
     addresses.map((address) => {
