@@ -42,7 +42,7 @@ export async function strategy(
     Record<string, BigNumberish>
   ] = await Promise.all([stakingPool.execute(), tokenPool.execute()]);
 
-  await addresses.forEach((address) => {
+  addresses.forEach((address) => {
     stakingResponse[address].forEach((id) => {
       stakingPool.call(id, options.staking, 'currentRewardsOf', [id])
     });
