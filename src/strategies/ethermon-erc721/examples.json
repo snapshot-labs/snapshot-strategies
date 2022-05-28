@@ -1,18 +1,12 @@
 [
   {
-    "name": "ethermon",
+    "name": "ethermon-erc721",
     "strategy": {
-      "name": "ethermon",
+      "name": "ethermon-erc721",
       "params": {
         "address": "0x9928a8ea82d86290dfd1920e126b3872890525b3",
         "address1": "0x0f05607e51d5224300520a710898a8467d8d1117",
         "symbol": "EMONA",
-        "tokenIdRanges": [
-          {
-            "start": 3600,
-            "end": 4200
-          }
-        ],
         "classIdWeight": {
           "1003": {
             "weight": 2880
