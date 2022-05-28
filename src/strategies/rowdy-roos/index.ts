@@ -57,7 +57,7 @@ export async function strategy(
       const claimedCount = parseInt(formatUnits(BigNumber.from(tokenResponse[address]), options.decimals));
       let total_staked_reward = 0
       stakingResponse[address].forEach((id) => {
-        total_staked_reward+=parseInt(formatUnits(BigNumber.from(stakedRewardsResponse[id]), options.decimals))
+        total_staked_reward += parseInt(formatUnits(BigNumber.from(stakedRewardsResponse[id]), options.decimals))
       })
       return [address, claimedCount + total_staked_reward];
     })
