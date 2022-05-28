@@ -1,8 +1,8 @@
 const snapshot = require('../').default;
 
 const space = 'cvx.eth';
-const network = '1';
-const addresses = ['0xde1E6A7ED0ad3F61D531a8a78E83CcDdbd6E0c49'];
+const network = '137';
+const addresses = ['0x9Cf28Be69D1c88ff7ECC1D2332577CB9671aBF70'];
 
 (async () => {
   console.time('getDelegations');
@@ -11,7 +11,7 @@ const addresses = ['0xde1E6A7ED0ad3F61D531a8a78E83CcDdbd6E0c49'];
       space,
       network,
       addresses,
-      13413053
+      13995858
     );
     console.log(scores);
   } catch (e) {

@@ -3,8 +3,8 @@ const snapshot = require('../').default;
 const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 
 const space = 'yam.eth';
-const network = '1';
-const snapshotBlockNumber = 13461847;
+const network = '137';
+const snapshotBlockNumber = 13995858;
 const strategies = [
   {
     name: 'ens-domains-owned',
@@ -14,6 +14,7 @@ const strategies = [
   }
 ];
 const addresses = [
+  "0x0000000000000000000000000000000000000000",
   '0x05e57688C639b0742ea3E940b4E9DC0fb69B1B88',
   '0x1D911BCC079660aaFB772D48B992d50815b7a66d',
   '0xCe2EF28C65e5Db090d75630c98A807da003fb36f',
@@ -171,7 +172,20 @@ const addresses = [
   '0x8ab1760889F26cBbf33A75FD2cF1696BFccDc9e6',
   '0xc323053eF49BE080300134d7C6a05834C4FfFd0A',
   '0x8867c12738F4cA3b530AFe7EfC7aC4ee1d286cBC',
-  '0x75d4bdBf6593ed463e9625694272a0FF9a6D346F'
+  '0x75d4bdBf6593ed463e9625694272a0FF9a6D346F',
+  "0xd00faF7c2a837DC457389758Ea1271aE6256dc44",
+  "0x9Cf28Be69D1c88ff7ECC1D2332577CB9671aBF70",
+  "0xabc1c404424bdf24c19a5cc5ef8f47781d18eb3e",
+  "0x5AB5844Dd55Ab73212D1527e4CF72FEA884e39DD",
+  "0x0C2bBdD40855Df7Ed68b5EC999c8F8931645E477",
+  "0x7eb791413ccfd3f763c3561ed820824eb2e46a10",
+  "0xa89a9290dd214b9341dc09fe23ef0a6a633f9a9f",
+  "0xf862c9413f2cc21ebfda534ecfa6df4f59f0b197",
+  "0x0008d343091ef8bd3efa730f6aae5a26a285c7a2",
+  "0x1679c892d593bf0a8eaba6f15caffbe04926a346",
+  "0x6ec85b83d60b0ad3c2c2782c1cd554671980d734",
+  "0xf55dbe5039b72f50dec88df436006f66ec22d910",
+  "0xf98a24c6e63d514feeb68142eb9c5e91a20c502e"
 ];
 
 (async () => {
