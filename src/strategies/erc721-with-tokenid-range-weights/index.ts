@@ -52,8 +52,6 @@ export async function strategy(
     BigNumber
   > = await callWalletToAddresses.execute();
 
-  console.log('---------- ', walletIDToAddresses);
-
   // Third, sum the weights for each tokenId by finding it's range
   const walletToLpBalance = {} as Record<string, BigNumber>;
   for (const [walletID, tokenId] of Object.entries(walletIDToAddresses)) {

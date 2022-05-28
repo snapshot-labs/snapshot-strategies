@@ -1,13 +1,12 @@
-# erc20-balance-of
+# ethermon-erc721
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
+This strategy returns the score of voters dependes upon number of Ethermon NFTs they have and the max tokens it calculate are 200.
 
-Here is an example of parameters:
-
+# parameters
 ```json
 {
   "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
+  "symbol": "EMONA",
   "decimals": 18
 }
 ```

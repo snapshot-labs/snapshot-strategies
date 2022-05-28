@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'mariana';
+export const author = 'mariana44';
 export const version = '0.0.1';
 
 
@@ -28,7 +28,7 @@ export async function strategy(
 
 
   addresses.map((address) => {
-    multi.call(address, options.address, 'balanceOf', [address]
+    multi.call(address, options.EMON_DATA_ADDRESS, 'balanceOf', [address]
     );
   })
   const player_addresses: Record<string, BigNumber> = await multi.execute();
@@ -38,7 +38,7 @@ export async function strategy(
   Object.entries(player_addresses).forEach((address) => {
     const balance = clamp(+player_addresses[address[0]].toString(), 0, 200);
     for (let i = 0; i < balance; i++) {
-      multi1.call(address[0].toString() + '-' + i.toString(), options.address, 'tokenOfOwnerByIndex', [address[0], i]);
+      multi1.call(address[0].toString() + '-' + i.toString(), options.EMON_DATA_ADDRESS, 'tokenOfOwnerByIndex', [address[0], i]);
     }
   })
   const address_tokens: Record<string, BigNumber> = await multi1.execute();
@@ -47,12 +47,12 @@ export async function strategy(
   Object.entries(address_tokens).forEach((address_token) => {
     const address = address_token[0].split('-')[0].toString();
     const token = +address_token[1].toString()
-    multi2.call(address + '-' + token, options.address1, 'getMonsterObj', [token]);
+    multi2.call(address + '-' + token, options.EMONA_ADDRESS, 'getMonsterObj', [token]);
   })
 
   const monObject: Record<string, Number> = await multi2.execute();
 
-  let result: Record<string, number> = {}
+  const result: Record<string, number> = {}
   for (const [_address, _obj] of Object.entries(monObject)) {
     const address = _address.split('-')[0];
     const classId = _obj[1];
@@ -64,8 +64,8 @@ export async function strategy(
     result[address] += (+player_addresses[address].toString() > 200) ?
       (options.classIdWeight[classId] ? options.classIdWeight[classId].weight / 200 * +player_addresses[address].toString() : 0).toFixed(0) :
       options.classIdWeight[classId] ? options.classIdWeight[classId].weight : 0;
+      console.log(result);
   }
-
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
