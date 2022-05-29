@@ -31,7 +31,7 @@ async function getBlocks(snapshot, provider, options, network) {
       number: true
     }
   };
-  const url = 'https://blockfinder.snapshot.org/graphql';
+  const url = 'https://blockfinder.snapshot.org';
   const data = await subgraphRequest(url, query);
   data.blocks.forEach((block) => (blocks[block.network] = block.number));
   data.blocks[network] = snapshot;

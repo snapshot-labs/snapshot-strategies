@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example Samurai Legends Generals balance query",
+    "strategy": {
+      "name": "samurailegends-generals-balance",
+      "params": {
+        "batchAddress": "0x7442bf183d95d6ef452375ee6d021b84c5bc46a9",
+        "nftAddress": "0x14a3Ee3771845cee9EA2D49Fcca8DDA58f5D5D8b",
+        "multiplier": 3,
+        "treshold": 500
+      }
+    },
+    "network": "97",
+    "addresses": ["0x77a8e03bbA3F669A56C3F5e0194654b96C0d8449"],
+    "snapshot": 18684485
+  }
+]

@@ -25,8 +25,16 @@ const MASTER_CHEF_ADDRESS = {
   v1: '0x73feaa1eE314F8c655E354234017bE2193C9E24E'
 };
 
-const onChainVPBlockNumber = 16300686;
-const onChainVPAddress = '0xc0FeBE244cE1ea66d27D23012B3D616432433F42';
+const onChainVotingPower = {
+  v0: {
+    blockNumber: 16300686,
+    address: '0xc0FeBE244cE1ea66d27D23012B3D616432433F42'
+  },
+  v1: {
+    blockNumber: 17137653,
+    address: '0x67Dfbb197602FDB9A9D305cC7A43b95fB63a0A56'
+  }
+};
 
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
@@ -69,43 +77,57 @@ async function getSmartChefStakedCakeAmount(
   poolAddresses: string[],
   addresses: string[]
 ) {
-  const params = {
-    users: {
-      __args: {
-        where: {
-          pool_in: poolAddresses.map((addr) => addr.toLowerCase()),
-          address_in: addresses.map((addr) => addr.toLowerCase()),
-          stakeAmount_gt: '0'
-        },
-        first: PAGE_SIZE
-      },
-      address: true,
-      stakeAmount: true
-    }
-  };
-
-  let page = 0;
+  const addressChunks = chunk(addresses, 1500);
   let results: any[] = [];
-  let triedBlockNumber = false;
 
-  while (true) {
-    // @ts-ignore
-    params.users.__args.skip = page * PAGE_SIZE;
-    if (snapshot !== 'latest' && !triedBlockNumber) {
+  for (const addressChunk of addressChunks) {
+    const params = {
+      users: {
+        __args: {
+          where: {
+            pool_in: poolAddresses.map((addr) => addr.toLowerCase()),
+            address_in: addressChunk.map((addr) => addr.toLowerCase()),
+            stakeAmount_gt: '0'
+          },
+          first: PAGE_SIZE
+        },
+        address: true,
+        stakeAmount: true
+      }
+    };
+
+    let page = 0;
+    let triedBlockNumber = false;
+
+    while (true) {
       // @ts-ignore
-      params.users.__args.block = { number: snapshot };
-    } else {
-      // @ts-ignore
-      delete params.users.__args.block;
+      params.users.__args.skip = page * PAGE_SIZE;
+      if (snapshot !== 'latest' && !triedBlockNumber) {
+        // @ts-ignore
+        params.users.__args.block = { number: snapshot };
+      } else {
+        // @ts-ignore
+        delete params.users.__args.block;
+      }
+      let result;
+      try {
+        result = await subgraphRequest(smartChefUrl, params);
+      } catch (error) {
+        if (!triedBlockNumber) {
+          triedBlockNumber = true;
+          continue;
+        } else {
+          throw error;
+        }
+      }
+      if (!Array.isArray(result.users) && !triedBlockNumber) {
+        triedBlockNumber = true;
+        continue;
+      }
+      results = results.concat(result.users);
+      page++;
+      if (result.users.length < PAGE_SIZE) break;
     }
-    const result = await subgraphRequest(smartChefUrl, params);
-    if (!Array.isArray(result.users) && !triedBlockNumber) {
-      triedBlockNumber = true;
-      continue;
-    }
-    results = results.concat(result.users);
-    page++;
-    if (result.users.length < PAGE_SIZE) break;
   }
 
   return results.reduce<Record<string, BigNumber>>((acc, user) => {
@@ -139,15 +161,19 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   if (
     blockTag === 'latest' ||
-    (typeof blockTag === 'number' && blockTag >= onChainVPBlockNumber)
+    (typeof blockTag === 'number' &&
+      blockTag >= onChainVotingPower.v0.blockNumber)
   ) {
     let callData = addresses.map((address: any) => [
-      onChainVPAddress,
+      typeof blockTag === 'number' &&
+      blockTag < onChainVotingPower.v1.blockNumber
+        ? onChainVotingPower.v0.address
+        : onChainVotingPower.v1.address,
       'getVotingPowerWithoutPool',
       [address.toLowerCase()]
     ]);
 
-    callData = [...chunk(callData, options.max || 400)];
+    callData = [...chunk(callData, options.max || 300)];
     const response: any[] = [];
     for (const call of callData) {
       const multiRes = await multicall(network, provider, abi, call, {
