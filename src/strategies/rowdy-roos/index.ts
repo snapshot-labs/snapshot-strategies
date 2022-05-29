@@ -44,19 +44,29 @@ export async function strategy(
 
   addresses.forEach((address) => {
     stakingResponse[address].forEach((id) => {
-      stakingPool.call(id, options.staking, 'currentRewardsOf', [id])
+      stakingPool.call(id, options.staking, 'currentRewardsOf', [id]);
     });
   });
 
-  const stakedRewardsResponse: Record<string, BigNumberish[]> = await stakingPool.execute();
+  const stakedRewardsResponse: Record<
+    string,
+    BigNumberish[]
+  > = await stakingPool.execute();
 
   return Object.fromEntries(
     addresses.map((address) => {
-      const claimedCount = parseInt(formatUnits(BigNumber.from(tokenResponse[address]), options.decimals));
-      let total_staked_reward = 0
+      const claimedCount = parseInt(
+        formatUnits(BigNumber.from(tokenResponse[address]), options.decimals)
+      );
+      let total_staked_reward = 0;
       stakingResponse[address].forEach((id) => {
-        total_staked_reward += parseInt(formatUnits(BigNumber.from(stakedRewardsResponse[id]), options.decimals))
-      })
+        total_staked_reward += parseInt(
+          formatUnits(
+            BigNumber.from(stakedRewardsResponse[id]),
+            options.decimals
+          )
+        );
+      });
       return [address, claimedCount + total_staked_reward];
     })
   );
