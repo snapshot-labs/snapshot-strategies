@@ -5,7 +5,7 @@ export const author = 'razor-network';
 export const version = '0.1.0';
 
 const RAZOR_NETWORK_SUBGRAPH_URL =
-  'https://indexer-graph-staging.razorscan.io/subgraphs/name/razor/razor';
+  'https://graph-indexer.razorscan.io/subgraphs/name/razor/razor';
 
 // a method to calculate corresponding razor amount for delegators
 function sRZR_to_RZR(
