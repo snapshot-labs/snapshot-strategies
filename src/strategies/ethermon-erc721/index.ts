@@ -64,7 +64,6 @@ export async function strategy(
     result[address] += (+player_addresses[address].toString() > 200) ?
       (options.classIdWeight[classId] ? options.classIdWeight[classId].weight / 200 * +player_addresses[address].toString() : 0).toFixed(0) :
       options.classIdWeight[classId] ? options.classIdWeight[classId].weight : 0;
-      console.log(result);
   }
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
