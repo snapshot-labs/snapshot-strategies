@@ -308,6 +308,7 @@ import * as gamiumVoting from './gamium-voting';
 import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
+import * as hedgey from './hedgey';
 
 const strategies = {
   'recusal-list': recusalList,
@@ -617,7 +618,8 @@ const strategies = {
   'liquidity-token-provide': liquidityTokenProvide,
   'gamium-voting': gamiumVoting,
   'citydao-square-root': citydaoSquareRoot,
-  'rowdy-roos': rowdyRoos
+  'rowdy-roos': rowdyRoos,
+  hedgey
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
