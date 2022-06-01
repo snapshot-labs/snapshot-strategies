@@ -309,6 +309,7 @@ import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
+import * as hedgey from './hedgey';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -619,7 +620,8 @@ const strategies = {
   'liquidity-token-provide': liquidityTokenProvide,
   'gamium-voting': gamiumVoting,
   'citydao-square-root': citydaoSquareRoot,
-  'rowdy-roos': rowdyRoos
+  'rowdy-roos': rowdyRoos,
+  hedgey
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
