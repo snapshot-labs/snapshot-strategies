@@ -54,7 +54,7 @@ export async function strategy(
   const monObject: Record<string, Number> = await multi2.execute();
 
   const response = await fetch(
-    'https://ipfs.io/ipfs/' + options.tokenWeightIPFS,
+    'https://storageapi.fleek.co/' + options.tokenWeightIPFS,
     {
       method: 'GET',
       headers: {
