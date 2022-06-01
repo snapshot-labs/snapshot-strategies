@@ -308,8 +308,10 @@ import * as gamiumVoting from './gamium-voting';
 import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
+import * as ethermon721 from './ethermon-erc721';
 
 const strategies = {
+  'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
