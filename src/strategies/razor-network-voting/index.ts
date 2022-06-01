@@ -62,6 +62,11 @@ export async function strategy(
     }
   };
 
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    params.delegators.__args.block = { number: snapshot };
+  }
+
   const score = {};
 
   // subgraph request 1 : it fetches all the details of the stakers and delegators.
