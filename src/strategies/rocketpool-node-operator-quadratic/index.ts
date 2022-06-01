@@ -44,7 +44,7 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(effectiveStakeResponse).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, options.decimals))
+      Math.sqrt(parseFloat(formatUnits(balance, options.decimals)))
     ])
   );
 }

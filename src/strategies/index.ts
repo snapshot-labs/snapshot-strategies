@@ -293,6 +293,11 @@ import * as gno from './gno';
 import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
+import * as rocketpoolNodeOperatorDelegation from './rocketpool-node-operator-delegation';
+import * as rocketpoolNodeOperatorQuadratic from './rocketpool-node-operator-quadratic';
+import * as rocketpoolNodeOperatorQuadraticDelegation from './rocketpool-node-operator-quadratic-delegation';
+import * as rocketpoolNodeOperatorSingleVote from './rocketpool-node-operator-single-vote';
+import * as rocketpoolNodeOperatorSingleVoteDelegation from './rocketpool-node-operator-single-vote-delegation';
 
 const strategies = {
   'landdao-token-tiers': landDaoTiers,
@@ -588,6 +593,11 @@ const strategies = {
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'rocketpool-node-operator': rocketpoolNodeOperator,
+  'rocketpool-node-operator-delegation': rocketpoolNodeOperatorDelegation,
+  'rocketpool-node-operator-quadratic': rocketpoolNodeOperatorQuadratic,
+  'rocketpool-node-operator-quadratic-delegation': rocketpoolNodeOperatorQuadraticDelegation,
+  'rocketpool-node-operator-single-vote': rocketpoolNodeOperatorSingleVote,
+  'rocketpool-node-operator-single-vote-delegation': rocketpoolNodeOperatorSingleVoteDelegation,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

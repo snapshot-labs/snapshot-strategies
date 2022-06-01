@@ -20,6 +20,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+
   const effectiveStake = new Multicaller(
     network,
     provider,
@@ -36,10 +37,9 @@ export async function strategy(
     );
   });
 
-  const effectiveStakeResponse: Record<
-    string,
-    BigNumberish
-  > = await effectiveStake.execute();
+  const [effectiveStakeResponse]: [
+    Record<string, BigNumberish>
+  ] = await Promise.all([effectiveStake.execute()]);
 
   return Object.fromEntries(
     Object.entries(effectiveStakeResponse).map(([address, balance]) => [

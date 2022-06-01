@@ -1,5 +1,4 @@
 import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'rocket-pool';
@@ -44,7 +43,7 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(effectiveStakeResponse).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, options.decimals))
+      balance >= 1 ? 1 : 0
     ])
   );
 }

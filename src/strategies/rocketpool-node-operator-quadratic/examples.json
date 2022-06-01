@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "rocketpool-node-operator",
+      "name": "rocketpool-node-operator-quadratic",
       "params": {
         "address": "0xD33526068D116cE69F19A9ee46F0bd304F21A51f",
         "symbol": "RPL",
