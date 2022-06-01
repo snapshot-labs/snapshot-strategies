@@ -6,8 +6,7 @@ export async function strategy(
   network,
   provider,
   addresses,
-  options,
-  snapshot
+  options
 ): Promise<Record<string, number>> {
   const recusalList = options?.addresses.map((address) => {
     return address.toLowerCase();

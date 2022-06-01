@@ -11,8 +11,6 @@
     },
     "network": "100",
     "snapshot": 22423721,
-    "addresses": [
-      "0x92d9802eFcD0485876DDC13c16cEA67e6aD5EB35"
-    ]
+    "addresses": ["0x92d9802eFcD0485876DDC13c16cEA67e6aD5EB35"]
   }
 ]

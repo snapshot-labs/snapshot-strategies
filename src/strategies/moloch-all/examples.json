@@ -4,19 +4,21 @@
     "strategy": {
       "name": "moloch-all",
       "params": {
-        "symbol": "MOL",
-        "address": "0xb152b115c94275b54a3f0b08c1aa1d21f32a659a",
+        "symbol": "MCV",
+        "address": "0x4570b4faf71e23942b8b9f934b47ccedf7540162",
         "decimals": 0
       }
     },
-    "network": "100",
+    "network": "1",
     "addresses": [
       "0xc9283bbd79b016230838e57ce19e6aca12dd2c0d",
+      "0x6159aaaf32d1ac8b4b96b1a9d7197aed612a59cb",
+      "0x442eC679337Ab3Ad148A8c3D61db54AB75816D1f",
       "0x85ac9e682995ebebde8ff107fbbbfe7c40992e4a",
       "0x3d1df1a816577a62db61281f673c4f43ae063490",
       "0xd6e371526cdaee04cd8af225d42e37bc14688d9e",
       "0x839395e20bbb182fa440d08f850e6c7a8f6f0780"
     ],
-    "snapshot": 15848545
+    "snapshot": 14883665
   }
 ]
