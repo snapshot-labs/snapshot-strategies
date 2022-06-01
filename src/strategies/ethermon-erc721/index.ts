@@ -1,3 +1,4 @@
+import fetch from 'cross-fetch';
 import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
@@ -52,18 +53,30 @@ export async function strategy(
 
   const monObject: Record<string, Number> = await multi2.execute();
 
+  const response = await fetch(
+    'https://ipfs.io/ipfs/' + options.tokenWeightIPFS,
+    {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    }
+  );
+  const classIdWeight = await response.json();
+
   const result: Record<string, number> = {}
   for (const [_address, _obj] of Object.entries(monObject)) {
     const address = _address.split('-')[0];
     const classId = _obj[1];
     if (!result[address]) {
-      result[address] = options.classIdWeight[classId] ? options.classIdWeight[classId].weight : 1;
+      result[address] = classIdWeight[classId] ? classIdWeight[classId].weight : 1;
       continue;
     }
 
     result[address] += (+player_addresses[address].toString() > 200) ?
-      (options.classIdWeight[classId] ? options.classIdWeight[classId].weight / 200 * +player_addresses[address].toString() : 0).toFixed(0) :
-      options.classIdWeight[classId] ? options.classIdWeight[classId].weight : 0;
+      (classIdWeight[classId] ? classIdWeight[classId].weight / 200 * +player_addresses[address].toString() : 0).toFixed(0) :
+      classIdWeight[classId] ? classIdWeight[classId].weight : 0;
   }
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [

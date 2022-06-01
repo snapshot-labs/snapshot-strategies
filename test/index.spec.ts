@@ -53,6 +53,7 @@ describe(`\nTest strategy "${strategy}"`, () => {
     scores = await callGetScores(example);
     const getScoresEnd = performance.now();
     getScoresTime = getScoresEnd - getScoresStart;
+    console.log(scores);
     console.log(`Resolved in ${(getScoresTime / 1e3).toFixed(2)} sec.`);
   }, 2e4);
 
@@ -158,10 +159,11 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
       await new Promise((r) => setTimeout(r, 500));
     });
 
-    it(`Should take less than 20 sec. to resolve with ${moreArg || 500
-      } addresses`, () => {
-        expect(getScoresTimeMore).toBeLessThanOrEqual(20000);
-      });
+    it(`Should take less than 20 sec. to resolve with ${
+      moreArg || 500
+    } addresses`, () => {
+      expect(getScoresTimeMore).toBeLessThanOrEqual(20000);
+    });
   }
 );
 
