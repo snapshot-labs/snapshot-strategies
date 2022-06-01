@@ -309,6 +309,7 @@ import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as hedgey from './hedgey';
+import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 
 const strategies = {
   'recusal-list': recusalList,
@@ -619,7 +620,8 @@ const strategies = {
   'gamium-voting': gamiumVoting,
   'citydao-square-root': citydaoSquareRoot,
   'rowdy-roos': rowdyRoos,
-  hedgey
+  hedgey,
+  've-balance-of-at-nft': veBalanceOfAtNFT
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
