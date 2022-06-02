@@ -8,111 +8,13 @@ export const author = 'dominator008';
 export const version = '0.2.0';
 
 const v1StakingABI = [
-  {
-    constant: true,
-    inputs: [],
-    name: 'getValidatorNum',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    name: 'validatorSet',
-    outputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_candidateAddr',
-        type: 'address'
-      },
-      {
-        internalType: 'address',
-        name: '_delegatorAddr',
-        type: 'address'
-      }
-    ],
-    name: 'getDelegatorInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'delegatedStake',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'undelegatingStake',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256[]',
-        name: 'intentAmounts',
-        type: 'uint256[]'
-      },
-      {
-        internalType: 'uint256[]',
-        name: 'intentProposedTimes',
-        type: 'uint256[]'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getValidatorNum() view returns (uint256)',
+  'function validatorSet(uint256) view returns (address)',
+  'function getDelegatorInfo(address _candidateAddr, address _delegatorAddr) view returns (uint256 delegatedStake, uint256 undelegatingStake, uint256[] intentAmounts, uint256[] intentProposedTimes)'
 ];
 
 const v2StakingABI = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_delAddr',
-        type: 'address'
-      }
-    ],
-    name: 'getDelegatorTokens',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getDelegatorTokens(address _delAddr) view returns (uint256, uint256)'
 ];
 
 export async function strategy(
@@ -217,7 +119,7 @@ export async function strategy(
       { blockTag }
     )
   ).map((value: string[]) => value[0]);
-  const v2DelegatorTokensMap = addresses.reduce((map, address, i, _) => {
+  const v2DelegatorTokensMap = addresses.reduce((map, address, i) => {
     map[address] = v2DelegatorTokens[i];
     return map;
   }, {});
