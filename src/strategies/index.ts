@@ -311,6 +311,7 @@ import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
+import * as genzeesFromSubgraph from './genzees-from-subgraph';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -623,7 +624,8 @@ const strategies = {
   'citydao-square-root': citydaoSquareRoot,
   'rowdy-roos': rowdyRoos,
   hedgey,
-  've-balance-of-at-nft': veBalanceOfAtNFT
+  've-balance-of-at-nft': veBalanceOfAtNFT,
+  'genzees-from-subgraph': genzeesFromSubgraph
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
