@@ -292,10 +292,12 @@ import * as starcatchersTopWindow from './starcatchers-top-window';
 import * as gno from './gno';
 import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
-import * as rocketpoolNodeOperator from './rocketpool-node-operator';
-import * as rocketpoolNodeOperatorDelegation from './rocketpool-node-operator-delegation';
-import * as rocketpoolNodeOperatorQuadratic from './rocketpool-node-operator-quadratic';
-import * as rocketpoolNodeOperatorQuadraticDelegation from './rocketpool-node-operator-quadratic-delegation';
+import * as rocketpoolNodeOperatorPure from './rocketpool-node-operator-pure';
+import * as rocketpoolNodeOperatorPureDelegation from './rocketpool-node-operator-pure-delegation';
+import * as rocketpoolNodeOperatorHalfSquareRoot from './rocketpool-node-operator-half-square-root';
+import * as rocketpoolNodeOperatorHalfSquareRootDelegation from './rocketpool-node-operator-half-square-root-delegation';
+import * as rocketpoolNodeOperatorCubedRoot from './rocketpool-node-operator-cubed-root';
+import * as rocketpoolNodeOperatorCubedRootDelegation from './rocketpool-node-operator-cubed-root-delegation';
 import * as rocketpoolNodeOperatorSingleVote from './rocketpool-node-operator-single-vote';
 import * as rocketpoolNodeOperatorSingleVoteDelegation from './rocketpool-node-operator-single-vote-delegation';
 
@@ -592,10 +594,12 @@ const strategies = {
   'gno-vote-weight': gno,
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
-  'rocketpool-node-operator': rocketpoolNodeOperator,
-  'rocketpool-node-operator-delegation': rocketpoolNodeOperatorDelegation,
-  'rocketpool-node-operator-quadratic': rocketpoolNodeOperatorQuadratic,
-  'rocketpool-node-operator-quadratic-delegation': rocketpoolNodeOperatorQuadraticDelegation,
+  'rocketpool-node-operator-pure': rocketpoolNodeOperatorPure,
+  'rocketpool-node-operator-pure-delegation': rocketpoolNodeOperatorPureDelegation,
+  'rocketpool-node-operator-half-square-root': rocketpoolNodeOperatorHalfSquareRoot,
+  'rocketpool-node-operator-half-square-root-delegation': rocketpoolNodeOperatorHalfSquareRootDelegation,
+  'rocketpool-node-operator-cubed-root': rocketpoolNodeOperatorCubedRoot,
+  'rocketpool-node-operator-cubed-root-delegation': rocketpoolNodeOperatorCubedRootDelegation,
   'rocketpool-node-operator-single-vote': rocketpoolNodeOperatorSingleVote,
   'rocketpool-node-operator-single-vote-delegation': rocketpoolNodeOperatorSingleVoteDelegation,
 };

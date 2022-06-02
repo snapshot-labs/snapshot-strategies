@@ -1,4 +1,4 @@
-import { strategy as rocketPoolNodeOperatorStrategy } from '../rocketpool-node-operator';
+import { strategy as rocketPoolNodeOperatorStrategy } from '../rocketpool-node-operator-half-square-root';
 import { getDelegations } from '../../utils/delegation';
 
 export const author = 'rocket-pool';
