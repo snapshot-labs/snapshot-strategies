@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-power-of",
+      "params": {
+        "address": "0x4d2e8b5fa1bb62c2e9bba2b2b23902bf06230345"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x033b0249f3546a2541dba557ca2cab52cab11acf",
+      "0x03da4af92cdfe051f70897ad41bb80a24f08eb7e",
+      "0x14f4e32455e394f4d45836b9befa524f798c49de"
+    ],
+    "snapshot": 18229895
+  }
+]

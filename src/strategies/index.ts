@@ -274,6 +274,7 @@ import * as spacey2025 from './spacey2025';
 import * as sandmanDao from './sandman-dao';
 import * as ethercatsFounderSeries from './ethercats-founder-series';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as vePowerOf from './ve-power-of';
 import * as veRibbon from './ve-ribbon';
 import * as veRibbonVotingPower from './ve-ribbon-voting-power';
 import * as chubbykaijudao from './chubbykaijudao';
@@ -590,6 +591,7 @@ const strategies = {
   'sandman-dao': sandmanDao,
   'ethercats-founder-series': ethercatsFounderSeries,
   've-balance-of-at': veBalanceOfAt,
+  've-power-of': vePowerOf,
   've-ribbon': veRibbon,
   've-ribbon-voting-power': veRibbonVotingPower,
   chubbykaijudao: chubbykaijudao,
