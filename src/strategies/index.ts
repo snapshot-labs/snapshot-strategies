@@ -313,6 +313,7 @@ import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
+import * as ginFinance from './gin-finance';  
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -627,7 +628,8 @@ const strategies = {
   'rowdy-roos': rowdyRoos,
   hedgey,
   've-balance-of-at-nft': veBalanceOfAtNFT,
-  'genzees-from-subgraph': genzeesFromSubgraph
+  'genzees-from-subgraph': genzeesFromSubgraph,
+  'gin-finance': ginFinance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
