@@ -313,7 +313,7 @@ import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
-import * as ginFinance from './gin-finance';  
+import * as ginFinance from './gin-finance';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
