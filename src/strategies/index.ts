@@ -339,7 +339,6 @@ const strategies = {
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
-  'ens-10k-club': ens10kClub,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
