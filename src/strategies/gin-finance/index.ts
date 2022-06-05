@@ -5,7 +5,7 @@ const GIN_FINANCE_SUBGRAPH_URL = {
   '288': 'https://api.thegraph.com/subgraphs/name/gindev2/gin-subgraph'
 };
 
-export const author = 'p7m';
+export const author = 'perpetuum7';
 export const version = '1.0.0';
 
 export async function strategy(
