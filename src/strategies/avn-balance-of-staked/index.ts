@@ -45,7 +45,7 @@ const VR_ABI = [
 const NUM_NODES = 10;
 // [0, 1, ... , 9] for convinience
 const NODES_INDICES = Array.from(Array(NUM_NODES).keys());
-const STAKES_MULTIPLIER = 2;
+const STAKES_MULTIPLIER = 1;
 
 class EthCall {
   constructor(
