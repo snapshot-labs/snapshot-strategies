@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Credit LP",
+    "strategy": {
+      "name": "credit-lp",
+      "params": {
+        "address": "0x77128DFdD0ac859B33F44050c6fa272F34872B5E",
+        "lpToken": "0x06F3Cb227781A836feFAEa7E686Bdc857e80eAa7",
+        "masterchef": "0xe0c43105235C1f18EA15fdb60Bb6d54814299938",
+        "crypt": "0xAD48320c7e3D3e9fF0c7e51608869cbbfFE7422C",
+        "pid": 1,
+        "symbol": "CREDIT",
+        "decimals": 18
+      }
+    },
+    "network": "250",
+    "addresses": [
+      "0x70f8892B9AEd192b3E794f9398B62D50Cf2fbBf8",
+      "0x865b59FeE0Fd5230BED5Cf9D0A15151C21BF0499",
+      "0xa0AD4e0111bE3d664262488fb54e2e543C9C2B54",
+      "0xaC207c599e4A07F9A8cc5E9cf49B02E20AB7ba69",
+      "0x6D5C8b593958eE0cB7aD6Ac2531AB1b818186857"
+    ],
+    "snapshot": 39939923
+  }
+]
