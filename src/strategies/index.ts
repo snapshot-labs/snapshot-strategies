@@ -314,6 +314,7 @@ import * as hedgey from './hedgey';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
 import * as ginFinance from './gin-finance';
+import * as positionGovernancePower from './position-governance-power';
 import * as creditLp from './credit-lp';
 
 const strategies = {
@@ -631,7 +632,8 @@ const strategies = {
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
-  'credit-lp': creditLp,
+  'position-governance-power': positionGovernancePower,
+  'credit-lp': creditLp
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
