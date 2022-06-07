@@ -5,12 +5,12 @@ import { Multicaller } from '../../utils';
 export const author = '0xEntropy';
 export const version = '0.1.0';
 
-const erc20Abi = [
-  'function balanceOf(address account) external view returns (uint256)',
-  'function totalSupply() external view returns (uint256)'
-];
+// const erc20Abi = [
+//   'function balanceOf(address account) external view returns (uint256)',
+//   'function totalSupply() external view returns (uint256)'
+// ];
 
-const masterChefAbi = [
+const abi = [
   {
     inputs: [
       { internalType: 'uint256', name: '_pid', type: 'uint256' },
@@ -35,7 +35,16 @@ const masterChefAbi = [
     ],
     stateMutability: 'view',
     type: 'function'
-  }
+  },
+  {
+    inputs: [],
+    name: 'getPricePerFullShare',
+    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+    stateMutability: 'view',
+    type: 'function'
+  },
+  'function balanceOf(address account) external view returns (uint256)',
+  'function totalSupply() external view returns (uint256)'
 ];
 
 export async function strategy(
@@ -48,31 +57,35 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const tokenMulti = new Multicaller(network, provider, erc20Abi, { blockTag });
-  tokenMulti.call('lpTotalSupply', options.lpToken, 'totalSupply', []);
-  tokenMulti.call('creditInLp', options.address, 'balanceOf', [
-    options.lpToken
-  ]);
-  const result = await tokenMulti.execute();
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+  multi.call('lpTotalSupply', options.lpToken, 'totalSupply', []);
+  multi.call('creditInLp', options.address, 'balanceOf', [options.lpToken]);
+  multi.call('pricePerShare', options.crypt, 'getPricePerFullShare', []);
+  addresses.forEach((address: any) => {
+    multi.call(`chef.${address}`, options.masterchef, 'getUserInfo', [
+      options.pid,
+      address
+    ]);
+    multi.call(`lp.${address}`, options.lpToken, 'balanceOf', [address]);
+    multi.call(`reaper.${address}`, options.crypt, 'balanceOf', [address]);
+  });
+  const result = await multi.execute();
   const creditInLp = parseFloat(
     formatUnits(result.creditInLp, options.decimals)
   );
   const lpTotalSupply = parseFloat(formatUnits(result.lpTotalSupply));
   const creditPerLp = creditInLp / lpTotalSupply;
-  const chefMulti = new Multicaller(network, provider, masterChefAbi, {
-    blockTag
-  });
-  addresses.forEach((address: any) => {
-    chefMulti.call(address, options.masterchef, 'getUserInfo', [
-      options.pid,
-      address
-    ]);
-  });
-  const chefResult = await chefMulti.execute();
+
   return Object.fromEntries(
-    addresses.map((address) => [
-      address,
-      parseFloat(formatUnits(chefResult[address].amount)) * creditPerLp
-    ])
+    addresses.map((address) => {
+      const reaperVal = result.reaper[address];
+      const raw = reaperVal.div(result.pricePerShare);
+      return [
+        address,
+        parseFloat(formatUnits(result.lp[address])) * creditPerLp +
+          parseFloat(formatUnits(result.chef[address].amount)) * creditPerLp +
+          parseFloat(formatUnits(raw)) * creditPerLp
+      ];
+    })
   );
 }

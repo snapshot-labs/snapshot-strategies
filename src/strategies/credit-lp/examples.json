@@ -7,6 +7,7 @@
         "address": "0x77128DFdD0ac859B33F44050c6fa272F34872B5E",
         "lpToken": "0x06F3Cb227781A836feFAEa7E686Bdc857e80eAa7",
         "masterchef": "0xe0c43105235C1f18EA15fdb60Bb6d54814299938",
+        "crypt": "0xAD48320c7e3D3e9fF0c7e51608869cbbfFE7422C",
         "pid": 1,
         "symbol": "CREDIT",
         "decimals": 18
