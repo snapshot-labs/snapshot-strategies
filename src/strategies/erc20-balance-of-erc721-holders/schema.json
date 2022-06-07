@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "erc721": {
+          "type": "string",
+          "title": "ERC721 Contract address",
+          "examples": ["e.g. 0x3337dac9F251d4E403D6030E18e3cfB6a2cb1333"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc20": {
+          "type": "string",
+          "title": "ERC20 Contract address",
+          "examples": ["e.g. 0xF7deF1D2FBDA6B74beE7452fdf7894Da9201065d"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals of ERC20",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["erc721", "erc20", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

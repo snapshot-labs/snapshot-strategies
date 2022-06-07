@@ -19,6 +19,7 @@ import * as ensReverseRecord from './ens-reverse-record';
 import * as ens10kClub from './ens-10k-club';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
+import * as erc20BalanceOfErc721Holders from './erc20-balance-of-erc721-holders';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
@@ -349,6 +350,7 @@ const strategies = {
   'erc20-balance-of-cv': erc20BalanceOfCv,
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
+  'erc20-balance-of-erc721-holders': erc20BalanceOfErc721Holders,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
