@@ -5,10 +5,6 @@ import { Multicaller } from '../../utils';
 export const author = '0xEntropy';
 export const version = '0.1.0';
 
-// const erc20Abi = [
-//   'function balanceOf(address account) external view returns (uint256)',
-//   'function totalSupply() external view returns (uint256)'
-// ];
 
 const abi = [
   {
