@@ -29,7 +29,7 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  const decimals = decimals in options ? options.decimals : 18 ;
+  const decimals = options.decimals || 18 ;
   
   return Object.fromEntries(
     response.map((value, i) => [
