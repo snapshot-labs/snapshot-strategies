@@ -13,27 +13,7 @@ const stakeManagerAbi = [
   'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 
-const nftStakingPoolAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+const nftStakingPoolAbi = [ 'function balanceOf(address account) view returns (uint256)' ];
 
 export async function strategy(
   space,
