@@ -18,13 +18,13 @@ const autoHelixAbi = [
   'function getPricePerFullShare() view returns (uint256)'
 ];
 
-// const vaultIds = [
-//   'function getDepositIds(address) view returns (uint[] memory)'
-// ];
+const vaultIds = [
+  'function getDepositIds(address) view returns (uint[] memory)'
+];
 
-// const vaultAmounts = [
-//   'function getDeposit(uint256) view returns (Deposit memory)'
-// ];
+const vaultAmounts = [
+  'function getDeposit(uint256) view returns (Deposit memory)'
+];
 
 const bn = (num: any): BigNumber => {
   return BigNumber.from(num.toString());
@@ -80,59 +80,54 @@ export async function strategy(
     }
   );
   multicallAutoCompound.call(
-    'priceShare_1',
+    'priceShare',
     options.autoHelix,
     'getPricePerFullShare'
   );
-  // multicallAutoCompound.call(
-  //   'priceShare_2',
-  //   options.autoHelixSecond,
-  //   'getPricePerFullShare'
-  // );
   addresses.forEach((address) => {
     multicallAutoCompound.call(
-      `autoPool_1.${address}`,
+      `autoPool.${address}`,
       options.autoHelix,
       'userInfo',
       [address]
     );
-    // multicallAutoCompound.call(
-    //   `autoPool_2.${address}`,
-    //   options.autoHelixSecond,
-    //   'userInfo',
-    //   [address]
-    // );
   });
 
   const resultAutoHelix = await multicallAutoCompound.execute();
   const result = await multicall.execute();
 
-  // const multicallVaultIds = new Multicaller(network, provider, vaultIds, {
-  //   blockTag
-  // });
-  // addresses.forEach((address: any) => {
-  //   multicallVaultIds.call(`vault.${address}`, options.vault, 'getDepositIds', [
-  //     address
-  //   ]);
-  // });
-  // const resultVaultIds = await multicallVaultIds.execute();
+  const multicallVaultIds = new Multicaller(network, provider, vaultIds, {
+    blockTag
+  });
+  addresses.forEach((address: any) => {
+    multicallVaultIds.call(
+      `vaultIds.${address}`,
+      options.vault,
+      'getDepositIds',
+      [address]
+    );
+  });
+  const resultVaultIds = await multicallVaultIds.execute();
 
-  // const multicallVaultAmounts = new Multicaller(
-  //   network,
-  //   provider,
-  //   vaultAmounts,
-  //   {
-  //     blockTag
-  //   }
-  // );
-  // resultVaultIds.forEach((address: any) => {
-  //   multicallVaultAmounts.call(
-  //     `vault.${address}`,
-  //     options.vault,
-  //     'getDepositIds',
-  //     [address]
-  //   );
-  // });
+  const multicallVaultAmounts = new Multicaller(
+    network,
+    provider,
+    vaultAmounts,
+    {
+      blockTag
+    }
+  );
+  addresses.forEach((address: any) => {
+    resultVaultIds.vaultIds[address].forEach((id: any) => {
+      multicallVaultAmounts.call(
+        `vaultAmounts.${address}.${id}`,
+        options.vault,
+        'getDeposit',
+        [id]
+      );
+    });
+  });
+  const resultVaultAmounts = await multicallVaultAmounts.execute();
 
   const userBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {
@@ -145,17 +140,10 @@ export async function strategy(
     addUserBalance(
       userBalances,
       address,
-      resultAutoHelix.autoPool_1[address][0]
-        .mul(resultAutoHelix.priceShare_1)
+      resultAutoHelix.autoPool[address][0]
+        .mul(resultAutoHelix.priceShare)
         .div(bn(parseUnits('1', options.decimals)))
     );
-    // addUserBalance(
-    //   userBalances,
-    //   address,
-    //   resultAutoHelix.autoPool_2[address][0]
-    //     .mul(resultAutoHelix.priceShare_2)
-    //     .div(bn(parseUnits('1', options.decimals)))
-    // );
     options.helixLPs.forEach((lp: { address: string; pid: number }) => {
       addUserBalance(
         userBalances,
@@ -163,6 +151,13 @@ export async function strategy(
         result.lpUsers[address][lp.pid][0]
           .mul(result.lp[lp.pid].balanceOf)
           .div(result.lp[lp.pid].totalSupply)
+      );
+    });
+    resultVaultIds.vaultIds[address].forEach((id: any) => {
+      addUserBalance(
+        userBalances,
+        address,
+        resultVaultAmounts.vaultAmounts[address][id][1]
       );
     });
   });
