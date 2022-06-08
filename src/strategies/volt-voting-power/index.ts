@@ -5,7 +5,7 @@ import { strategy as pagination } from '../pagination';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'philipappiah';
-export const version = '0.1.1';
+export const version = '0.1.2';
 
 const VOLTSWAP_SUBGRAPH = {
   '82':
@@ -140,20 +140,17 @@ export async function strategy(
         );
         if (user && user.vaults.length) {
           user.vaults.forEach((v) => {
-            const voltLock = v.locks.find(
+            v.locks.filter(
               (r) => r.token.toLowerCase() === voltAddress
-            );
-            const lpLock = v.locks.find(
+            ).forEach(vlock =>{
+              userCurrentStakeInVolt = userCurrentStakeInVolt + Number(formatUnits(vlock.amount, tokenDecimals))
+            })
+            v.locks.filter(
               (r) => r.token.toLowerCase() === lpTokenAddress
-            );
-            if (voltLock)
-              userCurrentStakeInVolt = parseFloat(
-                formatUnits(voltLock.amount, tokenDecimals)
-              );
-            if (lpLock)
-              userCurrentStakeInLP = parseFloat(
-                formatUnits(lpLock.amount, tokenDecimals)
-              );
+            ).forEach(lplock=>{
+              userCurrentStakeInLP = userCurrentStakeInLP + Number(formatUnits(lplock.amount, tokenDecimals))
+            })
+            
             userLpShare = (userCurrentStakeInLP / totalStake) * 100;
             stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
           });
