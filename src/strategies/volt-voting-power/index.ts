@@ -5,7 +5,7 @@ import { strategy as pagination } from '../pagination';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'philipappiah';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const VOLTSWAP_SUBGRAPH = {
   '82':
