@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "umami-voting",
+      "params": {
+        "address": "0x2adabd6e8ce3e82f52d9998a7f64a90d294a92a4",
+        "symbol": "mUMAMI",
+        "decimals": 9,
+        "cmUMAMIAddress": "0x1922C36F3bc762Ca300b4a46bB2102F84B1684aB",
+        "stakedcmUMAMIAddress": "0x6A0F4AFB31e90c378FA2Aaa40371a652578F339B"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xaDbb744a9434AAd006772CF76e79D246c4506D1B",
+      "0x307923a41f1fe2cf876b2cb103e24438b56aba91",
+      "0x375cf42640e384d04314cb1b76a36d1d2924460a"
+    ],
+    "snapshot": 9024000
+  }
+]

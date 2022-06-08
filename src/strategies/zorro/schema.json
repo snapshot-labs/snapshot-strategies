@@ -7,10 +7,11 @@
       "type": "object",
       "properties": {
         "symbol": {
-            "type": "string",
-            "title": "Symbol",
-            "examples": ["e.g. VOTES"]
-          },
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. VOTES"],
+          "maxLength": 16
+        },
         "purposeIdentifier": {
           "type": "string",
           "title": "Purpose identifier (defaults to snapshot space ens)",
@@ -22,7 +23,7 @@
           "examples": ["e.g. 1000"]
         }
       },
-      "required": ["symbol"],
+      "required": [],
       "additionalProperties": false
     }
   }
