@@ -7,17 +7,17 @@ import { subgraphRequest } from '../../utils';
 export const author = 'philipappiah';
 export const version = '0.1.0';
 
-const UNISWAP_SUBGRAPH_URL = {
+const VOLTSWAP_SUBGRAPH = {
   '82':
-    'https://graph.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph',
+    'https://graph-meter.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph',
   '361':
-    'https://theta-graph.voltswap.finance/subgraphs/name/theta/uniswap-v2-subgraph'
+    'https://graph-theta.voltswap.finance/subgraphs/name/theta/uniswap-v2-subgraph'
 };
 
-const SUBGRAPH_URL = {
-  '82': 'https://newgraph.voltswap.finance/subgraphs/name/meter/geyser-v2',
+const STAKING_SUBGRAPH = {
+  '82': 'https://graph-meter.voltswap.finance/subgraphs/name/meter/geyser-v2',
   '361':
-    'https://geyser-graph-on-theta.voltswap.finance/subgraphs/name/theta/geyser-v2'
+    'https://graph-theta.voltswap.finance/subgraphs/name/theta/geyser-v2'
 };
 
 export async function strategy(
@@ -31,6 +31,8 @@ export async function strategy(
   const voltAddress = options.voltAddress.toLowerCase();
   const tokenDecimals = options.tokenDecimals;
   const network = options.network || _network;
+  const UNI_GRAPH = options.swapSubgraph || VOLTSWAP_SUBGRAPH[network]
+  const STAKE_GRAPH = options.stakingSubgraph || STAKING_SUBGRAPH[network]
   const blockTag = 'latest';
 
   const voltDataparams = {
@@ -81,10 +83,10 @@ export async function strategy(
     }
   };
 
-  const poolData = await subgraphRequest(SUBGRAPH_URL[network], voltDataparams);
+  const poolData = await subgraphRequest(STAKE_GRAPH, voltDataparams);
 
   const subgraphData = await subgraphRequest(
-    UNISWAP_SUBGRAPH_URL[network],
+    UNI_GRAPH,
     subgraphDataParams
   );
 
