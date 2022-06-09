@@ -6,10 +6,8 @@ Here is an example of parameters:
 
 ```json
 {
-  "address": "0x410a56541bD912F9B60943fcB344f1E3D6F09567",
+  "mintoVoteUrl": "https://stats-prod.minto.org/v1/vote/get-points",
   "symbol": "BTCMT",
-  "decimals": 18,
-  "stakingAddress": "0x78ae303182FCA96A4629A78Ee13235e6525EbcFb",
-  "autoStakingAddress": "0xE751ffdC2a684EEbcaB9Dc95fEe05c083F963Bf1"
+  "decimals": 18
 }
 ```
