@@ -96,9 +96,11 @@ export async function strategy(
     ]);
   });
 
-  const resultVault = await multicallVault.execute();
-  const resultAutoHelix = await multicallAutoCompound.execute();
-  const result = await multicall.execute();
+  const [resultVault, resultAutoHelix, result] = await Promise.all([
+    multicallVault.execute(),
+    multicallAutoCompound.execute(),
+    multicall.execute()
+  ]);
 
   const userBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {
