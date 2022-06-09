@@ -316,6 +316,7 @@ import * as genzeesFromSubgraph from './genzees-from-subgraph';
 import * as ginFinance from './gin-finance';
 import * as positionGovernancePower from './position-governance-power';
 import * as creditLp from './credit-lp';
+import * as helix from './helix';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -633,7 +634,8 @@ const strategies = {
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
   'position-governance-power': positionGovernancePower,
-  'credit-lp': creditLp
+  'credit-lp': creditLp,
+  helix
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
