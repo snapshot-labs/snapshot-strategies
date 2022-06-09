@@ -18,13 +18,7 @@ const autoHelixAbi = [
   'function getPricePerFullShare() view returns (uint256)'
 ];
 
-const vaultIds = [
-  'function getDepositIds(address) view returns (uint[] memory)'
-];
-
-const vaultAmounts = [
-  'function getDeposit(uint256) view returns (Deposit memory)'
-];
+const vaultAbi = ['function getDepositAmount(address) view returns (uint256)'];
 
 const bn = (num: any): BigNumber => {
   return BigNumber.from(num.toString());
@@ -93,41 +87,18 @@ export async function strategy(
     );
   });
 
-  const resultAutoHelix = await multicallAutoCompound.execute();
-  const result = await multicall.execute();
-
-  const multicallVaultIds = new Multicaller(network, provider, vaultIds, {
+  const multicallVault = new Multicaller(network, provider, vaultAbi, {
     blockTag
   });
   addresses.forEach((address: any) => {
-    multicallVaultIds.call(
-      `vaultIds.${address}`,
-      options.vault,
-      'getDepositIds',
-      [address]
-    );
+    multicallVault.call(`vault.${address}`, options.vault, 'getDepositAmount', [
+      address
+    ]);
   });
-  const resultVaultIds = await multicallVaultIds.execute();
 
-  const multicallVaultAmounts = new Multicaller(
-    network,
-    provider,
-    vaultAmounts,
-    {
-      blockTag
-    }
-  );
-  addresses.forEach((address: any) => {
-    resultVaultIds.vaultIds[address].forEach((id: any) => {
-      multicallVaultAmounts.call(
-        `vaultAmounts.${address}.${id}`,
-        options.vault,
-        'getDeposit',
-        [id]
-      );
-    });
-  });
-  const resultVaultAmounts = await multicallVaultAmounts.execute();
+  const resultVault = await multicallVault.execute();
+  const resultAutoHelix = await multicallAutoCompound.execute();
+  const result = await multicall.execute();
 
   const userBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {
@@ -153,13 +124,7 @@ export async function strategy(
           .div(result.lp[lp.pid].totalSupply)
       );
     });
-    resultVaultIds.vaultIds[address].forEach((id: any) => {
-      addUserBalance(
-        userBalances,
-        address,
-        resultVaultAmounts.vaultAmounts[address][id][1]
-      );
-    });
+    addUserBalance(userBalances, address, resultVault.vault[address]);
   });
 
   return Object.fromEntries(
