@@ -15,7 +15,7 @@ Here is an example of parameters:
         "address": "0x79DD2dad8D04F9279F94580DBEd2306A0aE118Bd",
         "masterChef": "0x15B400a434E0d94e0F1e1A0AA4a08E98A2d04128",
         "autoHelix": "0xF34316463B29B0D7A387a8443b2E17B3629e99b2",
-        "vault": "0x6a4AE7FC20a0eBab9bd3Bf1881272a869037BcD1",
+        "vault": "0x370650b477D550E4611CCe63eE8b7eCa64F207C0",
         "helixLPs": [
           {
             "address": "0xfbfe53025c54b70b48070904f8765703D2aD749D",
@@ -31,8 +31,11 @@ Here is an example of parameters:
       }
     },
     "network": "4",
-    "addresses": ["0x2155BCeA4f362D5D9CE67817b826A8F31b61D0BF"],
-    "snapshot": 10817376
+    "addresses": [
+      "0x2155BCeA4f362D5D9CE67817b826A8F31b61D0BF",
+      "0xb1F7D313Ce45fe62EdE9CE4cfb46833051d38e57"
+    ],
+    "snapshot": 10819269
   }
 ]
 ```
