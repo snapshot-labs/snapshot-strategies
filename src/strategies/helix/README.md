@@ -1,7 +1,7 @@
 # Helix
 
-This is the most common strategy, it returns the balances of the voters for a balances HELIX token
-in Helix project(pools, farms, Liquidity, token).
+This is the strategy, it returns the balances of the voters for HELIX token balances
+in Helix project(pools, farms, vaults, token).
 
 Here is an example of parameters:
 
