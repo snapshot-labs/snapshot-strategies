@@ -16,6 +16,7 @@ import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
+import * as ens10kClub from './ens-10k-club';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
@@ -31,6 +32,7 @@ import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
+import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
@@ -131,6 +133,7 @@ import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
 import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
+import * as erc721WithMetadata from './erc721-with-metadata';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
@@ -138,6 +141,7 @@ import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
+import * as decentralandWearableRariry from './decentraland-wearable-rarity';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
 import * as xrc20BalanceOf from './xrc20-balance-of';
@@ -146,6 +150,7 @@ import * as inverseXINV from './inverse-xinv';
 import * as modefi from './modefi';
 import * as modefiStaking from './modefi-staking';
 import * as spookyswap from './spookyswap';
+import * as squadzPower from './squadz-power';
 import * as glide from './glide';
 import * as goldfinchVotingPower from './goldfinch-voting-power';
 import * as goldfinchMembership from './goldfinch-membership';
@@ -193,6 +198,7 @@ import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
 import * as hoprStakingS2 from './hopr-staking-s2';
+import * as hoprStakingBySeason from './hopr-staking-by-season';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
@@ -220,6 +226,7 @@ import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
 import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as gatenetTotalStaked from './gatenet-total-staked';
 import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
@@ -290,8 +297,30 @@ import * as wanakafarmLandIngame from './wanakafarm-land-ingame';
 import * as meebitsDaoDelegation from './meebitsdao-delegation';
 import * as starcatchersTopWindow from './starcatchers-top-window';
 import * as gno from './gno';
+import * as umaVoting from './uma-voting';
+import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
+import * as proofOfHumanity from './proof-of-humanity';
+import * as samuraiLegendsGeneralsBalance from './samurailegends-generals-balance';
+import * as dogsUnchained from './dogs-unchained';
+import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
+import * as umamiVoting from './umami-voting';
+import * as liquidityTokenProvide from './liquidity-token-provide';
+import * as gamiumVoting from './gamium-voting';
+import * as citydaoSquareRoot from './citydao-square-root';
+import * as recusalList from './recusal-list';
+import * as rowdyRoos from './rowdy-roos';
+import * as ethermon721 from './ethermon-erc721';
+import * as hedgey from './hedgey';
+import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
+import * as genzeesFromSubgraph from './genzees-from-subgraph';
+import * as ginFinance from './gin-finance';
+import * as positionGovernancePower from './position-governance-power';
+import * as creditLp from './credit-lp';
+import * as helix from './helix';
 
 const strategies = {
+  'ethermon-erc721': ethermon721,
+  'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
@@ -313,6 +342,7 @@ const strategies = {
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
+  'ens-10k-club': ens10kClub,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
@@ -330,6 +360,7 @@ const strategies = {
   'erc20-price': erc20Price,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
+  thresholds,
   'eth-balance': ethBalance,
   'eth-with-balance': ethWithBalance,
   'eth-wallet-age': ethWalletAge,
@@ -342,6 +373,7 @@ const strategies = {
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
+  'erc721-with-metadata': erc721WithMetadata,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
@@ -432,6 +464,7 @@ const strategies = {
   apescape,
   liftkitchen,
   'decentraland-estate-size': decentralandEstateSize,
+  'decentraland-wearable-rarity': decentralandWearableRariry,
   brightid,
   'inverse-xinv': inverseXINV,
   modefi,
@@ -440,6 +473,7 @@ const strategies = {
   'iotex-staked-balance': iotexStakedBalance,
   'xrc20-balance-of': xrc20BalanceOf,
   spookyswap,
+  'squadz-power': squadzPower,
   glide,
   'goldfinch-voting-power': goldfinchVotingPower,
   'goldfinch-membership': goldfinchMembership,
@@ -484,6 +518,7 @@ const strategies = {
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
   'hopr-staking-s2': hoprStakingS2,
+  'hopr-staking-by-season': hoprStakingBySeason,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   swapr,
@@ -512,6 +547,7 @@ const strategies = {
   'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
+  'gatenet-total-staked': gatenetTotalStaked,
   vesper,
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
@@ -581,7 +617,25 @@ const strategies = {
   'meebitsdao-delegation': meebitsDaoDelegation,
   'starcatchers-top-window': starcatchersTopWindow,
   gno: gno,
-  'gno-vote-weight': gno
+  'gno-vote-weight': gno,
+  'uma-voting': umaVoting,
+  'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
+  'proof-of-humanity': proofOfHumanity,
+  'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
+  'dogs-unchained': dogsUnchained,
+  'stakedao-governance-update': stakeDAOGovernanceUpdate,
+  'umami-voting': umamiVoting,
+  'liquidity-token-provide': liquidityTokenProvide,
+  'gamium-voting': gamiumVoting,
+  'citydao-square-root': citydaoSquareRoot,
+  'rowdy-roos': rowdyRoos,
+  hedgey,
+  've-balance-of-at-nft': veBalanceOfAtNFT,
+  'genzees-from-subgraph': genzeesFromSubgraph,
+  'gin-finance': ginFinance,
+  'position-governance-power': positionGovernancePower,
+  'credit-lp': creditLp,
+  helix
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

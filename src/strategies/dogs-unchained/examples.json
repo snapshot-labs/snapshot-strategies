@@ -1,0 +1,33 @@
+[
+  {
+    "name": "DU Global Voting Query",
+    "strategy": {
+      "name": "dogs-unchained",
+      "params": {
+        "boom": "0x1f17996beacc0803841d5f8cecc753e688fb5084",
+        "dogs": "0x9c0ffc9088abeb2ea220d642218874639229fa7a",
+        "steaks": "0xcab65c60d9dc47e1d450c7e9074f73f1ff75f181",
+        "puppies": "0x948bc723d7e33575427270ac4f26c73b8ba938aa",
+        "staking": "0xD742193C84062c1e0488545FB91A32D220Ec6c76",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "snapshot": 14616017,
+    "addresses": [
+      "0x99484019bdcd444af57a365bea0188f937fe751d",
+      "0x34dde35b7a88a1634c5e5e7ab8f18e67974997c8",
+      "0x8a91de08552c5b16930a25b3d88af17dfa44ba0c",
+      "0x625a840144253a7dcb638de03454d6f281616ed3",
+      "0x6795474c42d4562e7242b042d4b91b86a3e96889",
+      "0x74c75f96f183e4553df09151de69b39c63a95fef",
+      "0x9002b80e3fd2cfe9bb04d89438c55a0d08dd218c",
+      "0xdcf3d0d56804bc4c04d034e323aa4ec77015e76c",
+      "0xfd9395acb188ae0166d8ed970e1117410b67ad6d",
+      "0x18b4ddab23483770af0b105e21145dfdaa047ab5",
+      "0x1cc0c0921463ec1fa70b883df209d753f55e07e3",
+      "0x30d02630998d983e4c3e07aa5bff2ee200c5ab64",
+      "0x439c5deac76813e49a97362bb52ccdf649ea0511"
+    ]
+  }
+]

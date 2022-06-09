@@ -1,5 +1,4 @@
-import { getProvider } from '../../utils';
-import { getSnapshots } from '../../utils/blockfinder';
+import { getProvider, getSnapshots } from '../../utils';
 import strategies from '..';
 
 export const author = 'kesar';
