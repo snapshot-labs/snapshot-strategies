@@ -317,6 +317,7 @@ import * as ginFinance from './gin-finance';
 import * as positionGovernancePower from './position-governance-power';
 import * as creditLp from './credit-lp';
 import * as helix from './helix';
+import * as arrakisFinance from './arrakis-finance';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -635,7 +636,8 @@ const strategies = {
   'gin-finance': ginFinance,
   'position-governance-power': positionGovernancePower,
   'credit-lp': creditLp,
-  helix
+  helix,
+  'arrakis-finance': arrakisFinance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
