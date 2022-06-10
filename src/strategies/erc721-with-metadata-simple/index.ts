@@ -95,7 +95,7 @@ export async function strategy(
 
     // batch-call contract data
     const customRangeResponse = await getDataFromBlockChain(contractCalls);
-        const customRangeResponseWeighted = await multiplyOccurrencesByWeights(
+      const customRangeResponseWeighted = await multiplyOccurrencesByWeights(
       customRangeResponse,
       weights
     );
@@ -103,8 +103,6 @@ export async function strategy(
     const customRangeResponseWeightedFiltered = filterUnusedAddresses(
       customRangeResponseWeighted
     );
-
-    console.log(customRangeResponseWeightedFiltered);
 
     return countAndAccumulateOccurrences(customRangeResponseWeightedFiltered);
   };
@@ -121,7 +119,6 @@ export async function strategy(
       ids: e,
       weights: batchedWeights[i]
     }));
-    console.log(batches);
     return batches;
   };
 
