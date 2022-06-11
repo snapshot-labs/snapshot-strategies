@@ -9,13 +9,13 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. UNI"],
+          "examples": ["e.g. BANK"],
           "maxLength": 16
         },
-        "address": {
+        "tokenAddress": {
           "type": "string",
-          "title": "Contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "title": "Token address",
+          "examples": ["e.g. 0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -24,9 +24,17 @@
           "type": "number",
           "title": "Decimals",
           "examples": ["e.g. 18"]
+        },
+        "poolAddress": {
+          "type": "string",
+          "title": "Token address",
+          "examples": ["e.g. 0x472D0B0DDFE0BC02C27928b8BcbD67E65D07d48a"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
         }
       },
-      "required": ["address", "decimals"],
+      "required": ["symbol", "tokenAddress", "decimals", "poolAddress"],
       "additionalProperties": false
     }
   }
