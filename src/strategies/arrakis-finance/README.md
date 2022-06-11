@@ -1,6 +1,6 @@
 # arrakis-finance
 
-This strategy returns the underlying token balances for a given Arrakis Finance pool
+This strategy returns voters underlying token balance for a given Arrakis Finance pool
 
 ## Params
 
