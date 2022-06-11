@@ -37,21 +37,30 @@ export async function strategy(
   const token1 = result.token1;
   const underlyingBalances = result.underlyingBalances;
   const lpTokenTotalSupply = result.lpTokenTotalSupply;
-  const lpTokenBalances = result.lpTokenBalances;
-
-  // if options.tokenAddress == token0:
-  //   index = 0
-  // elif options.tokenAddress == token1:
-  //   index = 1
-  // else:
-    //Emit error
-  let index = 0;
+  const lpTokenBalances: Record<string, BigNumberish> = result.lpTokenBalances;
 
   console.log(token0)
   console.log(token1)
   console.log(underlyingBalances)
   console.log(lpTokenTotalSupply)
   console.log(lpTokenBalances)
+
+  let token0Or1 = NaN
+  if (options.tokenAddress === token0) {
+    token0Or1 = 0
+  }
+  else if (options.tokenAddress === token1) {
+    token0Or1 = 1
+  }
+  else {
+    throw new Error(
+      `token not in pool.
+       poolAddress=${options.poolAddress},
+       tokenAddress=${options.tokenAddress}`
+    )
+  }
+
+  console.log(token0Or1);
 
   return Object.fromEntries(
     Object.entries(lpTokenBalances).map(([address, balance]) => [
