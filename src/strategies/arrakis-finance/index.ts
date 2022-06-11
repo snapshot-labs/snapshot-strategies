@@ -21,11 +21,6 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  console.log(`addresses = ${addresses}`);
-  console.log(`tokenAddress = ${options.tokenAddress}`);
-  console.log(`decimals = ${options.decimals}`);
-  console.log(`poolAddress = ${options.poolAddress}`);
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
@@ -51,12 +46,6 @@ export async function strategy(
   const lpTotalSupply: BigNumber = result.lpTokenTotalSupply;
   const lpBalances: Record<string, BigNumber> = result.lpTokenBalances;
 
-  console.log(`token0 = ${token0}`);
-  console.log(`token1 = ${token1}`);
-  console.log(`underlyingBalances = ${underlyingBalances}`);
-  console.log(`lpTotalSupply = ${lpTotalSupply}`);
-  console.log(`lpBalances = ${lpBalances}`);
-
   let underlyingBalance: BigNumber;
   if (options.tokenAddress === token0) {
     underlyingBalance = underlyingBalances[0];
@@ -69,8 +58,6 @@ export async function strategy(
        tokenAddress=${options.tokenAddress}`
     );
   }
-
-  console.log(`underlyingBalance =${underlyingBalance}`);
 
   return Object.fromEntries(
     Object.entries(lpBalances).map(([address, lpBalance]) => [
