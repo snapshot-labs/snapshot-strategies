@@ -1,6 +1,7 @@
 # arrakis-finance
 
 This strategy returns the underlying token balances for a given Arrakis Finance pool
+
 ## Params
 
 - `poolAddress` - (**Required**, `string`) Address of Arrakis Finance pool (aka. vault) contract
