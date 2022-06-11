@@ -4,10 +4,10 @@ This strategy returns the underlying token balances for a given Arrakis Finance 
 
 ## Params
 
-- `poolAddress` - (**Required**, `string`) Address of Arrakis Finance pool (aka. vault) contract
-- `tokenAddress` - (**Required**, `string`) Address of ERC20 token contract
+- `symbol` - (**Optional**, `string`) Symbol of ERC20 token
 - `decimals` - (**Required**, `number`) Decimal precision for ERC20 token
-- `symbol` - (**Required**, `string`) Symbol of ERC20 token
+- `tokenAddress` - (**Required**, `string`) Address of ERC20 token contract
+- `poolAddress` - (**Required**, `string`) Address of Arrakis Finance pool (aka. vault) contract
 
 Here is an example of parameters:
 

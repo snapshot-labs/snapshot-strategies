@@ -12,6 +12,11 @@
           "examples": ["e.g. BANK"],
           "maxLength": 16
         },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        },
         "tokenAddress": {
           "type": "string",
           "title": "Token address",
@@ -19,11 +24,6 @@
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
-        },
-        "decimals": {
-          "type": "number",
-          "title": "Decimals",
-          "examples": ["e.g. 18"]
         },
         "poolAddress": {
           "type": "string",
@@ -34,7 +34,7 @@
           "maxLength": 42
         }
       },
-      "required": ["symbol", "tokenAddress", "decimals", "poolAddress"],
+      "required": ["decimals", "tokenAddress", "poolAddress"],
       "additionalProperties": false
     }
   }
