@@ -53,9 +53,7 @@ export async function strategy(
     underlyingBalance = underlyingBalances[1];
   } else {
     throw new Error(
-      `token not in pool.
-       poolAddress=${options.poolAddress},
-       tokenAddress=${options.tokenAddress}`
+      `token not in pool. poolAddress=${options.poolAddress}, tokenAddress=${options.tokenAddress}`
     );
   }
 
