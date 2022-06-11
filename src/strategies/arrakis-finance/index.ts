@@ -21,6 +21,7 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
+  console.log(`addresses = ${addresses}`);
   console.log(`tokenAddress = ${options.tokenAddress}`);
   console.log(`decimals = ${options.decimals}`);
   console.log(`poolAddress = ${options.poolAddress}`);
