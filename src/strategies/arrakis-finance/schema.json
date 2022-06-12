@@ -8,18 +8,18 @@
       "properties": {
         "symbol": {
           "type": "string",
-          "title": "Symbol",
+          "title": "symbol",
           "examples": ["e.g. BANK"],
           "maxLength": 16
         },
         "decimals": {
           "type": "number",
-          "title": "Decimals",
+          "title": "decimals",
           "examples": ["e.g. 18"]
         },
         "tokenAddress": {
           "type": "string",
-          "title": "Token address",
+          "title": "tokenAddress",
           "examples": ["e.g. 0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
