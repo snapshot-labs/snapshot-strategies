@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "arrakis-finance",
+      "params": {
+        "symbol": "BANK",
+        "decimals": 18,
+        "tokenAddress": "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
+        "poolAddress": "0x472D0B0DDFE0BC02C27928b8BcbD67E65D07d48a"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xb6ac0341Fcf3FB507A8208D34a97f13779e1393D",
+      "0x3839acf1ee7699d1f46b1be840d8ad8317fdf757",
+      "0xD38cCf0988b375a9F4be1c8eEaeF5ECCA4bB8e87"
+    ],
+    "snapshot": 14765214
+  }
+]
