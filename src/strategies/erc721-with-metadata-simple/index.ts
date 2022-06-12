@@ -14,15 +14,17 @@ const flattenTokenIdWeightMetadata = (
   tokenIdWeightMetadata: []
 ): { ids: number[]; weights: number[] } => {
   const tokenData = tokenIdWeightMetadata.map((tokenDato) => {
-    var ids: number[] = [], weights: number[] = [], datoId;
+    const ids: number[] = [],
+      weights: number[] = [];
+    let datoId;
     const keys = Object.keys(tokenDato);
-    if(keys.length > 0) {
+    if (keys.length > 0) {
       datoId = parseInt(keys[0]);
       ids.push(datoId);
-      weights = [tokenDato[datoId.toString()]];
+      weights.push(tokenDato[datoId.toString()]);
     }
-    return { ids, weights};
-  })
+    return { ids, weights };
+  });
 
   return tokenData.reduce((prev, curr) => ({
     ids: [...prev.ids, ...curr.ids],
@@ -43,7 +45,7 @@ export async function strategy(
   const maximumNumberOfBatches = 4;
   const batchSize = 8000;
   const maximumAllowedRange = maximumNumberOfBatches * batchSize;
-  let erc721WeightedBalance = {};
+  const erc721WeightedBalance = {};
   let customRangeBalance = {};
 
   // 1st, get all metadata values from the source - token weights
@@ -85,7 +87,6 @@ export async function strategy(
   }): Promise<{
     [address: string]: number;
   }> => {
-    
     // Define contract calls
     const contractCalls = ids.map((id: number) => [
       options.address,
@@ -95,7 +96,7 @@ export async function strategy(
 
     // batch-call contract data
     const customRangeResponse = await getDataFromBlockChain(contractCalls);
-      const customRangeResponseWeighted = await multiplyOccurrencesByWeights(
+    const customRangeResponseWeighted = await multiplyOccurrencesByWeights(
       customRangeResponse,
       weights
     );
