@@ -42,7 +42,12 @@
           "maxLength": 42
         }
       },
-      "required": ["address", "decimals", "stakeManagerAddress", "nftStakingPoolAddress"],
+      "required": [
+        "address",
+        "decimals",
+        "stakeManagerAddress",
+        "nftStakingPoolAddress"
+      ],
       "additionalProperties": false
     }
   }

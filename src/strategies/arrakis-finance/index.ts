@@ -9,7 +9,8 @@ const abi = [
   'function token0() external view returns (address)',
   'function token1() external view returns (address)',
   'function getUnderlyingBalances() external view returns (uint256 amount0Current, uint256 amount1Current)',
-  'function totalSupply() public view returns (uint256)',,
+  'function totalSupply() public view returns (uint256)',
+  ,
   'function balanceOf(address account) public view returns (uint256)'
 ];
 

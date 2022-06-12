@@ -114,7 +114,10 @@ export async function strategy(
           formatUnits(stakingPairResponse[address], options.decimals)
         ) *
         (1 + liquidityPoolTokenRatio);
-      return [address, tokenBalance + 2 * stakingTokenBalance + 2 * stakingPairBalance];
+      return [
+        address,
+        tokenBalance + 2 * stakingTokenBalance + 2 * stakingPairBalance
+      ];
     })
   );
 }
