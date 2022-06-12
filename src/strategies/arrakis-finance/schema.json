@@ -27,7 +27,7 @@
         },
         "poolAddress": {
           "type": "string",
-          "title": "Token address",
+          "title": "poolAddress",
           "examples": ["e.g. 0x472D0B0DDFE0BC02C27928b8BcbD67E65D07d48a"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
