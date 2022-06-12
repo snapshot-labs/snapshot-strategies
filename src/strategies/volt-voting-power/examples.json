@@ -10,7 +10,7 @@
         "voltAddress": "0x8df95e66cb0ef38f91d2776da3c921768982fba0",
         "network": "82",
         "swapSubgraph": "https://graph-meter.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph",
-        "stakingSubgraph" :"https://graph-meter.voltswap.finance/subgraphs/name/meter/geyser-v2"
+        "stakingSubgraph": "https://graph-meter.voltswap.finance/subgraphs/name/meter/geyser-v2"
       }
     },
 

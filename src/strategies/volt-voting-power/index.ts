@@ -16,8 +16,7 @@ const VOLTSWAP_SUBGRAPH = {
 
 const STAKING_SUBGRAPH = {
   '82': 'https://graph-meter.voltswap.finance/subgraphs/name/meter/geyser-v2',
-  '361':
-    'https://graph-theta.voltswap.finance/subgraphs/name/theta/geyser-v2'
+  '361': 'https://graph-theta.voltswap.finance/subgraphs/name/theta/geyser-v2'
 };
 
 export async function strategy(
@@ -31,8 +30,8 @@ export async function strategy(
   const voltAddress = options.voltAddress.toLowerCase();
   const tokenDecimals = options.tokenDecimals;
   const network = options.network || _network;
-  const UNI_GRAPH = options.swapSubgraph || VOLTSWAP_SUBGRAPH[network]
-  const STAKE_GRAPH = options.stakingSubgraph || STAKING_SUBGRAPH[network]
+  const UNI_GRAPH = options.swapSubgraph || VOLTSWAP_SUBGRAPH[network];
+  const STAKE_GRAPH = options.stakingSubgraph || STAKING_SUBGRAPH[network];
   const blockTag = 'latest';
 
   const voltDataparams = {
@@ -85,10 +84,7 @@ export async function strategy(
 
   const poolData = await subgraphRequest(STAKE_GRAPH, voltDataparams);
 
-  const subgraphData = await subgraphRequest(
-    UNI_GRAPH,
-    subgraphDataParams
-  );
+  const subgraphData = await subgraphRequest(UNI_GRAPH, subgraphDataParams);
 
   let totalVoltComposition = 0;
   let totalStake = 0;
@@ -140,17 +136,21 @@ export async function strategy(
         );
         if (user && user.vaults.length) {
           user.vaults.forEach((v) => {
-            v.locks.filter(
-              (r) => r.token.toLowerCase() === voltAddress
-            ).forEach(vlock =>{
-              userCurrentStakeInVolt = userCurrentStakeInVolt + Number(formatUnits(vlock.amount, tokenDecimals))
-            })
-            v.locks.filter(
-              (r) => r.token.toLowerCase() === lpTokenAddress
-            ).forEach(lplock=>{
-              userCurrentStakeInLP = userCurrentStakeInLP + Number(formatUnits(lplock.amount, tokenDecimals))
-            })
-            
+            v.locks
+              .filter((r) => r.token.toLowerCase() === voltAddress)
+              .forEach((vlock) => {
+                userCurrentStakeInVolt =
+                  userCurrentStakeInVolt +
+                  Number(formatUnits(vlock.amount, tokenDecimals));
+              });
+            v.locks
+              .filter((r) => r.token.toLowerCase() === lpTokenAddress)
+              .forEach((lplock) => {
+                userCurrentStakeInLP =
+                  userCurrentStakeInLP +
+                  Number(formatUnits(lplock.amount, tokenDecimals));
+              });
+
             userLpShare = (userCurrentStakeInLP / totalStake) * 100;
             stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
           });
