@@ -299,16 +299,6 @@ import * as starcatchersTopWindow from './starcatchers-top-window';
 import * as gno from './gno';
 import * as umaVoting from './uma-voting';
 import * as masterchefPoolBalanceNoRewarddebt from './masterchef-pool-balance-no-rewarddebt';
-<<<<<<< HEAD
-import * as rocketpoolNodeOperatorPure from './rocketpool-node-operator-pure';
-import * as rocketpoolNodeOperatorPureDelegation from './rocketpool-node-operator-pure-delegation';
-import * as rocketpoolNodeOperatorHalfSquareRoot from './rocketpool-node-operator-half-square-root';
-import * as rocketpoolNodeOperatorHalfSquareRootDelegation from './rocketpool-node-operator-half-square-root-delegation';
-import * as rocketpoolNodeOperatorCubedRoot from './rocketpool-node-operator-cubed-root';
-import * as rocketpoolNodeOperatorCubedRootDelegation from './rocketpool-node-operator-cubed-root-delegation';
-import * as rocketpoolNodeOperatorSingleVote from './rocketpool-node-operator-single-vote';
-import * as rocketpoolNodeOperatorSingleVoteDelegation from './rocketpool-node-operator-single-vote-delegation';
-=======
 import * as proofOfHumanity from './proof-of-humanity';
 import * as samuraiLegendsGeneralsBalance from './samurailegends-generals-balance';
 import * as dogsUnchained from './dogs-unchained';
@@ -328,7 +318,14 @@ import * as positionGovernancePower from './position-governance-power';
 import * as creditLp from './credit-lp';
 import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
->>>>>>> 36875365621eed2ff7cb4c4ea558b8c10b75d0e8
+import * as rocketpoolNodeOperatorPure from './rocketpool-node-operator-pure';
+import * as rocketpoolNodeOperatorPureDelegation from './rocketpool-node-operator-pure-delegation';
+import * as rocketpoolNodeOperatorHalfSquareRoot from './rocketpool-node-operator-half-square-root';
+import * as rocketpoolNodeOperatorHalfSquareRootDelegation from './rocketpool-node-operator-half-square-root-delegation';
+import * as rocketpoolNodeOperatorCubedRoot from './rocketpool-node-operator-cubed-root';
+import * as rocketpoolNodeOperatorCubedRootDelegation from './rocketpool-node-operator-cubed-root-delegation';
+import * as rocketpoolNodeOperatorSingleVote from './rocketpool-node-operator-single-vote';
+import * as rocketpoolNodeOperatorSingleVoteDelegation from './rocketpool-node-operator-single-vote-delegation';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
