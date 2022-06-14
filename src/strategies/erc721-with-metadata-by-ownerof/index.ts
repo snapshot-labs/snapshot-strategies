@@ -63,7 +63,7 @@ export async function strategy(
         .includes(address.toLowerCase())
     );
 
-  const multiplyOccurrencesByWeights = async (
+  const multiplyOccurrencesByWeights = (
     contractCallResponse: [string, { owner: string }],
     weights: number[]
   ) =>
