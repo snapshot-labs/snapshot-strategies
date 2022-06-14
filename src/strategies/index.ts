@@ -129,6 +129,7 @@ import * as molochLoot from './moloch-loot';
 import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as protofiErc721TierWeighted from './protofi-erc721-tier-weighted';
+import * as erc721WithBalance from './erc721-with-balance';
 import * as erc721WithTokenId from './erc721-with-tokenid';
 import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
@@ -368,6 +369,7 @@ const strategies = {
   'maker-ds-chief': makerDsChief,
   erc721,
   'erc721-enumerable': erc721Enumerable,
+  'erc721-with-balance': erc721WithBalance,
   'erc721-with-multiplier': erc721WithMultiplier,
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
