@@ -92,7 +92,7 @@ export async function strategy(
 
     // batch-call contract data
     const customRangeResponse = await getDataFromBlockChain(contractCalls);
-    const customRangeResponseWeighted = await multiplyOccurrencesByWeights(
+    const customRangeResponseWeighted = multiplyOccurrencesByWeights(
       customRangeResponse,
       weights
     );
