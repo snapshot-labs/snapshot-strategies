@@ -1,4 +1,4 @@
-# ERC721 with Metadata attribute - Simple
+# ERC721 with Metadata attribute - Vote power calculated via ownerOf
 
 This strategy allows you to determine the voting power by reading the metadata attribute of holding NFT.
 

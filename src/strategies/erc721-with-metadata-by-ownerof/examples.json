@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "erc721-with-metadata-simple",
+      "name": "erc721-with-metadata-by-ownerof",
       "params": {
         "address": "0xea1982b712FA2eCf27F12E205b3b31D43FA858E5",
         "symbol": "RFM100",

@@ -134,7 +134,7 @@ import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weig
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
 import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
 import * as erc721WithMetadata from './erc721-with-metadata';
-import * as erc721WithMetadataSimple from './erc721-with-metadata-simple';
+import * as erc721WithMetadataByOwnerOf from './erc721-with-metadata-by-ownerof';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
@@ -374,7 +374,7 @@ const strategies = {
   'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
-  'erc721-with-metadata-simple': erc721WithMetadataSimple,
+  'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,

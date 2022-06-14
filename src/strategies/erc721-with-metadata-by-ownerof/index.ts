@@ -5,7 +5,6 @@ export const author = 'victor-kyriazakos';
 export const version = '0.1.0';
 
 const abi = [
-  'function balanceOf(address account) external view returns (uint256)',
   'function ownerOf(uint256 tokenId) public view returns (address owner)'
 ];
 
@@ -41,11 +40,8 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  //const { tokenIdWeightRanges, defaultWeight } = options;
-  const maximumNumberOfBatches = 4;
   const batchSize = 8000;
-  const maximumAllowedRange = maximumNumberOfBatches * batchSize;
-  const erc721WeightedBalance = {};
+  const maximumAllowedRange = 32000; // batchSize * 4
   let customRangeBalance = {};
 
   // 1st, get all metadata values from the source - token weights
@@ -128,5 +124,5 @@ export async function strategy(
     await accumulateCustomRangeBalance({ ...batches[i] });
   }
 
-  return { ...erc721WeightedBalance, ...customRangeBalance };
+  return { ...customRangeBalance };
 }
