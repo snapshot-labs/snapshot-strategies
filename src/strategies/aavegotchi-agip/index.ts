@@ -1,14 +1,10 @@
 import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
 export const author = 'candoizo';
-export const version = '0.2.3';
+export const version = '0.2.4';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
-};
-
-const AAVEGOTCHI_LENDING_SUBGRAPH_URL = {
-  137: 'https://api.thegraph.com/subgraphs/id/QmXb4Wsaj3LFMZicuRmGRg9xTNFjL6pYEXbwktdF7JXYGH'
 };
 
 const prices = {
@@ -463,7 +459,7 @@ export async function strategy(
 
   Object.values(
     await subgraphRequest(
-      AAVEGOTCHI_LENDING_SUBGRAPH_URL[network],
+      AAVEGOTCHI_SUBGRAPH_URL[network],
       activeAgreementsQuery
     )
   )
