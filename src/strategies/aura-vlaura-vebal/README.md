@@ -9,6 +9,8 @@ For example:
 
 In this example, the user has 20k veBAL voting power as they own 20% of the vlAURA voting power.
 
+_Note: When depositing to the auraLocker, a user does not receive vlAURA until the next epoch has begun (Thursday at 00:00 UTC)_
+
 ## Params
 
 - `auraLocker` - (**Required**, `string`) Address of AuraLocker (vlAURA) contract

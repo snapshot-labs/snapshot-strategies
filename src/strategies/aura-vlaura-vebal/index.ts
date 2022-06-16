@@ -45,7 +45,7 @@ export async function strategy(
   ]);
   const res: Response = await multi.execute();
 
-  const x = Object.fromEntries(
+  return Object.fromEntries(
     Object.entries(res.vlAuraVotes).map(([address, votes]) => [
       address,
       parseFloat(
@@ -56,6 +56,4 @@ export async function strategy(
       )
     ])
   );
-  console.log(x);
-  return x;
 }
