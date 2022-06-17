@@ -320,6 +320,7 @@ import * as creditLp from './credit-lp';
 import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
+import * as qipowah from './qipowah';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -641,7 +642,8 @@ const strategies = {
   'credit-lp': creditLp,
   helix,
   'arrakis-finance': arrakisFinance,
-  'aura-vlaura-vebal': auraFinance
+  'aura-vlaura-vebal': auraFinance,
+  qipowah
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
