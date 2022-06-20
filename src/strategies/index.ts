@@ -320,8 +320,10 @@ import * as creditLp from './credit-lp';
 import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
+import * as dpsNft from "./dps-nft";
 
 const strategies = {
+  'dps-nft': dpsNft,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
