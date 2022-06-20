@@ -2,16 +2,17 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "ve-sdl-voting-power",
+      "name": "saddle-vesdl-voting-power",
       "params": {
-        "address": "[TBD: Pending deployment of VotingEscrow contract for veSDL]",
+        "address": "0xD2751CdBED54B87777E805be36670D7aeAe73bb2",
         "symbol": "veSDL",
         "decimals": 18
       }
     },
     "network": "1",
     "addresses": [
+      "0x5BDb37d0Ddea3A90F233c7B7F6b9394B6b2eef34"
     ],
-    "snapshot": 14357198
+    "snapshot": 15002460
   }
 ]

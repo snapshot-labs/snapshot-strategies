@@ -250,7 +250,8 @@ import * as jadeSmrt from './jade-smrt';
 import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
 import * as saddleFinanceV2 from './saddle-finance-v2';
-import * as saddleFinanceVeSDLVotingPower from './saddle-finance-vesdl-voting-power';
+import * as vesdlVotingPower from './saddle-vesdl-voting-power';
+import * as vesdl from './saddle-vesdl';
 import * as lydiaGovVault from './lydia-gov-vault';
 import * as xkawaFarm from './xkawa-farm';
 import * as darkforestScore from './darkforest-score';
@@ -577,7 +578,8 @@ const strategies = {
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
   'saddle-finance-v2': saddleFinanceV2,
-  'saddle-finance-vesdl-voting-power': saddleFinanceVeSDLVotingPower,
+  'saddle-vesdl': vesdl,
+  'saddle-vesdl-voting-power': vesdlVotingPower,
   membership: membership,
   'lydia-gov-vault': lydiaGovVault,
   'xkawa-farm': xkawaFarm,
