@@ -48,7 +48,7 @@ export async function strategy(
       : 'latest';
   const response = await multicall(
     isOfficial ? '74' : network,
-    getProvider(isOfficial ? '74' : network),
+    getProvider(isOfficial ? '74' : network, 'brovider'),
     abi,
     addresses.map((address: any) => [
       isOfficial ? official.get(options.registry) : options.registry,

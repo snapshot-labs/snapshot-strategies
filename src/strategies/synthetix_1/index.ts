@@ -60,7 +60,7 @@ export async function strategy(
       ? _options.L2BlockNumber
       : 'latest';
 
-  const optimismProvider = getProvider('10');
+  const optimismProvider = getProvider('10', 'brovider');
 
   const L1SDSValue = await calculateSDSValue(
     _provider,

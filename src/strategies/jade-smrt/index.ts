@@ -47,9 +47,14 @@ export async function strategy(
   multiBsc.call('busdLPBalance', BUSD, 'balanceOf', [options.JADELP.address]); // BUSD balance in jade-busd pool
 
   // Avax balances:
-  const multiAvax = new Multicaller('43114', getProvider('43114'), abi, {
-    blockTag: avaxBlockTag
-  });
+  const multiAvax = new Multicaller(
+    '43114',
+    getProvider('43114', 'brovider'),
+    abi,
+    {
+      blockTag: avaxBlockTag
+    }
+  );
   addresses.forEach((address: string) => {
     multiAvax.call(address + '-smrt', options.SMRT.address, 'balanceOf', [
       address

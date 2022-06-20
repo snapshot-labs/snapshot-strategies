@@ -26,11 +26,12 @@ if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
 function callGetScores(example) {
+  const provider = snapshot.utils.getProvider(example.network, 'brovider');
   return snapshot.utils.getScoresDirect(
     'yam.eth',
     [example.strategy],
     example.network,
-    new JsonRpcProvider(networks[example.network].rpc[0]),
+    provider,
     example.addresses,
     example.snapshot
   );
@@ -88,7 +89,7 @@ describe(`\nTest strategy "${strategy}"`, () => {
 
   it('File examples.json must use a snapshot block number in the past', async () => {
     expect(typeof example.snapshot).toBe('number');
-    const provider = snapshot.utils.getProvider(example.network);
+    const provider = snapshot.utils.getProvider(example.network, 'brovider');
     const blockNumber = await snapshot.utils.getBlockNumber(provider);
     expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
   });

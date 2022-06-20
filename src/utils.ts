@@ -3,17 +3,28 @@ import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
 
-async function callStrategy(space, network, addresses, strategy, snapshot) {
+async function callStrategy(
+  space,
+  network,
+  provider,
+  addresses,
+  strategy,
+  snapshot
+) {
   if (
     (snapshot !== 'latest' && strategy.params?.start > snapshot) ||
     (strategy.params?.end &&
       (snapshot === 'latest' || snapshot > strategy.params?.end))
   )
     return {};
+  provider =
+    strategy.network && strategy.network != network
+      ? getProvider(strategy.network, 'brovider')
+      : provider;
   const score: any = await _strategies[strategy.name].strategy(
     space,
     network,
-    getProvider(network),
+    provider,
     addresses,
     strategy.params,
     snapshot
@@ -36,6 +47,7 @@ export async function getScoresDirect(
   snapshot: number | string = 'latest'
 ) {
   try {
+    if (!provider) provider = getProvider(network, 'brovider');
     const networks = strategies.map((s) => s.network || network);
     const snapshots = await getSnapshots(network, snapshot, provider, networks);
     // @ts-ignore
@@ -45,6 +57,7 @@ export async function getScoresDirect(
         callStrategy(
           space,
           strategy.network || network,
+          provider,
           addresses,
           strategy,
           snapshots[strategy.network || network]

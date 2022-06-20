@@ -60,7 +60,7 @@ export async function strategy(
   const brightIdNetwork = options.brightIdNetwork || network;
   const response = await multicall(
     brightIdNetwork,
-    getProvider(brightIdNetwork),
+    getProvider(brightIdNetwork, 'brovider'),
     abi,
     addresses.map((address: any) => [
       options.registry,
@@ -85,7 +85,7 @@ export async function strategy(
       space,
       options.strategies[chain],
       chain,
-      getProvider(chain),
+      getProvider(chain, 'brovider'),
       allAddresses,
       chainBlocks[chain]
     );
