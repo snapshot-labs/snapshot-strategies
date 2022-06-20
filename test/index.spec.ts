@@ -1,8 +1,6 @@
-const { JsonRpcProvider } = require('@ethersproject/providers');
 const { getAddress } = require('@ethersproject/address');
 const fetch = require('cross-fetch');
 const snapshot = require('../').default;
-const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 const snapshotjs = require('@snapshot-labs/snapshot.js');
 const addresses = require('./addresses.json');
 
