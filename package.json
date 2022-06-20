@@ -13,7 +13,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p .",
-    "test": "jest --runInBand --testTimeout=120000",
+    "test": "jest -i",
     "prepublishOnly": "npm run build",
     "prepare": "npm run build",
     "postbuild": "copyfiles -u 1 src/**/*.md dist/ && copyfiles -u 1 src/**/*.json dist/",
