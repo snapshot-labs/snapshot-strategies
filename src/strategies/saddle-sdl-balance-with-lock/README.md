@@ -1,6 +1,6 @@
-# saddle-vesdl
+# saddle-sdl-balance-with-lock
 
-This provides the Saddle DAO token (SDL) balance + the SDL balance for vote escrow of users
+This provides the Saddle DAO token (SDL) balance + the locked SDL balance for vote escrow of users
 
 Here is an example of parameters:
 

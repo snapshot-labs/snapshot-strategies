@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "saddle-vesdl",
+      "name": "saddle-sdl-balance-with-lock",
       "params": {
         "address": "0xf1dc500fde233a4055e25e5bbf516372bc4f6871",
         "symbol": "SDL",
