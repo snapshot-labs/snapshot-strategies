@@ -20,7 +20,7 @@ export async function strategy(
       space,
       network,
       provider,
-      recusalList,
+      addresses.filter((address: any) => !recusalList.includes(address.toLowerCase())),
       options.strategy.params,
       snapshot
     );
