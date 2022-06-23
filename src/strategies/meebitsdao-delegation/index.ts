@@ -87,7 +87,7 @@ export async function strategy(
   const meebitsScores = await erc721Strategy(
     space,
     options.tokenAddresses[2].network,
-    getProvider(options.tokenAddresses[2].network),
+    getProvider(options.tokenAddresses[2].network, 'brovider'),
     lowerCaseAddresses,
     options.tokenAddresses[2],
     blocks[options.tokenAddresses[2].network]

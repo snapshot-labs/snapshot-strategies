@@ -66,7 +66,7 @@ export async function strategy(
   // *** Response *** //
   const responseETH = await multicall(
     options.network_ETHEREUM,
-    getProvider(options.network_ETHEREUM),
+    getProvider(options.network_ETHEREUM, 'brovider'),
     abi,
     [
       ...SDT_Query_ETH,
@@ -81,7 +81,7 @@ export async function strategy(
   );
   const responsePOLYGON = await multicall(
     options.network_POLYGON,
-    getProvider(options.network_POLYGON),
+    getProvider(options.network_POLYGON, 'brovider'),
     abi,
     [...SDT_Query_POLYGON],
     {

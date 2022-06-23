@@ -33,7 +33,7 @@ export async function strategy(
       strategies[strategy.name].strategy(
         space,
         strategy.network,
-        getProvider(strategy.network),
+        getProvider(strategy.network, 'brovider'),
         addresses,
         strategy.params,
         blocks[strategy.network]
