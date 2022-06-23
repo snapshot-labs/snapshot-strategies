@@ -6,26 +6,41 @@
       "title": "Recusal List",
       "type": "object",
       "properties": {
-        "symbol": {
-          "type": "string",
-          "title": "Symbol",
-          "examples": ["e.g. UNI"],
-          "maxLength": 16
-        },
         "addresses": {
           "type": "array",
           "title": "Wallet addresses",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "examples": [
+            "e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
+          ],
           "items": {
             "type": "string",
             "pattern": "^0x[a-fA-F0-9]{40}$",
             "minLength": 42,
             "maxLength": 42
           }
+        },
+        "strategy": {
+          "title": "Strategy?",
+          "type": "object",
+          "properties": {
+            "name": {
+              "type": "string",
+              "examples": [
+                "e.g. erc721"
+              ],
+              "minLength": 3,
+              "maxLength": 30
+            },
+            "params": {
+              "type": "object",
+              "title": "Strategy params"
+            }
+          }
         }
       },
-      "required": ["addresses"],
-      "additionalProperties": false
+      "required": [
+        "addresses"
+      ]
     }
   }
 }

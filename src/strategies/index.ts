@@ -137,7 +137,6 @@ import * as erc721WithMetadata from './erc721-with-metadata';
 import * as erc721WithMetadataByOwnerOf from './erc721-with-metadata-by-ownerof';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
-import * as erc721ExcludingAddresses from './erc721-excluding-addresses';
 import * as erc721MultiRegistry from './erc721-multi-registry';
 import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
@@ -371,7 +370,6 @@ const strategies = {
   'eth-wallet-age': ethWalletAge,
   'maker-ds-chief': makerDsChief,
   erc721,
-  'erc721-excluding-addresses': erc721ExcludingAddresses,
   'erc721-enumerable': erc721Enumerable,
   'erc721-with-multiplier': erc721WithMultiplier,
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
