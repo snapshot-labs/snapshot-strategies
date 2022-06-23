@@ -16,6 +16,7 @@ Below is an example of parameters. The address list renotes which addresses to r
     "params": {
       "address": "0x3B8CeB26f4FabACbD02b22caeceeb26D67E4013A",
       "symbol": "MLZ"
+    }
   }
 }
 ```

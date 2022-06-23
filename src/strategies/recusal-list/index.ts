@@ -15,18 +15,18 @@ export async function strategy(
     return address.toLowerCase();
   });
 
-  if (options.strategy.name) {
+  if (options.strategy?.name) {
     const result = await strategies[options.strategy.name].strategy(
       space,
       network,
       provider,
-      addresses,
+      recusalList,
       options.strategy.params,
       snapshot
     );
 
     return Object.fromEntries(
-      Object.entries(result).map(([address, _]) => [
+      Object.entries(result).map(([address]) => [
         address,
         recusalList.includes(address.toLowerCase()) ? 0 : 1
       ])
