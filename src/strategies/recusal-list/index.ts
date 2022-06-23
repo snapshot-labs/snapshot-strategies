@@ -11,9 +11,7 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const recusalList = options?.addresses.map((address) => {
-    return address.toLowerCase();
-  });
+  const recusalList = options?.addresses.map((address) => address.toLowerCase()) || [];
 
   if (options.strategy?.name) {
     const result = await strategies[options.strategy.name].strategy(
