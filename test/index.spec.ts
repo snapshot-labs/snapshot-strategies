@@ -1,10 +1,11 @@
-const { JsonRpcProvider } = require('@ethersproject/providers');
-const { getAddress } = require('@ethersproject/address');
-const fetch = require('cross-fetch');
-const snapshot = require('../').default;
-const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
-const snapshotjs = require('@snapshot-labs/snapshot.js');
-const addresses = require('./addresses.json');
+import { JsonRpcProvider } from '@ethersproject/providers';
+import { getAddress } from '@ethersproject/address';
+import { performance } from 'perf_hooks';
+import fetch from 'cross-fetch';
+import snapshot from '../src';
+import networks from '@snapshot-labs/snapshot.js/src/networks.json';
+import snapshotjs from '@snapshot-labs/snapshot.js';
+import addresses from './addresses.json';
 
 const strategyArg =
   process.env['npm_config_strategy'] ||
@@ -15,12 +16,13 @@ const strategyArg =
     .split('--strategy=')
     .pop();
 
-const moreArg =
+const moreArg: string | undefined =
   process.env['npm_config_more'] ||
   process.argv
     .find((arg) => arg.includes('--more='))
     ?.split('--more=')
     ?.pop();
+
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
 if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
@@ -37,8 +39,8 @@ function callGetScores(example) {
 }
 
 describe(`\nTest strategy "${strategy}"`, () => {
-  let scores = null;
-  let getScoresTime = null;
+  let scores: any = null;
+  let getScoresTime: number | null = null;
 
   it('Strategy name should be lowercase and should not contain any special char expect hyphen', () => {
     expect(strategy).toMatch(/^[a-z0-9\-]+$/);
@@ -83,7 +85,7 @@ describe(`\nTest strategy "${strategy}"`, () => {
   });
 
   it('File examples.json should include at least 1 address with a positive score', () => {
-    expect(Object.values(scores[0]).some((score) => score > 0)).toBe(true);
+    expect(Object.values(scores[0]).some((score: any) => score > 0)).toBe(true);
   });
 
   it('File examples.json must use a snapshot block number in the past', async () => {
@@ -104,9 +106,8 @@ describe(`\nTest strategy "${strategy}"`, () => {
 });
 
 describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
-  let scores = null;
-  let getScoresTime = null;
-
+  let scores: any = null;
+  let getScoresTime: number | null = null;
   it('Strategy should run without any errors', async () => {
     const getScoresStart = performance.now();
     scores = await callGetScores({ ...example, snapshot: 'latest' });
@@ -144,11 +145,11 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
 (moreArg ? describe : describe.skip)(
   `\nTest strategy "${strategy}" (with ${moreArg || 500} addresses)`,
   () => {
-    let scoresMore = null;
-    let getScoresTimeMore = null;
+    let scoresMore: any = null;
+    let getScoresTimeMore: number | null = null;
 
     it(`Should work with ${moreArg || 500} addresses`, async () => {
-      example.addresses = addresses.slice(0, moreArg);
+      example.addresses = addresses.slice(0, Number(moreArg));
       const getScoresStart = performance.now();
       scoresMore = await callGetScores(example);
       const getScoresEnd = performance.now();
