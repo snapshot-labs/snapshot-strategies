@@ -11,30 +11,34 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const recusalList = options?.addresses.map((address) => address.toLowerCase()) || [];
+  const recusalList =
+    options?.addresses.map((address) => address.toLowerCase()) || [];
 
   if (options.strategy?.name) {
-    const result = await strategies[options.strategy.name].strategy(
+    const result: { string: number } = await strategies[
+      options.strategy.name
+    ].strategy(
       space,
       network,
       provider,
-      addresses.filter((address: any) => !recusalList.includes(address.toLowerCase())),
+      addresses.filter(
+        (address: any) => !recusalList.includes(address.toLowerCase())
+      ),
       options.strategy.params,
       snapshot
     );
-
     return Object.fromEntries(
-      Object.entries(result).map(([address]) => [
+      Object.entries(result).map(([address, value]) => [
         address,
-        recusalList.includes(address.toLowerCase()) ? 0 : 1
+        recusalList.includes(address.toLowerCase()) ? 0 : value
       ])
-    ); 
+    );
   } else {
     return Object.fromEntries(
       addresses.map((address) => [
         address,
         recusalList.includes(address.toLowerCase()) ? 0 : 1
       ])
-    ); 
-  }  
+    );
+  }
 }
