@@ -3,7 +3,7 @@ import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'miertschink';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
   space,
