@@ -1,7 +1,7 @@
 import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
 export const author = 'candoizo';
-export const version = '0.2.4';
+export const version = '0.2.5';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
@@ -388,17 +388,7 @@ export async function strategy(
   };
 
   for (let i = 0; i <= 5; i++) {
-    query.users['gotchisOwned' + i] = {
-      __aliasFor: 'gotchisOwned',
-      __args: {
-        first: maxResultsPerQuery,
-        skip: i * maxResultsPerQuery,
-        orderBy: 'gotchiId'
-      },
-      baseRarityScore: true,
-      equippedWearables: true
-    };
-    query.users['gotchisLentOut' + i] = {
+    query.users['gotchisOriginalOwned' + i] = {
       __aliasFor: 'gotchisOriginalOwned',
       __args: {
         first: maxResultsPerQuery,
