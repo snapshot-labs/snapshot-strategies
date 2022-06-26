@@ -388,17 +388,7 @@ export async function strategy(
   };
 
   for (let i = 0; i <= 5; i++) {
-    query.users['gotchisOwned' + i] = {
-      __aliasFor: 'gotchisOwned',
-      __args: {
-        first: maxResultsPerQuery,
-        skip: i * maxResultsPerQuery,
-        orderBy: 'gotchiId'
-      },
-      baseRarityScore: true,
-      equippedWearables: true
-    };
-    query.users['gotchisLentOut' + i] = {
+    query.users['gotchisOriginalOwned' + i] = {
       __aliasFor: 'gotchisOriginalOwned',
       __args: {
         first: maxResultsPerQuery,
