@@ -28,7 +28,9 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   // Maximum of 5 multicall
-  expect(options.sampleStep).toBeLessThan(6);
+  if (options.sampleStep > 5) {
+    throw new Error("maximum of 5 call");
+  }
 
   // About the blockList
   const av_blockEmission = options.avgBlockTime;
