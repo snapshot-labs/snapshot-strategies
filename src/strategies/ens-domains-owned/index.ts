@@ -19,37 +19,47 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const params = {
-    domains: {
-      __args: {
-        where: {
-          name: options.domain
-        },
-        first: 1000
-      },
-      id: true,
-      labelName: true,
-      subdomains: {
-        __args: {
-          where: {
-            owner_in: addresses.map((address) => address.toLowerCase())
+  const max = 10;
+  const count = Math.ceil(addresses.length / max);
+  const pages = Array.from(Array(count)).map((x, i) =>
+    addresses.slice(max * i, max * (i + 1))
+  );
+  const params = Object.fromEntries(
+    pages
+      .map((page, i) => `_${i}`)
+      .map((q, i) => [
+        q,
+        {
+          __aliasFor: 'domains',
+          __args: {
+            block: snapshot !== 'latest' ? { number: snapshot } : undefined,
+            where: {
+              name: options.domain
+            },
+            first: 1000
+          },
+          id: true,
+          labelName: true,
+          subdomains: {
+            __args: {
+              where: {
+                owner_in: pages[i].map((address) => address.toLowerCase())
+              }
+            },
+            owner: {
+              id: true
+            }
           }
-        },
-        owner: {
-          id: true
         }
-      }
-    }
-  };
+      ])
+  );
 
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    params.domains.__args.block = { number: snapshot };
-  }
-  const result = await subgraphRequest(ENS_SUBGRAPH_URL[network], params);
+  let result = await subgraphRequest(ENS_SUBGRAPH_URL[network], params);
+  result = [].concat.apply([], Object.values(result));
+
   const score = {};
-  if (result && result.domains) {
-    result.domains.forEach((u) => {
+  if (result) {
+    result.forEach((u) => {
       u.subdomains.forEach((domain) => {
         const userAddress = getAddress(domain.owner.id);
         if (!score[userAddress]) score[userAddress] = 0;

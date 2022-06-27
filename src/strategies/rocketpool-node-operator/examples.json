@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rocketpool-node-operator",
+      "params": {
+        "address": "0xD33526068D116cE69F19A9ee46F0bd304F21A51f",
+        "symbol": "RPL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x17Fa597cEc16Ab63A7ca00Fb351eb4B29Ffa6f46",
+      "0xca317A4ecCbe0Dd5832dE2A7407e3c03F88b2CdD",
+      "0x327260c50634136551bfE4e4eB082281555AAfAE",
+      "0x5d8172792a9e649053c07366E3a7C24a37F0C534",
+      "0x701F4dcEAD1049FA01F321d49F6dca525cF4A5A5",
+      "0xb8ed9ea221bf33d37360A76DDD52bA7b1E66AA5C",
+      "0xbfaf9BFa09F26EF8104A6d5FF09afdCC9300E5bc",
+      "0x174E0b45C03318B0C9bc03573028605B26764931",
+      "0x5f4cb66c9b1ed8a4758a059fdb10e0f72c307d8a",
+      "0x24609303b67051ef77735e34d671e2a13e3da35d",
+      "0xe35854cde18a3cc4706134b4850dd861a55b9a30",
+      "0x53938f795ab6c57070aad32905a70a2e5961a887",
+      "0xD6527Bd3d62f1Da520E6f74B89EBD8F8cD04564f",
+      "0xf8bFf17a1C9dfC632F6C905d12C404AfE451B16c",
+      "0x689c6853f3debac91b72f32bafa83200eec9613c",
+      "0xaebb400542598e6ee58b2fdf2e7425c07e8ba68d"
+    ],
+    "snapshot": 14490773
+  }
+]

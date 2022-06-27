@@ -10,8 +10,26 @@
     "network": "56",
     "addresses": [
       "0x8b017905DC96B38f817473dc885F84D4C76bC113",
-      "0x21fF20E7e1B820020415707298b92299CF0951fE"
+      "0x21fF20E7e1B820020415707298b92299CF0951fE",
+      "0xa7A01B93B889ff0639d5ec02914A77529924a46F",
+      "0x68e0c606036CAcb83D1755ca31f79630468F044e"
     ],
-    "snapshot": 8599985
+    "snapshot": 16308675
+  },
+  {
+    "name": "Example query - before 16300686 snapshot",
+    "strategy": {
+      "name": "cake",
+      "params": {
+        "symbol": "CAKE"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x8b017905DC96B38f817473dc885F84D4C76bC113",
+      "0x21fF20E7e1B820020415707298b92299CF0951fE",
+      "0x68e0c606036CAcb83D1755ca31f79630468F044e"
+    ],
+    "snapshot": 15204010
   }
 ]

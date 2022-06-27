@@ -12,12 +12,11 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const delegationSpace = options.delegationSpace || space;
   const delegations = await getDelegations(
-    space,
+    delegationSpace,
     network,
-    provider,
     addresses,
-    options,
     snapshot
   );
   if (Object.keys(delegations).length === 0) return {};
@@ -39,7 +38,7 @@ export async function strategy(
     addresses.map((address) => {
       const addressScore = delegations[address]
         ? delegations[address].reduce(
-            (a, b) => a + scores.reduce((x, y) => y[b] ? (x + y[b]) : x, 0),
+            (a, b) => a + scores.reduce((x, y) => (y[b] ? x + y[b] : x), 0),
             0
           )
         : 0;

@@ -1,0 +1,42 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dfyn-staked-in-vaults",
+      "params": {
+        "name": "Dfyn Vaults",
+        "contractAddresses": [
+          "0x8b016E4f714451f3aFF88B82Ec9dfAe13D664d42",
+          "0x07E3f04903aBd6506A6E41246Da7d39dA0D6a8CA"
+        ],
+        "symbol": "DFYN",
+        "scoreMultiplier": 1,
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "balanceOf",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x41CdE29bF9aea095fDD204D150451678b2c6A736",
+      "0xD7B26f34775fa41D6dCE182851642573aBF9B532"
+    ],
+    "snapshot": 18342938
+  }
+]

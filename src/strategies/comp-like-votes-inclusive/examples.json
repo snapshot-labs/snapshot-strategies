@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Comp Like Votes Inclusive",
+    "strategy": {
+      "name": "comp-like-votes-inclusive",
+      "params": {
+        "address": "0x86772b1409b61c639EaAc9Ba0AcfBb6E238e5F83",
+        "symbol": "NDX",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x0000006daea1723962647b7e189d311d757Fb793",
+      "0x7e388444731C38189C0685F6D98605107fF59282"
+    ],
+    "snapshot": 13340820
+  }
+]

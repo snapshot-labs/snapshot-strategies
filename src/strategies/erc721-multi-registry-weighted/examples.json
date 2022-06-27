@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-multi-registry-weighted",
+      "params": {
+        "symbol": "FRWC",
+        "tokens": [
+          "0x521f9c7505005cfa19a8e5786a9c3c9c9f5e6f42",
+          "0xf55b615b479482440135ebf1b907fd4c37ed9420",
+          "0x251b5f14a825c537ff788604ea1b58e49b70726f"
+        ],
+        "weights": [2, 4, 8]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x6bf97f2534be2242ddb3a29bfb24d498212dcded",
+      "0x7908a20be7f8ce24baa5c9cea46e3678c1ce3f4e",
+      "0x0abb75f676d0c131c04324dd98150a39213edd41",
+      "0x87931e7ad81914e7898d07c68f145fc0a553d8fb",
+      "0x17bc9268f8abb454f0c7ae4d76d969a37235480d",
+      "0xcaed230e3a8ac5fa16595810ade9cb739f47f6ba",
+      "0xf296178d553c8ec21a2fbd2c5dda8ca9ac905a00",
+      "0xd584fe736e5aad97c437c579e884d15b17a54a51",
+      "0x90e5aa59a9df2add394df81521dbbed5f3c4a1a3"
+    ],
+    "snapshot": 14173407
+  }
+]

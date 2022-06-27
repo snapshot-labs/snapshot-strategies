@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "genzees-from-subgraph",
+      "params": {
+        "symbol": "GZ",
+        "graph": "https://api.thegraph.com/subgraphs/name/alephao/genzee"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x000000070f91b6c56fa08d4f3a26c7fc992b38f4",
+      "0x0007796d3b5bae6e3960ecb639bc159f6c1dcdf0",
+      "0x000d65681e8df8a6ad5bc864833c38c9ecdac0ff",
+      "0x0010e29271bbca7abfbbbda1bdec668720cca795",
+      "0x002c609dc34918269e2174d82fcb6ecb4f6cf386"
+    ],
+    "snapshot": 14893355
+  }
+]

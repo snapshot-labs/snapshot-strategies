@@ -15,16 +15,8 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const delegations = await getDelegations(
-    space,
-    network,
-    provider,
-    addresses,
-    options,
-    snapshot
-  );
+  const delegations = await getDelegations(space, network, addresses, snapshot);
   if (Object.keys(delegations).length === 0) return {};
-  console.debug('Delegations', delegations);
 
   const delegationsArray = Object.values(
     delegations
@@ -61,10 +53,10 @@ export async function strategy(
     options,
     snapshot
   );
-  console.debug('Delegators ERC20 balances', erc20Balances);
-  console.debug('Delegators EasyStaking balances', easyStakingBalances);
-  console.debug('Delegators POSDAO Staking balances', posdaoStakingBalances);
-  console.debug('Delegators ERC20 balances on xDai', erc20BalancesOnXdai);
+  // console.debug('Delegators ERC20 balances', erc20Balances);
+  // console.debug('Delegators EasyStaking balances', easyStakingBalances);
+  // console.debug('Delegators POSDAO Staking balances', posdaoStakingBalances);
+  // console.debug('Delegators ERC20 balances on xDai', erc20BalancesOnXdai);
 
   return Object.fromEntries(
     addresses.map((address) => {

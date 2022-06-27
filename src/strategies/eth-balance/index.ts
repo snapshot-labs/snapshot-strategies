@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
-import networks from '../../networks.json';
+import networks from '@snapshot-labs/snapshot.js/src/networks.json';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
@@ -29,10 +29,12 @@ export async function strategy(
     ]),
     { blockTag }
   );
+  const decimals = options.decimals || 18;
+
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      parseFloat(formatUnits(value.toString(), 18))
+      parseFloat(formatUnits(value.toString(), decimals))
     ])
   );
 }

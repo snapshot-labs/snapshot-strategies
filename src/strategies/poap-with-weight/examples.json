@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "poap-with-weight",
+      "params": {
+        "symbol": "POAP",
+        "tokenIds": [
+          { "id": "100001", "weight": 100 },
+          { "id": "100002", "weight": 10 },
+          { "id": "1000", "weight": 1 }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x837d21cfda71e93e5257f95ce2c49751675ebcb1",
+      "0x00ac36c51500e900ab0f4e692fc1338cf70571b2",
+      "0xdd6f702c2907ce401888d993d7dc185e7a824466"
+    ],
+    "snapshot": 13040844
+  }
+]
