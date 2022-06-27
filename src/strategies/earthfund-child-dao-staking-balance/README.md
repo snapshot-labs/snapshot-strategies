@@ -1,8 +1,8 @@
-# erc20-balance-of
+# earthfund-child-dao-staking-balance
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
+Earthfund's custom strategy, it returns the staked balances of the voters for a specific child dao token in the staking rewards contract.
 
-Here is an example of parameters:
+<!-- Here is an example of parameters:
 
 ```json
 {
@@ -10,4 +10,4 @@ Here is an example of parameters:
   "symbol": "DAI",
   "decimals": 18
 }
-```
+``` -->
