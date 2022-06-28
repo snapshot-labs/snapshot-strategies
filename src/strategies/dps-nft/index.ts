@@ -29,15 +29,49 @@ export async function strategy(
       numberOfTokens: true
       }
   };
+      
+  const paramsForNFTs = {
+    nftlockeds: {
+      tokenId: true,
+      owner: {
+        id: true
+      },
+      transferedAtTimestamp: true
+    },
+    nftafterClaimeds: {
+      tokenId: true,
+      owner: {
+        id: true
+      },
+      transferedAtTimestamp: true
+    }
+  }
 
   const result = await subgraphRequest(DPS_SUBGRAPH_URL[network], params);
   const score = {};
+  const resultNFTs = await subgraphRequest(DPS_SUBGRAPH_URL[network], paramsForNFTs);
 
-  if (result && result.users) {
+  if (result && result.users && resultNFTs && resultNFTs.nftlockeds && resultNFTs.nftafterClaimeds) {
     result.users.forEach((u) => {
-      const userScore = parseInt(u.numberOfTokens);
+      let userScore = parseInt(u.numberOfTokens);
+      let lockedNFTs = 0;
+      let claimedNFTs = 0;
       const userAddress = getAddress(u.id);
+
+      resultNFTs.nftlockeds.forEach((n) => {
+        if(n.owner.id === u.id) {
+          lockedNFTs = lockedNFTs + 1;
+        }
+      });
+
+      resultNFTs.nftafterClaimeds.forEach((nft) => {
+        if(nft.owner.id === u.id) {
+          claimedNFTs = claimedNFTs + 1;
+        }
+      });
       
+      userScore = userScore + lockedNFTs - claimedNFTs;
+     
       if (!score[userAddress]) 
         score[userAddress] = 0;
 

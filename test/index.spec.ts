@@ -78,6 +78,10 @@ describe(`\nTest strategy "${strategy}"`, () => {
     ).toBe(true);
   });
 
+  it("It is a test for me", () => {
+
+  });
+
   it('Should take less than 10 sec. to resolve', () => {
     expect(getScoresTime).toBeLessThanOrEqual(10000);
   });

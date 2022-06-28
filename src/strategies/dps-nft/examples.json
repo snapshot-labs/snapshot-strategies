@@ -10,13 +10,12 @@
     },
     "network": "80001", 
     "addresses": [
-      "0x0a147873db368b9104e72ae0b7ea1ae926a53dc2",
       "0x0c328ffc95155bf02015cb04cc68f7a9cebdb214",
-      "0x2c955912526f52a98a6afff9e2c916e1cce8b814",
-      "0x4bb7e1d5c463ec80d0b316e83a090b00f7d87d1d",
-      "0x97237ae060693141d5d93073e0cfa0f6395cba80",
-      "0xd63bf41d1c2f208d1abd35c6eae7434a7e603b77"
+      "0x15f48ab7ada1541a205eb9ee20f5a4e76ce3882a",
+      "0x5e733901b92bc5110779f8ee64de3d8af0629dc6",
+      "0xc32004eced24167e8aaef9690da3a70387a97a9b",
+      "0x60b5d811673a6420851d087cff84c660c14a3acb"
     ],
-    "snapshot": 26253570
+    "snapshot": 24153570
   }
 ]
