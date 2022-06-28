@@ -1,4 +1,4 @@
-# Biswap
+# Apeswap
 
 This is the most common strategy, it returns the balances of the voters for a balances GNANA token
 in Apeswap project(pools, token).
