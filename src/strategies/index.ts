@@ -321,6 +321,7 @@ import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
+import * as unipilotTokenBalance from './unipilot-token-balance';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -375,7 +376,8 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple':
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -571,7 +573,8 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers':
+    unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
@@ -643,7 +646,8 @@ const strategies = {
   helix,
   'arrakis-finance': arrakisFinance,
   'aura-vlaura-vebal': auraFinance,
-  'rocketpool-node-operator': rocketpoolNodeOperator
+  'rocketpool-node-operator': rocketpoolNodeOperator,
+  'unipilot-token-balance': unipilotTokenBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

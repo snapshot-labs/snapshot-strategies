@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Unipilot token balance query",
+    "strategy": {
+      "name": "unipilot-token-balance",
+      "params": {
+        "symbol": "UNIPILOT",
+        "decimals": 18,
+        "tokenAddress": "0x37c997b35c619c21323f3518b9357914e8b99525",
+        "stakingAddress": "0xc9256e6e85ad7ac18cd9bd665327fc2062703628"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x899917ef0213b78cd9da7ff930efbd505433de56",
+      "0xfae8f7e3f0feff171f92a340f96912e05d5855a1"
+    ],
+    "snapshot": 15034421
+  }
+]
