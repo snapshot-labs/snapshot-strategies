@@ -1,13 +1,12 @@
 # earthfund-child-dao-staking-balance
 
-Earthfund's custom strategy, it returns the staked balances of the voters for a specific child dao token in the staking rewards contract.
+Earthfund's custom snapshot strategy, calculates voting score based of the staked balances of the voters for a specific child dao token in the staking rewards contract.
 
-<!-- Here is an example of parameters:
+Here is an example of parameters:
 
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
-  "decimals": 18
+  "stakingRewardsContractAddress": "0x351e9c4de57a1854397E97Df909Ea0b3D7cbd219",
+  "childDaoTokenAddress": "0xbEdAf8563DE032A8A48ae8B04552c18c6Cb60B85"
 }
-``` -->
+```
