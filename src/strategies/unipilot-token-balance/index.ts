@@ -28,21 +28,21 @@ const abi_pilot_staking = [
 ];
 
 export async function strategy(
-  _space,
+  space,
   network,
-  _provider,
+  provider,
   addresses,
   options,
   snapshot
 ) {
-  const _addresses = addresses.map((address) => address.toLowerCase());
+  const _addresses = addresses.map((address: string) => address.toLowerCase());
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const multi_balance = new Multicaller(network, _provider, abi_erc20, {
+  const multi_balance = new Multicaller(network, provider, abi_erc20, {
     blockTag
   });
-  const multi_staking = new Multicaller(network, _provider, abi_pilot_staking, {
+  const multi_staking = new Multicaller(network, provider, abi_pilot_staking, {
     blockTag
   });
 
@@ -54,22 +54,17 @@ export async function strategy(
   const [result_balance, result_staking]: [Record<string, BigNumberish>, any] =
     await Promise.all([multi_balance.execute(), multi_staking.execute()]);
 
-  let r = Object.fromEntries(
-    _addresses.map((address) => [
-      address,
-      parseFloat(
+  return Object.fromEntries(
+    _addresses.map((address) => {
+      const userBalanceInDecimals = parseFloat(
         formatUnits(result_balance[address].toString(), options.decimals)
-      ) +
-        parseFloat(
-          formatUnits(
-            result_staking[address].amount.toString(),
-            options.decimals
-          )
-        )
-    ])
+      );
+
+      const userStakedBalanceInDecimals = parseFloat(
+        formatUnits(result_staking[address].amount.toString(), options.decimals)
+      );
+
+      return [address, userBalanceInDecimals + userStakedBalanceInDecimals];
+    })
   );
-
-  console.log(r);
-
-  return r;
 }
