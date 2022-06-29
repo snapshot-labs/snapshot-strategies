@@ -378,8 +378,7 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple':
-    erc721WithTokenIdRangeWeightsSimple,
+'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
