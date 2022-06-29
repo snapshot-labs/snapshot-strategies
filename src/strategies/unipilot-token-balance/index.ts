@@ -1,17 +1,31 @@
-import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
-import { Multicaller } from '../../utils';
+import { strategy as contractCall } from '../contract-call';
 
 export const author = 'rafaqat11';
 export const version = '0.1.0';
 
-const abi_erc20 = [
-  'function balanceOf(address account) external view returns (uint256)'
-];
+const abi_erc20 = {
+  inputs: [{ internalType: 'address', name: 'account', type: 'address' }],
+  name: 'balanceOf',
+  outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
+  stateMutability: 'view',
+  type: 'function'
+};
 
-const abi_pilot_staking = [
-  'function userInfo(address) view returns (uint256 lastUpdateRewardToken, uint256 amount, uint256 rewardDebt)'
-];
+const abi_pilot_staking = {
+  inputs: [{ internalType: 'address', name: '', type: 'address' }],
+  name: 'userInfo',
+  outputs: [
+    {
+      internalType: 'uint256',
+      name: 'lastUpdateRewardToken',
+      type: 'uint256'
+    },
+    { internalType: 'uint256', name: 'amount', type: 'uint256' },
+    { internalType: 'uint256', name: 'rewardDebt', type: 'uint256' }
+  ],
+  stateMutability: 'view',
+  type: 'function'
+};
 
 export async function strategy(
   space,
@@ -23,34 +37,42 @@ export async function strategy(
 ) {
   const _addresses = addresses.map((address: string) => address.toLowerCase());
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const multi_balance_promise = contractCall(
+    space,
+    network,
+    provider,
+    _addresses,
+    {
+      ...options,
+      address: options?.tokenAddress,
+      methodABI: abi_erc20
+    },
+    snapshot
+  );
 
-  const multi_balance = new Multicaller(network, provider, abi_erc20, {
-    blockTag
-  });
-  const multi_staking = new Multicaller(network, provider, abi_pilot_staking, {
-    blockTag
-  });
+  const multi_staking_promise = contractCall(
+    space,
+    network,
+    provider,
+    _addresses,
+    {
+      ...options,
+      address: options?.stakingAddress,
+      methodABI: abi_pilot_staking,
+      output: 'amount'
+    },
+    snapshot
+  );
 
-  _addresses.forEach((address) => {
-    multi_balance.call(address, options.tokenAddress, 'balanceOf', [address]);
-    multi_staking.call(address, options.stakingAddress, 'userInfo', [address]);
-  });
-
-  const [result_balance, result_staking]: [Record<string, BigNumberish>, any] =
-    await Promise.all([multi_balance.execute(), multi_staking.execute()]);
+  const [multi_balance, multi_staking] = await Promise.all([
+    multi_balance_promise,
+    multi_staking_promise
+  ]);
 
   return Object.fromEntries(
-    _addresses.map((address) => {
-      const userBalanceInDecimals = parseFloat(
-        formatUnits(result_balance[address].toString(), options.decimals)
-      );
-
-      const userStakedBalanceInDecimals = parseFloat(
-        formatUnits(result_staking[address].amount.toString(), options.decimals)
-      );
-
-      return [address, userBalanceInDecimals + userStakedBalanceInDecimals];
-    })
+    _addresses.map((address: string) => [
+      address,
+      multi_balance[address] + multi_staking[address]
+    ])
   );
 }
