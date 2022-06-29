@@ -10,21 +10,7 @@ const abi_erc20 = [
 ];
 
 const abi_pilot_staking = [
-  {
-    inputs: [{ internalType: 'address', name: '', type: 'address' }],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'lastUpdateRewardToken',
-        type: 'uint256'
-      },
-      { internalType: 'uint256', name: 'amount', type: 'uint256' },
-      { internalType: 'uint256', name: 'rewardDebt', type: 'uint256' }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(address) view returns (uint256 lastUpdateRewardToken, uint256 amount, uint256 rewardDebt)'
 ];
 
 export async function strategy(
