@@ -45,11 +45,15 @@ export async function strategy(
   });
 
   const pools = await response.json();
+
+  const blockSnapshot =
+    typeof snapshot === 'number' ? snapshot : options.snapshot;
   const poolsGnana = pools.filter(
     (pool) =>
       pool.stakingToken.address[56].toLowerCase() ===
-      options.address.toLowerCase()
+        options.address.toLowerCase() && pool.bonusEndBlock > blockSnapshot
   );
+
   const multicall = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address: any) => {
     multicall.call(`token.${address}`, options.address, 'balanceOf', [address]);
