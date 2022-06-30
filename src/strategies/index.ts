@@ -37,6 +37,7 @@ import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
+import * as multichainMax from './multichain-max';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
@@ -385,6 +386,7 @@ const strategies = {
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   multichain,
+  'multichain-max': multichainMax,
   uni,
   'frax-finance': fraxFinance,
   'yearn-vault': yearnVault,
