@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "position-governance-power",
+      "params": {
+        "address": "0x5ca42204cdaa70d5c773946e69de942b85ca6706",
+        "symbol": "POSI",
+        "decimals": 18,
+        "stakeManagerAddress": "0x0C54B0b7d61De871dB47c3aD3F69FEB0F2C8db0B",
+        "nftStakingPoolAddress": "0x6257229FA379AFDBb91732091B5DE32cdB759845"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xA3772E9B69b5877dde7580D17aE9716d228aafde",
+      "0x694fC01E9A8A0E4814B15B15317Db42D777F8b2B",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad"
+    ],
+    "snapshot": 18482717
+  }
+]

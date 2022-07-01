@@ -1,0 +1,22 @@
+[
+  {
+    "name": "razor-network-voting",
+    "strategy": {
+      "name": "razor-network-voting",
+      "params": {
+        "symbol": "RAZOR"
+      }
+    },
+    "network": "80001",
+    "snapshot": 665995,
+    "addresses": [
+      "0xE79772bC4798fE17dABD3f033af63cc9f887B50F",
+      "0x6ee26af75a47e15ab040af73cbdc077740f4825c",
+      "0xfbf427e3c5456b8f3b2e0b98145fa13c16747369",
+      "0xe0add3053b836e1e1006540b4de959f2b4472a24",
+      "0xfBf3140A02C1E8fe08a39b86b97c50175B698111",
+      "0x26A98513240401567733253C6CdD16F006fcd9b1",
+      "0xA74b60E368c7C870EeB581dc899cFA8158058bb8"
+    ]
+  }
+]

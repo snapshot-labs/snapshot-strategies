@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "push-voting-power",
+      "params": {
+        "pushTokenAddr": "0xf418588522d5dd018b425E472991E52EBBeEEEEE",
+        "pushLPTokenAddr": "0xaf31fd9c3b0350424bf96e551d2d1264d8466205",
+        "stakingAddr": "0xB72ff1e675117beDefF05a7D0a472c3844cfec85",
+        "uniswapV2Router02": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
+        "symbol": "PUSH",
+
+        "WETHAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "USDTAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
+
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x554d29160f779Adf0a4328597cD33Ea1Df4D9Ee9",
+      "0xcB034160f7B45E41E6015ECEA09F31A66C144422",
+      "0x1c8c125C1Eac1C8d450979cbf0146985D75df55A",
+      "0x5913760160d245d0C9A05a8a956012694281bEE3",
+      "0x4b9D53246eD18db31f26Fc59b6e47a9efC3C1213",
+      "0x89c1151cA988ca5372b569A30d24964A94Ad05FD",
+      "0xE08fcc423566BF10B53e32E05d24C0429F91111A"
+    ],
+    "snapshot": 13626267
+  }
+]

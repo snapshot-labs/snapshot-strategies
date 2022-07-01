@@ -1,0 +1,54 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "balance-in-vdfyn-vault",
+      "params": {
+        "name": "vDfyn Vault",
+        "contractAddress": "0x75455c3DE45dD32CBE9a5aD5E518D3D50823c976",
+        "symbol": "VDFYN",
+        "scoreMultiplier": 1,
+        "methodABI": [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+              }
+            ],
+            "name": "balanceOf",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [],
+            "name": "ratio",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "dfynAmount_",
+                "type": "uint256"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x41CdE29bF9aea095fDD204D150451678b2c6A736",
+      "0xD7B26f34775fa41D6dCE182851642573aBF9B532"
+    ],
+    "snapshot": 19310208
+  }
+]

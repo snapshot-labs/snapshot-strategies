@@ -3,7 +3,9 @@
     "name": "Example query",
     "strategy": {
       "name": "ticket",
-      "params": {}
+      "params": {
+        "symbol": "TICKET"
+      }
     },
     "network": "1",
     "addresses": [

@@ -4,6 +4,7 @@
     "strategy": {
       "name": "tomb-finance",
       "params": {
+        "symbol": "TOMB",
         "vaultTokens": [
           {
             "symbol": "TSHARE in MLNL",

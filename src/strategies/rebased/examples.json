@@ -4,6 +4,7 @@
     "strategy": {
       "name": "rebased",
       "params": {
+        "symbol": "REB",
         "uniswap": "0x54f5f952cca8888227276581F26978F99FDBa64E",
         "sharePool": "0x574D80f005B9f5a26e6D4E0bcbD379EABD7edEb0",
         "token": "0x87f5f9ebe40786d49d35e1b5997b07ccaa8adbff",

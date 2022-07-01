@@ -97,7 +97,8 @@
             "votingScheme": "staking",
             "label": "E11_SFISTAK_LP_PRINCIPAL",
             "tokenAddress": "0x77B2914Fe065b5bf38553D1CF3f3717f32B7C4c8"
-          },{
+          },
+          {
             "votingScheme": "uniswap",
             "label": "E2_SFIETH_UNI_LP_PRINCIPAL",
             "tokenAddress": "0xF489fF098BFC862F09ec583c01bCFD2D4C43c589"

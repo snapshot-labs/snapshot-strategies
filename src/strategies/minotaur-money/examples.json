@@ -1,0 +1,17 @@
+[
+  {
+    "name": "MinotaurMoney",
+    "strategy": {
+      "name": "minotaur-money",
+      "params": {
+        "symbol": "MINO"
+      }
+    },
+    "network": "25",
+    "addresses": [
+      "0x4E5D385E44DCD0b7adf5fBe03A6BB867A8A90E7B",
+      "0x86Fdd9980aCD3e2C8e7959Db344Ff6D5FD5743F5"
+    ],
+    "snapshot": 2917145
+  }
+]
