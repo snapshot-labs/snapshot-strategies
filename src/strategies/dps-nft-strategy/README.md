@@ -1,13 +1,10 @@
-# erc20-balance-of
+# dps-nft-strategy
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
+This is a strategy similar with ERC721, which it calculates the voting power as the balanes of the voters for a specific ERC721 token, but this takes into account locked NFTs
+and claimed NFTs. It is a strategy using for a game, where users can lock their NFTs in order to achive different things.
 
-Here is an example of parameters:
+Here is an example for calculating voting power:
 
-```json
-{
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
-  "decimals": 18
-}
-```
+Bob balance: 40 NFTs
+Bob locked NFTs: 7      => Bob voting power: 40 + 7 - 3 = 44
+Bob claimed NFTs: 3

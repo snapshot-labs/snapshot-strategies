@@ -67,6 +67,8 @@ export async function strategy(
     params.pool.__args.block = { number: snapshot };
   }
 
+  console.log(snapshot);
+
   // iterate through Balancer V1 & V2 Subgraphs
   const score = {};
   for (let version = 1; version <= 2; version++) {
