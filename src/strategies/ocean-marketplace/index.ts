@@ -11,12 +11,34 @@ const OCEAN_ERC20_DECIMALS = 18;
 const OCEAN_SUBGRAPH_URL = {
   '1':
     'https://subgraph.mainnet.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '3':
+    'https://v4.subgraph.ropsten.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '42':
     'https://subgraph.rinkeby.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '56':
     'https://subgraph.bsc.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '137':
-    'https://subgraph.polygon.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph'
+    'https://subgraph.polygon.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '246':
+    'https://v4.subgraph.energyweb.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '1285':
+    'https://v4.subgraph.moonriver.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '1287':
+    'https://v4.subgraph.moonbase.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '80001':
+    'https://v4.subgraph.mumbai.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph'
+};
+
+const OCEAN_ADDRESS = {
+  '1': '0x967da4048cD07aB37855c090aAF366e4ce1b9F48',
+  '3': '0x5e8DCB2AfA23844bcc311B00Ad1A0C30025aADE9',
+  '42': '0x8967bcf84170c91b0d24d4302c2376283b0b3a07',
+  '56': '0xdce07662ca8ebc241316a15b611c89711414dd1a',
+  '137': '0x282d8efCe846A88B159800bd4130ad77443Fa1A1',
+  '246': '0x593122aae80a6fc3183b2ac0c4ab3336debee528',
+  '1285': '0x99C409E5f62E4bd2AC142f17caFb6810B8F0BAAE',
+  '1287': '0xF6410bf5d773C7a41ebFf972f38e7463FA242477',
+  '80001': '0xd8992Ed72C445c35Cb4A2be468568Ed1079357c8'
 };
 
 // Returns a BigDecimal as a BigNumber with 10^decimals extra zeros
@@ -45,29 +67,35 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const oceanToken = OCEAN_ADDRESS[network];
   const params = {
     pools: {
       __args: {
+        where: {
+          baseToken_eq: oceanToken
+        },
         first: 1000,
-        orderBy: 'oceanReserve',
+        orderBy: 'baseTokenLiquidity',
         orderDirection: 'desc'
       },
-      active: true,
+      isFinalized: true,
       totalShares: true,
-      holderCount: true,
-      oceanReserve: true,
+      baseTokenLiquidity: true,
       shares: {
         __args: {
           where: {
             userAddress_in: addresses.map((address) => address.toLowerCase())
           },
-          orderBy: 'balance',
+          orderBy: 'shares',
           orderDirection: 'desc'
         },
-        userAddress: {
+        user: {
           id: true
         },
-        balance: true
+        shares: true
+      },
+      datatoken: {
+        holderCount: true
       }
     }
   };
@@ -89,14 +117,15 @@ export async function strategy(
   const return_score = {};
   if (graphResults && graphResults.pools) {
     graphResults.pools.forEach((pool) => {
-      if (pool.holderCount > 0 && pool.active) {
+      // all holderCounts == 0.... I don't think this is any different.
+      if (pool.datatoken.holderCount >= 0 && pool.isFinalized) {
         pool.shares.map((share) => {
-          const userAddress = getAddress(share.userAddress.id);
+          const userAddress = getAddress(share.user.id);
           if (!userAddresses.includes(userAddress))
             userAddresses.push(userAddress);
           if (!score[userAddress]) score[userAddress] = BigNumber.from(0);
           const userShare =
-            share.balance * (pool.oceanReserve / pool.totalShares);
+            share.shares * (pool.baseTokenLiquidity / pool.totalShares);
           if (userShare > 0.0001) {
             score[userAddress] = score[userAddress].add(
               bdToBn(userShare.toString(), OCEAN_ERC20_DECIMALS)
