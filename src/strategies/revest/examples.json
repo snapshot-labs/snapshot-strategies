@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "revest",
+      "params": {
+        "address": "0xe952bda8c06481506e4731C4f54CeD2d4ab81659",
+        "symbol": "RVST",
+        "tokenVault": "0xA81bd16Aa6F6B25e66965A2f842e9C806c0AA11F",
+        "staking": "0xbcbb435cf6f664caa5222c3ee01d1a377f12c428",
+        "token": "0x120a3879da835A5aF037bB2d1456beBd6B54d4bA",
+        "lpToken": "0x6490828Bd87Be38279A36F029f3b9Af8b4E14B49"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xd08b7e82942fac71d96fecaa99ed7323a95d9a79",
+      "0xD76F585b6B94202430875aE748fF8C038Dc64111",
+      "0x013040bcc92ca0bec2670d61f06da7c36678222a",
+      "0x9f75d69380a505a4e2AedB5C2dfdf41809E4D6C6",
+      "0xD43e2ca9Ff4653Ef024BD26df925524bE4498C0B",
+      "0x677b038Bc2DB99851be553673d0cBf8Cac6A0F3F",
+      "0xcf7434dBB0f4F61855ADF5e9A3c117d9B5fAe903",
+      "0xCedec45e06cBB9032625830C5FFB0CF3fAD1cF67",
+      "0x4D3f9F513FC366Aa075e53B592dCE9c14BF838A6",
+      "0x7E22AebC01ef48A2A6D39EaDF37b3BFac17C9649",
+      "0xa4e7f2a1edb5ad886baa09fb258f8aca7c934ba6",
+      "0xff80adc3eb2b549e9edf4b7109efe7487c805f85",
+      "0xd9d455a8b8b9aeda2da66c52b80c90ef423409df",
+      "0x000000000000000000000000000000000000dead"
+    ],
+    "snapshot": 14124450
+  }
+]

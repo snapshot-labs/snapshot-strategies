@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Faraland stake query",
+    "strategy": {
+      "name": "faraland-staking",
+      "params": {
+        "address": "0x3057A6EF2aCf803371315380d21D0193471E3EF8",
+        "symbol": "FARA"
+      }
+    },
+    "network": "56",
+    "addresses": ["0x3f105F78359ad80562B4c34296a87b8e66c584C5"],
+    "snapshot": 10913859
+  }
+]

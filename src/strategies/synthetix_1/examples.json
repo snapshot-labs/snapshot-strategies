@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "synthetix_1",
+      "params": {
+        "address": "0x023c66b7e13d30a3c46aa433fd2829763d5817c5",
+        "symbol": "WD",
+        "L2BlockNumber": 4497555,
+        "L1SDS": "0x89FCb32F29e509cc42d0C8b6f058C993013A843F",
+        "L2SDS": "0x45c55BF488D3Cb8640f12F63CbeDC027E8261E79",
+        "L1DebtCache": "0x9D5551Cd3425Dd4585c3E7Eb7E4B98902222521E",
+        "L2DebtCache": "0x01f8C5e421172B67cc14B7f5F369cfb10de0acD4",
+        "quadratic": false
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x99F4176EE457afedFfCB1839c7aB7A030a5e4A92",
+      "0x8cA24021E3Ee3B5c241BBfcee0712554D7Dc38a1"
+    ],
+    "snapshot": 14396861
+  }
+]

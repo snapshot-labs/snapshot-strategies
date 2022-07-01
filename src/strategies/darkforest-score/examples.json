@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "darkforest-score",
+      "params": {
+        "graph_url": "https://api.thegraph.com/subgraphs/name/darkforest-eth/dark-forest-v06-round-4",
+        "symbol": "log2(score)"
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x0804bd21d754b33fed53c7335385697e7b87fdab",
+      "0xe99b5d080a1e0256726e106ab51d0a1799ef2519",
+      "0xee32d8021ed88a59eb6f1fd1b8367b8e9c75a6f5",
+      "0x1396364c0f00c814c97d1406c2b3250f9ff561ee",
+      "0x73cf8b7819ba17bc986611d093510296b46e4d33",
+      "0xb5ce86c2ab9e2403ab47acfbe501845e2480fad9",
+      "0x102e277c34668e96cbed6169fa1195002c11d746",
+      "0x14d2b918ae4d9bcf383a64931ec750c2d04a600a",
+      "0xd70c35c779d0055f1bccdc24b92fa58dcdad24b4",
+      "0x61f7bf167bd32bcf7042bc823bfcd24327426da7",
+      "0x8459c6bebe2d53b4dcaa71499a1ae4274c0e4df9",
+      "0x021004341db64a77a01eaead4c1cbfba8bedf589",
+      "0xe732654bA181fC97A42dC35Cd137CdeE2B17930F"
+    ],
+    "snapshot": 19546839
+  }
+]

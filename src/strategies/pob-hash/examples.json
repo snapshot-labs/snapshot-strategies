@@ -4,6 +4,7 @@
     "strategy": {
       "name": "pob-hash",
       "params": {
+        "symbol": "POB"
       }
     },
     "network": "1",

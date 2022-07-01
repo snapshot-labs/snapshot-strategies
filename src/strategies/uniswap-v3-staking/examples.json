@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Uniswap-v3-staking query",
+    "strategy": {
+      "name": "uniswap-v3-staking",
+      "params": {
+        "symbol": "UNI",
+        "poolAddress": "0x94981f69f7483af3ae218cbfe65233cc3c60d93a",
+        "tokenReserve": 0,
+        "rewardToken": "0x6123B0049F904d730dB3C36a31167D9d4121fA6B",
+        "startTime": 1633694400,
+        "endTime": 1638878400,
+        "refundee": "0xDAEada3d210D2f45874724BeEa03C7d4BBD41674"
+      }
+    },
+    "network": "1",
+    "addresses": ["0xfce3a97b5f1d3403f481903da3679039f522089c"],
+    "snapshot": 13411250
+  }
+]

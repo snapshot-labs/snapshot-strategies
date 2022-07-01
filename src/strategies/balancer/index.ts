@@ -2,12 +2,23 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'bonustrack';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
-const BALANCER_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer',
-  '42': 'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-kovan'
+const BALANCER_SUBGRAPH_URL_ROOT =
+  'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer';
+
+const NETWORK_KEY = {
+  '1': '',
+  '42': '-kovan',
+  '137': '-polygon',
+  '42161': '-arbitrum'
 };
+
+function buildBalancerSubgraphUrl(chainId, version) {
+  const networkString = NETWORK_KEY[chainId];
+  const versionString = version == 2 ? '-v2' : '';
+  return `${BALANCER_SUBGRAPH_URL_ROOT}${networkString}${versionString}`;
+}
 
 export async function strategy(
   space,
@@ -49,12 +60,11 @@ export async function strategy(
   // iterate through Balancer V1 & V2 Subgraphs
   const score = {};
   for (let version = 1; version <= 2; version++) {
-    let versionString = '';
-    if (version == 2) {
-      versionString = '-v2';
-    }
+    // Skip attempt to query subgraph on networks where V1 isn't deployed
+    if (network != 1 && network != 42 && version === 1) continue;
+
     const result = await subgraphRequest(
-      BALANCER_SUBGRAPH_URL[network] + versionString,
+      buildBalancerSubgraphUrl(network, version),
       params
     );
     if (result && result.poolShares) {

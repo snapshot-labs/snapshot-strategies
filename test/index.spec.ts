@@ -1,8 +1,11 @@
-const { JsonRpcProvider } = require('@ethersproject/providers');
-const { getAddress } = require('@ethersproject/address');
-const snapshot = require('../').default;
-const networks = require('../src/networks.json');
-const addresses = require('./addresses.json');
+import { JsonRpcProvider } from '@ethersproject/providers';
+import { getAddress } from '@ethersproject/address';
+import { performance } from 'perf_hooks';
+import fetch from 'cross-fetch';
+import snapshot from '../src';
+import networks from '@snapshot-labs/snapshot.js/src/networks.json';
+import snapshotjs from '@snapshot-labs/snapshot.js';
+import addresses from './addresses.json';
 
 const strategyArg =
   process.env['npm_config_strategy'] ||
@@ -13,7 +16,7 @@ const strategyArg =
     .split('--strategy=')
     .pop();
 
-const moreArg =
+const moreArg: string | undefined =
   process.env['npm_config_more'] ||
   process.argv
     .find((arg) => arg.includes('--more='))
@@ -36,8 +39,16 @@ function callGetScores(example) {
 }
 
 describe(`\nTest strategy "${strategy}"`, () => {
-  let scores = null;
-  let getScoresTime = null;
+  let scores: any = null;
+  let getScoresTime: number | null = null;
+
+  it('Strategy name should be lowercase and should not contain any special char expect hyphen', () => {
+    expect(strategy).toMatch(/^[a-z0-9\-]+$/);
+  });
+
+  it('Strategy name should be same as in example.json', () => {
+    expect(example.strategy.name).toBe(strategy);
+  });
 
   it('Strategy should run without any errors', async () => {
     const getScoresStart = performance.now();
@@ -74,7 +85,7 @@ describe(`\nTest strategy "${strategy}"`, () => {
   });
 
   it('File examples.json should include at least 1 address with a positive score', () => {
-    expect(Object.values(scores[0]).some((score) => score > 0)).toBe(true);
+    expect(Object.values(scores[0]).some((score: any) => score > 0)).toBe(true);
   });
 
   it('File examples.json must use a snapshot block number in the past', async () => {
@@ -95,9 +106,8 @@ describe(`\nTest strategy "${strategy}"`, () => {
 });
 
 describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
-  let scores = null;
-  let getScoresTime = null;
-
+  let scores: any = null;
+  let getScoresTime: number | null = null;
   it('Strategy should run without any errors', async () => {
     const getScoresStart = performance.now();
     scores = await callGetScores({ ...example, snapshot: 'latest' });
@@ -135,11 +145,11 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
 (moreArg ? describe : describe.skip)(
   `\nTest strategy "${strategy}" (with ${moreArg || 500} addresses)`,
   () => {
-    let scoresMore = null;
-    let getScoresTimeMore = null;
+    let scoresMore: any = null;
+    let getScoresTimeMore: number | null = null;
 
     it(`Should work with ${moreArg || 500} addresses`, async () => {
-      example.addresses = addresses.slice(0, moreArg);
+      example.addresses = addresses.slice(0, Number(moreArg));
       const getScoresStart = performance.now();
       scoresMore = await callGetScores(example);
       const getScoresEnd = performance.now();
@@ -157,3 +167,44 @@ describe(`\nTest strategy "${strategy}" with latest snapshot`, () => {
     });
   }
 );
+
+describe(`\nOthers:`, () => {
+  it('Author in strategy should be a valid github username', async () => {
+    const author = snapshot.strategies[strategy].author;
+    expect(typeof author).toBe('string');
+    const githubUserData = await fetch(
+      `https://api.github.com/users/${author}`
+    );
+    const githubUser = await githubUserData.json();
+    expect(githubUser.message).not.toEqual('Not Found');
+  });
+  it('Version in strategy should be a valid string', async () => {
+    const version = snapshot.strategies[strategy].author;
+    expect(typeof version).toBe('string');
+  });
+
+  let schema;
+  try {
+    schema = require(`../src/strategies/${strategy}/schema.json`);
+  } catch (error) {
+    schema = null;
+  }
+  (schema ? it : it.skip)(
+    'Check schema (if available) is valid with example.json',
+    async () => {
+      expect(typeof schema).toBe('object');
+      expect(
+        snapshotjs.utils.validateSchema(schema, example.strategy.params)
+      ).toBe(true);
+    }
+  );
+  (schema ? it : it.skip)(
+    'Strategy should work even when strategy symbol is null',
+    async () => {
+      delete example.strategy.params.symbol;
+      expect(
+        snapshotjs.utils.validateSchema(schema, example.strategy.params)
+      ).toBe(true);
+    }
+  );
+});

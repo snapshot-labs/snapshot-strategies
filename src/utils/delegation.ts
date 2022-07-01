@@ -1,41 +1,12 @@
 import { getAddress } from '@ethersproject/address';
-import { SNAPSHOT_SUBGRAPH_URL, subgraphRequest } from '../utils';
+import { getDelegatesBySpace } from '../utils';
 
-export async function getDelegations(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
+export async function getDelegations(space, network, addresses, snapshot) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
-  const spaceIn = ['', space];
-  if (space.includes('.eth')) spaceIn.push(space.replace('.eth', ''));
-  const params = {
-    delegations: {
-      __args: {
-        where: {
-          // delegate_in: addressesLc,
-          // delegator_not_in: addressesLc,
-          space_in: spaceIn
-        },
-        first: 1000
-      },
-      delegator: true,
-      space: true,
-      delegate: true
-    }
-  };
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    params.delegations.__args.block = { number: snapshot };
-  }
-  const result = await subgraphRequest(SNAPSHOT_SUBGRAPH_URL[network], params);
-  if (!result?.delegations) return {};
+  const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
 
-  const delegations = result.delegations.filter(
-    (delegation) =>
+  const delegations = delegatesBySpace.filter(
+    (delegation: any) =>
       addressesLc.includes(delegation.delegate) &&
       !addressesLc.includes(delegation.delegator)
   );
@@ -43,13 +14,13 @@ export async function getDelegations(
 
   const delegationsReverse = {};
   delegations.forEach(
-    (delegation) =>
+    (delegation: any) =>
       (delegationsReverse[delegation.delegator] = delegation.delegate)
   );
   delegations
-    .filter((delegation) => delegation.space !== '')
+    .filter((delegation: any) => delegation.space !== '')
     .forEach(
-      (delegation) =>
+      (delegation: any) =>
         (delegationsReverse[delegation.delegator] = delegation.delegate)
     );
 

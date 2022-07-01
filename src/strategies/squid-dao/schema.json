@@ -1,0 +1,25 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. SQDV"],
+          "maxLength": 16
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 4"]
+        }
+      },
+      "required": ["decimals"],
+      "additionalProperties": false
+    }
+  }
+}

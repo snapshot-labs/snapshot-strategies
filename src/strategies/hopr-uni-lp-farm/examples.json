@@ -4,6 +4,7 @@
     "strategy": {
       "name": "hopr-uni-lp-farm",
       "params": {
+        "symbol": "HOPR",
         "farmAddress": "0x2fc0e2cfe5d6ea300d555e5907319a5f7e09884f",
         "uniPoolAddress": "0x92c2fc5f306405eab0ff0958f6d85d7f8892cf4d",
         "hoprAddress": "0xf5581dfefd8fb0e4aec526be659cfab1f8c781da",

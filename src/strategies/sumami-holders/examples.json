@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sumami-holders",
+      "params": {
+        "address": "0xe6d557d416ff5640235119369c7e26AA18a906D7",
+        "marinateLevels": [0, 1, 2, 3],
+        "symbol": "sUMAMI",
+        "marinateAddress": "0x190a6b6E8e4D9B8324E1F97127c588C5b082d94b",
+        "decimals": 9
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x541D67bEdBfe820b4E58712bf032C7250548D733",
+      "0x93615705c74bfd7d7c0b0d9cfd5d04ee00d90471",
+      "0xb9d24761ebb3e3a88b8cf20e77f56ccf026a2044",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0xb2273e70eda1cb2e16bdfd7a15c031d12400f7ca",
+      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
+      "0x9a32b1a10504489f9b88106acec79c672630158c"
+    ],
+    "snapshot": 4178460
+  }
+]

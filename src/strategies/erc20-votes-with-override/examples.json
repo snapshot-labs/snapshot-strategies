@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-votes-with-override",
+      "params": {
+        "address": "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
+        "symbol": "ENS",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x0000000000000000000000000000000000000001",
+      "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+      "0xc23ca051fc6ad307bb07c1b27e22391bc8f22a44",
+      "0x983110309620d911731ac0932219af06091b6744"
+    ],
+    "snapshot": 14346755
+  }
+]
