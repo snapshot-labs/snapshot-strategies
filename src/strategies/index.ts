@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
@@ -344,6 +345,7 @@ const strategies = {
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
+  'dps-nft-strategy': dpsNFTStrategy,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
