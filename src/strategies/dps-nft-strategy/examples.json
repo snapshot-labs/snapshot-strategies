@@ -4,7 +4,6 @@
     "strategy": {
       "name": "dps-nft-strategy",
       "params": {
-        "address": "0x1B298Ee39Ea4b5d2A4bF76620D2c5158EED5DFD4",
         "symbol": "DPS"
       }
     },
