@@ -189,7 +189,7 @@ describe(`\nOthers:`, () => {
   } catch (error) {
     schema = null;
   }
-  (schema ? xit : it.skip)(
+  (schema ? it : it.skip)(
     'Check schema (if available) is valid with example.json',
     async () => {
       expect(typeof schema).toBe('object');
