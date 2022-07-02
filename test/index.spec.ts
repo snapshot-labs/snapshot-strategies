@@ -46,7 +46,7 @@ describe(`\nTest strategy "${strategy}"`, () => {
     expect(strategy).toMatch(/^[a-z0-9\-]+$/);
   });
 
-  it('Strategy name should be same as in example.json', () => {
+  it('Strategy name should be same as in examples.json', () => {
     expect(example.strategy.name).toBe(strategy);
   });
 
