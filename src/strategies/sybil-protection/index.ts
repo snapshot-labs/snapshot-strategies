@@ -50,7 +50,7 @@ export async function strategy(
     getBrightId()
   ]);
 
-  // Filter scores to only include addresses with proof of humanity = 1
+  // Reduce voting power of address to zero if cybil check doesn't pass
   const cybilScores = Object.keys(scores).reduce((acc, key) => {
     if (proofOfHumanity?.[key] === 1) {
       acc[key] = scores[key];
