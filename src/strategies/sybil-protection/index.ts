@@ -17,7 +17,7 @@ export async function strategy(
     if (!options?.sybil?.poh) return {};
     return await proofOfHumanityStrategy(
       space,
-      network,
+      '1',
       provider,
       addresses,
       { address: options.sybil.poh },
