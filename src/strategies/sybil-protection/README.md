@@ -15,7 +15,8 @@ Here is an example of parameters:
     }
   },
   "sybil": {
-    "poh": "0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb"
+    "poh": "0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb",
+    "brightId": "v5"
   }
 }
 ```
