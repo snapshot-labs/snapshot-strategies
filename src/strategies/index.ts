@@ -313,6 +313,7 @@ import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
+import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
 import * as ginFinance from './gin-finance';
@@ -631,6 +632,7 @@ const strategies = {
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
+  'sybil-protection': sybilProtection,
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
   'dogs-unchained': dogsUnchained,
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
