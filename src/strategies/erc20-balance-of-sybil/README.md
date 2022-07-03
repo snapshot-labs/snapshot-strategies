@@ -1,6 +1,6 @@
 # erc20-balance-of-sybil
 
-This is a combination of ERC20 and Proof of humanity it only returns the balances of the voters for a specific ERC20 token if the voter is validated by PoH.
+This is a combination of ERC20 and Proof of humanity it only returns the balances of the voters for a specific ERC20 token if the voters are validated by PoH.
 
 Here is an example of parameters:
 
