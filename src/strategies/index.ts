@@ -20,6 +20,7 @@ import * as ensReverseRecord from './ens-reverse-record';
 import * as ens10kClub from './ens-10k-club';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
+import * as erc20BalanceOfSybil from './erc20-balance-of-sybil';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
@@ -353,6 +354,7 @@ const strategies = {
   'ens-10k-club': ens10kClub,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-balance-of-sybil': erc20BalanceOfSybil,
   'erc20-votes': erc20Votes,
   'erc20-votes-with-override': erc20VotesWithOverride,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
