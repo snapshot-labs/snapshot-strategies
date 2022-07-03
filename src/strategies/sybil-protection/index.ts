@@ -52,9 +52,9 @@ export async function strategy(
 
   // Filter scores to only include addresses with proof of humanity = 1
   const cybilScores = Object.keys(scores).reduce((acc, key) => {
-    if (proofOfHumanity[key] === 1) {
+    if (proofOfHumanity?.[key] === 1) {
       acc[key] = scores[key];
-    } else if (brightId[key] === 1) {
+    } else if (brightId?.[key] === 1) {
       acc[key] = scores[key];
     } else {
       acc[key] = 0;
