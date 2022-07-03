@@ -324,6 +324,7 @@ import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
+import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 
 const strategies = {
@@ -651,7 +652,8 @@ const strategies = {
   'aura-vlaura-vebal': auraFinance,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
-  'sd-boost-twavp': sdBoostTWAVP
+  'sd-boost-twavp': sdBoostTWAVP,
+  'unipilot-vault-pilot-balance': unipilotVaultPilotBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
