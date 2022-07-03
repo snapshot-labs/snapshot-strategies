@@ -1,4 +1,4 @@
-import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+import strategies from '..';
 import { strategy as proofOfHumanityStrategy } from '../proof-of-humanity';
 
 export const author = 'samuveth';
@@ -13,12 +13,12 @@ export async function strategy(
   snapshot
 ) {
   const [score, proofOfHumanity] = await Promise.all([
-    await erc20BalanceOfStrategy(
+    await strategies[options.strategy.name].strategy(
       space,
       network,
       provider,
       addresses,
-      options,
+      options.strategy.params,
       snapshot
     ),
     await proofOfHumanityStrategy(
@@ -26,7 +26,7 @@ export async function strategy(
       network,
       provider,
       addresses,
-      { address: options.poh },
+      { address: options.sybil.poh },
       snapshot
     )
   ]);

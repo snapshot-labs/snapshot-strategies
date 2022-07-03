@@ -2,12 +2,19 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "erc20-balance-of-sybil",
+      "name": "sybil-protection",
       "params": {
-        "address": "0xc944E90C64B2c07662A292be6244BDf05Cda44a7",
-        "symbol": "DAI",
-        "decimals": 18,
-        "poh": "0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb"
+        "strategy": {
+          "name": "erc20-balance-of",
+          "params": {
+            "address": "0xc944E90C64B2c07662A292be6244BDf05Cda44a7",
+            "symbol": "GRT",
+            "decimals": 18
+          }
+        },
+        "sybil": {
+          "poh": "0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb"
+        }
       }
     },
     "network": "1",

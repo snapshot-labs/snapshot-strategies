@@ -20,7 +20,6 @@ import * as ensReverseRecord from './ens-reverse-record';
 import * as ens10kClub from './ens-10k-club';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
-import * as erc20BalanceOfSybil from './erc20-balance-of-sybil';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
@@ -314,6 +313,7 @@ import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
+import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
 import * as ginFinance from './gin-finance';
@@ -354,7 +354,6 @@ const strategies = {
   'ens-10k-club': ens10kClub,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
-  'erc20-balance-of-sybil': erc20BalanceOfSybil,
   'erc20-votes': erc20Votes,
   'erc20-votes-with-override': erc20VotesWithOverride,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
@@ -632,6 +631,7 @@ const strategies = {
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
+  'sybil-protection': sybilProtection,
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
   'dogs-unchained': dogsUnchained,
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
