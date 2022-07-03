@@ -1,5 +1,6 @@
 import strategies from '..';
 import { strategy as proofOfHumanityStrategy } from '../proof-of-humanity';
+import { strategy as brightIdStrategy } from '../brightid';
 
 export const author = 'samuveth';
 export const version = '0.1.0';
@@ -12,7 +13,31 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const [score, proofOfHumanity] = await Promise.all([
+  async function getProofOfHumanity() {
+    if (!options?.sybil?.poh) return {};
+    return await proofOfHumanityStrategy(
+      space,
+      network,
+      provider,
+      addresses,
+      { address: options.sybil.poh },
+      snapshot
+    );
+  }
+
+  async function getBrightId() {
+    if (!options?.sybil?.brightId) return {};
+    return await brightIdStrategy(
+      space,
+      network,
+      provider,
+      addresses,
+      { registry: options.sybil.brightId },
+      snapshot
+    );
+  }
+
+  const [scores, proofOfHumanity, brightId] = await Promise.all([
     await strategies[options.strategy.name].strategy(
       space,
       network,
@@ -21,25 +46,21 @@ export async function strategy(
       options.strategy.params,
       snapshot
     ),
-    await proofOfHumanityStrategy(
-      space,
-      network,
-      provider,
-      addresses,
-      { address: options.sybil.poh },
-      snapshot
-    )
+    getProofOfHumanity(),
+    getBrightId()
   ]);
 
-  // Filter score to only include addresses with proof of humanity = 1
-  const scoresWithPoh = Object.keys(score).reduce((acc, key) => {
+  // Filter scores to only include addresses with proof of humanity = 1
+  const cybilScores = Object.keys(scores).reduce((acc, key) => {
     if (proofOfHumanity[key] === 1) {
-      acc[key] = score[key];
+      acc[key] = scores[key];
+    } else if (brightId[key] === 1) {
+      acc[key] = scores[key];
     } else {
       acc[key] = 0;
     }
     return acc;
   }, {});
 
-  return scoresWithPoh;
+  return cybilScores;
 }
