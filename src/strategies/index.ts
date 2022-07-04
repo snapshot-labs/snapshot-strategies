@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
@@ -32,6 +33,7 @@ import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
+import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
@@ -312,6 +314,7 @@ import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
+import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
 import * as ginFinance from './gin-finance';
@@ -322,6 +325,7 @@ import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
+import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 
@@ -345,6 +349,7 @@ const strategies = {
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
+  'dps-nft-strategy': dpsNFTStrategy,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
@@ -629,6 +634,7 @@ const strategies = {
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
+  'sybil-protection': sybilProtection,
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
   'dogs-unchained': dogsUnchained,
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
@@ -649,6 +655,8 @@ const strategies = {
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
+  'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
+  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   apeswap
 };
 
