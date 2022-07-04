@@ -33,6 +33,7 @@ import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
+import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
@@ -653,7 +654,8 @@ const strategies = {
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
-  'unipilot-vault-pilot-balance': unipilotVaultPilotBalance
+  'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
+  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
