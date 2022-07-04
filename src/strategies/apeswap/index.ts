@@ -2,14 +2,12 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import examplesFile from './examples.json';
-import fetch from 'cross-fetch';
 
 export const author = 'ApeSwapFinance';
 export const version = '0.0.1';
 export const examples = examplesFile;
 
-const POOL_URL =
-  'https://raw.githubusercontent.com/ApeSwapFinance/apeswap-yields/main/config/pools.json';
+const GNANA_POOL = '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8';
 const abi = [
   'function balanceOf(address _owner) view returns (uint256 balance)',
   'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'
@@ -36,35 +34,10 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const response = await fetch(POOL_URL, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
-
-  const pools = await response.json();
-
-  const blockSnapshot =
-    typeof snapshot === 'number' ? snapshot : options.snapshot;
-  const poolsGnana = pools.filter(
-    (pool) =>
-      pool.stakingToken.address[56].toLowerCase() ===
-        options.address.toLowerCase() && pool.bonusEndBlock > blockSnapshot
-  );
-
   const multicall = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address: any) => {
     multicall.call(`token.${address}`, options.address, 'balanceOf', [address]);
-    poolsGnana.forEach((pool: any) => {
-      multicall.call(
-        `pool_${pool.contractAddress[56]}.${address}`,
-        pool.contractAddress[56],
-        'userInfo',
-        [address]
-      );
-    });
+    multicall.call(`pool.${address}`, GNANA_POOL, 'userInfo', [address]);
   });
   const result = await multicall.execute();
 
@@ -75,13 +48,7 @@ export async function strategy(
 
   addresses.forEach((address: any) => {
     addUserBalance(userBalances, address, result.token[address] ?? 0);
-    poolsGnana.forEach((pool: any) => {
-      addUserBalance(
-        userBalances,
-        address,
-        result[`pool_${pool.contractAddress[56]}`][address][0]
-      );
-    });
+    addUserBalance(userBalances, address, result.pool[address][0] ?? 0);
   });
 
   return Object.fromEntries(

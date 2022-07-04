@@ -12,7 +12,6 @@ Here is an example of parameters:
       "name": "apeswap",
       "params": {
         "address": "0xddb3bd8645775f59496c821e4f55a7ea6a6dc299",
-        "masterChef": "0x5c8D727b265DBAfaba67E050f2f739cAeEB4A6F9",
         "symbol": "GNANA",
         "decimals": 18
       }
