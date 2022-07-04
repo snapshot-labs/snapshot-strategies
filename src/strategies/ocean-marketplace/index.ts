@@ -29,18 +29,6 @@ const OCEAN_SUBGRAPH_URL = {
     'https://v4.subgraph.mumbai.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph'
 };
 
-const OCEAN_ADDRESS = {
-  '1': '0x967da4048cD07aB37855c090aAF366e4ce1b9F48',
-  '3': '0x5e8DCB2AfA23844bcc311B00Ad1A0C30025aADE9',
-  '42': '0x8967bcf84170c91b0d24d4302c2376283b0b3a07',
-  '56': '0xdce07662ca8ebc241316a15b611c89711414dd1a',
-  '137': '0x282d8efCe846A88B159800bd4130ad77443Fa1A1',
-  '246': '0x593122aae80a6fc3183b2ac0c4ab3336debee528',
-  '1285': '0x99C409E5f62E4bd2AC142f17caFb6810B8F0BAAE',
-  '1287': '0xF6410bf5d773C7a41ebFf972f38e7463FA242477',
-  '80001': '0xd8992Ed72C445c35Cb4A2be468568Ed1079357c8'
-};
-
 // Returns a BigDecimal as a BigNumber with 10^decimals extra zeros
 export function bdToBn(bd, decimals) {
   let bn;
@@ -67,7 +55,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const oceanToken = OCEAN_ADDRESS[network].toLowerCase();
+  const oceanToken = options.oceanAddress.toLowerCase();
   const params = {
     pools: {
       __args: {
@@ -117,7 +105,7 @@ export async function strategy(
   const return_score = {};
 
   // console.log(
-  //   `graph results for network: ${options.network} at snapshot: ${snapshot}`
+  //   `graph results for network: ${network} at snapshot: ${snapshot}`
   // );
   // console.log('results: ', graphResults);
 
