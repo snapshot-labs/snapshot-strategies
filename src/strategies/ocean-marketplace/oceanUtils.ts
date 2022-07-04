@@ -3,11 +3,15 @@ export function verifyResultsLength(
   expectedResults: number,
   type: string
 ): void {
-  result === expectedResults
-    ? console.log(`>>> SUCCESS: ${type} match expected results - length`)
-    : console.error(
-        `>>> ERROR: ${type} do not match expected results - length`
-      );
+  if (result === expectedResults) {
+    console.log(
+      `>>> SUCCESS: ${type} result:[${result}] match expected results:[${expectedResults}] - length`
+    );
+  } else {
+    console.error(
+      `>>> ERROR: ${type} result:[${result}] do not match expected results:[${expectedResults}] - length`
+    );
+  }
 }
 
 export function verifyResults(
@@ -15,7 +19,13 @@ export function verifyResults(
   expectedResults: string,
   type: string
 ): void {
-  result === expectedResults
-    ? console.log(`>>> SUCCESS: ${type} match expected results`)
-    : console.error(`>>> ERROR: ${type} do not match expected results`);
+  if (result === expectedResults) {
+    console.log(
+      `>>> SUCCESS: ${type} result:[${result}] match expected results:[${expectedResults}]`
+    );
+  } else {
+    console.error(
+      `>>> ERROR: ${type} result:[${result}] do not match expected results:[${expectedResults}]`
+    );
+  }
 }

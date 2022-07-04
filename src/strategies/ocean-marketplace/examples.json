@@ -4,21 +4,21 @@
     "strategy": {
       "name": "ocean-marketplace",
       "params": {
-        "symbol": "OCEAN",
+        "network": "mainnet",
         "expectedResults": {
           "scores": {
-            "0x655eFe6Eb2021b8CEfE22794d90293aeC37bb325": 234872.06400571144,
-            "0xCe7BE31f48205C48A91A84E777a66252Bba87F0b": 184463.92011443214,
-            "0x788550D00579F66c06ce209D14056C8F2c0A8188": 7288.420566804952
+            "0x7842Fa3B2d87Ff1cd52C4152382f7C4B3406E5A6": 250,
+            "0x99840Df5Cb42faBE0Feb8811Aaa4BC99cA6C84e0": 200,
+            "0x903322C7E45A60d7c8C3EA236c5beA9Af86310c7": 50
           }
         }
       }
     },
     "network": "1",
     "addresses": [
-      "0x655eFe6Eb2021b8CEfE22794d90293aeC37bb325",
-      "0xCe7BE31f48205C48A91A84E777a66252Bba87F0b",
-      "0x788550D00579F66c06ce209D14056C8F2c0A8188"
+      "0x7842Fa3B2d87Ff1cd52C4152382f7C4B3406E5A6",
+      "0x99840Df5Cb42faBE0Feb8811Aaa4BC99cA6C84e0",
+      "0x903322C7E45A60d7c8C3EA236c5beA9Af86310c7"
     ],
     "snapshot": 15006609
   },
@@ -27,20 +27,23 @@
     "strategy": {
       "name": "ocean-marketplace",
       "params": {
+        "network": "polygon",
         "expectedResults": {
           "scores": {
-            "0x655eFe6Eb2021b8CEfE22794d90293aeC37bb325": 1,
-            "0x15848c6f03195e84e6a142ae4b4d56531150ff3d": 1,
-            "0xec39be1abce3f9af3a6a5a738bcdf915e07fb4fe": 1
+            "0x3EFDD8f728c8e774aB81D14d0B2F07a8238960f4": 10762.326857765422,
+            "0xbbd33AFa85539fa65cc08A2e61a001876D2f13FE": 5752.362504190221,
+            "0x0363F3C31076a64b85Ceb69a28f958A7c1181CEe": 1750,
+            "0xC5320Dc3956484662cF3FE3B9355AEA93729783D": 778.6503526737412
           }
         }
       }
     },
     "network": "137",
     "addresses": [
-      "0x655eFe6Eb2021b8CEfE22794d90293aeC37bb325",
-      "0x15848c6f03195e84e6a142ae4b4d56531150ff3d",
-      "0xec39be1abce3f9af3a6a5a738bcdf915e07fb4fe"
+      "0x3EFDD8f728c8e774aB81D14d0B2F07a8238960f4",
+      "0xbbd33AFa85539fa65cc08A2e61a001876D2f13FE",
+      "0x0363F3C31076a64b85Ceb69a28f958A7c1181CEe",
+      "0xC5320Dc3956484662cF3FE3B9355AEA93729783D"
     ],
     "snapshot": 29358635
   }

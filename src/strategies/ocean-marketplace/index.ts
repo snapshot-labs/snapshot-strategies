@@ -10,15 +10,15 @@ export const version = '0.1.0';
 const OCEAN_ERC20_DECIMALS = 18;
 const OCEAN_SUBGRAPH_URL = {
   '1':
-    'https://subgraph.mainnet.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.mainnet.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '3':
     'https://v4.subgraph.ropsten.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '42':
-    'https://subgraph.rinkeby.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.rinkeby.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '56':
-    'https://subgraph.bsc.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.bsc.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '137':
-    'https://subgraph.polygon.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.polygon.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '246':
     'https://v4.subgraph.energyweb.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '1285':
@@ -67,12 +67,12 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const oceanToken = OCEAN_ADDRESS[network];
+  const oceanToken = OCEAN_ADDRESS[network].toLowerCase();
   const params = {
     pools: {
       __args: {
         where: {
-          baseToken_eq: oceanToken
+          baseToken_in: [oceanToken]
         },
         first: 1000,
         orderBy: 'baseTokenLiquidity',
@@ -84,7 +84,7 @@ export async function strategy(
       shares: {
         __args: {
           where: {
-            userAddress_in: addresses.map((address) => address.toLowerCase())
+            user_in: addresses.map((address) => address.toLowerCase())
           },
           orderBy: 'shares',
           orderDirection: 'desc'
@@ -115,12 +115,21 @@ export async function strategy(
   const score = {};
   const userAddresses: string[] = [];
   const return_score = {};
+
+  // console.log(
+  //   `graph results for network: ${options.network} at snapshot: ${snapshot}`
+  // );
+  // console.log('results: ', graphResults);
+
   if (graphResults && graphResults.pools) {
     graphResults.pools.forEach((pool) => {
-      // all holderCounts == 0.... I don't think this is any different.
-      if (pool.datatoken.holderCount >= 0 && pool.isFinalized) {
+      if (pool.isFinalized) {
         pool.shares.map((share) => {
           const userAddress = getAddress(share.user.id);
+          // const shares = share.shares;
+          // console.log(
+          //   `High Level - User address: ${userAddress} user poolShares: ${shares} baseTokenLiquidity: ${pool.baseTokenLiquidity} poolTotalShares: ${pool.totalShares}`
+          // );
           if (!userAddresses.includes(userAddress))
             userAddresses.push(userAddress);
           if (!score[userAddress]) score[userAddress] = BigNumber.from(0);
@@ -141,6 +150,8 @@ export async function strategy(
         formatUnits(score[address], OCEAN_ERC20_DECIMALS)
       );
       return_score[address] = parsedSum;
+
+      // console.log(`Score for address: ${address} is: ${return_score[address]}`);
     });
   }
 
