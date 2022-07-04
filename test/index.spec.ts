@@ -46,7 +46,7 @@ describe(`\nTest strategy "${strategy}"`, () => {
     expect(strategy).toMatch(/^[a-z0-9\-]+$/);
   });
 
-  it('Strategy name should be same as in example.json', () => {
+  it('Strategy name should be same as in examples.json', () => {
     expect(example.strategy.name).toBe(strategy);
   });
 
@@ -190,7 +190,7 @@ describe(`\nOthers:`, () => {
     schema = null;
   }
   (schema ? it : it.skip)(
-    'Check schema (if available) is valid with example.json',
+    'Check schema (if available) is valid with examples.json',
     async () => {
       expect(typeof schema).toBe('object');
       expect(
