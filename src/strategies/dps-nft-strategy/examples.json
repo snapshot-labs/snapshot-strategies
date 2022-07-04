@@ -1,0 +1,20 @@
+[
+  {
+    "name": "DPS NFTs query",
+    "strategy": {
+      "name": "dps-nft-strategy",
+      "params": {
+        "symbol": "DPS"
+      }
+    },
+    "network": "80001",
+    "addresses": [
+      "0x4bb7e1d5c463ec80d0b316e83a090b00f7d87d1d",
+      "0x15f48ab7ada1541a205eb9ee20f5a4e76ce3882a",
+      "0x5e733901b92bc5110779f8ee64de3d8af0629dc6",
+      "0xc32004eced24167e8aaef9690da3a70387a97a9b",
+      "0x60b5d811673a6420851d087cff84c660c14a3acb"
+    ],
+    "snapshot": 26453570
+  }
+]
