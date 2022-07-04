@@ -55,7 +55,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const oceanToken = options.oceanAddress.toLowerCase();
+  const oceanToken = options.oceanTokenAddress.toLowerCase();
   const params = {
     pools: {
       __args: {

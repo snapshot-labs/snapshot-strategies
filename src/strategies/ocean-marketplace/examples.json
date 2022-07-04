@@ -4,7 +4,7 @@
     "strategy": {
       "name": "ocean-marketplace",
       "params": {
-        "oceanToken": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
+        "oceanTokenAddress": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
         "expectedResults": {
           "scores": {
             "0x7842Fa3B2d87Ff1cd52C4152382f7C4B3406E5A6": 250,
@@ -27,7 +27,7 @@
     "strategy": {
       "name": "ocean-marketplace",
       "params": {
-        "oceanToken": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
+        "oceanTokenAddress": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
         "expectedResults": {
           "scores": {
             "0x3EFDD8f728c8e774aB81D14d0B2F07a8238960f4": 10762.326857765422,
