@@ -10,13 +10,23 @@ export const version = '0.1.0';
 const OCEAN_ERC20_DECIMALS = 18;
 const OCEAN_SUBGRAPH_URL = {
   '1':
-    'https://subgraph.mainnet.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.mainnet.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '3':
+    'https://v4.subgraph.ropsten.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '42':
-    'https://subgraph.rinkeby.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.rinkeby.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '56':
-    'https://subgraph.bsc.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+    'https://v4.subgraph.bsc.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
   '137':
-    'https://subgraph.polygon.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph'
+    'https://v4.subgraph.polygon.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '246':
+    'https://v4.subgraph.energyweb.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '1285':
+    'https://v4.subgraph.moonriver.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '1287':
+    'https://v4.subgraph.moonbase.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph',
+  '80001':
+    'https://v4.subgraph.mumbai.oceanprotocol.com/subgraphs/name/oceanprotocol/ocean-subgraph'
 };
 
 // Returns a BigDecimal as a BigNumber with 10^decimals extra zeros
@@ -45,29 +55,35 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const oceanToken = options.oceanTokenAddress.toLowerCase();
   const params = {
     pools: {
       __args: {
+        where: {
+          baseToken_in: [oceanToken]
+        },
         first: 1000,
-        orderBy: 'oceanReserve',
+        orderBy: 'baseTokenLiquidity',
         orderDirection: 'desc'
       },
-      active: true,
+      isFinalized: true,
       totalShares: true,
-      holderCount: true,
-      oceanReserve: true,
+      baseTokenLiquidity: true,
       shares: {
         __args: {
           where: {
-            userAddress_in: addresses.map((address) => address.toLowerCase())
+            user_in: addresses.map((address) => address.toLowerCase())
           },
-          orderBy: 'balance',
+          orderBy: 'shares',
           orderDirection: 'desc'
         },
-        userAddress: {
+        user: {
           id: true
         },
-        balance: true
+        shares: true
+      },
+      datatoken: {
+        holderCount: true
       }
     }
   };
@@ -87,16 +103,26 @@ export async function strategy(
   const score = {};
   const userAddresses: string[] = [];
   const return_score = {};
+
+  // console.log(
+  //   `graph results for network: ${network} at snapshot: ${snapshot}`
+  // );
+  // console.log('results: ', graphResults);
+
   if (graphResults && graphResults.pools) {
     graphResults.pools.forEach((pool) => {
-      if (pool.holderCount > 0 && pool.active) {
+      if (pool.isFinalized) {
         pool.shares.map((share) => {
-          const userAddress = getAddress(share.userAddress.id);
+          const userAddress = getAddress(share.user.id);
+          // const shares = share.shares;
+          // console.log(
+          //   `High Level - User address: ${userAddress} user poolShares: ${shares} baseTokenLiquidity: ${pool.baseTokenLiquidity} poolTotalShares: ${pool.totalShares}`
+          // );
           if (!userAddresses.includes(userAddress))
             userAddresses.push(userAddress);
           if (!score[userAddress]) score[userAddress] = BigNumber.from(0);
           const userShare =
-            share.balance * (pool.oceanReserve / pool.totalShares);
+            share.shares * (pool.baseTokenLiquidity / pool.totalShares);
           if (userShare > 0.0001) {
             score[userAddress] = score[userAddress].add(
               bdToBn(userShare.toString(), OCEAN_ERC20_DECIMALS)
@@ -112,6 +138,8 @@ export async function strategy(
         formatUnits(score[address], OCEAN_ERC20_DECIMALS)
       );
       return_score[address] = parsedSum;
+
+      // console.log(`Score for address: ${address} is: ${return_score[address]}`);
     });
   }
 
