@@ -189,7 +189,7 @@ describe(`\nOthers:`, () => {
   } catch (error) {
     schema = null;
   }
-  (schema ? xit : it.skip)(
+  (schema ? it : it.skip)(
     'Check schema (if available) is valid with example.json',
     async () => {
       expect(typeof schema).toBe('object');
@@ -198,7 +198,7 @@ describe(`\nOthers:`, () => {
       ).toBe(true);
     }
   );
-  (schema ? xit : it.skip)(
+  (schema ? it : it.skip)(
     'Strategy should work even when strategy symbol is null',
     async () => {
       delete example.strategy.params.symbol;
