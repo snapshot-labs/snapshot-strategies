@@ -1,11 +1,9 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'ApeSwapFinance';
 export const version = '0.0.1';
-export const examples = examplesFile;
 
 const GNANA_POOL = '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8';
 const abi = [
