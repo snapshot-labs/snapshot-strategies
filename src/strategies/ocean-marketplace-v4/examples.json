@@ -2,7 +2,7 @@
   {
     "name": "ERC-20 OCEAN staked in mainnet v4 marketplace via subgraph",
     "strategy": {
-      "name": "ocean-marketplace",
+      "name": "ocean-marketplace-v4",
       "params": {
         "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
         "expectedResults": {
@@ -25,7 +25,7 @@
   {
     "name": "ERC-20 OCEAN staked in polygon v4 marketplace via subgraph",
     "strategy": {
-      "name": "ocean-marketplace",
+      "name": "ocean-marketplace-v4",
       "params": {
         "address": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
         "expectedResults": {
