@@ -327,6 +327,7 @@ import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
+import * as apeswap from './apeswap';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -655,7 +656,8 @@ const strategies = {
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
-  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower
+  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  apeswap
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
