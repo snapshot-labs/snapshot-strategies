@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "orbitalswap",
+      "params": {
+        "symbol": "ORB"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x6044e3330373449d7fe6bed1ecccca88a762363a",
+      "0xdaaf1437d794e618cbda299bd2dc3fd8e35c9e7e",
+      "0xc154ba289b31e82e587bc8d8c6a3abad3cf700b5",
+      "0xde8a62b75ec1bfdcaa172a0548ad7f4ad46dab7b"
+    ],
+    "snapshot": 19292295
+  }
+]
