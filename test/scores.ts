@@ -2,117 +2,18 @@ const { JsonRpcProvider } = require('@ethersproject/providers');
 const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
 const utils = require('../src/utils');
 
-<<<<<<< HEAD
-const space = 'ocean';
-const network = '1';
-
-=======
 const space = 'yam.eth';
 const network = '1';
 const snapshotBlockNumber = 13461847;
->>>>>>> bb086a574488266bf78a652748de40d74db12b25
 const strategies = [
   {
     name: 'ens-domains-owned',
     params: {
-<<<<<<< HEAD
-      symbol: 'OCEAN',
-      address: '0x967da4048cD07aB37855c090aAF366e4ce1b9F48',
-      decimals: 18
-    }
-  },
-  {
-    name: 'ocean-marketplace',
-    params: {
-      symbol: 'OCEAN',
-      address: '0x967da4048cD07aB37855c090aAF366e4ce1b9F48',
-      decimals: 18
-    }
-  },
-  {
-    name: 'sushiswap',
-    params: {
-      symbol: 'OCEAN',
-      address: '0x967da4048cD07aB37855c090aAF366e4ce1b9F48',
-      decimals: 18
-    }
-  },
-  {
-    name: 'uniswap',
-    params: {
-      symbol: 'OCEAN',
-      address: '0x967da4048cD07aB37855c090aAF366e4ce1b9F48',
-      decimals: 18
-    }
-  },
-  {
-    name: 'contract-call',
-    params: {
-      address: '0x9712Bb50DC6Efb8a3d7D12cEA500a50967d2d471',
-      args: [
-        '%{address}',
-        '0xCDfF066eDf8a770E9b6A7aE12F7CFD3DbA0011B5',
-        '0x967da4048cD07aB37855c090aAF366e4ce1b9F48'
-      ],
-      decimals: 18,
-      symbol: 'OCEAN',
-      methodABI: {
-        inputs: [
-          {
-            internalType: 'address',
-            name: 'provider',
-            type: 'address'
-          },
-          {
-            internalType: 'address',
-            name: 'poolToken',
-            type: 'address'
-          },
-          {
-            internalType: 'address',
-            name: 'reserveToken',
-            type: 'address'
-          }
-        ],
-        name: 'totalProviderAmount',
-        outputs: [
-          {
-            internalType: 'uint256',
-            name: '',
-            type: 'uint256'
-          }
-        ],
-        stateMutability: 'view',
-        type: 'function'
-      }
-=======
       domain: 'sismo.eth'
->>>>>>> bb086a574488266bf78a652748de40d74db12b25
     }
   }
 ];
-
-// [0] => ERC20
-// [1] => Ocean Marketplace
-// [2] => Sushiswap
-// [3] => Uniswap
-// [4] => Bancor
 const addresses = [
-<<<<<<< HEAD
-  // ERC-20 - 325.9642552813115
-  // Uniswap LP - 2.5914096066900663
-  '0x005241438cAF3eaCb05bB6543151f7AF894C5B58',
-
-  // ERC-20 - 5695.410954916474
-  // Ocean Marketplace LP - 4164.931866504933
-  // Bancor LP - 49267.088663994866
-  '0x5D2B315C465e133a346C960F46f5AA1ED88a3179',
-
-  // ERC-20 - 0
-  // Sushiswap LP - 963.8962295973731
-  // Bancor LP - 0
-  '0x477336e94655a1fd0b0aa3945f26236f7555fa28'
-=======
   '0x05e57688C639b0742ea3E940b4E9DC0fb69B1B88',
   '0x1D911BCC079660aaFB772D48B992d50815b7a66d',
   '0xCe2EF28C65e5Db090d75630c98A807da003fb36f',
@@ -271,7 +172,6 @@ const addresses = [
   '0xc323053eF49BE080300134d7C6a05834C4FfFd0A',
   '0x8867c12738F4cA3b530AFe7EfC7aC4ee1d286cBC',
   '0x75d4bdBf6593ed463e9625694272a0FF9a6D346F'
->>>>>>> bb086a574488266bf78a652748de40d74db12b25
 ];
 
 (async () => {
@@ -283,11 +183,7 @@ const addresses = [
       network,
       new JsonRpcProvider(networks[network].rpc[0]),
       addresses,
-<<<<<<< HEAD
-      13003759
-=======
       snapshotBlockNumber
->>>>>>> bb086a574488266bf78a652748de40d74db12b25
     );
     console.log(scores);
   } catch (e) {
