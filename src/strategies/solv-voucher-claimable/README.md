@@ -1,6 +1,6 @@
 # solv-voucher-claimable
 
-This strategy is to let owners of Solv vesting vouchers vote with the voting power equal to their claimable token amount in the voucher at the time of the snapshot.
+This strategy is to let owners of [Solv vesting vouchers](https://solv.finance/) vote with the voting power equal to their claimable token amount in the voucher at the time of the snapshot.
 
 This can be combined with `erc20-balance-of` strategy to give the voting power of "amount held in wallet" + "amount available in the vesting voucher".
 
