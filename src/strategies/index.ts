@@ -330,6 +330,7 @@ import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
+import * as h2o from './h2o';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -661,7 +662,8 @@ const strategies = {
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
-  apeswap
+  apeswap,
+  h2o
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
