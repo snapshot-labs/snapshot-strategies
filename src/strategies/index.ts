@@ -328,6 +328,7 @@ import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
+import * as solvVoucherClaimable from './solv-voucher-claimable';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -656,6 +657,7 @@ const strategies = {
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
+  'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   apeswap
 };
