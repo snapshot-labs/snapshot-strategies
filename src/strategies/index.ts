@@ -89,6 +89,7 @@ import * as work from './work';
 import * as ticketValidity from './ticket-validity';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
+import * as ocean_v4 from './ocean-marketplace-v4';
 import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
@@ -329,6 +330,7 @@ import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 import * as orbitalswap from './orbitalswap';
+import * as solvVoucherClaimable from './solv-voucher-claimable';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -438,6 +440,7 @@ const strategies = {
   'ticket-validity': ticketValidity,
   opium,
   'ocean-marketplace': ocean,
+  'ocean-marketplace-v4': ocean_v4,
   'the-graph-balance': theGraphBalance,
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
@@ -657,6 +660,7 @@ const strategies = {
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
+  'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   apeswap,
   orbitalswap
