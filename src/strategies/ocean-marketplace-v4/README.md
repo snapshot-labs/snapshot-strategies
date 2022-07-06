@@ -42,36 +42,10 @@ Addresses by network:
 '80001': '0xd8992Ed72C445c35Cb4A2be468568Ed1079357c8' //mumbai
 ```
 
-## GraphQL queries:
-
-### Pools
-
+## How to Test
+(1) Remove comments around debug logs.  
+(2) Enable code block inside `index.ts` that verifies expected results.  
 ```
-pools (
-  where: {baseToken: "0x282d8efce846a88b159800bd4130ad77443fa1a1"},
-  first: 1000, 
-  orderBy: baseTokenLiquidity, 
-  orderDirection: desc
-) {
-  id,
-  shares (first: 1000) {
-    user {
-      id
-    }
-  }
-  baseToken {
-    id
-    symbol
-  },
-  datatoken {
-    id,
-    symbol,
-    nft {
-        id
-    }
-    holderCount
-  }
-  isFinalized
-  baseTokenLiquidity
-}
+if (options.expectedResults) {
 ```
+(3) Use the regular testing functionality `yarn test -strategy=ocean-marktplace-v4`

@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
-import { verifyResultsLength, verifyResults } from './oceanUtils';
+// import { verifyResultsLength, verifyResults } from './oceanUtils';
 
 export const author = 'oceanprotocol';
 export const version = '0.1.0';
