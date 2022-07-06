@@ -89,6 +89,7 @@ import * as work from './work';
 import * as ticketValidity from './ticket-validity';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
+import * as ocean_v4 from './ocean-marketplace-v4';
 import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
@@ -438,6 +439,7 @@ const strategies = {
   'ticket-validity': ticketValidity,
   opium,
   'ocean-marketplace': ocean,
+  'ocean-marketplace-v4': ocean_v4,
   'the-graph-balance': theGraphBalance,
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
