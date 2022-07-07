@@ -6,24 +6,22 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "stakingRewardsContractAddress": {
+        "symbol": {
           "type": "string",
-          "title": "Address of the staking rewards contract",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
+          "title": "Underlying Token Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
         },
-        "childDaoTokenAddress": {
+        "address": {
           "type": "string",
-          "title": "Child DAO token contract address",
+          "title": "Vesting Voucher Contract address",
           "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         }
       },
-      "required": ["stakingRewardsContractAddress", "childDaoTokenAddress"],
+      "required": ["address"],
       "additionalProperties": false
     }
   }
