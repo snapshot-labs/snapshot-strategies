@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'MantisClone';
@@ -39,7 +40,7 @@ export async function strategy(
 
   return Object.fromEntries(
     result.users.map((user) => [
-      user.id,
+      getAddress(user.id),
       user.safes.reduce(
         (partialSum, safe) => partialSum + parseFloat(safe.collateral),
         0
