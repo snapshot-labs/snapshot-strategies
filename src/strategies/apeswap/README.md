@@ -1,0 +1,33 @@
+# Apeswap
+
+This is the most common strategy, it returns the balances of the voters for a balances GNANA token
+in Apeswap project(pools, token).
+
+Here is an example of parameters:
+```json
+[
+  {
+    "name": "Example query Apeswap",
+    "strategy": {
+      "name": "apeswap",
+      "params": {
+        "address": "0xddb3bd8645775f59496c821e4f55a7ea6a6dc299",
+        "symbol": "GNANA",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x56E17565Ce37c0Dbb2BDDec0eC607b874785c376",
+      "0x0326824dB556Ab5525608851713e269Ce583B629",
+      "0xc47dec7ffde829043b91e904fdaf1e048bdd482c",
+      "0x356f74457a8002c680a0c8fa628083d619267c88",
+      "0x607f62572ea0c00da5048eb39d89d32110151681",
+      "0x75768Ea1A1C3c84121063f7A281ee3081dB1D8Ef"
+    ],
+    "snapshot": 18979451
+  }
+]
+
+
+```

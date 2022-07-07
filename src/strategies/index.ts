@@ -89,6 +89,7 @@ import * as work from './work';
 import * as ticketValidity from './ticket-validity';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
+import * as ocean_v4 from './ocean-marketplace-v4';
 import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
@@ -327,6 +328,9 @@ import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
+import * as apeswap from './apeswap';
+import * as solvVoucherClaimable from './solv-voucher-claimable';
+import * as h2o from './h2o';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -436,6 +440,7 @@ const strategies = {
   'ticket-validity': ticketValidity,
   opium,
   'ocean-marketplace': ocean,
+  'ocean-marketplace-v4': ocean_v4,
   'the-graph-balance': theGraphBalance,
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
@@ -655,7 +660,10 @@ const strategies = {
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
-  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower
+  'solv-voucher-claimable': solvVoucherClaimable,
+  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  apeswap,
+  h2o
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
