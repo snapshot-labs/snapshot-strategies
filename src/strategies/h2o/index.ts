@@ -33,7 +33,7 @@ export async function strategy(
   };
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params.users.__args.block = { number: snapshot };
+    params.users.__args = { block: { number: snapshot } };
   }
 
   const result = await subgraphRequest(SUBGRAPH_URL[network], params);
