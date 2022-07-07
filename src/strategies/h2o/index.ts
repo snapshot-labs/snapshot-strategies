@@ -39,6 +39,9 @@ export async function strategy(
   const result = await subgraphRequest(SUBGRAPH_URL[network], params);
 
   return Object.fromEntries(
-    result.users.map((u) => [u.id, 1])
+    result.users.map((user) => [
+      user.id,
+      user.safes.reduce((partialSum, safe) => partialSum + parseFloat(safe.collateral), 0)
+    ])
   );
 }
