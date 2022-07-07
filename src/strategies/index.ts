@@ -331,6 +331,7 @@ import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 import * as orbitalswap from './orbitalswap';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
+import * as h2o from './h2o';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -664,6 +665,7 @@ const strategies = {
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   apeswap,
   orbitalswap
+  h2o
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
