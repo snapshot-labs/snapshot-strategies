@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "symbol",
+          "examples": ["e.g. OCEAN"],
+          "maxLength": 16
+        },
+        "collateralTypeId": {
+          "type": "string",
+          "title": "collateralTypeId",
+          "examples": ["e.g. OCEAN-A"],
+          "maxLength": 16
+        }
+      },
+      "required": ["collateralTypeId"],
+      "additionalProperties": false
+    }
+  }
+}
