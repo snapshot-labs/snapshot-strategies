@@ -137,7 +137,7 @@ export async function strategy(
       const parsedSum = parseFloat(
         formatUnits(score[address], OCEAN_ERC20_DECIMALS)
       );
-      return_score[address] = parsedSum;
+      return_score[address] = parsedSum * 2; //this resolves the 50% discrepancy due to 50/50 OCEAN/DT LP
 
       // console.log(`Score for address: ${address} is: ${return_score[address]}`);
     });
