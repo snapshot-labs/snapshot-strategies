@@ -35,26 +35,10 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const callNftSupply = () => {
-    return call(provider, nftContractAbi, [
-      options.nftAddress,
-      'totalSupply',
-      []
-    ]);
-  };
-
   const callTokenDecimal = () => {
     return call(provider, tokenContractAbi, [
       options.tokenAddress,
       'decimals',
-      []
-    ]);
-  };
-
-  const callTokenSupply = () => {
-    return call(provider, tokenContractAbi, [
-      options.tokenAddress,
-      'totalSupply',
       []
     ]);
   };
@@ -72,16 +56,12 @@ export async function strategy(
   const erc20Multi = makeMulticaller(tokenContractAbi, options.tokenAddress);
   const erc721Multi = makeMulticaller(nftContractAbi, options.nftAddress);
 
-  const [tokenDecimal, tokenSupply, nftSupply, tokenResults, nftResults]: [
-    BigNumber,
-    BigNumber,
+  const [tokenDecimal, tokenResults, nftResults]: [
     BigNumber,
     MultiCallResult,
     MultiCallResult
   ] = await Promise.all([
     callTokenDecimal(),
-    callTokenSupply(),
-    callNftSupply(),
     erc20Multi.execute(),
     erc721Multi.execute()
   ]);
@@ -97,19 +77,10 @@ export async function strategy(
     scores[address] = tokenScore.add(nftScore);
   }
 
-  const totalScore = nftSupply.mul(options.nftMultiplier).add(tokenSupply);
-
-  const dec_multi = BigNumber.from(10).pow(options.decimals);
-
   return Object.fromEntries(
     Object.entries(scores).map(([address, score]) => [
       address,
-      parseFloat(
-        formatUnits(
-          score.mul(100).mul(dec_multi).div(totalScore),
-          options.decimals
-        )
-      )
+      parseFloat(formatUnits(score, options.decimals))
     ])
   );
 }
