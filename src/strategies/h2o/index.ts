@@ -4,8 +4,7 @@ export const author = 'MantisClone';
 export const version = '0.1.0';
 
 const SUBGRAPH_URL = {
-  '1':
-    'https://api.thegraph.com/subgraphs/name/h2odata/h2o-mainnet'
+  '1': 'https://api.thegraph.com/subgraphs/name/h2odata/h2o-mainnet'
 };
 
 export async function strategy(
@@ -27,7 +26,7 @@ export async function strategy(
             }
           }
         },
-        collateral: true,
+        collateral: true
       }
     }
   };
@@ -41,7 +40,10 @@ export async function strategy(
   return Object.fromEntries(
     result.users.map((user) => [
       user.id,
-      user.safes.reduce((partialSum, safe) => partialSum + parseFloat(safe.collateral), 0)
+      user.safes.reduce(
+        (partialSum, safe) => partialSum + parseFloat(safe.collateral),
+        0
+      )
     ])
   );
 }
