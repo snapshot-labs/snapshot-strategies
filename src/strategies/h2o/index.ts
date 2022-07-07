@@ -1,13 +1,12 @@
-import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
-import { Multicaller } from '../../utils';
+import { subgraphRequest } from '../../utils';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'MantisClone';
+export const version = '0.1.0';
 
-const abi = [
-  'function balanceOf(address account) external view returns (uint256)'
-];
+const SUBGRAPH_URL = {
+  '1':
+    'https://api.thegraph.com/subgraphs/name/h2odata/h2o-mainnet'
+};
 
 export async function strategy(
   space,
@@ -17,18 +16,29 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const params = {
+    users: {
+      id: true,
+      safes: {
+        collateralType: {
+          __args: {
+            where: {
+              id: options.collateralTypeId
+            }
+          }
+        },
+        collateral: true,
+      }
+    }
+  };
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    params.users.__args.block = { number: snapshot };
+  }
 
-  const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) =>
-    multi.call(address, options.address, 'balanceOf', [address])
-  );
-  const result: Record<string, BigNumberish> = await multi.execute();
+  const result = await subgraphRequest(SUBGRAPH_URL[network], params);
 
   return Object.fromEntries(
-    Object.entries(result).map(([address, balance]) => [
-      address,
-      parseFloat(formatUnits(balance, options.decimals))
-    ])
+    result.users.map((u) => [u.id, 1])
   );
 }

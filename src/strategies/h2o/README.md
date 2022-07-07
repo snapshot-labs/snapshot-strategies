@@ -1,13 +1,17 @@
-# erc20-balance-of
+# h2o
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
+Returns the voters h2o vault collateral balance of the given token
+
+## Params
+
+- `symbol` - (**Optional**, `string`) Symbol of collateral ERC20 token
+- `collateralTypeId` - (**Required**, `string`) Collateral type ID
 
 Here is an example of parameters:
 
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
-  "decimals": 18
+  "symbol": "OCEAN",
+  "collateralTypeId": "OCEAN-A",
 }
 ```
