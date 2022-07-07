@@ -5,16 +5,15 @@ export const author = 'andreibadea20';
 export const version = '0.1.0';
 
 const DPS_SUBGRAPH_URL = {
-  '80001': 'https://api.thegraph.com/subgraphs/name/andreibadea20/subgraph-dps'
+  '1285': 'https://api.thegraph.com/subgraphs/name/andreibadea20/dps-subgraph-moonriver'
 };
-
 
 const PAGE_SIZE = 1000;
 
 const params = {
     users: {
         __args: {
-            block: {number: 22572401},
+            block: {number: 793940},
             first: PAGE_SIZE,
             skip: 0
         },
@@ -42,6 +41,7 @@ export async function strategy(space, network, provider, addresses, options, sna
     while (page !== -1) {
         params.users.__args.skip = page * PAGE_SIZE;
         const result = await subgraphRequest(DPS_SUBGRAPH_URL[network], params);
+
         if (result && result.users) {
             result.users.forEach((u) => {
 
@@ -52,7 +52,6 @@ export async function strategy(space, network, provider, addresses, options, sna
                 let lockedNFTs = u.listOfNFTsLocked.length;
                 let claimedNFTs = u.listOfNFTsReturned.length;
 
-
                 userScore = userScore + lockedNFTs - claimedNFTs;
 
                 if (!score[userAddress])
@@ -60,10 +59,12 @@ export async function strategy(space, network, provider, addresses, options, sna
                 score[userAddress] = userScore;
             });
             page = result.users.length < PAGE_SIZE ? -1 : page + 1;
+        
         }
         else {
             page = -1;
         }
     }
+    
     return score || {};
     }
