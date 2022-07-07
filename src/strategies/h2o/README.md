@@ -1,6 +1,6 @@
 # h2o
 
-Returns the voters h2o vault collateral balance of the given token
+Returns the underlying collateral balance for each voter's H2O vault(s).
 
 ## Params
 
