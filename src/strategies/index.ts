@@ -664,7 +664,7 @@ const strategies = {
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   apeswap,
-  orbitalswap
+  orbitalswap,
   h2o
 };
 
