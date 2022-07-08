@@ -26,7 +26,6 @@ import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
 import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
-import * as erc20BalanceOfQuadratic from './erc20-balance-of-quadratic';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as mintoBalanceAll from './minto-balance-of-all';
@@ -332,7 +331,7 @@ import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 
 const strategies = {
-  'amkt': amkt,
+  amkt: amkt,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
@@ -368,7 +367,6 @@ const strategies = {
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
-  'erc20-balance-of-quadratic': erc20BalanceOfQuadratic,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'minto-balance-of-all': mintoBalanceAll,

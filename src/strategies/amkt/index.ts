@@ -1,5 +1,6 @@
 import { strategy as erc1155AllBalancesOf } from '../erc1155-all-balances-of';
-import { strategy as erc20BalanceOfQuadratic } from '../erc20-balance-of-quadratic';
+import { strategy as math } from '../math';
+import { OperandType, Operation } from '../math/options';
 
 export const author = 'Alongside-Finance';
 export const version = '0.1.0';
@@ -28,12 +29,26 @@ export async function strategy(
     snapshot
   );
 
-  const sqrtBalances = await erc20BalanceOfQuadratic(
+  const sqrtBalances = await math(
     space,
     network,
     provider,
     addresses,
-    { address: AMKT, decimals: 18 },
+    {
+      operands: [
+        {
+          type: OperandType.Strategy,
+          strategy: {
+            name: 'erc20-balance-of',
+            params: {
+              address: AMKT,
+              decimals: 18
+            }
+          }
+        }
+      ],
+      operation: Operation.SquareRoot
+    },
     snapshot
   );
 
