@@ -2,8 +2,8 @@ import { JsonRpcProvider } from '@ethersproject/providers';
 import { getAddress } from '@ethersproject/address';
 import { performance } from 'perf_hooks';
 import fetch from 'cross-fetch';
-import snapshot from '../src';
 import networks from '@snapshot-labs/snapshot.js/src/networks.json';
+import snapshot from '../src';
 import snapshotjs from '@snapshot-labs/snapshot.js';
 import addresses from './addresses.json';
 
