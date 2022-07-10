@@ -7,7 +7,7 @@
         "tokenAddress": "0x6b175474e89094c44da98b954eedeac495271d0f",
         "nftAddress": "0x96b0f2cf48ad9ab21bb7a8a052a3d8391ee64798",
         "nftMultiplier": 10000,
-        "decimals":8
+        "decimals": 8
       }
     },
     "network": "1",
