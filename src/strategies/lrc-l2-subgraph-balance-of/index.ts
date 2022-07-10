@@ -4,13 +4,16 @@ import { subgraphRequest } from '../../utils';
 export const author = 'shad-k';
 export const version = '0.1.1';
 
+const LIMIT = 500;
+
 function makeQuery(snapshot, addresses, tokenId) {
   const query: any = {
     accounts: {
       __args: {
         where: {
           address_in: addresses
-        }
+        },
+        first: LIMIT
       },
       balances: {
         __args: {
@@ -47,7 +50,6 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const LIMIT = 100;
   const _addresses = addresses.map((address) => address.toLowerCase());
   const addressSubsets = Array.apply(
     null,
