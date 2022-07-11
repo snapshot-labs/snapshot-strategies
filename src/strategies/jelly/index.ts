@@ -41,7 +41,7 @@ export async function strategy(
 
   });
 
-  const response = await multicall(
+  const jellyBalance = await multicall(
     network,
     provider,
     abi,
@@ -53,7 +53,7 @@ export async function strategy(
     { blockTag }
   );
 
-  const userWalletBalances = response.map((amount, i) => {
+  const userWalletBalances = jellyBalance.map((amount, i) => {
     return [
       addresses[i].toLowerCase(),
       parseFloat(formatUnits(amount.toString(), 18))
@@ -61,7 +61,6 @@ export async function strategy(
   });
 
   const userTotal = {};
-  // loop through user, investor/advisor/team-member, and airdrop wallets to calculate total.
 
   userWalletBalances.forEach(([address, amount]) => {
     const addr = address.toLowerCase();
