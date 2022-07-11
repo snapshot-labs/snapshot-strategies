@@ -4,7 +4,6 @@
     "strategy": {
       "name": "decentraland-estate-size",
       "params": {
-        "address": "0x959e104e1a4db6317fa58f8295f586e1a978c297",
         "symbol": "ESTATE",
         "multiplier": 2000
       }

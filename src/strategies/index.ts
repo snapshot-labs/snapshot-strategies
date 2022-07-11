@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
@@ -16,6 +17,7 @@ import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
+import * as ens10kClub from './ens-10k-club';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
@@ -31,6 +33,7 @@ import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
+import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
@@ -86,6 +89,7 @@ import * as work from './work';
 import * as ticketValidity from './ticket-validity';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
+import * as ocean_v4 from './ocean-marketplace-v4';
 import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
@@ -133,6 +137,7 @@ import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weig
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
 import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
 import * as erc721WithMetadata from './erc721-with-metadata';
+import * as erc721WithMetadataByOwnerOf from './erc721-with-metadata-by-ownerof';
 import * as hoprUniLpFarm from './hopr-uni-lp-farm';
 import * as erc721 from './erc721';
 import * as erc721MultiRegistry from './erc721-multi-registry';
@@ -140,6 +145,7 @@ import * as apescape from './apescape';
 import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
+import * as decentralandWearableRariry from './decentraland-wearable-rarity';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
 import * as xrc20BalanceOf from './xrc20-balance-of';
@@ -224,6 +230,7 @@ import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
 import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as gatenetTotalStaked from './gatenet-total-staked';
 import * as vesper from './vesper';
 import * as thales from './thales';
 import * as bscMvb from './bsc-mvb';
@@ -302,8 +309,34 @@ import * as dogsUnchained from './dogs-unchained';
 import * as stakeDAOGovernanceUpdate from './stakedao-governance-update';
 import * as umamiVoting from './umami-voting';
 import * as liquidityTokenProvide from './liquidity-token-provide';
+import * as gamiumVoting from './gamium-voting';
+import * as citydaoSquareRoot from './citydao-square-root';
+import * as recusalList from './recusal-list';
+import * as rowdyRoos from './rowdy-roos';
+import * as ethermon721 from './ethermon-erc721';
+import * as hedgey from './hedgey';
+import * as sybilProtection from './sybil-protection';
+import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
+import * as genzeesFromSubgraph from './genzees-from-subgraph';
+import * as ginFinance from './gin-finance';
+import * as positionGovernancePower from './position-governance-power';
+import * as creditLp from './credit-lp';
+import * as helix from './helix';
+import * as arrakisFinance from './arrakis-finance';
+import * as auraFinance from './aura-vlaura-vebal';
+import * as rocketpoolNodeOperator from './rocketpool-node-operator';
+import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
+import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
+import * as sdBoostTWAVP from './sd-boost-twavp';
+import * as apeswap from './apeswap';
+import * as solvVoucherClaimable from './solv-voucher-claimable';
+import * as h2o from './h2o';
+import * as dopamine from './dopamine';
+import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 
 const strategies = {
+  'ethermon-erc721': ethermon721,
+  'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
@@ -321,10 +354,12 @@ const strategies = {
   'dextf-staked-in-vaults': dextfVaults,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
+  'dps-nft-strategy': dpsNFTStrategy,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
+  'ens-10k-club': ens10kClub,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
@@ -356,6 +391,7 @@ const strategies = {
   'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
+  'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
@@ -406,6 +442,7 @@ const strategies = {
   'ticket-validity': ticketValidity,
   opium,
   'ocean-marketplace': ocean,
+  'ocean-marketplace-v4': ocean_v4,
   'the-graph-balance': theGraphBalance,
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
@@ -446,6 +483,7 @@ const strategies = {
   apescape,
   liftkitchen,
   'decentraland-estate-size': decentralandEstateSize,
+  'decentraland-wearable-rarity': decentralandWearableRariry,
   brightid,
   'inverse-xinv': inverseXINV,
   modefi,
@@ -528,6 +566,7 @@ const strategies = {
   'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
+  'gatenet-total-staked': gatenetTotalStaked,
   vesper,
   thales,
   'tech-quadratic-ranked-choice': techQuadraticRankedChoice,
@@ -601,11 +640,34 @@ const strategies = {
   'uma-voting': umaVoting,
   'masterchef-pool-balance-no-rewarddebt': masterchefPoolBalanceNoRewarddebt,
   'proof-of-humanity': proofOfHumanity,
+  'sybil-protection': sybilProtection,
   'samurailegends-generals-balance': samuraiLegendsGeneralsBalance,
   'dogs-unchained': dogsUnchained,
   'stakedao-governance-update': stakeDAOGovernanceUpdate,
   'umami-voting': umamiVoting,
-  'liquidity-token-provide': liquidityTokenProvide
+  'liquidity-token-provide': liquidityTokenProvide,
+  'gamium-voting': gamiumVoting,
+  'citydao-square-root': citydaoSquareRoot,
+  'rowdy-roos': rowdyRoos,
+  hedgey,
+  've-balance-of-at-nft': veBalanceOfAtNFT,
+  'genzees-from-subgraph': genzeesFromSubgraph,
+  'gin-finance': ginFinance,
+  'position-governance-power': positionGovernancePower,
+  'credit-lp': creditLp,
+  helix,
+  'arrakis-finance': arrakisFinance,
+  'aura-vlaura-vebal': auraFinance,
+  'rocketpool-node-operator': rocketpoolNodeOperator,
+  'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
+  'sd-boost-twavp': sdBoostTWAVP,
+  'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
+  'solv-voucher-claimable': solvVoucherClaimable,
+  'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  apeswap,
+  h2o,
+  dopamine,
+  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -1,8 +1,17 @@
+import { getAddress } from '@ethersproject/address';
 import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'ganzai-san';
-export const version = '0.1.0';
+export const version = '0.1.2';
+
+const isIPFS = (apiURL) => {
+  return (
+    apiURL.startsWith('https://gateway.pinata.cloud/ipfs/') ||
+    apiURL.startsWith('https://ipfs.io/ipfs/') ||
+    apiURL.startsWith('https://cloudflare-ipfs.com/ipfs/')
+  );
+};
 
 export async function strategy(
   space,
@@ -13,9 +22,11 @@ export async function strategy(
   snapshot
 ) {
   let api_url = options.api + '/' + options.strategy;
-  api_url += '?network=' + network;
-  api_url += '&snapshot=' + snapshot;
-  api_url += '&addresses=' + addresses.join(',');
+  if (!isIPFS(api_url)) {
+    api_url += '?network=' + network;
+    api_url += '&snapshot=' + snapshot;
+    api_url += '&addresses=' + addresses.join(',');
+  }
   if (options.additionalParameters)
     api_url += '&' + options.additionalParameters;
 
@@ -29,7 +40,7 @@ export async function strategy(
   const data = await response.json();
   return Object.fromEntries(
     data.score.map((value) => [
-      value.address,
+      getAddress(value.address),
       parseFloat(formatUnits(value.score.toString(), options.decimals))
     ])
   );

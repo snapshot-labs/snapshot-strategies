@@ -1,6 +1,6 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
-const snapshot = require('../').default;
 const networks = require('@snapshot-labs/snapshot.js/src/networks.json');
+const utils = require('../src/utils');
 
 const space = 'yam.eth';
 const network = '1';
@@ -177,7 +177,7 @@ const addresses = [
 (async () => {
   console.time('getScores');
   try {
-    const scores = await snapshot.utils.getScoresDirect(
+    const scores = await utils.getScoresDirect(
       space,
       strategies,
       network,

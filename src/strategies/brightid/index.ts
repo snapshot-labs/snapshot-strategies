@@ -26,7 +26,7 @@ async function getIDChainBlock(snapshot, provider) {
       number: true
     }
   };
-  const url = 'https://blockfinder.snapshot.org/graphql';
+  const url = 'https://blockfinder.snapshot.org';
   const data = await subgraphRequest(url, query);
   return data.blocks[0].number;
 }

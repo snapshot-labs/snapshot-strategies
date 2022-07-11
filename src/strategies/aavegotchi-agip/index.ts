@@ -1,15 +1,10 @@
 import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
-
 export const author = 'candoizo';
-export const version = '0.2.1';
+export const version = '0.2.5';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
-};
-
-const AAVEGOTCHI_LENDING_SUBGRAPH_URL = {
-  137: 'https://api.thegraph.com/subgraphs/id/QmXb4Wsaj3LFMZicuRmGRg9xTNFjL6pYEXbwktdF7JXYGH'
 };
 
 const prices = {
@@ -352,8 +347,7 @@ const tokenAbi = [
   }
 ];
 
-const userKey = (key: string, addr: string, queryKey: string | number) =>
-  [key, addr, queryKey].join('_');
+const maxResultsPerQuery = 1000;
 
 export async function strategy(
   _space,
@@ -364,6 +358,10 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const args: {
+    block?: { number: number };
+  } = {};
+  if (blockTag !== 'latest') args.block = { number: blockTag };
 
   const multi = new Multicaller(network, provider, tokenAbi, { blockTag });
   addresses.map((addr: string) => {
@@ -373,178 +371,84 @@ export async function strategy(
       'itemBalances',
       [addr]
     );
-    multi.call(
-      `${options.tokenAddress}.${addr.toLowerCase()}.balanceOf`,
-      options.tokenAddress,
-      'balanceOf',
-      [addr]
-    );
   });
   const multiRes = await multi.execute();
 
-  const maxResultsPerQuery = 1000;
-  const walletQueryParams = (user: string) => {
-    user = user.toLowerCase();
-
-    const args: {
-      block?: { number: number };
-    } = {};
-    if (blockTag !== 'latest') args.block = { number: blockTag };
-
-    const balanceOfGotchis = Number(
-      multiRes[options.tokenAddress][user]['balanceOf'].toString()
-    );
-    let queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
-    if (queriesNeeded == 0) queriesNeeded = 1;
-    const res = {};
-    for (let i = 0; i < queriesNeeded; i++) {
-      res[userKey('aavegotchis', user, i * maxResultsPerQuery)] = {
-        __aliasFor: 'aavegotchis',
-        __args: {
-          ...args,
-          skip: i * maxResultsPerQuery,
-          first: 1000,
-          where: {
-            owner: user
-          }
-        },
-        baseRarityScore: true,
-        equippedWearables: true,
-        gotchiId: true
-      };
+  const query = {
+    users: {
+      __args: {
+        ...args,
+        first: addresses.length,
+        where: {
+          id_in: addresses.map((addr) => addr.toLowerCase())
+        }
+      },
+      id: true
     }
-    return res;
   };
 
-  const walletLendingQueryParams = (user: string) => {
-    user = user.toLowerCase();
+  for (let i = 0; i <= 5; i++) {
+    query.users['gotchisOriginalOwned' + i] = {
+      __aliasFor: 'gotchisOriginalOwned',
+      __args: {
+        first: maxResultsPerQuery,
+        skip: i * maxResultsPerQuery,
+        orderBy: 'gotchiId'
+      },
+      baseRarityScore: true,
+      equippedWearables: true
+    };
+  }
 
-    const args: {
-      block?: { number: number };
-    } = {};
-    if (blockTag !== 'latest') args.block = { number: blockTag };
-
-    const balanceOfGotchis = Number(
-      multiRes[options.tokenAddress][user]['balanceOf'].toString()
-    );
-    const queriesNeeded = balanceOfGotchis / maxResultsPerQuery;
-    const res = {};
-    for (let i = 0; i < queriesNeeded; i++) {
-      res[userKey('gotchiBorrowExclusions', user, i * maxResultsPerQuery)] = {
-        __aliasFor: 'gotchiLendings',
-        __args: {
-          ...args,
-          skip: i * maxResultsPerQuery,
-          first: 1000,
-          where: {
-            borrower: user,
-            timeAgreed_gt: 0,
-            completed: false,
-            cancelled: false
-          }
-        },
-        gotchi: { gotchiId: true }
-      };
-    }
-    for (let i = 0; i < 5; i++) {
-      res[userKey('gotchiLendings', user, i * maxResultsPerQuery)] = {
-        __aliasFor: 'gotchiLendings',
-        __args: {
-          ...args,
-          skip: i * maxResultsPerQuery,
-          first: 1000,
-          where: {
-            lender: user,
-            timeAgreed_gt: 0,
-            completed: false,
-            cancelled: false
-          }
-        },
-        gotchi: { baseRarityScore: true, equippedWearables: true }
-      };
-    }
-    return res;
-  };
-
-  const result = await subgraphRequest(
-    AAVEGOTCHI_SUBGRAPH_URL[network],
-    addresses.map((addr: string) => walletQueryParams(addr))
+  const subgraphRaw = await subgraphRequest(
+    AAVEGOTCHI_SUBGRAPH_URL[137],
+    query
   );
 
-  const lendingResult = await subgraphRequest(
-    AAVEGOTCHI_LENDING_SUBGRAPH_URL[network],
-    addresses.map((addr: string) => walletLendingQueryParams(addr))
+  const result = Object.fromEntries(
+    subgraphRaw.users.map((item) => {
+      const ownedEntries = Object.entries(item)
+        .map(([key, value]) => {
+          if (key.startsWith('gotchis')) return value;
+          else return [];
+        })
+        .flat();
+      return [item.id, ownedEntries];
+    })
   );
 
   return Object.fromEntries(
     addresses.map((address: string) => {
       const lowercaseAddr = address.toLowerCase();
-      const balanceOfGotchis = Number(
-        multiRes[options.tokenAddress][lowercaseAddr]['balanceOf'].toString()
-      );
-      const queriesMade = balanceOfGotchis / maxResultsPerQuery;
-      const gotchisOwned: any[] = [];
-      const gotchisExcluded: number[] = [];
-      for (let i = 0; i < queriesMade; i++) {
-        const info =
-          result[userKey('aavegotchis', lowercaseAddr, i * maxResultsPerQuery)];
-        if (info?.length > 0) gotchisOwned.push(...info);
-
-        const excludeInfo =
-          lendingResult[
-            userKey(
-              'gotchiBorrowExclusions',
-              lowercaseAddr,
-              i * maxResultsPerQuery
-            )
-          ];
-        if (excludeInfo?.length > 0)
-          gotchisExcluded.push(
-            ...excludeInfo.map(({ gotchi }) => gotchi.gotchiId)
-          );
-      }
-
-      for (let i = 0; i < 5; i++) {
-        const info =
-          lendingResult[
-            userKey('gotchiLendings', lowercaseAddr, i * maxResultsPerQuery)
-          ];
-        if (info?.length > 0)
-          gotchisOwned.push(...info.map(({ gotchi }) => gotchi));
-      }
 
       let gotchisBrsEquipValue = 0;
-      if (gotchisOwned.length > 0) {
-        const allGotchiInfo = gotchisOwned.filter(
-          ({ gotchiId }) => gotchisExcluded.includes(gotchiId) == false
+      const allGotchiInfo = result[lowercaseAddr];
+      if (allGotchiInfo?.length > 0) {
+        gotchisBrsEquipValue = allGotchiInfo.reduce(
+          (total, { baseRarityScore, equippedWearables }) =>
+            total +
+            Number(baseRarityScore) +
+            equippedWearables.reduce(
+              (currentValue, nextIter) => currentValue + prices[nextIter],
+              0
+            ),
+          0
         );
-
-        if (allGotchiInfo.length > 0)
-          allGotchiInfo.map((gotchi) => {
-            const brs = parseInt(gotchi.baseRarityScore);
-            gotchisBrsEquipValue += brs;
-            gotchi.equippedWearables
-              .filter((itemId: number) => itemId != 0)
-              .map((itemId) => {
-                let shopCost = prices[itemId];
-                if (isNaN(shopCost)) shopCost = 0;
-                gotchisBrsEquipValue += shopCost;
-              });
-          });
       }
 
       let ownerItemValue = 0;
       const ownerItemInfo =
         multiRes[options.tokenAddress][lowercaseAddr]['itemBalances'];
-      if (ownerItemInfo.length > 0)
-        ownerItemInfo.map((itemInfo) => {
-          const amountOwned = parseInt(itemInfo.balance.toString());
-          const itemId = parseInt(itemInfo.itemId.toString());
-          const pricetag = parseFloat(prices[itemId]);
+      if (ownerItemInfo?.length > 0) {
+        ownerItemValue = ownerItemInfo.reduce((total, { balance, itemId }) => {
+          const amountOwned = Number(balance.toString());
+          const id = Number(itemId.toString());
+          const pricetag = parseFloat(prices[id]);
           let cost = pricetag * amountOwned;
           if (isNaN(cost)) cost = 0;
-          ownerItemValue += cost;
-        });
+          return total + cost;
+        }, 0);
+      }
 
       return [address, ownerItemValue + gotchisBrsEquipValue];
     })
