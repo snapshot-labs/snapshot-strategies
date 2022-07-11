@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "forta-shares",
+      "params": {
+        "url": "https://api.forta.network/stats/shares/"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xfbd19eee53cf5844802dc28bc5e8f9b8b7d24df2"
+    ],
+    "snapshot": 30451309
+  }
+]
