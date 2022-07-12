@@ -11,14 +11,13 @@ const abi = [
   'function balanceOfBatch(address[] calldata accounts, uint256[] calldata ids) view returns (uint256[] memory)'
 ];
 
-const calculateVotingPower = (userVotingPower, batchAddresses, result) => {
-  for (let i = 0; i < batchAddresses.length; i++) {
-    if (batchAddresses[i] in userVotingPower === false) {
-      userVotingPower[batchAddresses[i]] = BigNumber.from(0);
-    }
-    const balance = result.balances[i];
+const calculateVotingPower = (userVotingPower, addresses, balances) => {
+  for (let i = 0; i < addresses.length; i++) {
+    userVotingPower[addresses[i]] = userVotingPower[addresses[i]] || BigNumber.from(0);
 
-    userVotingPower[batchAddresses[i]] = userVotingPower[batchAddresses[i]].add(balance);
+    const balance = balances[i];
+
+    userVotingPower[addresses[i]] = userVotingPower[addresses[i]].add(balance);
   }
   return userVotingPower
 };
@@ -37,7 +36,7 @@ export async function strategy(
     'addresses': addresses
   }
 
-  const response = await fetch("https://api.forta.network/stats/shares/", {
+  const response = await fetch("https://api.forta.network/stats/shares", {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -54,13 +53,11 @@ export async function strategy(
   data.shares.forEach((valuePair) => {
     if (valuePair.shares) {
       valuePair.shares.forEach((share) => {
-        batchAddresses.push(share.shareholder);
+        batchAddresses.push(addresses.find((addr) => addr.toLowerCase() === share.shareholder.toLowerCase()));
         batchShareIds.push(share.shareId);
       });
     }
   });
-
-  console.log(provider);
 
   const result = await multicall(
     network,
@@ -74,7 +71,8 @@ export async function strategy(
 
   let userVotingPower = {};
 
-  userVotingPower = calculateVotingPower(userVotingPower, batchAddresses, result);
+  userVotingPower = calculateVotingPower(userVotingPower, batchAddresses, result[0][0]);
+
 
   return Object.fromEntries(
     Object.entries(userVotingPower).map((addressBalancePair) => [
