@@ -17,18 +17,16 @@ const ORB_ADDRESS = '0x42b98A2f73a282D731b0B8F4ACfB6cAF3565496B';
 
 const onChainVotingPower = {
   v0: {
-    blockNumber: 19288664,
+    blockNumber: 18489892,
     address: '0xE6CCB01cAafc11c21AdCc415BB802FB1cF77d7dE'
-  },
+  }
 };
 
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
 ];
 
-
-const cosmosUrl =
-  'https://api.thegraph.com/subgraphs/name/orbitalswap/cosmos';
+const cosmosUrl = 'https://api.thegraph.com/subgraphs/name/orbitalswap/cosmos';
 
 async function getPools(provider, snapshot: any) {
   let blockNumber = snapshot;
@@ -148,7 +146,7 @@ export async function strategy(
     [address.toLowerCase()]
   ]);
 
-  callData = [...chunk(callData, options.max || 300)];
+  callData = [...chunk(callData, options.max || 50)];
   const response: any[] = [];
   for (const call of callData) {
     const multiRes = await multicall(network, provider, abi, call, {
@@ -169,4 +167,3 @@ export async function strategy(
     ])
   );
 }
-
