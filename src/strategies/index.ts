@@ -333,6 +333,7 @@ import * as orbitalswap from './orbitalswap';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
+import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -667,7 +668,8 @@ const strategies = {
   apeswap,
   orbitalswap,
   h2o,
-  dopamine
+  dopamine,
+  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
