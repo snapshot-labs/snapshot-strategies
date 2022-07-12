@@ -329,12 +329,14 @@ import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
+import * as fortaShares from './forta-shares';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 
 const strategies = {
+  'forta-shares': fortaShares,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
