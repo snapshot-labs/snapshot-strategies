@@ -1,0 +1,94 @@
+[
+  {
+    "name": "ERC-20 OCEAN staked in mainnet v4 marketplace via subgraph",
+    "strategy": {
+      "name": "ocean-marketplace-v4",
+      "params": {
+        "address": "0x967da4048cD07aB37855c090aAF366e4ce1b9F48",
+        "expectedResults": {
+          "scores": {
+            "0x7842Fa3B2d87Ff1cd52C4152382f7C4B3406E5A6": 250,
+            "0x99840Df5Cb42faBE0Feb8811Aaa4BC99cA6C84e0": 200,
+            "0x903322C7E45A60d7c8C3EA236c5beA9Af86310c7": 50
+          }
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x7842Fa3B2d87Ff1cd52C4152382f7C4B3406E5A6",
+      "0x99840Df5Cb42faBE0Feb8811Aaa4BC99cA6C84e0",
+      "0x903322C7E45A60d7c8C3EA236c5beA9Af86310c7"
+    ],
+    "snapshot": 15006609
+  },
+  {
+    "name": "ERC-20 OCEAN staked in polygon v4 marketplace via subgraph",
+    "strategy": {
+      "name": "ocean-marketplace-v4",
+      "params": {
+        "address": "0x282d8efCe846A88B159800bd4130ad77443Fa1A1",
+        "expectedResults": {
+          "scores": {
+            "0x3EFDD8f728c8e774aB81D14d0B2F07a8238960f4": 10762.326857765422,
+            "0xbbd33AFa85539fa65cc08A2e61a001876D2f13FE": 5752.362504190221,
+            "0x0363F3C31076a64b85Ceb69a28f958A7c1181CEe": 1750,
+            "0xC5320Dc3956484662cF3FE3B9355AEA93729783D": 778.6503526737412
+          }
+        }
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x3EFDD8f728c8e774aB81D14d0B2F07a8238960f4",
+      "0xbbd33AFa85539fa65cc08A2e61a001876D2f13FE",
+      "0x0363F3C31076a64b85Ceb69a28f958A7c1181CEe",
+      "0xC5320Dc3956484662cF3FE3B9355AEA93729783D"
+    ],
+    "snapshot": 29358635
+  },
+  {
+    "name": "ERC-20 OCEAN staked in EWT v4 marketplace via subgraph",
+    "strategy": {
+      "name": "ocean-marketplace-v4",
+      "params": {
+        "address": "0x593122AAE80A6Fc3183b2AC0c4ab3336dEbeE528",
+        "expectedResults": {
+          "scores": {
+            "0x159924ca0F47D6F704B97E29099b89e518A17B5E": 3489.1235163210085,
+            "0x4F20e69E7bA5aB2Fb2ae25A1d17C93fE5307faA9": 500.45061032028195
+          }
+        }
+      }
+    },
+    "network": "246",
+    "addresses": [
+      "0x159924ca0F47D6F704B97E29099b89e518A17B5E",
+      "0x4F20e69E7bA5aB2Fb2ae25A1d17C93fE5307faA9"
+    ],
+    "snapshot": 18788160
+  },
+  {
+    "name": "ERC-20 OCEAN staked in MOVR v4 marketplace via subgraph",
+    "strategy": {
+      "name": "ocean-marketplace-v4",
+      "params": {
+        "address": "0x99C409E5f62E4bd2AC142f17caFb6810B8F0BAAE",
+        "expectedResults": {
+          "scores": {
+            "0xc97fa83746aDe91b0eeB16cb51326a0A980Af7c3": 200,
+            "0x99840Df5Cb42faBE0Feb8811Aaa4BC99cA6C84e0": 200,
+            "0xFcd3DfCc1E793D4D03fB4ffFf2B7Eb5A20FCfe4E": 0
+          }
+        }
+      }
+    },
+    "network": "1285",
+    "addresses": [
+      "0xc97fa83746aDe91b0eeB16cb51326a0A980Af7c3",
+      "0x99840Df5Cb42faBE0Feb8811Aaa4BC99cA6C84e0",
+      "0xFcd3DfCc1E793D4D03fB4ffFf2B7Eb5A20FCfe4E"
+    ],
+    "snapshot": 2150228
+  }
+]
