@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as amkt from './amkt';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
@@ -335,6 +336,7 @@ import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 
 const strategies = {
+  amkt: amkt,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
