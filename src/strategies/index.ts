@@ -323,6 +323,7 @@ import * as auraFinance from './aura-vlaura-vebal';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
+import * as ejsStaking from './ejs-staking';
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -647,7 +648,8 @@ const strategies = {
   'aura-vlaura-vebal': auraFinance,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
-  'sd-boost-twavp': sdBoostTWAVP
+  'sd-boost-twavp': sdBoostTWAVP,
+  'ejs-staking': ejsStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
