@@ -2,6 +2,7 @@ import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
+import { getVp, getDelegations as getCoreDelegations } from './utils/vp';
 
 async function callStrategy(space, network, addresses, strategy, snapshot) {
   if (
@@ -90,5 +91,7 @@ export default {
   getProvider,
   getDelegations,
   getSnapshots,
-  SNAPSHOT_SUBGRAPH_URL
+  SNAPSHOT_SUBGRAPH_URL,
+  getVp,
+  getCoreDelegations
 };
