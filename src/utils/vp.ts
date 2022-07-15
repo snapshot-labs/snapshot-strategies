@@ -7,7 +7,7 @@ import {
   subgraphRequest
 } from '../utils';
 import _strategies from '../strategies';
-import subgraphs from './subgraphs.json';
+import subgraphs from './delegations.json';
 
 const DELEGATION_CONTRACT = '0x469788fE6E9E9681C6ebF3bF78e7Fd26Fc015446';
 const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -38,7 +38,7 @@ export async function getVp(
   const delegations = {};
   if (delegation) {
     const ds = await Promise.all(
-      networks.map((n) => getUserDelegations(address, n, snapshots[n], space))
+      networks.map((n) => getDelegations(address, n, snapshots[n], space))
     );
     ds.forEach((d, i) => (delegations[networks[i]] = d));
   }
@@ -88,7 +88,7 @@ export async function getVp(
   };
 }
 
-export async function getUsersDelegationOut(
+export async function getDelegationsOut(
   addresses: string[],
   network: string,
   snapshot: number | 'latest',
@@ -122,13 +122,13 @@ export async function getUsersDelegationOut(
   );
 }
 
-export async function getUserDelegationOut(
+export async function getDelegationOut(
   address: string,
   network: string,
   snapshot: number | 'latest',
   space: string
 ): Promise<string | null> {
-  const usersDelegationOut = await getUsersDelegationOut(
+  const usersDelegationOut = await getDelegationsOut(
     [address],
     network,
     snapshot,
@@ -137,7 +137,7 @@ export async function getUserDelegationOut(
   return usersDelegationOut[address] || null;
 }
 
-export async function getUserDelegationsIn(
+export async function getDelegationsIn(
   address: string,
   network: string,
   snapshot: number | 'latest',
@@ -187,7 +187,7 @@ export async function getUserDelegationsIn(
     (delegator) => !delegations.includes(delegator)
   );
   if (baseDelegations.length > 0) {
-    const delegationsOut = await getUsersDelegationOut(
+    const delegationsOut = await getDelegationsOut(
       baseDelegations,
       network,
       snapshot,
@@ -201,15 +201,15 @@ export async function getUserDelegationsIn(
   return [...new Set(delegations)];
 }
 
-export async function getUserDelegations(
+export async function getDelegations(
   address: string,
   network: string,
   snapshot: number | 'latest',
   space: string
 ): Promise<Delegation> {
   const [delegationOut, delegationsIn] = await Promise.all([
-    getUserDelegationOut(address, network, snapshot, space),
-    getUserDelegationsIn(address, network, snapshot, space)
+    getDelegationOut(address, network, snapshot, space),
+    getDelegationsIn(address, network, snapshot, space)
   ]);
   return {
     in: delegationsIn,
