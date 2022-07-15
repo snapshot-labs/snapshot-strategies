@@ -1,18 +1,17 @@
 [
   {
-    "name": "Example query",
+    "name": "LoopringV2",
     "strategy": {
-      "name": "dopamine",
+      "name": "lrc-l2-subgraph-balance-of",
       "params": {
-        "tokenAddress": "0x6b175474e89094c44da98b954eedeac495271d0f",
-        "nftAddress": "0x96b0f2cf48ad9ab21bb7a8a052a3d8391ee64798",
-        "nftMultiplier": 10000,
-        "decimals": 8
+        "symbol": "LRC",
+        "tokenId": 1,
+        "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36"
       }
     },
     "network": "1",
     "addresses": [
-      "0xd99c7975ef9b339d93fec21a4ab24a567d686d73",
+      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
@@ -31,6 +30,6 @@
       "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
       "0x38C0039247A31F3939baE65e953612125cB88268"
     ],
-    "snapshot": 15092760
+    "snapshot": 14437846
   }
 ]

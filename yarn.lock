@@ -1298,9 +1298,9 @@
     "@sinonjs/commons" "^1.7.0"
 
 "@snapshot-labs/snapshot.js@^0.4.8":
-  version "0.4.8"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.8.tgz#392482b441dc4d855c200a9ea566c06abc1e6886"
-  integrity sha512-bfyKJOghuKUfHyTIVLQZxqjEcR2vwvAmRoPyOZhpTXk6bU00iDaSqoqWykW6MBIP23SGIlxBPT1kD1PMbve+fw==
+  version "0.4.9"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.9.tgz#fdac2800d57e52b201aa8e5fc1f5db2bbd15402c"
+  integrity sha512-5y5sM34tZm1VVxHzwJ5nnm4kb1eRI6CDcBRu0if9gK2H+qadG+yWH9f/boPIB6cskPvH760chRR8bdjseAB25Q==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.6.4"
@@ -1311,7 +1311,7 @@
     "@ethersproject/wallet" "^5.4.0"
     ajv "^8.6.0"
     ajv-formats "^2.1.0"
-    cross-fetch "^3.0.6"
+    cross-fetch "^3.1.5"
     json-to-graphql-query "^2.0.0"
     lodash.set "^4.3.2"
 
@@ -2006,13 +2006,6 @@ core-util-is@~1.0.0:
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.3.tgz#a6042d3634c2b27e9328f837b965fac83808db85"
   integrity sha512-ZQBvi1DcpJ4GDqanjucZ2Hj3wEO5pZDS89BWbkcrvdxksJorwUDDZamX9ldFkp9aw2lmBDLgkObEA4DWNJ9FYQ==
 
-cross-fetch@^3.0.6:
-  version "3.1.4"
-  resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.4.tgz#9723f3a3a247bf8b89039f3a380a9244e8fa2f39"
-  integrity sha512-1eAtFWdIubi6T4XPy6ei9iUFoKpUkIF971QLN8lIvvvwueI65+Nw5haMNKUwfJxabqlIIDODJKGrQ66gxC0PbQ==
-  dependencies:
-    node-fetch "2.6.1"
-
 cross-fetch@^3.1.5:
   version "3.1.5"
   resolved "https://registry.yarnpkg.com/cross-fetch/-/cross-fetch-3.1.5.tgz#e1389f44d9e7ba767907f7af8454787952ab534f"
@@ -2375,7 +2368,7 @@ esutils@^2.0.2:
 eth-ens-namehash@^2.0.8:
   version "2.0.8"
   resolved "https://registry.yarnpkg.com/eth-ens-namehash/-/eth-ens-namehash-2.0.8.tgz#229ac46eca86d52e0c991e7cb2aef83ff0f68bcf"
-  integrity sha512-VWEI1+KJfz4Km//dadyvBBoBeSQ0MHTXPvr8UIXiLW6IanxvAV+DmlZAijZwAyggqGUfwQBeHf7tc9wzc1piSw==
+  integrity sha1-IprEbsqG1S4MmR58sq74P/D2i88=
   dependencies:
     idna-uts46-hx "^2.3.1"
     js-sha3 "^0.5.7"
@@ -3521,11 +3514,6 @@ natural-compare@^1.4.0:
   version "1.4.0"
   resolved "https://registry.yarnpkg.com/natural-compare/-/natural-compare-1.4.0.tgz#4abebfeed7541f2c27acfb29bdbbd15c8d5ba4f7"
   integrity sha512-OWND8ei3VtNC9h7V60qff3SVobHr996CTwgxubgyQYEpg290h9J0buyECNNJexkFm5sOajh5G116RYA1c8ZMSw==
-
-node-fetch@2.6.1:
-  version "2.6.1"
-  resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
-  integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==
 
 node-fetch@2.6.7:
   version "2.6.7"
