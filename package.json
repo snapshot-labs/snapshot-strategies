@@ -1,10 +1,10 @@
 {
   "name": "@snapshot-labs/strategies",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/src/index.js"
   },
   "files": [
     "dist"
@@ -36,6 +36,7 @@
     "@snapshot-labs/snapshot.js": "^0.4.8",
     "@uniswap/sdk-core": "^3.0.1",
     "@uniswap/v3-sdk": "^3.9.0",
+    "copyfiles": "^2.4.1",
     "cross-fetch": "^3.1.5",
     "eth-ens-namehash": "^2.0.8",
     "json-to-graphql-query": "^2.2.4"
@@ -45,7 +46,6 @@
     "@types/node": "^18.0.3",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
-    "copyfiles": "^2.4.1",
     "eslint": "^8.19.0",
     "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
@@ -56,6 +56,6 @@
     "typescript": "^4.7.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16.10.0"
   }
 }
