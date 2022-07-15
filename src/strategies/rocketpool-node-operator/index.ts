@@ -36,10 +36,8 @@ export async function strategy(
     );
   });
 
-  const effectiveStakeResponse: Record<
-    string,
-    BigNumberish
-  > = await effectiveStake.execute();
+  const effectiveStakeResponse: Record<string, BigNumberish> =
+    await effectiveStake.execute();
 
   return Object.fromEntries(
     Object.entries(effectiveStakeResponse).map(([address, balance]) => [

@@ -7,16 +7,13 @@
         "symbol": "DPS"
       }
     },
-    "network": "80001",
+    "network": "1285",
     "addresses": [
-      "0x0b0db545517b9dabd652596fb26e044841ace4cd",
-      "0x0c328ffc95155bf02015cb04cc68f7a9cebdb214",
-      "0x15f48ab7ada1541a205eb9ee20f5a4e76ce3882a",
-      "0xd88f34679b914c4c677ddc78ae0bad7cdf6760cc",
-      "0x8705EBf3a34D1F164cCa3Ed2Db54d5f1b7C439F0",
-      "0x7b64F8508b5f9F12815199F985770A5890e650D0"
+      "0xa387c8fa7be086d01d063e3426dc3ab5c7c10462",
+      "0x0e32ebbfe09f59481ea8fc07a6a44501b3158e83",
+      "0xc0e0e7122c163a8c70c9858e8674c51fb7117e88",
+      "0x5114e0a7a2fc85685bc114477d7c3035d47daf8b"
     ],
-    "snapshot": 27025834
+    "snapshot": 2137412
   }
 ]
-

@@ -90,6 +90,7 @@ import * as work from './work';
 import * as ticketValidity from './ticket-validity';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
+import * as ocean_v4 from './ocean-marketplace-v4';
 import * as theGraphBalance from './the-graph-balance';
 import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
@@ -329,8 +330,14 @@ import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
+import * as fortaShares from './forta-shares';
+import * as solvVoucherClaimable from './solv-voucher-claimable';
+import * as h2o from './h2o';
+import * as dopamine from './dopamine';
+import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 
 const strategies = {
+  'forta-shares': fortaShares,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
@@ -384,7 +391,8 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple':
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -439,6 +447,7 @@ const strategies = {
   'ticket-validity': ticketValidity,
   opium,
   'ocean-marketplace': ocean,
+  'ocean-marketplace-v4': ocean_v4,
   'the-graph-balance': theGraphBalance,
   'the-graph-delegation': theGraphDelegation,
   'the-graph-indexing': theGraphIndexing,
@@ -581,7 +590,8 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers':
+    unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
@@ -658,8 +668,12 @@ const strategies = {
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
+  'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
-  apeswap
+  apeswap,
+  h2o,
+  dopamine,
+  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

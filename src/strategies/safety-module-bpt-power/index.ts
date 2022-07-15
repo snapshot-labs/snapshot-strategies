@@ -150,23 +150,20 @@ export async function strategy(
   options: Options,
   snapshot: number
 ) {
-  const [
-    safetyModuleScore,
-    accountsStakesAndRewards,
-    safetyModuleGlobalState
-  ] = await Promise.all(
-    [
-      fetchSafetyModuleScore,
-      fetchAccountsSafetyModuleStakesAndRewards,
-      fetchSafetyModuleGlobalState
-    ].map((fn) =>
-      fn(space, network, provider, addresses, options, snapshot)
-    ) as [
-      FetchSafetyModuleScoreOutput,
-      FetchAccountsSafetyModuleStakesAndRewardsOuput,
-      FetchSafetyModuleGlobalStateOutput
-    ]
-  );
+  const [safetyModuleScore, accountsStakesAndRewards, safetyModuleGlobalState] =
+    await Promise.all(
+      [
+        fetchSafetyModuleScore,
+        fetchAccountsSafetyModuleStakesAndRewards,
+        fetchSafetyModuleGlobalState
+      ].map((fn) =>
+        fn(space, network, provider, addresses, options, snapshot)
+      ) as [
+        FetchSafetyModuleScoreOutput,
+        FetchAccountsSafetyModuleStakesAndRewardsOuput,
+        FetchSafetyModuleGlobalStateOutput
+      ]
+    );
 
   const safetyModuleStakedToken = safetyModuleGlobalState[STAKED_TOKEN_ATTR];
 
