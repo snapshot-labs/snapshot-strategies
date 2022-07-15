@@ -29,10 +29,8 @@ export async function strategy(
       walletAddress
     ]);
   }
-  const walletToBalanceOf: Record<
-    string,
-    BigNumber
-  > = await callWalletToBalanceOf.execute();
+  const walletToBalanceOf: Record<string, BigNumber> =
+    await callWalletToBalanceOf.execute();
 
   // get tokenIds
   const callWalletToAddresses = new Multicaller(network, provider, abi, {
@@ -48,10 +46,8 @@ export async function strategy(
       );
     }
   }
-  const walletIDToAddresses: Record<
-    string,
-    BigNumber
-  > = await callWalletToAddresses.execute();
+  const walletIDToAddresses: Record<string, BigNumber> =
+    await callWalletToAddresses.execute();
 
   // fetch ipfs tier weights
   const response = await fetch(

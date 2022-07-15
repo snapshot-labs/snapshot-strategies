@@ -84,12 +84,12 @@ export async function strategy(
       let realmVotingPowerValue = 0;
       const res = userToInfo[addr.toLowerCase()];
       if (res) {
-        const parcelsOwned = (Object.entries(res)
+        const parcelsOwned = Object.entries(res)
           .map(([key, val]) => {
             if (key.startsWith('parcelsOwned')) return val;
             else return [];
           })
-          .flat(1) as unknown) as { size: number }[];
+          .flat(1) as unknown as { size: number }[];
         if (parcelsOwned.length > 0) {
           parcelsOwned.map((r: { size: number }) => {
             let votePower = realmSizeVotePower[r.size];

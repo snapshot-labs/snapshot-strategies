@@ -1,4 +1,4 @@
-const snapshot = require('../').default;
+import snapshot from '../../src';
 
 const space = 'cvx.eth';
 const network = '1';

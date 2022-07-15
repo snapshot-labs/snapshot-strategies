@@ -62,10 +62,8 @@ export async function strategy(
       ]);
     }
   }
-  const vaultBalance: Record<
-    number,
-    BigNumberish
-  > = await vaultBalanceMulti.execute();
+  const vaultBalance: Record<number, BigNumberish> =
+    await vaultBalanceMulti.execute();
 
   // Iterate over each address provided
   const balances: Record<string, number> = {};

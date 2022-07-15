@@ -2,8 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1':
-    'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-mainnet',
+  '1': 'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-mainnet',
   '137':
     'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-polygon'
 };

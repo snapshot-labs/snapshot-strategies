@@ -39,10 +39,8 @@ export async function strategy(
       address
     ])
   );
-  const result: Record<
-    string,
-    number | BigNumberish
-  > = await stakedTokenBalances.execute();
+  const result: Record<string, number | BigNumberish> =
+    await stakedTokenBalances.execute();
 
   return Object.fromEntries(
     Object.entries(result).map(([address, output]) => [
