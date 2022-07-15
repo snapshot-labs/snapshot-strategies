@@ -27,10 +27,8 @@ export async function strategy(
   addresses.forEach((address) =>
     multiCallBalanceOf.call(address, options.address, 'balanceOf', [address])
   );
-  const walletBalanceOf: Record<
-    string,
-    BigNumber
-  > = await multiCallBalanceOf.execute();
+  const walletBalanceOf: Record<string, BigNumber> =
+    await multiCallBalanceOf.execute();
 
   const multiCallTokenOfOwner = new Multicaller(network, provider, abi, {
     blockTag
@@ -45,10 +43,8 @@ export async function strategy(
       );
     }
   }
-  const walletIDToAddresses: Record<
-    string,
-    BigNumber
-  > = await multiCallTokenOfOwner.execute();
+  const walletIDToAddresses: Record<string, BigNumber> =
+    await multiCallTokenOfOwner.execute();
 
   // Third, get voting power for each tokenId
   const multiCallBalanceOfNFT = new Multicaller(network, provider, abi, {
@@ -59,10 +55,8 @@ export async function strategy(
       tokenId
     ]);
   }
-  const walletVotingPower: Record<
-    string,
-    BigNumber
-  > = await multiCallBalanceOfNFT.execute();
+  const walletVotingPower: Record<string, BigNumber> =
+    await multiCallBalanceOfNFT.execute();
 
   const result = {} as Record<string, number>;
   for (const [walletID, value] of Object.entries(walletVotingPower)) {

@@ -390,7 +390,8 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple':
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -587,7 +588,8 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers':
+    unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,

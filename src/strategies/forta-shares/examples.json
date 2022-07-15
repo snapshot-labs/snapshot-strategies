@@ -5,9 +5,7 @@
       "name": "forta-shares"
     },
     "network": "137",
-    "addresses": [
-      "0x8eedf056de8d0b0fd282cc0d7333488cc5b5d242"
-    ],
+    "addresses": ["0x8eedf056de8d0b0fd282cc0d7333488cc5b5d242"],
     "snapshot": 30451309
   }
 ]
