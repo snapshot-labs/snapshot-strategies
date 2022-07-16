@@ -334,6 +334,7 @@ import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as rariFuse from './rari-fuse';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -671,7 +672,8 @@ const strategies = {
   apeswap,
   h2o,
   dopamine,
-  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf
+  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
+  'rari-fuse': rariFuse
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
