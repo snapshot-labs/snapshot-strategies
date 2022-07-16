@@ -6,7 +6,7 @@ import { Multicaller } from '../../utils';
 export const author = 'MantisClone';
 export const version = '0.1.0';
 
-// const fusePoolLens = '0x6Dc585Ad66A10214Ef0502492B0CC02F0e836eec'
+const fusePoolLens = '0x6Dc585Ad66A10214Ef0502492B0CC02F0e836eec'
 
 // const absMaxHealth = MaxUint256 // show all users
 
@@ -28,9 +28,9 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   multi.call('poolUsers', options.poolAddress, 'getAllBorrowers', [])
-  // addresses.forEach((voterAddress) =>
-  //   multi.call('poolUsersWithData', fusePoolLens, 'getPoolUsersWithData', [options.poolAddress, absMaxHealth])
-  // );
+  addresses.forEach((voterAddress) =>
+    multi.call('poolAssetsWithData', fusePoolLens, 'getPoolAssetsWithData', [options.poolAddress])
+  );
   const result = await multi.execute();
 
   const poolUsers = result.poolUsers;
