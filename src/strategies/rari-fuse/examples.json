@@ -7,6 +7,7 @@
         "symbol": "BANK",
         "decimals": 18,
         "tokenAddress": "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
+        "cTokenAddress": "0x250316B3E46600417654b13bEa68b5f64D61E609",
         "poolAddress": "0x3eE001bA561Af4478E5BBc510324f970aF7DBcDF"
       }
     },

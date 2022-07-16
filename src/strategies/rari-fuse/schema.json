@@ -25,10 +25,18 @@
           "minLength": 42,
           "maxLength": 42
         },
+        "cTokenAddress": {
+          "type": "string",
+          "title": "cTokenAddress",
+          "examples": ["e.g. 0x250316B3E46600417654b13bEa68b5f64D61E609"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
         "poolAddress": {
           "type": "string",
           "title": "poolAddress",
-          "examples": ["e.g. 0x472D0B0DDFE0BC02C27928b8BcbD67E65D07d48a"],
+          "examples": ["e.g. 0x3eE001bA561Af4478E5BBc510324f970aF7DBcDF"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
