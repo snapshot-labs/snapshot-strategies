@@ -12,8 +12,8 @@ const fusePoolLens = '0x6Dc585Ad66A10214Ef0502492B0CC02F0e836eec'
 
 const abi = [
   // 'function getPoolUsersWithData(address comptroller,uint256 maxHealth) returns (FusePoolUser[], uint256, uint256)',
+  // 'function getPoolAssetsWithData(address comptroller) returns (FusePoolAsset[])'
   'function getAllBorrowers() external view returns (address[] memory)',
-  'function getPoolAssetsWithData(address comptroller) returns (FusePoolAsset[])'
 ];
 
 export async function strategy(
@@ -34,10 +34,8 @@ export async function strategy(
   const result = await multi.execute();
 
   const poolUsers = result.poolUsers;
-  // const poolUsersWithData = result.poolUsersWithData;
 
   console.log(`poolUsers = ${poolUsers}`)
-  // console.log(`poolUsersWithData = ${poolUsersWithData}`);
 
   return Object.fromEntries(
     result.users.map((u) => [u.id, 1])
