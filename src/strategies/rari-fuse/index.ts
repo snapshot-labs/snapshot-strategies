@@ -7,6 +7,7 @@ export const author = 'MantisClone';
 export const version = '0.1.0';
 
 const fusePoolLens = '0x6Dc585Ad66A10214Ef0502492B0CC02F0e836eec'
+const fusePoolLensImplementation = '0x6bcc070637a6eb4a13df47b906e4017530fd125d'
 
 const absMaxHealth = MaxUint256 // show all users
 
