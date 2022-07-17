@@ -5,9 +5,7 @@ import { Multicaller } from '../../utils';
 export const author = 'MantisClone';
 export const version = '0.1.0';
 
-const abi = [
-  'function balanceOf(address owner) external returns (uint256)'
-];
+const abi = ['function balanceOf(address owner) external returns (uint256)'];
 
 export async function strategy(
   space,
