@@ -1,6 +1,6 @@
 # rari-fuse
 
-Returns the balances of the voters for a given cToken (market) in Rari Fuse.
+Returns the voter's underlying collateral balances for a given Rari Fuse market (cToken).
 
 Here is an example of parameters:
 
