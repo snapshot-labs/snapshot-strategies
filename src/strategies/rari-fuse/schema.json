@@ -12,9 +12,9 @@
           "examples": ["e.g. BANK"],
           "maxLength": 16
         },
-        "underlyingTokenDecimals": {
+        "decimals": {
           "type": "number",
-          "title": "underlyingTokenDecimals",
+          "title": "decimals",
           "examples": ["e.g. 18"]
         },
         "cTokenAddress": {

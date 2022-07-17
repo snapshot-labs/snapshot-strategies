@@ -26,7 +26,7 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, options.underlyingTokenDecimals))
+      parseFloat(formatUnits(balance, options.decimals))
     ])
   );
 }
