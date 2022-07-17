@@ -12,18 +12,10 @@
           "examples": ["e.g. BANK"],
           "maxLength": 16
         },
-        "decimals": {
+        "underlyingTokenDecimals": {
           "type": "number",
-          "title": "decimals",
+          "title": "underlyingTokenDecimals",
           "examples": ["e.g. 18"]
-        },
-        "tokenAddress": {
-          "type": "string",
-          "title": "tokenAddress",
-          "examples": ["e.g. 0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
         },
         "cTokenAddress": {
           "type": "string",
@@ -32,17 +24,9 @@
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
-        },
-        "poolAddress": {
-          "type": "string",
-          "title": "poolAddress",
-          "examples": ["e.g. 0x3eE001bA561Af4478E5BBc510324f970aF7DBcDF"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
         }
       },
-      "required": ["decimals", "tokenAddress", "poolAddress"],
+      "required": ["decimals", "cTokenAddress"],
       "additionalProperties": false
     }
   }
