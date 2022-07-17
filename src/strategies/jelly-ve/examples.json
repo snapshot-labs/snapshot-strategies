@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Jelly Protocol",
+    "strategy": {
+      "name": "jelly-ve",
+      "params": {
+        "votingEscrow": "0x387426F2C00B569B763584B2e0C6c3b2C34793E8"
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x0660D497b97319Ce46607f22d4991918B4FEEE3f",
+      "0x5A072C092bA0Db980328374C5BF042B8cc56E4FB"
+    ],
+    "snapshot": 11027371
+  }
+]

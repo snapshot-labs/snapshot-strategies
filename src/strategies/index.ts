@@ -332,6 +332,9 @@ import * as apeswap from './apeswap';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as jelly from './jelly';
+import * as veJelly from './jelly-ve';
+import * as jellyDev from './jelly-dev';
+
 
 const strategies = {
   'ethermon-erc721': ethermon721,
@@ -663,10 +666,11 @@ const strategies = {
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  'jelly-ve': veJelly,
+  'jelly-dev': jellyDev,
+  jelly,
   apeswap,
-  h2o,
-  jelly
-
+  h2o
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
