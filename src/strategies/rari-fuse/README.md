@@ -1,13 +1,17 @@
-# erc20-balance-of
+# rari-fuse
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
+Returns the balances of the voters for a given cToken (market) in Rari Fuse.
 
 Here is an example of parameters:
 
+- `symbol` - (**Optional**, `string`) Symbol of the underlying ERC20 token
+- `decimals` - (**Required**, `number`) Decimal precision of the underlying ERC20 token
+- `cTokenAddress` - (**Required**, `string`) Address of the cToken (aka. market) in Rari Fuse
+
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
-  "decimals": 18
+  "symbol": "BANK",
+  "decimals": 18,
+  "cTokenAddress": "0x250316B3E46600417654b13bEa68b5f64D61E609"
 }
 ```
