@@ -1,5 +1,4 @@
 const { JsonRpcProvider } = require('@ethersproject/providers');
-import networks from '@snapshot-labs/snapshot.js/src/networks.json';
 import utils from '../../src/utils';
 
 const space = 'yam.eth';
@@ -181,7 +180,7 @@ const addresses = [
       space,
       strategies,
       network,
-      new JsonRpcProvider(networks[network].rpc[0]),
+      new JsonRpcProvider(`https://brovider.xyz/${network}`),
       addresses,
       snapshotBlockNumber
     );

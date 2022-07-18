@@ -2,7 +2,6 @@ import { JsonRpcProvider } from '@ethersproject/providers';
 import { getAddress } from '@ethersproject/address';
 import { performance } from 'perf_hooks';
 import fetch from 'cross-fetch';
-import networks from '@snapshot-labs/snapshot.js/src/networks.json';
 import snapshot from '../src';
 import snapshotjs from '@snapshot-labs/snapshot.js';
 import addresses from './addresses.json';
@@ -32,7 +31,7 @@ function callGetScores(example) {
     'yam.eth',
     [example.strategy],
     example.network,
-    new JsonRpcProvider(networks[example.network].rpc[0]),
+    new JsonRpcProvider(`https://brovider.xyz/${example.network}`),
     example.addresses,
     example.snapshot
   );
