@@ -13,14 +13,17 @@ export async function strategy(
   snapshot
 ) {
   const promises: any = [];
+  const validStrategies = options.strategies
+    .filter((s) => s.network === '122' || s.network === '1')
+    .slice(0, 2);
   const blocks = await getSnapshots(
     network,
     snapshot,
     provider,
-    options.strategies.map((s) => s.network || network)
+    validStrategies.map((s) => s.network || network)
   );
 
-  for (const strategy of options.strategies) {
+  for (const strategy of validStrategies) {
     // If snapshot is taken before a network is activated then ignore its strategies
     if (
       options.startBlocks &&

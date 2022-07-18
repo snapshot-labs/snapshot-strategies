@@ -1,4 +1,6 @@
-# multichain max
+# max eth fuse
+
+** This strategy is limited to networks 1 and 122 and allows at most 2 sub strategies**
 
 This is similar to the multichain strategy only that it chooses the chain with max voting power.
 
