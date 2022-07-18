@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "vesting-voucher",
+      "name": "erc3525-vesting-voucher",
       "params": {
         "symbol": "SOLV",
         "address": "0x3788cab48c6090dfc312c92a9ff67eee034cdf84",
