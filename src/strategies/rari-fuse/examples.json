@@ -6,7 +6,7 @@
       "params": {
         "symbol": "BANK",
         "decimals": 18,
-        "cTokenAddress": "0x250316B3E46600417654b13bEa68b5f64D61E609"
+        "fTokenAddress": "0x250316B3E46600417654b13bEa68b5f64D61E609"
       }
     },
     "network": "1",

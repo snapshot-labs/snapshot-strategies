@@ -17,16 +17,16 @@
           "title": "decimals",
           "examples": ["e.g. 18"]
         },
-        "cTokenAddress": {
+        "fTokenAddress": {
           "type": "string",
-          "title": "cTokenAddress",
+          "title": "fTokenAddress",
           "examples": ["e.g. 0x250316B3E46600417654b13bEa68b5f64D61E609"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         }
       },
-      "required": ["decimals", "cTokenAddress"],
+      "required": ["decimals", "fTokenAddress"],
       "additionalProperties": false
     }
   }
