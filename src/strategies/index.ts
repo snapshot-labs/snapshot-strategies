@@ -39,7 +39,7 @@ import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
-import * as multichainMax from './multichain-max';
+import * as multichainMax from './max-eth-fuse';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
@@ -391,8 +391,7 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple':
-    erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -590,8 +589,7 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers':
-    unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
