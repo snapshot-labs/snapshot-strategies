@@ -10,7 +10,7 @@ const abi = [
   'function underlying() public view returns (address)',
   'function decimals() public view returns (uint8)',
   'function exchangeRateStored() public view returns (uint256)',
-  'function balanceOf(address owner) external returns (uint256)',
+  'function balanceOf(address owner) external returns (uint256)'
 ];
 
 export async function strategy(
