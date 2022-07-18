@@ -15,7 +15,7 @@
         "token": {
           "type": "string",
           "title": "token",
-          "examples": ["e.g. 0x250316B3E46600417654b13bEa68b5f64D61E609"],
+          "examples": ["e.g. 0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
