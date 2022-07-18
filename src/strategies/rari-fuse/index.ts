@@ -44,6 +44,12 @@ export async function strategy(
   console.log(`exchangeRate = ${exchangeRate}`);
   console.log(`fTokenBalances = ${fTokenBalances}`);
 
+  if (options.token !== underlying) {
+    throw new Error(
+      `token parameter doesn't match fToken.underlying(). token=${options.token}, underlying=${underlying}`
+    );
+  }
+
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
       address,
