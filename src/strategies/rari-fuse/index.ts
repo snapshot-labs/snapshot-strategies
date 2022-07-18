@@ -42,13 +42,15 @@ export async function strategy(
   console.log(`tokenDecimals = ${tokenDecimals}`);
   console.log(`fTokenDecimals = ${fTokenDecimals}`);
   console.log(`exchangeRate = ${exchangeRate}`);
-  console.log(`fTokenBalances = ${fTokenBalances}`);
 
   if (options.token !== underlying) {
     throw new Error(
       `token parameter doesn't match fToken.underlying(). token=${options.token}, underlying=${underlying}`
     );
   }
+
+  const mantissa = BigNumber.from(18).add(tokenDecimals.sub(fTokenDecimals));
+  const onefTokenInUnderlying = exchangeRate.div(BigNumber.from(10).pow(mantissa));
 
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
