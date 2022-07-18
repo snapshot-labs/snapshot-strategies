@@ -9,7 +9,7 @@ jobs:
 
     strategy:
       matrix:
-        node-version: [10.x]
+        node-version: [16.10.x]
 
     steps:
     - uses: actions/checkout@v1
@@ -17,8 +17,8 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: npm install, build and lint
+    - name: yarn install, build and lint
       run: |
-        npm install
-        npm run build --if-present
-        npm run lint --if-present
+        yarn install --frozen-lockfile
+        yarn build
+        yarn lint

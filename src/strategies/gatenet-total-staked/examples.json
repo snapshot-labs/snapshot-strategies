@@ -1,0 +1,27 @@
+[
+  {
+    "name": "gatenet-total-staked",
+    "strategy": {
+      "name": "gatenet-total-staked",
+      "params": {
+        "address": "0xB53E4B0F128B231B8728525C616c26E0E59407A1",
+        "symbol": "GATE",
+        "decimals": 18,
+        "subgraph": "https://api.studio.thegraph.com/query/17252/gatenet-cvm/v0.6.1",
+        "minBalance": 10000
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x8900cCBdC60fD97E3B7c8529A9987F8c0f8A1125",
+      "0xB868F9378ddbf023938C00A344e6430eeB3a6042",
+      "0x970DAECA395D1324C674bFFD35cA7e363153Ed1e",
+      "0x4946D49A2464263deF3cfa194572600343548c4c",
+      "0xb7cc944b93eA5FD6bBa02810c855B64a1c29eDf5",
+      "0xF2c6B24058779f740A84aC4a84FAC827b4affC6A",
+      "0xC48c8F74B4aeC9cC7669700CBfAF83fa7c2469e3",
+      "0xf61FD1558A7F540A11B8Da876Fce795dE983B8E1"
+    ],
+    "snapshot": 10537384
+  }
+]

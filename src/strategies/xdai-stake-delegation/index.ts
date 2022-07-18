@@ -18,9 +18,9 @@ export async function strategy(
   const delegations = await getDelegations(space, network, addresses, snapshot);
   if (Object.keys(delegations).length === 0) return {};
 
-  const delegationsArray = Object.values(
-    delegations
-  ).reduce((a: string[], b: string[]) => a.concat(b));
+  const delegationsArray = Object.values(delegations).reduce(
+    (a: string[], b: string[]) => a.concat(b)
+  );
   const erc20Balances = await erc20BalanceOfStrategy(
     space,
     network,

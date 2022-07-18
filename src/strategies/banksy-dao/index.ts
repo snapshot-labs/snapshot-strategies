@@ -34,10 +34,8 @@ export async function strategy(
       walletAddress
     ]);
   }
-  const walletToBalanceOf: Record<
-    string,
-    BigNumber
-  > = await callWalletToBalanceOf.execute();
+  const walletToBalanceOf: Record<string, BigNumber> =
+    await callWalletToBalanceOf.execute();
 
   // Second, get the tokenId's for each nft
   const callWalletToAddresses = new Multicaller(
@@ -58,10 +56,8 @@ export async function strategy(
       );
     }
   }
-  const walletIDToAddresses: Record<
-    string,
-    BigNumber
-  > = await callWalletToAddresses.execute();
+  const walletIDToAddresses: Record<string, BigNumber> =
+    await callWalletToAddresses.execute();
 
   // Third, get skil's for each tokenId
   const callTokenToSkill = new Multicaller(network, provider, factoryNftABI, {
@@ -73,10 +69,8 @@ export async function strategy(
       tokenId
     ]);
   }
-  const walletIDToSkills: Record<
-    string,
-    any
-  > = await callTokenToSkill.execute();
+  const walletIDToSkills: Record<string, any> =
+    await callTokenToSkill.execute();
 
   const results = {} as Record<string, number>;
   for (const [walletID, values] of Object.entries(walletIDToSkills)) {

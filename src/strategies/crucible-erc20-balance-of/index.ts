@@ -42,10 +42,8 @@ export async function strategy(
       [walletAddress]
     );
   }
-  const walletToCrucibleCount: Record<
-    string,
-    BigNumber
-  > = await callWalletToCrucibleCount.execute();
+  const walletToCrucibleCount: Record<string, BigNumber> =
+    await callWalletToCrucibleCount.execute();
 
   // get the address of each crucible
   // wallet_address : crucible_index => crucible_address
@@ -70,10 +68,8 @@ export async function strategy(
       );
     }
   }
-  const walletIDToCrucibleAddresses: Record<
-    string,
-    BigNumber
-  > = await callWalletToCrucibleAddresses.execute();
+  const walletIDToCrucibleAddresses: Record<string, BigNumber> =
+    await callWalletToCrucibleAddresses.execute();
 
   // get the balance of each crucible
   // crucible_address => lp_balance
@@ -88,10 +84,8 @@ export async function strategy(
       hexZeroPad(crucibleAddress.toHexString(), 20)
     ]);
   }
-  const walletIDToLpBalance: Record<
-    string,
-    BigNumber
-  > = await callCrucibleToLpBalance.execute();
+  const walletIDToLpBalance: Record<string, BigNumber> =
+    await callCrucibleToLpBalance.execute();
 
   // sum the amount of LP tokens held across all crucibles
   // wallet_address => lp_balance

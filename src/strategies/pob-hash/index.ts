@@ -49,9 +49,9 @@ export async function strategy(
   } else {
     console.error('Subgraph request failed');
   }
-  const scores: [string, number][] = Object.entries(
-    scoresMap
-  ).map(([address, score]) => [address, score]);
+  const scores: [string, number][] = Object.entries(scoresMap).map(
+    ([address, score]) => [address, score]
+  );
 
   return Object.fromEntries(scores);
 }

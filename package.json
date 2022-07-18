@@ -1,10 +1,10 @@
 {
   "name": "@snapshot-labs/strategies",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
+  "main": "dist/src/index.js",
+  "types": "dist/src/index.d.ts",
   "exports": {
-    ".": "./dist/index.js"
+    ".": "./dist/src/index.js"
   },
   "files": [
     "dist"
@@ -13,47 +13,49 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p .",
-    "test": "jest test/index.spec.ts --runInBand --testTimeout=120000",
-    "pretest": "npm run build",
+    "test": "jest -i strategy.test.ts",
+    "test:vp": "jest -i vp.test.ts",
+    "test:delegation": "jest -i delegation.test.ts",
     "prepublishOnly": "npm run build",
     "prepare": "npm run build",
     "postbuild": "copyfiles -u 1 src/**/*.md dist/ && copyfiles -u 1 src/**/*.json dist/",
-    "lint": "eslint . --ext .ts,.json --fix"
+    "lint": "eslint src/ test/ --ext .ts,.json --fix"
   },
   "dependencies": {
-    "@ethersproject/abi": "^5.0.4",
-    "@ethersproject/address": "^5.0.4",
-    "@ethersproject/bignumber": "^5.0.12",
-    "@ethersproject/bytes": "^5.0.8",
-    "@ethersproject/contracts": "^5.0.3",
-    "@ethersproject/hash": "^5.0.9",
-    "@ethersproject/providers": "^5.3.1",
-    "@ethersproject/solidity": "^5.0.10",
-    "@ethersproject/strings": "^5.0.5",
-    "@ethersproject/units": "^5.0.3",
-    "@ethersproject/wallet": "^5.4.0",
-    "@snapshot-labs/snapshot.js": "^0.3.74",
+    "@ethersproject/abi": "^5.6.4",
+    "@ethersproject/address": "^5.6.1",
+    "@ethersproject/bignumber": "^5.6.2",
+    "@ethersproject/bytes": "^5.6.1",
+    "@ethersproject/contracts": "^5.6.2",
+    "@ethersproject/hash": "^5.6.1",
+    "@ethersproject/providers": "^5.6.8",
+    "@ethersproject/solidity": "^5.6.1",
+    "@ethersproject/strings": "^5.6.1",
+    "@ethersproject/units": "^5.6.1",
+    "@ethersproject/wallet": "^5.6.2",
+    "@snapshot-labs/snapshot.js": "^0.4.10",
     "@uniswap/sdk-core": "^3.0.1",
-    "@uniswap/v3-sdk": "^3.3.1",
-    "cross-fetch": "^3.0.6",
+    "@uniswap/v3-sdk": "^3.9.0",
+    "copyfiles": "^2.4.1",
+    "cross-fetch": "^3.1.5",
     "eth-ens-namehash": "^2.0.8",
-    "json-to-graphql-query": "^2.0.0"
+    "json-to-graphql-query": "^2.2.4"
   },
   "devDependencies": {
-    "@types/jest": "^26.0.23",
-    "@types/node": "^13.9.5",
-    "@typescript-eslint/eslint-plugin": "^4.28.2",
-    "@typescript-eslint/parser": "^4.28.2",
-    "copyfiles": "^2.4.1",
-    "eslint": "^6.8.0",
-    "eslint-config-airbnb-base": "^14.1.0",
-    "eslint-plugin-import": "^2.20.2",
-    "eslint-plugin-prettier": "^3.4.0",
-    "jest": "^26.6.3",
-    "prettier": "2.2.0",
-    "typescript": "^4.2.3"
+    "@types/jest": "^28.1.4",
+    "@types/node": "^18.0.3",
+    "@typescript-eslint/eslint-plugin": "^5.30.5",
+    "@typescript-eslint/parser": "^5.30.5",
+    "eslint": "^8.19.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-plugin-import": "^2.26.0",
+    "eslint-plugin-prettier": "^4.2.1",
+    "jest": "^28.1.2",
+    "prettier": "^2.7.1",
+    "ts-jest": "^28.0.5",
+    "typescript": "^4.7.4"
   },
   "engines": {
-    "node": ">=14"
+    "node": ">=16.10.0"
   }
 }
