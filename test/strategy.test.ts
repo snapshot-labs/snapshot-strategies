@@ -1,4 +1,3 @@
-import { JsonRpcProvider } from '@ethersproject/providers';
 import { getAddress } from '@ethersproject/address';
 import { performance } from 'perf_hooks';
 import fetch from 'cross-fetch';
@@ -27,11 +26,12 @@ if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
 function callGetScores(example) {
+  const provider = snapshot.utils.getProvider(example.network);
   return snapshot.utils.getScoresDirect(
     'yam.eth',
     [example.strategy],
     example.network,
-    new JsonRpcProvider(`https://brovider.xyz/${example.network}`),
+    provider,
     example.addresses,
     example.snapshot
   );
