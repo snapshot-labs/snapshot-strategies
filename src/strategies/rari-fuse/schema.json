@@ -12,21 +12,24 @@
           "examples": ["e.g. BANK"],
           "maxLength": 16
         },
-        "decimals": {
-          "type": "number",
-          "title": "decimals",
-          "examples": ["e.g. 18"]
-        },
-        "fTokenAddress": {
+        "token": {
           "type": "string",
-          "title": "fTokenAddress",
+          "title": "token",
+          "examples": ["e.g. 0x250316B3E46600417654b13bEa68b5f64D61E609"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "fToken": {
+          "type": "string",
+          "title": "fToken",
           "examples": ["e.g. 0x250316B3E46600417654b13bEa68b5f64D61E609"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         }
       },
-      "required": ["decimals", "fTokenAddress"],
+      "required": ["token", "fToken"],
       "additionalProperties": false
     }
   }
