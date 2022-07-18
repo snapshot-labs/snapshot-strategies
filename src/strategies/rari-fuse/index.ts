@@ -26,9 +26,9 @@ export async function strategy(
   multi.call('underlying', options.fToken, 'underlying', []);
   multi.call('tokenDecimals', options.token, 'decimals', []);
   multi.call('fTokenDecimals', options.fToken, 'decimals', []);
-  multi.call('exchangeRate', options.fTokenAddress, 'exchangeRateStored', []);
+  multi.call('exchangeRate', options.fToken, 'exchangeRateStored', []);
   addresses.forEach((address) =>
-    multi.call(`fTokenBalances.${address}`, options.fTokenAddress, 'balanceOf', [address])
+    multi.call(`fTokenBalances.${address}`, options.fToken, 'balanceOf', [address])
   );
   const result = await multi.execute();
 
