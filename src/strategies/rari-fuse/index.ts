@@ -1,6 +1,5 @@
-import { BigNumber } from '@ethersproject/bignumber';
-// import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
-// import { formatUnits } from '@ethersproject/units';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'MantisClone';
@@ -37,7 +36,7 @@ export async function strategy(
   const tokenDecimals: BigNumber = result.tokenDecimals;
   const fTokenDecimals: BigNumber = result.fTokenDecimals;
   const exchangeRate: BigNumber = result.exchangeRate;
-  const fTokenBalances: Record<string, BigNumber> = result.fTokenBalances;
+  const fTokenBalances: Record<string, BigNumberish> = result.fTokenBalances;
 
   console.log(`underlying = ${underlying}`);
   console.log(`tokenDecimals = ${tokenDecimals}`);
@@ -48,11 +47,7 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
       address,
-      1
+      parseFloat(formatUnits(balance, fTokenDecimals))
     ])
-    // Object.entries(result).map(([address, balance]) => [
-    //   address,
-    //   parseFloat(formatUnits(balance, options.decimals))
-    // ])
   );
 }
