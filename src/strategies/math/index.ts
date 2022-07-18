@@ -1,5 +1,4 @@
 import strategies from '..';
-import { getProvider, getSnapshots } from '../../utils';
 
 import {
   ConstantOperand,
@@ -27,20 +26,11 @@ export async function strategy(
   const rawOptions: OptionalOptions = migrateLegacyOptions(options);
   const strategyOptions: Options = validateOptions(rawOptions);
 
-  const networks = strategyOptions.operands
-    .map((item: Operand) =>
-      item.type === OperandType.Strategy ? item.strategy.network : undefined
-    )
-    .filter((_) => _);
-  let snapshots = {};
-  if (networks.length)
-    snapshots = await getSnapshots(network, snapshot, provider, networks);
-
   // Recursively resolve operands
   const operandPromises: Promise<
     Record<string, number>
   >[] = strategyOptions.operands.map((item) =>
-    resolveOperand(item, addresses, space, network, provider, snapshots)
+    resolveOperand(item, addresses, space, network, provider, snapshot)
   );
 
   const resolvedOperands: Record<string, number>[] = await Promise.all(
@@ -161,7 +151,7 @@ async function resolveOperand(
   space: any,
   network: any,
   provider: any,
-  snapshots: any
+  snapshot: any
 ): Promise<Record<string, number>> {
   switch (operand.type) {
     case OperandType.Strategy: {
@@ -171,11 +161,11 @@ async function resolveOperand(
         strategyOperand.strategy.name
       ].strategy(
         space,
-        strategyOperand.strategy.network,
-        getProvider(strategyOperand.strategy.network),
+        network,
+        provider,
         addresses,
         strategyOperand.strategy.params,
-        snapshots[strategyOperand.strategy.network]
+        snapshot
       );
 
       return upstreamResult;
