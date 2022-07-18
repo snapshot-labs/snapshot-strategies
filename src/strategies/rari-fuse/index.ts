@@ -46,7 +46,7 @@ export async function strategy(
   console.log(`fTokenBalances = ${fTokenBalances}`);
 
   return Object.fromEntries(
-    Object.entries(result).map(([address, balance]) => [
+    Object.entries(fTokenBalances).map(([address, balance]) => [
       address,
       1
     ])
