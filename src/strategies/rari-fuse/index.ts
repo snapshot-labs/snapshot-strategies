@@ -50,15 +50,15 @@ export async function strategy(
   }
 
   const mantissa: BigNumber = BigNumber.from(18).add(tokenDecimals).sub(fTokenDecimals);
-  const onefTokenInUnderlying: BigNumber = exchangeRate.div(BigNumber.from(10).pow(mantissa));
+  const base: BigNumber = BigNumber.from(10).pow(mantissa);
 
   console.log(`mantissa = ${mantissa}`)
-  console.log(`onefTokenInUnderlying = ${onefTokenInUnderlying}`)
+  console.log(`base = ${base}`)
 
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance.mul(onefTokenInUnderlying), fTokenDecimals))
+      parseFloat(formatUnits(balance.mul(exchangeRate).div(base), fTokenDecimals))
     ])
   );
 }
