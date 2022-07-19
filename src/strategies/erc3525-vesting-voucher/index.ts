@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { claimCoefficient, maturitiesCoefficient } from './utils';
 
-export const author = 'charq';
+export const author = 'buchaoqun';
 export const version = '0.1.0';
 
 const abi = [
