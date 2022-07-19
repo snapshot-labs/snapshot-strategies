@@ -1,0 +1,36 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "symbol",
+          "examples": ["e.g. BANK"],
+          "maxLength": 16
+        },
+        "token": {
+          "type": "string",
+          "title": "token",
+          "examples": ["e.g. 0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "fToken": {
+          "type": "string",
+          "title": "fToken",
+          "examples": ["e.g. 0x250316B3E46600417654b13bEa68b5f64D61E609"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["token", "fToken"],
+      "additionalProperties": false
+    }
+  }
+}
