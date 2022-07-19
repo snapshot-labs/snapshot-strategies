@@ -6,7 +6,7 @@ export const author = 'buchaoqun';
 export const version = '0.1.0';
 
 const abi = [
-    'function getSnapshot(uint256 tokenId_) view returns (uint8 claimType_, uint64 term_, uint256 vestingAmount_, uint256 principal_, uint64[] maturities_, uint32[] percentages_, uint256 availableWithdrawAmount_, string originalInvestor_, bool isValid_)'
+  'function getSnapshot(uint256 tokenId_) view returns (uint8 claimType_, uint64 term_, uint256 vestingAmount_, uint256 principal_, uint64[] maturities_, uint32[] percentages_, uint256 availableWithdrawAmount_, string originalInvestor_, bool isValid_)'
 ];
 
 export async function strategy(
@@ -23,7 +23,7 @@ export async function strategy(
         network,
         provider,
         abi,
-        addresses.map(() => [
+        addresses.map((address: any) => [
             options.address,
             'getSnapshot',
             [options.tokenId]
