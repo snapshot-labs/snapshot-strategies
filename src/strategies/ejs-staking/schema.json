@@ -1,0 +1,161 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "stakingServiceContractAddress": {
+          "type": "string",
+          "title": "Staking service contract address",
+          "examples": [
+            "e.g. 0x9eF2a23292DC12A5597CcEB7F5039aF944896a9D"
+          ],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "voteEndDate": {
+          "type": "string",
+          "title": "Voting end date (ISO8601 format)",
+          "examples": [
+            "2022-2-22 2:22:22 GMT"
+          ]
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimal places for votes",
+          "examples": [
+            "e.g. 0"
+          ]
+        },
+        "stakingPoolSettings": {
+          "type": "array",
+          "title": "Settings for staking pools",
+          "items": {
+            "title": "Setting for staking pool",
+            "type": "object",
+            "properties": {
+              "pools": {
+                "type": "array",
+                "title": "Pools for this setting",
+                "items": {
+                  "title": "Pool for this setting",
+                  "type": "object",
+                  "properties": {
+                    "networkId": {
+                      "type": "string",
+                      "title": "Network id",
+                      "examples": [
+                        "e.g. 1"
+                      ]
+                    },
+                    "poolId": {
+                      "type": "string",
+                      "title": "Pool id",
+                      "examples": [
+                        "e.g. 0x776a2f9aa5240a89ec91ddcaeb4d420f492504e4b4f0aa70269356fefb61012c"
+                      ]
+                    }
+                  },
+                  "required": [
+                    "networkId",
+                    "poolId"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "lotSizePerVote": {
+                "type": "string",
+                "title": "Lot size per vote",
+                "examples": [
+                  "e.g. 100000000000000000000"
+                ]
+              },
+              "minimumTokensToVote": {
+                "type": "string",
+                "title": "Minimum tokenst to vote",
+                "examples": [
+                  "e.g. 100000000000000000000"
+                ]
+              }
+            },
+            "required": [
+              "pools",
+              "lotSizePerVote",
+              "minimumTokensToVote"
+            ],
+            "additionalProperties": false
+          }
+        },
+        "legacyData": {
+          "type": "array",
+          "title": "Legacy data to support legacy staking pools",
+          "items": {
+            "title": "Legacy data to support legacy staking pools",
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "title": "Wallet address",
+                "examples": [
+                  "e.g. 0xf2a4d37a5648fd5ad3c72e4c92aad26786185d57"
+                ]
+              },
+              "networkId": {
+                "type": "string",
+                "title": "Network id",
+                "examples": [
+                  "e.g. 1"
+                ]
+              },
+              "poolId": {
+                "type": "string",
+                "title": "Pool id",
+                "examples": [
+                  "e.g. 0x776a2f9aa5240a89ec91ddcaeb4d420f492504e4b4f0aa70269356fefb61012c"
+                ]
+              },
+              "stakeAmountWei": {
+                "type": "string",
+                "title": "Amount of stake in wei",
+                "examples": [
+                  "e.g. 15000000000000000000000"
+                ]
+              },
+              "stakeMaturityTimestamp": {
+                "type": "string",
+                "title": "Maturity timestamp",
+                "examples": [
+                  "e.g. 1677032542000"
+                ]
+              },
+              "isSuspended": {
+                "type": "boolean",
+                "title": "Is Suspended",
+                "examples": [
+                  "e.g. false"
+                ]
+              }
+            },
+            "required": [
+              "address",
+              "networkId",
+              "poolId",
+              "stakeAmountWei",
+              "stakeMaturityTimestamp"
+            ],
+            "additionalProperties": false
+          }
+        }
+      },
+      "required": [
+        "stakingServiceContractAddress",
+        "voteEndDate",
+        "stakingPoolSettings"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

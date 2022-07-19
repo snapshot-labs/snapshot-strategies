@@ -1,0 +1,125 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ejs-staking",
+      "params": {
+        "stakingServiceContractAddress": "0x9eF2a23292DC12A5597CcEB7F5039aF944896a9D",
+        "voteEndDate": "2022-7-1 2:22:22 GMT",
+        "decimals": 0,
+        "stakingPoolSettings": [
+          {
+            "pools": [
+              {
+                "networkId": "97",
+                "poolId": "0x776a2f9aa5240a89ec91ddcaeb4d420f492504e4b4f0aa70269356fefb61012c"
+              },
+              {
+                "networkId": "97",
+                "poolId": "0x7b6633c39fac83aba2dde2241529d4d18c28a0a990e77bfbdd8ca8318f399e89"
+              }
+            ],
+            "lotSizePerVote": "10000000000000000000",
+            "minimumTokensToVote": "10000000000000000000"
+          },
+          {
+            "pools": [
+              {
+                "networkId": "97",
+                "poolId": "0x83aabbeed4cde39be0395474da0ee91de672ae8c9072b0f2b02ee7c1294553f3"
+              }
+            ],
+            "lotSizePerVote": "10000000000000000000",
+            "minimumTokensToVote": "50000000000000000000"
+          },
+          {
+            "pools": [
+              {
+                "networkId": "137",
+                "poolId": "0x0000000000000000000000000000000000000000000000000000000000000001"
+              },
+              {
+                "networkId": "250",
+                "poolId": "0x0000000000000000000000000000000000000000000000000000000000000002"
+              }
+            ],
+            "lotSizePerVote": "10000000000000000000000",
+            "minimumTokensToVote": "10000000000000000000000"
+          },
+          {
+            "pools": [
+              {
+                "networkId": "100",
+                "poolId": "0x0000000000000000000000000000000000000000000000000000000000000003"
+              }
+            ],
+            "lotSizePerVote": "50000000000000000000000",
+            "minimumTokensToVote": "50000000000000000000000"
+          }
+        ],
+        "legacyData": [
+          {
+            "address": "0x000000000000000000000000000000000000000A",
+            "networkId": "137",
+            "poolId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "stakeAmountWei": "15000000000000000000000",
+            "stakeMaturityTimestamp": "1656685342"
+          },
+          {
+            "address": "0x000000000000000000000000000000000000000A",
+            "networkId": "250",
+            "poolId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+            "stakeAmountWei": "15000000000000000000000",
+            "stakeMaturityTimestamp": "1656685342"
+          },
+          {
+            "address": "0x000000000000000000000000000000000000000A",
+            "networkId": "100",
+            "poolId": "0x0000000000000000000000000000000000000000000000000000000000000003",
+            "stakeAmountWei": "60000000000000000000000",
+            "stakeMaturityTimestamp": "1656685342"
+          },
+          {
+            "address": "0x000000000000000000000000000000000000000B",
+            "networkId": "137",
+            "poolId": "0x0000000000000000000000000000000000000000000000000000000000000001",
+            "stakeAmountWei": "5000000000000000000000",
+            "stakeMaturityTimestamp": "1656685342"
+          },
+          {
+            "address": "0x000000000000000000000000000000000000000B",
+            "networkId": "250",
+            "poolId": "0x0000000000000000000000000000000000000000000000000000000000000002",
+            "stakeAmountWei": "20000000000000000000000",
+            "stakeMaturityTimestamp": "1625149342"
+          }
+        ]
+      }
+    },
+    "network": "97",
+    "addresses": [         
+      "0x1f8a12f92885fb002a14cae86096d25601d5fcdb",
+      "0x33659b9b603114fa54f05b891e0e7f7aef816cc3",
+      "0x537096f702c88b935f3cab6d16e24826bd4b6030",
+      "0x7447510461a8fe9445216e32eeb25434e741741f",
+      "0x7770ac38ea82a719dc0c3665713a49b7f014c08f",
+      "0x7773e120a6f3926ab5050b280bc06953595b5fc6",
+      "0x7774e8632829ef7ed318491eb4eaa021fd5a2d83",
+      "0x777a90d562b17114dd74b037c5d5436c600eca71",
+      "0x81965c8df69c681bd5b09ecc84127dd671f7cf93",
+      "0xb2050a795b21b081aebe0241dc6c20a9ca014a9e",
+      "0xcaebecd3a08d5199c85fc8f00b75515f374f445d",
+      "0xd8247e172a05b994eb631914f75181f09822a178",
+      "0xdc001d5516d7c267d421fe34132f17e5723f751e",
+      "0xe5514a42511ce2a86347b35fb082b964f642f203",
+      "0xe7ea3395ef02ee2166d253b7c078cb37006ebcfc",
+      "0xf274076a96e0e89b71a224303cfb2d50a1b4462b",
+      "0xf2a4d37a5648fd5ad3c72e4c92aad26786185d57",
+      "0xf490ae62aa8d0d74f320c4c71001a14c0f86b946",
+      "0xffa3b2700d7f917ac4c9170e8fa97a10f1543eba",
+      "0x000000000000000000000000000000000000000A",
+      "0x000000000000000000000000000000000000000B"
+    ],
+    "snapshot": 21041259
+  }
+]
