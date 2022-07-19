@@ -1,4 +1,4 @@
-import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
+import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
@@ -36,7 +36,7 @@ export async function strategy(
   const tokenDecimals: BigNumber = result.tokenDecimals;
   const fTokenDecimals: BigNumber = result.fTokenDecimals;
   const exchangeRate: BigNumber = result.exchangeRate;
-  const fTokenBalances: Record<string, BigNumberish> = result.fTokenBalances;
+  const fTokenBalances: Record<string, BigNumber> = result.fTokenBalances;
 
   console.log(`underlying = ${underlying}`);
   console.log(`tokenDecimals = ${tokenDecimals}`);
@@ -49,13 +49,13 @@ export async function strategy(
     );
   }
 
-  const mantissa = BigNumber.from(18).add(tokenDecimals.sub(fTokenDecimals));
-  const onefTokenInUnderlying = exchangeRate.div(BigNumber.from(10).pow(mantissa));
+  const mantissa: BigNumber = BigNumber.from(18).add(tokenDecimals).sub(fTokenDecimals);
+  const onefTokenInUnderlying: BigNumber = exchangeRate.div(BigNumber.from(10).pow(mantissa));
 
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, fTokenDecimals))
+      parseFloat(formatUnits(balance.mul(onefTokenInUnderlying), fTokenDecimals))
     ])
   );
 }
