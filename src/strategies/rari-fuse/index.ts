@@ -40,11 +40,6 @@ export async function strategy(
   const exchangeRate: BigNumber = result.exchangeRate;
   const fTokenBalances: Record<string, BigNumber> = result.fTokenBalances;
 
-  console.log(`underlying = ${underlying}`);
-  console.log(`tokenDecimals = ${tokenDecimals}`);
-  console.log(`fTokenDecimals = ${fTokenDecimals}`);
-  console.log(`exchangeRate = ${exchangeRate}`);
-
   if (options.token !== underlying) {
     throw new Error(
       `token parameter doesn't match fToken.underlying(). token=${options.token}, underlying=${underlying}`
@@ -55,9 +50,6 @@ export async function strategy(
     .add(tokenDecimals)
     .sub(fTokenDecimals);
   const divisor: BigNumber = BigNumber.from(10).pow(mantissa);
-
-  console.log(`mantissa = ${mantissa}`);
-  console.log(`divisor = ${divisor}`);
 
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
