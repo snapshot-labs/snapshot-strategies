@@ -28,7 +28,9 @@ export async function strategy(
   multi.call('fTokenDecimals', options.fToken, 'decimals', []);
   multi.call('exchangeRate', options.fToken, 'exchangeRateStored', []);
   addresses.forEach((address) =>
-    multi.call(`fTokenBalances.${address}`, options.fToken, 'balanceOf', [address])
+    multi.call(`fTokenBalances.${address}`, options.fToken, 'balanceOf', [
+      address
+    ])
   );
   const result = await multi.execute();
 
@@ -49,16 +51,20 @@ export async function strategy(
     );
   }
 
-  const mantissa: BigNumber = BigNumber.from(18).add(tokenDecimals).sub(fTokenDecimals);
-  const base: BigNumber = BigNumber.from(10).pow(mantissa);
+  const mantissa: BigNumber = BigNumber.from(18)
+    .add(tokenDecimals)
+    .sub(fTokenDecimals);
+  const divisor: BigNumber = BigNumber.from(10).pow(mantissa);
 
-  console.log(`mantissa = ${mantissa}`)
-  console.log(`base = ${base}`)
+  console.log(`mantissa = ${mantissa}`);
+  console.log(`divisor = ${divisor}`);
 
   return Object.fromEntries(
     Object.entries(fTokenBalances).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance.mul(exchangeRate).div(base), fTokenDecimals))
+      parseFloat(
+        formatUnits(balance.mul(exchangeRate).div(divisor), fTokenDecimals)
+      )
     ])
   );
 }
