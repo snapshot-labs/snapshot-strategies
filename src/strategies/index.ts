@@ -337,7 +337,7 @@ import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
-import * as bnrookBalanceOfUnderlyingWeighted from './bnrook-balance-of-underlying-weighted';
+import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -679,7 +679,7 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'rari-fuse': rariFuse,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
-  'bnrook-balance-of-underlying-weighted': bnrookBalanceOfUnderlyingWeighted
+  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
