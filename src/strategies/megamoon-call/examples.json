@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "megamoon-call",
+      "params": {
+        "address": "0xac78eB050dC12d9586a0066758968999067E9F77",
+        "symbol": "MOON",
+        "decimals": 18,
+        "abis": "function viewUserInfo(address user) external view returns (uint256, uint256, uint256)",
+        "callname": "viewUserInfo",
+        "arr": 0
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xf7EEE6fdbb1764DA3eE9811FA2Db8a077B594463",
+      "0xaf5b142318463c1B7fF9e3046cB7Cc8e2caCFf2D"
+    ],
+    "snapshot": 11437846
+  }
+]

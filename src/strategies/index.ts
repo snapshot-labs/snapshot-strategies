@@ -334,6 +334,7 @@ import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as megamoon from './megamoon-call';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -462,6 +463,7 @@ const strategies = {
   xcover,
   'niu-staked': niuStaked,
   mushrooms: mushrooms,
+  'megamoon-call': megamoon,
   'curio-cards-erc20-weighted': curioCardsErc20Weighted,
   'ren-nodes': renNodes,
   'reverse-voting-escrow': reverseVotingEscrow,
