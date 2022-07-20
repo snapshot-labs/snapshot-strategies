@@ -13,13 +13,14 @@ const abi = [
 
 const calculateVotingPower = (userVotingPower, addresses, balances) => {
   for (let i = 0; i < addresses.length; i++) {
-    userVotingPower[addresses[i]] = userVotingPower[addresses[i]] || BigNumber.from(0);
+    userVotingPower[addresses[i]] =
+      userVotingPower[addresses[i]] || BigNumber.from(0);
 
     const balance = balances[i];
 
     userVotingPower[addresses[i]] = userVotingPower[addresses[i]].add(balance);
   }
-  return userVotingPower
+  return userVotingPower;
 };
 
 export async function strategy(
@@ -33,10 +34,10 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const params = {
-    'addresses': addresses
-  }
+    addresses: addresses
+  };
 
-  const response = await fetch("https://api.forta.network/stats/shares", {
+  const response = await fetch('https://api.forta.network/stats/shares', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
@@ -48,12 +49,16 @@ export async function strategy(
   const data = await response.json();
 
   const batchAddresses = <string[]>[];
-  const batchShareIds =  <string[]>[];
+  const batchShareIds = <string[]>[];
 
   data.shares.forEach((valuePair) => {
     if (valuePair.shares) {
       valuePair.shares.forEach((share) => {
-        batchAddresses.push(addresses.find((addr) => addr.toLowerCase() === share.shareholder.toLowerCase()));
+        batchAddresses.push(
+          addresses.find(
+            (addr) => addr.toLowerCase() === share.shareholder.toLowerCase()
+          )
+        );
         batchShareIds.push(share.shareId);
       });
     }
@@ -63,16 +68,17 @@ export async function strategy(
     network,
     provider,
     abi,
-    [
-      [STAKING_CONTRACT, 'balanceOfBatch', [batchAddresses, batchShareIds]]
-    ],
+    [[STAKING_CONTRACT, 'balanceOfBatch', [batchAddresses, batchShareIds]]],
     { blockTag }
   );
 
   let userVotingPower = {};
 
-  userVotingPower = calculateVotingPower(userVotingPower, batchAddresses, result[0][0]);
-
+  userVotingPower = calculateVotingPower(
+    userVotingPower,
+    batchAddresses,
+    result[0][0]
+  );
 
   return Object.fromEntries(
     Object.entries(userVotingPower).map((addressBalancePair) => [

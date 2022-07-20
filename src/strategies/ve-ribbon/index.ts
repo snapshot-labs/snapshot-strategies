@@ -29,10 +29,8 @@ export async function strategy(
   addresses.forEach((address) =>
     multi.call(address, VOTING_ESCROW, 'locked', [address])
   );
-  const resultLocked: Record<
-    string,
-    [BigNumberish, BigNumberish]
-  > = await multi.execute();
+  const resultLocked: Record<string, [BigNumberish, BigNumberish]> =
+    await multi.execute();
 
   return Object.fromEntries(
     Object.entries(resultUnlocked).map(([address, balance]) => [

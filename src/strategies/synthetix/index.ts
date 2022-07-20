@@ -14,8 +14,7 @@ const DebtCacheContractAddress = '0x9bB05EF2cA7DBAafFC3da1939D1492e6b00F39b8';
 
 const defaultGraphs = {
   '1': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/synthetix',
-  '10':
-    'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-general'
+  '10': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-general'
 };
 
 const ovmSnapshotJSON = 'QmNwvhq4By1Mownjycg7bWSXqbJWMVyAWRZ1K4mjxuvGXg';

@@ -61,10 +61,8 @@ export async function strategy(
   addresses.forEach((address) =>
     multiBalanceOf.call(address, options.ERC20Address, 'balanceOf', [address])
   );
-  const addressesBalanceOf: Record<
-    string,
-    BigNumberish
-  > = await multiBalanceOf.execute();
+  const addressesBalanceOf: Record<string, BigNumberish> =
+    await multiBalanceOf.execute();
 
   // And then, we fetch the vesting data for each vesting ID
   // 1. vester address
@@ -90,10 +88,8 @@ export async function strategy(
   ids.forEach((id) =>
     multiVestTotCaller.call(id, options.DSSVestAddress, 'tot', [id])
   );
-  const multiVestTot: Record<
-    string,
-    BigNumberish
-  > = await multiVestTotCaller.execute();
+  const multiVestTot: Record<string, BigNumberish> =
+    await multiVestTotCaller.execute();
 
   // 3. total claimed
   const multiVestAccruedCaller = new Multicaller(
@@ -105,10 +101,8 @@ export async function strategy(
   ids.forEach((id) =>
     multiVestAccruedCaller.call(id, options.DSSVestAddress, 'accrued', [id])
   );
-  const multiVestAccrued: Record<
-    string,
-    BigNumberish
-  > = await multiVestAccruedCaller.execute();
+  const multiVestAccrued: Record<string, BigNumberish> =
+    await multiVestAccruedCaller.execute();
   return Object.fromEntries(
     Object.entries(addressesBalanceOf).map(([address, balance]) => {
       const initialVotingPower = [
