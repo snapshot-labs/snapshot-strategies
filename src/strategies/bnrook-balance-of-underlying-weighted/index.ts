@@ -6,6 +6,7 @@ export const author = 'RaiNFall';
 export const version = '1.0.0';
 
 const erc20ABI = [
+  'function poolToken(address pool) external view returns (address)',
   'function poolTokenToUnderlying(address pool, uint256 poolTokenAmount) external view returns (uint256)'
 ];
 
@@ -17,6 +18,16 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const liquidityPoolTokenAddress = await call(
+    provider,
+    erc20ABI,
+    [options.bancorNetworkInfoAddress, 'poolToken', [options.underlyingTokenAddress]],
+    { blockTag }
+  );
+
+  options.address = liquidityPoolTokenAddress;
   const scores = await erc20BalanceOfStrategy(
     space,
     network,
@@ -26,7 +37,6 @@ export async function strategy(
     snapshot
   );
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const oneLPTokenValue = (10**options.decimals).toString();
   const underlyingValue = await call(
     provider,

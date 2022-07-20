@@ -5,7 +5,6 @@
       "name": "bnrook-balance-of-underlying-weighted",
       "params": {
         "symbol": "bnROOK",
-        "address": "0xE4BeCD393eD7cfDEEf9F513A3fE6BbAAc923caA9",
         "decimals": 18,
         "weight": 1.2,
         "underlyingTokenAddress": "0xfA5047c9c78B8877af97BDcb85Db743fD7313d4a",
