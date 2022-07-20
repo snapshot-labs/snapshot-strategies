@@ -18,7 +18,7 @@
     "test:delegation": "jest -i delegation.test.ts",
     "prepublishOnly": "npm run build",
     "prepare": "npm run build",
-    "postbuild": "copyfiles -u 1 src/**/*.md dist/src/ && copyfiles -u 1 src/**/*.json dist/src/",
+    "postbuild": "copyfiles -u 1 \"src/**/*.md\" dist/src/ && copyfiles -u 1 \"src/**/*.json\" dist/src/",
     "lint": "eslint src/ test/ --ext .ts,.json --fix"
   },
   "dependencies": {
