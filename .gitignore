@@ -1,6 +1,10 @@
 .DS_Store
 node_modules
 dist
+.gitignore
+*.bak
+
+test/
 
 # Remove some common IDE working directories
 .idea
