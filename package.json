@@ -1,10 +1,10 @@
 {
   "name": "@snapshot-labs/strategies",
   "version": "0.1.0",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/index.js"
   },
   "files": [
     "dist"
@@ -18,7 +18,7 @@
     "test:delegation": "jest -i delegation.test.ts",
     "prepublishOnly": "npm run build",
     "postinstall": "npm run build",
-    "postbuild": "copyfiles -u 1 \"src/**/*.md\" dist/src/ && copyfiles -u 1 \"src/**/*.json\" dist/src/",
+    "postbuild": "copyfiles -u 1 src/**/*.md dist/ && copyfiles -u 1 src/**/*.json dist/",
     "lint": "eslint src/ test/ --ext .ts,.json --fix"
   },
   "dependencies": {
