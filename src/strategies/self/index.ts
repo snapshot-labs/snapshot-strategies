@@ -3,7 +3,7 @@ import { strategy as masterChefPoolBalanceStrategy } from '../masterchef-pool-ba
 import { formatEther } from '@ethersproject/units';
 import { Zero, WeiPerEther } from '@ethersproject/constants';
 import { BigNumber } from '@ethersproject/bignumber';
-import { multicall, subgraphRequest, Multicaller } from '../../utils';
+import { subgraphRequest, Multicaller } from '../../utils';
 
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -22,21 +22,6 @@ const SELF_BNB_LP_ADDRESS = '0x9C6FF656A563Ec9057460D8a400E2AC7c2AE0a1C';
 const MASTER_CHEF_ADDRESS = {
   v1: '0x3d03d12F95Bdc4509804f9Bcee4139b7789DC516'
 };
-
-const onChainVotingPower = {
-  v0: {
-    blockNumber: 19493236,
-    address: '0xeC8bb6Eb92d09966188367Ee84a3f5F049E83181'
-  },
-  v1: {
-    blockNumber: 19493236,
-    address: '0xeC8bb6Eb92d09966188367Ee84a3f5F049E83181'
-  }
-};
-
-const abi = [
-  'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
-];
 
 const vaultAbi = [
   'function getPricePerFullShare() view returns (uint256)',
@@ -156,43 +141,8 @@ export async function strategy(
     addresses
   );
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  if (
-    blockTag === 'latest' ||
-    (typeof blockTag === 'number' &&
-      blockTag >= onChainVotingPower.v0.blockNumber)
-  ) {
-    let callData = addresses.map((address: any) => [
-      typeof blockTag === 'number' &&
-      blockTag < onChainVotingPower.v1.blockNumber
-        ? onChainVotingPower.v0.address
-        : onChainVotingPower.v1.address,
-      'getVotingPowerWithoutPool',
-      [address.toLowerCase()]
-    ]);
-
-    callData = [...chunk(callData, options.max || 300)];
-    const response: any[] = [];
-    for (const call of callData) {
-      const multiRes = await multicall(network, provider, abi, call, {
-        blockTag
-      });
-      response.push(...multiRes);
-    }
-    return Object.fromEntries(
-      response.map((value, i) => [
-        addresses[i],
-        parseFloat(
-          formatEther(
-            (userPoolBalance[addresses[i].toLowerCase()] || Zero).add(
-              value.toString()
-            )
-          )
-        )
-      ])
-    );
-  }
-
+  const blockTag = snapshot;
+  
   const erc20Balance = await erc20BalanceOfStrategy(
     space,
     network,
