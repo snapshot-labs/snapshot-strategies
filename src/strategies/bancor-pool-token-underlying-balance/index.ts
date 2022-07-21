@@ -37,11 +37,11 @@ export async function strategy(
     snapshot
   );
 
-  const oneLPTokenValue = (10**options.decimals).toString();
+  const poolTokenDecimalScaling = (10**options.decimals).toString();
   const underlyingValue = await call(
     provider,
     erc20ABI,
-    [options.bancorNetworkInfoAddress, 'poolTokenToUnderlying', [options.underlyingTokenAddress, oneLPTokenValue]],
+    [options.bancorNetworkInfoAddress, 'poolTokenToUnderlying', [options.underlyingTokenAddress, poolTokenDecimalScaling]],
     { blockTag }
   ).then((res) => parseFloat(formatUnits(res, options.decimals)));
 
