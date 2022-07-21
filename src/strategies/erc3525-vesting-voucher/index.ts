@@ -23,11 +23,7 @@ export async function strategy(
     network,
     provider,
     abi,
-    addresses.map((address: any) => [
-      options.address,
-      'getSnapshot',
-      [options.tokenId]
-    ]),
+    addresses.map(() => [options.address, 'getSnapshot', [options.tokenId]]),
     { blockTag }
   );
 
