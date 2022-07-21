@@ -10,31 +10,29 @@ const abi = [
 ];
 
 export async function strategy(
-    space,
+  space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const snapshotData = await multicall(
     network,
     provider,
-    addresses,
-    options,
-    snapshot
-) {
-    const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+    abi,
+    addresses.map(() => [options.address, 'getSnapshot', [options.tokenId]]),
+    { blockTag }
+  );
 
-    const snapshotData = await multicall(
-        network,
-        provider,
-        abi,
-        addresses.map((address: any) => [
-            options.address,
-            'getSnapshot',
-            [options.tokenId]
-        ]),
-        { blockTag }
-    );
-
-    return Object.fromEntries(
-        snapshotData.map((value, i) => [
-            addresses[i],
-            parseFloat(formatUnits(value[6].toString(), options.decimals)) * claimCoefficient(value[0]) * maturitiesCoefficient(value[4])
-        ])
-    );
+  return Object.fromEntries(
+    snapshotData.map((value, i) => [
+      addresses[i],
+      parseFloat(formatUnits(value[6].toString(), options.decimals)) *
+        claimCoefficient(value[0]) *
+        maturitiesCoefficient(value[4])
+    ])
+  );
 }
