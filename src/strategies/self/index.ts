@@ -12,7 +12,7 @@ const chunk = (arr, size) =>
 
 const PAGE_SIZE = 1000;
 
-export const author = 'cr3k';
+export const author = 'Cr3k';
 export const version = '0.0.1';
 
 const SELF_ADDRESS = '0x7a364484303b38bce7b0ab60a20da8f2f4370129';
