@@ -678,8 +678,8 @@ const strategies = {
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'rari-fuse': rariFuse,
-  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
-  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance
+  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
+  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
