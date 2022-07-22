@@ -338,6 +338,7 @@ import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
+import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -677,6 +678,7 @@ const strategies = {
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
   'rari-fuse': rariFuse,
+  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted
