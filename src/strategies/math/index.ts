@@ -27,10 +27,12 @@ export async function strategy(
   const strategyOptions: Options = validateOptions(rawOptions);
 
   // Recursively resolve operands
-  const operandPromises: Promise<Record<string, number>>[] =
-    strategyOptions.operands.map((item) =>
-      resolveOperand(item, addresses, space, network, provider, snapshot)
-    );
+  const operandPromises: Promise<
+    Record<string, number>
+  >[] = strategyOptions.operands.map((item) =>
+    resolveOperand(item, addresses, space, network, provider, snapshot)
+  );
+
   const resolvedOperands: Record<string, number>[] = await Promise.all(
     operandPromises
   );
