@@ -39,13 +39,20 @@ export async function strategy(
   const liquidityPoolBalance = await call(
     provider,
     erc20ABI,
-    [options.underlyingTokenAddress, 'balanceOf', [options.liquidityPoolAddress]],
+    [
+      options.underlyingTokenAddress,
+      'balanceOf',
+      [options.liquidityPoolAddress]
+    ],
     { blockTag }
   ).then((res) => parseFloat(formatUnits(res, options.decimals)));
 
   const underlyingValue = liquidityPoolBalance / xROOKTotalSupply;
 
   return Object.fromEntries(
-    Object.entries(score).map((res: any) => [res[0], res[1] * options.weight * underlyingValue])
+    Object.entries(score).map((res: any) => [
+      res[0],
+      res[1] * options.weight * underlyingValue
+    ])
   );
 }

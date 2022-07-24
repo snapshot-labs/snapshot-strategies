@@ -28,8 +28,7 @@ const vaultAbi = [
   'function userInfo(address) view returns (uint256 shares, uint256 lastDepositedTime, uint256 selfAtLastUserAction, uint256 lastUserActionTime)'
 ];
 
-const smartChefUrl =
-  'https://api.thegraph.com/subgraphs/name/cr3k/smartchef';
+const smartChefUrl = 'https://api.thegraph.com/subgraphs/name/cr3k/smartchef';
 
 async function getPools(provider, snapshot: any) {
   let blockNumber = snapshot;
@@ -142,7 +141,7 @@ export async function strategy(
   );
 
   const blockTag = snapshot;
-  
+
   const erc20Balance = await erc20BalanceOfStrategy(
     space,
     network,
