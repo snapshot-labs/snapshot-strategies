@@ -14,7 +14,7 @@
         },
         "crucible_factory": {
           "type": "string",
-          "title": "LP address",
+          "title": "Crucible factory address",
           "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
@@ -37,7 +37,7 @@
           "maxLength": 42
         }
       },
-      "required": ["tokenAddress", "lpTokenAddress"],
+      "required": ["crucible_factory", "tokenAddress", "lpTokenAddress"],
       "additionalProperties": false
     }
   }
