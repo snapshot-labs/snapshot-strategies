@@ -331,9 +331,8 @@ import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
-import * as jelly from './jelly';
 import * as veJelly from './jelly-ve';
-import * as jellyDev from './jelly-dev';
+import * as jellyDrop from './jelly-drop';
 
 
 const strategies = {
@@ -667,8 +666,7 @@ const strategies = {
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   'jelly-ve': veJelly,
-  'jelly-dev': jellyDev,
-  jelly,
+  'jelly-drop': jellyDrop,
   apeswap,
   h2o
 };
