@@ -336,9 +336,7 @@ import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
-import * as selfswap from './selfswap';
-import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
-import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
+import * as orbsNetworkDelegation from './orbs-network-delegation';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -396,7 +394,7 @@ const strategies = {
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple':
-    erc721WithTokenIdRangeWeightsSimple,
+  erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -594,7 +592,7 @@ const strategies = {
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
   'unstackedtoadz-and-stackedtoadz-stakers':
-    unstackedToadzAndStackedToadzStakers,
+  unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
@@ -677,11 +675,9 @@ const strategies = {
   h2o,
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
-  'rari-fuse': rariFuse,
-  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
-  selfswap,
   'erc3525-vesting-voucher': erc3525VestingVoucher,
-  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted
+  'rari-fuse': rariFuse,
+  'orbs-network-delegation': orbsNetworkDelegation,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
