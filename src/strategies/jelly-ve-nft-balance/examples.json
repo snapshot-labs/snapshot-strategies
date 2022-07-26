@@ -1,8 +1,8 @@
 [
   {
-    "name": "Jelly Protocol",
+    "name": "Jelly veNFT balance",
     "strategy": {
-      "name": "jelly-ve",
+      "name": "jelly-ve-nft-balance",
       "params": {
         "votingEscrow": "0x2e1e85b5c0f3375f264a314818e255ceec6b1a60"
       }
@@ -13,6 +13,6 @@
       "0x0660D497b97319Ce46607f22d4991918B4FEEE3f",
       "0x5A072C092bA0Db980328374C5BF042B8cc56E4FB"
     ],
-    "snapshot": 11085705
+    "snapshot": 11085980
   }
 ]

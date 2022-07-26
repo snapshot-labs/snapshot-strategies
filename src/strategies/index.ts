@@ -331,8 +331,7 @@ import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
-import * as veJelly from './jelly-ve';
-import * as jellyDrop from './jelly-drop';
+import * as veJellyNFT from './jelly-ve-nft-balance';
 
 
 const strategies = {
@@ -665,8 +664,7 @@ const strategies = {
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
-  'jelly-ve': veJelly,
-  'jelly-drop': jellyDrop,
+  'jelly-ve-nft-balance': veJellyNFT,
   apeswap,
   h2o
 };

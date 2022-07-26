@@ -2,11 +2,9 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'profwobble';
-export const version = '0.1.0';
+export const author = 'JellyProtocol';
+export const version = '0.1.3';
 
-
-const stickyPoolAbi = ['function voterBalance(address) view returns (uint256)'];
 
 interface Params {
   votingEscrow: string;
@@ -22,10 +20,11 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const jellyBalance = await multicall(
+  const veAbi = ['function voterBalance(address) view returns (uint256)'];
+  const voterBalance = await multicall(
     network,
     provider,
-    stickyPoolAbi,
+    veAbi,
     addresses.map((address) => [
       options.votingEscrow,
       'voterBalance',
@@ -33,9 +32,8 @@ export async function strategy(
     ]),
     { blockTag }
   );
-
   
-  const userWalletBalances = jellyBalance.map((amount, i) => {
+  const userVoteBalances = voterBalance.map((amount, i) => {
     return [
       addresses[i].toLowerCase(),
       parseFloat(formatUnits(amount.toString(), 18))
@@ -44,17 +42,15 @@ export async function strategy(
 
   const userTotal = {};
 
-  userWalletBalances.forEach(([address, amount]) => {
+  userVoteBalances.forEach(([address, amount]) => {
     const addr = address.toLowerCase();
     if (userTotal[addr]) userTotal[addr] += amount;
     else userTotal[addr] = amount;
   });
 
-  const finalUserBalances = Object.fromEntries(
+  const finalVoteBalances = Object.fromEntries(
     addresses.map((addr) => [getAddress(addr), userTotal[addr.toLowerCase()]])
   );
-  console.log(finalUserBalances);
-  return finalUserBalances;
-
+  return finalVoteBalances;
 
 }
