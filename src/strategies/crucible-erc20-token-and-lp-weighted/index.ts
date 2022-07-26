@@ -32,40 +32,42 @@ export async function strategy(
     network,
     provider,
     abi,
-    [[options.lpTokenAddress, 'token0', []],
-    [options.lpTokenAddress, 'token1', []],
-    [options.lpTokenAddress, 'getReserves', []],
-    [options.lpTokenAddress, 'totalSupply', []],
-    [options.lpTokenAddress, 'decimals', []],
-    [options.tokenAddress, 'decimals', []]],
+    [
+      [options.lpTokenAddress, 'token0', []],
+      [options.lpTokenAddress, 'token1', []],
+      [options.lpTokenAddress, 'getReserves', []],
+      [options.lpTokenAddress, 'totalSupply', []],
+      [options.lpTokenAddress, 'decimals', []],
+      [options.tokenAddress, 'decimals', []]
+    ],
     { blockTag }
   );
 
   // assign multicall data to variables
 
-  let token0Address = fetchContractData[0][0];
-  let token1Address = fetchContractData[1][0];
-  let lpTokenReserves = fetchContractData[2];
-  let lpTokenTotalSupply = fetchContractData[3][0];
-  let lpTokenDecimals = fetchContractData[4][0];
-  let tokenDecimals = fetchContractData[5][0];
+  const token0Address = fetchContractData[0][0];
+  const token1Address = fetchContractData[1][0];
+  const lpTokenReserves = fetchContractData[2];
+  const lpTokenTotalSupply = fetchContractData[3][0];
+  const lpTokenDecimals = fetchContractData[4][0];
+  const tokenDecimals = fetchContractData[5][0];
 
   // calculate single lp token weight
 
   let tokenWeight;
 
   if (token0Address === options.tokenAddress) {
-
-    tokenWeight = (parseFloat(formatUnits(lpTokenReserves._reserve0, tokenDecimals)) / parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) * 2
-
+    tokenWeight =
+      (parseFloat(formatUnits(lpTokenReserves._reserve0, tokenDecimals)) /
+        parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) *
+      2;
   } else if (token1Address === options.tokenAddress) {
-
-    tokenWeight = (parseFloat(formatUnits(lpTokenReserves._reserve1, tokenDecimals)) / parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) * 2
-
+    tokenWeight =
+      (parseFloat(formatUnits(lpTokenReserves._reserve1, tokenDecimals)) /
+        parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) *
+      2;
   } else {
-
     tokenWeight = 0;
-
   }
 
   // get the number of crucibles owned by the wallet
@@ -120,9 +122,12 @@ export async function strategy(
   for (const [walletID, crucibleAddress] of Object.entries(
     walletIDToCrucibleAddresses
   )) {
-    callCrucibleToLpBalance.call(walletID, options.lpTokenAddress, 'balanceOf', [
-      hexZeroPad(crucibleAddress.toHexString(), 20)
-    ]);
+    callCrucibleToLpBalance.call(
+      walletID,
+      options.lpTokenAddress,
+      'balanceOf',
+      [hexZeroPad(crucibleAddress.toHexString(), 20)]
+    );
   }
   const walletIDToLpBalance: Record<string, BigNumber> =
     await callCrucibleToLpBalance.execute();
@@ -136,9 +141,12 @@ export async function strategy(
   for (const [walletID, crucibleAddress] of Object.entries(
     walletIDToCrucibleAddresses
   )) {
-    callCrucibleToTokenBalance.call(walletID, options.tokenAddress, 'balanceOf', [
-      hexZeroPad(crucibleAddress.toHexString(), 20)
-    ]);
+    callCrucibleToTokenBalance.call(
+      walletID,
+      options.tokenAddress,
+      'balanceOf',
+      [hexZeroPad(crucibleAddress.toHexString(), 20)]
+    );
   }
   const walletIDToTokenBalance: Record<string, BigNumber> =
     await callCrucibleToTokenBalance.execute();
@@ -158,7 +166,9 @@ export async function strategy(
   // wallet_address => token_balance
 
   const walletToTokenBalance = {} as Record<string, BigNumber>;
-  for (const [walletID, tokenBalance] of Object.entries(walletIDToTokenBalance)) {
+  for (const [walletID, tokenBalance] of Object.entries(
+    walletIDToTokenBalance
+  )) {
     const address = walletID.split('-')[0];
     walletToTokenBalance[address] = walletToTokenBalance[address]
       ? walletToTokenBalance[address].add(tokenBalance)
@@ -168,7 +178,8 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(walletToLpBalance).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, lpTokenDecimals)) * tokenWeight + parseFloat((formatUnits(walletToTokenBalance[address], tokenDecimals)))
+      parseFloat(formatUnits(balance, lpTokenDecimals)) * tokenWeight +
+        parseFloat(formatUnits(walletToTokenBalance[address], tokenDecimals))
     ])
   );
 }
