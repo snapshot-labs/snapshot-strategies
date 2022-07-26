@@ -4,7 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller, multicall } from '../../utils';
 
 export const author = 'joehquak';
-export const version = '0.1';
+export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address owner) external view returns (uint256)',
