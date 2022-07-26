@@ -4,9 +4,8 @@
     "strategy": {
       "name": "erc3525-vesting-voucher",
       "params": {
-        "symbol": "SOLV",
-        "address": "0x3788cab48c6090dfc312c92a9ff67eee034cdf84",
-        "tokenId": "550",
+        "symbol": "fvSOLV",
+        "address": "0x4B0dd1aDEdA251ACec75140608bAd663fB0c4cAB",
         "decimals": 18
       }
     },
@@ -14,6 +13,6 @@
     "addresses": [
       "0x1a71c8EF63aB6f578b1702a35367cA81c9281A8c"
     ],
-    "snapshot": 10037271
+    "snapshot": 11090903
   }
 ]
