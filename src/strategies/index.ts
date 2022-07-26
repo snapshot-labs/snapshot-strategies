@@ -193,6 +193,7 @@ import * as meebitsdao from './meebitsdao';
 import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
@@ -336,6 +337,7 @@ import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
+import * as selfswap from './selfswap';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 
@@ -537,6 +539,7 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'crucible-erc20-token-and-lp-weighted': crucibleERC20TokenAndLpWeighted,
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
@@ -676,10 +679,11 @@ const strategies = {
   h2o,
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
-  'erc3525-vesting-voucher': erc3525VestingVoucher,
   'rari-fuse': rariFuse,
-  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
-  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance
+  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
+  selfswap,
+  'erc3525-vesting-voucher': erc3525VestingVoucher,
+  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

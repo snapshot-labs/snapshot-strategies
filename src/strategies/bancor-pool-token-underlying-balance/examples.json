@@ -16,6 +16,10 @@
       "0x857eb0eb2572f7092c417cd386ba82e45eba9b8a",
       "0x98625957c6b96eeecd040e5bd26bd42100d124b2"
     ],
+<<<<<<< HEAD
     "snapshot": "latest"
+=======
+    "snapshot": 15191222
+>>>>>>> 6a686164ed9250c1f56d83e4bdaba9433fc4644c
   }
 ]

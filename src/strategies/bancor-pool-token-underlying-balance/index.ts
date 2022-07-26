@@ -23,7 +23,11 @@ export async function strategy(
   const liquidityPoolTokenAddress = await call(
     provider,
     erc20ABI,
-    [options.bancorNetworkInfoAddress, 'poolToken', [options.underlyingTokenAddress]],
+    [
+      options.bancorNetworkInfoAddress,
+      'poolToken',
+      [options.underlyingTokenAddress]
+    ],
     { blockTag }
   );
 
@@ -37,11 +41,15 @@ export async function strategy(
     snapshot
   );
 
-  const poolTokenDecimalScaling = (10**options.decimals).toString();
+  const poolTokenDecimalScaling = (10 ** options.decimals).toString();
   const underlyingValue = await call(
     provider,
     erc20ABI,
-    [options.bancorNetworkInfoAddress, 'poolTokenToUnderlying', [options.underlyingTokenAddress, poolTokenDecimalScaling]],
+    [
+      options.bancorNetworkInfoAddress,
+      'poolTokenToUnderlying',
+      [options.underlyingTokenAddress, poolTokenDecimalScaling]
+    ],
     { blockTag }
   ).then((res) => parseFloat(formatUnits(res, options.decimals)));
 
