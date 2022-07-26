@@ -32,7 +32,11 @@ export async function strategy(
   const xROOKTotalSupply = await call(
     provider,
     erc20ABI,
-    [options.address, 'totalSupply', []],
+    [
+      options.address, 
+      'totalSupply', 
+      []
+    ],
     { blockTag }
   ).then((res) => parseFloat(formatUnits(res, options.decimals)));
 

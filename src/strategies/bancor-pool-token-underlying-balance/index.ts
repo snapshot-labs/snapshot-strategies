@@ -54,6 +54,9 @@ export async function strategy(
   ).then((res) => parseFloat(formatUnits(res, options.decimals)));
 
   return Object.fromEntries(
-    Object.entries(scores).map((res: any) => [res[0], res[1] * underlyingValue])
+    Object.entries(scores).map((res: any) => [
+      res[0], 
+      res[1] * underlyingValue
+    ])
   );
 }
