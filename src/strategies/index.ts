@@ -340,6 +340,7 @@ import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
+import * as orbsNetworkDelegation from './orbs-network-delegation';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -683,7 +684,8 @@ const strategies = {
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
   'erc3525-vesting-voucher': erc3525VestingVoucher,
-  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted
+  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
+  'orbs-network-delegation': orbsNetworkDelegation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
