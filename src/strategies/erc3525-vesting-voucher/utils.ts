@@ -7,7 +7,7 @@ export const maturitiesCoefficient = (
   const difference = maturities[maturities.length - 1].toNumber() - nowData;
 
   if (difference <= 0) {
-    return 0;
+    return 1;
   } else if (difference > 0 && difference <= (90 * oneDaySeconds)) {
     return 1.1;
   } else if (difference > (90 * oneDaySeconds) && difference <= (183 * oneDaySeconds)) {
