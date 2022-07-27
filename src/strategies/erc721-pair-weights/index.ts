@@ -38,10 +38,10 @@ export async function strategy(
 
   const powers = {};
   addresses.forEach((address: any) => {
-    const balance0 = merged[options.registries[0]][address] * options.weights[0] || 0;
-    const balance1 = merged[options.registries[1]][address] * options.weights[1] || 0;
+    const balance0 = merged[options.registries[0]][address] ?? 0;
+    const balance1 = merged[options.registries[1]][address] ?? 0;
     const pairCount = Math.min(balance0, balance1);
-    const votePower = pairCount * options.pairWeight + (balance0 - pairCount) + (balance1 - pairCount);
+    const votePower = pairCount * options.pairWeight + (balance0 - pairCount) * options.weights[0] + (balance1 - pairCount) * options.weights[1];
     powers[address] = votePower;
   });
   return powers;
