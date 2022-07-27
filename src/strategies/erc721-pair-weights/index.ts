@@ -31,8 +31,8 @@ export async function strategy(
   response.map((value: any, i: number) => {
     const address = calls[i][2][0];
     const registry = calls[i][0];
-    merged[registry] = merged[registry] || {};
-    merged[registry][address] = (merged[registry][address] || 0) as number;
+    merged[registry] = merged[registry] ?? {};
+    merged[registry][address] = (merged[registry][address] ?? 0) as number;
     merged[registry][address] += parseFloat(formatUnits(value.toString(), 0));
   });
 
