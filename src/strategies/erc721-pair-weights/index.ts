@@ -32,7 +32,7 @@ export async function strategy(
     const address = calls[i][2][0];
     const registry = calls[i][0];
     merged[registry] = merged[registry] ?? {};
-    merged[registry][address] = (merged[registry][address] ?? 0) as number;
+    merged[registry][address] = merged[registry][address] ?? 0;
     merged[registry][address] += parseFloat(formatUnits(value.toString(), 0));
   });
 
