@@ -31,17 +31,17 @@ export async function strategy(
   response.map((value: any, i: number) => {
     const address = calls[i][2][0];
     const registry = calls[i][0];
-    merged[registry] = merged[registry] ?? {};
-    merged[registry][address] = merged[registry][address] ?? 0;
+    merged[registry] = merged[registry] || {};
+    merged[registry][address] = (merged[registry][address] || 0) as number;
     merged[registry][address] += parseFloat(formatUnits(value.toString(), 0));
   });
 
   const powers = {};
   addresses.forEach((address: any) => {
-    const balance0 = merged[options.registries[0]][address] ?? 0;
-    const balance1 = merged[options.registries[1]][address] ?? 0;
+    const balance0 = merged[options.registries[0]][address] * options.weights[0] || 0;
+    const balance1 = merged[options.registries[1]][address] * options.weights[1] || 0;
     const pairCount = Math.min(balance0, balance1);
-    const votePower = pairCount * options.pairWeight + (balance0 - pairCount) * options.weights[0] + (balance1 - pairCount) * options.weights[1];
+    const votePower = pairCount * options.pairWeight + (balance0 - pairCount) + (balance1 - pairCount);
     powers[address] = votePower;
   });
   return powers;
