@@ -193,6 +193,11 @@ import * as meebitsdao from './meebitsdao';
 import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+<<<<<<< HEAD
+=======
+import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
+import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
+>>>>>>> snapshot-labs-master
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
@@ -538,6 +543,11 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+<<<<<<< HEAD
+=======
+  'erc20-token-and-lp-weighted': erc20TokenAndLpWeighted,
+  'crucible-erc20-token-and-lp-weighted': crucibleERC20TokenAndLpWeighted,
+>>>>>>> snapshot-labs-master
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
