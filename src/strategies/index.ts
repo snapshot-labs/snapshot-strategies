@@ -193,6 +193,7 @@ import * as meebitsdao from './meebitsdao';
 import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
 import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
@@ -540,6 +541,7 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'erc20-token-and-lp-weighted': erc20TokenAndLpWeighted,
   'crucible-erc20-token-and-lp-weighted': crucibleERC20TokenAndLpWeighted,
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
