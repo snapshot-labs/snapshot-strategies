@@ -336,6 +336,7 @@ import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
+import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -675,7 +676,8 @@ const strategies = {
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
   'erc3525-vesting-voucher': erc3525VestingVoucher,
-  'rari-fuse': rariFuse
+  'rari-fuse': rariFuse,
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
