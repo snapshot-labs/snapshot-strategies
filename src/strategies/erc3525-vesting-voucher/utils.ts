@@ -3,7 +3,7 @@ const oneDaySeconds = 86400;
 export const maturitiesCoefficient = (
   maturities: Array<any>
 ) => {
-  const nowData = Date.parse(new Date().toString()) / 1000
+  const nowData = Date.parse(new Date().toString()) / 1000;
   const difference = maturities[maturities.length - 1].toNumber() - nowData;
 
   if (difference <= 0) {
