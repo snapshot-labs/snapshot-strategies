@@ -9,7 +9,7 @@
         "symbol": {
           "type": "string",
           "title": "Token symbol",
-          "examples": ["e.g. UNI"],
+          "examples": ["e.g. MIST"],
           "maxLength": 16
         },
         "tokenAddress": {
