@@ -75,7 +75,7 @@ export async function getVp(
       addresses = [...new Set(addresses)];
     }
 
-    return addresses.reduce((a, b) => a + score[b], 0);
+    return addresses.reduce((a, b) => a + (score[b] || 0), 0);
   });
   const vp = vpByStrategy.reduce((a, b) => a + b, 0);
   let vpState = 'final';
