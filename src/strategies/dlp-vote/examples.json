@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dlp-vote",
+      "params": {
+        "address": "0x23B0b4098C67944a3D86883aAE389c71b7221e98",
+        "symbol": "VeDLP",
+        "decimals": 18
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x7c8c9a612bb60aaf9314638f12bfe47fea00f4b0",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C"
+       
+    ],
+    "snapshot": 11095220
+  }
+]
