@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
 export const author = 'huuep';
-export const version = '0.3.0';
+export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'
