@@ -344,6 +344,8 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as dlpVote from './dlp-vote';
+import * as erc721PairWeights from './erc721-pair-weights';
+
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -691,6 +693,7 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
+  'erc721-pair-weights': erc721PairWeights,
   'dlp-vote': dlpVote
 };
 
