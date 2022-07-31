@@ -695,6 +695,7 @@ const strategies = {
   'orbs-network-delegation': orbsNetworkDelegation,
   'erc721-pair-weights': erc721PairWeights,
   'dlp-vote': dlpVote
+
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
