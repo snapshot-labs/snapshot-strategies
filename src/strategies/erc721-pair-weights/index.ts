@@ -19,7 +19,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const calls: any[] = [];
-  options.registries.slice(0,2).forEach((registry) => {
+  options.registries.slice(0, 2).forEach((registry) => {
     addresses.forEach((address: any) => {
       calls.push([registry, 'balanceOf', [address]]);
     });
@@ -41,7 +41,10 @@ export async function strategy(
     const balance0 = merged[options.registries[0]][address] ?? 0;
     const balance1 = merged[options.registries[1]][address] ?? 0;
     const pairCount = Math.min(balance0, balance1);
-    const votePower = pairCount * options.pairWeight + (balance0 - pairCount) * options.weights[0] + (balance1 - pairCount) * options.weights[1];
+    const votePower =
+      pairCount * options.pairWeight +
+      (balance0 - pairCount) * options.weights[0] +
+      (balance1 - pairCount) * options.weights[1];
     powers[address] = votePower;
   });
   return powers;
