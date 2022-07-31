@@ -691,7 +691,7 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
-  'erc721-pair-weights': erc721PairWeights,
+  'erc721-pair-weights': erc721PairWeights
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
