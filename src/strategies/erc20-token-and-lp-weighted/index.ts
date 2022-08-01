@@ -24,65 +24,69 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-   // fetch all token and lp contract data
+  // fetch all token and lp contract data
 
-   const fetchContractData = await multicall(
+  const fetchContractData = await multicall(
     network,
     provider,
     abi,
-    [[options.lpTokenAddress, 'token0', []],
-    [options.lpTokenAddress, 'token1', []],
-    [options.lpTokenAddress, 'getReserves', []],
-    [options.lpTokenAddress, 'totalSupply', []],
-    [options.lpTokenAddress, 'decimals', []],
-    [options.tokenAddress, 'decimals', []]],
+    [
+      [options.lpTokenAddress, 'token0', []],
+      [options.lpTokenAddress, 'token1', []],
+      [options.lpTokenAddress, 'getReserves', []],
+      [options.lpTokenAddress, 'totalSupply', []],
+      [options.lpTokenAddress, 'decimals', []],
+      [options.tokenAddress, 'decimals', []]
+    ],
     { blockTag }
   );
 
   // assign multicall data to variables
 
-  let token0Address = fetchContractData[0][0];
-  let token1Address = fetchContractData[1][0];
-  let lpTokenReserves = fetchContractData[2];
-  let lpTokenTotalSupply = fetchContractData[3][0];
-  let lpTokenDecimals = fetchContractData[4][0];
-  let tokenDecimals = fetchContractData[5][0];
+  const token0Address = fetchContractData[0][0];
+  const token1Address = fetchContractData[1][0];
+  const lpTokenReserves = fetchContractData[2];
+  const lpTokenTotalSupply = fetchContractData[3][0];
+  const lpTokenDecimals = fetchContractData[4][0];
+  const tokenDecimals = fetchContractData[5][0];
 
   // calculate single lp token weight
 
   let tokenWeight;
 
   if (token0Address === options.tokenAddress) {
-
-    tokenWeight = (parseFloat(formatUnits(lpTokenReserves._reserve0, tokenDecimals)) / parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) * 2
-
+    tokenWeight =
+      (parseFloat(formatUnits(lpTokenReserves._reserve0, tokenDecimals)) /
+        parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) *
+      2;
   } else if (token1Address === options.tokenAddress) {
-
-    tokenWeight = (parseFloat(formatUnits(lpTokenReserves._reserve1, tokenDecimals)) / parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) * 2
-
+    tokenWeight =
+      (parseFloat(formatUnits(lpTokenReserves._reserve1, tokenDecimals)) /
+        parseFloat(formatUnits(lpTokenTotalSupply, lpTokenDecimals))) *
+      2;
   } else {
-
     tokenWeight = 0;
-
   }
 
   const lpBalances = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address) =>
     lpBalances.call(address, options.lpTokenAddress, 'balanceOf', [address])
   );
-  const lpBalancesResult: Record<string, BigNumberish> = await lpBalances.execute();
-
+  const lpBalancesResult: Record<string, BigNumberish> =
+    await lpBalances.execute();
 
   const tokenBalances = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address) =>
     tokenBalances.call(address, options.tokenAddress, 'balanceOf', [address])
   );
-  const tokenBalancesResult: Record<string, BigNumberish> = await tokenBalances.execute();
+  const tokenBalancesResult: Record<string, BigNumberish> =
+    await tokenBalances.execute();
 
   return Object.fromEntries(
     Object.entries(lpBalancesResult).map(([address, balance]) => [
       address,
-      (parseFloat(formatUnits(balance, lpTokenDecimals)) * tokenWeight) + parseFloat((formatUnits(tokenBalancesResult[address], tokenDecimals)))
+      parseFloat(formatUnits(balance, lpTokenDecimals)) * tokenWeight +
+        parseFloat(formatUnits(tokenBalancesResult[address], tokenDecimals))
     ])
   );
 }

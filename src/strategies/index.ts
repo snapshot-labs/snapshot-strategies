@@ -326,6 +326,7 @@ import * as creditLp from './credit-lp';
 import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
+import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
@@ -343,6 +344,7 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
+import * as erc721PairWeights from './erc721-pair-weights';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -673,6 +675,7 @@ const strategies = {
   helix,
   'arrakis-finance': arrakisFinance,
   'aura-vlaura-vebal': auraFinance,
+  'aura-vlaura-vebal-with-overrides': auraFinanceWithOverrides,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
@@ -689,7 +692,8 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
-  'erc3525-flexible-voucher': erc3525FlexibleVoucher
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
+  'erc721-pair-weights': erc721PairWeights
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

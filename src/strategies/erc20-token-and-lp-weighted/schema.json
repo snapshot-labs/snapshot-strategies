@@ -9,13 +9,13 @@
         "symbol": {
           "type": "string",
           "title": "Token symbol",
-          "examples": ["e.g. UNI"],
+          "examples": ["e.g. MIST"],
           "maxLength": 16
         },
         "tokenAddress": {
           "type": "string",
           "title": "Token address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "examples": ["e.g. 0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -23,7 +23,7 @@
         "lpTokenAddress": {
           "type": "string",
           "title": "LP address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "examples": ["e.g. 0xcd6bcca48069f8588780dfa274960f15685aee0e"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42

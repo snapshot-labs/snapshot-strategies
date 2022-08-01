@@ -6,38 +6,32 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "symbol": {
+        "auraLocker": {
           "type": "string",
-          "title": "Token symbol",
-          "examples": ["e.g. MIST"],
-          "maxLength": 16
-        },
-        "crucibleFactory": {
-          "type": "string",
-          "title": "Crucible factory address",
-          "examples": ["e.g. 0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56"],
+          "title": "auraLocker",
+          "examples": ["e.g. 0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         },
-        "tokenAddress": {
+        "auraVoterProxy": {
           "type": "string",
-          "title": "Token address",
-          "examples": ["e.g. 0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB"],
+          "title": "auraVoterProxy",
+          "examples": ["e.g. 0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         },
-        "lpTokenAddress": {
+        "votingEscrow": {
           "type": "string",
-          "title": "LP address",
-          "examples": ["e.g. 0xCD6bcca48069f8588780dFA274960F15685aEe0e"],
+          "title": "votingEscrow",
+          "examples": ["e.g. 0xC128a9954e6c874eA3d62ce62B468bA073093F25"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         }
       },
-      "required": ["crucibleFactory", "tokenAddress", "lpTokenAddress"],
+      "required": ["auraLocker", "auraVoterProxy", "votingEscrow"],
       "additionalProperties": false
     }
   }

@@ -5,12 +5,14 @@
       "name": "defiplaza",
       "params": {
         "address": "0x2F57430a6ceDA85a67121757785877b4a71b8E6D",
+        "stableplaza": "0x3A2b8cC91aF8bf45F3Ec61E779ee1c2ba6b7E694",
         "symbol": "DFP2",
         "decimals": 18
       }
     },
     "network": "1",
     "addresses": [
+      "0xe461cc7406607866082b1385bf66c8d1d794e892",
       "0xef7ddc0852baa45cc8ae7c99d30c47b75147c2ff",
       "0xac0f1af3b5439d0954e83ede9b7c4a0772178217",
       "0xf8c95d77e4c7668c0982917b3a7f47ae3902c095",
@@ -29,6 +31,6 @@
       "0x27f2be297489e813dae3895a30c9ac72b01bf57a",
       "0xb4185c5e29a9b415efc405ec5d1eae51b65059ff"
     ],
-    "snapshot": 14159134
+    "snapshot": 15202927
   }
 ]

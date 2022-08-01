@@ -13,8 +13,8 @@ Here is an example of parameters:
 ```json
 {
     "symbol": "MIST",
-    "crucible_factory": "0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56",
-    "tokenAddress": "0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB",,
+    "crucibleFactory": "0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56",
+    "tokenAddress": "0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB",
     "tokenDecimals" : "18",
     "lpTokenAddress": "0xcd6bcca48069f8588780dfa274960f15685aee0e",
     "lpTokenDecimals" : "18"
