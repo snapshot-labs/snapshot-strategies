@@ -5,10 +5,8 @@ export const author = '2fd';
 export const version = '0.1.0';
 
 const DECENTRALAND_COLLECTIONS_SUBGRAPH_URL = {
-  '1':
-    'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet',
-  '3':
-    'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten',
+  '1': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet',
+  '3': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten',
   '137':
     'https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mainnet',
   '80001':

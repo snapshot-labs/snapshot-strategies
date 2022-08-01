@@ -193,6 +193,8 @@ import * as meebitsdao from './meebitsdao';
 import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
+import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
@@ -324,17 +326,28 @@ import * as creditLp from './credit-lp';
 import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
+import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
 import * as apeswap from './apeswap';
+import * as fortaShares from './forta-shares';
 import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as veJellyNFT from './jelly-ve-nft-balance';
-
+import * as dopamine from './dopamine';
+import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
+import * as rariFuse from './rari-fuse';
+import * as selfswap from './selfswap';
+import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
+import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
+import * as orbsNetworkDelegation from './orbs-network-delegation';
+import * as erc721PairWeights from './erc721-pair-weights';
 
 const strategies = {
+  'forta-shares': fortaShares,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
@@ -388,7 +401,8 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple':
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -530,6 +544,8 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'erc20-token-and-lp-weighted': erc20TokenAndLpWeighted,
+  'crucible-erc20-token-and-lp-weighted': crucibleERC20TokenAndLpWeighted,
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
@@ -585,7 +601,8 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers':
+    unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
@@ -658,6 +675,7 @@ const strategies = {
   helix,
   'arrakis-finance': arrakisFinance,
   'aura-vlaura-vebal': auraFinance,
+  'aura-vlaura-vebal-with-overrides': auraFinanceWithOverrides,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
@@ -666,7 +684,16 @@ const strategies = {
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
   'jelly-ve-nft-balance': veJellyNFT,
   apeswap,
-  h2o
+  h2o,
+  dopamine,
+  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
+  'rari-fuse': rariFuse,
+  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
+  selfswap,
+  'erc3525-vesting-voucher': erc3525VestingVoucher,
+  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
+  'orbs-network-delegation': orbsNetworkDelegation,
+  'erc721-pair-weights': erc721PairWeights
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -71,9 +71,9 @@ export async function strategy(
   );
 
   const totalScores = {};
-  const delegatorAddresses = Object.values(
-    delegations
-  ).reduce((a: string[], b: string[]) => a.concat(b));
+  const delegatorAddresses = Object.values(delegations).reduce(
+    (a: string[], b: string[]) => a.concat(b)
+  );
 
   // remove duplicates
   const allAddresses = addresses
