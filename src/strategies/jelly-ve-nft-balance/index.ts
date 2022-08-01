@@ -3,7 +3,7 @@ import { multicall } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'JellyProtocol';
-export const version = '0.1.3';
+export const version = '0.1.0';
 
 
 interface Params {
