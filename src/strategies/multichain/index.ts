@@ -13,6 +13,11 @@ export async function strategy(
   snapshot
 ) {
   const promises: any = [];
+  if (options.strategies.length === 0) return {};
+  if (options.strategies.length > 8)
+    throw new Error(
+      `Too many strategies: ${options.strategies.length}, Max 8 allowed`
+    );
   const blocks = await getSnapshots(
     network,
     snapshot,
