@@ -18,6 +18,10 @@ export async function strategy(
     throw new Error(
       `Too many strategies: ${options.strategies.length}, Max 8 allowed`
     );
+  if (options.strategies.some(a => a.name === 'multichain'))
+    throw new Error(
+      `Multichain strategy is not allowed, please remove it from the list`
+    );
   const blocks = await getSnapshots(
     network,
     snapshot,
