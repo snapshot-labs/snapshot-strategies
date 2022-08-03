@@ -8,7 +8,7 @@
         "address": "0x3399eff96D4b6Bae8a56F4852EB55736c9C2b041",
         "baseValue": 4000,
         "startingBlock": 15166749,
-        "monthsToDecay": 6
+        "monthsToDecay": 12
       }
     },
     "network": "1",
@@ -23,6 +23,6 @@
       "0x1f254336E5c46639A851b9CfC165697150a6c327",
       "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030"
     ],
-    "snapshot": 15270799
+    "snapshot": 15169750
   }
 ]
