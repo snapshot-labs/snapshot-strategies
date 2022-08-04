@@ -85,7 +85,7 @@ export async function strategy(
     const address = walletID.split('-')[0];
 
     const value =
-      parseFloat(formatUnits(snapshot[3].toString(), options.decimals)) *
+      parseFloat(formatUnits(snapshot[6].toString(), options.decimals)) *
       claimCoefficient(snapshot[0]) *
       maturitiesCoefficient(snapshot[4]);
     walletToWeights[address] = walletToWeights[address]
