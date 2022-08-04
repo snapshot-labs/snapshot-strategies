@@ -343,6 +343,7 @@ import * as selfswap from './selfswap';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
+import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 
@@ -694,6 +695,7 @@ const strategies = {
   'orbs-network-delegation': orbsNetworkDelegation,
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
