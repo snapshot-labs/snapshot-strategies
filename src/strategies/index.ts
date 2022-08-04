@@ -344,6 +344,7 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as erc721PairWeights from './erc721-pair-weights';
+import * as prepoVesting from './prepo-vesting'
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -691,7 +692,8 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
-  'erc721-pair-weights': erc721PairWeights
+  'erc721-pair-weights': erc721PairWeights,
+  'prepo-vesting': prepoVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
