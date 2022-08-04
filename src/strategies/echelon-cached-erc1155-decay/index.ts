@@ -4,36 +4,8 @@ export const author = 'brandonleung';
 export const version = '1.0.0';
 
 const cachingAbi = [
-  {
-    inputs: [
-      {
-        internalType: "uint256",
-        name: "",
-        type: "uint256"
-      },
-      {
-        internalType: "address",
-        name: "",
-        type: "address"
-      }
-    ],
-    name: "cacheInfo",
-    outputs: [
-      {
-        internalType: "uint256",
-        name: "amount",
-        type: "uint256"
-      },
-      {
-        internalType: "int256",
-        name: "rewardDebt",
-        type: "int256"
-      }
-    ],
-    stateMutability: "view",
-    type: "function"
-  }
-]
+  'function cacheInfo(uint256, address) view returns (uint256 amount, int256 rewardDebt)'
+];
 
 export async function strategy(
   space,
