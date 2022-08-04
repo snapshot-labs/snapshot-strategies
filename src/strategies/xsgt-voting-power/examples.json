@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "xsgt-voting-power",
+      "params": {
+        "address": "0x44523cc0d077471BD4BBf136E812C7f41B8B863E",
+        "symbol": "xSGT"
+      }
+    },
+    "network": "4",
+    "addresses": [      
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",      
+	  "0xFd7eE97dbe47A19FB679f0af8e837145C76Ede6F"
+    ],
+    "snapshot": 11142148
+  }
+]

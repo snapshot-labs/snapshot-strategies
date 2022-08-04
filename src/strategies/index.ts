@@ -36,6 +36,7 @@ import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
+import * as xSgtVotingPower from './xsgt-voting-power';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
@@ -391,6 +392,7 @@ const strategies = {
   'balance-of-with-thresholds': balanceOfWithThresholds,
   thresholds,
   'eth-balance': ethBalance,
+  'xsgt-voting-power': xSgtVotingPower,
   'eth-with-balance': ethWithBalance,
   'eth-wallet-age': ethWalletAge,
   'maker-ds-chief': makerDsChief,
