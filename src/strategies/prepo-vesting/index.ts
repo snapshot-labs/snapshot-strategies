@@ -26,7 +26,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const { address, decimals, multiplier } = options;
+  const { address, multiplier } = options;
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
@@ -42,8 +42,8 @@ export async function strategy(
   const output = Object.fromEntries(
     Object.entries(allocated).map(([address, allocatedAmount]) => {
       const unvestedPPO = BigNumber.from(allocatedAmount).sub(vested[address]);
-      const unvestedPower = convertBN(unvestedPPO, decimals) * multiplier;
-      const vestedPower = convertBN(claimable[address], decimals);
+      const unvestedPower = convertBN(unvestedPPO, 18) * multiplier;
+      const vestedPower = convertBN(claimable[address], 18);
       const totalPower = unvestedPower + vestedPower;
       return [address, totalPower];
     })

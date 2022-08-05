@@ -4,8 +4,8 @@
     "strategy": {
       "name": "prepo-vesting",
       "params": {
+        "symbol": "PPO",
         "address": "0xB1B74EA823bAd9AFb5e2caC578235EeeB329A245",
-        "decimals": 18,
         "multiplier": 0.5
       }
     },
