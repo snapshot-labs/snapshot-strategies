@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "echelon-cached-erc1155-decay",
+      "params": {
+        "symbol": "PK - PRIME",
+        "address": "0x3399eff96D4b6Bae8a56F4852EB55736c9C2b041",
+        "baseValue": 4000,
+        "startingBlock": 15166749,
+        "monthsToDecay": 12
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xE6be99cbC7796F90baff870a2ffE838a540E27C9",
+      "0xf98A4A42853cC611eED664627087d4ae19740ED8",
+      "0xbdc3C931387e2c6647b0D7237Ed30c702260fa80",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030"
+    ],
+    "snapshot": 15169750
+  }
+]
