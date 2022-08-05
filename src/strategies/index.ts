@@ -345,6 +345,7 @@ import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlyin
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
+import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
 
 const strategies = {
@@ -693,9 +694,10 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
+  'erc721-pair-weights': erc721PairWeights,
+  'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
   'erc3525-flexible-voucher': erc3525FlexibleVoucher,
-  'erc721-pair-weights': erc721PairWeights
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
