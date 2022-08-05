@@ -1,15 +1,19 @@
 # prePO Vesting Snapshot Strategy
 
-This strategy counts the token balance of an unvested prePO position on the [prePO Vesting contract](https://github.com/prepo-io/prepo-monorepo/apps/smart-contracts). It also accounts for the vested unclaimed tokens.
+This strategy returns a voting score based on PPO under vesting from the [prePO Vesting contract](https://github.com/prepo-io/prepo-monorepo/apps/smart-contracts).
 
-To use this strategy, you contract must contain 3 methods, `getAmountAllocated`, `getClaimableAmount` and `getVestedAmount`, which comes from the [Vesting interface](https://github.com/prepo-io/prepo-monorepo/blob/main/apps/smart-contracts/token/contracts/interfaces/IVesting.sol).
+Score = unclaimed vested balance + unvested balance \* multiplier
+
+To use this strategy, your contract must contain 3 methods from the prePO [Vesting interface](https://github.com/prepo-io/prepo-monorepo/blob/main/apps/smart-contracts/token/contracts/interfaces/IVesting.sol): `getAmountAllocated`, `getClaimableAmount` and `getVestedAmount`.
+
+The strategy assumes that the vesting token has 18 decimals.
 
 ### Parameters
 
 The strategy takes three parameters:
 `symbol`: Symbol of token
 `address`: Address of contract that has all the methods mentioned above
-`multipler`: A multiplier that is applied to unvested balance.
+`multiplier`: A multiplier that is applied to unvested balance.
 
 Here is an example of parameters:
 
@@ -21,12 +25,12 @@ Here is an example of parameters:
 }
 ```
 
-### Testing the strategy
+### Tests
 
 To test the strategy, run `yarn test --strategy=prepo-vesting --more=500`
 
 ### Links
 
 - [prePO's Website](https://prepo.io/)
-- [prePO's Github](https://github.com/prepo-io/prepo-monorepo/)
+- [prePO's GitHub](https://github.com/prepo-io/prepo-monorepo/)
 - [prePO's Snapshot Space](https://vote.prepo.io/#/)
