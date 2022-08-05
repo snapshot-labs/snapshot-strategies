@@ -1,9 +1,9 @@
-export const author = 'harmony-one';
-export const version = '0.0.1';
-
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
+
+export const author = 'harmony-one';
+export const version = '0.0.1';
 
 type Params = {
     symbol: string;
