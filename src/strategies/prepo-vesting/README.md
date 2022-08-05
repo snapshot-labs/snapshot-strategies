@@ -7,17 +7,18 @@ This strategy assumes that the vesting token has 18 decimals.
 
 ### Calculation
 
-`Score = unclaimed vested balance + unvested balance * multiplier`
+`score = unclaimedVestedBalance + unvestedBalance * multiplier`
+
 where:
 
-- `unclaimed vested balance = getClaimableAmount`
-- `unvested balance = getAmountAllocated - getVestedAmount`
+- `unclaimedVestedBalance = getClaimableAmount`
+- `unvestedBalance = getAmountAllocated - getVestedAmount`
 
 ### Parameters
 
 The strategy takes three parameters:
 
-- `symbol`: Symbol of token
+- `symbol`: Symbol of the strategy
 - `address`: Address of contract that has all the methods mentioned above
 - `multiplier`: A multiplier applied to the unvested balance
 

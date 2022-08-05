@@ -40,12 +40,14 @@ export async function strategy(
     await multi.execute();
 
   const output = Object.fromEntries(
-    Object.entries(allocated).map(([address, allocatedAmount]) => {
-      const unvestedPPO = BigNumber.from(allocatedAmount).sub(vested[address]);
-      const unvestedPower = convertBN(unvestedPPO, 18) * multiplier;
-      const vestedPower = convertBN(claimable[address], 18);
-      const totalPower = unvestedPower + vestedPower;
-      return [address, totalPower];
+    Object.entries(allocated).map(([address, amountAllocated]) => {
+      const unclaimedVestedBalance = convertBN(claimable[address], 18);
+      const unvestedBalance = convertBN(
+        BigNumber.from(amountAllocated).sub(vested[address]),
+        18
+      );
+      const score = unclaimedVestedBalance + unvestedBalance * multiplier;
+      return [address, score];
     })
   );
   return output;
