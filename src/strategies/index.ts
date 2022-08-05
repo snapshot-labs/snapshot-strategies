@@ -697,7 +697,7 @@ const strategies = {
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
-  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
