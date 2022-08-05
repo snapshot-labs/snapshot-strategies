@@ -27,6 +27,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as prepoVesting from './prepo-vesting';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
 import * as revest from './revest';
@@ -344,7 +345,6 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as erc721PairWeights from './erc721-pair-weights';
-import * as prepoVesting from './prepo-vesting';
 
 const strategies = {
   'forta-shares': fortaShares,
