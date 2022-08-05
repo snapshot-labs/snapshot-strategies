@@ -9,7 +9,7 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. PPO"],
+          "examples": ["e.g. PPO (Vesting)"],
           "maxLength": 16
         },
         "address": {

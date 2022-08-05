@@ -25,7 +25,7 @@ Here is an example of parameters:
 
 ```json
 {
-  "symbol": "PPO",
+  "symbol": "PPO (Vesting)",
   "address": "0xB1B74EA823bAd9AFb5e2caC578235EeeB329A245",
   "multiplier": 0.5
 }
