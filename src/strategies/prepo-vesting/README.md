@@ -2,18 +2,24 @@
 
 This strategy returns a voting score based on PPO under vesting from the [prePO Vesting contract](https://github.com/prepo-io/prepo-monorepo/blob/main/apps/smart-contracts/token/contracts/vesting/Vesting.sol).
 
-Score = unclaimed vested balance + unvested balance \* multiplier
-
 To use this strategy, your contract must contain 3 methods from the prePO [Vesting interface](https://github.com/prepo-io/prepo-monorepo/blob/main/apps/smart-contracts/token/contracts/vesting/interfaces/IVesting.sol): `getAmountAllocated`, `getClaimableAmount` and `getVestedAmount`.
+This strategy assumes that the vesting token has 18 decimals.
 
-The strategy assumes that the vesting token has 18 decimals.
+### Calculation
+
+`Score = unclaimed vested balance + unvested balance * multiplier`
+where:
+
+- `unclaimed vested balance = getClaimableAmount`
+- `unvested balance = getAmountAllocated - getVestedAmount`
 
 ### Parameters
 
 The strategy takes three parameters:
-`symbol`: Symbol of token
-`address`: Address of contract that has all the methods mentioned above
-`multiplier`: A multiplier that is applied to unvested balance.
+
+- `symbol`: Symbol of token
+- `address`: Address of contract that has all the methods mentioned above
+- `multiplier`: A multiplier applied to the unvested balance
 
 Here is an example of parameters:
 

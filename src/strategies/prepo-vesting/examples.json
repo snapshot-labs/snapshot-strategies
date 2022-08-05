@@ -1,6 +1,6 @@
 [
   {
-    "name": "Example query",
+    "name": "Example Goerli query",
     "strategy": {
       "name": "prepo-vesting",
       "params": {
