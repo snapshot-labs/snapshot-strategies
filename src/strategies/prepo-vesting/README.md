@@ -26,3 +26,7 @@ Here is an example of parameters:
 - [prePO's Website](https://prepo.io/)
 - [prePO's Github](https://github.com/prepo-io/prepo-monorepo/)
 - [prePO's Snapshot Space](https://vote.prepo.io/#/)
+
+### Testing the strategy
+
+To test the strategy, run `yarn test --strategy=prepo-vesting --more=500`
