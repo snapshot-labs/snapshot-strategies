@@ -79,7 +79,7 @@ export async function strategy(
   for (const walletAddress of addresses) {
     callWalletToCrucibleCount.call(
       walletAddress,
-      options.crucible_factory,
+      options.crucibleFactory,
       'balanceOf',
       [walletAddress]
     );
@@ -104,7 +104,7 @@ export async function strategy(
     for (let index = 0; index < crucibleCount.toNumber(); index++) {
       callWalletToCrucibleAddresses.call(
         walletAddress.toString() + '-' + index.toString(),
-        options.crucible_factory,
+        options.crucibleFactory,
         'tokenOfOwnerByIndex',
         [walletAddress, index]
       );

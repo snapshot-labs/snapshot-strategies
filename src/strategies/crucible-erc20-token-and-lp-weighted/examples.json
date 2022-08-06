@@ -5,7 +5,7 @@
       "name": "crucible-erc20-token-and-lp-weighted",
       "params": {
         "symbol": "MIST",
-        "crucible_factory": "0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56",
+        "crucibleFactory": "0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56",
         "tokenAddress": "0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB",
         "lpTokenAddress": "0xcd6bcca48069f8588780dfa274960f15685aee0e"
       }

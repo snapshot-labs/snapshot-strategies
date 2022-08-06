@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-pair-weights",
+      "params": {
+        "symbol": "OCMONK",
+        "registries": [
+          "0x960b7a6bcd451c9968473f7bbfd9be826efd549a",
+          "0x86cc280d0bac0bd4ea38ba7d31e895aa20cceb4b"
+        ],
+        "weights": [2, 3],
+        "pairWeight": 4
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x5F9345FdAd91Bf9757445ADc82e477B33FD3349c",
+      "0xE052113bd7D7700d623414a0a4585BCaE754E9d5"
+    ],
+    "snapshot": 15223064
+  }
+]

@@ -5,10 +5,10 @@ import { Multicaller } from '../../utils';
 import { claimCoefficient, maturitiesCoefficient } from './utils';
 
 export const author = 'buchaoqun';
-export const version = '0.1.2';
+export const version = '0.1.0';
 
 const abi = [
-  'function getSnapshot(uint256 tokenId_) view returns (uint8 claimType_, uint64 term_, uint256 vestingAmount_, uint256 principal_, uint64[] maturities_, uint32[] percentages_, uint256 availableWithdrawAmount_, string originalInvestor_, bool isValid_)',
+  'function getSnapshot(uint256 tokenId) view returns (tuple(tuple(address issuer, uint8 claimType, uint64 startTime, uint64 latestStartTime, uint64[] terms, uint32[] percentages, bool isValid), uint256 tokenId, uint256 vestingAmount))',
   'function balanceOf(address owner) view returns (uint256)',
   'function tokenOfOwnerByIndex(address owner,uint256 index) view returns (uint256)'
 ];
@@ -23,7 +23,7 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  // vesting voucher banlanceOf
+  // flexible voucher banlanceOf
   const callWalletToCrucibleCount = new Multicaller(network, provider, abi, {
     blockTag
   });
@@ -83,11 +83,13 @@ export async function strategy(
   const walletToWeights = {} as Record<string, number>;
   for (const [walletID, snapshot] of Object.entries(walletIDToSnapshot)) {
     const address = walletID.split('-')[0];
-
     const value =
-      parseFloat(formatUnits(snapshot[3].toString(), options.decimals)) *
-      claimCoefficient(snapshot[0]) *
-      maturitiesCoefficient(snapshot[4]);
+      parseFloat(formatUnits(snapshot[2].toString(), options.decimals)) *
+      claimCoefficient(snapshot[0][1]) *
+      maturitiesCoefficient(
+        snapshot[0][2] == 0 ? snapshot[0][3] : snapshot[0][2],
+        snapshot[0][4]
+      );
     walletToWeights[address] = walletToWeights[address]
       ? walletToWeights[address] + value
       : value;
