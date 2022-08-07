@@ -344,6 +344,7 @@ import * as selfswap from './selfswap';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
+import * as balanceOfSubgraph from './balance-of-subgraph';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
@@ -696,6 +697,7 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
+  'balance-of-subgraph': balanceOfSubgraph,
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
