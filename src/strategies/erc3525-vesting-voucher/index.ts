@@ -5,7 +5,7 @@ import { Multicaller } from '../../utils';
 import { claimCoefficient, maturitiesCoefficient } from './utils';
 
 export const author = 'buchaoqun';
-export const version = '0.1.2';
+export const version = '0.1.3';
 
 const abi = [
   'function getSnapshot(uint256 tokenId_) view returns (uint8 claimType_, uint64 term_, uint256 vestingAmount_, uint256 principal_, uint64[] maturities_, uint32[] percentages_, uint256 availableWithdrawAmount_, string originalInvestor_, bool isValid_)',
