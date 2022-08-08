@@ -27,6 +27,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as prepoVesting from './prepo-vesting';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
 import * as revest from './revest';
@@ -343,8 +344,10 @@ import * as selfswap from './selfswap';
 import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
+import * as balanceOfSubgraph from './balance-of-subgraph';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
+import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
 
 const strategies = {
@@ -410,6 +413,7 @@ const strategies = {
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
+  'prepo-vesting': prepoVesting,
   multichain,
   uni,
   'frax-finance': fraxFinance,
@@ -693,9 +697,11 @@ const strategies = {
   'erc3525-vesting-voucher': erc3525VestingVoucher,
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
+  'balance-of-subgraph': balanceOfSubgraph,
+  'erc721-pair-weights': erc721PairWeights,
+  'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
-  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
-  'erc721-pair-weights': erc721PairWeights
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

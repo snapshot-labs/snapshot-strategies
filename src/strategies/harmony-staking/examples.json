@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "harmony-staking",
+      "params": {
+        "symbol": "ONE"
+      }
+    },
+    "network": "1666600000",
+    "addresses": [
+      "0xF677b8EF72C34f63c43f47C30612B1A3Ec1b622F",
+      "0xd143988234dF9117f4Baa00b5f8D4A56d64e56eA",
+      "0xA5241513DA9F4463F1d4874b548dFBAC29D91f34"
+    ],
+    "snapshot": 10937992
+  }
+]
