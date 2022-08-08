@@ -25,9 +25,9 @@ export const maturitiesCoefficient = (maturities: Array<any>) => {
 
 export const claimCoefficient = (claimType: number) => {
   if (claimType == 0) {
-    return 2;
-  } else if (claimType == 1) {
     return 1.2;
+  } else if (claimType == 1) {
+    return 2;
   } else if (claimType == 2) {
     return 1.5;
   } else {
