@@ -148,10 +148,7 @@ export async function strategy(
   const stakes = parseVrResponse(vrMultiResponse, addresses);
 
   // calculate the scores
-  const vrVotes = stakes.map((v) => v.mul(STAKES_MULTIPLIER));
-  const scores = avtValues.map((value, i) => {
-    return value.add(vrVotes[i]);
-  });
+  const scores = avtValues
 
   return Object.fromEntries(
     scores.map((value, i) => [
