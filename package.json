@@ -1,10 +1,10 @@
 {
   "name": "@snapshot-labs/strategies",
   "version": "0.1.0",
-  "main": "dist/src/index.js",
-  "types": "dist/src/index.d.ts",
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
   "exports": {
-    ".": "./dist/src/index.js"
+    ".": "./dist/index.js"
   },
   "files": [
     "dist"
@@ -17,8 +17,8 @@
     "test:vp": "jest -i vp.test.ts",
     "test:delegation": "jest -i delegation.test.ts",
     "prepublishOnly": "npm run build",
-    "prepare": "npm run build",
-    "postbuild": "copyfiles -u 1 src/**/*.md dist/ && copyfiles -u 1 src/**/*.json dist/",
+    "postinstall": "npm run build",
+    "postbuild": "copyfiles -u 1 \"src/**/*.md\" dist/ && copyfiles -u 1 \"src/**/*.json\" dist/",
     "lint": "eslint src/ test/ --ext .ts,.json --fix"
   },
   "dependencies": {
@@ -33,7 +33,7 @@
     "@ethersproject/strings": "^5.6.1",
     "@ethersproject/units": "^5.6.1",
     "@ethersproject/wallet": "^5.6.2",
-    "@snapshot-labs/snapshot.js": "^0.4.8",
+    "@snapshot-labs/snapshot.js": "^0.4.18",
     "@uniswap/sdk-core": "^3.0.1",
     "@uniswap/v3-sdk": "^3.9.0",
     "copyfiles": "^2.4.1",
