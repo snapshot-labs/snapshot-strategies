@@ -16,6 +16,5 @@ describe('', () => {
       params
     );
     expect(validation).toMatchSnapshot();
-    console.log('Validation', validation);
   }, 20e3);
 });
