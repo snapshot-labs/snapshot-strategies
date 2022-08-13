@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "orca-pods",
+      "params": {
+        "symbol": "ORCA",
+        "ids": [
+          "0",
+          "1"
+        ],
+        "weight": 100
+      }
+    },
+    "network": "1",
+    "addresses": ["0x094a473985464098b59660b37162a284b5132753"],
+    "snapshot": 15188155
+  }
+]
