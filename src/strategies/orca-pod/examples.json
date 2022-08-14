@@ -2,13 +2,10 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "orca-pods",
+      "name": "orca-pod",
       "params": {
         "symbol": "ORCA",
-        "ids": [
-          "0",
-          "1"
-        ],
+        "id": "1",
         "weight": 100
       }
     },

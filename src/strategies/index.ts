@@ -349,7 +349,7 @@ import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
-import * as orcaPods from './orca-pods';
+import * as orcaPod from './orca-pod';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -703,7 +703,7 @@ const strategies = {
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
   'erc3525-flexible-voucher': erc3525FlexibleVoucher,
-  'orca-pods': orcaPods
+  'orca-pod': orcaPod
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

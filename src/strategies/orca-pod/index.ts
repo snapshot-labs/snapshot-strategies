@@ -11,15 +11,16 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const defaultWeight = 1;
-  options.address = '0x0762aa185b6ed2dca77945ebe92de705e0c37ae3';
-  options.weight = options.weight || defaultWeight;
   const score = await erc1155BalanceOfIdsWeightedStrategy(
     space,
     network,
     provider,
     addresses,
-    options,
+    {
+      address: '0x0762aa185b6ed2dca77945ebe92de705e0c37ae3',
+      ids: [options.id],
+      weight: parseFloat(options.weight || 1)
+    },
     snapshot
   );
 
