@@ -1,10 +1,12 @@
-# aura-vlaura-vebal
+# aura-balance-of-vlaura-vebal
 
 This strategy returns proportional voting power for vlAURA holders based on system owned veBAL.
 
+The voting power is based on the raw balance, rather than delegated voting power.
+
 For example:
 - there are 10000 vlAURA total supply
-- a user has 2000 vlAURA (raw balance)
+- a user has 2000 vlAURA (voting power, delegated to them)
 - Aura's voterProxy owns 100k veBAL
 
 In this example, the user has 20k veBAL voting power as they own 20% of the vlAURA voting power.
