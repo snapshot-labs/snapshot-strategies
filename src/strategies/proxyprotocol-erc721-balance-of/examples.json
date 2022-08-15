@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "proxyprotocol-erc721-balance-of",
+      "params": {
+        "address": "0x960b7a6BCD451c9968473f7bbFd9Be826EFd549A",
+        "symbol": "OCMONK"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x346f1c338b38ef9cf18964695dd68e9956ca5d37",
+      "0xa164591f695b11e1c6b77925e326e20754521200"
+    ],
+    "snapshot": 15304592
+  }
+]
