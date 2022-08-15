@@ -6,10 +6,10 @@ The voting power is based on the raw balance, rather than delegated voting power
 
 For example:
 - there are 10000 vlAURA total supply
-- a user has 2000 vlAURA (voting power, delegated to them)
+- a user has 2000 vlAURA (raw balance)
 - Aura's voterProxy owns 100k veBAL
 
-In this example, the user has 20k veBAL voting power as they own 20% of the vlAURA voting power.
+In this example, the user has 20k veBAL balance as they own 20% of the vlAURA voting power.
 
 _Note: When depositing to the auraLocker, a user does not receive vlAURA until the next epoch has begun (Thursday at 00:00 UTC)_
 
