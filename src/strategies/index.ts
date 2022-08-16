@@ -350,6 +350,7 @@ import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
+import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -703,7 +704,8 @@ const strategies = {
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
-  'erc3525-flexible-voucher': erc3525FlexibleVoucher
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
+  'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
