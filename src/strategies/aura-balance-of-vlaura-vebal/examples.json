@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "aura-balance-of-vlaura-vebal",
+      "params": {
+        "auraLocker": "0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC",
+        "auraVoterProxy": "0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2",
+        "votingEscrow": "0xC128a9954e6c874eA3d62ce62B468bA073093F25"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3",
+      "0x808af82545A721C06D1FcCEbea915a6F5128BeF9",
+      "0x0CAd1d5ea8b4EeE26959cC00B4A3677f7A11e40F"
+    ],
+    "snapshot": 15276577
+  }
+]
