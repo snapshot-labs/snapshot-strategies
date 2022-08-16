@@ -5,7 +5,7 @@ import { Multicaller } from '../../utils';
 import { claimCoefficient, maturitiesCoefficient } from './utils';
 
 export const author = 'buchaoqun';
-export const version = '0.1.0';
+export const version = '0.1.2';
 
 const abi = [
   'function getSnapshot(uint256 tokenId) view returns (tuple(tuple(address issuer, uint8 claimType, uint64 startTime, uint64 latestStartTime, uint64[] terms, uint32[] percentages, bool isValid), uint256 tokenId, uint256 vestingAmount))',
@@ -87,7 +87,7 @@ export async function strategy(
       parseFloat(formatUnits(snapshot[2].toString(), options.decimals)) *
       claimCoefficient(snapshot[0][1]) *
       maturitiesCoefficient(
-        snapshot[0][2] == 0 ? snapshot[0][3] : snapshot[0][2],
+        snapshot[0][2] == 0 ? snapshot[0][3].toNumber() : snapshot[0][2].toNumber(),
         snapshot[0][4]
       );
     walletToWeights[address] = walletToWeights[address]
