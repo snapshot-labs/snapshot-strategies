@@ -8,6 +8,10 @@ This strategy assumes that the vesting token has 18 decimals.
 
 ### Calculation
 
+When contract is paused:
+`score = (unclaimedVestedBalance + unvestedBalance) * multiplier`
+
+Else:
 `score = unclaimedVestedBalance + unvestedBalance * multiplier`
 
 where:
