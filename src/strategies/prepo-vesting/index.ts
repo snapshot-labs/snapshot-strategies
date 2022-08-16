@@ -8,7 +8,8 @@ export const version = '1.0.0';
 const abi = [
   'function getAmountAllocated(address _recipient) external view override returns (uint256)',
   'function getClaimableAmount(address _recipient) public view override returns (uint256)',
-  'function getVestedAmount(address _recipient) public view override returns (uint256)'
+  'function getVestedAmount(address _recipient) public view override returns (uint256)',
+  'function isPaused() external view returns (bool)'
 ];
 
 type MulticallOutput = Record<string, Record<string, BigNumberish>>;
@@ -34,9 +35,10 @@ export async function strategy(
     multi.call(`allocated.${addr}`, address, 'getAmountAllocated', [addr]);
     multi.call(`claimable.${addr}`, address, 'getClaimableAmount', [addr]);
     multi.call(`vested.${addr}`, address, 'getVestedAmount', [addr]);
+    multi.call(`isPaused`, address, 'isPaused', []);
   });
 
-  const { allocated, claimable, vested }: MulticallOutput =
+  const { allocated, claimable, vested, isPaused }: MulticallOutput =
     await multi.execute();
 
   const output = Object.fromEntries(
@@ -46,7 +48,9 @@ export async function strategy(
         BigNumber.from(amountAllocated).sub(vested[address]),
         18
       );
-      const score = unclaimedVestedBalance + unvestedBalance * multiplier;
+      const score = isPaused
+        ? (unclaimedVestedBalance + unvestedBalance) * multiplier
+        : unclaimedVestedBalance + unvestedBalance * multiplier;
       return [address, score];
     })
   );
