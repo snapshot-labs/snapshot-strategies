@@ -4,8 +4,8 @@
     "strategy": {
       "name": "proxyprotocol-erc721-balance-of",
       "params": {
-        "address": "0x960b7a6BCD451c9968473f7bbFd9Be826EFd549A",
-        "symbol": "OCMONK"
+        "address": "0x6826c4c51f4855d0280e99f646c5ef43edb3848e",
+        "symbol": "TYXMK"
       }
     },
     "network": "1",

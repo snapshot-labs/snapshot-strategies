@@ -1,13 +1,8 @@
 import fetch from 'cross-fetch';
-import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
+import { strategy as erc721BalanceOfStrategy } from '../erc721';
 
 export const author = 'rawrjustin';
-export const version = '0.1';
-
-const abi = [
-  'function balanceOf(address account) external view returns (uint256)'
-];
+export const version = '0.1.0';
 
 const calculateVotingPower = (inputAddresses, addressScores, walletMap) => {
   let userVotingPower = {};
@@ -51,21 +46,14 @@ export async function strategy(
   var flattenedWalletAddresses = [].concat.apply([], arrayOfProxyWallets);
 
   // Query for token holdings
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const response = await multicall(
+  const addressScores = await erc721BalanceOfStrategy(
+    space,
     network,
     provider,
-    abi,
-    flattenedWalletAddresses.map((address: any) => [options.address, 'balanceOf', [address]]),
-    { blockTag }
-  );
-
-  const addressScores = Object.fromEntries(
-    response.map((value, i) => [
-      flattenedWalletAddresses[i],
-      parseFloat(formatUnits(value.toString(), 0))
-    ])
-  );
+    flattenedWalletAddresses,
+    options,
+    snapshot
+  )
 
   // Calculate the voting power across all wallets and map it back to original Proxy wallets.
   return calculateVotingPower(
