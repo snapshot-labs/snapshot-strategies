@@ -27,6 +27,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as prepoVesting from './prepo-vesting';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
 import * as revest from './revest';
@@ -194,6 +195,8 @@ import * as meebitsdao from './meebitsdao';
 import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
+import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
+import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
@@ -325,6 +328,8 @@ import * as creditLp from './credit-lp';
 import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
+import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
+import * as auraBalanceOfVlauraVebal from './aura-balance-of-vlaura-vebal';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
@@ -335,6 +340,20 @@ import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
+import * as rariFuse from './rari-fuse';
+import * as selfswap from './selfswap';
+import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying-weighted';
+import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
+import * as orbsNetworkDelegation from './orbs-network-delegation';
+import * as balanceOfSubgraph from './balance-of-subgraph';
+import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
+import * as erc721PairWeights from './erc721-pair-weights';
+import * as harmonyStaking from './harmony-staking';
+import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
+import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
+import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
+import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -398,6 +417,7 @@ const strategies = {
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
+  'prepo-vesting': prepoVesting,
   multichain,
   'multichain-max': multichainMax,
   uni,
@@ -534,6 +554,8 @@ const strategies = {
   snowswap,
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
+  'erc20-token-and-lp-weighted': erc20TokenAndLpWeighted,
+  'crucible-erc20-token-and-lp-weighted': crucibleERC20TokenAndLpWeighted,
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
@@ -662,6 +684,8 @@ const strategies = {
   helix,
   'arrakis-finance': arrakisFinance,
   'aura-vlaura-vebal': auraFinance,
+  'aura-vlaura-vebal-with-overrides': auraFinanceWithOverrides,
+  'aura-balance-of-vlaura-vebal': auraBalanceOfVlauraVebal,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
@@ -671,7 +695,21 @@ const strategies = {
   apeswap,
   h2o,
   dopamine,
-  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf
+  'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
+  'rari-fuse': rariFuse,
+  'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
+  selfswap,
+  'erc3525-vesting-voucher': erc3525VestingVoucher,
+  'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
+  'orbs-network-delegation': orbsNetworkDelegation,
+  'balance-of-subgraph': balanceOfSubgraph,
+  'erc721-pair-weights': erc721PairWeights,
+  'harmony-staking': harmonyStaking,
+  'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
+  'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
+  'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
+  'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
