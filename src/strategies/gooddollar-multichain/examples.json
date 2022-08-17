@@ -1,8 +1,8 @@
 [
   {
-    "name": "Multichain Max Voting",
+    "name": "GoodDolalr Multichain",
     "strategy": {
-      "name": "multichain-max",
+      "name": "gooddollar-multichain",
       "params": {
         "symbol": "GOOD",
         "strategies": [
