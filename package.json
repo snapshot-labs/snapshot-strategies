@@ -16,6 +16,7 @@
     "test": "jest -i strategy.test.ts",
     "test:vp": "jest -i vp.test.ts",
     "test:delegation": "jest -i delegation.test.ts",
+    "test:validation": "jest -i validation.test.ts",
     "prepublishOnly": "npm run build",
     "postinstall": "npm run build",
     "postbuild": "copyfiles -u 1 \"src/**/*.md\" dist/ && copyfiles -u 1 \"src/**/*.json\" dist/",
