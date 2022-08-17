@@ -40,7 +40,7 @@ import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
-import * as multichainMax from './max-eth-fuse';
+import * as multichainMax from './gooddollar-multichain';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
