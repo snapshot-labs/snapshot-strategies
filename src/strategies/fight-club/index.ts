@@ -32,38 +32,46 @@ export async function strategy(
     })
   });
 
-  const result: Record<string, Record<string, Record<string, BigNumber>>>= await multi.execute();
+  const result: Record<string, Record<string, Record<string, BigNumber>>> = await multi.execute();
+
+  const weightedResult: Record<string, Record<string, Record<string, BigNumber>>> = Object.fromEntries(
+    addresses.map((address: string) => [
+      address,
+      Object.fromEntries([
+        ['gloves', Object.entries(result[address].gloves).map(([gloveAddress, numGloves]) => [
+          gloveAddress,
+          numGloves.mul(options.gloves[gloveAddress])
+        ])],
+        ['weightedClasses', Object.entries(result[address].weightClasses).map(([weightClassId, numKudos]) => [
+          weightClassId,
+          numKudos.mul(options.weightClassTokenIds[weightClassId])
+        ])]
+      ])
+    ])
+  );
+
+  const address = '0x1EC1CcEF3e1735bdA3F4BA698e8a524AA7c93274';
+  console.log("weightedResult",weightedResult);
+  console.log("weightedResult.gloves", weightedResult[address].gloves);
+  console.log("weightedResult.gloves", weightedResult[address].weightClasses);
 
   addresses.forEach((address: string) => {
-    Object.entries(result[address].gloves).forEach(([gloveAddress, numGloves]) => {
+    Object.entries(weightedResult[address].gloves).forEach(([gloveAddress, numGloves]) => {
       console.log('address',address,'gloveAddress',gloveAddress,'numGloves',numGloves);
-      // Modify in-place. Multiply number of gloves times glove weight
-      numGloves = numGloves.mul(options.gloves[gloveAddress]);
     });
-    Object.entries(result[address].weightClasses).forEach(([weightClassId, numKudos]) => {
+    Object.entries(weightedResult[address].weightClasses).forEach(([weightClassId, numKudos]) => {
       console.log('address',address,'weightClassId',weightClassId,'numKudos',numKudos);
-      // Modify in-place. Multiply number of Kudos by weightClass weight
-      numKudos = numKudos.mul(options.weightClassTokenIds[weightClassId]);
-    });
-  });
-
-  addresses.forEach((address: string) => {
-    Object.entries(result[address].gloves).forEach(([gloveAddress, numGloves]) => {
-      console.log('address',address,'gloveAddress',gloveAddress,'weight',numGloves);
-    });
-    Object.entries(result[address].weightClasses).forEach(([weightClassId, numKudos]) => {
-      console.log('address',address,'weightClassId',weightClassId,'weight',numKudos);
     });
   });
 
   return Object.fromEntries(
-    addresses.map((u) => [u, 2])
-    // addresses.map((address: string) => [
-    //   address,
-    //   Math.max(Object.values(result[address].gloves).map((gloveWeight) => [
-    //     gloveWeight.toNumber()
-    //   ]))
-    //   parseFloat(formatUnits(result[address].gloves, options.decimals))
-    // ])
+    addresses.map((address: string) => {
+      const gloveWeights = Object.values(result[address].gloves).map((gloveWeight) => [
+        gloveWeight.toNumber()
+      ])
+      console.log('gloveWeights',gloveWeights);
+      return [address, 2]
+    })
+      // parseFloat(formatUnits(result[address].gloves, options.decimals))
   );
 }
