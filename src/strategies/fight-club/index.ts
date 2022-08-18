@@ -19,7 +19,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  console.log(options.gloves["0x4BF0c7AD32Fd2d32089790a54485e23f5C7736C0"]);
+  console.log(options.gloves);
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   options.gloves.forEach((gloveAddress: string) => {
