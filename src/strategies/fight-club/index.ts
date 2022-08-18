@@ -1,3 +1,4 @@
+import { BigNumber } from '@ethersproject/bignumber';
 // import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
@@ -31,22 +32,31 @@ export async function strategy(
     })
   });
 
-  const result = await multi.execute();
+  const result: Record<string, Record<string, Record<string, BigNumber>>>= await multi.execute();
 
   addresses.forEach((address: string) => {
     Object.entries(result[address].gloves).forEach(([gloveAddress, numGloves]) => {
       console.log('address',address,'gloveAddress',gloveAddress,'numGloves',numGloves);
+      // Modify in-place. Multiply number of gloves times glove weight
+      numGloves = numGloves.mul(options.gloves[gloveAddress]);
+      console.log('address',address,'gloveAddress',gloveAddress,'weight',numGloves);
     });
     Object.entries(result[address].weightClasses).forEach(([weightClassId, numKudos]) => {
       console.log('address',address,'weightClassId',weightClassId,'numKudos',numKudos);
+      // Modify in-place. Multiply number of Kudos by weightClass weight
+      numKudos = numKudos.mul(options.weightClassTokenIds[weightClassId]);
+      console.log('address',address,'weightClassId',weightClassId,'weight',numKudos);
     });
-  })
+  });
 
   return Object.fromEntries(
-    addresses.map((u) => [u, 1])
-    // Object.entries(result).map(([address, balance]) => [
+    addresses.map((u) => [u, 2])
+    // addresses.map((address: string) => [
     //   address,
-    //   parseFloat(formatUnits(balance, options.decimals))
+    //   Math.max(Object.values(result[address].gloves).map((gloveWeight) => [
+    //     gloveWeight.toNumber()
+    //   ]))
+    //   parseFloat(formatUnits(result[address].gloves, options.decimals))
     // ])
   );
 }
