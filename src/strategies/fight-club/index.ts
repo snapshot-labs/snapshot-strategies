@@ -5,8 +5,8 @@ export const author = 'MantisClone';
 export const version = '0.1.0';
 
 const abi = [
-  'function balanceOf(address account, uint256 id) external view returns (uint256);',
-  'function balanceOf(address account) external view returns (uint256)'
+  'function balanceOf(address account) external view returns (uint256)',
+  'function balanceOf(address account, uint256 id) external view returns (uint256)',
 ];
 
 export async function strategy(
@@ -22,12 +22,12 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
   Object.entries(options.gloves).forEach(([gloveAddress]) => {
     addresses.forEach((address: string) => {
-      multi.call(`${address}.gloves.${gloveAddress}`, gloveAddress, 'balanceOf', [address]);
+      multi.call(`${address}.gloves.${gloveAddress}`, gloveAddress, 'balanceOf(address)', [address]);
     })
   });
   Object.entries(options.weightClassTokenIds).forEach(([weightClassId]) => {
     addresses.forEach((address: string) => {
-      multi.call(`${address}.weightClasses.${weightClassId}`, options.weightClassAddress, 'balanceOf', [address, weightClassId]);
+      multi.call(`${address}.weightClasses.${weightClassId}`, options.weightClassAddress, 'balanceOf(address, uint256)', [address, weightClassId]);
     })
   });
 
