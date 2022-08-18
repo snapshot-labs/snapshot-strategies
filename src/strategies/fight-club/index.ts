@@ -33,7 +33,7 @@ export async function strategy(
 
   const result = await multi.execute();
 
-  Object.entries(result).forEach(([address]) => {
+  addresses.forEach((address: string) => {
     Object.entries(result[address].gloves).forEach(([gloveAddress, numGloves]) => {
       console.log('address',address,'gloveAddress',gloveAddress,'numGloves',numGloves);
     });
@@ -43,7 +43,7 @@ export async function strategy(
   })
 
   return Object.fromEntries(
-    result.map((u) => [u, 1])
+    addresses.map((u) => [u, 1])
     // Object.entries(result).map(([address, balance]) => [
     //   address,
     //   parseFloat(formatUnits(balance, options.decimals))
