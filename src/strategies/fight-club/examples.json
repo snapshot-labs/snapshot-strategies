@@ -17,7 +17,7 @@
         "symbol": "FC"
       }
     },
-    "network": "1",
+    "network": "80001",
     "addresses": [
       "0x1EC1CcEF3e1735bdA3F4BA698e8a524AA7c93274",
       "0x3eefaa9d6e2ab7972c1001d41c82bb4881389257"
