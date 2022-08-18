@@ -39,12 +39,19 @@ export async function strategy(
       console.log('address',address,'gloveAddress',gloveAddress,'numGloves',numGloves);
       // Modify in-place. Multiply number of gloves times glove weight
       numGloves = numGloves.mul(options.gloves[gloveAddress]);
-      console.log('address',address,'gloveAddress',gloveAddress,'weight',numGloves);
     });
     Object.entries(result[address].weightClasses).forEach(([weightClassId, numKudos]) => {
       console.log('address',address,'weightClassId',weightClassId,'numKudos',numKudos);
       // Modify in-place. Multiply number of Kudos by weightClass weight
       numKudos = numKudos.mul(options.weightClassTokenIds[weightClassId]);
+    });
+  });
+
+  addresses.forEach((address: string) => {
+    Object.entries(result[address].gloves).forEach(([gloveAddress, numGloves]) => {
+      console.log('address',address,'gloveAddress',gloveAddress,'weight',numGloves);
+    });
+    Object.entries(result[address].weightClasses).forEach(([weightClassId, numKudos]) => {
       console.log('address',address,'weightClassId',weightClassId,'weight',numKudos);
     });
   });
