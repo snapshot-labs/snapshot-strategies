@@ -5,15 +5,15 @@ export const author = 'rawrjustin';
 export const version = '0.1.0';
 
 const calculateVotingPower = (inputAddresses, addressScores, walletMap) => {
-  let userVotingPower = {};
-  inputAddresses.forEach(input => {
-    let count = 0.0
-    walletMap[input.toLowerCase()].forEach(address => {
-      count += addressScores[address]
+  const userVotingPower = {};
+  inputAddresses.forEach((input) => {
+    let count = 0.0;
+    walletMap[input.toLowerCase()].forEach((address) => {
+      count += addressScores[address];
     });
-    userVotingPower[input] = count
+    userVotingPower[input] = count;
   });
-  return userVotingPower
+  return userVotingPower;
 };
 
 export async function strategy(
@@ -40,10 +40,10 @@ export async function strategy(
   const data = await apiResponse.json();
 
   // Flatten the wallet mapping so it's an array of real wallets to query for tokens
-  var arrayOfProxyWallets = Object.keys(data).map(function(key){
+  const arrayOfProxyWallets = Object.keys(data).map(function (key) {
     return data[key];
   });
-  var flattenedWalletAddresses = [].concat.apply([], arrayOfProxyWallets);
+  const flattenedWalletAddresses = [].concat.apply([], arrayOfProxyWallets);
 
   // Query for token holdings
   const addressScores = await erc721BalanceOfStrategy(
@@ -53,12 +53,8 @@ export async function strategy(
     flattenedWalletAddresses,
     options,
     snapshot
-  )
+  );
 
   // Calculate the voting power across all wallets and map it back to original Proxy wallets.
-  return calculateVotingPower(
-    addresses,
-    addressScores,
-    data
-  );
+  return calculateVotingPower(addresses, addressScores, data);
 }
