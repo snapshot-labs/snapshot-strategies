@@ -6,7 +6,7 @@ export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
-  'function balanceOf(address account, uint256 id) external view returns (uint256);'
+  // 'function balanceOf(address account, uint256 id) external view returns (uint256);'
 ];
 
 export async function strategy(
@@ -19,10 +19,8 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  console.log(options.gloves);
-
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  options.gloves.forEach((gloveAddress: string) => {
+  Object.entries(options.gloves).forEach(([gloveAddress, gloveWeight]) => {
     addresses.forEach((address: string) => {
       multi.call(`${address}.gloves.${gloveAddress}`, gloveAddress, 'balanceOf', [address]);
     })
@@ -34,12 +32,12 @@ export async function strategy(
   // });
 
   const result = await multi.execute();
-
-  // result.forEach((address: string) => {
-  //   result[address].gloves.forEach([gloveAddress, num]) => {
-
-  //   })
-  // })
+  console.log("1");
+  Object.entries(result).forEach(([address, gloves]) => {
+    Object.entries(result[address].gloves).forEach(([gloveAddress, num]) => {
+      console.log('address',address,'gloveAddress',gloveAddress,'num',num);
+    })
+  })
 
   return Object.fromEntries(
     result.map((u) => [u, 1])
