@@ -1,5 +1,4 @@
 import { BigNumber } from '@ethersproject/bignumber';
-// import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'MantisClone';
@@ -63,6 +62,5 @@ export async function strategy(
       address,
       Math.max(...Object.values(weightedResult[address].gloves)) * Math.max(...Object.values(weightedResult[address].weightClasses))
     ])
-      // parseFloat(formatUnits(result[address].gloves, options.decimals))
   );
 }
