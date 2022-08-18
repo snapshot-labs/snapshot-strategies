@@ -34,7 +34,7 @@ export async function strategy(
   const result: Record<string, Record<string, Record<string, BigNumber>>> = await multi.execute();
   console.dir(result, { depth: null });
 
-  const weightedResult: Record<string, Record<string, Record<string, BigNumber>>> = Object.fromEntries(
+  const weightedResult: Record<string, Record<string, Record<string, number>>> = Object.fromEntries(
     addresses.map((address: string) => [
       address,
       {
@@ -42,7 +42,7 @@ export async function strategy(
           gloveAddress,
           numGloves.mul(options.gloves[gloveAddress]).toNumber()
         ])),
-        'weightedClasses': Object.fromEntries(Object.entries(result[address].weightClasses).map(([weightClassId, numKudos]) => [
+        'weightClasses': Object.fromEntries(Object.entries(result[address].weightClasses).map(([weightClassId, numKudos]) => [
           weightClassId,
           numKudos.mul(options.weightClassTokenIds[weightClassId]).toNumber()
         ]))
@@ -51,14 +51,18 @@ export async function strategy(
   );
   console.dir(weightedResult, { depth: null });
 
+  addresses.forEach((address: string) => {
+    console.dir(Object.values(weightedResult[address].gloves), {depth: null});
+  });
+  addresses.forEach((address: string) => {
+    console.log(Object.values(weightedResult[address].weightClasses));
+  });
+
   return Object.fromEntries(
-    addresses.map((address: string) => {
-      const gloveWeights = Object.values(result[address].gloves).map((gloveWeight) => [
-        gloveWeight.toNumber()
-      ])
-      console.log('gloveWeights',gloveWeights);
-      return [address, 2]
-    })
+    addresses.map((address: string) => [
+      address,
+      Math.max(...Object.values(weightedResult[address].gloves)) * Math.max(...Object.values(weightedResult[address].weightClasses))
+    ])
       // parseFloat(formatUnits(result[address].gloves, options.decimals))
   );
 }
