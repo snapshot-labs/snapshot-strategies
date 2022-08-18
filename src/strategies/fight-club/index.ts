@@ -20,7 +20,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  Object.entries(options.gloves).forEach(([gloveAddress, gloveWeight]) => {
+  Object.entries(options.gloves).forEach(([gloveAddress]) => {
     addresses.forEach((address: string) => {
       multi.call(`${address}.gloves.${gloveAddress}`, gloveAddress, 'balanceOf', [address]);
     })
