@@ -87,7 +87,9 @@ export async function strategy(
       parseFloat(formatUnits(snapshot[2].toString(), options.decimals)) *
       claimCoefficient(snapshot[0][1]) *
       maturitiesCoefficient(
-        snapshot[0][2] == 0 ? snapshot[0][3].toNumber() : snapshot[0][2].toNumber(),
+        snapshot[0][2] == 0
+          ? snapshot[0][3].toNumber()
+          : snapshot[0][2].toNumber(),
         snapshot[0][4]
       );
     walletToWeights[address] = walletToWeights[address]
