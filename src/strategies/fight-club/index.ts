@@ -32,8 +32,8 @@ export async function strategy(
   // });
 
   const result = await multi.execute();
-  console.log("1");
-  Object.entries(result).forEach(([address, gloves]) => {
+
+  Object.entries(result).forEach(([address]) => {
     Object.entries(result[address].gloves).forEach(([gloveAddress, num]) => {
       console.log('address',address,'gloveAddress',gloveAddress,'num',num);
     })
