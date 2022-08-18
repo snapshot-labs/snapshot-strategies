@@ -19,9 +19,9 @@
           "minLength": 42,
           "maxLength": 42
         },
-        "weightClassTokenIds": {
+        "weightClassIds": {
           "type": "object",
-          "title": "weightClassTokenIds",
+          "title": "weightClassIds",
           "examples": ["e.g. {\"602\": 1}"]
         },
         "symbol": {
@@ -31,7 +31,7 @@
           "maxLength": 16
         }
       },
-      "required": ["gloves", "weightClassAddress", "weightClassTokenIds"],
+      "required": ["gloves", "weightClassAddress", "weightClassIds"],
       "additionalProperties": false
     }
   }

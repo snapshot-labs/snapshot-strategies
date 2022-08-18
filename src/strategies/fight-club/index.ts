@@ -25,7 +25,7 @@ export async function strategy(
       multi.call(`${address}.gloves.${gloveAddress}`, gloveAddress, 'balanceOf(address)', [address]);
     })
   });
-  Object.entries(options.weightClassTokenIds).forEach(([weightClassId]) => {
+  Object.entries(options.weightClassIds).forEach(([weightClassId]) => {
     addresses.forEach((address: string) => {
       multi.call(`${address}.weightClasses.${weightClassId}`, options.weightClassAddress, 'balanceOf(address, uint256)', [address, weightClassId]);
     })
@@ -43,7 +43,7 @@ export async function strategy(
         ])),
         'weightClasses': Object.fromEntries(Object.entries(result[address].weightClasses).map(([weightClassId, numKudos]) => [
           weightClassId,
-          numKudos.mul(options.weightClassTokenIds[weightClassId]).toNumber()
+          numKudos.mul(options.weightClassIds[weightClassId]).toNumber()
         ]))
       }
     ])
