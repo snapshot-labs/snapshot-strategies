@@ -1,0 +1,75 @@
+[
+  {
+    "name": "GoodDolalr Multichain",
+    "strategy": {
+      "name": "gooddollar-multichain",
+      "params": {
+        "symbol": "GOOD",
+        "strategies": [
+          {
+            "name": "contract-call",
+            "network": "122",
+            "params": {
+              "symbol": "GOOD",
+              "address": "0x603b8c0f110e037b51a381cbcacabb8d6c6e4543",
+              "decimals": 18,
+              "methodABI": {
+                "name": "getVotes",
+                "type": "function",
+                "inputs": [
+                  {
+                    "name": "voter",
+                    "type": "address",
+                    "internalType": "address"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ],
+                "stateMutability": "view"
+              }
+            }
+          },
+          {
+            "name": "contract-call",
+            "network": "1",
+            "params": {
+              "symbol": "GOOD",
+              "address": "0x603b8c0f110e037b51a381cbcacabb8d6c6e4543",
+              "decimals": 18,
+              "methodABI": {
+                "name": "getVotes",
+                "type": "function",
+                "inputs": [
+                  {
+                    "name": "voter",
+                    "type": "address",
+                    "internalType": "address"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "",
+                    "type": "uint256",
+                    "internalType": "uint256"
+                  }
+                ],
+                "stateMutability": "view"
+              }
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x66582D24FEaD72555adaC681Cc621caCbB208324",
+      "0xA48840D89a761502A4a7d995c74f3864D651A87F"
+    ],
+    "snapshot": 15000000
+  }
+]

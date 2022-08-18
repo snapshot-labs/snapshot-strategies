@@ -40,6 +40,7 @@ import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
+import * as gooddollarMultichain from './gooddollar-multichain';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
@@ -328,6 +329,7 @@ import * as helix from './helix';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
 import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
+import * as auraBalanceOfVlauraVebal from './aura-balance-of-vlaura-vebal';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
@@ -350,6 +352,9 @@ import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
 import * as orcaPod from './orca-pod';
+import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
+import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
+import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -416,6 +421,7 @@ const strategies = {
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   'prepo-vesting': prepoVesting,
   multichain,
+  'gooddollar-multichain': gooddollarMultichain,
   uni,
   'frax-finance': fraxFinance,
   'yearn-vault': yearnVault,
@@ -682,6 +688,7 @@ const strategies = {
   'arrakis-finance': arrakisFinance,
   'aura-vlaura-vebal': auraFinance,
   'aura-vlaura-vebal-with-overrides': auraFinanceWithOverrides,
+  'aura-balance-of-vlaura-vebal': auraBalanceOfVlauraVebal,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
@@ -703,7 +710,10 @@ const strategies = {
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
   'erc3525-flexible-voucher': erc3525FlexibleVoucher,
-  'orca-pod': orcaPod
+  'orca-pod': orcaPod,
+  'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
+  'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
+  'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
