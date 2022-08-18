@@ -5,8 +5,7 @@
       "name": "fight-club",
       "params": {
         "gloves": {
-          "0x4BF0c7AD32Fd2d32089790a54485e23f5C7736C0": 1,
-          "0x06f68F90F95826Ac3f9806B1Cd66D3CaFe13a752": 2
+          "0x4BF0c7AD32Fd2d32089790a54485e23f5C7736C0": 1
         },
         "weightClassAddress": "0xB876baF8F69cD35fb96A17a599b070FBdD18A6a1",
         "weightClassTokenIds": {
