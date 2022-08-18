@@ -40,11 +40,11 @@ export async function strategy(
       {
         'gloves': Object.fromEntries(Object.entries(result[address].gloves).map(([gloveAddress, numGloves]) => [
           gloveAddress,
-          numGloves.mul(options.gloves[gloveAddress])
+          numGloves.mul(options.gloves[gloveAddress]).toNumber()
         ])),
         'weightedClasses': Object.fromEntries(Object.entries(result[address].weightClasses).map(([weightClassId, numKudos]) => [
           weightClassId,
-          numKudos.mul(options.weightClassTokenIds[weightClassId])
+          numKudos.mul(options.weightClassTokenIds[weightClassId]).toNumber()
         ]))
       }
     ])

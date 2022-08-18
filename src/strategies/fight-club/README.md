@@ -11,3 +11,5 @@ Here is an example of parameters:
   "decimals": 18
 }
 ```
+
+> **Warning**: This strategy uses `ethers.utils.BigNumber.toNumber()` and will fail if a voter's weighted score (# nfts * weight) is is greater than or equal to `Number.MAX_SAFE_INTEGER` or less than or equal to `Number.MIN_SAFE_INTEGER`
