@@ -32,7 +32,7 @@ export async function strategy(
     })
   });
 
-  const result: Record<string, Record<string, Record<string, BigNumber>>>= await multi.execute();
+  let result: Record<string, Record<string, Record<string, BigNumber>>>= await multi.execute();
 
   addresses.forEach((address: string) => {
     Object.entries(result[address].gloves).forEach(([gloveAddress, numGloves]) => {
