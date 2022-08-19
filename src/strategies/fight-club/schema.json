@@ -28,7 +28,7 @@
         },
         "symbol": {
           "type": "string",
-          "title": "Symbol",
+          "title": "symbol",
           "examples": ["e.g. FC"],
           "maxLength": 16
         }
