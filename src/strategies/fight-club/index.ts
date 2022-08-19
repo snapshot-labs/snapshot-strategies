@@ -90,11 +90,13 @@ export async function strategy(
 
   return Object.fromEntries(
     addresses.map((address: string) => {
-      // Voter gets 0 score if no gloves
+      // Only the glove with the highest associated weight is counted.
+      // Total vote score is 0 if voter has no gloves.
       const maxGlove = Math.max(
         ...Object.values(weightedResult[address].gloves)
       );
-      // Weight class multiplier defaults to 1 if no weight class Kudos.
+      // Only the weight class Kudo with the highest associated weight is counted.
+      // Weight class multiplier defaults to 1 if voter has no weight class Kudos.
       const maxWeightClass =
         Math.max(...Object.values(weightedResult[address].weightClasses)) || 1;
       return [address, maxGlove * maxWeightClass];
