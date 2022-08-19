@@ -34,7 +34,7 @@ This strategy uses a Multicall to query `balanceOf` fight club glove NFTs and
 following equation:
 
 ```
-power = gloveWeight * weightClassMultiplier
+score = gloveWeight * weightClassMultiplier
 ```
 
 * If a user has more than 1 fight club glove NFT, only the one with the highest
