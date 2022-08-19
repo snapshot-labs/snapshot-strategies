@@ -48,8 +48,8 @@ export async function strategy(
     Record<string, Record<string, BigNumber>>
   > = await multi.execute();
 
-  console.log('Multicall result');
-  console.dir(result, { depth: null });
+  // console.log('Multicall result');
+  // console.dir(result, { depth: null });
 
   const weightedResult: Record<
     string,
@@ -84,8 +84,8 @@ export async function strategy(
     ])
   );
 
-  console.log('Weighted result');
-  console.dir(weightedResult, { depth: null });
+  // console.log('Weighted result');
+  // console.dir(weightedResult, { depth: null });
 
   return Object.fromEntries(
     addresses.map((address: string) => {
