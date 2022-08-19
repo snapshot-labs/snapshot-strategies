@@ -9,7 +9,9 @@
         "gloves": {
           "type": "object",
           "title": "gloves",
-          "examples": ["e.g. {\"0x06f68F90F95826Ac3f9806B1Cd66D3CaFe13a752\": 2}"]
+          "examples": [
+            "e.g. {\"0x06f68F90F95826Ac3f9806B1Cd66D3CaFe13a752\": 2}"
+          ]
         },
         "weightClassAddress": {
           "type": "string",

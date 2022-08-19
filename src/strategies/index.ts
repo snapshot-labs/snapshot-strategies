@@ -715,7 +715,7 @@ const strategies = {
   'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
-  'fight-club': fightClub,
+  'fight-club': fightClub
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
