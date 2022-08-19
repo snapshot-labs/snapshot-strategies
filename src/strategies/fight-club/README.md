@@ -47,5 +47,6 @@ score = gloveWeight * weightClassMultiplier
   class multiplier defaults to 1.
 
 > **Warning**: This strategy uses `ethers.utils.BigNumber.toNumber()` and will
-  fail if a voter's `gloveWeight` or `weightClassMultiplier` is is greater than or equal
-  to `Number.MAX_SAFE_INTEGER` or less than or equal to `Number.MIN_SAFE_INTEGER`
+  fail if a voter's `gloveWeight` or `weightClassMultiplier` is is greater than
+  or equal to `Number.MAX_SAFE_INTEGER` or less than or equal to
+  `Number.MIN_SAFE_INTEGER`
