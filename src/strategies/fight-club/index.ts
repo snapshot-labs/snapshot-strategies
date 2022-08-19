@@ -20,6 +20,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
+
   Object.entries(options.gloves).forEach(([gloveAddress]) => {
     addresses.forEach((address: string) => {
       multi.call(
@@ -30,6 +31,7 @@ export async function strategy(
       );
     });
   });
+
   Object.entries(options.weightClassIds).forEach(([weightClassId]) => {
     addresses.forEach((address: string) => {
       multi.call(
@@ -40,10 +42,13 @@ export async function strategy(
       );
     });
   });
+
   const result: Record<
     string,
     Record<string, Record<string, BigNumber>>
   > = await multi.execute();
+
+  // Log result
   console.dir(result, { depth: null });
 
   const weightedResult: Record<
@@ -72,14 +77,9 @@ export async function strategy(
       }
     ])
   );
-  console.dir(weightedResult, { depth: null });
 
-  addresses.forEach((address: string) => {
-    console.dir(Object.values(weightedResult[address].gloves), { depth: null });
-  });
-  addresses.forEach((address: string) => {
-    console.log(Object.values(weightedResult[address].weightClasses));
-  });
+  // Log weightedResult
+  console.dir(weightedResult, { depth: null });
 
   return Object.fromEntries(
     addresses.map((address: string) => [
