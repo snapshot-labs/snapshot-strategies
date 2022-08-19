@@ -60,18 +60,25 @@ export async function strategy(
       {
         gloves: Object.fromEntries(
           Object.entries(result[address].gloves).map(
-            ([gloveAddress, numGloves]) => [
-              gloveAddress,
-              numGloves.mul(options.gloveAddresses[gloveAddress]).toNumber()
-            ]
+            ([gloveAddress, numGloves]) => {
+              const hasGlove = numGloves.gte(1) ? 1 : 0;
+              return [
+                gloveAddress,
+                hasGlove * options.gloveAddresses[gloveAddress]
+              ]
+            }
+
           )
         ),
         weightClasses: Object.fromEntries(
           Object.entries(result[address].weightClasses).map(
-            ([weightClassId, numKudos]) => [
-              weightClassId,
-              numKudos.mul(options.weightClassIds[weightClassId]).toNumber()
-            ]
+            ([weightClassId, numKudos]) => {
+              const hasKudo = numKudos.gte(1) ? 1 : 0;
+              return [
+                weightClassId,
+                hasKudo * options.weightClassIds[weightClassId]
+              ]
+            }
           )
         )
       }
