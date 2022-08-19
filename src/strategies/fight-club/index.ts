@@ -48,7 +48,7 @@ export async function strategy(
     Record<string, Record<string, BigNumber>>
   > = await multi.execute();
 
-  console.log("Multicall result");
+  console.log('Multicall result');
   console.dir(result, { depth: null });
 
   const weightedResult: Record<
@@ -65,9 +65,8 @@ export async function strategy(
               return [
                 gloveAddress,
                 hasGlove * options.gloveAddresses[gloveAddress]
-              ]
+              ];
             }
-
           )
         ),
         weightClasses: Object.fromEntries(
@@ -77,7 +76,7 @@ export async function strategy(
               return [
                 weightClassId,
                 hasKudo * options.weightClassIds[weightClassId]
-              ]
+              ];
             }
           )
         )
@@ -85,7 +84,7 @@ export async function strategy(
     ])
   );
 
-  console.log("Weighted result");
+  console.log('Weighted result');
   console.dir(weightedResult, { depth: null });
 
   return Object.fromEntries(
