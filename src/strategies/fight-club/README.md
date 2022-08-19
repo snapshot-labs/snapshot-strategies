@@ -15,14 +15,13 @@ Here is an example of parameters:
 ```json
 {
   "gloveAddresses": {
-    "0x4BF0c7AD32Fd2d32089790a54485e23f5C7736C0": 8
+    "0x25ed58c027921E14D86380eA2646E3a1B5C55A8b": 3
   },
-  "weightClassAddress": "0xB876baF8F69cD35fb96A17a599b070FBdD18A6a1",
+  "weightClassAddress": "0xF1F3ca6268f330fDa08418db12171c3173eE39C9",
   "weightClassIds": {
-    "602": 4,
-    "647": 5,
-    "648": 6,
-    "649": 7
+    "8": 4,
+    "26": 5,
+    "33": 6
   },
   "symbol": "FC"
 }
