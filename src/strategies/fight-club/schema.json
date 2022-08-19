@@ -33,7 +33,7 @@
           "maxLength": 16
         }
       },
-      "required": ["gloves", "weightClassAddress", "weightClassIds"],
+      "required": ["gloveAddresses", "weightClassAddress", "weightClassIds"],
       "additionalProperties": false
     }
   }
