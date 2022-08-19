@@ -82,10 +82,12 @@ export async function strategy(
   console.dir(weightedResult, { depth: null });
 
   return Object.fromEntries(
-    addresses.map((address: string) => [
-      address,
-      Math.max(...Object.values(weightedResult[address].gloves)) *
-        Math.max(...Object.values(weightedResult[address].weightClasses))
-    ])
+    addresses.map((address: string) => {
+      // Voter gets 0 score if no gloves
+      const maxGlove = Math.max(...Object.values(weightedResult[address].gloves));
+      // Weight class multiplier defaults to 1 if no weight class Kudos.
+      const maxWeightClass = Math.max(...Object.values(weightedResult[address].weightClasses)) || 1;
+      return [address, maxGlove * maxWeightClass];
+    })
   );
 }
