@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "arrow-vesting",
+      "params": {
+        "address": "0x78b3C724A2F663D11373C4a1978689271895256f",
+        "symbol": "ARROW",
+        "decimals": 18,
+        "vestingFactory": "0xB93427b83573C8F27a08A909045c3e809610411a"
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0xaDc17e5f0e9F755C717B2beE43B590260034b852",
+      "0xB66f08DBd7A59B32e98033b9A1da08B5793DAb79",
+      "0x5b8eD2A2CfFCD474B2E688fdeA21CB5c4350E575",
+      "0x03b5Dc2CE78a7bEe9F66DD619b291595a2E166BB",
+      "0x06A61f56de8c6a2735D1Dea68340D201ddEd7348"
+    ],
+    "snapshot": 18879362
+  }
+]
