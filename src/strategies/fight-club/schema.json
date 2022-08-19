@@ -6,9 +6,9 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "gloves": {
+        "gloveAddresses": {
           "type": "object",
-          "title": "gloves",
+          "title": "gloveAddresses",
           "examples": [
             "e.g. {\"0x06f68F90F95826Ac3f9806B1Cd66D3CaFe13a752\": 2}"
           ]

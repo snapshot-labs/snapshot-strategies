@@ -4,7 +4,7 @@ This strategy calculates a fight-club member's voting score.
 
 ## Params
 
-- `gloves` - (**Required**, `object`) Fight Club Glove NFT addresses and weights
+- `gloveAddresses` - (**Required**, `object`) Fight Club Glove NFT addresses and weights
 - `weightClassAddress` - (**Required**, `string`) Weight Class Kudo (ERC-1155) Address
 - `weightClassIds` - (**Required**, `object`) Weight Class Kudo IDs and weights
 - `symbol` - (**Optional**, `string`) Symbol of the strategy
@@ -14,7 +14,7 @@ Here is an example of parameters:
 
 ```json
 {
-  "gloves": {
+  "gloveAddresses": {
     "0x4BF0c7AD32Fd2d32089790a54485e23f5C7736C0": 8
   },
   "weightClassAddress": "0xB876baF8F69cD35fb96A17a599b070FBdD18A6a1",

@@ -21,7 +21,7 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
-  Object.entries(options.gloves).forEach(([gloveAddress]) => {
+  Object.entries(options.gloveAddresses).forEach(([gloveAddress]) => {
     addresses.forEach((address: string) => {
       multi.call(
         `${address}.gloves.${gloveAddress}`,
@@ -62,7 +62,7 @@ export async function strategy(
           Object.entries(result[address].gloves).map(
             ([gloveAddress, numGloves]) => [
               gloveAddress,
-              numGloves.mul(options.gloves[gloveAddress]).toNumber()
+              numGloves.mul(options.gloveAddresses[gloveAddress]).toNumber()
             ]
           )
         ),
@@ -84,9 +84,12 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address: string) => {
       // Voter gets 0 score if no gloves
-      const maxGlove = Math.max(...Object.values(weightedResult[address].gloves));
+      const maxGlove = Math.max(
+        ...Object.values(weightedResult[address].gloves)
+      );
       // Weight class multiplier defaults to 1 if no weight class Kudos.
-      const maxWeightClass = Math.max(...Object.values(weightedResult[address].weightClasses)) || 1;
+      const maxWeightClass =
+        Math.max(...Object.values(weightedResult[address].weightClasses)) || 1;
       return [address, maxGlove * maxWeightClass];
     })
   );
