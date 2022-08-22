@@ -8,7 +8,7 @@ This strategy assumes that the vesting token has 18 decimals.
 
 ### Calculation
 
-When contract is paused:
+When contract is paused (as a proxy for a cliff):
 `score = (unclaimedVestedBalance + unvestedBalance) * multiplier`
 
 Else:
