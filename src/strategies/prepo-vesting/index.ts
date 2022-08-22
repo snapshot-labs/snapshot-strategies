@@ -6,9 +6,9 @@ export const author = 'prepo-io';
 export const version = '1.0.0';
 
 const abi = [
-  'function getAmountAllocated(address _recipient) external view override returns (uint256)',
-  'function getClaimableAmount(address _recipient) public view override returns (uint256)',
-  'function getVestedAmount(address _recipient) public view override returns (uint256)',
+  'function getAmountAllocated(address _recipient) external view returns (uint256)',
+  'function getClaimableAmount(address _recipient) public view returns (uint256)',
+  'function getVestedAmount(address _recipient) public view returns (uint256)',
   'function isPaused() external view returns (bool)'
 ];
 
