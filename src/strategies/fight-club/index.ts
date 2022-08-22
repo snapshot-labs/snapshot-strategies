@@ -17,6 +17,19 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
+  // Arbitrary limit to avoid memory issues
+  const limit = 10;
+  if (options.gloveAddresses.length > limit) {
+    throw new Error(
+      `Number of glove addresses ${options.gloveAddresses.length} exceeds limit ${limit}`
+    );
+  }
+  if (options.weightClassIds.length > limit) {
+    throw new Error(
+      `Number of weight class IDs ${options.weightClassIds.length} exceeds limit ${limit}`
+    );
+  }
+
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });

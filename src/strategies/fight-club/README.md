@@ -4,9 +4,12 @@ This strategy calculates a fight-club member's voting score.
 
 ## Params
 
-- `gloveAddresses` - (**Required**, `object`) Fight Club Glove NFT addresses and weights
-- `weightClassAddress` - (**Required**, `string`) Weight Class Kudo (ERC-1155) Address
-- `weightClassIds` - (**Required**, `object`) Weight Class Kudo IDs and weights
+- `gloveAddresses` - (**Required**, `object`) Up to 10 Fight Club Glove NFT
+  addresses and weights
+- `weightClassAddress` - (**Required**, `string`) Weight Class Kudo (ERC-1155)
+  Address
+- `weightClassIds` - (**Required**, `object`) Up to 10 Weight Class Kudo IDs and
+  weights
 - `symbol` - (**Optional**, `string`) Symbol of the strategy
 
 
@@ -45,6 +48,8 @@ score = gloveWeight * weightClassMultiplier
   of their weight class Kudos.
 * If a user has a fight club glove NFT, but 0 weight class Kudos, the weight
   class multiplier defaults to 1.
+* To avoid memory issues, the strategy is limited to 10 distinct glove NFT
+  addresses and 10 distinct weight class kudo IDs.
 
 > **Warning**: This strategy uses `ethers.utils.BigNumber.toNumber()` and will
   fail if a voter's `gloveWeight` or `weightClassMultiplier` is is greater than
