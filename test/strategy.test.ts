@@ -95,6 +95,8 @@ describe(`\nTest strategy "${strategy}"`, () => {
   });
 
   it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
+    example.addresses[0] = example.addresses[0].toLowerCase();
+    example.addresses[1] = getAddress(example.addresses[1]);
     expect(
       Object.keys(scores[0]).every(
         (address) =>
