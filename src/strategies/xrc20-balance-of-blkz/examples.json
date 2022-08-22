@@ -1,0 +1,19 @@
+[
+  {
+    "name": "XRC20 query",
+    "strategy": {
+      "name": "xrc20-balance-of",
+      "params": {
+        "address": "0x4826634fe187ed3ffb64d77c5c1a67ba49cc03de",
+        "symbol": "BLKZ",
+        "decimals": 18
+      }
+    },
+    "network": "50",
+    "addresses": [
+      "0xa091fB83C60E75144b2287ab2FA4b01A05364052",
+      "0xcb7754379748499607E0A94aa3A75613D7F659FC"
+    ],
+    "snapshot": 8947000
+  }
+]
