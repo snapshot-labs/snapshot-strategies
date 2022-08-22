@@ -1,9 +1,3 @@
 # tutellus-protocol
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
-
-Here is an example of parameters:
-
-```json
-{}
-```
+It returns the voting power in the Tutellus Protocol for proposals of Tutellus DAO, this includes holding $TUT, staking $TUT in the Staking contract and staking LP tokens from Sushi Pool against $WBTC in the Farming contract.
