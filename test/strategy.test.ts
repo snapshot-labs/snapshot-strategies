@@ -26,6 +26,9 @@ if (!strategy) throw 'Strategy not found';
 const example = require(`../src/strategies/${strategy}/examples.json`)[0];
 
 function callGetScores(example) {
+  example.addresses[0] = example.addresses[0].toLowerCase();
+  if (example.addresses.length > 1)
+    example.addresses[1] = getAddress(example.addresses[1]);
   const provider = snapshot.utils.getProvider(example.network);
   return snapshot.utils.getScoresDirect(
     'yam.eth',
@@ -95,8 +98,6 @@ describe(`\nTest strategy "${strategy}"`, () => {
   });
 
   it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
-    example.addresses[0] = example.addresses[0].toLowerCase();
-    example.addresses[1] = getAddress(example.addresses[1]);
     expect(
       Object.keys(scores[0]).every(
         (address) =>
