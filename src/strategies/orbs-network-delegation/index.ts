@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 import { getAddress } from "@ethersproject/address";
 
 export const author = 'gadcl';
-export const version = '0.1.1';
+export const version = '0.1.2';
 
 const abi = [
   'function getDelegatedStake(address addr) external view returns (uint256)',
