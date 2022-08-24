@@ -34,7 +34,7 @@ Here is an example of parameters:
 
 This strategy uses a Multicall to query `balanceOf` fight club glove NFTs and
 `balanceOf` weight class kudos (ERC-1155). A voter's total voting score is
-alculated via the following equation:
+calculated via the following equation:
 
 ```
 score = glovePower * weightClassMultiplier
