@@ -92,9 +92,9 @@ export async function strategy(
       provider,
       abi,
       addresses.map((address: any) => [
-        contract.toLowerCase(),
+        contract,
         'userInfo',
-        [0, address.toLowerCase()]
+        [0, address]
       ]),
       { blockTag }
     ));
