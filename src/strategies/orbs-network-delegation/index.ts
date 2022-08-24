@@ -1,6 +1,7 @@
 import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
+import { getAddress } from "@ethersproject/address";
 
 export const author = 'gadcl';
 export const version = '0.1.1';
@@ -36,8 +37,8 @@ export async function strategy(
 
   Object.entries(override).forEach(
     ([address, [delegation, delegatorStake]]) => {
-      const from = address.toLowerCase();
-      const to = delegation.toLocaleLowerCase();
+      const from = getAddress(address);
+      const to = getAddress(delegation);
       delegations[from] = delegatorStake;
       if (delegations[to]) {
         delegations[to] = BigNumber.from(delegations[to]).sub(delegatorStake);
@@ -47,7 +48,7 @@ export async function strategy(
 
   return Object.fromEntries(
     Object.entries(delegations).map(([address, delegatedStake]) => [
-      address,
+      getAddress(address),
       parseFloat(formatUnits(delegatedStake, options.decimals))
     ])
   );
