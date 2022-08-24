@@ -1,8 +1,8 @@
 [
   {
-    "name": "tpro-stacking",
+    "name": "tpro-staking",
     "strategy": {
-      "name": "tpro-stacking",
+      "name": "tpro-staking",
       "params": {
         "address": "0x3540abe4f288b280a0740ad5121aec337c404d15",
         "symbol": "TPRO",

@@ -358,7 +358,7 @@ import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-
 import * as arrowVesting from './arrow-vesting';
 import * as tutellusProtocol from './tutellus-protocol';
 import * as fightClub from './fight-club';
-import * as tproStacking from './tpro-stacking';
+import * as tproStaking from './tpro-staking';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -721,7 +721,7 @@ const strategies = {
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
-  'tpro-stacking': tproStacking
+  'tpro-staking': tproStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
