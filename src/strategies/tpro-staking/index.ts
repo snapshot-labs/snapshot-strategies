@@ -5,61 +5,7 @@ export const author = 'tokenomia-pro';
 export const version = '1.0.0';
 
 const abi = [
-  {
-    "inputs": [
-      {
-        "internalType": "uint256",
-        "name": "",
-        "type": "uint256"
-      },
-      {
-        "internalType": "address",
-        "name": "",
-        "type": "address"
-      }
-    ],
-    "name": "userInfo",
-    "outputs": [
-      {
-        "internalType": "uint256",
-        "name": "amount",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "rewardDebt",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "pendingRewards",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "lockedTimestamp",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "lockupTimestamp",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "lockupTimerange",
-        "type": "uint256"
-      },
-      {
-        "internalType": "uint256",
-        "name": "virtAmount",
-        "type": "uint256"
-      }
-    ],
-    "stateMutability": "view",
-    "type": "function",
-    "constant": true
-  }
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt, uint256 pendingRewards, uint256 lockedTimestamp, uint256 lockupTimestamp, uint256 lockupTimerange, uint256 virtAmount)'
 ];
 
 interface StrategyOptions {
