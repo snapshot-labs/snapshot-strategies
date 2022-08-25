@@ -356,6 +356,7 @@ import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
 import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
 import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
 import * as arrowVesting from './arrow-vesting';
+import * as safeVested from './safe-vested';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -715,7 +716,8 @@ const strategies = {
   'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
-  'arrow-vesting': arrowVesting
+  'arrow-vesting': arrowVesting,
+  'safe-vested': safeVested
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
