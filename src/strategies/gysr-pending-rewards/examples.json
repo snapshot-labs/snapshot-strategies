@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example GYSR Pending Rewards query",
+    "strategy": {
+      "name": "gysr-pending-rewards",
+      "params": {
+        "pool": "0xE48eddbBcA614be5416f20dE57D858562b72479d",
+        "rewardToken": "0xb521022EeaD7E7eEe95D30BA1A1f0aB657F83a61",
+        "symbol": "REX"
+      }
+    },
+    "network": 137,
+    "addresses": [
+      "0x62a3ebf2acfcb209804faa5f5c52138c505d7ef6",
+      "0x29e3d28f1111d68ea4036eea466a922b7cd02311",
+      "0xE9DE5d8AD37d9514f3c452BA8CE780bf2100Da10"
+    ],
+    "snapshot": 32189416
+  }
+]

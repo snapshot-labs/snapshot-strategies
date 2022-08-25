@@ -290,6 +290,7 @@ import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
+import * as gysrPendingRewards from './gysr-pending-rewards';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
@@ -654,6 +655,7 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
+  'gysr-pending-rewards': gysrPendingRewards,
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
