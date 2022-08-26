@@ -74,12 +74,12 @@ export async function strategy(
     // If account received multiple allocations sum them
     // Else we just return the currentAmount
     const pendingVestedAmount = previousAmount
-      ? parseUnits(previousAmount).add(currentVestingAmount)
+      ? parseUnits(previousAmount.toString()).add(currentVestingAmount)
       : currentVestingAmount;
 
     return {
       ...acc,
-      [account]: formatUnits(pendingVestedAmount)
+      [account]: parseFloat(formatUnits(pendingVestedAmount))
     };
   }, {});
 }
