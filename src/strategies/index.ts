@@ -290,6 +290,7 @@ import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
+import * as gysrPendingRewards from './gysr-pending-rewards';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
@@ -356,6 +357,9 @@ import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
 import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
 import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
 import * as arrowVesting from './arrow-vesting';
+import * as tutellusProtocol from './tutellus-protocol';
+import * as fightClub from './fight-club';
+import * as tproStaking from './tpro-staking';
 import * as safeVested from './safe-vested';
 
 const strategies = {
@@ -652,6 +656,7 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
+  'gysr-pending-rewards': gysrPendingRewards,
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
@@ -717,6 +722,9 @@ const strategies = {
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
   'arrow-vesting': arrowVesting,
+  'tutellus-protocol': tutellusProtocol,
+  'fight-club': fightClub,
+  'tpro-staking': tproStaking,
   'safe-vested': safeVested
 };
 
