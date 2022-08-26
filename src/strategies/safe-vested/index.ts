@@ -56,11 +56,12 @@ export async function strategy(
 
   const vestings = await multi.execute();
 
+  const flatAllocationsList = allocationsList.flat();
   // Check vesting state, consider only unclaimed amounts and group allocations to the same account
   return Object.keys(vestings).reduce((acc, key) => {
-    const { account, amount } = allocationsList
-      .flat()
-      .find(({ vestingId }) => vestingId === key) as AllocationDetails;
+    const { account, amount } = flatAllocationsList.find(
+      ({ vestingId }) => vestingId === key
+    ) as AllocationDetails;
 
     const hasAlreadyClaimed = vestings[key].account === account;
     // If account already claimed only count the pending amount
