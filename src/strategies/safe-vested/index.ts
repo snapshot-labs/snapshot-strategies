@@ -6,6 +6,7 @@ import { Multicaller } from '../../utils';
 export const author = 'dasanra';
 export const version = '0.1.0';
 
+// https://github.com/safe-global/safe-token/blob/main/contracts/VestingPool.sol
 const abi = [
   'function vestings(bytes32) view returns (address account, uint8 curveType, bool managed, uint16 durationWeeks, uint64 startDate, uint128 amount, uint128 amountClaimed, uint64 pausingDate, bool cancelled)'
 ];
