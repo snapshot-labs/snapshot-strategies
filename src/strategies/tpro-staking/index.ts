@@ -32,18 +32,16 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const promises: any[] = [];
 
-  options.smartContracts.forEach(contract => {
-    promises.push(multicall(
-      network,
-      provider,
-      abi,
-      addresses.map((address: any) => [
-        contract,
-        'userInfo',
-        [0, address]
-      ]),
-      { blockTag }
-    ));
+  options.smartContracts.forEach((contract) => {
+    promises.push(
+      multicall(
+        network,
+        provider,
+        abi,
+        addresses.map((address: any) => [contract, 'userInfo', [0, address]]),
+        { blockTag }
+      )
+    );
   });
 
   const resolvedPromises = await Promise.all(promises);
@@ -57,18 +55,22 @@ export async function strategy(
       const user = addresses[i];
       const endTimestamp = Number(response[i].lockedTimestamp);
       const tokensAmount = Number(formatEther(response[i].amount));
-      const remainMonths = Number(endTimestamp - currentTimestamp)/(60 * 60 * 24 * 30);
+      const remainMonths =
+        Number(endTimestamp - currentTimestamp) / (60 * 60 * 24 * 30);
 
-      if(tokensAmount <= 0 || remainMonths <= 0) {
+      if (tokensAmount <= 0 || remainMonths <= 0) {
         continue;
       }
 
-      const votePower = Math.floor(tokensAmount * Math.pow(remainMonths, options.powerFactor) * contractFactor);
+      const votePower = Math.floor(
+        tokensAmount *
+          Math.pow(remainMonths, options.powerFactor) *
+          contractFactor
+      );
 
-      if(votePower && votingPowers[user]) {
+      if (votePower && votingPowers[user]) {
         votingPowers[user] += votePower;
-      }
-      else if(votePower) {
+      } else if (votePower) {
         votingPowers[user] = votePower;
       }
     }
