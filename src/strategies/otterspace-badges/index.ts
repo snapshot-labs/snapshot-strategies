@@ -6,6 +6,7 @@ export const version = '1.0.0';
 export const examples = examplesFile;
 
 const OTTERSPACE_SUBGRAPH_API_URL = {
+  '1': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism',
   '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli'
 };
 
