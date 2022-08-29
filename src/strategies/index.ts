@@ -360,6 +360,7 @@ import * as arrowVesting from './arrow-vesting';
 import * as tutellusProtocol from './tutellus-protocol';
 import * as fightClub from './fight-club';
 import * as tproStaking from './tpro-staking';
+import * as otterspaceBadges from './otterspace-badges';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -723,7 +724,8 @@ const strategies = {
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
-  'tpro-staking': tproStaking
+  'tpro-staking': tproStaking,
+  'otterspace-badges': otterspaceBadges
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
