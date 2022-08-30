@@ -4,7 +4,7 @@
       "strategy": {
         "name": "safe-vested",
         "params": {
-            "allocationsSource": "https://raw.githubusercontent.com/5afe/claiming-app-data/main/resources/data/snapshot-allocations-test.json"
+            "allocationsSource": "https://raw.githubusercontent.com/5afe/claiming-app-data/7942c2b6757c02fadb32d58dde09a12a35f5a462/resources/data/snapshot-allocations-test.json"
         }
       },
       "network": "4",
