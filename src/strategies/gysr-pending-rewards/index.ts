@@ -33,11 +33,10 @@ export async function strategy(
   // Network specific pool info contract address
   const poolInfoContractAddress = poolInfoAddressForNetwork[network];
 
-
   // Determine which token rewards to count for voting power
   let tokenIndex = 0;
 
-  let tokenCallResult = await multicall(
+  const tokenCallResult = await multicall(
     network,
     provider,
     poolABI,
@@ -56,10 +55,9 @@ export async function strategy(
     );
   }
 
-  
   // Determine decimals
   const rewardTokenAddress = tokenCallResult[0][tokenIndex].toString();
-  let decimalCallResult = await multicall(
+  const decimalCallResult = await multicall(
     network,
     provider,
     tokenABI,
@@ -68,7 +66,6 @@ export async function strategy(
   );
   const decimals = decimalCallResult[0];
 
-  
   // Get the pending rewards for addresses
   const multi = new Multicaller(network, provider, poolInfoABI, { blockTag });
   addresses.forEach((address) =>
@@ -79,7 +76,6 @@ export async function strategy(
   );
   const result: Record<string, BigNumberish> = await multi.execute();
 
-  
   return Object.fromEntries(
     Object.entries(result).map(([address, balances]) => [
       address,
