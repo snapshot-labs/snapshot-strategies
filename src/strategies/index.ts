@@ -291,6 +291,7 @@ import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
 import * as gysrPendingRewards from './gysr-pending-rewards';
+import * as gysrLPStakingBalance from './gysr-lp-staking-balance';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
@@ -656,6 +657,7 @@ const strategies = {
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
   'gysr-pending-rewards': gysrPendingRewards,
+  'gysr-lp-staking-balance': gysrLPStakingBalance,
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
