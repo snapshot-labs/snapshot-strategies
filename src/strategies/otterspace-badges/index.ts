@@ -1,30 +1,70 @@
+import { error } from 'console';
 import { subgraphRequest } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'otterspace';
 export const version = '1.0.0';
-export const examples = examplesFile;
 
-const OTTERSPACE_SUBGRAPH_API_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism',
-  '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli'
+const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
+  '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli',
+  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism'
 };
 
-const params = {
-  badges: {
-    __args: {
-      where: {
-        spec_: {
-          raft: ''
-        }
-      }
-    },
-    owner: true,
-    spec: {
-      id: true
-    }
+function fetchBadgesForRaft(
+  network: string,
+  raftAddress: string,
+  raftTokenId: string
+): Promise<any> {
+  const url = OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID[network];
+
+  if (url == undefined) {
+    throw new error(`Unsupported network with id: ${network}`);
   }
-};
+
+  const query = {
+    badges: {
+      __args: {
+        where: {
+          spec_: {
+            raft: `${raftAddress}:${raftTokenId}`
+          }
+        }
+      },
+      owner: true,
+      spec: {
+        id: true
+      }
+    }
+  };
+
+  return subgraphRequest(url, query);
+}
+
+function getBadgeWeight(specs: any[], badgeSpecID: string): number {
+  let badgeWeight = 0;
+
+  if (specs && specs.length > 0) {
+    const specConfig = specs.find((spec: any) => spec.id === badgeSpecID);
+    badgeWeight = specConfig ? specConfig.weight : 0;
+  } else {
+    badgeWeight = 1;
+  }
+
+  return badgeWeight;
+}
+
+function applyBadgeWeights(badges: [], options: any) {
+  let badgeWeights = {};
+
+  badges.forEach((badge: any) => {
+    const badgeAddress = badge.owner.toLowerCase();
+
+    if (badgeWeights[badgeAddress]) return;
+
+    badgeWeights[badgeAddress] = getBadgeWeight(options.specs, badge.spec.id);
+  });
+
+  return badgeWeights;
+}
 
 export async function strategy(
   space,
@@ -35,45 +75,20 @@ export async function strategy(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   snapshot
 ) {
-  // Get all the badges for a raft
-  params.badges.__args.where.spec_.raft = `${options.raftAddress}:${options.raftTokenId}`;
-  const getBadgesResponse = await subgraphRequest(
-    OTTERSPACE_SUBGRAPH_API_URL[network],
-    params
+  const getBadgesResponse = await fetchBadgesForRaft(
+    network,
+    options.raftAddress,
+    options.raftTokenId
   );
 
-  // If a badge's spec is listed in the options, set the associated weight
-  const badgeWeights = {};
-  if (getBadgesResponse && getBadgesResponse.badges) {
-    getBadgesResponse.badges.forEach((badge: any) => {
-      const badgeAddress = badge.owner.toLowerCase();
+  let badgeWeights = {};
+  let badges = getBadgesResponse?.badges;
+  if (!badges) return badgeWeights;
 
-      // set the weight of a badge as 0
-      let badgeWeight = badgeWeights[badgeAddress];
-      if (!badgeWeight) {
-        badgeWeight = 0;
-      } else {
-        return;
-      }
+  badgeWeights = applyBadgeWeights(badges, options);
 
-      if (options.specs && options.specs.length > 0) {
-        // for the specs defined in config, set the associated weight
-        const specConfig = options.specs.find(
-          (s: any) => s.id === badge.spec.id
-        );
-        badgeWeight = specConfig !== undefined ? specConfig.weight : 0;
-      } else {
-        // if there were no specs sepcified, all badges under the raft
-        // are treated as equally weighted
-        badgeWeight = 1;
-      }
-      badgeWeights[badgeAddress] = badgeWeight;
-    });
-  }
-
-  // For all the addresses that vote with a badge, perform a lookup to fetch their associated weight
   return Object.fromEntries(
-    addresses.map((address: any) => [
+    addresses.map((address: string) => [
       address,
       badgeWeights[address.toLowerCase()] || 0
     ])

@@ -1,16 +1,16 @@
 # Otterspace Badges
-* A RAFT is an NFT that represents a community(or a DAO) within Otterspace.
-* In order to mint a badge, it is defined with a badge spec, which is essentially dscribed as ERC721 metadata standard. A RAFT has several badge specs
+* A RAFT is an NFT that represents a community (or a DAO) within Otterspace.
+* A RAFT has several badge specs under it. A badge spec is the design of a badge, which is essentially dscribed as ERC721 metadata standard.
 * Each BADGE is a non-transferable token built with [ERC4973]("https://github.com/otterspace-xyz/ERC4973") spec and maximally backwards compatible with ERC721. Each badge spec may have several badges associated which indicate the badges minted for that spec that is associated to a raft
 
 The parameters when using this strategy must specify
-* A RAFT tokenId
+* A RAFT token ID
 * The RAFT's contract address
 * An array of weights associated to the badge specs
 
-If no specs are specifices, all badges under the RAFT are considered equal with the weight of 1
+If no specs are specificed, all badges under the RAFT are considered equal with the weight of 1
 
-Here is an example of it's usage:
+Here is an example of its usage:
 
 ```json
 {
