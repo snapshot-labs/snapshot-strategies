@@ -5,8 +5,7 @@ export const author = 'otterspace';
 export const version = '1.0.0';
 
 const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
-  '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli',
-  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism'
+  '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli'
 };
 
 function fetchBadgesForRaft(
