@@ -1,7 +1,7 @@
 import { error } from 'console';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'otterspace';
+export const author = 'otterspace-xyz';
 export const version = '1.0.0';
 
 const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
