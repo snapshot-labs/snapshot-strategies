@@ -363,6 +363,7 @@ import * as fightClub from './fight-club';
 import * as tproStaking from './tpro-staking';
 import * as safeVested from './safe-vested';
 import * as riskharborUnderwriter from './riskharbor-underwriter';
+import * as otterspaceBadges from './otterspace-badges';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -729,7 +730,8 @@ const strategies = {
   'fight-club': fightClub,
   'tpro-staking': tproStaking,
   'safe-vested': safeVested,
-  'riskharbor-underwriter': riskharborUnderwriter
+  'riskharbor-underwriter': riskharborUnderwriter,
+  'otterspace-badges': otterspaceBadges
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
