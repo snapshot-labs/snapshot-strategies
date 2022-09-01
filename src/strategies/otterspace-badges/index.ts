@@ -11,7 +11,8 @@ const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
 
 function fetchBadgesForRaft(
   network: string,
-  raftTokenId: string
+  raftTokenId: string,
+  specIds: string[]
 ): Promise<any> {
   const url = OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID[network];
 
@@ -19,13 +20,18 @@ function fetchBadgesForRaft(
     throw new error(`Unsupported network with id: ${network}`);
   }
 
-  const query = {
+  let specFilter: any = {
+    raft: `rafts:${raftTokenId}`
+  }
+  if (specIds && specIds.length > 0) {
+    specFilter.id_in = specIds
+  }
+
+  let query = {
     badges: {
       __args: {
         where: {
-          spec_: {
-            raft: `rafts:${raftTokenId}`
-          }
+          spec_: specFilter
         }
       },
       owner: true,
@@ -34,6 +40,8 @@ function fetchBadgesForRaft(
       }
     }
   };
+
+
 
   return subgraphRequest(url, query);
 }
@@ -76,7 +84,8 @@ export async function strategy(
 ) {
   const getBadgesResponse = await fetchBadgesForRaft(
     network,
-    options.raftTokenId
+    options.raftTokenId,
+    options.specs.map(spec => spec.id)
   );
 
   let badgeWeights = {};
