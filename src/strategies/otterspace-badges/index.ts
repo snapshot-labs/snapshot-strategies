@@ -24,7 +24,7 @@ function fetchBadgesForRaft(
       __args: {
         where: {
           spec_: {
-            raft: `${raftAddress}:${raftTokenId}`
+            raft: `rafts:${raftAddress}:${raftTokenId}`
           }
         }
       },
