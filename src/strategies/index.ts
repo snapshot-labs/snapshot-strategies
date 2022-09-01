@@ -364,6 +364,7 @@ import * as tproStaking from './tpro-staking';
 import * as safeVested from './safe-vested';
 import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
+import * as radiantTotalLocked from './radiant-total-locked';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -731,7 +732,8 @@ const strategies = {
   'tpro-staking': tproStaking,
   'safe-vested': safeVested,
   'riskharbor-underwriter': riskharborUnderwriter,
-  'otterspace-badges': otterspaceBadges
+  'otterspace-badges': otterspaceBadges,
+  'radiant-total-locked': radiantTotalLocked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
