@@ -1,25 +1,19 @@
 import { formatUnits } from '@ethersproject/units';
-import { Multicaller } from '../../utils';
+import { multicall } from '../../utils';
 
 export const author = 'plind-dm';
 export const version = '0.0.1';
 
 const abi = [
-  {
-    inputs:[
-      {internalType:"address",name:"user",type:"address"}
-    ],
-    name:"lockedBalances",
-    outputs:[
-      {internalType:"uint256",name:"total",type:"uint256"},
-      {internalType:"uint256",name:"unlockable",type:"uint256"},
-      {internalType:"uint256",name:"locked",type:"uint256"},
-      {components:[{internalType:"uint256",name:"amount",type:"uint256"},{internalType:"uint256",name:"unlockTime",type:"uint256"}],internalType:"struct MultiFeeDistribution.LockedBalance[]",name:"lockData",type:"tuple[]"}
-    ],
-    stateMutability:"view",
-    type:"function"
-  }
-];
+  'function lockedBalances(address user) view returns (uint256 total, uint256 unlockable, uint256 locked, tuple(uint256 amount, uint256 unlockTime)[] lockData)'
+]
+
+function getArgs(options, address: string) {
+  const args: Array<string | number> = options.args || ['%{address}'];
+  return args.map((arg) =>
+    typeof arg === 'string' ? arg.replace(/%{address}/g, address) : arg
+  );
+}
 
 export async function strategy(
   space,
@@ -30,17 +24,22 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) =>
-    multi.call(address, options.multiFeeDistributor, 'lockedBalances', [address])
+  const result = await multicall(
+    network,
+    provider,
+    abi,
+    addresses.map((address: any) => [
+      options.multiFeeDistributor,
+      'lockedBalances',
+      getArgs(options, address)
+    ]),
+    { blockTag }
   );
-  const result: Record<string, Object> = await multi.execute();
-
+  
   return Object.fromEntries(
-    Object.entries(result).map(([address, balances]) => [
-      address,
-      parseFloat(formatUnits(balances[2], options.decimals))
+    result.map((value, index) => [
+      addresses[index],
+      parseFloat(formatUnits(value.locked, options.decimals))
     ])
   );
 }
