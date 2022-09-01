@@ -290,6 +290,8 @@ import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
+import * as gysrPendingRewards from './gysr-pending-rewards';
+import * as gysrLPStakingBalance from './gysr-lp-staking-balance';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
@@ -358,6 +360,9 @@ import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-
 import * as arrowVesting from './arrow-vesting';
 import * as tutellusProtocol from './tutellus-protocol';
 import * as fightClub from './fight-club';
+import * as tproStaking from './tpro-staking';
+import * as safeVested from './safe-vested';
+import * as riskharborUnderwriter from './riskharbor-underwriter';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -653,6 +658,8 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
+  'gysr-pending-rewards': gysrPendingRewards,
+  'gysr-lp-staking-balance': gysrLPStakingBalance,
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
@@ -719,7 +726,10 @@ const strategies = {
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
-  'fight-club': fightClub
+  'fight-club': fightClub,
+  'tpro-staking': tproStaking,
+  'safe-vested': safeVested,
+  'riskharbor-underwriter': riskharborUnderwriter
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

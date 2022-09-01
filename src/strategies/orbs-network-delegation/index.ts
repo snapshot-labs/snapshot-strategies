@@ -1,7 +1,7 @@
 import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import { getAddress } from "@ethersproject/address";
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'gadcl';
 export const version = '0.1.2';
