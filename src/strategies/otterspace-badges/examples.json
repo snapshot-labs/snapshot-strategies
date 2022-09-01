@@ -45,5 +45,50 @@
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
     "snapshot": 7456664
+  },
+  {
+    "name": "Example query with specific badge specs",
+    "strategy": {
+      "name": "otterspace-badges",
+      "params": {
+        "symbol": "BADGES",
+        "raftTokenId": "1",
+        "specs": [
+          {
+            "id": "bafyreibvclrxnfm5nrchvdqfog6t2usvlqiozwgxynrxwlgftl3ln7uxqe",
+            "weight": 5
+          },
+          {
+            "id": "bafyreicl3unvw6tvzjfduvrhxbfi74gsob6mpf6ekn3s2nkopqz2phtx7e",
+            "weight": 10
+          }
+        ]
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0x76d84163bc0bbf58d6d3f2332f8a9c5b339df983",
+      "0x73677662f66088236ddfc95da42e405cf3f4ce13",
+      "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
+    ],
+    "snapshot": 20256100
+  },
+  {
+    "name": "Example query for all badge specs",
+    "strategy": {
+      "name": "otterspace-badges",
+      "params": {
+        "symbol": "BADGES",
+        "raftTokenId": "1",
+        "specs": []
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0x76d84163bc0bbf58d6d3f2332f8a9c5b339df983",
+      "0x73677662f66088236ddfc95da42e405cf3f4ce13",
+      "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
+    ],
+    "snapshot": 20256100
   }
 ]
