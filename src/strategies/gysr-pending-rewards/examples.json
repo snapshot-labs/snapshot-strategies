@@ -4,17 +4,18 @@
     "strategy": {
       "name": "gysr-pending-rewards",
       "params": {
-        "pool": "0xE48eddbBcA614be5416f20dE57D858562b72479d",
-        "rewardToken": "0xb521022EeaD7E7eEe95D30BA1A1f0aB657F83a61",
-        "symbol": "REX"
+        "pool": "0x30c0f65d9b27ebe2cc2a49cbcb4133230b3fb381",
+        "rewardToken": "0xbEa98c05eEAe2f3bC8c3565Db7551Eb738c8CCAb",
+        "symbol": "GYSR"
       }
     },
-    "network": 137,
+    "network": 1,
     "addresses": [
-      "0x62a3ebf2acfcb209804faa5f5c52138c505d7ef6",
-      "0x29e3d28f1111d68ea4036eea466a922b7cd02311",
-      "0xE9DE5d8AD37d9514f3c452BA8CE780bf2100Da10"
+      "0xc56e357599de4418c3a33ad611130d2b2b36b19a",
+      "0x3a5a5ed68b3eea83df82fbd3d16b16562e205ffb",
+      "0x6c2448c22a7947bd4fd886b719618b913cd09538",
+      "0x30c0f65d9b27ebe2cc2a49cbcb4133230b3fb381"
     ],
-    "snapshot": 32189416
+    "snapshot": 15410000
   }
 ]

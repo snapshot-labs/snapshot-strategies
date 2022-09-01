@@ -362,6 +362,7 @@ import * as tutellusProtocol from './tutellus-protocol';
 import * as fightClub from './fight-club';
 import * as tproStaking from './tpro-staking';
 import * as safeVested from './safe-vested';
+import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
 
 const strategies = {
@@ -729,6 +730,7 @@ const strategies = {
   'fight-club': fightClub,
   'tpro-staking': tproStaking,
   'safe-vested': safeVested,
+  'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges
 };
 
