@@ -12,7 +12,8 @@ const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
 function fetchBadgesForRaft(
   network: string,
   raftTokenId: string,
-  specIds: string[]
+  specIds: string[],
+  blockTag: number | string
 ): Promise<any> {
   const url = OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID[network];
 
@@ -22,9 +23,9 @@ function fetchBadgesForRaft(
 
   let specFilter: any = {
     raft: `rafts:${raftTokenId}`
-  }
+  };
   if (specIds && specIds.length > 0) {
-    specFilter.id_in = specIds
+    specFilter.id_in = specIds;
   }
 
   let query = {
@@ -32,7 +33,8 @@ function fetchBadgesForRaft(
       __args: {
         where: {
           spec_: specFilter
-        }
+        },
+        block: blockTag != 'latest' ? { number: blockTag } : null
       },
       owner: true,
       spec: {
@@ -40,8 +42,6 @@ function fetchBadgesForRaft(
       }
     }
   };
-
-
 
   return subgraphRequest(url, query);
 }
@@ -82,10 +82,13 @@ export async function strategy(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   snapshot
 ) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
   const getBadgesResponse = await fetchBadgesForRaft(
     network,
     options.raftTokenId,
-    options.specs.map(spec => spec.id)
+    options.specs.map((spec) => spec.id),
+    blockTag
   );
 
   let badgeWeights = {};

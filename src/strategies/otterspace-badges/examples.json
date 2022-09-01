@@ -25,7 +25,7 @@
       "0x33d0bbd05cf3c7e040d33bc1f338585a087e5dd9",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
-    "snapshot": 7456664
+    "snapshot": 7509588
   },
   {
     "name": "Example query for all badge specs",
@@ -44,7 +44,7 @@
       "0x33d0bbd05cf3c7e040d33bc1f338585a087e5dd9",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
-    "snapshot": 7456664
+    "snapshot": 7509588
   },
   {
     "name": "Example query with specific badge specs",
@@ -71,7 +71,7 @@
       "0x73677662f66088236ddfc95da42e405cf3f4ce13",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
-    "snapshot": 20256100
+    "snapshot": 21528802
   },
   {
     "name": "Example query for all badge specs",
@@ -89,6 +89,6 @@
       "0x73677662f66088236ddfc95da42e405cf3f4ce13",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
-    "snapshot": 20256100
+    "snapshot": 21528802
   }
 ]
