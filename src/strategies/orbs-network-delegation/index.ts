@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'gadcl';
-export const version = '0.1.1';
+export const version = '0.1.2';
 
 const abi = [
   'function getDelegatedStake(address addr) external view returns (uint256)',
@@ -40,7 +40,7 @@ export async function strategy(
       const from = getAddress(address);
       const to = getAddress(delegation);
       delegations[from] = delegatorStake;
-      if (delegations[to]) {
+      if (delegations[to] && !override[to]) {
         delegations[to] = BigNumber.from(delegations[to]).sub(delegatorStake);
       }
     }
