@@ -3,7 +3,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
 export const author = 'syedMohib44';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const abi1 = [
   'function getMonsterObj(uint64 _objId) external view returns(uint64 objId, uint32 classId, address trainer, uint32 exp, uint32 createIndex, uint32 lastClaimIndex, uint createTime)',
@@ -26,7 +26,7 @@ export async function strategy(
     Math.min(Math.max(num, min), max);
 
   addresses.map((address) => {
-    multi.call(address, options.EMON_DATA_ADDRESS, 'balanceOf', [address]);
+    multi.call(address, options.EMONA_ADDRESS, 'balanceOf', [address]);
   });
   const player_addresses: Record<string, BigNumber> = await multi.execute();
 
@@ -37,7 +37,7 @@ export async function strategy(
     for (let i = 0; i < balance; i++) {
       multi1.call(
         address[0].toString() + '-' + i.toString(),
-        options.EMON_DATA_ADDRESS,
+        options.EMONA_ADDRESS,
         'tokenOfOwnerByIndex',
         [address[0], i]
       );
@@ -49,7 +49,7 @@ export async function strategy(
   Object.entries(address_tokens).forEach((address_token) => {
     const address = address_token[0].split('-')[0].toString();
     const token = +address_token[1].toString();
-    multi2.call(address + '-' + token, options.EMONA_ADDRESS, 'getMonsterObj', [
+    multi2.call(address + '-' + token, options.EMON_DATA_ADDRESS, 'getMonsterObj', [
       token
     ]);
   });
@@ -80,15 +80,14 @@ export async function strategy(
     }
 
     result[address] +=
-      +player_addresses[address].toString() > 200
-        ? (classIdWeight[classId]
-            ? (classIdWeight[classId].weight / 200) *
-              +player_addresses[address].toString()
-            : 0
-          ).toFixed(0)
+      Number((+player_addresses[address].toString() > 200)
+        ? Number(classIdWeight[classId]
+          ? ((classIdWeight[classId].weight / 200) * Number(player_addresses[address]))
+          : 0
+        ).toFixed(0)
         : classIdWeight[classId]
-        ? classIdWeight[classId].weight
-        : 0;
+          ? classIdWeight[classId].weight
+          : 0);
   }
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [address, balance])
