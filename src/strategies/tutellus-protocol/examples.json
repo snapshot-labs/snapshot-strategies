@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "tutellus-protocol",
+      "params": {}
+    },
+    "network": "137",
+    "addresses": [
+      "0xf3adfDFdB3f9f3151db8595C4e850C11a2b1b70E",
+      "0x18f43A59D698Ea7a4f5A0c11E7AA50973F5B396B",
+      "0x81EC959A48756984C2c94DB1BF9D4BB18746Ee2A",
+      "0x66e2495AEbCa70c141F3936Cb6F6d2e6464a5D99",
+      "0x0F22A52D6Ee30abEc311fd67C998Ab4B5e00382C",
+      "0xf79f703A6C80a427E826866cF91BC7c5B249187C"
+    ],
+    "snapshot": 32188493
+  }
+]

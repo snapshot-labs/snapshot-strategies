@@ -32,10 +32,8 @@ export async function strategy(
       walletAddress
     ]);
   }
-  const walletToBalanceOf: Record<
-    string,
-    BigNumber
-  > = await callWalletToBalanceOf.execute();
+  const walletToBalanceOf: Record<string, BigNumber> =
+    await callWalletToBalanceOf.execute();
 
   // 3rd, get tokenIds for each address, and index
   const callWalletIdToTokenID = new Multicaller(network, provider, abi, {
@@ -53,10 +51,8 @@ export async function strategy(
       }
     }
   }
-  const walletIdToTokenID: Record<
-    string,
-    BigNumber
-  > = await callWalletIdToTokenID.execute();
+  const walletIdToTokenID: Record<string, BigNumber> =
+    await callWalletIdToTokenID.execute();
 
   // 4th, sum up metadata value for each address
   const walletToAttributeValue = {} as Record<string, number>;

@@ -79,19 +79,16 @@ export async function strategy(
       continue;
     }
 
-    //TODO: Max cap for weight 
-    //TODO: Cap on average > 100K to 100K
-
     result[address] +=
-      (+player_addresses[address].toString() > 200)
+      +player_addresses[address].toString() > 200
         ? (classIdWeight[classId]
-          ? (classIdWeight[classId].weight / 200) *
-          Number(player_addresses[address].toString())
-          : 0
-        ).toFixed(0)
+            ? (classIdWeight[classId].weight / 200) *
+              +player_addresses[address].toString()
+            : 0
+          ).toFixed(0)
         : classIdWeight[classId]
-          ? classIdWeight[classId].weight
-          : 0;
+        ? classIdWeight[classId].weight
+        : 0;
   }
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [address, balance])

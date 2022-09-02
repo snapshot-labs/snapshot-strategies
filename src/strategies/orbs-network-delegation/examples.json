@@ -1,0 +1,49 @@
+[
+  {
+    "name": "Example query 1",
+    "strategy": {
+      "name": "orbs-network-delegation",
+      "params": {
+        "address": "0xB97178870F39d4389210086E4BcaccACD715c71d",
+        "symbol": "ORBS",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xc5e624d6824e626a6f14457810e794e4603cfee2",
+      "0x63AEf7616882F488BCa97361d1c24F05B4657ae5",
+      "0x3D726623456e34e8a7F5567F6249EC4D72Cc3595",
+      "0x8DdB908c77ccc9cfde28dDF84311CB6fDF3f3125",
+      "0xca565ccb6434e0adf49b2d66df12b0046b013d7f",
+      "0x9520F53FD81C668E8088AE194C40E3F977B73D28",
+      "0x588C28C19E4185A2442C4C3DD9EBD592C61ECCB9",
+      "0xA478C2975AB1EA89E8196811F51A7B7ADE33EB11"
+    ],
+    "snapshot": 15210123
+  },
+
+  {
+    "name": "Example query 2",
+    "strategy": {
+      "name": "orbs-network-delegation",
+      "params": {
+        "address": "0x513d30e66641cB1f2670b5994DD8E2B61ED3C23c",
+        "symbol": "ORBS",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xc5e624d6824e626a6f14457810e794e4603cfee2",
+      "0x63aef7616882f488bca97361d1c24f05b4657ae5",
+      "0x3d726623456e34e8a7f5567f6249ec4d72cc3595",
+      "0x8ddb908c77ccc9cfde28ddf84311cb6fdf3f3125",
+      "0xca565ccb6434e0adf49b2d66df12b0046b013d7f",
+      "0x9520f53fd81c668e8088ae194c40e3f977b73d28",
+      "0x588c28c19e4185a2442c4c3dd9ebd592c61eccb9",
+      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11"
+    ],
+    "snapshot": 31123128
+  }
+]

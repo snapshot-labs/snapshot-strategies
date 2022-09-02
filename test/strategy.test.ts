@@ -228,4 +228,8 @@ describe(`\nOthers:`, () => {
     const version = snapshot.strategies[strategy].author;
     expect(typeof version).toBe('string');
   });
+<<<<<<< HEAD
 });
+=======
+});
+>>>>>>> upstream/master

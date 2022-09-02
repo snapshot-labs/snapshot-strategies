@@ -50,10 +50,8 @@ export async function strategy(
   );
   liquidityPoolMulticaller.call('lpReserves', options.lp_token, 'getReserves');
 
-  const {
-    lpTotalSupply,
-    lpReserves
-  } = await liquidityPoolMulticaller.execute();
+  const { lpTotalSupply, lpReserves } =
+    await liquidityPoolMulticaller.execute();
 
   const liquidityPoolTokenRatio =
     parseFloat(formatUnits(lpReserves[0], options.decimals)) /
@@ -114,7 +112,10 @@ export async function strategy(
           formatUnits(stakingPairResponse[address], options.decimals)
         ) *
         (1 + liquidityPoolTokenRatio);
-      return [address, tokenBalance + stakingTokenBalance + stakingPairBalance];
+      return [
+        address,
+        tokenBalance + 2 * stakingTokenBalance + 2 * stakingPairBalance
+      ];
     })
   );
 }
