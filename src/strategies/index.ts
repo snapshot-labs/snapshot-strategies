@@ -1,7 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
-import * as ethermon721 from './ethermon-erc721';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
@@ -309,14 +308,15 @@ import * as gamiumVoting from './gamium-voting';
 import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
+import * as ethermon721 from './ethermon-erc721';
 
 const strategies = {
+  'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'nouns-rfp-power': nounsPower,
-  'ethermon-erc721': ethermon721,
   coordinape,
   'anti-whale': antiWhale,
   balancer,

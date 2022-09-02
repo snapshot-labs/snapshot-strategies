@@ -4,16 +4,16 @@
     "strategy": {
       "name": "ethermon-erc721",
       "params": {
-        "EMON_DATA_ADDRESS": "0x5d00d312e171be5342067c09bae883f9bcb2003b",
-        "EMONA_ADDRESS": "0xabc1c404424bdf24c19a5cc5ef8f47781d18eb3e",
-        "symbol": "EMONA",
-        "tokenWeightIPFS":"QmT7mL2XXQALkd2AhTf3S4Hx4ijepheoQ9dcfFTtzQ5U6P"
+        "EMONA_ADDRESS": "0x0f05607e51d5224300520a710898a8467d8d1117",
+        "tokenWeightIPFS": "abb6cbba-f8e6-4fce-89a8-7360cda5daf9-bucket/weights.json",
+        "EMON_DATA_ADDRESS": "0x9928a8ea82d86290dfd1920e126b3872890525b3",
+        "symbol": "EMONA"
       }
     },
-    "network": "1",
+    "network": "137",
     "addresses": [
-      "0x038ae33f4bbfd9e0489abd7e622f014244433f72"
+      "0x27b8580bce3102acda2f3853d44453a5f138d5f9"
     ],
-    "snapshot": 13847063
+    "snapshot": 14101222
   }
 ]
