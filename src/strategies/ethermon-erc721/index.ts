@@ -49,9 +49,12 @@ export async function strategy(
   Object.entries(address_tokens).forEach((address_token) => {
     const address = address_token[0].split('-')[0].toString();
     const token = +address_token[1].toString();
-    multi2.call(address + '-' + token, options.EMON_DATA_ADDRESS, 'getMonsterObj', [
-      token
-    ]);
+    multi2.call(
+      address + '-' + token,
+      options.EMON_DATA_ADDRESS,
+      'getMonsterObj',
+      [token]
+    );
   });
 
   const monObject: Record<string, number> = await multi2.execute();
@@ -79,15 +82,18 @@ export async function strategy(
       continue;
     }
 
-    result[address] +=
-      Number((+player_addresses[address].toString() > 200)
-        ? Number(classIdWeight[classId]
-          ? ((classIdWeight[classId].weight / 200) * Number(player_addresses[address]))
-          : 0
-        ).toFixed(0)
+    result[address] += Number(
+      +player_addresses[address].toString() > 200
+        ? Number(
+            classIdWeight[classId]
+              ? (classIdWeight[classId].weight / 200) *
+                  Number(player_addresses[address])
+              : 0
+          ).toFixed(0)
         : classIdWeight[classId]
-          ? classIdWeight[classId].weight
-          : 0);
+        ? classIdWeight[classId].weight
+        : 0
+    );
   }
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [address, balance])
