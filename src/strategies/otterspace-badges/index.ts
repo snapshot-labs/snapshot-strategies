@@ -21,14 +21,14 @@ function fetchBadgesForRaft(
     throw new error(`Unsupported network with id: ${network}`);
   }
 
-  let specFilter: any = {
+  const specFilter: any = {
     raft: `rafts:${raftTokenId}`
   };
   if (specIds && specIds.length > 0) {
     specFilter.id_in = specIds;
   }
 
-  let query = {
+  const query = {
     badges: {
       __args: {
         where: {
@@ -60,7 +60,7 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
 }
 
 function applyBadgeWeights(badges: [], options: any) {
-  let badgeWeights = {};
+  const badgeWeights = {};
 
   badges.forEach((badge: any) => {
     const badgeAddress = badge.owner.toLowerCase();
@@ -92,7 +92,7 @@ export async function strategy(
   );
 
   let badgeWeights = {};
-  let badges = getBadgesResponse?.badges;
+  const badges = getBadgesResponse?.badges;
   if (!badges) return badgeWeights;
 
   badgeWeights = applyBadgeWeights(badges, options);
