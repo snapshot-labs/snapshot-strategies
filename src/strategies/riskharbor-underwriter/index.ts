@@ -4,7 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'dewpe';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
   _space,
