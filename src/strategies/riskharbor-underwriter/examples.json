@@ -10,9 +10,8 @@
     },
     "network": "42161",
     "addresses": [
-      "0x02a41565811ad5fe8f21d738c8ce2995d224fee4",
-      "0xd4d4e905d7f1eb095769face2c2be516865e4981",
-      "0xd401c5b54a079420c6c7d9405fafc9a10cd8a4ed",
+      "0xD4D4e905d7F1Eb095769fAce2C2bE516865E4981",
+      "0xd401c5B54A079420C6C7D9405faFc9a10CD8a4ed",
       "0x010dab3779810cf08ac213b9efa915821bb43e26",
       "0x0dcdd4f4a70ebb2eaffd5a01bd6cacde14dae4f0",
       "0xfc9bffa77c2b725add71f4ad88bbe228d5601eb3",

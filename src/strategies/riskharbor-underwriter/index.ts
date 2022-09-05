@@ -1,9 +1,10 @@
+import { getAddress } from '@ethersproject/address';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'dewpe';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
   _space,
@@ -70,7 +71,7 @@ export async function strategy(
 
   return Object.fromEntries(
     Object.entries(agUserBals).map(([address, balance]) => [
-      address,
+      getAddress(address),
       // Divide each bal by 1eDecimals
       parseFloat(formatUnits(balance, decimals))
     ])
