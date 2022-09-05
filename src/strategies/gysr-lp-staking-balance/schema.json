@@ -32,7 +32,7 @@
           "type": "number",
           "title": "Decimals",
           "examples": ["e.g. 18"]
-        }        
+        }
       },
       "required": ["pool", "tokenAddress", "decimals"],
       "additionalProperties": false
