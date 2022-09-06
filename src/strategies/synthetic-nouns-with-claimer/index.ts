@@ -1,6 +1,6 @@
 import { Multicaller } from '../../utils';
 import fetch from 'cross-fetch';
-
+import { getAddress } from '@ethersproject/address';
 export const author = 'stephancill';
 export const version = '0.1.0';
 
@@ -15,6 +15,8 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const checksummedAddresses = addresses.map((address) => getAddress(address));
 
   // Get the minter from zora api
   const mints = await fetch('https://api.zora.co/graphql', {
@@ -39,7 +41,7 @@ export async function strategy(
   }).then((res) => res.json());
 
   const mintsByAddress = mints.data.mints.nodes.reduce((acc, node) => {
-    const address = node.mint.toAddress;
+    const address = getAddress(node.mint.toAddress);
     const tokenId = node.mint.tokenId;
     if (!acc[address]) {
       acc[address] = undefined;
@@ -52,7 +54,7 @@ export async function strategy(
   const multicaller = new Multicaller(network, provider, abi, {
     blockTag
   });
-  addresses.forEach((address) => {
+  checksummedAddresses.forEach((address) => {
     if (mintsByAddress[address]) {
       multicaller.call(address, options.address, 'ownerOf', [
         mintsByAddress[address]
@@ -62,10 +64,12 @@ export async function strategy(
 
   const response = await multicaller.execute();
 
-  return Object.fromEntries(
-    addresses.map((address) => [
+  const scores = Object.fromEntries(
+    checksummedAddresses.map((address) => [
       address,
-      response[address] && response[address].toLowerCase() === address ? 1 : 0
+      response[address] && getAddress(response[address]) === address ? 1 : 0
     ])
   );
+
+  return scores;
 }
