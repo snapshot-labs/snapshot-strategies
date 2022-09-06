@@ -210,7 +210,6 @@ export async function strategy(
     ])
   );
 
-  console.log(scores);
 
   return scores;
 }
