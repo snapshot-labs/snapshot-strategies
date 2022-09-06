@@ -210,6 +210,5 @@ export async function strategy(
     ])
   );
 
-
   return scores;
 }
