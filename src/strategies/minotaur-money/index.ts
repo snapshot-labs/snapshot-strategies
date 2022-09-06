@@ -6,10 +6,12 @@ export const version = '0.0.3';
 
 const minoContractAddress = '0x3A1138075bd97a33F23A87824b811146FA44288E';
 const sMinoContractAddress = '0xB46fe6791A30d51970EA3B840C9fa5F1F107b86F';
+const wsMinoContractAddress = '0x1066c6753FFaf8540F691643A6D683e23599c4ab';
 
 //const mmfPoolAddressOld = '0x57E8f8F7447D8d02fe4D291378D37E67D393257A';
-const mmfPoolAddressOld = '0x849f97c5452cc4bad1069b8efe2b3561b06694c3';
-const mmfPoolAddressNew = '0xf6a96e753dec01acb659acbe75deba46d53ebc5e';
+//const mmfPoolAddressOld = '0x849f97c5452cc4bad1069b8efe2b3561b06694c3';
+//const mmfPoolAddressNew = '0xf6a96e753dec01acb659acbe75deba46d53ebc5e';
+const mmfPoolAddressNewNew = '0x687a0275aE620FB7868b09f16d3FeF862824317d'
 
 const erc20ContractAbi = [
   'function balanceOf(address account) external view returns (uint256)',
@@ -63,49 +65,46 @@ export async function strategy(
     'balanceOf'
   );
 
-  const wsMinoInMMFMultiOld = makeMulticaller(
+  const wsMinoMulti = makeMulticaller(
+    erc20ContractAbi,
+    wsMinoContractAddress,
+    'balanceOf'
+  );
+
+
+  const wsMinoInMMFMulti = makeMulticaller(
     mmfPoolAbi,
-    mmfPoolAddressOld,
+    mmfPoolAddressNewNew,
     'userInfo'
   );
 
-  const wsMinoInMMFMultiNew = makeMulticaller(
-    mmfPoolAbi,
-    mmfPoolAddressNew,
-    'userInfo'
-  );
-
-  const [index, minoBalances, sMinoBalances, mmfUserInfosOld, mmfUserInfoNew]: [
+  const [index, minoBalances, sMinoBalances, wsMinoBalances, mmfUserInfo]: [
     BigNumber,
     MultiCallResult,
     MultiCallResult,
-    MultiCallObjectResult,
+    MultiCallResult,
     MultiCallObjectResult
   ] = await Promise.all([
     callIndex(),
     sMinoMulti.execute(),
     minoMulti.execute(),
-    wsMinoInMMFMultiOld.execute(),
-    wsMinoInMMFMultiNew.execute()
+    wsMinoMulti.execute(),
+    wsMinoInMMFMulti.execute()
   ]);
 
   const scores: Record<string, BigNumber> = {};
 
   for (const address of addresses) {
     const wsMinoScore = BigNumber.from(
-      mmfUserInfosOld[address]
-        ? BigNumber.from(mmfUserInfosOld[address]['amount'])
+      mmfUserInfo[address]
+        ? BigNumber.from(mmfUserInfo[address]['amount'])
         : 0
     )
-      .add(
-        mmfUserInfoNew[address]
-          ? BigNumber.from(mmfUserInfoNew[address]['amount'])
-          : 0
-      )
       .mul(index)
       .div(BigNumber.from(10).pow(18));
 
     const minoScore = wsMinoScore
+      .add(wsMinoBalances[address] || 0)
       .add(sMinoBalances[address] || 0)
       .add(minoBalances[address] || 0);
 
