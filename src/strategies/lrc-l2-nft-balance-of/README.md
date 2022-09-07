@@ -1,14 +1,17 @@
-# lrc-l2-subgraph-balance-of
+# lrc-l2-nft-balance-of
 
-Strategy to read account LRC balance from LoopringV2 subgraph.
+Strategy to read account balances for NFTs (72 or 1155) from LoopringV2 subgraph. Assumes we only want tokens minted by a specific account id.
 
 Here is an example of parameters:
 
 ```json
 {
-  "address": "0x17ea92d6ffbaa1c7f6b117c1e9d0c88abdc8b84c",
-  "symbol": "LRC",
-  "tokenId": 1,
-  "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36"
+  "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
+  "minter_account_id": "74447",
+  "blacklisted_account_ids": ["38482"]
 }
 ```
+
+Use explorer.loopring.io to look up addresses and find account id's.
+
+Account id `38482` maps to `0x000000000000000000000000000000000000dead` and is used for burning tokens.
