@@ -78,14 +78,18 @@ export async function strategy(
     'userInfo'
   );
 
-  const [index, minoBalances, sMinoBalances, wsMinoBalances, mmfUserInfo]: [
+  const [index]: [
     BigNumber,
+  ] = await Promise.all([
+    callIndex(),
+  ]);
+
+  const [minoBalances, sMinoBalances, wsMinoBalances, mmfUserInfo]: [
     MultiCallResult,
     MultiCallResult,
     MultiCallResult,
     MultiCallObjectResult
   ] = await Promise.all([
-    callIndex(),
     sMinoMulti.execute(),
     minoMulti.execute(),
     wsMinoMulti.execute(),
