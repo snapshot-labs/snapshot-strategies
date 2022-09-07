@@ -366,6 +366,7 @@ import * as safeVested from './safe-vested';
 import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
+import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -735,7 +736,8 @@ const strategies = {
   'safe-vested': safeVested,
   'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges,
-  'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner
+  'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
+  'nation3-votes-with-delegations': nation3VotesWIthDelegations
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
