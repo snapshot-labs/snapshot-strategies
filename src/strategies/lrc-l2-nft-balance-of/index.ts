@@ -46,7 +46,6 @@ export async function strategy(
   let balances = {};
   let lastUpdatedAt = 0;
   let response_size = 0;
-  let requests: any[] = [];
 
   if(! blacklisted_ids || blacklisted_ids.length === 0) {
     blacklisted_ids = [""];
@@ -54,12 +53,10 @@ export async function strategy(
 
 
   do {
-    const request = subgraphRequest(
+    const response = await subgraphRequest(
       options.graph,
       makeQuery(snapshot, options.minter_account_id, lastUpdatedAt, blacklisted_ids)
     );
-    requests.push(request);
-    const response = await request;
 
     response.accountNFTSlots.forEach((slot) => {
       if(! balances.hasOwnProperty(slot.account.address)) {
@@ -72,7 +69,12 @@ export async function strategy(
 
   } while(response_size == LIMIT);
 
-  await Promise.all(requests);
+  const scores = Object.fromEntries(
+    addresses.map((address) => [
+      address,
+      balances[address.toLowerCase()]
+    ])
+  );
 
-  return balances;
+  return scores;
 }
