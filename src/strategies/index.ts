@@ -343,6 +343,7 @@ import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as lrcL2NftBalanceOf from './lrc-l2-nft-balance-of';
+import * as lrcLPSubgraphBalanceOf from './lrc-lp-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
@@ -363,6 +364,9 @@ import * as tutellusProtocol from './tutellus-protocol';
 import * as fightClub from './fight-club';
 import * as tproStaking from './tpro-staking';
 import * as safeVested from './safe-vested';
+import * as riskharborUnderwriter from './riskharbor-underwriter';
+import * as otterspaceBadges from './otterspace-badges';
+import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -710,6 +714,7 @@ const strategies = {
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
   'lrc-l2-nft-balance-of': lrcL2NftBalanceOf,
+  'lrc-lp-subgraph-balance-of': lrcLPSubgraphBalanceOf,
   'rari-fuse': rariFuse,
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
@@ -729,7 +734,10 @@ const strategies = {
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
   'tpro-staking': tproStaking,
-  'safe-vested': safeVested
+  'safe-vested': safeVested,
+  'riskharbor-underwriter': riskharborUnderwriter,
+  'otterspace-badges': otterspaceBadges,
+  'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
