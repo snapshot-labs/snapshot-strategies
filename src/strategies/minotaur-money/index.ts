@@ -97,14 +97,14 @@ export async function strategy(
   for (const address of addresses) {
     const wsMinoScore = BigNumber.from(
       mmfUserInfo[address]
-        ? BigNumber.from(mmfUserInfo[address]['amount'])
+        ? mmfUserInfo[address]['amount']
         : 0
     )
+      .add(wsMinoBalances[address] || 0)
       .mul(index)
-      .div(BigNumber.from(10).pow(18));
+      .div(BigNumber.from(10).pow(9));
 
     const minoScore = wsMinoScore
-      .add(wsMinoBalances[address] || 0)
       .add(sMinoBalances[address] || 0)
       .add(minoBalances[address] || 0);
 
