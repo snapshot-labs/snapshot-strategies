@@ -49,7 +49,7 @@ export async function strategy(
       multiCaller = multicaller
     }
     addresses.forEach((address) =>
-      multiCaller.call(address, contractAddress, functionSignature, [address])
+      multiCaller.call(address+(usesPreviousMulticaler ? "1" : "2"), contractAddress, functionSignature, [address])
     );
     return multiCaller;
   };
@@ -66,8 +66,8 @@ export async function strategy(
     erc20ContractAbi,
     minoContractAddress,
     'balanceOf',
-    null,
-    false
+    sMinoMulti,
+    true
   );
 
   const wsMinoMulti = makeMulticaller(
@@ -93,14 +93,12 @@ export async function strategy(
     callIndex(),
   ]);
 
-  const [minoBalances, sMinoBalances, wsMinoBalances, mmfUserInfo]: [
-    MultiCallResult,
+  const [minoBalances, wsMinoBalances, mmfUserInfo]: [
     MultiCallResult,
     MultiCallResult,
     MultiCallObjectResult
   ] = await Promise.all([
     minoMulti.execute(),
-    sMinoMulti.execute(),
     wsMinoMulti.execute(),
     wsMinoInMMFMulti.execute()
   ]);
@@ -109,20 +107,21 @@ export async function strategy(
 
   for (const address of addresses) {
     const wsMinoScore = BigNumber.from(
-      mmfUserInfo[address]
-        ? mmfUserInfo[address]['amount']
+      mmfUserInfo[address+"1"]
+        ? mmfUserInfo[address+"1"]['amount']
         : 0
     )
-      .add(wsMinoBalances[address] || 0)
+      .add(wsMinoBalances[address+"1"] || 0)
       .mul(index) // timeses by 10^9 effectively
 
     const minoScore = wsMinoScore
-      .add(BigNumber.from(minoBalances[address] || 0).mul(BigNumber.from(10).pow(18)))
-      .add(BigNumber.from(sMinoBalances[address] || 0).mul(BigNumber.from(10).pow(18)))
-
-    console.log(address, minoScore.toString())
+      .add(BigNumber.from(minoBalances[address+"1"] || 0).mul(BigNumber.from(10).pow(18)))
   
     scores[address] = minoScore;
+  }
+
+  for (const address of addresses) {
+    scores[address] = scores[address].add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18)))
   }
 
   const scoresNumber = Object.fromEntries(
