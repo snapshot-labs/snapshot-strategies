@@ -43,13 +43,13 @@ export async function strategy(
     ]);
   };
 
-  const makeMulticaller = (abi, contractAddress, functionSignature, multicaller, usesPreviousMulticaler) => {
+  const makeMulticaller = (abi, contractAddress, functionSignature, multicaller, callBatchIdx = "0") => {
     let multiCaller = new Multicaller(network, provider, abi, {blockTag})
-    if (usesPreviousMulticaler) {
+    if (callBatchIdx !== "0") {
       multiCaller = multicaller
     }
     addresses.forEach((address) =>
-      multiCaller.call(address+(usesPreviousMulticaler ? "1" : "2"), contractAddress, functionSignature, [address])
+      multiCaller.call(address+callBatchIdx, contractAddress, functionSignature, [address])
     );
     return multiCaller;
   };
@@ -59,32 +59,30 @@ export async function strategy(
     sMinoContractAddress,
     'balanceOf',
     null,
-    false
-  );
-
-  const minoMulti = makeMulticaller(
-    erc20ContractAbi,
-    minoContractAddress,
-    'balanceOf',
-    sMinoMulti,
-    true
+    "0"
   );
 
   const wsMinoMulti = makeMulticaller(
     erc20ContractAbi,
     wsMinoContractAddress,
     'balanceOf',
-    null,
-    false
+    sMinoMulti,
+    "1"
   );
 
-
+  const minoMulti = makeMulticaller(
+    erc20ContractAbi,
+    minoContractAddress,
+    'balanceOf',
+    wsMinoMulti,
+    "2"
+  );
   const wsMinoInMMFMulti = makeMulticaller(
     mmfPoolAbi,
     mmfPoolAddressNewNew,
     'userInfo',
     null,
-    false
+    "0"
   );
 
   const [index]: [
@@ -93,13 +91,11 @@ export async function strategy(
     callIndex(),
   ]);
 
-  const [minoBalances, wsMinoBalances, mmfUserInfo]: [
-    MultiCallResult,
+  const [minoBalances, mmfUserInfo]: [
     MultiCallResult,
     MultiCallObjectResult
   ] = await Promise.all([
     minoMulti.execute(),
-    wsMinoMulti.execute(),
     wsMinoInMMFMulti.execute()
   ]);
 
@@ -107,15 +103,15 @@ export async function strategy(
 
   for (const address of addresses) {
     const wsMinoScore = BigNumber.from(
-      mmfUserInfo[address+"1"]
-        ? mmfUserInfo[address+"1"]['amount']
+      mmfUserInfo[address+"0"] //from mmf pool
+        ? mmfUserInfo[address+"0"]['amount']
         : 0
     )
-      .add(wsMinoBalances[address+"1"] || 0)
+      .add(minoBalances[address+"1"] || 0) // wsMinoBalances
       .mul(index) // timeses by 10^9 effectively
 
     const minoScore = wsMinoScore
-      .add(BigNumber.from(minoBalances[address+"1"] || 0).mul(BigNumber.from(10).pow(18)))
+      .add(BigNumber.from(minoBalances[address+"0"] || 0).mul(BigNumber.from(10).pow(18)))
       .add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18)))
   
     scores[address] = minoScore;
