@@ -1,0 +1,24 @@
+[
+  {
+    "name": "bmc",
+    "strategy": {
+      "name": "bmc",
+      "params": {
+        "staking": "0xc9213c79b9bf88d9fd0735d7691c60d044a0dec4",
+        "og": "0x47Bd71b482B27eBDb57af6e372cab46c7280bf44",
+        "ultra": "0x0c6822ca73de6871f27acd9ca05a05b99294b805",
+        "symbol": "BMC"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x0f02a78AB1a4adaE206444F7820d20033788e558",
+      "0x9Dfd685c908cED45650cd12bBc93f3Be467A393B",
+      "0xA6aE963A928bccA7f427cCe4BD66Cddd54f0fab3",
+      "0x54423D554bDD58993032B8F2C48452fc9962178c",
+      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7"
+    ],
+    "snapshot": 15090691
+  }
+]
