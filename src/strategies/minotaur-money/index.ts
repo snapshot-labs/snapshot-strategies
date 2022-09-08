@@ -111,8 +111,8 @@ export async function strategy(
       .mul(index) // timeses by 10^9 effectively
 
     const minoScore = wsMinoScore
-      .add(BigNumber.from(minoBalances[address+"0"] || 0).mul(BigNumber.from(10).pow(18)))
-      .add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18)))
+      .add(BigNumber.from(minoBalances[address+"0"] || 0).mul(BigNumber.from(10).pow(18))) // mino balances
+      .add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18))) // sMino balances
   
     scores[address] = minoScore;
   }
