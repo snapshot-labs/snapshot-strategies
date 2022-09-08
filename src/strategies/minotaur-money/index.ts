@@ -116,12 +116,9 @@ export async function strategy(
 
     const minoScore = wsMinoScore
       .add(BigNumber.from(minoBalances[address+"1"] || 0).mul(BigNumber.from(10).pow(18)))
+      .add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18)))
   
     scores[address] = minoScore;
-  }
-
-  for (const address of addresses) {
-    scores[address] = scores[address].add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18)))
   }
 
   const scoresNumber = Object.fromEntries(
