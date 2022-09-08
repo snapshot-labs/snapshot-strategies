@@ -23,10 +23,10 @@ function makeQuery(snapshot, minter, lastUpdatedAt, blacklisted_accounts) {
   };
 
   if (snapshot !== 'latest') {
-    query.accountNFTSlots.__args.where = {
-      ...query.accountNFTSlots.__args.where,
-      _change_block: {
-        number_gte: snapshot
+    query.accountNFTSlots.__args = {
+      ...query.accountNFTSlots.__args,
+      block: {
+        number: snapshot
       }
     };
   }
