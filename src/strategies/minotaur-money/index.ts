@@ -43,39 +43,48 @@ export async function strategy(
     ]);
   };
 
-  const makeMulticaller = (abi, contractAddress, functionSignature) => {
-    const multiCaller = new Multicaller(network, provider, abi, {
-      blockTag
-    });
+  const makeMulticaller = (abi, contractAddress, functionSignature, multicaller, usesPreviousMulticaler) => {
+    let multiCaller = new Multicaller(network, provider, abi, {blockTag})
+    if (usesPreviousMulticaler) {
+      multiCaller = multicaller
+    }
     addresses.forEach((address) =>
       multiCaller.call(address, contractAddress, functionSignature, [address])
     );
     return multiCaller;
   };
 
-  const minoMulti = makeMulticaller(
-    erc20ContractAbi,
-    minoContractAddress,
-    'balanceOf'
-  );
-
   const sMinoMulti = makeMulticaller(
     erc20ContractAbi,
     sMinoContractAddress,
-    'balanceOf'
+    'balanceOf',
+    null,
+    false
+  );
+
+  const minoMulti = makeMulticaller(
+    erc20ContractAbi,
+    minoContractAddress,
+    'balanceOf',
+    null,
+    false
   );
 
   const wsMinoMulti = makeMulticaller(
     erc20ContractAbi,
     wsMinoContractAddress,
-    'balanceOf'
+    'balanceOf',
+    null,
+    false
   );
 
 
   const wsMinoInMMFMulti = makeMulticaller(
     mmfPoolAbi,
     mmfPoolAddressNewNew,
-    'userInfo'
+    'userInfo',
+    null,
+    false
   );
 
   const [index]: [
@@ -90,8 +99,8 @@ export async function strategy(
     MultiCallResult,
     MultiCallObjectResult
   ] = await Promise.all([
-    sMinoMulti.execute(),
     minoMulti.execute(),
+    sMinoMulti.execute(),
     wsMinoMulti.execute(),
     wsMinoInMMFMulti.execute()
   ]);
@@ -105,20 +114,21 @@ export async function strategy(
         : 0
     )
       .add(wsMinoBalances[address] || 0)
-      .mul(index)
-      .div(BigNumber.from(10).pow(9));
+      .mul(index) // timeses by 10^9 effectively
 
     const minoScore = wsMinoScore
-      .add(sMinoBalances[address] || 0)
-      .add(minoBalances[address] || 0);
+      .add(BigNumber.from(minoBalances[address] || 0).mul(BigNumber.from(10).pow(18)))
+      .add(BigNumber.from(sMinoBalances[address] || 0).mul(BigNumber.from(10).pow(18)))
 
+    console.log(address, minoScore.toString())
+  
     scores[address] = minoScore;
   }
 
   const scoresNumber = Object.fromEntries(
     Object.entries(scores).map(([address, balance]) => [
       address,
-      balance.toNumber() / 1000000000
+      balance.div(BigNumber.from(10).pow(18)).toNumber() / 1000000000
     ])
   );
 
