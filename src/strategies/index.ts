@@ -342,6 +342,7 @@ import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as lrcL2NftBalanceOf from './lrc-l2-nft-balance-of';
 import * as lrcLPSubgraphBalanceOf from './lrc-lp-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
@@ -712,6 +713,7 @@ const strategies = {
   h2o,
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
+  'lrc-l2-nft-balance-of': lrcL2NftBalanceOf,
   'lrc-lp-subgraph-balance-of': lrcLPSubgraphBalanceOf,
   'rari-fuse': rariFuse,
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
