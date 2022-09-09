@@ -45,6 +45,10 @@ export async function strategy(
     ]);
   });
 
+  function _throw(m) {
+    throw m;
+  }
+
   // when no assets are held, the contract throws an error, which means it's empty.
   const [ogResponse, ultraResponse, stakedOgResponse, stakedUltraResponse]: [
     Record<string, BigNumber[]>,
@@ -52,10 +56,18 @@ export async function strategy(
     Record<string, BigNumber[]>,
     Record<string, BigNumber[]>
   ] = await Promise.all([
-    ogToken.execute().catch((error) => []),
-    ultraToken.execute().catch((error) => []),
-    stakingOGToken.execute().catch((error) => []),
-    stakingUltraToken.execute().catch((error) => [])
+    ogToken
+      .execute()
+      .catch((error) => (error.code === 'CALL_EXCEPTION' ? [] : _throw(error))),
+    ultraToken
+      .execute()
+      .catch((error) => (error.code === 'CALL_EXCEPTION' ? [] : _throw(error))),
+    stakingOGToken
+      .execute()
+      .catch((error) => (error.code === 'CALL_EXCEPTION' ? [] : _throw(error))),
+    stakingUltraToken
+      .execute()
+      .catch((error) => (error.code === 'CALL_EXCEPTION' ? [] : _throw(error)))
   ]);
 
   return Object.fromEntries(
