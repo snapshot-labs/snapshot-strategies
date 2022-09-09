@@ -89,29 +89,35 @@ export async function strategy(
         const realOwner = erc721OwnersArr.find(
           ([id]) => delegatedToken[0] === id
         );
+
         if (!realOwner) {
           return [address, 0.0];
         }
+
         const [, ownerAddr] = realOwner;
         const erc20Balance = erc20Balances[ownerAddr];
+
         return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
       } else {
         const erc20Balance = erc20Balances[address];
         const erc721Token = erc721OwnersArr.find(
           ([, addr]) => addr === address
         );
+
+        if (!erc721Token) {
+          return [address, 0.0];
+        }
+
         const isUsersTokenDelegated = delegatedTokens.find(
-          // @ts-ignore: Object is possibly 'null'.
           ([id]) => id === erc721Token[0]
         );
 
         if (erc721Token && !isUsersTokenDelegated) {
           return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
         }
+
         return [address, 0.0];
       }
-
-      return [address, 0.0];
     })
   );
   return result;
