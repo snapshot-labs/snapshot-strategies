@@ -737,7 +737,7 @@ const strategies = {
   'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges,
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
-  bmc: bmc
+  bmc
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
