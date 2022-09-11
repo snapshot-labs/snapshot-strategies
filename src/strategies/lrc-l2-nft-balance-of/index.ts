@@ -4,7 +4,14 @@ export const version = '0.1.1';
 
 const LIMIT = 1000;
 
-function makeQuery(snapshot, minter, tokens, skip, blacklisted_account_ids, blacklisted_nft_ids) {
+function makeQuery(
+  snapshot,
+  minter,
+  tokens,
+  skip,
+  blacklisted_account_ids,
+  blacklisted_nft_ids
+) {
   const query: any = {
     accountNFTSlots: {
       __args: {
@@ -12,24 +19,23 @@ function makeQuery(snapshot, minter, tokens, skip, blacklisted_account_ids, blac
           nft_: {
             id_not_in: blacklisted_nft_ids
           },
-          account_not_in: blacklisted_account_ids,
+          account_not_in: blacklisted_account_ids
         },
         first: LIMIT,
         skip: skip
       },
       account: { address: true },
-      balance: true,
+      balance: true
     }
   };
 
-  if(minter && minter !== "") {
+  if (minter && minter !== '') {
     query.accountNFTSlots.__args.where.nft_.minter = minter;
   }
 
-  if(tokens && tokens.length > 0) {
-    query.accountNFTSlots.__args.where.nft_.token_in = tokens
+  if (tokens && tokens.length > 0) {
+    query.accountNFTSlots.__args.where.nft_.token_in = tokens;
   }
-
 
   if (snapshot !== 'latest') {
     query.accountNFTSlots.__args = {
@@ -57,11 +63,11 @@ export async function strategy(
   let skip = 0;
   let response_size = 0;
 
-  if(! blacklisted_account_ids || blacklisted_account_ids.length === 0) {
+  if (!blacklisted_account_ids || blacklisted_account_ids.length === 0) {
     blacklisted_account_ids = [''];
   }
 
-  if(! blacklisted_nft_ids || blacklisted_nft_ids.length === 0) {
+  if (!blacklisted_nft_ids || blacklisted_nft_ids.length === 0) {
     blacklisted_nft_ids = [''];
   }
 
