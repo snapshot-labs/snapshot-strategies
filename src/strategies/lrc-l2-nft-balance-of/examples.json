@@ -6,7 +6,9 @@
       "params": {
         "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
         "minter_account_id": "74447",
-        "blacklisted_account_ids": ["38482"]
+        "tokens": ["0xc76eca2937b006606ebe717621409e4c2df906f1"],
+        "blacklisted_account_ids": ["38482"],
+        "blacklisted_nft_ids": ["0x94743548ba8d82a4ee8ea3dfad589ea501ad2738-0-0xc76eca2937b006606ebe717621409e4c2df906f1-0x15f13a1431906d9ca5b24df9de0b443690bf822d012e5da30b18d36ffad545aa-5"]
       }
     },
     "network": "1",
