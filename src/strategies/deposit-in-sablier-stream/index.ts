@@ -3,9 +3,16 @@ import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier',
-  '5': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-goerli',
-  '137': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-matic'
+  '1': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier', // mainnet
+  '3': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-ropsten', // ropsten
+  '4': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-rinkeby', // rinkeby
+  '5': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-goerli', // goerli
+  '10': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-optimism', // optimism
+  '42': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-kovan', // kovan
+  '56': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-bsc', // bsc
+  '137': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-matic', // polygon
+  '42161': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-arbitrum', // arbitrum
+  '43114': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-avalanche' // avalanche
 };
 
 export const author = 'dan13ram';
@@ -22,6 +29,7 @@ export async function strategy(
   const params = {
     streams: {
       __args: {
+        limit: 1000,
         where: {
           recipient_in: addresses.map((address) => address.toLowerCase()),
           sender: options.sender.toLowerCase(),
@@ -41,7 +49,7 @@ export async function strategy(
     params.streams.__args.block = { number: snapshot };
   }
   const result = await subgraphRequest(
-    SUBGRAPH_URL[network],
+    options.subGraphURL ? options.subGraphURL : SUBGRAPH_URL[network],
     params
   );
   const score = Object.fromEntries(

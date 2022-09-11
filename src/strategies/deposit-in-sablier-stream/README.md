@@ -2,9 +2,7 @@
 
 This strategy returns the score for any voter as the sum of all deposits made by a sender towards the voters for a specific ERC20 token;
 
-## Example
-
-The space config will look like this:
+Here is an example of parameters:
 
 ```JSON
 {
