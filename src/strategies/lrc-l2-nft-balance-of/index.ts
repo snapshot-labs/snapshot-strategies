@@ -1,17 +1,18 @@
 import { subgraphRequest } from '../../utils';
-
 export const author = 'karamorf';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const LIMIT = 1000;
 
-function makeQuery(snapshot, minter, lastUpdatedAt, blacklisted_accounts) {
+function makeQuery(snapshot, minter, tokens, lastUpdatedAt, blacklisted_account_ids, blacklisted_nft_ids) {
   const query: any = {
     accountNFTSlots: {
       __args: {
         where: {
-          nft_: { minter: minter },
-          account_not_in: blacklisted_accounts,
+          nft_: {
+            id_not_in: blacklisted_nft_ids
+          },
+          account_not_in: blacklisted_account_ids,
           lastUpdatedAt_gt: lastUpdatedAt
         },
         first: LIMIT
@@ -21,6 +22,15 @@ function makeQuery(snapshot, minter, lastUpdatedAt, blacklisted_accounts) {
       lastUpdatedAt: true
     }
   };
+
+  if(minter && minter !== "") {
+    query.accountNFTSlots.__args.where.nft_.minter = minter;
+  }
+
+  if(tokens && tokens.length > 0) {
+    query.accountNFTSlots.__args.where.nft_.token_in = tokens
+  }
+
 
   if (snapshot !== 'latest') {
     query.accountNFTSlots.__args = {
@@ -42,20 +52,24 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  let blacklisted_ids = options.blacklisted_account_ids;
+  let blacklisted_account_ids = options.blacklisted_account_ids;
+  let blacklisted_nft_ids = options.blacklisted_nft_ids;
   let balances = {};
   let lastUpdatedAt = 0;
   let response_size = 0;
 
-  if(! blacklisted_ids || blacklisted_ids.length === 0) {
-    blacklisted_ids = [""];
+  if(! blacklisted_account_ids || blacklisted_account_ids.length === 0) {
+    blacklisted_account_ids = [""];
   }
 
+  if(! blacklisted_nft_ids || blacklisted_nft_ids.length === 0) {
+    blacklisted_nft_ids = [""];
+  }
 
   do {
     const response = await subgraphRequest(
       options.graph,
-      makeQuery(snapshot, options.minter_account_id, lastUpdatedAt, blacklisted_ids)
+      makeQuery(snapshot, options.minter_account_id, options.tokens, lastUpdatedAt, blacklisted_account_ids, blacklisted_nft_ids)
     );
 
     response.accountNFTSlots.forEach((slot) => {

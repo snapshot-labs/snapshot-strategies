@@ -8,10 +8,14 @@ Here is an example of parameters:
 {
   "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
   "minter_account_id": "74447",
-  "blacklisted_account_ids": ["38482"]
+  "tokens": ["token (Collection) id's to include"],
+  "blacklisted_account_ids": ["38482"],
+  "blacklisted_nft_ids": ["... nft id's to exclude ..."]
 }
 ```
 
 Use explorer.loopring.io to look up addresses and find account id's.
 
 Account id `38482` maps to `0x000000000000000000000000000000000000dead` and is used for burning tokens.
+
+to note: either the `minter_account_id` or the `tokens` parameter must be provided for this query to work. You do not need to specify both, just one of them.
