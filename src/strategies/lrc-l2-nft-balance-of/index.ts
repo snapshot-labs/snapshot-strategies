@@ -4,7 +4,7 @@ export const version = '0.1.1';
 
 const LIMIT = 1000;
 
-function makeQuery(snapshot, minter, tokens, lastUpdatedAt, blacklisted_account_ids, blacklisted_nft_ids) {
+function makeQuery(snapshot, minter, tokens, skip, blacklisted_account_ids, blacklisted_nft_ids) {
   const query: any = {
     accountNFTSlots: {
       __args: {
@@ -13,13 +13,12 @@ function makeQuery(snapshot, minter, tokens, lastUpdatedAt, blacklisted_account_
             id_not_in: blacklisted_nft_ids
           },
           account_not_in: blacklisted_account_ids,
-          lastUpdatedAt_gt: lastUpdatedAt
         },
-        first: LIMIT
+        first: LIMIT,
+        skip: skip
       },
       account: { address: true },
       balance: true,
-      lastUpdatedAt: true
     }
   };
 
@@ -55,7 +54,7 @@ export async function strategy(
   let blacklisted_account_ids = options.blacklisted_account_ids;
   let blacklisted_nft_ids = options.blacklisted_nft_ids;
   let balances = {};
-  let lastUpdatedAt = 0;
+  let skip = 0;
   let response_size = 0;
 
   if(! blacklisted_account_ids || blacklisted_account_ids.length === 0) {
@@ -69,7 +68,7 @@ export async function strategy(
   do {
     const response = await subgraphRequest(
       options.graph,
-      makeQuery(snapshot, options.minter_account_id, options.tokens, lastUpdatedAt, blacklisted_account_ids, blacklisted_nft_ids)
+      makeQuery(snapshot, options.minter_account_id, options.tokens, skip, blacklisted_account_ids, blacklisted_nft_ids)
     );
 
     response.accountNFTSlots.forEach((slot) => {
@@ -77,7 +76,6 @@ export async function strategy(
         balances[slot.account.address] = 0;
       }
       balances[slot.account.address] += parseInt(slot.balance);
-      lastUpdatedAt = slot.lastUpdatedAt;
     });
     response_size = response.accountNFTSlots.length;
 
