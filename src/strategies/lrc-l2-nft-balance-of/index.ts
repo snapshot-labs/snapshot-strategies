@@ -53,39 +53,43 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   let blacklisted_account_ids = options.blacklisted_account_ids;
   let blacklisted_nft_ids = options.blacklisted_nft_ids;
-  let balances = {};
+  const balances = {};
   let skip = 0;
   let response_size = 0;
 
   if(! blacklisted_account_ids || blacklisted_account_ids.length === 0) {
-    blacklisted_account_ids = [""];
+    blacklisted_account_ids = [''];
   }
 
   if(! blacklisted_nft_ids || blacklisted_nft_ids.length === 0) {
-    blacklisted_nft_ids = [""];
+    blacklisted_nft_ids = [''];
   }
 
   do {
     const response = await subgraphRequest(
       options.graph,
-      makeQuery(snapshot, options.minter_account_id, options.tokens, skip, blacklisted_account_ids, blacklisted_nft_ids)
+      makeQuery(
+        snapshot,
+        options.minter_account_id,
+        options.tokens,
+        skip,
+        blacklisted_account_ids,
+        blacklisted_nft_ids
+      )
     );
 
     response.accountNFTSlots.forEach((slot) => {
-      if(! balances.hasOwnProperty(slot.account.address)) {
+      if (!balances.hasOwnProperty(slot.account.address)) {
         balances[slot.account.address] = 0;
       }
       balances[slot.account.address] += parseInt(slot.balance);
     });
     response_size = response.accountNFTSlots.length;
-
-  } while(response_size == LIMIT);
+    skip += response_size;
+  } while (response_size == LIMIT);
 
   const scores = Object.fromEntries(
-    addresses.map((address) => [
-      address,
-      balances[address.toLowerCase()]
-    ])
+    addresses.map((address) => [address, balances[address.toLowerCase()]])
   );
 
   return scores;

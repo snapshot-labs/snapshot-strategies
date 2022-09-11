@@ -11,7 +11,7 @@ const wsMinoContractAddress = '0x1066c6753FFaf8540F691643A6D683e23599c4ab';
 //const mmfPoolAddressOld = '0x57E8f8F7447D8d02fe4D291378D37E67D393257A';
 //const mmfPoolAddressOld = '0x849f97c5452cc4bad1069b8efe2b3561b06694c3';
 //const mmfPoolAddressNew = '0xf6a96e753dec01acb659acbe75deba46d53ebc5e';
-const mmfPoolAddressNewNew = '0x687a0275aE620FB7868b09f16d3FeF862824317d'
+const mmfPoolAddressNewNew = '0x687a0275aE620FB7868b09f16d3FeF862824317d';
 
 const erc20ContractAbi = [
   'function balanceOf(address account) external view returns (uint256)',
@@ -43,13 +43,24 @@ export async function strategy(
     ]);
   };
 
-  const makeMulticaller = (abi, contractAddress, functionSignature, multicaller, callBatchIdx = "0") => {
-    let multiCaller = new Multicaller(network, provider, abi, {blockTag})
-    if (callBatchIdx !== "0") {
-      multiCaller = multicaller
+  const makeMulticaller = (
+    abi,
+    contractAddress,
+    functionSignature,
+    multicaller,
+    callBatchIdx = '0'
+  ) => {
+    let multiCaller = new Multicaller(network, provider, abi, { blockTag });
+    if (callBatchIdx !== '0') {
+      multiCaller = multicaller;
     }
     addresses.forEach((address) =>
-      multiCaller.call(address+callBatchIdx, contractAddress, functionSignature, [address])
+      multiCaller.call(
+        address + callBatchIdx,
+        contractAddress,
+        functionSignature,
+        [address]
+      )
     );
     return multiCaller;
   };
@@ -59,7 +70,7 @@ export async function strategy(
     sMinoContractAddress,
     'balanceOf',
     null,
-    "0"
+    '0'
   );
 
   const wsMinoMulti = makeMulticaller(
@@ -67,7 +78,7 @@ export async function strategy(
     wsMinoContractAddress,
     'balanceOf',
     sMinoMulti,
-    "1"
+    '1'
   );
 
   const minoMulti = makeMulticaller(
@@ -75,45 +86,44 @@ export async function strategy(
     minoContractAddress,
     'balanceOf',
     wsMinoMulti,
-    "2"
+    '2'
   );
   const wsMinoInMMFMulti = makeMulticaller(
     mmfPoolAbi,
     mmfPoolAddressNewNew,
     'userInfo',
     null,
-    "0"
+    '0'
   );
 
-  const [index]: [
-    BigNumber,
-  ] = await Promise.all([
-    callIndex(),
-  ]);
+  const [index]: [BigNumber] = await Promise.all([callIndex()]);
 
-  const [minoBalances, mmfUserInfo]: [
-    MultiCallResult,
-    MultiCallObjectResult
-  ] = await Promise.all([
-    minoMulti.execute(),
-    wsMinoInMMFMulti.execute()
-  ]);
+  const [minoBalances, mmfUserInfo]: [MultiCallResult, MultiCallObjectResult] =
+    await Promise.all([minoMulti.execute(), wsMinoInMMFMulti.execute()]);
 
   const scores: Record<string, BigNumber> = {};
 
   for (const address of addresses) {
     const wsMinoScore = BigNumber.from(
-      mmfUserInfo[address+"0"] //from mmf pool
-        ? mmfUserInfo[address+"0"]['amount']
+      mmfUserInfo[address + '0'] //from mmf pool
+        ? mmfUserInfo[address + '0']['amount']
         : 0
     )
-      .add(minoBalances[address+"1"] || 0) // wsMinoBalances
-      .mul(index) // timeses by 10^9 effectively
+      .add(minoBalances[address + '1'] || 0) // wsMinoBalances
+      .mul(index); // timeses by 10^9 effectively
 
     const minoScore = wsMinoScore
-      .add(BigNumber.from(minoBalances[address+"0"] || 0).mul(BigNumber.from(10).pow(18))) // mino balances
-      .add(BigNumber.from(minoBalances[address+"2"] || 0).mul(BigNumber.from(10).pow(18))) // sMino balances
-  
+      .add(
+        BigNumber.from(minoBalances[address + '0'] || 0).mul(
+          BigNumber.from(10).pow(18)
+        )
+      ) // mino balances
+      .add(
+        BigNumber.from(minoBalances[address + '2'] || 0).mul(
+          BigNumber.from(10).pow(18)
+        )
+      ); // sMino balances
+
     scores[address] = minoScore;
   }
 
