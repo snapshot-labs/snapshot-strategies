@@ -43,37 +43,37 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   let blacklisted_ids = options.blacklisted_account_ids;
-  let balances = {};
+  const balances = {};
   let lastUpdatedAt = 0;
   let response_size = 0;
 
-  if(! blacklisted_ids || blacklisted_ids.length === 0) {
-    blacklisted_ids = [""];
+  if (!blacklisted_ids || blacklisted_ids.length === 0) {
+    blacklisted_ids = [''];
   }
-
 
   do {
     const response = await subgraphRequest(
       options.graph,
-      makeQuery(snapshot, options.minter_account_id, lastUpdatedAt, blacklisted_ids)
+      makeQuery(
+        snapshot,
+        options.minter_account_id,
+        lastUpdatedAt,
+        blacklisted_ids
+      )
     );
 
     response.accountNFTSlots.forEach((slot) => {
-      if(! balances.hasOwnProperty(slot.account.address)) {
+      if (!balances.hasOwnProperty(slot.account.address)) {
         balances[slot.account.address] = 0;
       }
       balances[slot.account.address] += parseInt(slot.balance);
       lastUpdatedAt = slot.lastUpdatedAt;
     });
     response_size = response.accountNFTSlots.length;
-
-  } while(response_size == LIMIT);
+  } while (response_size == LIMIT);
 
   const scores = Object.fromEntries(
-    addresses.map((address) => [
-      address,
-      balances[address.toLowerCase()]
-    ])
+    addresses.map((address) => [address, balances[address.toLowerCase()]])
   );
 
   return scores;
