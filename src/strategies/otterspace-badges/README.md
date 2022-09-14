@@ -18,7 +18,7 @@ Here is an example of its usage:
 {
   "symbol": "BADGES",
   "raftTokenId": "1",
-  "raftAddress": "0xbb8997048e5f0bfe6c9d6bee63ede53bd0236bb2",
+  "raftAddress": "0xa6773847d3D2c8012C9cF62818b320eE278Ff722",
   "specs": [
     {
       "id": "bafyreicmofif36f2s4d2iv37gy532epnw7rwjf5rygdhzzh2iw6nmbunrq",
