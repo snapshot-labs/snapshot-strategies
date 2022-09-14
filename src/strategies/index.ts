@@ -27,6 +27,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as ethalendBalanceOf from './ethalend-balance-of';
 import * as prepoVesting from './prepo-vesting';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
@@ -290,6 +291,8 @@ import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
+import * as gysrPendingRewards from './gysr-pending-rewards';
+import * as gysrLPStakingBalance from './gysr-lp-staking-balance';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
@@ -340,6 +343,8 @@ import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as lrcL2NftBalanceOf from './lrc-l2-nft-balance-of';
+import * as lrcLPSubgraphBalanceOf from './lrc-lp-subgraph-balance-of';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
@@ -358,6 +363,12 @@ import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-
 import * as arrowVesting from './arrow-vesting';
 import * as tutellusProtocol from './tutellus-protocol';
 import * as fightClub from './fight-club';
+import * as tproStaking from './tpro-staking';
+import * as safeVested from './safe-vested';
+import * as riskharborUnderwriter from './riskharbor-underwriter';
+import * as otterspaceBadges from './otterspace-badges';
+import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
+import * as depositInSablierStream from './deposit-in-sablier-stream';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -401,6 +412,7 @@ const strategies = {
   'minto-balance-of-all': mintoBalanceAll,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
   'erc20-price': erc20Price,
+  'ethalend-balance-of': ethalendBalanceOf,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
   thresholds,
@@ -653,6 +665,8 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
+  'gysr-pending-rewards': gysrPendingRewards,
+  'gysr-lp-staking-balance': gysrLPStakingBalance,
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
@@ -702,6 +716,8 @@ const strategies = {
   h2o,
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
+  'lrc-l2-nft-balance-of': lrcL2NftBalanceOf,
+  'lrc-lp-subgraph-balance-of': lrcLPSubgraphBalanceOf,
   'rari-fuse': rariFuse,
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
@@ -719,7 +735,13 @@ const strategies = {
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
-  'fight-club': fightClub
+  'fight-club': fightClub,
+  'tpro-staking': tproStaking,
+  'safe-vested': safeVested,
+  'riskharbor-underwriter': riskharborUnderwriter,
+  'otterspace-badges': otterspaceBadges,
+  'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
+  'deposit-in-sablier-stream': depositInSablierStream
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
