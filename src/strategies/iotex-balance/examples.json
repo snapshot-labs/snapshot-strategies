@@ -1,6 +1,6 @@
 [
   {
-    "name": "iotex query",
+    "name": "iotex balance query",
     "strategy": {
       "name": "iotex-balance",
       "params": {
