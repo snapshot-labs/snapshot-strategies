@@ -1,0 +1,27 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` getVp with delegation 1`] = `
+Object {
+  "vp": 10.077130335431244,
+  "vp_by_strategy": Array [
+    0,
+    10.028706352441185,
+    0,
+    0.04842398299005922,
+  ],
+  "vp_state": "final",
+}
+`;
+
+exports[` getVp without delegation 1`] = `
+Object {
+  "vp": 21.55404462002206,
+  "vp_by_strategy": Array [
+    0,
+    9.998985610441185,
+    11.506635026590818,
+    0.04842398299005922,
+  ],
+  "vp_state": "final",
+}
+`;

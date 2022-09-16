@@ -30,10 +30,8 @@ export async function strategy(
       walletAddress
     ]);
   }
-  const walletToBalanceOf: Record<
-    string,
-    BigNumber
-  > = await callWalletToBalanceOf.execute();
+  const walletToBalanceOf: Record<string, BigNumber> =
+    await callWalletToBalanceOf.execute();
 
   // Second, get the tokenId's for each token
   const callWalletToAddresses = new Multicaller(network, provider, abi, {
@@ -49,10 +47,8 @@ export async function strategy(
       );
     }
   }
-  const walletIDToAddresses: Record<
-    string,
-    BigNumber
-  > = await callWalletToAddresses.execute();
+  const walletIDToAddresses: Record<string, BigNumber> =
+    await callWalletToAddresses.execute();
 
   // Third, given the tokenIds for each token
   const callWalletToTiers = new Multicaller(network, provider, abi, {
@@ -67,10 +63,8 @@ export async function strategy(
     );
   }
 
-  const walletIDToTiers: Record<
-    string,
-    number
-  > = await callWalletToTiers.execute();
+  const walletIDToTiers: Record<string, number> =
+    await callWalletToTiers.execute();
 
   // Third, given the tokenIds for each token get if the token is used
   const callWalletToUsed = new Multicaller(network, provider, abi, {
@@ -84,10 +78,8 @@ export async function strategy(
       [tokenId]
     );
   }
-  const walletIDToUsed: Record<
-    string,
-    boolean
-  > = await callWalletToUsed.execute();
+  const walletIDToUsed: Record<string, boolean> =
+    await callWalletToUsed.execute();
 
   // Ultimately, sum the weights for each tokenId and assign votes based on the
   // strategy parameters

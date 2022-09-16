@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rari-fuse",
+      "params": {
+        "symbol": "BANK",
+        "token": "0x2d94AA3e47d9D5024503Ca8491fcE9A2fB4DA198",
+        "fToken": "0x250316B3E46600417654b13bEa68b5f64D61E609"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x3839AcF1ee7699D1F46b1BE840D8aD8317FDf757",
+      "0x0cf861f96378dbd5194d74cbe6b0424fafaed940",
+      "0x0f1d41cc51e97dc9d0cad80dc681777eed3675e3",
+      "0xb6ac0341fcf3fb507a8208d34a97f13779e1393d",
+      "0x173ff4db38c3fcde0584f8ea7930c44969a29ba4"
+    ],
+    "snapshot": 14482171
+  }
+]
