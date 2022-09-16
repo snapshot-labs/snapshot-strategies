@@ -370,6 +370,7 @@ import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
+import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 
 const strategies = {
   amkt,
@@ -743,7 +744,8 @@ const strategies = {
   'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges,
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
-  'deposit-in-sablier-stream': depositInSablierStream
+  'deposit-in-sablier-stream': depositInSablierStream,
+  'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
