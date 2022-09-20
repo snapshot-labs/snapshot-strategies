@@ -1,0 +1,187 @@
+import { BigNumber } from '@ethersproject/bignumber';
+import { Multicaller } from '../../utils';
+
+export const author = 'Hedgey';
+export const version = '0.1.0';
+
+enum ContractType {
+  NFT = 'NFT',
+  TokenInfusedNFT = 'TokenInfusedNFT'
+}
+
+type ContractDetails = {
+  address: string;
+  token: string;
+  decimal: number;
+  contractType: ContractType;
+  multiplyer?: string;
+};
+
+const abis = {
+  NFT: [
+    'function balanceOf(address owner) external view returns (uint256 balance)',
+    'function tokenOfOwnerByIndex(address owner, uint256 index) external view returns (uint256 tokenId)',
+    'function futures(uint256 index) external view returns (uint256 amount, address token, uint256 unlockDate)',
+    'function token() external view returns (address token)'
+  ],
+  TokenInfusedNFT: [
+    'function futures(uint256 index) external view returns (uint256 amount, uint256 unlockDate)'
+  ]
+};
+
+const compareAddresses = (address1: string, address2: string): boolean => {
+  if (!address1 || !address2) return false;
+  return address1.toLowerCase() === address2.toLowerCase();
+};
+
+export async function strategy(
+  _space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const contractDetails: ContractDetails[] = options.contracts;
+  const balanceOfMulti = new Multicaller(network, provider, abis.NFT, {
+    blockTag
+  });
+
+  contractDetails.forEach((contractDetail) => {
+    addresses.forEach((address: string) => {
+      balanceOfMulti.call(
+        `${contractDetail.address}/${address}`,
+        contractDetail.address,
+        'balanceOf',
+        [address]
+      );
+    });
+    if (contractDetail.contractType === ContractType.TokenInfusedNFT) {
+      balanceOfMulti.call(
+        `${contractDetail.address}/token`,
+        contractDetail.address,
+        'token'
+      );
+    }
+  });
+
+  const balanceOfResult = await balanceOfMulti.execute();
+  const nftHolderMulti = new Multicaller(network, provider, abis.NFT, {
+    blockTag
+  });
+
+  contractDetails.forEach((contractDetail) => {
+    addresses.forEach((address: string) => {
+      const balance = balanceOfResult[`${contractDetail.address}/${address}`];
+      for (let index = 0; index < balance; index++) {
+        nftHolderMulti.call(
+          `${contractDetail.contractType}/${contractDetail.address}/${address}/${index}`,
+          contractDetail.address,
+          'tokenOfOwnerByIndex',
+          [address, String(index)]
+        );
+      }
+    });
+  });
+
+  const nftHolders = await nftHolderMulti.execute();
+
+  const nftDealsMulti = new Multicaller(network, provider, abis.NFT, {
+    blockTag
+  });
+
+  const tiNFTDealsMulti = new Multicaller(
+    network,
+    provider,
+    abis.TokenInfusedNFT,
+    { blockTag }
+  );
+
+  for (const [path, nftId] of Object.entries(nftHolders)) {
+    const [contractType, contractAddress, address] = path.split('/');
+    switch (contractType) {
+      case ContractType.NFT:
+        nftDealsMulti.call(
+          `${contractAddress}/${address}`,
+          contractAddress,
+          'futures',
+          [nftId]
+        );
+        break;
+      case ContractType.TokenInfusedNFT:
+        tiNFTDealsMulti.call(
+          `${contractAddress}/${address}`,
+          contractAddress,
+          'futures',
+          [nftId]
+        );
+        break;
+    }
+  }
+
+  const nftDeals = await nftDealsMulti.execute();
+  const tiNFTDeals = await tiNFTDealsMulti.execute();
+
+  const votes = {};
+
+  for (const [path, deal] of Object.entries<any>(nftDeals)) {
+    const [contractAddress, address] = path.split('/');
+    const contractDetail = contractDetails.find(
+      (element) => element.address === contractAddress
+    );
+
+    if (!contractDetail) continue;
+    if (!compareAddresses(deal.token, contractDetail.token)) continue;
+
+    const amount = BigNumber.from(deal.amount).div(
+      BigNumber.from(10).pow(contractDetail.decimal)
+    );
+
+    let score = amount.toNumber();
+
+    if (contractDetail.multiplyer) {
+      const multiplyer = eval(contractDetail.multiplyer);
+      score = multiplyer(score, deal);
+    }
+
+    let existingAmount = votes[address];
+    if (existingAmount) {
+      existingAmount = existingAmount + score;
+    } else {
+      votes[address] = score;
+    }
+  }
+
+  for (const [path, deal] of Object.entries<any>(tiNFTDeals)) {
+    const [contractAddress, address] = path.split('/');
+    const contractDetail = contractDetails.find(
+      (element) => element.address === contractAddress
+    );
+
+    if (!contractDetail) continue;
+
+    const contractToken = balanceOfResult[`${contractDetail.address}/token`];
+    if (!compareAddresses(contractToken, contractDetail.token)) continue;
+
+    const amount = BigNumber.from(deal.amount).div(
+      BigNumber.from(10).pow(contractDetail.decimal)
+    );
+
+    let score = amount.toNumber();
+
+    if (contractDetail.multiplyer) {
+      const multiplyer = eval(contractDetail.multiplyer);
+      score = multiplyer(score, deal);
+    }
+
+    let existingAmount = votes[address];
+    if (existingAmount) {
+      existingAmount = existingAmount + score;
+    } else {
+      votes[address] = score;
+    }
+  }
+
+  return votes;
+}

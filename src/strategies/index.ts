@@ -322,6 +322,7 @@ import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
+import * as hedgeyMulti from './hedgey-multi';
 import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
@@ -696,6 +697,7 @@ const strategies = {
   'citydao-square-root': citydaoSquareRoot,
   'rowdy-roos': rowdyRoos,
   hedgey,
+  'hedgey-multi': hedgeyMulti,
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
