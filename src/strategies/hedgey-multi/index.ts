@@ -1,8 +1,10 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'Hedgey';
+export const author = 'bark4mark';
 export const version = '0.1.0';
+
+const MAX_CONTRACTS = 8;
 
 enum ContractType {
   NFT = 'NFT',
@@ -44,6 +46,9 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const contractDetails: ContractDetails[] = options.contracts;
+  if (contractDetails.length > MAX_CONTRACTS) {
+    throw new Error(`Max number (${MAX_CONTRACTS}) of contracts exceeded`);
+  }
   const balanceOfMulti = new Multicaller(network, provider, abis.NFT, {
     blockTag
   });
