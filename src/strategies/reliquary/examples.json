@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example configuration",
+    "strategy": {
+      "name": "reliquary",
+      "params": {
+        "reliquaryAddress": "0x55df810876354Fc3e249f701Dd78DeDE57991F8D",
+        "poolId": 0,
+        "maxVotingLevel": 7,
+        "decimals": 18
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x4fbe899d37fb7514adf2f41B0630E018Ec275a0C",
+      "0x945d88011cAC5FDc3eAF7DbA51592bfA98aEe91A",
+      "0x1E243A85822E2CD42C81359E0ea42033000D02a4",
+      "0xf7Ee8A9d014E9046D007bD448AaE7C667eF91E98"
+    ],
+    "snapshot": 7627656
+  }
+]
