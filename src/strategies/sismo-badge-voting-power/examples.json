@@ -1,0 +1,25 @@
+[
+    {
+      "name": "Example query",
+      "strategy": {
+        "name": "sismo-badge-voting-power",
+        "params": {
+          "address": "0xF12494e3545D49616D9dFb78E5907E9078618a34",
+          "tokenId": 15151111,
+          "tierWeights": {
+            "1": 1, 
+            "2": 10, 
+            "3": 100
+          }
+        }
+      },
+      "network": "137",
+      "addresses": [
+        "0x03e1d99c8d322dfa68b922854ca8637749d836c7",
+        "0x48b576c87e788a762d6f95a456f2a39113b46950",
+        "0x8ab1760889f26cbbf33a75fd2cf1696bfccdc9e6"
+      ],
+      "snapshot": 33386503
+    }
+  ]
+  
