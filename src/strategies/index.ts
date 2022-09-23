@@ -27,6 +27,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as ethalendBalanceOf from './ethalend-balance-of';
 import * as prepoVesting from './prepo-vesting';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
@@ -367,6 +368,8 @@ import * as safeVested from './safe-vested';
 import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
+import * as depositInSablierStream from './deposit-in-sablier-stream';
+import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 
 const strategies = {
@@ -411,6 +414,7 @@ const strategies = {
   'minto-balance-of-all': mintoBalanceAll,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
   'erc20-price': erc20Price,
+  'ethalend-balance-of': ethalendBalanceOf,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
   thresholds,
@@ -739,6 +743,8 @@ const strategies = {
   'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges,
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
+  'deposit-in-sablier-stream': depositInSablierStream,
+  'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'nation3-votes-with-delegations': nation3VotesWIthDelegations
 };
 

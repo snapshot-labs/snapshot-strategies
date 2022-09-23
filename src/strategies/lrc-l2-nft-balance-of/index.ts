@@ -1,26 +1,41 @@
 import { subgraphRequest } from '../../utils';
-
 export const author = 'karamorf';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const LIMIT = 1000;
 
-function makeQuery(snapshot, minter, lastUpdatedAt, blacklisted_accounts) {
+function makeQuery(
+  snapshot,
+  minter,
+  tokens,
+  skip,
+  blacklisted_account_ids,
+  blacklisted_nft_ids
+) {
   const query: any = {
     accountNFTSlots: {
       __args: {
         where: {
-          nft_: { minter: minter },
-          account_not_in: blacklisted_accounts,
-          lastUpdatedAt_gt: lastUpdatedAt
+          nft_: {
+            id_not_in: blacklisted_nft_ids
+          },
+          account_not_in: blacklisted_account_ids
         },
-        first: LIMIT
+        first: LIMIT,
+        skip: skip
       },
       account: { address: true },
-      balance: true,
-      lastUpdatedAt: true
+      balance: true
     }
   };
+
+  if (minter && minter !== '') {
+    query.accountNFTSlots.__args.where.nft_.minter = minter;
+  }
+
+  if (tokens && tokens.length > 0) {
+    query.accountNFTSlots.__args.where.nft_.token_in = tokens;
+  }
 
   if (snapshot !== 'latest') {
     query.accountNFTSlots.__args = {
@@ -42,13 +57,18 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  let blacklisted_ids = options.blacklisted_account_ids;
+  let blacklisted_account_ids = options.blacklisted_account_ids;
+  let blacklisted_nft_ids = options.blacklisted_nft_ids;
   const balances = {};
-  let lastUpdatedAt = 0;
+  let skip = 0;
   let response_size = 0;
 
-  if (!blacklisted_ids || blacklisted_ids.length === 0) {
-    blacklisted_ids = [''];
+  if (!blacklisted_account_ids || blacklisted_account_ids.length === 0) {
+    blacklisted_account_ids = [''];
+  }
+
+  if (!blacklisted_nft_ids || blacklisted_nft_ids.length === 0) {
+    blacklisted_nft_ids = [''];
   }
 
   do {
@@ -57,8 +77,10 @@ export async function strategy(
       makeQuery(
         snapshot,
         options.minter_account_id,
-        lastUpdatedAt,
-        blacklisted_ids
+        options.tokens,
+        skip,
+        blacklisted_account_ids,
+        blacklisted_nft_ids
       )
     );
 
@@ -67,9 +89,9 @@ export async function strategy(
         balances[slot.account.address] = 0;
       }
       balances[slot.account.address] += parseInt(slot.balance);
-      lastUpdatedAt = slot.lastUpdatedAt;
     });
     response_size = response.accountNFTSlots.length;
+    skip += response_size;
   } while (response_size == LIMIT);
 
   const scores = Object.fromEntries(

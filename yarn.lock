@@ -1163,10 +1163,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snapshot-labs/snapshot.js@^0.4.28":
-  version "0.4.28"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.28.tgz#503a460473fce28b3ef52717077753cb65d230a7"
-  integrity sha512-zP/XtR6gzoF5KjD8q9PdlN7HMQGC1yX9pT1hK185xqfdwB57Ut+Jk3Sk7Sr6bRygSSTlSSyg12zZ1EdHwZMGyw==
+"@snapshot-labs/snapshot.js@^0.4.31":
+  version "0.4.31"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.31.tgz#b9ac5a2805e4b76377f344a748d8631d60b362b2"
+  integrity sha512-lhejgMHHR0rPrEcH8XUufZc7zRM4wLcXEd2MBMEHvR3n5USSTEgrh1LwN5urjAISjKyMVdByU6H5Gz96G4Jxjw==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.6.4"
@@ -1409,24 +1409,12 @@
   resolved "https://registry.yarnpkg.com/@uniswap/v3-core/-/v3-core-1.0.0.tgz#6c24adacc4c25dceee0ba3ca142b35adbd7e359d"
   integrity sha512-kSC4djMGKMHj7sLMYVnn61k9nu+lHjMIxgg9CDQT+s2QYLoA56GbSK9Oxr+qJXzzygbkrmuY6cwgP6cW2JXPFA==
 
-"@uniswap/v3-periphery@1.4.1":
+"@uniswap/v3-periphery@1.4.1", "@uniswap/v3-periphery@^1.0.1", "@uniswap/v3-periphery@^1.1.1":
   version "1.4.1"
   resolved "https://registry.yarnpkg.com/@uniswap/v3-periphery/-/v3-periphery-1.4.1.tgz#b90f08b7386163c0abfd7258831caef6339c7862"
   integrity sha512-Ab0ZCKOQrQMKIcpBTezTsEhWfQjItd0TtkCG8mPhoQu+wC67nPaf4hYUhM6wGHeFUmDiYY5MpEQuokB0ENvoTg==
   dependencies:
     "@openzeppelin/contracts" "3.4.2-solc-0.7"
-    "@uniswap/lib" "^4.0.1-alpha"
-    "@uniswap/v2-core" "1.0.1"
-    "@uniswap/v3-core" "1.0.0"
-    base64-sol "1.0.1"
-    hardhat-watcher "^2.1.1"
-
-"@uniswap/v3-periphery@^1.0.1", "@uniswap/v3-periphery@^1.1.1":
-  version "1.4.0"
-  resolved "https://registry.yarnpkg.com/@uniswap/v3-periphery/-/v3-periphery-1.4.0.tgz#9abb733fc596916718070c688b5f426fd8d01fe3"
-  integrity sha512-OXikenS40UIEa2XxQ+TyGpFFcTOfSW8eH3Ngy7sGOYp+7yr6uGU2UzomeTsqzagBEAXUDTwxqkk9oUS1KtWTUw==
-  dependencies:
-    "@openzeppelin/contracts" "3.4.1-solc-0.7-2"
     "@uniswap/lib" "^4.0.1-alpha"
     "@uniswap/v2-core" "1.0.1"
     "@uniswap/v3-core" "1.0.0"

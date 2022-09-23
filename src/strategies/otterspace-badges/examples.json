@@ -6,7 +6,6 @@
       "params": {
         "symbol": "BADGES",
         "raftTokenId": "1",
-        "raftAddress": "0xbb8997048e5f0bfe6c9d6bee63ede53bd0236bb2",
         "specs": [
           {
             "id": "bafyreicmofif36f2s4d2iv37gy532epnw7rwjf5rygdhzzh2iw6nmbunrq",
@@ -34,7 +33,6 @@
       "params": {
         "symbol": "BADGES",
         "raftTokenId": "1",
-        "raftAddress": "0xbb8997048e5f0bfe6c9d6bee63ede53bd0236bb2",
         "specs": []
       }
     },
