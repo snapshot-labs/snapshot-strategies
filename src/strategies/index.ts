@@ -370,6 +370,7 @@ import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
+import * as aavegotchiAgip37 from './aavegotchi-agip-37';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -743,7 +744,8 @@ const strategies = {
   'otterspace-badges': otterspaceBadges,
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
   'deposit-in-sablier-stream': depositInSablierStream,
-  'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey
+  'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
+  'aavegotchi-agip-37': aavegotchiAgip37,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
