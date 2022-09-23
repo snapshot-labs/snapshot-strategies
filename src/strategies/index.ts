@@ -372,6 +372,7 @@ import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as aavegotchiAgip37 from './aavegotchi-agip-37';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -748,6 +749,7 @@ const strategies = {
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'aavegotchi-agip-37': aavegotchiAgip37,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
+  'erc20-tokens-per-uni': erc20TokensPerUni
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
