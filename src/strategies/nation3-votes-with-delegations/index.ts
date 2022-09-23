@@ -81,21 +81,23 @@ export async function strategy(
 
   const result = Object.fromEntries(
     addresses.map((address) => {
-      const delegatedToken = delegatedTokens.find(
+      const tokenDelegations = delegatedTokens.find(
         ([, addr]) => addr === address
       );
 
-      if (delegatedToken) {
-        const realOwner = erc721OwnersArr.find(
-          ([id]) => delegatedToken[0] === id
+      if (tokenDelegations?.length) {
+        const realOwners = erc721OwnersArr.find(([id]) =>
+          tokenDelegations.includes(id)
         );
 
-        if (!realOwner) {
+        if (!realOwners?.length) {
           return [address, 0.0];
         }
 
-        const [, ownerAddr] = realOwner;
-        const erc20Balance = erc20Balances[ownerAddr];
+        const ownerAddresses = realOwners.map(([, addr]) => addr);
+        const erc20Balance = ownerAddresses.reduce((sum, addr) => {
+          return sum + parseFloat(formatUnits(erc20Balances[addr], DECIMALS));
+        }, 0);
 
         return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
       } else {
