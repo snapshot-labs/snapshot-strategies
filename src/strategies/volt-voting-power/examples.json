@@ -8,7 +8,9 @@
         "tokenDecimals": 18,
         "lpTokenAddress": "0x1071392e4cdf7c01d433b87be92beb1f8fd663a8",
         "voltAddress": "0x8df95e66cb0ef38f91d2776da3c921768982fba0",
-        "network": "82"
+        "network": "82",
+        "swapSubgraph": "https://graph-meter.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph",
+        "stakingSubgraph": "https://graph-meter.voltswap.finance/subgraphs/name/meter/geyser-v2"
       }
     },
 

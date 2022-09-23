@@ -1,0 +1,32 @@
+[
+  {
+    "name": "tpro-staking",
+    "strategy": {
+      "name": "tpro-staking",
+      "params": {
+        "address": "0x3540abe4f288b280a0740ad5121aec337c404d15",
+        "symbol": "TPRO",
+        "decimals": 18,
+        "smartContracts": [
+          "0x5c9977cA74Be8028a2715229A4ce1e7cABd6eFC6",
+          "0x764C205a50Ef89A55b2E8FE13B0e06E50391716e",
+          "0xa3c6dfaDF1ABA174e54406e692b09F61c4bFD689",
+          "0x674EeEF1Da64b9e398210621A61d1d2a8Bf27387",
+          "0x1C2AC88532f54A046f842B0651f0C2F6A80E729D"
+        ],
+        "contractFactor": [0.03125, 0.0625, 0.125, 0.25, 1],
+        "powerFactor": 2
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x9D424a91A4D47ccb858436CE006492D61C8dBA76",
+      "0x8fc8405d41114D6F8271C44902464Ca1325Ac692",
+      "0x87Dddb39a02755c8Bfc567e30080b006DaD93Bf6",
+      "0xB5C8BB51A4cf229ced4cBA3fE352BF0D47088813",
+      "0xAC02A175594010228AC9dDCa9584b894386f7b27",
+      "0x8db0c967E6F8c6D8dA1a74147614Fd66c437bF45"
+    ],
+    "snapshot": 15402131
+  }
+]

@@ -273,9 +273,8 @@ export async function strategy(
           lonEarnedBalancesUniswapStaking2[i][0];
         const lonEarnedBalanceUniswapStaking3 =
           lonEarnedBalancesUniswapStaking3[i][0];
-        let lonEarnedBalanceUniswapStaking = lonEarnedBalanceUniswapStaking2.add(
-          lonEarnedBalanceUniswapStaking3
-        );
+        let lonEarnedBalanceUniswapStaking =
+          lonEarnedBalanceUniswapStaking2.add(lonEarnedBalanceUniswapStaking3);
 
         const lpBalanceSushiSwap = lpBalancesSushiSwap[i][0];
         const lpBalanceSushiSwapStaking2 = lpBalancesSushiSwapStaking2[i][0];
@@ -289,9 +288,10 @@ export async function strategy(
           lonEarnedBalancesSushiSwapStaking2[i][0];
         const lonEarnedBalanceSushiSwapStaking3 =
           lonEarnedBalancesSushiSwapStaking3[i][0];
-        let lonEarnedBalanceSushiSwapStaking = lonEarnedBalanceSushiSwapStaking2.add(
-          lonEarnedBalanceSushiSwapStaking3
-        );
+        let lonEarnedBalanceSushiSwapStaking =
+          lonEarnedBalanceSushiSwapStaking2.add(
+            lonEarnedBalanceSushiSwapStaking3
+          );
 
         if (options.stakingRewardUniswap4 && options.stakingRewardSushiSwap4) {
           const lpBalanceUniswapStaking4 = lpBalancesUniswapStaking4[i][0];
@@ -312,9 +312,10 @@ export async function strategy(
 
           const lonEarnedBalanceSushiSwapStaking4 =
             lonEarnedBalancesSushiSwapStaking4[i][0];
-          lonEarnedBalanceSushiSwapStaking = lonEarnedBalanceSushiSwapStaking.add(
-            lonEarnedBalanceSushiSwapStaking4
-          );
+          lonEarnedBalanceSushiSwapStaking =
+            lonEarnedBalanceSushiSwapStaking.add(
+              lonEarnedBalanceSushiSwapStaking4
+            );
         }
         lonLpBalanceUniswap = lonLpBalanceUniswap
           .mul(lonPerLPUniswap)

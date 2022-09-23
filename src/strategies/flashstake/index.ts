@@ -2,8 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const FLASHSTAKE_SUBGRAPH_URL = {
-  '1':
-    'https://api.thegraph.com/subgraphs/name/blockzerohello/flash-stake-stats-v2-subgraph'
+  '1': 'https://api.thegraph.com/subgraphs/name/blockzerohello/flash-stake-stats-v2-subgraph'
 };
 
 export const author = 'anassohail99';

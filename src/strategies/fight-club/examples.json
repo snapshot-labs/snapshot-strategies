@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "fight-club",
+      "params": {
+        "gloveAddresses": {
+          "0x25ed58c027921E14D86380eA2646E3a1B5C55A8b": 3
+        },
+        "weightClassAddress": "0xF1F3ca6268f330fDa08418db12171c3173eE39C9",
+        "weightClassIds": {
+          "8": 4,
+          "26": 5,
+          "33": 6
+        },
+        "symbol": "FC"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1EC1CcEF3e1735bdA3F4BA698e8a524AA7c93274",
+      "0x3eEFAa9d6e2ab7972C1001D41C82BB4881389257",
+      "0x7911670881A81F8410d06053d7B3c237cE77b9B4"
+    ],
+    "snapshot": 13921307
+  }
+]
