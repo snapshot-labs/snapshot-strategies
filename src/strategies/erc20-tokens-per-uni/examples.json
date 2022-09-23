@@ -5,7 +5,7 @@
       "name": "erc20-tokens-per-uni",
       "params": {
         "erc20TokenAddress": "0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7",
-        "poolTokenAddress": "0xfec232cc6f0f3aeb2f81b2787a9bc9f6fc72ea5c"
+        "poolTokenAddress": "0xb0E35478a389dD20050D66a67FB761678af99678"
       }
     },
     "network": "137",

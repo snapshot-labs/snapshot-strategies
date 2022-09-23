@@ -370,7 +370,7 @@ import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
-import * as aavegotchiAgip37 from './aavegotchi-agip-37';
+import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 
@@ -747,7 +747,7 @@ const strategies = {
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
   'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
-  'aavegotchi-agip-37': aavegotchiAgip37,
+  'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni
 };
