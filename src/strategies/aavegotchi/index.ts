@@ -44,6 +44,8 @@ export async function strategy(
     [address]
   ]);
 
+  console.log(stakeQuery);
+
   const res = await multicall(
     network,
     provider,

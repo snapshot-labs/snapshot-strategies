@@ -50,30 +50,18 @@ export async function strategy(
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  let unstakedQueries:any = [];
-  let stakedQueries:any = [];
-
-  for (let i = 0; i < addresses.length; i++) {
-    let address = addresses[i];
-
-    // unstakedQueries.push([options.amGhstAddress, 'balanceOf', [address]]);
-    unstakedQueries.push([options.wapGhstAddress, 'balanceOf', [address]]);
-    unstakedQueries.push([options.ghstFudAddress, 'balanceOf', [address]]);
-    unstakedQueries.push([options.ghstFomoAddress, 'balanceOf', [address]]);
-    unstakedQueries.push([options.ghstAlphaAddress, 'balanceOf', [address]]);
-    unstakedQueries.push([options.ghstKekAddress, 'balanceOf', [address]]);
-    unstakedQueries.push([options.ghstGltrAddress, 'balanceOf', [address]]);
-
-    stakedQueries.push([options.gltrStakingAddress, 'allUserInfo', [address]]);
-  }
+  const stakeQuery = addresses.map((address: string) => [
+    options.gltrStakingAddress,
+    'allUserInfo',
+    [address]
+  ]);
 
   const res = await multicall(
     network,
     provider,
     tokenAbi,
     [
-      ...stakedQueries,
-      ...unstakedQueries,
+      ...stakeQuery,
       [options.ghstFudAddress, 'totalSupply', []],
       [options.ghstAddress, 'balanceOf', [options.ghstFudAddress]],
       [options.ghstFomoAddress, 'totalSupply', []],
@@ -92,44 +80,11 @@ export async function strategy(
     { blockTag }
   );
 
-  console.log('multicall 1 calls', stakedQueries.length + unstakedQueries.length + 14);
-
-  const UNSTAKED_TOKEN_QUERIES = 6;
-
-  // unstaked wapGHST - use convertToAssets which is required for calculating the voting power for wapGHST
-  let unstakedConvertedWapGHST:any = [];
-  for (let i = 0; i < addresses.length; i++) {
-    let addressIndex = (i * UNSTAKED_TOKEN_QUERIES) + 1;
-    const unstakedWapGHSTBalance = res[addressIndex+2][0];
-    unstakedConvertedWapGHST.push([options.wapGhstAddress, 'convertToAssets', [unstakedWapGHSTBalance]]);
-  }
-
-  // staked wapGHST - use convertToAssets which is required for calculating the voting power for wapGHST
-  let stakedConvertedWapGHST:any = [];
-  for (let i = 0; i < addresses.length; i++) {
-    const stakedWapGHSTBalance = res[i]._info[options.wapGhstPoolId].userBalance;
-    stakedConvertedWapGHST.push([options.wapGhstAddress, 'convertToAssets', [stakedWapGHSTBalance]]);
-  }
-
-  // converted wapGHST into GHST (this has a dependency on the unstaked and staked wapGHST balances retrieved in res)
-  const wapGHST_res = await multicall(
-    network,
-    provider,
-    tokenAbi,
-    [
-      ...unstakedConvertedWapGHST,
-      ...stakedConvertedWapGHST
-    ],
-    { blockTag }
-  );
-
-  console.log('multicall 2 calls', unstakedConvertedWapGHST.length + stakedConvertedWapGHST.length);
-
   const tokensPerUni = (balanceInUni: number, totalSupply: number) => {
     return balanceInUni / 1e18 / (totalSupply / 1e18);
   };
 
-  let lpTokensStartIndex = stakedQueries.length + unstakedQueries.length;
+  let lpTokensStartIndex = stakeQuery.length;
   let lpTokensPerUni = {
     ghstFudLp: tokensPerUni(res[lpTokensStartIndex+1], res[lpTokensStartIndex]),
     ghstFomoLp: tokensPerUni(res[lpTokensStartIndex+3], res[lpTokensStartIndex+2]),
@@ -142,11 +97,8 @@ export async function strategy(
 
   let entries = {};
   for (let addressIndex = 0; addressIndex < addresses.length; addressIndex++) {
-    let i = (addressIndex * UNSTAKED_TOKEN_QUERIES) + 1;
-
     let tokens = {
       staked: {
-        wapGhst: Number(res[addressIndex]._info[options.wapGhstPoolId].userBalance.toString()) / 1e18,
         ghstFudLp: Number(res[addressIndex]._info[options.ghstFudPoolId].userBalance.toString()) / 1e18,
         ghstFomoLp: Number(res[addressIndex]._info[options.ghstFomoPoolId].userBalance.toString()) / 1e18,
         ghstAlphaLp: Number(res[addressIndex]._info[options.ghstAlphaPoolId].userBalance.toString()) / 1e18,
@@ -155,20 +107,10 @@ export async function strategy(
         ghstUsdcLp: Number(res[addressIndex]._info[options.ghstUsdcPoolId].userBalance.toString()) / 1e18,
         ghstWmaticLp: Number(res[addressIndex]._info[options.ghstWmaticPoolId].userBalance.toString()) / 1e18
       },
-      unstaked: {
-        // amGHST: Number(res[i+1].toString()) / 1e18,
-        wapGhst: Number(res[i+2].toString()) / 1e18,
-        ghstFudLp: Number(res[i+3].toString()) / 1e18,
-        ghstFomoLp: Number(res[i+4].toString()) / 1e18,
-        ghstAlphaLp: Number(res[i+5].toString()) / 1e18,
-        ghstKekLp: Number(res[i+6].toString()) / 1e18,
-        ghstGltrLp: Number(res[i+7].toString()) / 1e18,
-      }
     };
 
     let votingPower = {
       staked: {
-        wapGhst: Number(wapGHST_res[addresses.length + addressIndex].toString()) / 1e18,
         ghstFudLp: tokens.staked.ghstFudLp * lpTokensPerUni.ghstFudLp,
         ghstFomoLp: tokens.staked.ghstFomoLp * lpTokensPerUni.ghstFomoLp,
         ghstAlphaLp: tokens.staked.ghstAlphaLp * lpTokensPerUni.ghstAlphaLp,
@@ -176,23 +118,10 @@ export async function strategy(
         ghstGltrLp: tokens.staked.ghstGltrLp * lpTokensPerUni.ghstGltrLp,
         ghstUsdcLp: tokens.staked.ghstUsdcLp * lpTokensPerUni.ghstUsdcLp,
         ghstWmaticLp: tokens.staked.ghstWmaticLp * lpTokensPerUni.ghstWmaticLp
-      },
-      unstaked: {
-        // amGHST: tokens.unstaked.amGHST * 1,
-        wapGhst: Number(wapGHST_res[addressIndex].toString()) / 1e18,
-        ghstFudLp: tokens.unstaked.ghstFudLp * lpTokensPerUni.ghstFudLp,
-        ghstFomoLp: tokens.unstaked.ghstFomoLp * lpTokensPerUni.ghstFomoLp,
-        ghstAlphaLp: tokens.unstaked.ghstAlphaLp * lpTokensPerUni.ghstAlphaLp,
-        ghstKekLp: tokens.unstaked.ghstKekLp * lpTokensPerUni.ghstKekLp,
-        ghstGltrLp: tokens.unstaked.ghstGltrLp * lpTokensPerUni.ghstGltrLp,
-      },
+      }
     };
 
     let totalVotingPower = 0;
-    for (let k = 0; k < Object.keys(votingPower.unstaked).length; k++) {
-      let key = Object.keys(votingPower.unstaked)[k];
-      totalVotingPower += votingPower.unstaked[key];
-    }
     for (let k = 0; k < Object.keys(votingPower.staked).length; k++) {
       let key = Object.keys(votingPower.staked)[k];
       totalVotingPower += votingPower.staked[key];
@@ -200,17 +129,17 @@ export async function strategy(
 
     let address = addresses[addressIndex];
 
-    let loggedString = "TOKENS SUMMARY FOR " + address;
-    loggedString += "\nSTAKED TOKENS\n" + JSON.stringify(tokens.staked);
-    loggedString += "\nUNSTAKED TOKENS\n" + JSON.stringify(tokens.unstaked);
-    loggedString += "\nSTAKED VOTING POWER\n" + JSON.stringify(votingPower.staked);
-    loggedString += "\nUNSTAKED VOTING POWER\n" + JSON.stringify(votingPower.unstaked);
-    loggedString += "\TOTAL VOTING POWER\n" + totalVotingPower;
-    console.log(loggedString);
+    // let loggedString = "TOKENS SUMMARY FOR " + address;
+    // loggedString += "\nSTAKED TOKENS\n" + JSON.stringify(tokens.staked);
+    // loggedString += "\nSTAKED VOTING POWER\n" + JSON.stringify(votingPower.staked);
+    // loggedString += "\TOTAL VOTING POWER\n" + totalVotingPower;
+    // console.log(loggedString);
 
-    entries[address] = totalVotingPower;
+    if (totalVotingPower > 0) {
+      entries[address] = totalVotingPower;
+    }
   }
 
-  console.log('entries', entries);
+  // console.log('entries', entries);
   return entries;
 }
