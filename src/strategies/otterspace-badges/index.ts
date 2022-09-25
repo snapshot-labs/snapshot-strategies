@@ -52,7 +52,9 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
   if (specs && specs.length > 0) {
     const specConfig = specs.find((spec: any) => spec.id === badgeSpecID);
     badgeWeight =
-      specConfig && !isBadgeExpired(specConfig.expiresAt) ? specConfig.weight : 0;
+      specConfig && !isBadgeExpired(specConfig.expiresAt)
+        ? specConfig.weight
+        : 0;
   } else {
     badgeWeight = 1;
   }
