@@ -41,43 +41,83 @@ export async function strategy(
     [address]
   ]);
 
-  const res = await multicall(
+  let slicedWalletQueries:any = [walletQuery];
+  if (walletQuery.length > 1) {
+    let middle = walletQuery.length/2;
+    slicedWalletQueries = [
+      walletQuery.slice(0, middle),
+      walletQuery.slice(middle, walletQuery.length)
+    ];
+  }
+
+  let res = await multicall(
     network,
     provider,
     tokenAbi,
     [
-      ...walletQuery,
-      ...stakeQuery,
+      ...slicedWalletQueries[0],
     ],
     { blockTag }
   );
 
-  // unstaked wapGHST - use convertToAssets which is required for calculating the voting power for wapGHST
-  let unstakedConvertedWapGHST:any = [];
-  for (let i = 0; i < addresses.length; i++) {
-    const unstakedWapGHSTBalance = res[i][0];
-    unstakedConvertedWapGHST.push([options.wapGhstAddress, 'convertToAssets', [unstakedWapGHSTBalance]]);
+  if (slicedWalletQueries.length > 1) {
+    let res2 = await multicall(
+      network,
+      provider,
+      tokenAbi,
+      [
+        ...slicedWalletQueries[1],
+      ],
+      { blockTag }
+    );
+
+    res = [...res, ...res2];
   }
 
-  // staked wapGHST - use convertToAssets which is required for calculating the voting power for wapGHST
-  let stakedConvertedWapGHST:any = [];
-  for (let i = 0; i < addresses.length; i++) {
-    const stakedWapGHSTBalance = res[i+walletQuery.length]._info[options.wapGhstPoolId].userBalance;
-    stakedConvertedWapGHST.push([options.wapGhstAddress, 'convertToAssets', [stakedWapGHSTBalance]]);
+  let slicedStakeQueries:any = [walletQuery];
+  if (stakeQuery.length > 1) {
+    let middle = stakeQuery.length/2;
+    slicedStakeQueries = [
+      stakeQuery.slice(0, middle),
+      stakeQuery.slice(middle, stakeQuery.length)
+    ];
   }
 
-  // converted wapGHST into GHST (this has a dependency on the unstaked and staked wapGHST balances retrieved in res)
-  const wapGHST_res = await multicall(
+  const res3 = await multicall(
     network,
     provider,
     tokenAbi,
     [
-      ...unstakedConvertedWapGHST,
-      ...stakedConvertedWapGHST
+      ...slicedStakeQueries[0],
     ],
     { blockTag }
   );
+  res = [...res, ...res3];
 
+  if (slicedStakeQueries.length > 1) {
+    let res4 = await multicall(
+      network,
+      provider,
+      tokenAbi,
+      [
+        ...slicedStakeQueries[1],
+      ],
+      { blockTag }
+    );
+
+    res = [...res, ...res4];
+  }
+
+  let unitWapGHST_res = await multicall(
+    network,
+    provider,
+    tokenAbi,
+    [
+      [options.wapGhstAddress, 'convertToAssets', ["1000000000000000000"]]
+    ],
+    { blockTag }
+  );
+  let wapGHST_ghstMulitiplier = Number(unitWapGHST_res[0].toString()) / 1e18;
 
   let entries = {};
   for (let addressIndex = 0; addressIndex < addresses.length; addressIndex++) {
@@ -92,10 +132,10 @@ export async function strategy(
 
     let votingPower = {
       staked: {
-        wapGhst: Number(wapGHST_res[addressIndex + addresses.length].toString()) / 1e18,
+        wapGhst: tokens.staked.wapGhst * wapGHST_ghstMulitiplier,
       },
       unstaked: {
-        wapGhst: Number(wapGHST_res[addressIndex].toString()) / 1e18,
+        wapGhst: tokens.unstaked.wapGhst * wapGHST_ghstMulitiplier,
       },
     };
 
@@ -111,13 +151,13 @@ export async function strategy(
 
     let address = addresses[addressIndex];
 
-    let loggedString = "TOKENS SUMMARY FOR " + address;
-    loggedString += "\nSTAKED TOKENS\n" + JSON.stringify(tokens.staked);
-    loggedString += "\nUNSTAKED TOKENS\n" + JSON.stringify(tokens.unstaked);
-    loggedString += "\nSTAKED VOTING POWER\n" + JSON.stringify(votingPower.staked);
-    loggedString += "\nUNSTAKED VOTING POWER\n" + JSON.stringify(votingPower.unstaked);
-    loggedString += "\TOTAL VOTING POWER\n" + totalVotingPower;
-    console.log(loggedString);
+    // let loggedString = "TOKENS SUMMARY FOR " + address;
+    // loggedString += "\nSTAKED TOKENS\n" + JSON.stringify(tokens.staked);
+    // loggedString += "\nUNSTAKED TOKENS\n" + JSON.stringify(tokens.unstaked);
+    // loggedString += "\nSTAKED VOTING POWER\n" + JSON.stringify(votingPower.staked);
+    // loggedString += "\nUNSTAKED VOTING POWER\n" + JSON.stringify(votingPower.unstaked);
+    // loggedString += "\nTOTAL VOTING POWER\n" + totalVotingPower;
+    // console.log(loggedString);
 
     entries[address] = totalVotingPower;
   }
