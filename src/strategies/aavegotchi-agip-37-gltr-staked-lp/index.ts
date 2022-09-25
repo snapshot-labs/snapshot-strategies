@@ -56,12 +56,20 @@ export async function strategy(
     [address]
   ]);
 
-  const res = await multicall(
+  let slicedStakedQueries:any = [stakeQuery];
+  if (stakeQuery.length > 1) {
+    let middle = stakeQuery.length/2;
+    slicedStakedQueries = [
+      stakeQuery.slice(0, middle),
+      stakeQuery.slice(middle, stakeQuery.length)
+    ];
+  }
+
+  let res = await multicall(
     network,
     provider,
     tokenAbi,
     [
-      ...stakeQuery,
       [options.ghstFudAddress, 'totalSupply', []],
       [options.ghstAddress, 'balanceOf', [options.ghstFudAddress]],
       [options.ghstFomoAddress, 'totalSupply', []],
@@ -75,16 +83,31 @@ export async function strategy(
       [options.ghstUsdcAddress, 'totalSupply', []],
       [options.ghstAddress, 'balanceOf', [options.ghstUsdcAddress]],
       [options.ghstWmaticAddress, 'totalSupply', []],
-      [options.ghstAddress, 'balanceOf', [options.ghstWmaticAddress]]
+      [options.ghstAddress, 'balanceOf', [options.ghstWmaticAddress]],
+      ...slicedStakedQueries[0],
     ],
     { blockTag }
   );
+
+  if (slicedStakedQueries.length > 1) {
+    const res2 = await multicall(
+      network,
+      provider,
+      tokenAbi,
+      [
+        ...slicedStakedQueries[1]
+      ],
+      { blockTag }
+    );
+
+    res = [...res, ...res2];
+  }
 
   const tokensPerUni = (balanceInUni: number, totalSupply: number) => {
     return balanceInUni / 1e18 / (totalSupply / 1e18);
   };
 
-  let lpTokensStartIndex = stakeQuery.length;
+  let lpTokensStartIndex = 0;
   let lpTokensPerUni = {
     ghstFudLp: tokensPerUni(res[lpTokensStartIndex+1], res[lpTokensStartIndex]),
     ghstFomoLp: tokensPerUni(res[lpTokensStartIndex+3], res[lpTokensStartIndex+2]),
@@ -97,15 +120,16 @@ export async function strategy(
 
   let entries = {};
   for (let addressIndex = 0; addressIndex < addresses.length; addressIndex++) {
+    let i = addressIndex + 14;
     let tokens = {
       staked: {
-        ghstFudLp: Number(res[addressIndex]._info[options.ghstFudPoolId].userBalance.toString()) / 1e18,
-        ghstFomoLp: Number(res[addressIndex]._info[options.ghstFomoPoolId].userBalance.toString()) / 1e18,
-        ghstAlphaLp: Number(res[addressIndex]._info[options.ghstAlphaPoolId].userBalance.toString()) / 1e18,
-        ghstKekLp: Number(res[addressIndex]._info[options.ghstKekPoolId].userBalance.toString()) / 1e18,
-        ghstGltrLp: Number(res[addressIndex]._info[options.ghstGltrPoolId].userBalance.toString()) / 1e18,
-        ghstUsdcLp: Number(res[addressIndex]._info[options.ghstUsdcPoolId].userBalance.toString()) / 1e18,
-        ghstWmaticLp: Number(res[addressIndex]._info[options.ghstWmaticPoolId].userBalance.toString()) / 1e18
+        ghstFudLp: Number(res[i]._info[options.ghstFudPoolId].userBalance.toString()) / 1e18,
+        ghstFomoLp: Number(res[i]._info[options.ghstFomoPoolId].userBalance.toString()) / 1e18,
+        ghstAlphaLp: Number(res[i]._info[options.ghstAlphaPoolId].userBalance.toString()) / 1e18,
+        ghstKekLp: Number(res[i]._info[options.ghstKekPoolId].userBalance.toString()) / 1e18,
+        ghstGltrLp: Number(res[i]._info[options.ghstGltrPoolId].userBalance.toString()) / 1e18,
+        ghstUsdcLp: Number(res[i]._info[options.ghstUsdcPoolId].userBalance.toString()) / 1e18,
+        ghstWmaticLp: Number(res[i]._info[options.ghstWmaticPoolId].userBalance.toString()) / 1e18
       },
     };
 
@@ -132,12 +156,10 @@ export async function strategy(
     // let loggedString = "TOKENS SUMMARY FOR " + address;
     // loggedString += "\nSTAKED TOKENS\n" + JSON.stringify(tokens.staked);
     // loggedString += "\nSTAKED VOTING POWER\n" + JSON.stringify(votingPower.staked);
-    // loggedString += "\TOTAL VOTING POWER\n" + totalVotingPower;
+    // loggedString += "\nTOTAL VOTING POWER\n" + totalVotingPower;
     // console.log(loggedString);
 
-    if (totalVotingPower > 0) {
-      entries[address] = totalVotingPower;
-    }
+    entries[address] = totalVotingPower;
   }
 
   // console.log('entries', entries);
