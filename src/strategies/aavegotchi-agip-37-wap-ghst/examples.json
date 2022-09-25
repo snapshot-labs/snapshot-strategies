@@ -1,6 +1,6 @@
 [
   {
-    "name": "AGIP 37",
+    "name": "AGIP-37: This snapshot strategy enables voting power for staked and unstaked wapGHST",
     "strategy": {
       "name": "aavegotchi-agip-37-wap-ghst",
       "params": {
