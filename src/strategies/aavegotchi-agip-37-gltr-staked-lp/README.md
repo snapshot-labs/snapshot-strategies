@@ -2,7 +2,7 @@
 
 ## Description
 
-This snapshot strategy enables voting power for the following assets staking in GLTR staking pools
+This snapshot strategy enables voting power for the following assets staked in GLTR staking pools
 
 - GHST-FUD LP
 - GHST-FOMO LP
