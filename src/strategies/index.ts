@@ -371,6 +371,7 @@ import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
+import * as erc721SquareRoot from './erc721-square-root';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -424,6 +425,7 @@ const strategies = {
   'maker-ds-chief': makerDsChief,
   erc721,
   'erc721-enumerable': erc721Enumerable,
+  'erc721-square-root': erc721SquareRoot,
   'erc721-with-multiplier': erc721WithMultiplier,
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
