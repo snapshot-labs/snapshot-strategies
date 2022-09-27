@@ -5,16 +5,21 @@
       "name": "hedgey-multi",
       "params": {
         "contracts": [{
-          "address": "0xe1de80e27e55510c6c2e24275d53bb0dbb69e17c",
-          "token": "0xccde1f2b71573a865d3896eb019c41bf4bf92e65",
+          "address": "0x4bc8ea84bdc3ebb01d495e5d1605d4f082aeb5d7",
+          "token": "0xccDE1F2B71573a865d3896eb019C41Bf4BF92e65",
           "decimal": 18,
-          "contractType": "TokenInfusedNFT",
-          "multiplyer": "(score, deal) => score * 2"
+          "contractType": "NFT",
+          "lockedTokenMultiplier": 2,
+          "lockedTokenMonthlyMultiplier": {
+            "default": 1,
+            "1": 1.5,
+            "2": 2
+          }
         }]
       }
     },
     "network": "4",
-    "snapshot": 11412433,
-    "addresses": ["0xAa9c3a194C9E78085260dfC7EAcFef51653412Bf"]
+    "snapshot": 11452455,
+    "addresses": ["0x92d9802eFcD0485876DDC13c16cEA67e6aD5EB35"]
   }
 ]

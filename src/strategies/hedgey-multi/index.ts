@@ -16,7 +16,8 @@ type ContractDetails = {
   token: string;
   decimal: number;
   contractType: ContractType;
-  multiplyer?: string;
+  lockedTokenMultiplier: number;
+  lockedTokenMonthlyMultiplier: any;
 };
 
 const abis = {
@@ -34,6 +35,14 @@ const abis = {
 const compareAddresses = (address1: string, address2: string): boolean => {
   if (!address1 || !address2) return false;
   return address1.toLowerCase() === address2.toLowerCase();
+};
+
+const getMonthDifference = (start: Date, end: Date): number => {
+  return (
+    end.getMonth() -
+    start.getMonth() +
+    12 * (end.getFullYear() - start.getFullYear())
+  );
 };
 
 export async function strategy(
@@ -84,7 +93,7 @@ export async function strategy(
           `${contractDetail.contractType}/${contractDetail.address}/${address}/${index}`,
           contractDetail.address,
           'tokenOfOwnerByIndex',
-          [address, String(index)]
+          [address, index]
         );
       }
     });
@@ -144,11 +153,18 @@ export async function strategy(
     );
 
     let score = amount.toNumber();
+    score = score * contractDetail.lockedTokenMultiplier;
+    const durationStart = new Date();
+    const unlockDate = new Date(deal.unlockDate * 1000);
 
-    if (contractDetail.multiplyer) {
-      const multiplyer = eval(contractDetail.multiplyer);
-      score = multiplyer(score, deal);
-    }
+    const months = getMonthDifference(durationStart, unlockDate);
+    let monthlyMultiplier = contractDetail.lockedTokenMonthlyMultiplier[months];
+
+    if (!monthlyMultiplier)
+      monthlyMultiplier =
+        contractDetail.lockedTokenMonthlyMultiplier['default'];
+
+    score = score * monthlyMultiplier;
 
     let existingAmount = votes[address];
     if (existingAmount) {
@@ -174,12 +190,21 @@ export async function strategy(
     );
 
     let score = amount.toNumber();
+    score = score * contractDetail.lockedTokenMultiplier;
+    const durationStart = new Date();
+    const unlockDate = new Date(deal.unlockDate * 1000);
 
-    if (contractDetail.multiplyer) {
-      const multiplyer = eval(contractDetail.multiplyer);
-      score = multiplyer(score, deal);
+    const months = getMonthDifference(durationStart, unlockDate);
+    if (months > 1) {
+      let monthlyMultiplier =
+        contractDetail.lockedTokenMonthlyMultiplier[months];
+
+      if (!monthlyMultiplier)
+        monthlyMultiplier =
+          contractDetail.lockedTokenMonthlyMultiplier['default'];
+
+      score = score * monthlyMultiplier;
     }
-
     let existingAmount = votes[address];
     if (existingAmount) {
       existingAmount = existingAmount + score;
