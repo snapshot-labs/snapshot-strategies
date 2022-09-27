@@ -23,6 +23,7 @@ const blacklistedAddresses = [
   '0xD6a92755Ac5384867083Abd79aD007DE389b955e', // Cyberkong Gnosis (Polygon)
   '0x000000000000000000000000000000000000dead', // Matic Burn Address (Polygon)
   '0x70C575588B98C1F46B1382c706AdAf398A874e3E', // Kong Proxy (Polygon)
+  '0xab8eee3493a55a7bd8126865fd662b7097928088', // Marketplace LP (Polygon)
 ];
 
 const abi = [
