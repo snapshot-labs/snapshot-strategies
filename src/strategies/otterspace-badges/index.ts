@@ -51,12 +51,19 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
 
   if (specs && specs.length > 0) {
     const specConfig = specs.find((spec: any) => spec.id === badgeSpecID);
-    badgeWeight = specConfig ? specConfig.weight : 0;
+    badgeWeight =
+      specConfig && !isBadgeExpired(specConfig.expiresAt)
+        ? specConfig.weight
+        : 0;
   } else {
     badgeWeight = 1;
   }
 
   return badgeWeight;
+}
+
+function isBadgeExpired(expiresAt: string | null): boolean {
+  return expiresAt ? Date.now() - Number(new Date(expiresAt)) > 0 : false;
 }
 
 function applyBadgeWeights(badges: [], options: any) {

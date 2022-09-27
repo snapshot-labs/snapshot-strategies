@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "erc20": {
+          "type": "string",
+          "title": "veNation",
+          "examples": ["e.g. 0xf7def1d2fbda6b74bee7452fdf7894da9201065d"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc721": {
+          "type": "string",
+          "title": "nation3 passport",
+          "examples": ["e.g. 0x3337dac9f251d4e403d6030e18e3cfb6a2cb1333"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["erc20", "erc721"],
+      "additionalProperties": false
+    }
+  }
+}
