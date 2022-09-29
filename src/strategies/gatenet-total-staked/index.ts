@@ -56,6 +56,7 @@ export async function strategy(
   if (snapshot !== 'latest') {
     // @ts-ignore
     args.where.time_lte = (await provider.getBlock(snapshot)).timestamp;
+    console.log((await provider.getBlock(snapshot)).timestamp);
   }
 
   const query = {
