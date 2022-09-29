@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example voting based on hedgey token underlying balance",
+    "strategy": {
+      "name": "hedgey",
+      "params": {
+        "contractAddress": "0x8d53fd121198d0982f8e19286e924c78ed5a6a7a",
+        "token": "0xb0C5f3100A4d9d9532a4CfD68c55F1AE8da987Eb",
+        "decimals": 18
+      }
+    },
+    "network": "100",
+    "snapshot": 22423721,
+    "addresses": ["0x92d9802eFcD0485876DDC13c16cEA67e6aD5EB35"]
+  }
+]

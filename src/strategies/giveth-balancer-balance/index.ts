@@ -83,13 +83,8 @@ export async function strategy(
 
   const score = {};
   dataBalances.map((addressBalance) => {
-    const {
-      id,
-      balance,
-      givStaked,
-      balancerLp,
-      balancerLpStaked
-    } = addressBalance;
+    const { id, balance, givStaked, balancerLp, balancerLpStaked } =
+      addressBalance;
     const totalGIV = BigNumber.from(balance).add(givStaked);
 
     const balGIV = calcGivAmount(

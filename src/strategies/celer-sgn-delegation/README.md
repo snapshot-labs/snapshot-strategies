@@ -6,6 +6,7 @@ Here is an example of parameters:
 
 ```json
 {
-  "dposAddress": "0x5216db4d4cb22d1ba38866867c38d8e862974e82"
+  "v1StakingAddress": "0x5216db4d4cb22d1ba38866867c38d8e862974e82",
+  "v2StakingViewerAddress": "0x5803457E3074E727FA7F9aED60454bf2F127853b"
 }
 ```

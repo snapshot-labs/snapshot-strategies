@@ -17,6 +17,17 @@ export async function strategy(
   options,
   snapshot
 ) {
+  // initialize scores
+  const scores = {};
+  for (const address of addresses) {
+    scores[getAddress(address)] = 0;
+  }
+
+  // if graph doesn't exists return automaticaly
+  if (!DECENTRALAND_MARKETPLACE_SUBGRAPH_URL[network]) {
+    return scores;
+  }
+
   const multipler = options.multiplier || 1;
   const params = {
     nfts: {
@@ -41,7 +52,6 @@ export async function strategy(
     params.nfts.__args.block = { number: snapshot };
   }
 
-  const score = {};
   let hasNext = true;
   while (hasNext) {
     const result = await subgraphRequest(
@@ -52,13 +62,13 @@ export async function strategy(
     const nfts = result && result.nfts ? result.nfts : [];
     for (const estate of nfts) {
       const userAddress = getAddress(estate.owner.id);
-      score[userAddress] =
-        (score[userAddress] || 0) + estate.searchEstateSize * multipler;
+      scores[userAddress] =
+        (scores[userAddress] || 0) + estate.searchEstateSize * multipler;
     }
 
     params.nfts.__args.skip += params.nfts.__args.first;
     hasNext = nfts.length === params.nfts.__args.first;
   }
 
-  return score;
+  return scores;
 }

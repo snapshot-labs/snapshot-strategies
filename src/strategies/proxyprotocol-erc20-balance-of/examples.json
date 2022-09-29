@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "proxyprotocol-erc20-balance-of",
+      "params": {
+        "address": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
+        "symbol": "WETH",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x346f1c338b38ef9cf18964695dd68e9956ca5d37",
+      "0xa164591f695b11e1c6b77925e326e20754521200"
+    ],
+    "snapshot": 15304592
+  }
+]

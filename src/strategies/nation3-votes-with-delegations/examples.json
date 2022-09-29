@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Voting Power with ERC20 Balances (only for ERC721 Holders) ",
+    "strategy": {
+      "name": "nation3-votes-with-delegations",
+      "params": {
+        "erc721": "0x3337dac9f251d4e403d6030e18e3cfb6a2cb1333",
+        "erc20": "0xf7def1d2fbda6b74bee7452fdf7894da9201065d"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xE4BE9b821f84Ec062865372914c8392CA8F31464",
+      "0x05a4448597935c508e4ad0D2CF56d56beDb246Ce",
+      "0x69A5c0Db191697D11b0Ac5637c3445D38AF4b15b",
+      "0x443d40B2AA10cb01884A97281Dc8ac3cCb0eef2a",
+      "0x6412517845128C289e111Ad9dA26100f78e529d8"
+    ],
+    "snapshot": 15491432
+  }
+]
