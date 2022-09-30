@@ -16,19 +16,22 @@ export async function strategy(space, network, provider, addresses, options, sna
   const promises: any = [];
   const blocks = await getSnapshots(network, snapshot, provider, options.chains.map((s) => s.network || network));
   const allCalls: any[] = [];
+  const chainCalls = {1: [], 137: []}
   options.chains.forEach((chain) => {
-    const calls: any[] = [];
-    Object.keys(chain.registries).forEach((registry) => {
-      allAddresses[registry] = chain.registries[registry]
-      addresses.forEach((address: any) => {
-        calls.push([registry, 'balanceOf', [address]]);
-        allCalls.push([registry, 'balanceOf', [address]]);
+    if (chain.network == 1 || chain.network == 137) {
+      Object.keys(chain.registries).forEach((registry) => {
+        allAddresses[registry] = chain.registries[registry]
+        addresses.forEach((address: any) => {
+          chainCalls[chain.network].push([registry, 'balanceOf', [address]]);
+          allCalls.push([registry, 'balanceOf', [address]]);
+        });
       });
-    });
-    const blockTag = typeof blocks[chain.network] === 'number' ? blocks[chain.network] : 'latest';
-    promises.push(
-      multicall(chain.network, getProvider(chain.network), abi, calls, {blockTag})
-    );
+    }
+  })
+
+  Object.keys(chainCalls).forEach((chainID) => {
+    const blockTag = typeof blocks[chainID] === 'number' ? blocks[chainID] : 'latest';
+    promises.push(multicall(chainID, getProvider(chainID), abi, chainCalls[chainID], {blockTag}));
   })
 
   const results = await Promise.all(promises);
