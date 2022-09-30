@@ -51,13 +51,18 @@ export async function strategy(
     erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
   });
 
-  const [erc20Balances, lastIndex]: [
+  const [_erc20Balances, lastIndex]: [
     Record<string, BigNumberish>,
     Record<string, BigNumberish>
   ] = await Promise.all([
     erc20BalanceCaller.execute(),
     erc721LastTokenIdCaller.execute()
   ]);
+
+  const erc20Balances = {};
+  for (const addr in _erc20Balances) {
+    erc20Balances[addr.toLowerCase()] = _erc20Balances[addr];
+  }
 
   const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
 
@@ -76,18 +81,14 @@ export async function strategy(
 
   const erc721OwnersArr = Object.entries(erc721Owners);
   const delegatedTokens = erc721OwnersArr.filter(
-    ([id, address]) => address !== erc721Signers[id]
+    ([id, address]) => address.toLowerCase() !== erc721Signers[id].toLowerCase()
   );
 
-  // console.log('delegatedTokens', delegatedTokens)
   const result = Object.fromEntries(
     addresses.map((address) => {
       const tokenDelegations = delegatedTokens.find(
-        ([, addr]) => addr === address
+        ([, addr]) => addr.toLowerCase() === address.toLowerCase()
       );
-
-      // console.log('address', address)
-      // console.log('tokenDelegations', tokenDelegations)
 
       if (tokenDelegations?.length) {
         const realOwners = erc721OwnersArr.filter(([id]) =>
@@ -101,14 +102,14 @@ export async function strategy(
         const ownerAddresses = realOwners.map(([, addr]) => addr);
 
         const erc20Balance = ownerAddresses.reduce((sum, addr) => {
-          return sum.add(erc20Balances[addr] || 0);
+          return sum.add(erc20Balances[addr.toLowerCase()] || 0);
         }, BigNumber.from(0));
 
         return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
       } else {
-        const erc20Balance = erc20Balances[address];
+        const erc20Balance = erc20Balances[address.toLowerCase()];
         const erc721Token = erc721OwnersArr.find(
-          ([, addr]) => addr === address
+          ([, addr]) => addr.toLowerCase() === address.toLowerCase()
         );
 
         if (!erc721Token) {
