@@ -1,6 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'caranell';
 export const version = '0.1.0';
@@ -28,6 +29,8 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  const formattedAddresses = addresses.map((addr) => getAddress(addr));
+
   const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
     blockTag
   });
@@ -47,22 +50,17 @@ export async function strategy(
 
   erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
 
-  addresses.forEach((address) => {
+  formattedAddresses.forEach((address) => {
     erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
   });
 
-  const [_erc20Balances, lastIndex]: [
+  const [erc20Balances, lastIndex]: [
     Record<string, BigNumberish>,
     Record<string, BigNumberish>
   ] = await Promise.all([
     erc20BalanceCaller.execute(),
     erc721LastTokenIdCaller.execute()
   ]);
-
-  const erc20Balances = {};
-  for (const addr in _erc20Balances) {
-    erc20Balances[addr.toLowerCase()] = _erc20Balances[addr];
-  }
 
   const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
 
@@ -81,13 +79,13 @@ export async function strategy(
 
   const erc721OwnersArr = Object.entries(erc721Owners);
   const delegatedTokens = erc721OwnersArr.filter(
-    ([id, address]) => address.toLowerCase() !== erc721Signers[id].toLowerCase()
+    ([id, address]) => address !== erc721Signers[id]
   );
 
   const result = Object.fromEntries(
-    addresses.map((address) => {
+    formattedAddresses.map((address) => {
       const tokenDelegations = delegatedTokens.find(
-        ([, addr]) => addr.toLowerCase() === address.toLowerCase()
+        ([, addr]) => addr === address
       );
 
       if (tokenDelegations?.length) {
@@ -102,14 +100,14 @@ export async function strategy(
         const ownerAddresses = realOwners.map(([, addr]) => addr);
 
         const erc20Balance = ownerAddresses.reduce((sum, addr) => {
-          return sum.add(erc20Balances[addr.toLowerCase()] || 0);
+          return sum.add(erc20Balances[addr] || 0);
         }, BigNumber.from(0));
 
         return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
       } else {
-        const erc20Balance = erc20Balances[address.toLowerCase()];
+        const erc20Balance = erc20Balances[address];
         const erc721Token = erc721OwnersArr.find(
-          ([, addr]) => addr.toLowerCase() === address.toLowerCase()
+          ([, addr]) => addr === address
         );
 
         if (!erc721Token) {
