@@ -323,6 +323,7 @@ import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
+import * as hedgeyMulti from './hedgey-multi';
 import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
@@ -372,6 +373,9 @@ import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
+import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
+import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -700,6 +704,7 @@ const strategies = {
   'citydao-square-root': citydaoSquareRoot,
   'rowdy-roos': rowdyRoos,
   hedgey,
+  'hedgey-multi': hedgeyMulti,
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
@@ -747,7 +752,10 @@ const strategies = {
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
   'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
-  'nation3-votes-with-delegations': nation3VotesWIthDelegations
+  'nation3-votes-with-delegations': nation3VotesWIthDelegations,
+  'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
+  'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
+  'erc20-tokens-per-uni': erc20TokensPerUni
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
