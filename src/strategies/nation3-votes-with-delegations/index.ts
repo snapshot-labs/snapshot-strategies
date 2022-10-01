@@ -1,6 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'caranell';
 export const version = '0.1.0';
@@ -22,11 +23,13 @@ export async function strategy(
   space,
   network,
   provider,
-  addresses,
+  addresses: string[],
   options,
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const formattedAddresses = addresses.map((addr) => getAddress(addr));
 
   const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
     blockTag
@@ -47,7 +50,7 @@ export async function strategy(
 
   erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
 
-  addresses.forEach((address) => {
+  formattedAddresses.forEach((address) => {
     erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
   });
 
@@ -76,17 +79,17 @@ export async function strategy(
 
   const erc721OwnersArr = Object.entries(erc721Owners);
   const delegatedTokens = erc721OwnersArr.filter(
-    ([id, address]) => address != erc721Signers[id]
+    ([id, address]) => address !== erc721Signers[id]
   );
 
   const result = Object.fromEntries(
-    addresses.map((address) => {
+    formattedAddresses.map((address) => {
       const tokenDelegations = delegatedTokens.find(
         ([, addr]) => addr === address
       );
 
       if (tokenDelegations?.length) {
-        const realOwners = erc721OwnersArr.find(([id]) =>
+        const realOwners = erc721OwnersArr.filter(([id]) =>
           tokenDelegations.includes(id)
         );
 
@@ -95,9 +98,10 @@ export async function strategy(
         }
 
         const ownerAddresses = realOwners.map(([, addr]) => addr);
+
         const erc20Balance = ownerAddresses.reduce((sum, addr) => {
-          return sum + parseFloat(formatUnits(erc20Balances[addr], DECIMALS));
-        }, 0);
+          return sum.add(erc20Balances[addr] || 0);
+        }, BigNumber.from(0));
 
         return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
       } else {
