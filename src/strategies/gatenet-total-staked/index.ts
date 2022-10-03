@@ -105,13 +105,24 @@ export async function strategy(
       (s) => s.sender.toLowerCase() === address.toLowerCase()
     );
 
-    if (compoundWithdraws.length > 0 && compoundDeposits.length > 0) {
-      const rawTransactions = compoundDeposits
-        .concat(compoundWithdraws)
-        .concat(transactionsList.stakings)
-        .sort(function (a, b) {
-          return a.time - b.time;
-        });
+    if (compoundDeposits.length > 0) {
+      let rawTransactions;
+      // Keeping split condition for the case of Only deposite transaction.
+      if (compoundWithdraws.length > 0) {
+        rawTransactions = compoundDeposits
+          .concat(compoundWithdraws)
+          .concat(transactionsList.stakings)
+          .sort(function (a, b) {
+            return a.time - b.time;
+          });
+      } else {
+        rawTransactions = compoundDeposits
+          .concat(transactionsList.stakings)
+          .sort(function (a, b) {
+            return a.time - b.time;
+          });
+      }
+
       const transactions = rawTransactions
         .map((transaction) => {
           const type = getTransactionType(transaction);

@@ -7,7 +7,7 @@ const tokenAbi = [
   'function balanceOf(address account) view returns (uint256)',
   'function totalSupply() view returns (uint256)',
   'function allUserInfo(address _user) view returns (tuple(address lpToken, uint256 allocPoint, uint256 pending, uint256 userBalance, uint256 poolBalance)[] _info)',
-  'function convertToAssets(uint256 shares) view returns (uint)',
+  'function convertToAssets(uint256 shares) view returns (uint)'
 ];
 
 export async function strategy(
@@ -18,13 +18,17 @@ export async function strategy(
   options,
   snapshot
 ) {
-  options.ghstAddress = options.ghstAddress || '0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7';
+  options.ghstAddress =
+    options.ghstAddress || '0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7';
 
-  options.gltrStakingAddress = options.gltrStakingAddress || '0x1fE64677Ab1397e20A1211AFae2758570fEa1B8c';
-  
-  options.amGhstAddress = options.amGhstAddress || '0x080b5BF8f360F624628E0fb961F4e67c9e3c7CF1';
+  options.gltrStakingAddress =
+    options.gltrStakingAddress || '0x1fE64677Ab1397e20A1211AFae2758570fEa1B8c';
 
-  options.wapGhstAddress = options.wapGhstAddress || '0x73958d46B7aA2bc94926d8a215Fa560A5CdCA3eA';
+  options.amGhstAddress =
+    options.amGhstAddress || '0x080b5BF8f360F624628E0fb961F4e67c9e3c7CF1';
+
+  options.wapGhstAddress =
+    options.wapGhstAddress || '0x73958d46B7aA2bc94926d8a215Fa560A5CdCA3eA';
   options.wapGhstPoolId = options.wapGhstPoolId || 0;
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
@@ -41,9 +45,9 @@ export async function strategy(
     [address]
   ]);
 
-  let slicedWalletQueries:any = [walletQuery];
+  let slicedWalletQueries: any = [walletQuery];
   if (walletQuery.length > 1) {
-    let middle = walletQuery.length/2;
+    const middle = walletQuery.length / 2;
     slicedWalletQueries = [
       walletQuery.slice(0, middle),
       walletQuery.slice(middle, walletQuery.length)
@@ -54,29 +58,25 @@ export async function strategy(
     network,
     provider,
     tokenAbi,
-    [
-      ...slicedWalletQueries[0],
-    ],
+    [...slicedWalletQueries[0]],
     { blockTag }
   );
 
   if (slicedWalletQueries.length > 1) {
-    let res2 = await multicall(
+    const res2 = await multicall(
       network,
       provider,
       tokenAbi,
-      [
-        ...slicedWalletQueries[1],
-      ],
+      [...slicedWalletQueries[1]],
       { blockTag }
     );
 
     res = [...res, ...res2];
   }
 
-  let slicedStakeQueries:any = [walletQuery];
+  let slicedStakeQueries: any = [walletQuery];
   if (stakeQuery.length > 1) {
-    let middle = stakeQuery.length/2;
+    const middle = stakeQuery.length / 2;
     slicedStakeQueries = [
       stakeQuery.slice(0, middle),
       stakeQuery.slice(middle, stakeQuery.length)
@@ -87,69 +87,68 @@ export async function strategy(
     network,
     provider,
     tokenAbi,
-    [
-      ...slicedStakeQueries[0],
-    ],
+    [...slicedStakeQueries[0]],
     { blockTag }
   );
   res = [...res, ...res3];
 
   if (slicedStakeQueries.length > 1) {
-    let res4 = await multicall(
+    const res4 = await multicall(
       network,
       provider,
       tokenAbi,
-      [
-        ...slicedStakeQueries[1],
-      ],
+      [...slicedStakeQueries[1]],
       { blockTag }
     );
 
     res = [...res, ...res4];
   }
 
-  let unitWapGHST_res = await multicall(
+  const unitWapGHST_res = await multicall(
     network,
     provider,
     tokenAbi,
-    [
-      [options.wapGhstAddress, 'convertToAssets', ["1000000000000000000"]]
-    ],
+    [[options.wapGhstAddress, 'convertToAssets', ['1000000000000000000']]],
     { blockTag }
   );
-  let wapGHST_ghstMulitiplier = Number(unitWapGHST_res[0].toString()) / 1e18;
+  const wapGHST_ghstMulitiplier = Number(unitWapGHST_res[0].toString()) / 1e18;
 
-  let entries = {};
+  const entries = {};
   for (let addressIndex = 0; addressIndex < addresses.length; addressIndex++) {
-    let tokens = {
+    const tokens = {
       staked: {
-        wapGhst: Number(res[addressIndex + addresses.length]._info[options.wapGhstPoolId].userBalance.toString()) / 1e18,
+        wapGhst:
+          Number(
+            res[addressIndex + addresses.length]._info[
+              options.wapGhstPoolId
+            ].userBalance.toString()
+          ) / 1e18
       },
       unstaked: {
-        wapGhst: Number(res[addressIndex].toString()) / 1e18,
+        wapGhst: Number(res[addressIndex].toString()) / 1e18
       }
     };
 
-    let votingPower = {
+    const votingPower = {
       staked: {
-        wapGhst: tokens.staked.wapGhst * wapGHST_ghstMulitiplier,
+        wapGhst: tokens.staked.wapGhst * wapGHST_ghstMulitiplier
       },
       unstaked: {
-        wapGhst: tokens.unstaked.wapGhst * wapGHST_ghstMulitiplier,
-      },
+        wapGhst: tokens.unstaked.wapGhst * wapGHST_ghstMulitiplier
+      }
     };
 
     let totalVotingPower = 0;
     for (let k = 0; k < Object.keys(votingPower.unstaked).length; k++) {
-      let key = Object.keys(votingPower.unstaked)[k];
+      const key = Object.keys(votingPower.unstaked)[k];
       totalVotingPower += votingPower.unstaked[key];
     }
     for (let k = 0; k < Object.keys(votingPower.staked).length; k++) {
-      let key = Object.keys(votingPower.staked)[k];
+      const key = Object.keys(votingPower.staked)[k];
       totalVotingPower += votingPower.staked[key];
     }
 
-    let address = addresses[addressIndex];
+    const address = addresses[addressIndex];
 
     // let loggedString = "TOKENS SUMMARY FOR " + address;
     // loggedString += "\nSTAKED TOKENS\n" + JSON.stringify(tokens.staked);
