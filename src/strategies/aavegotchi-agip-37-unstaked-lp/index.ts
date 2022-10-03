@@ -74,7 +74,6 @@ export async function strategy(
     entries[address] = totalVotingPower;
   }
 
-  console.log(entries);
 
   return entries;
 }
