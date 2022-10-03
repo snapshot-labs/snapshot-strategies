@@ -90,6 +90,7 @@ import * as delegation from './delegation';
 import * as ticket from './ticket';
 import * as work from './work';
 import * as ticketValidity from './ticket-validity';
+import * as ticketMultipleValidity from './ticket-multiple-validity';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
 import * as ocean_v4 from './ocean-marketplace-v4';
@@ -488,6 +489,7 @@ const strategies = {
   ticket,
   work,
   'ticket-validity': ticketValidity,
+  'ticket-multiple-validity': ticketMultipleValidity,
   opium,
   'ocean-marketplace': ocean,
   'ocean-marketplace-v4': ocean_v4,
