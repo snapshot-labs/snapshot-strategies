@@ -4,19 +4,7 @@ export const author = 'programmablewealth';
 export const version = '0.0.1';
 
 const contractAbi = [
-  `function agip37VotingPowerSummary(address _account) public view returns (
-    tuple(
-      uint256 amGHSTVP,
-      uint256 unstakedWapGHSTVP,
-      uint256 stakedWapGHSTVP,
-      uint256 stakedGHSTLPTokensVP,
-      uint256 unstakedGHSTLPTokensVP
-    )
-  )`,
-  `function agip37VotingPowerNumber(address _account) public view returns (uint256 votingPower)`,
-  'function balanceOf(address account) view returns (uint256)',
-  'function gltrAllUnstakedLPTokenVotingPower(address _account) public view returns (uint256)',
-  'function batchAgip37VotingPower(address[] memory _accounts) public view returns (uint256[] memory)'
+  'function gltrAllUnstakedLPTokenVotingPower(address _account) public view returns (uint256)'
 ];
 
 export async function strategy(
