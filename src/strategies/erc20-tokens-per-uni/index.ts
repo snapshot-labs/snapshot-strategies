@@ -5,7 +5,7 @@ export const version = '0.0.1';
 
 const tokenAbi = [
   'function balanceOf(address account) view returns (uint256)',
-  'function totalSupply() view returns (uint256)',
+  'function totalSupply() view returns (uint256)'
 ];
 
 export async function strategy(
@@ -31,7 +31,7 @@ export async function strategy(
     [
       ...poolTokensBalanceQueries,
       [options.poolTokenAddress, 'totalSupply', []],
-      [options.erc20TokenAddress, 'balanceOf', [options.poolTokenAddress]],
+      [options.erc20TokenAddress, 'balanceOf', [options.poolTokenAddress]]
     ],
     { blockTag }
   );
@@ -40,10 +40,15 @@ export async function strategy(
     return balanceInUni / 1e18 / (totalSupply / 1e18);
   };
 
-  let entries = {};
+  const entries = {};
   for (let addressIndex = 0; addressIndex < addresses.length; addressIndex++) {
-    let address = addresses[addressIndex];
-    let result = res[addressIndex] * tokensPerUni(res[poolTokensBalanceQueries.length + 1], res[poolTokensBalanceQueries.length]);
+    const address = addresses[addressIndex];
+    const result =
+      res[addressIndex] *
+      tokensPerUni(
+        res[poolTokensBalanceQueries.length + 1],
+        res[poolTokensBalanceQueries.length]
+      );
     entries[address] = Number(result.toString()) / 1e18;
   }
 
