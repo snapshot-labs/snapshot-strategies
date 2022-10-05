@@ -1,12 +1,11 @@
 [
   {
-    "name": "Ticket multiple validity",
+    "name": "Validation strategy",
     "strategy": {
-      "name": "ticket-multiple-validity",
+      "name": "validation",
       "params": {
-        "symbol": "TICKET",
-        "min": 0,
-        "strategies": [
+        "symbol": "UNI",
+        "validationStrategies": [
           {
             "name": "erc20-balance-of",
             "params": {
@@ -20,6 +19,13 @@
               "address": "0xa0b86991c6218b36c1d19d4a2e9eb0ce3606eb48",
               "decimals": 6
             }
+          }
+        ],
+        "minimumValidity": 0,
+        "votingStrategies": [
+          {
+            "name": "ticket",
+            "params": {}
           }
         ]
       }
