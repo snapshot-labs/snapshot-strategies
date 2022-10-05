@@ -12,8 +12,14 @@ const POAP_API_ENDPOINT_URL = {
 
 const getTokenSupply = {
   tokens: {
+    __args: {
+      where: {
+        event_: {
+          id_in: undefined
+        }
+      }
+    },
     event: {
-      id: undefined,
       tokenCount: true
     },
     id: true,
@@ -32,10 +38,9 @@ export async function strategy(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   snapshot
 ) {
-
-  // Set TokenIds as arguments for GQL query
-  getTokenSupply.tokens.event.id = options.eventIds.map(
-    (event) => event.id
+  // Set eventIds as arguments for GQL query
+  getTokenSupply.tokens.__args.where.event_.id_in = options.eventIds.map(
+    (eventId) => eventId.id
   );
   const poapWeights = {};
   const supplyResponse = await subgraphRequest(

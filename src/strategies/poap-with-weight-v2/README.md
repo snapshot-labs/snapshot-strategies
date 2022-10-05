@@ -10,9 +10,9 @@ Here is an example of parameters:
 {
   "symbol": "POAP",
   "eventIds": [
-    {"id":"19387", "weight": 100}, 
-    {"id":"51192", "weight": 10}, 
-    {"id":"4398", "weight": 1}
+    { "id": "100001", "weight": 100 },
+    { "id": "100002", "weight": 10 },
+    { "id": "1000", "weight": 1 }
   ]
 }
 ```
