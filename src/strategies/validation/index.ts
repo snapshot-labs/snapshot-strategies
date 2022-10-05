@@ -40,9 +40,8 @@ export async function strategy(
   }
 
   const results = await Promise.all(promises);
-  const scores = {};
   let validatedAddresses: string[] = [];
-
+  
   results.forEach((result) => {
     for (const address in result) {
       if (result[address] > minimumValidity) {
@@ -52,6 +51,7 @@ export async function strategy(
   });
   validatedAddresses = [...new Set(validatedAddresses)];
 
+  const scores = {};
   if (validatedAddresses.length > 0) {
     const promises: any = [];
     for (const strategy of votingStrategies) {
