@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Example query with specific badge specs",
+    "strategy": {
+      "name": "otterspace-badges",
+      "params": {
+        "symbol": "BADGES",
+        "raftTokenId": "1",
+        "specs": [
+          {
+            "id": "bafyreicmofif36f2s4d2iv37gy532epnw7rwjf5rygdhzzh2iw6nmbunrq",
+            "weight": 5
+          },
+          {
+            "id": "bafyreihj2e3mxqwk24auglrfckk3eh2hzsq7eyghjpcprmopvok5wxz3bu",
+            "weight": 10
+          }
+        ]
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0xbb9ecfd5685502977b5b7c1ac0cdff8c136a4da8",
+      "0x33d0bbd05cf3c7e040d33bc1f338585a087e5dd9",
+      "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
+    ],
+    "snapshot": 7509588
+  },
+  {
+    "name": "Example query for all badge specs",
+    "strategy": {
+      "name": "otterspace-badges",
+      "params": {
+        "symbol": "BADGES",
+        "raftTokenId": "1",
+        "specs": []
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0xbb9ecfd5685502977b5b7c1ac0cdff8c136a4da8",
+      "0x33d0bbd05cf3c7e040d33bc1f338585a087e5dd9",
+      "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
+    ],
+    "snapshot": 7509588
+  },
+  {
+    "name": "Example query with specific badge specs",
+    "strategy": {
+      "name": "otterspace-badges",
+      "params": {
+        "symbol": "BADGES",
+        "raftTokenId": "1",
+        "specs": [
+          {
+            "id": "bafyreibvclrxnfm5nrchvdqfog6t2usvlqiozwgxynrxwlgftl3ln7uxqe",
+            "weight": 5
+          },
+          {
+            "id": "bafyreicl3unvw6tvzjfduvrhxbfi74gsob6mpf6ekn3s2nkopqz2phtx7e",
+            "weight": 10
+          }
+        ]
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0x76d84163bc0bbf58d6d3f2332f8a9c5b339df983",
+      "0x73677662f66088236ddfc95da42e405cf3f4ce13",
+      "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
+    ],
+    "snapshot": 21528802
+  },
+  {
+    "name": "Example query for all badge specs",
+    "strategy": {
+      "name": "otterspace-badges",
+      "params": {
+        "symbol": "BADGES",
+        "raftTokenId": "1",
+        "specs": []
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0x76d84163bc0bbf58d6d3f2332f8a9c5b339df983",
+      "0x73677662f66088236ddfc95da42e405cf3f4ce13",
+      "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
+    ],
+    "snapshot": 21528802
+  }
+]

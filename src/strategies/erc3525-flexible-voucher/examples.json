@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc3525-flexible-voucher",
+      "params": {
+        "symbol": "fvSOLV",
+        "address": "0xb77Ca8CB421fAE5d4790a6f5EdAD97Cfb7868aD0",
+        "decimals": 18
+      }
+    },
+    "network": "4",
+    "addresses": ["0x1a71c8EF63aB6f578b1702a35367cA81c9281A8c"],
+    "snapshot": 11096688
+  }
+]
