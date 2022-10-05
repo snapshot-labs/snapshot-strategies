@@ -1,4 +1,4 @@
-# POAP (erc721) eventid with weight
+# POAP (erc721) eventId with weight
 
 Each POAP is implemented as an erc721 with a max supply tokens.
 
