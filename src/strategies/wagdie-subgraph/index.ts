@@ -16,38 +16,72 @@ export async function strategy(
   options,
   snapshot
 ) {
+  // initialize scores
+  const scores = {};
+  for (const address of addresses) {
+    scores[getAddress(address)] = 0;
+  }
+
+  // If graph doesn't exist return
+  if (!SUBGRAPH_URL[network]) {
+    return scores;
+  }
+
   const params = {
-    accounts: {
+    characters: {
       __args: {
         where: {
-          id_in: addresses.map((address) => address.toLowerCase()),
-          ownedWAGDIE_gt: 0
-        }
+          owner_in: addresses.map((address) => address.toLowerCase()),
+          id_gt: '',
+          burned: false
+        },
+        orderBy: 'id',
+        orderDirection: 'asc',
+        first: 1000
       },
       id: true,
-      ownedWAGDIE: true
+      owner: {
+        id: true
+      },
+      location: {
+        id: true
+      },
     }
   };
+
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params.accounts.__args.block = { number: snapshot };
+    params.characters.__args.block = { number: snapshot };
   }
-  const result = await subgraphRequest(
-    options.subGraphURL ? options.subGraphURL : SUBGRAPH_URL[network],
-    params
-  );
-  const score = {};
-  if (result && result.accounts) {
-    result.accounts.forEach((account) => {
-      const accountAddress = getAddress(account.id);
-      let accountscore = Number(account.ownedWAGDIE);
 
-      if (options.scoreMultiplier) {
-        accountscore = accountscore * options.scoreMultiplier;
+  let hasNext = true;
+  while (hasNext) {
+    const result = await subgraphRequest(
+      SUBGRAPH_URL[network],
+      params
+    );
+
+    const characters = result && result.characters ? result.characters : [];
+    const latest = characters[characters.length - 1];
+    const location = options.location.toLowerCase()
+      
+    for (const character of characters) {
+      const userAddress = getAddress(character.owner.id);
+      if (location !== "all") {
+        if (character.location !== null && character.location.id == location) {
+          scores[userAddress] =
+            (scores[userAddress] ?? 0) + options.scoreMultiplier;
+        }
       }
-      if (!score[accountAddress]) score[accountAddress] = 0;
-      score[accountAddress] = score[accountAddress] + accountscore;
-    });
+      else {
+        scores[userAddress] =
+          (scores[userAddress] ?? 0) + options.scoreMultiplier;
+      }
+    }
+
+    hasNext = characters.length === params.characters.__args.first;
+    params.characters.__args.where.id_gt = latest ? latest.id : '';
   }
-  return score || {};
+
+  return scores || {};
 }

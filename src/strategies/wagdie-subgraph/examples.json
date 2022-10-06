@@ -4,14 +4,17 @@
     "strategy": {
       "name": "wagdie-subgraph",
       "params": {
-        "subGraphURL": "https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet"
+        "subGraphURL": "https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet",
+        "scoreMultiplier": 1,
+        "location": "2"
       }
     },
     "network": "1",
     "addresses": [
       "0x004689958ae25378331aeff1793145b3f38d6ad0",
       "0x0165726095c46a107ad1d81059800aacec861391",
-      "0x0000000000a880cdfda22a458f37694e899ed0aa"
+      "0x4F0EceDCd73dA0315134741d9D3830B08fE32e95",
+      "0xf36fc687c16f3021635b848a7d7450f5217240da"
     ],
     "snapshot": 15678972
   }
