@@ -23,7 +23,7 @@ Example to return 1 voting power if user hold any USDC:
             "decimals": 6
         }
     }],
-    "minimumValidity": 0,
+    "minimumValidity": 1,
     "votingStrategies": [{
         "name": "ticket",
         "params": {}
