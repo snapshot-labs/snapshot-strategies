@@ -9,7 +9,7 @@ Parameters:
 | `symbol`                | Token symbol                                     | optional      |
 | `validationStrategies`  | List of strategies to check validation (Max 3)   |               |
 | `votingStrategies`      | List of strategies to return voting power (Max 3)|               |
-| `minimumValidity`       | Minimum voting power in a strategy               | 0             |
+| `validationThreshold`   | Minimum voting power in a strategy               | 1             |
 
 Example to return 1 voting power if user hold any USDC:
 
@@ -23,7 +23,7 @@ Example to return 1 voting power if user hold any USDC:
             "decimals": 6
         }
     }],
-    "minimumValidity": 1,
+    "validationThreshold": 1,
     "votingStrategies": [{
         "name": "ticket",
         "params": {}

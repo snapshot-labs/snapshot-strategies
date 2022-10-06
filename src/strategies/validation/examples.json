@@ -21,7 +21,7 @@
             }
           }
         ],
-        "minimumValidity": 1,
+        "validationThreshold": 1,
         "votingStrategies": [
           {
             "name": "ticket",

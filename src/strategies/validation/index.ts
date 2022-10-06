@@ -15,7 +15,7 @@ export async function strategy(
   const {
     validationStrategies = [],
     votingStrategies = [],
-    minimumValidity = 0
+    validationThreshold = 1
   } = options;
   // Limit validationStrategies to 3 strategies
   if (validationStrategies.length === 0 || votingStrategies.length === 0) {
@@ -41,10 +41,9 @@ export async function strategy(
 
   const results = await Promise.all(promises);
   let validatedAddresses: string[] = [];
-  
   results.forEach((result) => {
     for (const address in result) {
-      if (result[address] >= minimumValidity) {
+      if (result[address] >= validationThreshold) {
         validatedAddresses.push(getAddress(address));
       }
     }
