@@ -44,7 +44,7 @@ export async function strategy(
   
   results.forEach((result) => {
     for (const address in result) {
-      if (result[address] > minimumValidity) {
+      if (result[address] >= minimumValidity) {
         validatedAddresses.push(getAddress(address));
       }
     }
