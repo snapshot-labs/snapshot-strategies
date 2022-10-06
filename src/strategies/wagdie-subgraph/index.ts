@@ -63,19 +63,28 @@ export async function strategy(
 
     const characters = result && result.characters ? result.characters : [];
     const latest = characters[characters.length - 1];
-    const location = options.location.toLowerCase()
-      
+    // const location = options.location.toLowerCase()
+    console.log(options.location)
+
+    // for (const character of characters) {
+    //   const userAddress = getAddress(character.owner.id);
+    //   if (location !== "all") {
+    //     if (character.location !== null && character.location.id == location) {
+    //       scores[userAddress] =
+    //         (scores[userAddress] ?? 0) + options.scoreMultiplier;
+    //     }
+    //   }
+    //   else {
+    //     scores[userAddress] =
+    //       (scores[userAddress] ?? 0) + options.scoreMultiplier;
+    //   }
+    // }
     for (const character of characters) {
       const userAddress = getAddress(character.owner.id);
-      if (location !== "all") {
-        if (character.location !== null && character.location.id == location) {
-          scores[userAddress] =
-            (scores[userAddress] ?? 0) + options.scoreMultiplier;
-        }
-      }
-      else {
-        scores[userAddress] =
-          (scores[userAddress] ?? 0) + options.scoreMultiplier;
+      const charId = character?.location?.id
+      if (options.location.includes("all") || options.location.includes(charId)) {
+        scores[userAddress] = (scores[userAddress] ?? 0) +
+          options.scoreMultiplier;
       }
     }
 
