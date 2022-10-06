@@ -21,5 +21,7 @@ The space config will look like this:
   "subGraphURL": "https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet",
   // scoreMultiplier can be used to increase users' scores by a certain magnitude
   "scoreMultiplier": 1,
+  // location can be set to limit votes to WAGDIE staked in specific location. Use Location ID as string or "all" for all locations.
+  "location": "all"
 }
 ```
