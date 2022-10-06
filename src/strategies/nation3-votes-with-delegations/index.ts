@@ -78,15 +78,18 @@ export async function strategy(
   ]);
 
   const erc721OwnersArr = Object.entries(erc721Owners);
-  const delegatedTokens = erc721OwnersArr.filter(
-    ([id, address]) => address !== erc721Signers[id]
+  const erc721SignersArr = Object.entries(erc721Signers);
+
+  const delegatedTokens = erc721SignersArr.filter(
+    ([id, address]) => address !== erc721Owners[id]
   );
 
   const result = Object.fromEntries(
     formattedAddresses.map((address) => {
-      const tokenDelegations = delegatedTokens.find(
-        ([, addr]) => addr === address
-      );
+      // Getting ids of all tokens delegated to this address
+      const tokenDelegations = delegatedTokens
+        .filter(([, addr]) => addr === address)
+        .map(([id]) => id);
 
       if (tokenDelegations?.length) {
         const realOwners = erc721OwnersArr.filter(([id]) =>
