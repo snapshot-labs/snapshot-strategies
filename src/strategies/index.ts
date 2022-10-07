@@ -90,6 +90,7 @@ import * as delegation from './delegation';
 import * as ticket from './ticket';
 import * as work from './work';
 import * as ticketValidity from './ticket-validity';
+import * as validation from './validation';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
 import * as ocean_v4 from './ocean-marketplace-v4';
@@ -347,6 +348,7 @@ import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as lrcL2NftBalanceOf from './lrc-l2-nft-balance-of';
 import * as lrcLPSubgraphBalanceOf from './lrc-lp-subgraph-balance-of';
+import * as lrcNFTDAOSearch from './lrc-nft-dao-search';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
@@ -354,6 +356,7 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as balanceOfSubgraph from './balance-of-subgraph';
+import * as wagdieSubgraph from './wagdie-subgraph';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
@@ -489,6 +492,7 @@ const strategies = {
   ticket,
   work,
   'ticket-validity': ticketValidity,
+  validation,
   opium,
   'ocean-marketplace': ocean,
   'ocean-marketplace-v4': ocean_v4,
@@ -728,6 +732,7 @@ const strategies = {
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
   'lrc-l2-nft-balance-of': lrcL2NftBalanceOf,
   'lrc-lp-subgraph-balance-of': lrcLPSubgraphBalanceOf,
+  'lrc-nft-dao-search': lrcNFTDAOSearch,
   'rari-fuse': rariFuse,
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
@@ -735,6 +740,7 @@ const strategies = {
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
   'balance-of-subgraph': balanceOfSubgraph,
+  'wagdie-subgraph': wagdieSubgraph,
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
