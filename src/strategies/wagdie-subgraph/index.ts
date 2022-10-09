@@ -45,7 +45,7 @@ export async function strategy(
       },
       location: {
         id: true
-      },
+      }
     }
   };
 
@@ -56,21 +56,21 @@ export async function strategy(
 
   let hasNext = true;
   while (hasNext) {
-    const result = await subgraphRequest(
-      SUBGRAPH_URL[network],
-      params
-    );
+    const result = await subgraphRequest(SUBGRAPH_URL[network], params);
 
     const characters = result && result.characters ? result.characters : [];
     const latest = characters[characters.length - 1];
-    console.log(options.location)
+    console.log(options.location);
 
     for (const character of characters) {
       const userAddress = getAddress(character.owner.id);
-      const charId = character?.location?.id
-      if (options.location.includes("all") || options.location.includes(charId)) {
-        scores[userAddress] = (scores[userAddress] ?? 0) +
-          options.scoreMultiplier;
+      const charId = character?.location?.id;
+      if (
+        options.location.includes('all') ||
+        options.location.includes(charId)
+      ) {
+        scores[userAddress] =
+          (scores[userAddress] ?? 0) + options.scoreMultiplier;
       }
     }
 

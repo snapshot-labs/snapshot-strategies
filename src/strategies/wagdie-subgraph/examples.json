@@ -6,9 +6,7 @@
       "params": {
         "subGraphURL": "https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet",
         "scoreMultiplier": 1,
-        "location": [
-          "all"
-        ]
+        "location": ["all"]
       }
     },
     "network": "1",
