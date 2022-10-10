@@ -74,7 +74,7 @@ export async function strategy(
     res = [...res, ...res2];
   }
 
-  let slicedStakeQueries:any = [walletQuery];
+  let slicedStakeQueries:any = [stakeQuery];
   if (stakeQuery.length > 1) {
     let middle = stakeQuery.length/2;
     slicedStakeQueries = [
