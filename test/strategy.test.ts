@@ -106,13 +106,6 @@ describe.each(examples)(
       );
     });
 
-    it('File examples.json must use a snapshot block number in the past', async () => {
-      expect(typeof example.snapshot).toBe('number');
-      const provider = snapshot.utils.getProvider(example.network);
-      const blockNumber = await snapshot.utils.getBlockNumber(provider);
-      expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
-    });
-
     it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
       expect(
         Object.keys(scores[0]).every(
