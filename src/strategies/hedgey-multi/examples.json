@@ -4,18 +4,20 @@
     "strategy": {
       "name": "hedgey-multi",
       "params": {
-        "contracts": [{
-          "address": "0x4bc8ea84bdc3ebb01d495e5d1605d4f082aeb5d7",
-          "token": "0xccDE1F2B71573a865d3896eb019C41Bf4BF92e65",
-          "decimal": 18,
-          "contractType": "NFT",
-          "lockedTokenMultiplier": 2,
-          "lockedTokenMonthlyMultiplier": {
-            "default": 1,
-            "1": 1.5,
-            "2": 2
+        "contracts": [
+          {
+            "address": "0x4bc8ea84bdc3ebb01d495e5d1605d4f082aeb5d7",
+            "token": "0xccDE1F2B71573a865d3896eb019C41Bf4BF92e65",
+            "decimal": 18,
+            "contractType": "NFT",
+            "lockedTokenMultiplier": 2,
+            "lockedTokenMonthlyMultiplier": {
+              "default": 1,
+              "1": 1.5,
+              "2": 2
+            }
           }
-        }]
+        ]
       }
     },
     "network": "4",

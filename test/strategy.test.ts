@@ -54,6 +54,11 @@ describe.each(examples)(
       expect(example.strategy.name).toBe(strategy);
     });
 
+    it('Addresses in example should be minimum 5 and maximum 20', () => {
+      expect(example.addresses.length).toBeGreaterThanOrEqual(5);
+      expect(example.addresses.length).toBeLessThanOrEqual(20);
+    });
+
     it('Strategy should run without any errors', async () => {
       const getScoresStart = performance.now();
       scores = await callGetScores(example);
