@@ -765,7 +765,8 @@ const strategies = {
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni,
-  'bancor-standard-rewards-underlying-balance': bancorStandardRewardsUnderlyingBalance,
+  'bancor-standard-rewards-underlying-balance':
+    bancorStandardRewardsUnderlyingBalance,
   'sd-boost-delegation': sdBoostDelegation,
   'sd-boost-delegation-twavp': sdBoostDelegationTWAVP
 };
