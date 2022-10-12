@@ -381,6 +381,7 @@ import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
 import * as sdBoostDelegation from './sd-boost-delegation';
+import * as sdBoostDelegationTWAVP from './sd-boost-delegation-twavp';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -765,7 +766,8 @@ const strategies = {
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni,
   'bancor-standard-rewards-underlying-balance': bancorStandardRewardsUnderlyingBalance,
-  'sd-boost-delegation': sdBoostDelegation
+  'sd-boost-delegation': sdBoostDelegation,
+  'sd-boost-delegation-twavp': sdBoostDelegationTWAVP
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
