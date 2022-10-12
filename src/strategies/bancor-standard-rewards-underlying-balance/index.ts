@@ -25,7 +25,6 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  
   // Get last provider Program ID
   const latestProgramId = await call(
     provider,
@@ -39,12 +38,16 @@ export async function strategy(
   );
 
   // Get each provider's stake in the standard rewards contract
-  const multi = new Multicaller(network, provider, standardRewardsABI, { blockTag });
+  const multi = new Multicaller(network, provider, standardRewardsABI, {
+    blockTag
+  });
   addresses.forEach((address) =>
-    multi.call(address, options.bancorStandardRewardsAddress, 'providerStake', [address, latestProgramId.toString()])
+    multi.call(address, options.bancorStandardRewardsAddress, 'providerStake', [
+      address,
+      latestProgramId.toString()
+    ])
   );
   const scores: Record<string, BigNumberish> = await multi.execute();
-
 
   // Get the Underlying Value of the Pool Token * 10**(decimals) to convert from wei
   const poolTokenDecimalScaling = (10 ** options.decimals).toString();
@@ -57,14 +60,10 @@ export async function strategy(
       [options.underlyingTokenAddress, poolTokenDecimalScaling]
     ],
     { blockTag }
-  ).then((res) => parseFloat(formatUnits(res, 2*options.decimals)));
+  ).then((res) => parseFloat(formatUnits(res, 2 * options.decimals)));
 
   // Update the providers' stakes in the standard rewards contract to their converted underlying value
   return Object.fromEntries(
-    Object.entries(scores).map((res: any) => [
-      res[0], 
-      res[1] * underlyingValue
-    ])
+    Object.entries(scores).map((res: any) => [res[0], res[1] * underlyingValue])
   );
-
 }

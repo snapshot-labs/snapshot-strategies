@@ -10,7 +10,6 @@ const abi = [
   'function working_balances(address account) external view returns (uint256)'
 ];
 
-
 export async function strategy(
   space,
   network,
@@ -44,8 +43,10 @@ export async function strategy(
 
   // Query
   const workingBalanceQuery = addresses.map((address: any) => [
-    options.sdTokenGauge, 'working_balances', [address]
-  ])
+    options.sdTokenGauge,
+    'working_balances',
+    [address]
+  ]);
 
   const response: number[] = [];
 
@@ -53,16 +54,16 @@ export async function strategy(
     blockTag = blockTagList[i];
     response.push(
       await multicall(
-        network, 
-        provider, 
-        abi, 
+        network,
+        provider,
+        abi,
         [
           [options.sdTokenGauge, 'working_supply'],
           [options.veToken, 'balanceOf', [options.liquidLocker]],
           ...workingBalanceQuery
-        ], 
+        ],
         {
-        blockTag
+          blockTag
         }
       )
     );
@@ -70,22 +71,22 @@ export async function strategy(
 
   // Constant
   // Get Working supply on the gauge
-  const workingSupply = response[response.length-1][0];
-  const votingPowerLiquidLocker = response[response.length-1][1];
+  const workingSupply = response[response.length - 1][0];
+  const votingPowerLiquidLocker = response[response.length - 1][1];
 
   const averageWorkingBalance = Object.fromEntries(
     Array(addresses.length)
-    .fill('x')
-    .map((_, i) => {
-      let sum = Number(0);
-      //console.log(`==================${addresses[i]}==================`);
-      for(let j = 0; j < response.length; j++) {
-        sum += Number(response[j][i+2]);
-        //console.log(Number(response[j][i+2]))
-      }
-      //console.log("Adjusted Balance : ", sum/(response.length*10**options.decimals))
-      return[addresses[i], sum/(response.length)]
-    })
+      .fill('x')
+      .map((_, i) => {
+        let sum = Number(0);
+        //console.log(`==================${addresses[i]}==================`);
+        for (let j = 0; j < response.length; j++) {
+          sum += Number(response[j][i + 2]);
+          //console.log(Number(response[j][i+2]))
+        }
+        //console.log("Adjusted Balance : ", sum/(response.length*10**options.decimals))
+        return [addresses[i], sum / response.length];
+      })
   );
 
   return Object.fromEntries(
@@ -95,7 +96,8 @@ export async function strategy(
         // Get votingPower : user voting power
         const votingPower =
           workingSupply > 0
-            ? (averageWorkingBalance[addresses[i]] * votingPowerLiquidLocker) / (workingSupply*10**options.decimals)
+            ? (averageWorkingBalance[addresses[i]] * votingPowerLiquidLocker) /
+              (workingSupply * 10 ** options.decimals)
             : 0;
         return [addresses[i], votingPower];
       })

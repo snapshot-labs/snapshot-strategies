@@ -9,7 +9,6 @@ const abi = [
   'function working_balances(address account) external view returns (uint256)'
 ];
 
-
 export async function strategy(
   space,
   network,
@@ -23,21 +22,23 @@ export async function strategy(
 
   // Query
   const workingBalanceQuery = addresses.map((address: any) => [
-    options.sdTokenGauge, 'working_balances', [address]
-  ])
+    options.sdTokenGauge,
+    'working_balances',
+    [address]
+  ]);
 
   // Multicall
   const response = await multicall(
-    network, 
-    provider, 
-    abi, 
+    network,
+    provider,
+    abi,
     [
       [options.sdTokenGauge, 'working_supply'],
       [options.veToken, 'balanceOf', [options.liquidLocker]],
       ...workingBalanceQuery
-    ], 
+    ],
     {
-    blockTag
+      blockTag
     }
   );
 
@@ -52,7 +53,8 @@ export async function strategy(
       .map((_, i) => {
         const votingPower =
           workingSupply > 0
-            ? (response[i+2] * votingPowerLiquidLocker) / (workingSupply*10**options.decimals)
+            ? (response[i + 2] * votingPowerLiquidLocker) /
+              (workingSupply * 10 ** options.decimals)
             : 0;
         return [addresses[i], votingPower];
       })
