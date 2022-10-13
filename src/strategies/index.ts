@@ -1,5 +1,6 @@
 import { readFileSync } from 'fs';
 import path from 'path';
+import { strategy as pagination } from '@snapshot-labs/score-api';
 
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
@@ -108,7 +109,6 @@ import * as erc1155BalanceOfCv from './erc1155-balance-of-cv';
 import * as erc1155WithMultiplier from './erc1155-with-multiplier';
 import * as compLikeVotes from './comp-like-votes';
 import * as governorAlpha from './governor-alpha';
-import * as pagination from './pagination';
 import * as rulerStakedToken from './ruler-staked-token';
 import * as rulerStakedLP from './ruler-staked-lp';
 import * as xcover from './xcover';
