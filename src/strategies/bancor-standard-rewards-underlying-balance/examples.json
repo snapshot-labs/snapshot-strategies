@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "bancor-standard-rewards-underlying-balance",
+      "params": {
+        "symbol": "bnCROWN",
+        "decimals": 18,
+        "underlyingTokenAddress": "0x444d6088B0F625f8C20192623B3C43001135E0fa",
+        "bancorNetworkInfoAddress": "0x8E303D296851B320e6a697bAcB979d13c9D6E760",
+        "bancorStandardRewardsAddress": "0xb0B958398ABB0b5DB4ce4d7598Fb868f5A00f372"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x671e4d58F407BE00fCC383732C020A7Ac1AFde73",
+      "0xA2C12dBe82f19eF06850d4693F2b2D5724b8eA3E",
+      "0x57577a7981c74f01cd919776228DBC416A683999",
+      "0xc19417805208ff8cf0293a5795f3c3d8bd68d9d4",
+      "0xe67da97f7a14a38ad6d3e7e5784fecbf7160b643",
+      "0x307b361717d720834d27002e4b08d3a4307877ee",
+      "0xeb54669ac46b44d6a29eedda0daf7d9a8c4f7386"
+    ],
+    "snapshot": 15718324
+  }
+]

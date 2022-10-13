@@ -54,6 +54,18 @@ describe.each(examples)(
       expect(example.strategy.name).toBe(strategy);
     });
 
+    it('Addresses in example should be minimum 3 and maximum 20', () => {
+      expect(example.addresses.length).toBeGreaterThanOrEqual(3);
+      expect(example.addresses.length).toBeLessThanOrEqual(20);
+    });
+
+    it('Must use a snapshot block number in the past', async () => {
+      expect(typeof example.snapshot).toBe('number');
+      const provider = snapshot.utils.getProvider(example.network);
+      const blockNumber = await snapshot.utils.getBlockNumber(provider);
+      expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
+    });
+
     it('Strategy should run without any errors', async () => {
       const getScoresStart = performance.now();
       scores = await callGetScores(example);
@@ -94,13 +106,6 @@ describe.each(examples)(
       );
     });
 
-    it('File examples.json must use a snapshot block number in the past', async () => {
-      expect(typeof example.snapshot).toBe('number');
-      const provider = snapshot.utils.getProvider(example.network);
-      const blockNumber = await snapshot.utils.getBlockNumber(provider);
-      expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
-    });
-
     it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
       expect(
         Object.keys(scores[0]).every(
@@ -110,6 +115,36 @@ describe.each(examples)(
         )
       ).toBe(true);
     });
+
+    (snapshot.strategies[strategy].dependOnOtherAddress ? it.skip : it)(
+      'Voting power should not depend on other addresses',
+      async () => {
+        // limit addresses to have only 10 addresses
+        const testAddresses = example.addresses.slice(0, 10);
+        const scoresOneByOne = await Promise.all(
+          testAddresses.map((address) =>
+            callGetScores({
+              ...example,
+              addresses: [address]
+            })
+          )
+        );
+
+        const oldScores = {};
+        const newScores = {};
+
+        scoresOneByOne.forEach((score) => {
+          const address = Object.keys(score[0])[0];
+          const value = Object.values(score[0])[0];
+          if (value) newScores[address] = value;
+          const oldScore = scores[0][address];
+          if (oldScore) oldScores[address] = oldScore;
+        });
+
+        expect(newScores).not.toEqual({});
+        expect(newScores).toEqual(oldScores);
+      }
+    );
   }
 );
 
