@@ -1,4 +1,4 @@
-# sd-boost-delegation
+# sd-vote-boost
 
 This strategy is used by StakeDAO to vote with sdToken adapted for veSDT boost delegation (without TWAVP).
 ```

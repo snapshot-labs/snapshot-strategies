@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "sd-boost-delegation-twavp",
+      "name": "sd-vote-boost-twavp",
       "params": {
         "veToken": "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2",
         "liquidLocker": "0x52f541764E6e90eeBc5c21Ff570De0e2D63766B6",
