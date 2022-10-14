@@ -380,8 +380,8 @@ import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
-import * as sdBoostDelegation from './sd-boost-delegation';
-import * as sdBoostDelegationTWAVP from './sd-boost-delegation-twavp';
+import * as sdVoteBoost from './sd-vote-boost';
+import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -767,8 +767,8 @@ const strategies = {
   'erc20-tokens-per-uni': erc20TokensPerUni,
   'bancor-standard-rewards-underlying-balance':
     bancorStandardRewardsUnderlyingBalance,
-  'sd-boost-delegation': sdBoostDelegation,
-  'sd-boost-delegation-twavp': sdBoostDelegationTWAVP
+  'sd-vote-boost': sdVoteBoost,
+  'sd-vote-boost-twavp': sdVoteBoostTWAVP
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
