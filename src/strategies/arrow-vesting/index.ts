@@ -7,14 +7,14 @@ export const version = '0.1.1';
 
 const vestingFactoryAbi = [
   'function escrows_length() public view returns (uint256)',
-  'function escrows(uint256 index) public view returns (address)',
+  'function escrows(uint256 index) public view returns (address)'
 ];
 
 const vestingContractAbi = [
   'function recipient() public view returns (address)',
   'function total_locked() public view returns (uint256)',
   'function start_time() public view returns (uint256)',
-  'function end_time() public view returns (uint256)',
+  'function end_time() public view returns (uint256)'
 ];
 
 export async function strategy(
@@ -31,10 +31,12 @@ export async function strategy(
   const vestingFactory = new Contract(
     options.vestingFactory,
     vestingFactoryAbi,
-    provider,
+    provider
   );
 
-  const vestingContractCount = await vestingFactory.escrows_length({blockTag: blockTag});
+  const vestingContractCount = await vestingFactory.escrows_length({
+    blockTag: blockTag
+  });
 
   const vestingFactoryMulti = new Multicaller(
     network,
@@ -44,7 +46,9 @@ export async function strategy(
   );
 
   [...Array(vestingContractCount.toNumber()).keys()].forEach((contractIdx) => {
-    vestingFactoryMulti.call(contractIdx, options.vestingFactory, 'escrows', [contractIdx]);
+    vestingFactoryMulti.call(contractIdx, options.vestingFactory, 'escrows', [
+      contractIdx
+    ]);
   });
 
   const vestingContracts: Record<number, string> =
@@ -59,35 +63,62 @@ export async function strategy(
   );
 
   Object.values(vestingContracts).forEach((vestingContractAddress) => {
-    vestingContractMulti.call(`${vestingContractAddress}.recipient`, vestingContractAddress, 'recipient', []);
-    vestingContractMulti.call(`${vestingContractAddress}.total_locked`, vestingContractAddress, 'total_locked', []);
-    vestingContractMulti.call(`${vestingContractAddress}.start_time`, vestingContractAddress, 'start_time', []);
-    vestingContractMulti.call(`${vestingContractAddress}.end_time`, vestingContractAddress, 'end_time', []);
+    vestingContractMulti.call(
+      `${vestingContractAddress}.recipient`,
+      vestingContractAddress,
+      'recipient',
+      []
+    );
+    vestingContractMulti.call(
+      `${vestingContractAddress}.total_locked`,
+      vestingContractAddress,
+      'total_locked',
+      []
+    );
+    vestingContractMulti.call(
+      `${vestingContractAddress}.start_time`,
+      vestingContractAddress,
+      'start_time',
+      []
+    );
+    vestingContractMulti.call(
+      `${vestingContractAddress}.end_time`,
+      vestingContractAddress,
+      'end_time',
+      []
+    );
   });
 
-  const vestingContractParameters: Record<string, object> = await vestingContractMulti.execute();
+  const vestingContractParameters: Record<string, object> =
+    await vestingContractMulti.execute();
 
   // Sum all vesting contract balances by recipient over requested addresses.
-  const block = await provider.getBlock(blockTag)
-  const time = block.timestamp
+  const block = await provider.getBlock(blockTag);
+  const time = block.timestamp;
   const addressBalances: Record<string, number> = {};
 
   addresses.forEach((address) => {
     addressBalances[address] = 0;
   });
 
-  Object.entries(vestingContractParameters).forEach(([contractAddress, params]) => {
-    const recipient = params["recipient"];
-    const start = params["start_time"]
+  Object.entries(vestingContractParameters).forEach(
+    ([contractAddress, params]) => {
+      const recipient = params['recipient'];
+      const start = params['start_time'];
 
-    if (recipient in addressBalances && time > start) {
+      if (recipient in addressBalances && time > start) {
+        const locked = parseFloat(
+          formatUnits(params['total_locked'], options.decimals)
+        );
+        const end = params['end_time'];
 
-      const locked = parseFloat(formatUnits(params["total_locked"], options.decimals))
-      const end = params["end_time"]
-
-      addressBalances[recipient] += Math.min(locked * (time - start) / (end - start), locked);
+        addressBalances[recipient] += Math.min(
+          (locked * (time - start)) / (end - start),
+          locked
+        );
+      }
     }
-  });
+  );
 
-  return addressBalances
+  return addressBalances;
 }
