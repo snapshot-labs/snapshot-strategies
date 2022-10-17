@@ -1,4 +1,4 @@
-# sd-boost-delegation-twavp
+# sd-vote-boost-twavp
 
 This strategy is used by Stake DAO to vote with sdToken using Time Weigthed Averaged Voting Power (TWAVP) system and adapted for veSDT boost delegation.
 
