@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'gamiumworld';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const tokenAbi = [
   'function balanceOf(address _owner) view returns (uint256 balance)'

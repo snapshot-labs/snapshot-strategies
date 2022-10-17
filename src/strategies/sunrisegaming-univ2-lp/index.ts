@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'sunrisedao';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const erc20Abi = [
   'function totalSupply() view returns (uint256)',

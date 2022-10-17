@@ -2,6 +2,7 @@ import fetch from 'cross-fetch';
 
 export const author = 'orange-protocol';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

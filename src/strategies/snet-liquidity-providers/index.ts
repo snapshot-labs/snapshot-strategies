@@ -4,6 +4,7 @@ import { Multicaller, call } from '../../utils';
 
 export const author = 'Vivek205';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 type FinalResult = [
   Record<string, BigNumberish>,

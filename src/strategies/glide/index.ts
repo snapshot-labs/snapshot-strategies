@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'racollette';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const MASTERCHEF = '0x7F5489f77Bb8515DE4e0582B60Eb63A7D9959821';
 const LP1_TOKEN = '0xbeeAAb15628329C2C89Bc9F403d34b31fbCb3085'; // GLIDE-ELA

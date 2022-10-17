@@ -3,6 +3,7 @@ import { strategy as erc1155AllBalancesOf } from '../erc1155-all-balances-of';
 
 export const author = 'sanjayprabhu';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const goListAbi = ['function goList(address) view returns (bool)'];
 

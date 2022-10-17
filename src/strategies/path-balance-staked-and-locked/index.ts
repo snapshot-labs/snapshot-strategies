@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'PathDAO';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const constAbi = [
   'function balanceOf(address account) external view returns (uint256)'

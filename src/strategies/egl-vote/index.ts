@@ -5,6 +5,7 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'shanevc';
 export const version = '0.1';
+export const dependOnOtherAddress = false;
 
 const lockedTokenBalance = [
   'function voters(address) view returns (uint8,uint16,uint256,uint256,uint256)'

@@ -3,6 +3,7 @@ import { multicall, Multicaller } from '../../utils';
 
 export const author = 'foxthefarmer';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const vaultAbi = [
   'function poolInfo(uint256) returns (address want,uint256 allocPoint,uint256 lastRewardBlock,uint256 accAQUAPerShare,address strat)',

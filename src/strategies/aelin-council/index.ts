@@ -6,6 +6,7 @@ import fetch from 'cross-fetch';
 
 export const author = '0xcdb';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const GRAPH_API_URL = {
   uniswap: {

@@ -3,6 +3,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'printerfinancial';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOf(address) view returns (uint256 amount)',

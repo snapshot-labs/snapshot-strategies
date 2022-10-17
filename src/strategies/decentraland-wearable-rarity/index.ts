@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = '2fd';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const DECENTRALAND_COLLECTIONS_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet',

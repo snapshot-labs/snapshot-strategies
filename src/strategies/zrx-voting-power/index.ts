@@ -6,6 +6,7 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'benlyaunzon';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const ZRX_STAKING_POOLS = {
   '1': 'https://api.0x.org/staking/pools',

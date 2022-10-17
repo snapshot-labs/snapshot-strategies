@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'my-swarm';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 /*
  * Generic masterchef pool balance strategy. Accepted options:

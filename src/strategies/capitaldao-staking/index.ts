@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'capitaldao';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const masterChefAbi = [
   'function users(uint256, address) view returns (uint256 amount, uint256 rewardDebt, uint256 lastDepositAt)'

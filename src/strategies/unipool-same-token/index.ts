@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'dapplion';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 // Merged ABIs from below contracts:
 // * Unipool contract from @k06a: https://github.com/k06a/Unipool/blob/master/contracts/Unipool.sol

@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'drgorillamd';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const JBTicketBooth = '0xee2eBCcB7CDb34a8A822b589F9E8427C24351bfc';
 const abi = ['function balanceOf(address, uint256) view returns (uint256)'];

@@ -3,6 +3,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'btcmt-minto';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOfSum(address account) external view returns (uint256)'

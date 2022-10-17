@@ -2,6 +2,7 @@ import { multicall } from '../../utils';
 
 export const author = 'doodley1';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const tokenAbi = [
   'function balanceOf(address account) view returns (uint256)',

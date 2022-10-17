@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'PolySwift';
 export const version = '0.1.0';
-
+export const dependOnOtherAddress = false;
 
 const singleStakingPoolAbi = [
   'function userInfo(address) view returns (uint256 amount, uint256 rewardDebt)'

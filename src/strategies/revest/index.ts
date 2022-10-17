@@ -6,6 +6,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'RobAnon';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/alexvorobiov/eip1155subgraph'

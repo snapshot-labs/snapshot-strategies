@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function userStakes(address _daoToken, address _user) external view returns(uint256 stakedAmount, uint256 rewardEntry, uint256 pendingRewards, uint256 timeStaked)'

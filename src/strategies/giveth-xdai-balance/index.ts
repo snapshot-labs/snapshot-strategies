@@ -5,6 +5,7 @@ import { parseUnits, formatUnits } from '@ethersproject/units';
 
 export const author = 'pkretzschmar';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const GIVETH_SUBGRAPH_API =
   'https://api.thegraph.com/subgraphs/name/giveth/giveth-economy-xdai';

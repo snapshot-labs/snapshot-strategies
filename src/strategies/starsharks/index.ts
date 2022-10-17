@@ -4,6 +4,7 @@ const { getAddress } = require('@ethersproject/address');
 
 export const author = 'starsharks';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const API_URLS = {
   56: 'https://www.starsharks.com/go/api/stake/vote-weight',

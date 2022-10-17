@@ -4,6 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'usagar80';
 export const version = '0.0.2';
+export const dependOnOtherAddress = false;
 
 const UNSTAKE = 'Unstake';
 const STAKE = 'Stake';

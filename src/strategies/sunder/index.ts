@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'krotos-arch';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOfDToken(address _token, address _account) public returns (uint256 _balance)'

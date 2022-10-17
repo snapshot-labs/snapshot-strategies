@@ -4,6 +4,7 @@ import { multicall } from '../../utils';
 
 export const author = 'kartojal';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 /**
  * Aave Governance strategy to measure voting or

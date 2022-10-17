@@ -5,6 +5,7 @@ import { calculateEmission } from './utils';
 
 export const author = 'maxaleks';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const EASY_STAKING_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/maxaleks/easy-staking';

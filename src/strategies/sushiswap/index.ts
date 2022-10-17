@@ -42,6 +42,7 @@ const PAGE_SIZE = 1000;
 
 export const author = 'maxaleks';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 async function getPairs(network, snapshot, token) {
   const getParams = (tokenId, page) => {

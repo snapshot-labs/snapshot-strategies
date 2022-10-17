@@ -3,6 +3,7 @@ import { formatEther } from '@ethersproject/units';
 
 export const author = 'tokenomia-pro';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt, uint256 pendingRewards, uint256 lockedTimestamp, uint256 lockupTimestamp, uint256 lockupTimerange, uint256 virtAmount)'

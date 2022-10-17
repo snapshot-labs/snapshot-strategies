@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'manes-codes';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function sharesOf(address account) view returns (uint256)',

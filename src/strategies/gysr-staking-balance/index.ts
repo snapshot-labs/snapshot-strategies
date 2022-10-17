@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'devinaconley';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function stakingBalances(address user) external view returns (uint256[])'

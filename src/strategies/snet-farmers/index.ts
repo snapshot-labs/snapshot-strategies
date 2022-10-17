@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'Vivek205';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 type UserInfoResponse = {
   amount: BigNumber;

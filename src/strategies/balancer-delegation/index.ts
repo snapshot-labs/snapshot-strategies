@@ -2,6 +2,7 @@ import { strategy as delegation } from '../delegation';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,

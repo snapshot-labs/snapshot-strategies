@@ -5,6 +5,7 @@ import { getAddress } from '@ethersproject/address';
 
 export const author = 'gadcl';
 export const version = '0.1.2';
+export const dependOnOtherAddress = true;
 
 const abi = [
   'function getDelegatedStake(address addr) external view returns (uint256)',

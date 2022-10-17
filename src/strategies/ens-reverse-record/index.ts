@@ -3,6 +3,7 @@ import namehash from 'eth-ens-namehash';
 
 export const author = 'makoto';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   {

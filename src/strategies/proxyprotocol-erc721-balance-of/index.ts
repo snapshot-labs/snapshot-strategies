@@ -3,6 +3,7 @@ import { strategy as erc721BalanceOfStrategy } from '../erc721';
 
 export const author = 'rawrjustin';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const calculateVotingPower = (inputAddresses, addressScores, walletMap) => {
   const userVotingPower = {};

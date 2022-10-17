@@ -1,11 +1,10 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'helixgeometry';
 export const version = '0.0.1';
-export const examples = examplesFile;
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function totalSupply() view returns (uint256)',

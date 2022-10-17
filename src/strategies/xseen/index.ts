@@ -2,6 +2,7 @@ import { multicall } from '../../utils';
 
 export const author = 'JayWelsh';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 /**
  * xSEEN token ABI

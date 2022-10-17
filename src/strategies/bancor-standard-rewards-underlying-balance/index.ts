@@ -5,6 +5,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'tiagofilipenunes';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const bancorNetworkInfoABI = [
   'function poolTokenToUnderlying(address pool, uint256 poolTokenAmount) external view returns (uint256)'

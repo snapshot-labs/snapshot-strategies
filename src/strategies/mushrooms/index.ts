@@ -3,6 +3,7 @@ import { Multicaller } from '../../utils';
 
 export const author = '@MushroomsFinan1';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const erc20Abi = [
   {

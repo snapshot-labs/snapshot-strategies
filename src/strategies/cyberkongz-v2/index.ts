@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'frosti-eth';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 const bananaContract = '0xe2311ae37502105b442bbef831e9b53c5d2e9b3b';
 

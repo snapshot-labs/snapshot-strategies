@@ -4,6 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'morpho-labs';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 const DSSVestAbi = [
   'function usr(uint256 _id) external view returns (address)',

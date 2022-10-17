@@ -2,6 +2,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'Samurai-Legends';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function erc721BatchOwnerOf(address nftAddress, uint idMin, uint idMax) external view returns (address[] memory)'

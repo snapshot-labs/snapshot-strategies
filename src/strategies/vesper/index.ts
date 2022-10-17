@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'marcelomorgado';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

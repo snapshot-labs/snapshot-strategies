@@ -4,6 +4,7 @@ import { multicall } from '../../utils';
 
 export const author = 'waterdrops';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 /**
  * Nouns RFP Strategy to measure voting and proposition power

@@ -1,7 +1,9 @@
 import { Multicaller } from '../../utils';
 import { subgraphRequest } from '../../utils';
+
 export const author = 'candoizo';
 export const version = '0.2.5';
+export const dependOnOtherAddress = false;
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
   137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'

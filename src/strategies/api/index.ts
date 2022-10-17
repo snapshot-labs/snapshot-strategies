@@ -4,6 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'ganzai-san';
 export const version = '0.1.2';
+export const dependOnOtherAddress = true;
 
 const isIPFS = (apiURL) => {
   return (

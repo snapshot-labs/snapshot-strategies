@@ -1,9 +1,8 @@
 import fetch from 'cross-fetch';
-import examplesFile from './examples.json';
 
 export const author = 'deversifi';
 export const version = '0.1.0';
-export const examples = examplesFile;
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

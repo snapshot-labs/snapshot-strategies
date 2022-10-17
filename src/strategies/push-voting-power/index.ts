@@ -4,6 +4,7 @@ import { multicall } from '../../utils';
 
 export const author = 'mujtaba1747';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const tokenBNtoNumber = (tokenBn) => {
   return (

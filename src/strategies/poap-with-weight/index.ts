@@ -1,9 +1,8 @@
 import { subgraphRequest } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'gawainb';
 export const version = '1.0.0';
-export const examples = examplesFile;
+export const dependOnOtherAddress = false;
 
 const POAP_API_ENDPOINT_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap',

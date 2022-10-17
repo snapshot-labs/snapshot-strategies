@@ -4,6 +4,7 @@ import fetch from 'cross-fetch';
 
 export const author = 'colony';
 export const version = '0.1';
+export const dependOnOtherAddress = false;
 
 const colonyAbi = [
   'function getDomain(uint256 domainId) external view returns (uint256, uint256)',

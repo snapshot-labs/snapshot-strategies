@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'orakurudata';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const contractAbi = [
   'function balanceOf(address account) view returns (uint256)',

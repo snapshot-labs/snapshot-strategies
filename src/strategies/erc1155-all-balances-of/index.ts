@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'snapshot-labs';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const SUBGRAPH_URL = {
   '1': 'https://gateway.thegraph.com/api/94c3f5dd3947e2f62fc6e0e757549ee7/subgraphs/id/GCQVLurkeZrdMf4t5v5NyeWJY8pHhfE9sinjFMjLYd9C'

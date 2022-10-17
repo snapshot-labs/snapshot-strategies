@@ -2,6 +2,7 @@ import { strategy as erc1155BalanceOfIdsStrategy } from '../erc1155-balance-of-i
 
 export const author = 'naomsa';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

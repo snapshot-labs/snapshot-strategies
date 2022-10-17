@@ -4,6 +4,7 @@ import { multicall, Multicaller } from '../../utils';
 
 export const author = 'mitesh-mutha';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const poolInfoAddressForNetwork = {
   1: '0x01356d78c770840166C1654691D19Bd33C52EaAd',

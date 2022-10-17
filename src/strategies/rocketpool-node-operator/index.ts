@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'rocket-pool';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const rocketNodeStakingAddress = '0x3019227b2b8493e45Bf5d25302139c9a2713BF15';
 const rocketNodeStakingContractAbi = [

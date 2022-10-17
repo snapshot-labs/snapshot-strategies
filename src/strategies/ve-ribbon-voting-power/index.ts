@@ -4,6 +4,7 @@ import { Multicaller, getBlockNumber } from '../../utils';
 
 export const author = 'chuddster';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function getPriorVotes(address account, uint256 block) external view returns (uint256)'

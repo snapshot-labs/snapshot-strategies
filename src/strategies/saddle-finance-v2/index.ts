@@ -5,6 +5,7 @@ import { vestingContractAddrs } from './vestingContractAddrs';
 
 export const author = 'saddle-finance';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const SDLTokenAddress = '0xf1Dc500FdE233A4055e25e5BbF516372BC4F6871';
 const RetroRewardsContract = '0x5DCA270671935cf3dF78bd8373C22BE250198a03';

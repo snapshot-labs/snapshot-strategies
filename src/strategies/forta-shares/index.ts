@@ -5,6 +5,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'emanuel-sol';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const STAKING_CONTRACT = '0xd2863157539b1D11F39ce23fC4834B62082F6874';
 const abi = [

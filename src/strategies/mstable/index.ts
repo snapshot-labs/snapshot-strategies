@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'chrisjgf';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const abi = ['function getVotes(address account) view returns (uint256)'];
 

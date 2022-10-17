@@ -4,6 +4,7 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'TudorSante';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const erc20ABI = [
   'function poolToken(address pool) external view returns (address)',

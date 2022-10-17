@@ -5,6 +5,7 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'planet-finance';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const planetFinanceFarmAbi = [
   'function poolInfo(uint256) returns (address want,uint256 allocPoint,uint256 lastRewardBlock,uint256 accAQUAPerShare,address strat)',

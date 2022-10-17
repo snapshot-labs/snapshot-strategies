@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'ApeSwapFinance';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const GNANA_POOL = '0x8F97B2E6559084CFaBA140e2AB4Da9aAF23FE7F8';
 const abi = [

@@ -3,6 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'pepemon';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const tokenAbi = [
   {

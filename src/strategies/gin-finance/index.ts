@@ -7,6 +7,7 @@ const GIN_FINANCE_SUBGRAPH_URL = {
 
 export const author = 'perpetuum7';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   _space: string,

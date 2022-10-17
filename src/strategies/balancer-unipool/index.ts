@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'tempofeng';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 // Merged ABIs from below contracts:
 // * BPool from Balancer-labs: https://github.com/balancer-labs/balancer-core/blob/master/contracts/BPool.sol

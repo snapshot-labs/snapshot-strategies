@@ -3,6 +3,7 @@ import { getDelegations } from '../../utils/delegation';
 
 export const author = 'ferittuncer';
 export const version = '1.0.0';
+export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,

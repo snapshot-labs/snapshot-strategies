@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'fabianschu';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOf(address owner, uint256 id) view returns (uint256)'

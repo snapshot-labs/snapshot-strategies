@@ -3,6 +3,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'yosep';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const stakingAbi = [
   'function GEN1depositsOf(address account) external view returns (uint16[] memory)'

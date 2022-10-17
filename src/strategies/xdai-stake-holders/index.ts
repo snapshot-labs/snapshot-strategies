@@ -2,6 +2,7 @@ import { strategy as xdaiStakersAndHoldersStrategy } from '../xdai-stakers-and-h
 
 export const author = 'maxaleks';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

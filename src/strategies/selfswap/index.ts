@@ -14,6 +14,7 @@ const PAGE_SIZE = 1000;
 
 export const author = 'Cr3k';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const SELF_ADDRESS = '0x7a364484303b38bce7b0ab60a20da8f2f4370129';
 const SELF_VAULT_ADDRESS = '0xeb4f1307DE7DF263E8e54d083fE7db1e281e710D';

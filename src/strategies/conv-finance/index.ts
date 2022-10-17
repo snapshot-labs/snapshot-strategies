@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'eric-convergence';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 interface STRATEGY_OPTIONS {
   address: string;

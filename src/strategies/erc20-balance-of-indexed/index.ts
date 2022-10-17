@@ -4,6 +4,7 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = '0xAurelius';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const abi = ['function index() public view returns (uint256)'];
 

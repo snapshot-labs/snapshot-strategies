@@ -2,6 +2,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'sunshinekitty';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const SC_GRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/sunshinekitty/starcatchers-ia1';

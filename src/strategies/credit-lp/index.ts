@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = '0xEntropy';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function getUserInfo(uint256 _pid, address _user) view returns (tuple(uint256 amount, uint256[] RewardDebt, uint256[] RemainingRewards))',

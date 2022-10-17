@@ -7,6 +7,7 @@ interface ApiReturn {
 
 export const author = 'iotex';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const testNetUrl = 'https://testnet.iotexscout.io/apiproxy';
 const mainNetUrl = 'https://iotexscout.io/apiproxy';

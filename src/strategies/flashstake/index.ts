@@ -7,6 +7,7 @@ const FLASHSTAKE_SUBGRAPH_URL = {
 
 export const author = 'anassohail99';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   _space,

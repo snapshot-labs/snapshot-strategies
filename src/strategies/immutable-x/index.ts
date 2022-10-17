@@ -7,6 +7,7 @@ import { strategy as getL1Balances } from '../erc20-balance-of';
 
 export const author = 'immutable';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 export const name = 'immutable-x';
 

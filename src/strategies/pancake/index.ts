@@ -4,6 +4,7 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'pancake-swap';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const sousChefabi = [
   {

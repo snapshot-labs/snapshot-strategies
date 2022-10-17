@@ -4,6 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'npbroo';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const ERC20_ABI = [
   'function balanceOf(address account) external view returns (uint256)'

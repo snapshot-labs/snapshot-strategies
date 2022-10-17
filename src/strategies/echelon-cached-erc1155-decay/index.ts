@@ -2,6 +2,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'brandonleung';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const cachingAbi = [
   'function cacheInfo(uint256, address) view returns (uint256 amount, int256 rewardDebt)'

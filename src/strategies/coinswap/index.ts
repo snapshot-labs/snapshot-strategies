@@ -1,11 +1,10 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import examplesFile from './examples.json';
 
 export const author = 'CoinSwap-Space';
 export const version = '0.0.1';
-export const examples = examplesFile;
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'

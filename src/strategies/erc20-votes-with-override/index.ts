@@ -5,6 +5,7 @@ import { getDelegations } from '../../utils/delegation';
 
 export const author = 'serenae-fansubs';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 const getVotesName = 'getVotes';
 const getVotesABI = [

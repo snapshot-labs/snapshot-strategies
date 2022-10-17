@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'BrassLion';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const vestingFactoryAbi = [
   'function escrows_length() public view returns (uint256)',

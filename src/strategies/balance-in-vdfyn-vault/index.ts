@@ -3,6 +3,7 @@ import { call, multicall } from '../../utils';
 
 export const author = 'vatsalgupta13';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 function chunk(array, chunkSize) {
   const tempArray: any[] = [];

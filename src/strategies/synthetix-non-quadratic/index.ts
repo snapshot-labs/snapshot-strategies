@@ -17,6 +17,7 @@ import {
 
 export const author = 'andytcf';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const MED_PRECISE_UNIT = 1e18;
 

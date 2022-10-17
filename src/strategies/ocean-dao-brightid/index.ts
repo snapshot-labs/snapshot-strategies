@@ -8,6 +8,7 @@ import { getDelegations } from '../../utils/delegation';
 
 export const author = 'trizin';
 export const version = '0.2.0';
+export const dependOnOtherAddress = true;
 
 const abi = [
   'function isVerifiedUser(address _user) external view returns (bool)'

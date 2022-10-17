@@ -5,6 +5,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'amptoken';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,
