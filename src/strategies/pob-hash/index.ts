@@ -2,6 +2,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'dave4506';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 export const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/proofofbeauty/hash'

@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'foxthefarmer';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const vaultAbi = ['function wantLockedTotal(address) view returns (uint256)'];
 

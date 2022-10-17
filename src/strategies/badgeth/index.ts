@@ -3,6 +3,7 @@ import { getAddress } from '@ethersproject/address';
 
 export const author = 'Badgeth';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const BADGETH_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/hardforksoverknives/badgeth-dev';

@@ -2,8 +2,10 @@
 // Allows querys of Loopring L2 accounts & balances by specifying a nft minter, token contract address(and optionally specifying individual ids to white/blacklist)
 
 import { subgraphRequest } from '../../utils';
+
 export const author = 'raecaug';
 export const version = '0.1.2';
+export const dependOnOtherAddress = false;
 
 const LIMIT = 1000;
 

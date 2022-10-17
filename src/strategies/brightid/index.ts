@@ -4,6 +4,7 @@ import { getProvider } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function isVerifiedUser(address _user) external view returns (bool)'

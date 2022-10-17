@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'akshaysoam8';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 type VotingResponse = {
   verificationHash: string;

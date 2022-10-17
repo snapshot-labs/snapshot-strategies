@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'defimatt';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 /*
  * Masterchef pool balance strategy. Differs from strategy masterchef-pool-balance by working with masterchefs

@@ -3,66 +3,13 @@ import { Multicaller } from '../../utils';
 
 export const author = 'codingsh';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'addr',
-        type: 'address'
-      }
-    ],
-    name: 'totalStakedFor',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'getPricePerFullShare',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function balanceOf(address) view returns (uint256)',
+  'function totalSupply() view returns (uint256)',
+  'function totalStakedFor(address addr) view returns (uint256)',
+  'function getPricePerFullShare() view returns (uint256)'
 ];
 
 export async function strategy(

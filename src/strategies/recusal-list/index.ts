@@ -2,6 +2,7 @@ import strategies from '..';
 
 export const author = 'bshyong';
 export const version = '0.2.0';
+export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,

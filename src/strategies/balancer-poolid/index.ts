@@ -5,6 +5,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'jo-chemla';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const PAGE_SIZE = 1000;
 const BALANCER_SUBGRAPH_URL_ROOT =

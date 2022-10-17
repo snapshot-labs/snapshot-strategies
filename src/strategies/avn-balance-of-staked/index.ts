@@ -4,42 +4,12 @@ import { multicall } from '../../utils';
 
 export const author = 'andrew-frank';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
-const AVT_ABI = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+const AVT_ABI = ['function balanceOf(address account) view returns (uint256)'];
 
 const VR_ABI = [
-  {
-    inputs: [
-      { internalType: 'uint8', name: 'node', type: 'uint8' },
-      { internalType: 'address', name: 'staker', type: 'address' }
-    ],
-    name: 'getStakerBalance',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getStakerBalance(uint8 node, address staker) view returns (uint256)'
 ];
 
 const NUM_NODES = 10;

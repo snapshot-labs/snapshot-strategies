@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'alfonsocarbono';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function userStakes(address) external view returns(uint256)',

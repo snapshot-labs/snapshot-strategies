@@ -6,6 +6,7 @@ import { verifyResultsLength, verifyResults } from './oceanUtils';
 
 export const author = 'w1kke';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const OCEAN_ERC20_DECIMALS = 18;
 const OCEAN_SUBGRAPH_URL = {

@@ -5,6 +5,7 @@ import fetch from 'cross-fetch';
 
 export const author = 'onigiri-x';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abiStaking = [
   'function getGenesisContribution(uint256 _tokenId) external view returns (uint256)'

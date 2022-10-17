@@ -2,6 +2,7 @@ import { strategy as erc1155BalanceOfIdsWeightedStrategy } from '../erc1155-bala
 
 export const author = 'snapshot-labs';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

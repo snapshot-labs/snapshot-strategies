@@ -4,6 +4,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'nginnever';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   _space,

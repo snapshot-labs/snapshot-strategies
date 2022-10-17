@@ -3,6 +3,7 @@ import { balanceStrategy } from './balances';
 
 export const author = 'glmaljkovich';
 export const version = '1.0.1';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   _space,

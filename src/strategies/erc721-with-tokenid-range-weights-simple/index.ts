@@ -4,6 +4,7 @@ import { WeightRange } from './types';
 
 export const author = 'FeSens';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function ownerOf(uint256 tokenId) public view returns (address owner)'

@@ -3,6 +3,7 @@ import { getProvider, getSnapshots, multicall } from '../../utils';
 
 export const author = 'maxbrand99';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const bananaContract = '0xe2311ae37502105b442bbef831e9b53c5d2e9b3b';
 

@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'alberthaotan';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const Endpoint: {
   name: string;

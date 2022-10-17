@@ -5,6 +5,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'thegostep';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOf(address owner) external view returns (uint256)',

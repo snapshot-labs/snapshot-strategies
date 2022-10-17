@@ -6,6 +6,7 @@ import { getDelegations } from '../../utils/delegation';
 
 export const author = 'maxaleks';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

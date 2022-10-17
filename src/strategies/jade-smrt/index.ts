@@ -4,6 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'drgorillamd';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',

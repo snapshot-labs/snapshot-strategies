@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'MantisClone';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function underlying() public view returns (address)',

@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const BALANCER_SUBGRAPH_URL_ROOT =
   'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer';

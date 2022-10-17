@@ -5,6 +5,7 @@ import { strategy as erc20VotesWithOverrideStrategy } from '../erc20-votes-with-
 
 export const author = '0xMaharishi';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 const abi = [
   'function delegates(address account) external view returns (address)',

@@ -5,6 +5,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'ayush-jibrel';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const UNISWAP_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'

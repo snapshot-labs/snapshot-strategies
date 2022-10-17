@@ -2,6 +2,7 @@ import { multicall } from '../../utils';
 
 export const author = 'naomsa';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function balanceOfBatch(address[], uint256[]) external view returns (uint256[])'

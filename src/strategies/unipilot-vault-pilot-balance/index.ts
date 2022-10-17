@@ -5,6 +5,7 @@ import { subgraphRequest, call, multicall } from '../../utils';
 
 export const author = 'daniyalmanzoor';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 function bn(num: any): BigNumber {
   return BigNumber.from(num.toString());

@@ -3,6 +3,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'BanksyFarm';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const factoryNftABI = [
   'function balanceOf(address account) external view returns (uint256)',

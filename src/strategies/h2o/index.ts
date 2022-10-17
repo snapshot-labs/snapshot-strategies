@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'MantisClone';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/h2odata/h2o-mainnet'

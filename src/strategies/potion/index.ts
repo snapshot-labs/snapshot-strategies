@@ -3,6 +3,7 @@ import { Multicaller, subgraphRequest } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/dapp-testing/potion-unlock';

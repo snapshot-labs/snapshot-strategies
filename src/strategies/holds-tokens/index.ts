@@ -2,6 +2,7 @@ import { strategy as multichainStrategy } from '../multichain';
 
 export const author = 'lightninglu10';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

@@ -120,7 +120,7 @@ describe.each(examples)(
       'Voting power should not depend on other addresses',
       async () => {
         // limit addresses to have only 10 addresses
-        const testAddresses = example.addresses.slice(0, 10);
+        const testAddresses = example.addresses.slice(0, 20);
         const scoresOneByOne = await Promise.all(
           testAddresses.map((address) =>
             callGetScores({

@@ -4,6 +4,7 @@ import { multicall, subgraphRequest } from '../../utils';
 
 export const author = 'hoprnet';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const tokenAndPoolAbi = [
   {

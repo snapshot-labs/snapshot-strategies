@@ -3,6 +3,7 @@ import { strategy as ethReceivedStrategy } from '../eth-received';
 
 export const author = 'mccallofthewild';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const ethCharities = [
   ['GiveDirectly', '0xc7464dbcA260A8faF033460622B23467Df5AEA42'],

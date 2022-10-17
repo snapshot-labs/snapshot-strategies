@@ -6,6 +6,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'philipappiah';
 export const version = '0.1.2';
+export const dependOnOtherAddress = false;
 
 const VOLTSWAP_SUBGRAPH = {
   '82': 'https://graph-meter.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph',

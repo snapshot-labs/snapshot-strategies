@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'andreibadea20';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const DPS_SUBGRAPH_URL = {
   '1285':

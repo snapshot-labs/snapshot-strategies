@@ -5,6 +5,7 @@ import { formatUnits } from '@ethersproject/units';
 
 export const author = 'mwamedacen';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 interface Options {
   balancerPoolId: string;

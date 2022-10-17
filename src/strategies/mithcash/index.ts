@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'jeremyHD';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   {

@@ -3,6 +3,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'thecryptoundertaker';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const MASONRY_ADDRESS = '0x8764DE60236C5843D9faEB1B638fbCE962773B67';
 const TSHARE_TOKEN_ADDRESS = '0x4cdF39285D7Ca8eB3f090fDA0C069ba5F4145B37';

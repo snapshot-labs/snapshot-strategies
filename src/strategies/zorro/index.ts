@@ -2,6 +2,7 @@ import fetch from 'cross-fetch';
 
 export const author = 'zorro-project';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const API_URL = 'http://api.zorro.xyz';
 

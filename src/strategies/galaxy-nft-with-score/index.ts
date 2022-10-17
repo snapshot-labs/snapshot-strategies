@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'alberthaotan';
 export const version = '0.3.2';
+export const dependOnOtherAddress = false;
 
 const Networks: {
   [network: string]: {

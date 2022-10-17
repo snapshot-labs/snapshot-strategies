@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'noiach';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 /*
  * A strategy based on the number of RenVM nodes an address has, and how long

@@ -4,6 +4,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'jo-chemla';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const erc20ABI = [
   'function balanceOf(address account) external view returns (uint256)',

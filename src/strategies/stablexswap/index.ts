@@ -3,6 +3,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'stablexswap';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   {

@@ -2,6 +2,7 @@ import { multicall } from '../../utils';
 
 export const author = 'LeifuChen';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const FARM_ADDRESS = '0xf3a640eeb661cdf78f1817314123e8bbd12e191f';
 const MAX_ADDRESS = '0xe45d95a66cff6ab5e9b796cf5a36f0669af3ec98';

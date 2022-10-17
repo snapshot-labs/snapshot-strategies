@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'in19farkt';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 function getArgs(options, address: string) {
   const args: Array<string | number> = options.args || ['%{address}'];

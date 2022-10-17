@@ -2,6 +2,7 @@ import { multicall } from '../../utils';
 
 export const author = 'EzraWeller';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const engineAddresses: { [network: string]: string } = {
   '5': '0x7beaa4e60e0faab603e99813f0f2330704b53086',

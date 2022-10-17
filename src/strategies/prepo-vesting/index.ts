@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'prepo-io';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function getAmountAllocated(address _recipient) external view returns (uint256)',

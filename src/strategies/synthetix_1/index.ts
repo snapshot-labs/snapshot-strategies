@@ -7,6 +7,7 @@ import { getAddress } from '@ethersproject/address';
 
 export const author = 'andytcf';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const SDSABI = [
   'function balanceOf(address account) external view returns (uint256)',

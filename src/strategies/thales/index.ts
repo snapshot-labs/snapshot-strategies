@@ -4,6 +4,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'vpoklopic';
 export const version = '1.0.1';
+export const dependOnOtherAddress = false;
 
 const THALES_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/thales-markets/thales-optimism';

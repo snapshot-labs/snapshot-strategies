@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.1';
+export const dependOnOtherAddress = false;
 
 const UNI_ADDRESS = {
   '1': '0x1f9840a85d5af5bf1d1762f925bdaddc4201f984'

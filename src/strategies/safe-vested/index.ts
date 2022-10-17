@@ -5,6 +5,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'dasanra';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 // https://github.com/safe-global/safe-token/blob/main/contracts/VestingPool.sol
 const abi = [

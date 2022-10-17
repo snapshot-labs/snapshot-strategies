@@ -6,20 +6,17 @@
       "params": {
         "total": 50,
         "symbol": "%SWRV",
-        "address": "0xB8BAa0e4287890a5F79863aB62b7F175ceCbD433",
+        "address": "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
         "decimals": 18
       }
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
-      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
-      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
-      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
-      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
-      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
-      "0x1f254336E5c46639A851b9CfC165697150a6c327",
-      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030"
+      "0x51688cd36c18891167e8036bde2a8fb10ec80c43",
+      "0x3e17fac953de2cd729b0ace7f6d4353387717e9e",
+      "0x23f67feb67a3aa1e376d23beaa3f241217e427c9",
+      "0x54685c62db8e16b1484768db8e0daf3c644d50bf",
+      "0x766bc61d3150232f6f4e1d81633d68f3a94879e3"
     ],
     "snapshot": 13494433
   }

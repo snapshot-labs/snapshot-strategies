@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 
 export const author = 'dextf';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 function chunk(array, chunkSize) {
   const tempArray: any[] = [];

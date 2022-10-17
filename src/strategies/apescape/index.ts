@@ -4,79 +4,14 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'apescape';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const chefAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)'
 ];
 const lpPairAbi = [
-  {
-    constant: true,
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'getReserves',
-    outputs: [
-      {
-        internalType: 'uint112',
-        name: '_reserve0',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint112',
-        name: '_reserve1',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint32',
-        name: '_blockTimestampLast',
-        type: 'uint32'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function totalSupply() view returns (uint256)',
+  'function getReserves() view returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast)'
 ];
 
 const chef1Address = '0xCA74b3db871c679e928E70917Ae804DC7BFd8781';

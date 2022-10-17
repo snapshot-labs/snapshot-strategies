@@ -4,6 +4,7 @@ import { multicall, subgraphRequest } from '../../utils';
 
 export const author = 'QYuQianchen';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const tokenAbi = ['function balanceOf(address) view returns (uint256)'];
 

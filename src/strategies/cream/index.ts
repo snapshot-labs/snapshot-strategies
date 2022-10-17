@@ -6,103 +6,16 @@ import { Multicaller } from '../../utils';
 
 export const author = 'jeremyHD';
 export const version = '0.2.1';
+export const dependOnOtherAddress = false;
 
 const ONE_E18 = parseUnits('1', 18);
 
 const abi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      },
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'rewardDebt',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'exchangeRateStored',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'borrowBalanceStored',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function balanceOf(address) view returns (uint256)',
+  'function totalSupply() view returns (uint256)',
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function exchangeRateStored() view returns (uint256)',
+  'function borrowBalanceStored(address account) view returns (uint256)'
 ];
 
 const CREAM_VOTING_POWER = '0xb146BF59f30a54750209EF529a766D952720D0f9';

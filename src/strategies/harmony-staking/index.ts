@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'harmony-one';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 type Params = {
   symbol: string;

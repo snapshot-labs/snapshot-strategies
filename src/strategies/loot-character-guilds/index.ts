@@ -2,6 +2,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'jordanmessina';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const lootAbi = [
   'function balanceOf(address owner) external view returns (uint256 balance)',

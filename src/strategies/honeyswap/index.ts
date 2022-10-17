@@ -4,6 +4,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'Kittyslasher';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const HONEYSWAP_SUBGRAPH_URL = {
   '100': {

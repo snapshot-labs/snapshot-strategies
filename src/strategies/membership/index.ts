@@ -2,6 +2,7 @@ import _strategies from '..';
 
 export const author = 'blakewest';
 export const version = '1.0.0';
+export const dependOnOtherAddress = true;
 
 /*
 Membership Based Voting Strategy

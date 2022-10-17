@@ -2,6 +2,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'alephao';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const LIMIT = 500;
 

@@ -3,6 +3,7 @@ import { getAddress } from '@ethersproject/address';
 
 export const author = 'cha0sg0d';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const calcScore = (score: number) => {
   return score == 0 ? 0 : Math.floor(Math.log2(score));

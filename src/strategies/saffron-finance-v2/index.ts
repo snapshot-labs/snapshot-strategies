@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'turpintinz';
 export const version = '2.0.1';
+export const dependOnOtherAddress = false;
 
 const SAFF_STAKING_V2 = '0x4eB4C5911e931667fE1647428F38401aB1661763';
 const SFI = '0xb753428af26E81097e7fD17f40c88aaA3E04902c';

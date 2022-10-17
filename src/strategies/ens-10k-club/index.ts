@@ -20,6 +20,7 @@ const NAMES_10K_CLUB = [...Array(10000).keys()]
 
 export const author = 'paste';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

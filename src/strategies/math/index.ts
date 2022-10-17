@@ -14,6 +14,7 @@ import {
 
 export const author = 'xJonathanLEI';
 export const version = '0.2.1';
+export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,

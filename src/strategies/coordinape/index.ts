@@ -3,6 +3,7 @@ import { getAddress } from '@ethersproject/address';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 export async function strategy(
   space,

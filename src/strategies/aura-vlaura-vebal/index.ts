@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = '0xMaharishi';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function getVotes(address account) external view returns (uint256)',

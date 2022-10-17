@@ -3,38 +3,11 @@ import { multicall } from '../../utils';
 
 export const author = 'atvanguard';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const abi = [
-  {
-    constant: true,
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'account',
-        type: 'address'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'getPricePerFullShare',
-    outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function balanceOf(address account) view returns (uint256)',
+  'function getPricePerFullShare() view returns (uint256)'
 ];
 
 export async function strategy(

@@ -6,6 +6,7 @@ import { subgraphRequest, getProvider, getSnapshots } from '../../utils';
 
 export const author = 'maikir';
 export const version = '0.2.0';
+export const dependOnOtherAddress = false;
 
 const MEEBITSDAO_DELEGATION_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';

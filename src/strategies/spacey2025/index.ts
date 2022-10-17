@@ -3,6 +3,7 @@ import { subgraphRequest } from '../../utils';
 
 export const author = 'chuang39';
 export const version = '0.1.0';
+export const dependOnOtherAddress = false;
 
 const SPACEY2025_MARKETPLACE_SUBGRAPH_URL = {
   '56': 'https://api.thegraph.com/subgraphs/name/blockfishio/marketplacebsc'

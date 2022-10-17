@@ -4,6 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'gerrrg';
 export const version = '0.0.1';
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function getInternalBalance(address user, address[] tokens) external view returns (uint256[] balances)'
