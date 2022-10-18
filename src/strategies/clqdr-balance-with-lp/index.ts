@@ -1,8 +1,8 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
-import { Multicaller, call } from '../../utils';
+import { Multicaller, multicall } from '../../utils';
 
-export const author = 'liquiddriver';
+export const author = 'LiquidDriver-finance';
 export const version = '0.0.1';
 
 const liquidMasterAddress = '0x6e2ad6527901c9664f016466b8DA1357a004db0f'
@@ -42,21 +42,20 @@ export async function strategy(
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const clqdrTotalRes = await call(provider, contractAbi, [
-    beetsVaultAddress,
-    'getPoolTokens',
-    [clqdrPoolId]
-  ]);
+  const res = await multicall(
+    network,
+    provider,
+    contractAbi,
+    [
+      [beetsVaultAddress, 'getPoolTokens', [clqdrPoolId]],
+      [lpAddress, 'getVirtualSupply', []],
+    ],
+    { blockTag }
+  );
 
-  const totalClqdrInBeets = bn(clqdrTotalRes[1][1]);
+  const totalClqdrInBeets = bn(res[0][1][1]);
 
-  const virtualSupplyRes = await call(provider, contractAbi, [
-    lpAddress,
-    'getVirtualSupply',
-    []
-  ]);
-
-  const virtualSupply = bn(virtualSupplyRes);
+  const virtualSupply = bn(res[1]);
 
   const userCLqdrBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {
