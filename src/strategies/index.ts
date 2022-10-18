@@ -382,6 +382,8 @@ import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
 import * as sdVoteBoost from './sd-vote-boost';
 import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
+import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
+
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -768,7 +770,8 @@ const strategies = {
   'bancor-standard-rewards-underlying-balance':
     bancorStandardRewardsUnderlyingBalance,
   'sd-vote-boost': sdVoteBoost,
-  'sd-vote-boost-twavp': sdVoteBoostTWAVP
+  'sd-vote-boost-twavp': sdVoteBoostTWAVP,
+  'clqdr-balance-with-lp': clqdrBalanceWithLp
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
