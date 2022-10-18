@@ -5,13 +5,11 @@
       "name": "delegation",
       "params": {
         "symbol": "POH (delegated)",
-        "delegationSpace": "poh.eth",
         "strategies": [
           {
             "name": "erc20-balance-of",
             "params": {
               "address": "0x1dAD862095d40d43c2109370121cf087632874dB",
-              "symbol": "POH",
               "decimals": 0
             }
           }
