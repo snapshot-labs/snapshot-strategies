@@ -6,14 +6,14 @@ export default class Validation {
   public author: string;
   public space: string;
   public network: string;
-  public snapshot: number | string;
+  public snapshot: number | 'latest';
   public params: any;
 
   constructor(
     author: string,
     space: string,
     network: string,
-    snapshot: number | string,
+    snapshot: number | 'latest',
     params: any
   ) {
     this.author = author;

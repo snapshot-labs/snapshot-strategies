@@ -10,7 +10,7 @@ describe('validation', () => {
       example.author,
       example.space,
       example.network,
-      example.snapshot,
+      'latest',
       example.params
     );
     expect(await validation.validate()).toBe(true);
