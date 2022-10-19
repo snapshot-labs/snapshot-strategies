@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. ORCA"],
+          "maxLength": 16
+        },
+        "id": {
+          "type": "string",
+          "title": "Token id",
+          "examples": ["1"]
+        },
+        "weight": {
+          "type": "number",
+          "title": "Weight",
+          "examples": ["e.g. 100"]
+        }
+      },
+      "required": ["id"],
+      "additionalProperties": false
+    }
+  }
+}

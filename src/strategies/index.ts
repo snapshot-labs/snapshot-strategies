@@ -27,6 +27,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as ethalendBalanceOf from './ethalend-balance-of';
 import * as prepoVesting from './prepo-vesting';
 import * as mintoBalanceAll from './minto-balance-of-all';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
@@ -40,6 +41,7 @@ import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
+import * as gooddollarMultichain from './gooddollar-multichain';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
@@ -88,6 +90,7 @@ import * as delegation from './delegation';
 import * as ticket from './ticket';
 import * as work from './work';
 import * as ticketValidity from './ticket-validity';
+import * as validation from './validation';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
 import * as ocean_v4 from './ocean-marketplace-v4';
@@ -211,6 +214,7 @@ import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
 import * as cyberkongzV2 from './cyberkongz-v2';
+import * as cyberkongzV3 from './cyberkongz-v3';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
@@ -289,6 +293,8 @@ import * as landDaoTiers from './landdao-token-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
+import * as gysrPendingRewards from './gysr-pending-rewards';
+import * as gysrLPStakingBalance from './gysr-lp-staking-balance';
 import * as wanakafarmStaking from './wanakafarm-staking';
 import * as starsharks from './starsharks';
 import * as printerFinancial from './printer-financial';
@@ -318,6 +324,7 @@ import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
 import * as hedgey from './hedgey';
+import * as hedgeyMulti from './hedgey-multi';
 import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
@@ -339,6 +346,9 @@ import * as solvVoucherClaimable from './solv-voucher-claimable';
 import * as h2o from './h2o';
 import * as dopamine from './dopamine';
 import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
+import * as lrcL2NftBalanceOf from './lrc-l2-nft-balance-of';
+import * as lrcLPSubgraphBalanceOf from './lrc-lp-subgraph-balance-of';
+import * as lrcNFTDAOSearch from './lrc-nft-dao-search';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
@@ -346,10 +356,34 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as balanceOfSubgraph from './balance-of-subgraph';
+import * as wagdieSubgraph from './wagdie-subgraph';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
+import * as orcaPod from './orca-pod';
+import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
+import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
+import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
+import * as arrowVesting from './arrow-vesting';
+import * as tutellusProtocol from './tutellus-protocol';
+import * as fightClub from './fight-club';
+import * as tproStaking from './tpro-staking';
+import * as safeVested from './safe-vested';
+import * as riskharborUnderwriter from './riskharbor-underwriter';
+import * as otterspaceBadges from './otterspace-badges';
+import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
+import * as depositInSablierStream from './deposit-in-sablier-stream';
+import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
+import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
+import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
+import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+import * as erc20TokensPerUni from './erc20-tokens-per-uni';
+import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
+import * as sdVoteBoost from './sd-vote-boost';
+import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
+import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
+
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -393,6 +427,7 @@ const strategies = {
   'minto-balance-of-all': mintoBalanceAll,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
   'erc20-price': erc20Price,
+  'ethalend-balance-of': ethalendBalanceOf,
   'balance-of-with-min': balanceOfWithMin,
   'balance-of-with-thresholds': balanceOfWithThresholds,
   thresholds,
@@ -416,6 +451,7 @@ const strategies = {
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   'prepo-vesting': prepoVesting,
   multichain,
+  'gooddollar-multichain': gooddollarMultichain,
   uni,
   'frax-finance': fraxFinance,
   'yearn-vault': yearnVault,
@@ -460,6 +496,7 @@ const strategies = {
   ticket,
   work,
   'ticket-validity': ticketValidity,
+  validation,
   opium,
   'ocean-marketplace': ocean,
   'ocean-marketplace-v4': ocean_v4,
@@ -567,6 +604,7 @@ const strategies = {
   'loot-character-guilds': lootCharacterGuilds,
   cyberkongz: cyberkongz,
   'cyberkongz-v2': cyberkongzV2,
+  'cyberkongz-v3': cyberkongzV3,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
@@ -644,6 +682,8 @@ const strategies = {
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
   'gysr-staking-balance': gysrStakingBalance,
+  'gysr-pending-rewards': gysrPendingRewards,
+  'gysr-lp-staking-balance': gysrLPStakingBalance,
   'wanakafarm-staking': wanakafarmStaking,
   starsharks,
   'printer-financial': printerFinancial,
@@ -673,6 +713,7 @@ const strategies = {
   'citydao-square-root': citydaoSquareRoot,
   'rowdy-roos': rowdyRoos,
   hedgey,
+  'hedgey-multi': hedgeyMulti,
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
@@ -693,6 +734,9 @@ const strategies = {
   h2o,
   dopamine,
   'lrc-l2-subgraph-balance-of': lrcL2SubgraphBalanceOf,
+  'lrc-l2-nft-balance-of': lrcL2NftBalanceOf,
+  'lrc-lp-subgraph-balance-of': lrcLPSubgraphBalanceOf,
+  'lrc-nft-dao-search': lrcNFTDAOSearch,
   'rari-fuse': rariFuse,
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
@@ -700,10 +744,34 @@ const strategies = {
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
   'balance-of-subgraph': balanceOfSubgraph,
+  'wagdie-subgraph': wagdieSubgraph,
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
-  'erc3525-flexible-voucher': erc3525FlexibleVoucher
+  'erc3525-flexible-voucher': erc3525FlexibleVoucher,
+  'orca-pod': orcaPod,
+  'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
+  'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
+  'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
+  'arrow-vesting': arrowVesting,
+  'tutellus-protocol': tutellusProtocol,
+  'fight-club': fightClub,
+  'tpro-staking': tproStaking,
+  'safe-vested': safeVested,
+  'riskharbor-underwriter': riskharborUnderwriter,
+  'otterspace-badges': otterspaceBadges,
+  'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
+  'deposit-in-sablier-stream': depositInSablierStream,
+  'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
+  'nation3-votes-with-delegations': nation3VotesWIthDelegations,
+  'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
+  'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
+  'erc20-tokens-per-uni': erc20TokensPerUni,
+  'bancor-standard-rewards-underlying-balance':
+    bancorStandardRewardsUnderlyingBalance,
+  'sd-vote-boost': sdVoteBoost,
+  'sd-vote-boost-twavp': sdVoteBoostTWAVP,
+  'clqdr-balance-with-lp': clqdrBalanceWithLp
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
