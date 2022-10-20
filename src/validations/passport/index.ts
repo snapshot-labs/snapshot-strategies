@@ -1,6 +1,5 @@
 import Validation from '../validation';
-import { PassportVerifier } from './helper';
-import { Passport } from '@gitcoinco/passport-sdk-types';
+import { getPassport, getVerifiedStamps } from './helper';
 
 export default class extends Validation {
   public id = 'passport';
@@ -8,19 +7,24 @@ export default class extends Validation {
   public version = '0.1.0';
 
   async validate(): Promise<boolean> {
-    const verifier = new PassportVerifier();
-    const passport: Passport | false = await verifier.verifyPassport(
-      this.author
-    );
-
-    // console.log(JSON.stringify(passport));
-    let score = 0;
+    const passport: any = await getPassport(this.author);
     if (!passport) return false;
+    if (!passport.stamps || !this.params.stamps) return false;
+
+    const verifiedStamps: false | any[] = await getVerifiedStamps(
+      passport,
+      this.author,
+      this.params.stamps
+    );
+    if (!verifiedStamps) return false;
+
+    let weight = 0;
     this.params.stamps.forEach((stamp: any) => {
-      const found = passport?.stamps.find((s: any) => s.provider === stamp);
-      if (found?.verified) score++;
+      const found = verifiedStamps.find((s: any) => s.provider === stamp.id);
+      if (found?.verified) weight += stamp.weight;
     });
 
-    return score >= this.params.minScore;
+
+    return weight >= this.params.min_weight;
   }
 }

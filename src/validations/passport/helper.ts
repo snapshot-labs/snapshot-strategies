@@ -1,126 +1,79 @@
 import DIDKit from '@spruceid/didkit-wasm-node/didkit_wasm';
-import { PassportReader } from '@gitcoinco/passport-sdk-reader';
-import {
-  DIDKitLib,
-  Passport,
-  Stamp,
-  VerifiableCredential
-} from '@gitcoinco/passport-sdk-types';
+import { Tulons } from 'tulons';
 
-export class PassportVerifier {
-  _DIDKit!: DIDKitLib;
-  _reader: PassportReader;
-  _network: string;
+const CERAMIC_URL = 'https://ceramic.passport-iam.gitcoin.co';
+const CERAMIC_NETWORK_ID = 1;
 
-  constructor(url = 'https://ceramic.passport-iam.gitcoin.co', network = '1') {
-    this._reader = new PassportReader(url, network);
-    this._network = network;
+export const getPassport = async (address) => {
+  // Ceramic connection details
+
+  // Ceramic definition ids on the Ceramic account model
+  const CERAMIC_GITCOIN_PASSPORT_STREAM_ID =
+    'kjzl6cwe1jw148h1e14jb5fkf55xmqhmyorp29r9cq356c7ou74ulowf8czjlzs';
+  const tulons = new Tulons(CERAMIC_URL, CERAMIC_NETWORK_ID);
+
+  // Ceramic data is stored as address -> DID -> Genesis/IDX Stream -> Data Stream
+  const { streams } = await tulons.getGenesis(address);
+  if (streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID]) {
+    const passport = await tulons.getHydrated(
+      await tulons.getStream(streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID])
+    );
+    return passport;
+  }
+  return false;
+};
+
+export const getVerifiedStamps = async (passport, address, stampsRequired) => {
+  if (!passport) return false;
+  const stamps = passport.stamps || [];
+  // filter out stamps with stampsRequired
+  const stampsFiltered = stamps.filter((stamp) =>
+    stampsRequired.map((a) => a.id).includes(stamp.provider)
+  );
+  // verify stamps
+  let stampsVerified = await Promise.all(
+    stampsFiltered.map(async (stamp) => verifyStamp(stamp, address))
+  );
+  stampsVerified = stampsVerified.filter((s) => s.verified);
+  return stampsVerified;
+};
+
+const verifyStamp = async (stamp, address) => {
+  // given the stamp exists...
+  if (stamp) {
+    stamp.verified = true;
+    const stampAddress = stamp.credential.credentialSubject.id
+      .replace(`did:pkh:eip155:${CERAMIC_NETWORK_ID}:`, '')
+      .toLowerCase();
+
+    stamp.verified =
+      stampAddress !== address.toLowerCase() ? false : stamp.verified;
+
+    // finally verify that the credential verifies with DIDKit
+    if (stamp.verified) {
+      stamp.verified = await verifyCredential(stamp.credential);
+    }
   }
 
-  async init(): Promise<void> {
-    await Promise.resolve(DIDKit).then(async (didkit: any) => {
-      if (didkit.default) {
-        await Promise.resolve(didkit.default).then((didkit) => {
-          this._DIDKit = didkit as typeof DIDKit;
-        });
-      } else {
-        this._DIDKit = didkit as typeof DIDKit;
-      }
-    });
-  }
+  return stamp;
+};
 
-  async verifyPassport(
-    address: string,
-    passport?: Passport,
-    additionalStampChecks?: (stamp: Stamp) => boolean
-  ): Promise<Passport | false> {
-    // get the passport
-    const passportRecord =
-      passport || (await this._reader.getPassport(address));
-    // with a passport record...
-    if (passportRecord) {
-      const stamps = passportRecord.stamps as Stamp[];
-
-      return {
-        ...passportRecord,
-        stamps: await Promise.all(
-          stamps.map(async (stamp: Stamp) => {
-            // return the stamp with verifications in place
-            return (await this.verifyStamp(
-              address,
-              stamp,
-              additionalStampChecks
-            )) as Stamp;
-          })
+const verifyCredential = async (credential) => {
+  const { expirationDate, proof } = credential;
+  // check that the credential is still valid (not expired)
+  if (new Date(expirationDate) > new Date()) {
+    try {
+      const verify = JSON.parse(
+        await DIDKit.verifyCredential(
+          JSON.stringify(credential),
+          `{"proofPurpose":"${proof.proofPurpose}"}`
         )
-      } as Passport;
-    }
-
-    return false;
-  }
-
-  async verifyStamp(
-    address: string,
-    stamp: Stamp,
-    additionalStampChecks?: (stamp: Stamp) => boolean
-  ): Promise<Stamp | false> {
-    // given the stamp exists...
-    if (stamp) {
-      // mark as verified and check state
-      stamp.verified = true;
-
-      // extract the stamps address
-      const stampAddress = stamp.credential.credentialSubject.id
-        .replace(`did:pkh:eip155:${this._network}:`, '')
-        .toLowerCase();
-
-      // check the Passport address matches the credentialSubject address
-      stamp.verified =
-        stampAddress !== address.toLowerCase() ? false : stamp.verified;
-
-      // carry-out any additional verification check
-      if (stamp.verified && additionalStampChecks) {
-        stamp.verified = !additionalStampChecks(stamp) ? false : stamp.verified;
-      }
-
-      // finally verify that the credential verifies with DIDKit
-      if (stamp.verified) {
-        stamp.verified = await this.verifyCredential(stamp.credential);
-      }
-    }
-
-    return stamp;
-  }
-
-  async verifyCredential(credential: VerifiableCredential): Promise<boolean> {
-    // ensure DIDKit is established
-    if (!this._DIDKit) {
-      await this.init();
-    }
-
-    // extract expirationDate
-    const { expirationDate, proof } = credential;
-
-    // check that the credential is still valid (not expired)
-    if (new Date(expirationDate) > new Date()) {
-      try {
-        // parse the result of attempting to verify
-        const verify = JSON.parse(
-          await this._DIDKit.verifyCredential(
-            JSON.stringify(credential),
-            `{"proofPurpose":"${proof.proofPurpose}"}`
-          )
-        ) as { checks: string[]; warnings: string[]; errors: string[] };
-
-        // did we get any errors when we attempted to verify?
-        return verify.errors.length === 0;
-      } catch (e) {
-        // if didkit throws, etc.
-        return false;
-      }
-    } else {
-      // past expiry :(
+      ) as { checks: string[]; warnings: string[]; errors: string[] };
+      return verify.errors.length === 0;
+    } catch (e) {
       return false;
     }
+  } else {
+    return false;
   }
-}
+};

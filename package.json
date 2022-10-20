@@ -34,8 +34,6 @@
     "@ethersproject/strings": "^5.6.1",
     "@ethersproject/units": "^5.6.1",
     "@ethersproject/wallet": "^5.6.2",
-    "@gitcoinco/passport-sdk-reader": "^0.1.4",
-    "@gitcoinco/passport-sdk-types": "^0.2.0",
     "@snapshot-labs/snapshot.js": "^0.4.40",
     "@spruceid/didkit-wasm-node": "^0.2.1",
     "@uniswap/sdk-core": "^3.0.1",
@@ -43,7 +41,8 @@
     "copyfiles": "^2.4.1",
     "cross-fetch": "^3.1.5",
     "eth-ens-namehash": "^2.0.8",
-    "json-to-graphql-query": "^2.2.4"
+    "json-to-graphql-query": "^2.2.4",
+    "tulons": "^0.0.7"
   },
   "devDependencies": {
     "@types/jest": "^28.1.4",

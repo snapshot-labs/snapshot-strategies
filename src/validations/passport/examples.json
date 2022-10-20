@@ -6,8 +6,14 @@
       "network": "1",
       "snapshot": "latest",
       "params": {
-        "minScore": 1,
-        "stamps": ["POAP", "Ens"]
+        "stamps": [
+            { "id": "Ens", "weight": 2 },
+            { "id": "Twitter", "weight": 0.5 },
+            { "id": "GitHub", "weight": 0.5 },
+            { "id": "POAP", "weight": 2 },
+            { "id": "SnapshotVotesProvider", "weight": 2}
+        ],
+        "min_weight": 1
       }
     }
   ]
