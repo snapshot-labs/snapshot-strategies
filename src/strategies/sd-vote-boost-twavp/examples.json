@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sd-vote-boost-twavp",
+      "params": {
+        "veToken": "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2",
+        "liquidLocker": "0x52f541764E6e90eeBc5c21Ff570De0e2D63766B6",
+        "sdTokenGauge": "0x7f50786A0b15723D741727882ee99a0BF34e3466",
+        "symbol": "sdToken",
+        "decimals": 18,
+        "sampleSize": 30,
+        "sampleStep": 5,
+        "avgBlockTime": 12.0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa7888f85bd76deef3bd03d4dbcf57765a49883b3",
+      "0x8d9f950c23b73edf79ce52f74c6fb589cd2cbd90",
+      "0x4af79ffcabb09083af6ccc3b2c20fe989519f6d7",
+      "0xa429ac8bd9382e7f69645cc30bd718b5d33d674b",
+      "0x7c9f43215D3B3D5055433a9d7B12bCBf9F4be442"
+    ],
+    "snapshot": 15725810
+  }
+]

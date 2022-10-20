@@ -90,6 +90,7 @@ import * as delegation from './delegation';
 import * as ticket from './ticket';
 import * as work from './work';
 import * as ticketValidity from './ticket-validity';
+import * as validation from './validation';
 import * as opium from './opium';
 import * as ocean from './ocean-marketplace';
 import * as ocean_v4 from './ocean-marketplace-v4';
@@ -355,6 +356,7 @@ import * as xrookBalanceOfUnderlyingWeighted from './xrook-balance-of-underlying
 import * as bancorPoolTokenUnderlyingBalance from './bancor-pool-token-underlying-balance';
 import * as orbsNetworkDelegation from './orbs-network-delegation';
 import * as balanceOfSubgraph from './balance-of-subgraph';
+import * as wagdieSubgraph from './wagdie-subgraph';
 import * as erc3525FlexibleVoucher from './erc3525-flexible-voucher';
 import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
@@ -377,6 +379,11 @@ import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
+import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
+import * as sdVoteBoost from './sd-vote-boost';
+import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
+import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
+
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -489,6 +496,7 @@ const strategies = {
   ticket,
   work,
   'ticket-validity': ticketValidity,
+  validation,
   opium,
   'ocean-marketplace': ocean,
   'ocean-marketplace-v4': ocean_v4,
@@ -736,6 +744,7 @@ const strategies = {
   'xrook-balance-of-underlying-weighted': xrookBalanceOfUnderlyingWeighted,
   'orbs-network-delegation': orbsNetworkDelegation,
   'balance-of-subgraph': balanceOfSubgraph,
+  'wagdie-subgraph': wagdieSubgraph,
   'erc721-pair-weights': erc721PairWeights,
   'harmony-staking': harmonyStaking,
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
@@ -757,7 +766,12 @@ const strategies = {
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
-  'erc20-tokens-per-uni': erc20TokensPerUni
+  'erc20-tokens-per-uni': erc20TokensPerUni,
+  'bancor-standard-rewards-underlying-balance':
+    bancorStandardRewardsUnderlyingBalance,
+  'sd-vote-boost': sdVoteBoost,
+  'sd-vote-boost-twavp': sdVoteBoostTWAVP,
+  'clqdr-balance-with-lp': clqdrBalanceWithLp
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

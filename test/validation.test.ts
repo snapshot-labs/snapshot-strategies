@@ -1,20 +1,18 @@
 import snapshot from '../src';
-import examples from '../src/validations/aave/examples.json';
+import examples from '../src/validations/basic/examples.json';
 
-const name = examples[0].validation.name;
-const params = examples[0].validation.params || {};
-const author = examples[0].userAddress;
-const space = examples[0].space;
-const proposal = {};
+const [example] = examples;
+const id = 'basic';
 
-describe('', () => {
-  it('validation', async () => {
-    const validation = await snapshot.validations[name](
-      author,
-      space,
-      proposal,
-      params
+describe('validation', () => {
+  it(`validate: ${id} "${example.name}"`, async () => {
+    const validation = new snapshot.validations[id](
+      example.author,
+      example.space,
+      example.network,
+      'latest',
+      example.params
     );
-    expect(validation).toMatchSnapshot();
-  }, 20e3);
+    expect(await validation.validate()).toBe(true);
+  }, 10e3);
 });
