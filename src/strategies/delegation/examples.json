@@ -4,22 +4,13 @@
     "strategy": {
       "name": "delegation",
       "params": {
-        "symbol": "YFI (delegated)",
+        "symbol": "POH (delegated)",
         "strategies": [
           {
             "name": "erc20-balance-of",
             "params": {
-              "address": "0xBa37B002AbaFDd8E89a1995dA52740bbC013D992",
-              "symbol": "YFI",
-              "decimals": 18
-            }
-          },
-          {
-            "name": "yearn-vault",
-            "params": {
-              "address": "0xBA2E7Fed597fd0E3e70f5130BcDbbFE06bB94fe1",
-              "symbol": "YFI (yYFI)",
-              "decimals": 18
+              "address": "0x1dAD862095d40d43c2109370121cf087632874dB",
+              "decimals": 0
             }
           }
         ]
@@ -27,10 +18,10 @@
     },
     "network": "1",
     "addresses": [
-      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
-      "0x4C7909d6F029b3a5798143C843F4f8e5341a3473",
-      "0x7A1057E6e9093DA9C1D4C1D049609B6889fC4c67"
+      "0x3c13f2B56AF614aC6381265EcB3B619bA26CC641",
+      "0x048fee7c3279a24af0790b6b002ded42be021d2b",
+      "0x139a9032a46c3afe3456eb5f0a35183b5f189cae"
     ],
-    "snapshot": 11739710
+    "snapshot": 15705816
   }
 ]

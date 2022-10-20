@@ -5,7 +5,7 @@
       "name": "balancer",
       "params": {
         "address": "0xba100000625a3754423978a60c9317c58a424e3D",
-        "symbol": "BAL BPT V1+V2",
+        "symbol": "BAL (in Balancer)",
         "decimals": 18
       }
     },

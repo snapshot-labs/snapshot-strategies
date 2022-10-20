@@ -29,10 +29,12 @@ export async function strategy(
     ]),
     { blockTag }
   );
+  const decimals = options.decimals || 18;
+
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
-      parseFloat(formatUnits(value.toString(), 18))
+      parseFloat(formatUnits(value.toString(), decimals))
     ])
   );
 }

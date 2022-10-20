@@ -4,17 +4,30 @@
     "strategy": {
       "name": "erc1155-all-balances-of",
       "params": {
-        "address": "0x51e613727fdd2e0b91b51c3e5427e9440a7957e4",
+        "address": "0x71eb5c179ceb640160853144cbb8df5bd24ab5cc",
         "symbol": "CORGI"
       }
     },
     "network": "1",
+    "addresses": ["0x06658Fd70023f527BFAc1A6d9141C56d99c65129"],
+    "snapshot": 14597922
+  },
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc1155-all-balances-of",
+      "params": {
+        "address": "0x2939b94BDc377e66A377cfc15028DF3Bd6aC6C28",
+        "symbol": "CORGI"
+      }
+    },
+    "network": "137",
     "addresses": [
-      "0x4bAF2ad9e92d547F428895e12Ab8A6f195C6f058",
-      "0x34a745008a643EebC58920eaa29Fb1165b4A288E",
-      "0xcc5Ddc8CCD5B1E90Bc42F998ec864Ead0090A12B",
-      "0x000000000000000000000000000000000000dead"
+      "0xb165014c736c50da0638283eac2e19c88eab74f3",
+      "0x28adbf7bd37c08965746669471a1dcef6dc91009",
+      "0xe6fecee69a9e3726324498830bb0e898a866eccc",
+      "0x715c624ff8a8ebae3a2030c0b0868a5b447c956f"
     ],
-    "snapshot": 12121892
+    "snapshot": 27088229
   }
 ]

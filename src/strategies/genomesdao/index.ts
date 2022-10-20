@@ -60,7 +60,9 @@ export async function strategy(
         .add(resultLP2[address])
         .mul(totalGnomeAmount)
         .div(totalSupply);
-      bal = bal.add(result[address]).add(BigNumber.from(veresult[address]).mul(5));
+      bal = bal
+        .add(result[address])
+        .add(BigNumber.from(veresult[address]).mul(5));
       return [address, parseFloat(formatUnits(bal, options.decimals))];
     })
   );

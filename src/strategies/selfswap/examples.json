@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "selfswap",
+      "params": {
+        "symbol": "SELF"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x26e82CB17cfd4ef12096f38f3ba0DAD6ea5B5035",
+      "0x21fF20E7e1B820020415707298b92299CF0951fE",
+      "0x2b3D1D31ac5C053cf89a92EE9c94dbF3774D6366",
+      "0x273e3fD65450032a44AC6CA36F6551D74A459B6A"
+    ],
+    "snapshot": 16308675
+  }
+]

@@ -262,8 +262,8 @@ export async function strategy(
 
   // Staking Pools Calculation
 
-  options.stakingPools.forEach((stakingPool: STAKING_POOL, idx) => {
-    stakingPool.pools.forEach((poolId, poolIdx) => {
+  options.stakingPools.forEach((stakingPool: STAKING_POOL) => {
+    stakingPool.pools.forEach(() => {
       let poolToken = '';
       if (options.stakingPoolsVersion === '2') {
         poolToken = stakingPoolResult[0][3];
@@ -313,8 +313,8 @@ export async function strategy(
   let rewarderResult = res[2];
 
   // Rewarder Calculation
-  options.rewarder.forEach((rewarder: REWARDER, idx) => {
-    rewarder.poolIds.forEach((poolId, poolIdx) => {
+  options.rewarder.forEach((rewarder: REWARDER) => {
+    rewarder.poolIds.forEach(() => {
       if (options.rewarderVersion === '2') {
         rewarderResult.slice(0, addresses.length).map((num, i) => {
           const rewarderBal = bn(num);

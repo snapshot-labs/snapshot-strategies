@@ -1,11 +1,15 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
-export const author = 'fragosti';
-export const version = '0.1.0';
+export const author = 'snapshot-labs';
+export const version = '0.2.0';
 
-export const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/alexvorobiov/eip1155subgraph'
+const SUBGRAPH_URL = {
+  '1': 'https://gateway.thegraph.com/api/94c3f5dd3947e2f62fc6e0e757549ee7/subgraphs/id/GCQVLurkeZrdMf4t5v5NyeWJY8pHhfE9sinjFMjLYd9C'
+};
+
+const HOSTED_SUBGRAPH_URL = {
+  '137': 'https://api.thegraph.com/subgraphs/name/tranchien2002/eip1155-matic'
 };
 
 export async function strategy(
@@ -16,46 +20,68 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const eip1155OwnersParams = {
-    accounts: {
+  const PAGE_SIZE = 1000;
+  let result = [];
+  let page = 0;
+
+  const isHosted = HOSTED_SUBGRAPH_URL[network] !== undefined;
+  const subgraphURL = isHosted
+    ? HOSTED_SUBGRAPH_URL[network]
+    : SUBGRAPH_URL[network];
+  const eip1155BalancesParams: any = {
+    balances: {
+      __aliasFor: 'erc1155Balances',
       __args: {
+        first: PAGE_SIZE,
+        skip: 0,
         where: {
-          id_in: addresses.map((a) => a.toLowerCase())
+          account_in: addresses.map((a) => a.toLowerCase()),
+          token_starts_with: options.address.toLowerCase(),
+          value_not: '0'
         }
       },
-      id: true,
-      balances: {
-        value: true,
-        token: {
-          registry: {
-            id: true
-          }
-        }
-      }
+      account: {
+        id: true
+      },
+      value: true,
+      valueExact: true
     }
   };
   if (snapshot !== 'latest') {
-    // @ts-ignore
-    eip1155OwnersParams.accounts.__args.block = { number: snapshot };
+    eip1155BalancesParams.balances.__args.block = { number: snapshot };
   }
-  try {
-    const result = await subgraphRequest(
-      SUBGRAPH_URL[network],
-      eip1155OwnersParams
+
+  // No erc1155balances alias and valueExact for hosted subgraph
+  if (isHosted) {
+    delete eip1155BalancesParams.balances.__aliasFor;
+    delete eip1155BalancesParams.balances.valueExact;
+  }
+
+  while (true) {
+    eip1155BalancesParams.balances.__args.skip = page * PAGE_SIZE;
+    const pageResult = await subgraphRequest(
+      subgraphURL,
+      eip1155BalancesParams
     );
-    return result.accounts.reduce((acc, val) => {
-      const relevantTokenBalances = val.balances.filter((balance) => {
-        const isRightAddress =
-          balance.token.registry.id === options.address.toLowerCase();
-        return isRightAddress;
-      });
-      acc[getAddress(val.id)] = relevantTokenBalances.reduce(
-        (acc, val) => acc + parseInt(val.value, 10),
-        0
-      );
-      return acc;
-    }, {} as Record<string, number>);
-  } catch (err) {
-    return {};
+    const pageERC1155Balances = pageResult.balances || [];
+    result = result.concat(pageERC1155Balances);
+    page++;
+    if (pageERC1155Balances.length < PAGE_SIZE) break;
+    // hosted subgraph doesn't support skip more than 5000
+    if (isHosted && page === 6) break;
   }
+
+  return result.reduce(
+    (
+      acc,
+      val: { value: string; valueExact: string; account: { id: string } }
+    ) => {
+      const address = getAddress(val.account.id);
+      const value = parseInt(isHosted ? val.value : val.valueExact, 10);
+      if (!acc[address]) acc[address] = 0;
+      acc[address] += value;
+      return acc;
+    },
+    {}
+  );
 }
