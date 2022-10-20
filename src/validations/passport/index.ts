@@ -24,7 +24,6 @@ export default class extends Validation {
       if (found?.verified) weight += stamp.weight;
     });
 
-
     return weight >= this.params.min_weight;
   }
 }

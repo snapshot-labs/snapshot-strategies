@@ -15,21 +15,23 @@ export const getPassport = async (address) => {
   // Ceramic data is stored as address -> DID -> Genesis/IDX Stream -> Data Stream
   const { streams } = await tulons.getGenesis(address);
   if (streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID]) {
-    const passport = await tulons.getHydrated(
+    return await tulons.getHydrated(
       await tulons.getStream(streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID])
     );
-    return passport;
   }
   return false;
 };
 
 export const getVerifiedStamps = async (passport, address, stampsRequired) => {
   if (!passport) return false;
+
   const stamps = passport.stamps || [];
+
   // filter out stamps with stampsRequired
   const stampsFiltered = stamps.filter((stamp) =>
     stampsRequired.map((a) => a.id).includes(stamp.provider)
   );
+
   // verify stamps
   let stampsVerified = await Promise.all(
     stampsFiltered.map(async (stamp) => verifyStamp(stamp, address))
@@ -60,6 +62,7 @@ const verifyStamp = async (stamp, address) => {
 
 const verifyCredential = async (credential) => {
   const { expirationDate, proof } = credential;
+
   // check that the credential is still valid (not expired)
   if (new Date(expirationDate) > new Date()) {
     try {
@@ -73,7 +76,6 @@ const verifyCredential = async (credential) => {
     } catch (e) {
       return false;
     }
-  } else {
-    return false;
   }
+  return false;
 };
