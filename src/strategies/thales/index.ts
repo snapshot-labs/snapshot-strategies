@@ -6,7 +6,7 @@ export const author = 'vpoklopic';
 export const version = '1.0.1';
 
 const THALES_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/thales-markets/thales-optimism';
+  'https://api.thegraph.com/subgraphs/name/thales-markets/thales-token';
 
 export async function strategy(
   _space,
