@@ -2,60 +2,13 @@
 import { formatUnits } from '@ethersproject/units';
 import { multicall, Multicaller } from '../../utils';
 
-export const author = 'Otis';
+export const author = 'michaelotis';
 export const version = '0.1.0';
-
+export const dependOnOtherAddress = false;
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'shares',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'lastDepositedTime',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'fuzzAtLastUserAction',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'lastUserActionTime',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'getPricePerFullShare',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(address) view returns (uint256 shares, uint256 lastDepositedTime, uint256 fuzzAtLastUserAction, uint256 lastUserActionTime)',
+  'function getPricePerFullShare() view returns (uint256)'
 ];
 
 export async function strategy(
