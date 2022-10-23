@@ -5,19 +5,20 @@ import { Multicaller, multicall } from '../../utils';
 export const author = 'LiquidDriver-finance';
 export const version = '0.0.1';
 
-const liquidMasterAddress = '0x6e2ad6527901c9664f016466b8DA1357a004db0f'
-const beetsMasterAddress = '0x8166994d9ebBe5829EC86Bd81258149B87faCfd3'
-const lpAddress = '0xEAdCFa1F34308b144E96FcD7A07145E027A8467d'
-const beetsVaultAddress = '0x20dd72Ed959b6147912C2e529F0a0C651c33c9ce'
-const clqdrPoolId = '0xeadcfa1f34308b144e96fcd7a07145e027a8467d000000000000000000000331'
+const liquidMasterAddress = '0x6e2ad6527901c9664f016466b8DA1357a004db0f';
+const beetsMasterAddress = '0x8166994d9ebBe5829EC86Bd81258149B87faCfd3';
+const lpAddress = '0xEAdCFa1F34308b144E96FcD7A07145E027A8467d';
+const beetsVaultAddress = '0x20dd72Ed959b6147912C2e529F0a0C651c33c9ce';
+const clqdrPoolId =
+  '0xeadcfa1f34308b144e96fcd7a07145e027a8467d000000000000000000000331';
 
 const contractAbi = [
   'function userInfo(uint256, address) view returns (uint256 amount, int256 rewardDebt)',
   'function totalSupply() view returns (uint256)',
   'function balanceOf(address _owner) view returns (uint256 balance)',
   'function getPoolTokens(bytes32 poolId) view returns (uint256[], uint256[], uint256)',
-  'function getVirtualSupply() external view returns (uint256)',
-]
+  'function getVirtualSupply() external view returns (uint256)'
+];
 
 const bn = (num: any): BigNumber => {
   return BigNumber.from(num.toString());
@@ -29,7 +30,7 @@ const addUserBalance = (userBalances, user: string, balance) => {
   } else {
     return (userBalances[user] = balance);
   }
-}
+};
 
 export async function strategy(
   space,
@@ -39,7 +40,6 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const res = await multicall(
@@ -48,7 +48,7 @@ export async function strategy(
     contractAbi,
     [
       [beetsVaultAddress, 'getPoolTokens', [clqdrPoolId]],
-      [lpAddress, 'getVirtualSupply', []],
+      [lpAddress, 'getVirtualSupply', []]
     ],
     { blockTag }
   );
@@ -62,7 +62,9 @@ export async function strategy(
     userCLqdrBalances[addresses[i]] = bn(0);
   }
 
-  const clqdrMulti = new Multicaller(network, provider, contractAbi, { blockTag });
+  const clqdrMulti = new Multicaller(network, provider, contractAbi, {
+    blockTag
+  });
   addresses.forEach((address) =>
     clqdrMulti.call(address, options.address, 'balanceOf', [address])
   );
@@ -96,7 +98,10 @@ export async function strategy(
   });
 
   addresses.forEach((address) =>
-    multiLiquidMaster.call(address, liquidMasterAddress, 'userInfo', ['43', address])
+    multiLiquidMaster.call(address, liquidMasterAddress, 'userInfo', [
+      '43',
+      address
+    ])
   );
   const resultLiquidMaster: Record<string, BigNumberish> =
     await multiLiquidMaster.execute();
@@ -112,7 +117,10 @@ export async function strategy(
   });
 
   addresses.forEach((address) =>
-    multiBeetsMaster.call(address, beetsMasterAddress, 'userInfo', ['69', address])
+    multiBeetsMaster.call(address, beetsMasterAddress, 'userInfo', [
+      '69',
+      address
+    ])
   );
   const resultBeetsMaster: Record<string, BigNumberish> =
     await multiBeetsMaster.execute();
@@ -126,13 +134,15 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(userLpBalances).map(([address, balance]) => {
       // @ts-ignore
-      const clqdrBalanceInLp = totalClqdrInBeets.mul(balance).div(virtualSupply);
+      const clqdrBalanceInLp = totalClqdrInBeets
+        .mul(balance)
+        .div(virtualSupply);
       const totalBalance = userCLqdrBalances[address].add(clqdrBalanceInLp);
       return [
         address,
         // @ts-ignore
         parseFloat(formatUnits(totalBalance, options.decimals))
-      ]
+      ];
     })
   );
 }
