@@ -385,7 +385,6 @@ import * as sdVoteBoost from './sd-vote-boost';
 import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 
-
 const strategies = {
   'forta-shares': fortaShares,
   'ethermon-erc721': ethermon721,
