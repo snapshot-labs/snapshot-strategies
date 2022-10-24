@@ -385,6 +385,8 @@ import * as sdVoteBoost from './sd-vote-boost';
 import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
+import * as spreadsheet from './spreadsheet';
+
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -774,7 +776,8 @@ const strategies = {
   'sd-vote-boost': sdVoteBoost,
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
-  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
+  spreadsheet
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
