@@ -46,7 +46,7 @@ export async function strategy(
     },
   } : Options = options;
 
-  addresses.map(formatEthAddress);
+  addresses = addresses.map(formatEthAddress);
 
   const dccScores = erc721BalanceOfStrategy(
     space,
