@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
-
+export const dependOnOtherAddress = false;
 function csvToJson(csv) {
   const lines = csv.split('\n');
   const keys = lines[0].split(',').map((key) => key.trim());
