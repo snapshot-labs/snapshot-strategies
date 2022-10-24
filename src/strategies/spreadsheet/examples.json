@@ -4,7 +4,8 @@
     "strategy": {
       "name": "spreadsheet",
       "params": {
-        "id": "2PACX-1vTmam7vShzrscNDQ0zy0IC11jJztebhWrK5_5kFT6N_WsEJXDXStmxrOlNmHt9IRf9g7VenegU8vGzh"
+        "sheetId": "2PACX-1vTmam7vShzrscNDQ0zy0IC11jJztebhWrK5_5kFT6N_WsEJXDXStmxrOlNmHt9IRf9g7VenegU8vGzh",
+        "gid": "0"
       }
     },
     "network": "1",
