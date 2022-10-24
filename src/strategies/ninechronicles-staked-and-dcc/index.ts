@@ -6,6 +6,7 @@ import { Multicaller, subgraphRequest } from '../../utils';
 
 export const author = 'longfin';
 export const version = '1.0.0';
+export const dependOnOtherAddress = false;
 
 const lpStakingABI = [
   'function stakedTokenBalance(address account) view returns (uint256)',
