@@ -133,8 +133,8 @@ export async function strategy(
 
   return Object.fromEntries(
     Object.entries(userLpBalances).map(([address, balance]) => {
-      // @ts-ignore
       const clqdrBalanceInLp = totalClqdrInBeets
+        // @ts-ignore
         .mul(balance)
         .div(virtualSupply);
       const totalBalance = userCLqdrBalances[address].add(clqdrBalanceInLp);

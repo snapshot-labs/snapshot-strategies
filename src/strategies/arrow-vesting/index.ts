@@ -101,24 +101,22 @@ export async function strategy(
     addressBalances[address] = 0;
   });
 
-  Object.entries(vestingContractParameters).forEach(
-    ([contractAddress, params]) => {
-      const recipient = params['recipient'];
-      const start = params['start_time'];
+  Object.entries(vestingContractParameters).forEach(([, params]) => {
+    const recipient = params['recipient'];
+    const start = params['start_time'];
 
-      if (recipient in addressBalances && time > start) {
-        const locked = parseFloat(
-          formatUnits(params['total_locked'], options.decimals)
-        );
-        const end = params['end_time'];
+    if (recipient in addressBalances && time > start) {
+      const locked = parseFloat(
+        formatUnits(params['total_locked'], options.decimals)
+      );
+      const end = params['end_time'];
 
-        addressBalances[recipient] += Math.min(
-          (locked * (time - start)) / (end - start),
-          locked
-        );
-      }
+      addressBalances[recipient] += Math.min(
+        (locked * (time - start)) / (end - start),
+        locked
+      );
     }
-  );
+  });
 
   return addressBalances;
 }
