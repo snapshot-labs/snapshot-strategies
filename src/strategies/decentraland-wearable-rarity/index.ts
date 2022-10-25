@@ -51,6 +51,7 @@ export async function strategy(
         orderDirection: 'asc',
         first: 1000
       },
+      id: true,
       owner: {
         id: true
       },
