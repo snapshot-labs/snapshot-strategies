@@ -3,7 +3,7 @@ import strategies from '..';
 
 export const author = 'kesar';
 export const version = '1.1.0';
-export const disabled = true;
+export const deprecated = true;
 
 export async function strategy(
   space,

@@ -2,7 +2,7 @@ import strategies from '..';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
-export const disabled = true;
+export const deprecated = true;
 
 export async function strategy(
   space,
