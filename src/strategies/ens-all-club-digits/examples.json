@@ -6,14 +6,14 @@
       "params": {
         "address": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
         "symbol": "NUMS",
-        "numberOfDigits": 3
+        "numberOfDigits": 4
       }
     },
     "network": "1",
     "addresses": [
-      "0xe8072ac2a0b5aaea83dd4a58af286e6083131bb0",
-      "0x9d85e33bb8f80dcf7f40d4307e64752a95779266",
-      "0xbc06d4f53d9d1b8257b89e0fa6168dc7b1f04ce7"
+      "0xa2e87bf4e4edc28922736887772c351de5554b77",
+      "0xf8ebe2b23ed74bee2b35da9de63c2380902b7cb5",
+      "0xae099ada728a5abf8b31f2b126cc5bf8e70fbc2c"
     ],
     "snapshot": 15818456
   }

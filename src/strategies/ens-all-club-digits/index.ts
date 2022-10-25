@@ -21,6 +21,9 @@ export async function strategy(
 ) {
   const { numberOfDigits } = options;
   // 999 Club = 3 , 10k club = 4, 100k club = 5
+  if (numberOfDigits> 7 || numberOfDigits <3){
+    return {};
+  }
   const NAMES_CLUB = [...Array(Math.pow(10, numberOfDigits)).keys()]
     .map((i) => -1 + i + 1)
     .map((x) => x.toString().padStart(numberOfDigits, '0'));
@@ -30,47 +33,62 @@ export async function strategy(
   const pages = Array.from(Array(count)).map((x, i) =>
     addresses.slice(max * i, max * (i + 1))
   );
-  const params = Object.fromEntries(
-    pages
-      .map((page, i) => `_${i}`)
-      .map((q, i) => [
-        q,
-        {
-          __aliasFor: 'registrations',
-          __args: {
-            block: snapshot !== 'latest' ? { number: snapshot } : null,
-            where: {
-              registrant_in: pages[i].map((address) => address.toLowerCase())
-            },
-            first: 1000,
-            orderBy: 'registrationDate',
-            orderDirection: 'desc'
-          },
-          registrant: {
-            id: true
-          },
-          domain: {
-            // labelhash: true,
-            labelName: true
-          }
-        }
-      ])
-  );
-
-  let result = await subgraphRequest(ENS_SUBGRAPH_URL[network], params);
-  result = [].concat.apply([], Object.values(result));
+  let page = 0;
   const votes = {};
-  if (result) {
-    result.forEach((registration) => {
-      const owner = getAddress(registration.registrant.id);
-      const label = registration.domain.labelName;
-      if (!votes[owner]) {
-        votes[owner] = 0;
+  // This will iterate until there are no more full pages (1000 domains being returned),
+  while (true) {
+    const params = Object.fromEntries(
+      pages
+        .map((page, i) => `_${i}`)
+        .map((q, i) => [
+          q,
+          {
+            __aliasFor: 'registrations',
+            __args: {
+              block: snapshot !== 'latest' ? { number: snapshot } : null,
+              where: {
+                registrant_in: pages[i].map((address) => address.toLowerCase())
+              },
+              first: 1000,
+              skip: page*1000,
+              orderBy: 'registrationDate',
+              orderDirection: 'desc'
+            },
+            registrant: {
+              id: true
+            },
+            domain: {
+              // labelhash: true,
+              labelName: true
+            }
+          }
+        ])
+    );
+
+    let result = await subgraphRequest(ENS_SUBGRAPH_URL[network], params);
+    result = [].concat.apply([], Object.values(result));
+
+    if (result) {
+      result.forEach((registration) => {
+        const owner = getAddress(registration.registrant.id);
+        const label = registration.domain.labelName;
+        if (!votes[owner]) {
+          votes[owner] = 0;
+        }
+        if (NAMES_CLUB.includes(label)) {
+          votes[owner] = votes[owner] + 1;
+        }
+      });
+      if (result.length >= 1000) {
+        page++;
+      } else {
+        console.log('the length is')
+        console.log(result.length)
+        break;
       }
-      if (NAMES_CLUB.includes(label)) {
-        votes[owner] = votes[owner] + 1;
-      }
-    });
+    } else {
+      break;
+    }
   }
   return votes;
 }
