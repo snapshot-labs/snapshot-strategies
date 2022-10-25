@@ -86,7 +86,9 @@ export async function strategy(
     }
 
     hasNext = nfts.length === params.nfts.__args.first;
-    params.nfts.__args.where.id_gt = latest ? latest.id : '';
+    if (hasNext) {
+      params.nfts.__args.where.id_gt = latest?.id || '';
+    }
   }
 
   // return result
