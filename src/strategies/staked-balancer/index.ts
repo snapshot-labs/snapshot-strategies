@@ -30,7 +30,6 @@ const params = {
   pool: {
     __args: { id: '' },
     totalShares: true,
-    address: true,
     tokens: {
       __args: {
         where: { address: '' }
