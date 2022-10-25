@@ -38,7 +38,7 @@ ts-node test/scores.ts
 
 ### Checklist for adding a new strategy
 
-Here is a simple checklist to look when reviewing a PR for a new strategy:
+Here is a simple checklist to look at when reviewing a PR for a new strategy:
 
 #### Overview
 
@@ -50,7 +50,8 @@ Here is a simple checklist to look when reviewing a PR for a new strategy:
 - There should be a maximum of 5 requests, a request can use "fetch" a "subgraphRequest" or "multicall".
 - The strategy should not send a request for each voters, this doesn't scale.
 - The strategy PR should not add any dependency in Snapshot.js.
-- The score returned by the strategy should use the same casing for address than on the input, or should return checksummed addresses.
+- The score returned by the strategy should use the same casing for address than on the input, or should return checksum addresses.
+- Make sure voting power of one address does not depend on other addresses.
 
 #### Example
 
@@ -64,7 +65,7 @@ Here is a simple checklist to look when reviewing a PR for a new strategy:
 
 #### Recommended
 
-- Add a README.md file that describe the strategy and provide an example of parameters.
+- Add a README.md file that describes the strategy and provides an example of parameters.
 - Use string ABI instead of object.
 
 ### License
