@@ -4,6 +4,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'ursamaritimus';
 export const version = '0.3.0';
+export const disabled = true;
 
 /*
  * PodLeader pool balance. Accepted options:
