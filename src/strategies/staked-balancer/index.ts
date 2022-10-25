@@ -107,9 +107,7 @@ export async function strategy(
 
       response.forEach((value, i) => {
         const userAddress = getAddress(addresses[i]);
-        if (!score[userAddress]) score[userAddress] = 0;
-        score[userAddress] =
-          score[userAddress] + (value / stkTotalSupply) * tokensPerStkLP;
+        score[userAddress] = (value / stkTotalSupply) * tokensPerStkLP;
       });
     }
   }
