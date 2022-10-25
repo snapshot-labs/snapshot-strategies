@@ -8,8 +8,8 @@ const ENS_SUBGRAPH_URL = {
   '5': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensgoerli'
 };
 
-export const author = '3757';
-export const version = '0.1.1';
+export const author = 'onigiri-x';
+export const version = '0.1.0';
 
 export async function strategy(
   space,
