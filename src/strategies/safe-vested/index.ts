@@ -4,9 +4,9 @@ import { formatUnits, parseUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'dasanra';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
-// https://github.com/safe-global/safe-token/blob/main/contracts/VestingPool.sol
+// https://github.com/safe-global/safe-token/blob/81e0f3548033ca9916f38444f2e62e5f3bb2d3e1/contracts/VestingPool.sol
 const abi = [
   'function vestings(bytes32) view returns (address account, uint8 curveType, bool managed, uint16 durationWeeks, uint64 startDate, uint128 amount, uint128 amountClaimed, uint64 pausingDate, bool cancelled)'
 ];
@@ -20,6 +20,19 @@ type AllocationDetails = {
 
 type Options = {
   allocationsSource: string;
+  claimDateLimit: string | undefined;
+};
+
+const canStillClaim = (claimDateLimit: string | undefined): boolean => {
+  // if a claim date limit is set we check if it's still possible to claim
+  if (claimDateLimit) {
+    const now = new Date();
+    const limitDate = new Date(claimDateLimit);
+    return now.getTime() < limitDate.getTime();
+  }
+
+  // if not date limit is set can always claim.
+  return true;
 };
 
 export async function strategy(
@@ -65,11 +78,19 @@ export async function strategy(
     ) as AllocationDetails;
 
     const hasAlreadyClaimed = vestings[key].account === account;
-    // If account already claimed only count the pending amount
-    // Else nothing claimed yet so consider the full allocation
-    const currentVestingAmount = hasAlreadyClaimed
-      ? vestings[key].amount.sub(vestings[key].amountClaimed)
-      : amount;
+    let currentVestingAmount;
+    if (hasAlreadyClaimed) {
+      // If account already claimed only count the pending amount
+      currentVestingAmount = vestings[key].amount.sub(
+        vestings[key].amountClaimed
+      );
+    } else {
+      // Else nothing claimed yet so consider the full allocation
+      // or none if the claim date limit was set and reached.
+      currentVestingAmount = canStillClaim(options.claimDateLimit)
+        ? amount
+        : '0';
+    }
 
     const previousAmount = acc[account];
     // If account received multiple allocations sum them
