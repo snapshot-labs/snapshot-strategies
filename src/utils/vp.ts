@@ -54,6 +54,7 @@ export async function getVp(
       if (addresses.length === 0) return {};
     }
 
+    addresses = addresses.map(getAddress);
     return _strategies[strategy.name].strategy(
       space,
       n,
@@ -75,10 +76,8 @@ export async function getVp(
       addresses = [...new Set(addresses)];
     }
 
-    return addresses.reduce(
-      (a, b) => a + (score[b] || score[getAddress(b)] || 0),
-      0
-    );
+    addresses = addresses.map(getAddress);
+    return addresses.reduce((a, b) => a + (score[b] || 0), 0);
   });
   const vp = vpByStrategy.reduce((a, b) => a + b, 0);
   let vpState = 'final';
