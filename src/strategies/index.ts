@@ -204,6 +204,7 @@ import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
 import * as sUmamiHolders from './sumami-holders';
+import * as singleStakingAutoCompoundBalanceOf from './single-staking-autocompound-balanceof';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
@@ -383,6 +384,9 @@ import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewar
 import * as sdVoteBoost from './sd-vote-boost';
 import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
+import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
+import * as spreadsheet from './spreadsheet';
+import * as anchorage from './anchorage';
 
 
 const strategies = {
@@ -593,6 +597,7 @@ const strategies = {
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
+  'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
   'hopr-staking-s2': hoprStakingS2,
@@ -771,7 +776,10 @@ const strategies = {
     bancorStandardRewardsUnderlyingBalance,
   'sd-vote-boost': sdVoteBoost,
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
-  'clqdr-balance-with-lp': clqdrBalanceWithLp
+  'clqdr-balance-with-lp': clqdrBalanceWithLp,
+  spreadsheet,
+  anchorage,
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

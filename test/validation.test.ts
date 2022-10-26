@@ -1,8 +1,8 @@
 import snapshot from '../src';
-import examples from '../src/validations/basic/examples.json';
+import examples from '../src/validations/passport/examples.json';
 
 const [example] = examples;
-const id = 'basic';
+const id = 'passport';
 
 describe('validation', () => {
   it(`validate: ${id} "${example.name}"`, async () => {

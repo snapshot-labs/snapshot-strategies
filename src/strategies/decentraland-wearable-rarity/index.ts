@@ -51,6 +51,7 @@ export async function strategy(
         orderDirection: 'asc',
         first: 1000
       },
+      id: true,
       owner: {
         id: true
       },
@@ -86,7 +87,9 @@ export async function strategy(
     }
 
     hasNext = nfts.length === params.nfts.__args.first;
-    params.nfts.__args.where.id_gt = latest ? latest.id : '';
+    if (hasNext) {
+      params.nfts.__args.where.id_gt = latest?.id || '';
+    }
   }
 
   // return result
