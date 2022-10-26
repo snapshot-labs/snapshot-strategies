@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "anchorage",
+      "params": {
+        "symbol": "DAI (anchorage)",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+              "decimals": 18
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x4C7909d6F029b3a5798143C843F4f8e5341a3473"
+    ],
+    "snapshot": 15820600
+  }
+]
