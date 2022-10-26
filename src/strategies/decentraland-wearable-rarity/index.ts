@@ -109,6 +109,5 @@ export async function strategy(
   }
 
   // return result
-  console.log('s', scores);
   return scores;
 }
