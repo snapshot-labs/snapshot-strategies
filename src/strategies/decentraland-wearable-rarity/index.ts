@@ -4,7 +4,7 @@ import { subgraphRequest } from '../../utils';
 export const author = '2fd';
 export const version = '0.1.0';
 
-const SUBGRAPH_QUERY_ADDRESSES_LIMIT = 500;
+const SUBGRAPH_QUERY_ADDRESSES_LIMIT = 1000;
 const DECENTRALAND_COLLECTIONS_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet',
   '3': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten',
