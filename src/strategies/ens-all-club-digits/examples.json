@@ -6,7 +6,7 @@
       "params": {
         "address": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
         "symbol": "NUMS",
-        "numberOfDigits": 4
+        "numberOfDigits": 7
       }
     },
     "network": "1",
