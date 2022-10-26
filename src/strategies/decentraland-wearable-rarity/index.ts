@@ -84,7 +84,6 @@ export async function strategy(
     // load and add each wearable by rarity
     let hasNext = true;
     while (hasNext) {
-      console.log('doing the request with these params', params);
       const result = await subgraphRequest(
         DECENTRALAND_COLLECTIONS_SUBGRAPH_URL[network],
         params
