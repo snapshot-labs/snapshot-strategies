@@ -1,3 +1,4 @@
+# [DEPRECATED] https://github.com/snapshot-labs/snapshot-strategies/pull/911
 # orca-pod
 
 This strategy give 1 voting power for each holder of a specific tokenId of orca's ERC1155
