@@ -4,7 +4,7 @@ import { formatUnits, parseUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'dasanra';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 // https://github.com/safe-global/safe-token/blob/81e0f3548033ca9916f38444f2e62e5f3bb2d3e1/contracts/VestingPool.sol
 const abi = [
