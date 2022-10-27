@@ -22,13 +22,16 @@ score = (w1 * staked_ncg) + (w2 * staked_wncg) + (w3 * dcc_balance)
 Also, the `staked_wncg` of the account will be calculated with:
 
 ```
-staked_wncg = (wncg_in_vault / total_lp_supply) * lp_tokens
+staked_wncg = (wncg_in_vault / total_lp_supply) * staked_lp_tokens
 ```
 
 - `wncg_in_vault`: The total wNCG amounts that [Balancer] Vault held.
 - `total_lp_supply`: The total supply of LP token that Balancer pool issued.
+- `staked_lp_tokens`: The staked LP token amounts in the staking contract of given account.
+  - This value only refers staking contract from [Planetarium] and staked value on its backed pool (from Balancer) will be ignored.
 
 [Balancer]: https://balancer.fi/
+[Planetarium]: https://planetariumhq.com/
 
 
 ## Parameters
@@ -44,7 +47,7 @@ staked_wncg = (wncg_in_vault / total_lp_supply) * lp_tokens
 - `wNCGDecimal` - (**Optional**, `number`): The decimal precision for wNCG. default is 18.
 - `weights` - (**Optional**, `number`): Weight values for the fomular . these values must be integers without decimal parts.
   - `stakedNCG`: Weight for staked NCG. (`w1`)
-  - `stakedLPToken`: Weight for staked LP token. (`w2`)
+  - `stakedWNCG`: Weight for staked wNCG. (`w2`)
   - `dcc`: Weight for D:CC. (`w3`)
 
 
@@ -53,7 +56,7 @@ staked_wncg = (wncg_in_vault / total_lp_supply) * lp_tokens
 ```json
 {
   "symbol": "Staked 9c assets + DCC",
-  "ethLPTokenStakingAddress": "0xc53b567A70dB04E928FB96D6A417971aa88fdA38",
+  "ethLPTokenStakingAddress": "0xc53b567a70db04e928fb96d6a417971aa88fda38",
   "ethLPTokenAddress": "0xe8cc7e765647625b95f59c15848379d10b9ab4af",
   "ethWNCGAddress": "0xf203ca1769ca8e9e8fe1da9d147db68b6c919817",
   "ethBalancerVaultAddress": "0xba12222222228d8ba445958a75a0704d566bf2c8",
