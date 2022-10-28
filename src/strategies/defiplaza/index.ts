@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller, customFetch } from '../../utils';
 
 
-export const author = 'trebel-defiplaza';
+export const author = 'timanrebel';
 export const version = '0.1.1';
 
 const abi = [
