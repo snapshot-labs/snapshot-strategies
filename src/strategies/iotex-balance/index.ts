@@ -4,11 +4,11 @@ interface ApiReturn {
   balance: string[];
 }
 
-export const author = 'iotex';
-export const version = '0.0.1';
+export const author = 'iotexproject';
+export const version = '0.0.2';
 
-const testNetUrl = 'https://iotex-analyser-api-testnet.chainanalytics.org';
-const mainNetUrl = 'https://iotex-analyser-api-mainnet.chainanalytics.org';
+const testNetUrl = 'https://analyser-api.testnet.iotex.io';
+const mainNetUrl = 'https://analyser-api.iotex.io';
 
 function getUrl(network) {
   return network == 4689 ? mainNetUrl : testNetUrl;
@@ -35,7 +35,7 @@ export async function strategy(
 
   const apiUrl = getUrl(network);
   const response = await fetch(
-    `${apiUrl}/api.AccountService.GetIotexBalanceByHeight`,
+    `${apiUrl}/api.AccountService.IotexBalanceByHeight`,
     {
       method: 'POST',
       headers: {

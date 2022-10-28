@@ -27,12 +27,16 @@ export async function strategy(
     multi.call(`balanceOf.${address}`, options.address, 'balanceOf', [address]);
 
     // request balance of unclaimed staking rewards
-    multi.call(`rewardsQuote.${address}`, options.address, 'rewardsQuote', [address]);
+    multi.call(`rewardsQuote.${address}`, options.address, 'rewardsQuote', [
+      address
+    ]);
 
     // request balance of staked tokens on StablePlaza
     if (options.stableplaza) {
-      multi.call(`stableplaza.${address}`, options.stableplaza, 'stakerData', [address]);
-    }    
+      multi.call(`stableplaza.${address}`, options.stableplaza, 'stakerData', [
+        address
+      ]);
+    }
   });
   const result = await multi.execute();
 
@@ -43,11 +47,20 @@ export async function strategy(
       returnObject[address] = 0;
     }
 
-    returnObject[address] += parseFloat(formatUnits(result.balanceOf[address], options.decimals));
-    returnObject[address] += parseFloat(formatUnits(result.rewardsQuote[address], options.decimals));
-    
+    returnObject[address] += parseFloat(
+      formatUnits(result.balanceOf[address], options.decimals)
+    );
+    returnObject[address] += parseFloat(
+      formatUnits(result.rewardsQuote[address], options.decimals)
+    );
+
     if (options.stableplaza) {
-      returnObject[address] += parseFloat(formatUnits(result.stableplaza[address][0].mul(4294967296), options.decimals)); // * 2^32
+      returnObject[address] += parseFloat(
+        formatUnits(
+          result.stableplaza[address][0].mul(4294967296),
+          options.decimals
+        )
+      ); // * 2^32
     }
   });
 

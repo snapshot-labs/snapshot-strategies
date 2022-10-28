@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
+        },
+        "pool": {
+          "type": "string",
+          "title": "Pool Address",
+          "examples": ["e.g. 0x05dff8d71cd222e09bb71e44e0be7cc8f03a07c9"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "tokenAddress": {
+          "type": "string",
+          "title": "Token Address",
+          "examples": ["e.g. 0xa92e7c82b11d10716ab534051b271d2f6aef7df5"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["pool", "tokenAddress", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

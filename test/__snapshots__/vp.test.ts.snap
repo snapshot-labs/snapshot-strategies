@@ -15,11 +15,11 @@ Object {
 
 exports[` getVp without delegation 1`] = `
 Object {
-  "vp": 20.491128299590727,
+  "vp": 21.55404462002206,
   "vp_by_strategy": Array [
     0,
     9.998985610441185,
-    10.443718706159482,
+    11.506635026590818,
     0.04842398299005922,
   ],
   "vp_state": "final",
