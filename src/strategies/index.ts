@@ -364,6 +364,7 @@ import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
 import * as orcaPod from './orca-pod';
+import * as metropolisPod from './metropolis-pod';
 import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
 import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
 import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
@@ -757,6 +758,7 @@ const strategies = {
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
   'erc3525-flexible-voucher': erc3525FlexibleVoucher,
   'orca-pod': orcaPod,
+  'metropolis-pod': metropolisPod,  
   'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,

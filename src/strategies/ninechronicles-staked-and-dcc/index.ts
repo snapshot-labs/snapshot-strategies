@@ -5,21 +5,29 @@ import { strategy as erc721BalanceOfStrategy } from '../erc721';
 import { Multicaller, subgraphRequest } from '../../utils';
 
 export const author = 'longfin';
-export const version = '1.0.0';
+export const version = '1.1.0';
 export const dependOnOtherAddress = false;
 
 const lpStakingABI = [
   'function stakedTokenBalance(address account) view returns (uint256)',
-]
+];
+
+const erc20ABI = [
+  'function totalSupply() view returns (uint256)',
+  'function balanceOf(address account) view returns (uint256)',
+];
 
 interface Options {
   ethLPTokenStakingAddress: string,
+  ethLPTokenAddress: string,
+  ethWNCGAddress: string,
+  ethBalancerVaultAddress: string,
   ethDccAddress: string,
   ncBlockHash: string,
   ncGraphQLEndpoint: string,
-  lpTokenDecimal: number,
+  wncgDecimals: number,
   weights: {
-    stakedLPToken: number,
+    stakedWNCG: number,
     dcc: number,
     stakedNCG: number
   }
@@ -35,12 +43,15 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const {
     ethLPTokenStakingAddress,
+    ethLPTokenAddress,
+    ethWNCGAddress,
+    ethBalancerVaultAddress,
     ethDccAddress,
     ncBlockHash,
     ncGraphQLEndpoint,
-    lpTokenDecimal = 18,
+    wncgDecimals = 18,
     weights: {
-      stakedLPToken: stakedLpTokenWeight = 1,
+      stakedWNCG: stakedWNCGWeight = 1,
       dcc: dccWeight = 999,
       stakedNCG: stakedNCGWeight = 1,
     },
@@ -63,14 +74,23 @@ export async function strategy(
   });
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const multiCaller = new Multicaller(network, provider, lpStakingABI, { blockTag });
+  const {
+    wNCGInVault,
+    totalLPSupply,
+  }: Record<string, BigNumber> = await new Multicaller(network, provider, erc20ABI, { blockTag })
+    .call("wNCGInVault", ethWNCGAddress, 'balanceOf', [ethBalancerVaultAddress])
+    .call("totalLPSupply", ethLPTokenAddress, 'totalSupply', [])
+    .execute();
+
+  const lpStakingChecker = new Multicaller(network, provider, lpStakingABI, { blockTag });
   addresses.forEach((address) =>
-    multiCaller.call(address, ethLPTokenStakingAddress, 'stakedTokenBalance', [address])
+    lpStakingChecker.call(address, ethLPTokenStakingAddress, 'stakedTokenBalance', [address])
   );
-  const stakedTokenScores = multiCaller.execute().then((rawScores: Record<string, BigNumber>) => {
+  const stakedWNCGScores = lpStakingChecker.execute().then((rawScores: Record<string, BigNumber>) => {
     const scores = {};
     Object.keys(rawScores).forEach(addr => {
-      scores[addr] = parseFloat(formatUnits(rawScores[addr].mul(stakedLpTokenWeight), lpTokenDecimal));
+      const amount = rawScores[addr].mul(wNCGInVault).mul(stakedWNCGWeight).div(totalLPSupply);
+      scores[addr] = parseFloat(formatUnits(amount, wncgDecimals));
     });
 
     return scores;
@@ -103,7 +123,7 @@ export async function strategy(
 
   const allScores = await Promise.all([
     dccScores,
-    stakedTokenScores,
+    stakedWNCGScores,
     stakedNCGScores,
   ]);
 
