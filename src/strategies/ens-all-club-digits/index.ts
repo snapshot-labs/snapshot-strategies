@@ -19,14 +19,8 @@ export async function strategy(
   options,
   snapshot
 ) {
+  // 999 Club = 3 , 10k club = 4, 100k club = 5, etc
   const { numberOfDigits } = options;
-  // 999 Club = 3 , 10k club = 4, 100k club = 5
-  if (numberOfDigits> 7 || numberOfDigits <3){
-    return {};
-  }
-  const NAMES_CLUB = [...Array(Math.pow(10, numberOfDigits)).keys()]
-    .map((i) => -1 + i + 1)
-    .map((x) => x.toString().padStart(numberOfDigits, '0'));
 
   const max = 10;
   const count = Math.ceil(addresses.length / max);
@@ -75,7 +69,8 @@ export async function strategy(
         if (!votes[owner]) {
           votes[owner] = 0;
         }
-        if (NAMES_CLUB.includes(label)) {
+        const reg = new RegExp('^[0-9]*$'); // only number 0 to 9
+        if (label.length === numberOfDigits && reg.test(label)) {
           votes[owner] = votes[owner] + 1;
         }
       });
