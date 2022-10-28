@@ -70,15 +70,13 @@ export async function strategy(
           votes[owner] = 0;
         }
         const reg = new RegExp('^[0-9]*$'); // only number 0 to 9
-        if (label.length === numberOfDigits && reg.test(label)) {
+        if (label && label.length === numberOfDigits && reg.test(label)) {
           votes[owner] = votes[owner] + 1;
         }
       });
       if (result.length >= 1000) {
         page++;
       } else {
-        console.log('the length is')
-        console.log(result.length)
         break;
       }
     } else {
