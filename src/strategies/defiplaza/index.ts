@@ -1,5 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
-import { Multicaller } from '../../utils';
+import { Multicaller, customFetch } from '../../utils';
+
 
 export const author = 'trebel-defiplaza';
 export const version = '0.1.0';
@@ -28,9 +29,10 @@ export async function strategy(
     // request balance of unclaimed staking rewards
     multi.call(`rewardsQuote.${address}`, options.address, 'rewardsQuote', [address]);
 
+    // request balance of staked tokens on StablePlaza
     if (options.stableplaza) {
       multi.call(`stableplaza.${address}`, options.stableplaza, 'stakerData', [address]);
-    }
+    }    
   });
   const result = await multi.execute();
 
@@ -48,6 +50,18 @@ export async function strategy(
       returnObject[address] += parseFloat(formatUnits(result.stableplaza[address][0].mul(4294967296), options.decimals)); // * 2^32
     }
   });
+
+  // request balance on Radix
+  const res = await customFetch(`https://radix.defiplaza.net/voting/${snapshot}`, {}, 8000);
+  const radixLinks = await res.json();
+
+  for (let wallet of radixLinks) {
+    if (!returnObject.hasOwnProperty(wallet.address)) {
+      returnObject[wallet.address] = 0;
+    }
+
+    returnObject[wallet.address] += parseFloat(formatUnits(wallet.balance, options.decimals));
+  }
 
   return returnObject;
 }
