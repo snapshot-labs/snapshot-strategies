@@ -6,12 +6,15 @@
       "params": {
         "symbol": "Staked 9c assets + DCC",
         "ethLPTokenStakingAddress": "0xc53b567A70dB04E928FB96D6A417971aa88fdA38",
+        "ethLPTokenAddress": "0xe8cc7e765647625b95f59c15848379d10b9ab4af",
+        "ethWNCGAddress": "0xf203ca1769ca8e9e8fe1da9d147db68b6c919817",
+        "ethBalancerVaultAddress": "0xba12222222228d8ba445958a75a0704d566bf2c8",
         "ethDccAddress": "0xcea65a86195c911912ce48b6636ddd365c208130",
-        "ncGraphQLEndpoint": "http://9c-main-rpc-31.nine-chronicles.com/graphql",
+        "ncGraphQLEndpoint": "http://rpc-for-snapshot.nine-chronicles.com/graphql",
         "ncBlockHash": "711ce4bcdc0fb5264577876f217a794b2448ccce24e3c7ea0fb9794e420863e4",
-        "lpTokenDecimal": 18,
+        "wNCGDecimals": 18,
         "weights": {
-          "stakedLPToken": 1,
+          "stakedWNCG": 1,
           "stakedNCG": 1,
           "dcc": 999
         }
