@@ -32,7 +32,7 @@ export default class extends Validation {
         (s: any) => s.provider === stamp.id
       );
 
-      // check that the credential is still valid (created after snapshot block and not expired)
+      // check that the credential is still valid (created before snapshot block and not expired)
       if (
         verifiedStamp &&
         hasValidIssuanceAndExpiration(verifiedStamp.credential, proposalTs)
