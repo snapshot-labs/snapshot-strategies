@@ -1,7 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller, customFetch } from '../../utils';
 
-
 export const author = 'timanrebel';
 export const version = '0.1.1';
 
@@ -40,7 +39,7 @@ export async function strategy(
   });
   const result = await multi.execute();
 
-  let returnObject = {};
+  const returnObject = {};
 
   addresses.forEach((address) => {
     if (!returnObject.hasOwnProperty(address)) {
@@ -65,15 +64,21 @@ export async function strategy(
   });
 
   // request balance on Radix
-  const res = await customFetch(`https://radix.defiplaza.net/voting/${snapshot}`, {}, 8000);
+  const res = await customFetch(
+    `https://radix.defiplaza.net/voting/${snapshot}`,
+    {},
+    8000
+  );
   const radixLinks = await res.json();
 
-  for (let wallet of radixLinks) {
+  for (const wallet of radixLinks) {
     if (!returnObject.hasOwnProperty(wallet.address)) {
       returnObject[wallet.address] = 0;
     }
 
-    returnObject[wallet.address] += parseFloat(formatUnits(wallet.balance, options.decimals));
+    returnObject[wallet.address] += parseFloat(
+      formatUnits(wallet.balance, options.decimals)
+    );
   }
 
   return returnObject;
