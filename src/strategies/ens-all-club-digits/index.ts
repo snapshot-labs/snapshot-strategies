@@ -44,7 +44,7 @@ export async function strategy(
                 registrant_in: pages[i].map((address) => address.toLowerCase())
               },
               first: 1000,
-              skip: page*1000,
+              skip: page * 1000,
               orderBy: 'registrationDate',
               orderDirection: 'desc'
             },

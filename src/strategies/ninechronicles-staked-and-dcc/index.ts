@@ -9,28 +9,28 @@ export const version = '1.1.0';
 export const dependOnOtherAddress = false;
 
 const lpStakingABI = [
-  'function stakedTokenBalance(address account) view returns (uint256)',
+  'function stakedTokenBalance(address account) view returns (uint256)'
 ];
 
 const erc20ABI = [
   'function totalSupply() view returns (uint256)',
-  'function balanceOf(address account) view returns (uint256)',
+  'function balanceOf(address account) view returns (uint256)'
 ];
 
 interface Options {
-  ethLPTokenStakingAddress: string,
-  ethLPTokenAddress: string,
-  ethWNCGAddress: string,
-  ethBalancerVaultAddress: string,
-  ethDccAddress: string,
-  ncBlockHash: string,
-  ncGraphQLEndpoint: string,
-  wncgDecimals: number,
+  ethLPTokenStakingAddress: string;
+  ethLPTokenAddress: string;
+  ethWNCGAddress: string;
+  ethBalancerVaultAddress: string;
+  ethDccAddress: string;
+  ncBlockHash: string;
+  ncGraphQLEndpoint: string;
+  wncgDecimals: number;
   weights: {
-    stakedWNCG: number,
-    dcc: number,
-    stakedNCG: number
-  }
+    stakedWNCG: number;
+    dcc: number;
+    stakedNCG: number;
+  };
 }
 
 export async function strategy(
@@ -53,9 +53,9 @@ export async function strategy(
     weights: {
       stakedWNCG: stakedWNCGWeight = 1,
       dcc: dccWeight = 999,
-      stakedNCG: stakedNCGWeight = 1,
-    },
-  } : Options = options;
+      stakedNCG: stakedNCGWeight = 1
+    }
+  }: Options = options;
 
   addresses = addresses.map(formatEthAddress);
 
@@ -66,56 +66,76 @@ export async function strategy(
     addresses,
     { address: ethDccAddress },
     snapshot
-  ).then(scores => {
-    Object.keys(scores).forEach(addr => {
+  ).then((scores) => {
+    Object.keys(scores).forEach((addr) => {
       scores[addr] *= dccWeight;
     });
-    return scores
+    return scores;
   });
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const {
-    wNCGInVault,
-    totalLPSupply,
-  }: Record<string, BigNumber> = await new Multicaller(network, provider, erc20ABI, { blockTag })
-    .call("wNCGInVault", ethWNCGAddress, 'balanceOf', [ethBalancerVaultAddress])
-    .call("totalLPSupply", ethLPTokenAddress, 'totalSupply', [])
-    .execute();
+  const { wNCGInVault, totalLPSupply }: Record<string, BigNumber> =
+    await new Multicaller(network, provider, erc20ABI, { blockTag })
+      .call('wNCGInVault', ethWNCGAddress, 'balanceOf', [
+        ethBalancerVaultAddress
+      ])
+      .call('totalLPSupply', ethLPTokenAddress, 'totalSupply', [])
+      .execute();
 
-  const lpStakingChecker = new Multicaller(network, provider, lpStakingABI, { blockTag });
-  addresses.forEach((address) =>
-    lpStakingChecker.call(address, ethLPTokenStakingAddress, 'stakedTokenBalance', [address])
-  );
-  const stakedWNCGScores = lpStakingChecker.execute().then((rawScores: Record<string, BigNumber>) => {
-    const scores = {};
-    Object.keys(rawScores).forEach(addr => {
-      const amount = rawScores[addr].mul(wNCGInVault).mul(stakedWNCGWeight).div(totalLPSupply);
-      scores[addr] = parseFloat(formatUnits(amount, wncgDecimals));
-    });
-
-    return scores;
+  const lpStakingChecker = new Multicaller(network, provider, lpStakingABI, {
+    blockTag
   });
+  addresses.forEach((address) =>
+    lpStakingChecker.call(
+      address,
+      ethLPTokenStakingAddress,
+      'stakedTokenBalance',
+      [address]
+    )
+  );
+  const stakedWNCGScores = lpStakingChecker
+    .execute()
+    .then((rawScores: Record<string, BigNumber>) => {
+      const scores = {};
+      Object.keys(rawScores).forEach((addr) => {
+        const amount = rawScores[addr]
+          .mul(wNCGInVault)
+          .mul(stakedWNCGWeight)
+          .div(totalLPSupply);
+        scores[addr] = parseFloat(formatUnits(amount, wncgDecimals));
+      });
+
+      return scores;
+    });
   const stakedNCGQuery = {
     stateQuery: {
       __args: {
-        hash: ncBlockHash,
+        hash: ncBlockHash
       },
 
       stakeStates: {
         __args: {
-          addresses: addresses,
+          addresses: addresses
         },
 
-        deposit: true,
+        deposit: true
       }
     }
   };
 
-  const stakedNCGScores = subgraphRequest(ncGraphQLEndpoint, stakedNCGQuery).then(resp => {
+  const stakedNCGScores = subgraphRequest(
+    ncGraphQLEndpoint,
+    stakedNCGQuery
+  ).then((resp) => {
     const scores: Record<string, number> = {};
     addresses.forEach((addr, i) => {
       const stakeState = resp.stateQuery.stakeStates[i];
-      scores[addr] = parseFloat(formatUnits(parseUnits(stakeState?.deposit ?? "0.00", 2).mul(stakedNCGWeight), 2));
+      scores[addr] = parseFloat(
+        formatUnits(
+          parseUnits(stakeState?.deposit ?? '0.00', 2).mul(stakedNCGWeight),
+          2
+        )
+      );
     });
 
     return scores;
@@ -124,7 +144,7 @@ export async function strategy(
   const allScores = await Promise.all([
     dccScores,
     stakedWNCGScores,
-    stakedNCGScores,
+    stakedNCGScores
   ]);
 
   return allScores.reduce((total, scores) => {

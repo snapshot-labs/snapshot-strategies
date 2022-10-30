@@ -4,8 +4,8 @@
     "strategy": {
       "name": "safe-vested",
       "params": {
-          "allocationsSource": "https://safe-claiming-app-data.gnosis-safe.io/allocations/1/snapshot-allocations-data.json",
-          "claimDateLimit": "2022-12-28T11:00:00Z"
+        "allocationsSource": "https://safe-claiming-app-data.gnosis-safe.io/allocations/1/snapshot-allocations-data.json",
+        "claimDateLimit": "2022-12-28T11:00:00Z"
       }
     },
     "network": "1",

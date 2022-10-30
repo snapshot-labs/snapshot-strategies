@@ -390,7 +390,6 @@ import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
 import * as anchorage from './anchorage';
 
-
 const strategies = {
   'forta-shares': fortaShares,
   'ethermon-erc721': ethermon721,
@@ -758,7 +757,7 @@ const strategies = {
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
   'erc3525-flexible-voucher': erc3525FlexibleVoucher,
   'orca-pod': orcaPod,
-  'metropolis-pod': metropolisPod,  
+  'metropolis-pod': metropolisPod,
   'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
@@ -783,7 +782,7 @@ const strategies = {
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
   anchorage,
-  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

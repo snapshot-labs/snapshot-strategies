@@ -1,5 +1,10 @@
+import snapshot from '@snapshot-labs/snapshot.js';
 import Validation from '../validation';
-import { getPassport, getVerifiedStamps } from './helper';
+import {
+  getPassport,
+  getVerifiedStamps,
+  hasValidIssuanceAndExpiration
+} from './helper';
 
 export default class extends Validation {
   public id = 'passport';
@@ -9,19 +14,30 @@ export default class extends Validation {
   async validate(): Promise<boolean> {
     const passport: any = await getPassport(this.author);
     if (!passport) return false;
-    if (!passport.stamps || !this.params.stamps) return false;
+    if (!passport.stamps?.length || !this.params.stamps?.length) return false;
 
-    const verifiedStamps: false | any[] = await getVerifiedStamps(
+    const verifiedStamps: any[] = await getVerifiedStamps(
       passport,
       this.author,
       this.params.stamps
     );
-    if (!verifiedStamps) return false;
+    if (!verifiedStamps.length) return false;
+
+    const provider = snapshot.utils.getProvider(this.network);
+    const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
 
     let weight = 0;
     this.params.stamps.forEach((stamp: any) => {
-      const found = verifiedStamps.find((s: any) => s.provider === stamp.id);
-      if (found?.verified) weight += stamp.weight;
+      const verifiedStamp = verifiedStamps.find(
+        (s: any) => s.provider === stamp.id
+      );
+
+      // check that the credential is still valid (created before snapshot block and not expired)
+      if (
+        verifiedStamp &&
+        hasValidIssuanceAndExpiration(verifiedStamp.credential, proposalTs)
+      )
+        weight += stamp.weight;
     });
 
     return weight >= this.params.min_weight;
