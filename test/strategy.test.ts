@@ -39,6 +39,9 @@ function callGetScores(example) {
   );
 }
 
+const now = Date.now();
+Date.now = jest.fn(() => now);
+
 describe.each(examples)(
   `\nTest strategy "${strategy}" with example index $index`,
   // @ts-ignore
