@@ -3,6 +3,7 @@ import { multicall } from '../../utils';
 import { Multicaller } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
+// author: "defininja"
 export const author = 'planet-finance';
 export const version = '0.0.1';
 
