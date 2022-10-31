@@ -37,6 +37,7 @@ import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
+import * as linearVestingPower from './linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
@@ -447,8 +448,7 @@ const strategies = {
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple':
-    erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -652,8 +652,7 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'minmax-mcn-farm': minMaxMcnFarm,
-  'unstackedtoadz-and-stackedtoadz-stakers':
-    unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
@@ -737,6 +736,7 @@ const strategies = {
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  'linear-vesting-power': linearVestingPower,
   apeswap,
   h2o,
   dopamine,
@@ -775,8 +775,7 @@ const strategies = {
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni,
-  'bancor-standard-rewards-underlying-balance':
-    bancorStandardRewardsUnderlyingBalance,
+  'bancor-standard-rewards-underlying-balance': bancorStandardRewardsUnderlyingBalance,
   'sd-vote-boost': sdVoteBoost,
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
