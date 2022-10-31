@@ -22,9 +22,11 @@ export const getPassport = async (address) => {
   return false;
 };
 
-export const getVerifiedStamps = async (passport, address, stampsRequired) => {
-  if (!passport) return false;
-
+export const getVerifiedStamps = async (
+  passport,
+  address,
+  stampsRequired
+): Promise<any[]> => {
   const stamps = passport.stamps || [];
 
   // filter out stamps with stampsRequired
@@ -76,6 +78,19 @@ const verifyCredential = async (credential) => {
     } catch (e) {
       return false;
     }
+  }
+  return false;
+};
+
+export const hasValidIssuanceAndExpiration = (credential, proposalTs) => {
+  const issuanceDate = Number(
+    new Date(credential.issuanceDate).getTime() / 1000
+  ).toFixed(0);
+  const expirationDate = Number(
+    new Date(credential.expirationDate).getTime() / 1000
+  ).toFixed(0);
+  if (issuanceDate <= proposalTs && expirationDate >= proposalTs) {
+    return true;
   }
   return false;
 };
