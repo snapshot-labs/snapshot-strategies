@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'defininja';
-export const version = '0.0.3';
+export const version = '0.0.2';
 
 const planetFinanceFarmAbi = [
   'function userInfo(uint256, address) view returns (uint256, uint256,  uint256,  uint256,  uint256,  uint256,  uint256, uint256)'
