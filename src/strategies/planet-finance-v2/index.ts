@@ -114,7 +114,7 @@ export async function strategy(
   // total supply of aqua bnb lp token
   erc20Multi.call('aquaBnbTotalSupply', aquaBnbLpTokenAddress, 'totalSupply');
 
-  // aqua balance of aqua bnb lp 
+  // aqua balance of aqua bnb lp
   erc20Multi.call('aquaBnbAquaBal', aquaAddress, 'balanceOf', [
     aquaBnbLpTokenAddress
   ]);
@@ -131,17 +131,18 @@ export async function strategy(
         address[0],
 
         address[1] +
-
-        parseFloat(
-          formatUnits(usersNewAquaBnbVaultBalances[index]['0'].toString(), 18)
-        )  / parseFloat(formatUnits(totalSupply, 18)) *  parseFloat(formatUnits(contractAquaBalance, 18)) +
-
-        parseFloat(formatUnits( usergAquaBalInAquaInfinityVault[index].toString(), 18 ))  *
-        parseFloat(formatUnits( usersAquaInLending[index]['3'], 18 ))   *
-        increase_in_voting +
-
-        parseFloat(formatUnits(usersAquaInLending[index]['1'], 18)) *
-        parseFloat(formatUnits( usersAquaInLending[index]['3'], 18 ) ) 
+          (parseFloat(
+            formatUnits(usersNewAquaBnbVaultBalances[index]['0'].toString(), 18)
+          ) /
+            parseFloat(formatUnits(totalSupply, 18))) *
+            parseFloat(formatUnits(contractAquaBalance, 18)) +
+          parseFloat(
+            formatUnits(usergAquaBalInAquaInfinityVault[index].toString(), 18)
+          ) *
+            parseFloat(formatUnits(usersAquaInLending[index]['3'], 18)) *
+            increase_in_voting +
+          parseFloat(formatUnits(usersAquaInLending[index]['1'], 18)) *
+            parseFloat(formatUnits(usersAquaInLending[index]['3'], 18))
       ];
     })
   );
