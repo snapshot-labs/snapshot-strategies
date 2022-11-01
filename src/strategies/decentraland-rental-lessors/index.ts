@@ -40,9 +40,6 @@ export async function strategy(
         break;
       case options.addresses.estate.toLowerCase():
         rentalEstates.push(rentalLandOrEstate);
-        break;
-      default:
-        console.log('Not a Land nor an Estate');
     }
   }
 
