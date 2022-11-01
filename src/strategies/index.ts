@@ -382,6 +382,7 @@ import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cach
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+import * as posichainStaking from './posichain-staking';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
 import * as sdVoteBoost from './sd-vote-boost';
@@ -390,6 +391,7 @@ import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
 import * as anchorage from './anchorage';
+import * as dsla from './dsla';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -763,6 +765,7 @@ const strategies = {
   'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
+  'posichain-staking': posichainStaking,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
@@ -784,7 +787,8 @@ const strategies = {
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
   anchorage,
-  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
+  dsla
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
