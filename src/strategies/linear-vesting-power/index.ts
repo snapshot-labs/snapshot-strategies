@@ -76,10 +76,8 @@ export async function strategy(
   ids.forEach((id) =>
     multiVestTotCaller.call(id, options.DSSVestAddress, 'tot', [id])
   );
-  const multiVestTot: Record<
-    string,
-    BigNumberish
-  > = await multiVestTotCaller.execute();
+  const multiVestTot: Record<string, BigNumberish> =
+    await multiVestTotCaller.execute();
 
   // 2. total claimed
   const multiVestAccruedCaller = new Multicaller(
@@ -91,10 +89,8 @@ export async function strategy(
   ids.forEach((id) =>
     multiVestAccruedCaller.call(id, options.DSSVestAddress, 'accrued', [id])
   );
-  const multiVestAccrued: Record<
-    string,
-    BigNumberish
-  > = await multiVestAccruedCaller.execute();
+  const multiVestAccrued: Record<string, BigNumberish> =
+    await multiVestAccruedCaller.execute();
 
   return Object.fromEntries(
     addresses.map((address) => {
