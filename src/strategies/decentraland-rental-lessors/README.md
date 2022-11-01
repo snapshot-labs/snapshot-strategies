@@ -6,7 +6,7 @@ Thanks to this, the VP that the user had before utilizing the rentals feature wi
 
 ## Example
 
-The following example params are for obtaining the VP users have after locking their Lands/Estates in the Rentals contract in the Goerli network.
+The following example params are for obtaining the VP users have after sending their Lands/Estates to the Rentals contract in the Goerli network.
 
 ```json
 {
@@ -27,4 +27,4 @@ The following example params are for obtaining the VP users have after locking t
 
 The land multiplier determines how much VP is given by each Land the address possesses in the Rentals contract. For example, if the user has 5 Lands in the Rentals contract, it will be given 5 \* 2000 VP.
 
-The estateSize multiplier determines how much VP is given to the original owner for each Land the Estate locked in the Rentals contract possesses. For example, if the address has 1 Estate in the Rentals contract composed of 5 Lands, the user will be given 5 \* 2000 VP as well.
+The estateSize multiplier determines how much VP is given to the original owner according to the size of their Estates currently on the Rentals contract. For example, if the address has 1 Estate in the Rentals contract composed of 5 Lands, the user will be given 5 \* 2000 VP as well.
