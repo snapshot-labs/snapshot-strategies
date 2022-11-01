@@ -84,7 +84,6 @@ function fetchAssociationBadgesForAddress(
 
 function applyBadgeWeights(badges: any[], erc20Balance: any, options: any) {
   const badgeWeights = {};
-
   badges.forEach((badge: any) => {
     if (badge?.level) {
       const levelWeight = options.specs.find(
@@ -108,16 +107,19 @@ function applyBadgeWeights(badges: any[], erc20Balance: any, options: any) {
       }
     }
   });
-  Object.keys(erc20Balance).forEach((key) => {
-    if (badgeWeights[key]) {
-      if (erc20Balance[key]) {
-        erc20Balance[key] = erc20Balance[key] * badgeWeights[key];
-      } else {
-        erc20Balance[key] = badgeWeights[key];
+  if (options?.erc20Token) {
+    Object.keys(erc20Balance).forEach((key) => {
+      if (badgeWeights[key]) {
+        if (erc20Balance[key]) {
+          erc20Balance[key] = erc20Balance[key] * badgeWeights[key];
+        } else {
+          erc20Balance[key] = badgeWeights[key];
+        }
       }
-    }
-  });
-  return erc20Balance;
+    });
+  }
+
+  return options?.erc20Token ? erc20Balance : badgeWeights;
 }
 
 // helper function to get ERC20 balances for addresses
@@ -129,18 +131,24 @@ async function getErc20Balance(
   addresses,
   options
 ): Promise<any> {
-  const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) =>
-    multi.call(address, options.erc20Token, 'balanceOf', [address])
-  );
-  try {
-    const result: any = await multi.execute();
-    Object.keys(result).forEach((key) => {
-      result[key] = parseFloat(formatUnits(result[key], options.erc20Decimal));
-    });
+  if (options.erc20Token) {
+    const multi = new Multicaller(network, provider, abi, { blockTag });
+    addresses.forEach((address) =>
+      multi.call(address, options.erc20Token, 'balanceOf', [address])
+    );
+    try {
+      const result: any = await multi.execute();
+      Object.keys(result).forEach((key) => {
+        result[key] = parseFloat(
+          formatUnits(result[key], options.erc20Decimal)
+        );
+      });
 
-    return result;
-  } catch (error: any) {
+      return result;
+    } catch (error: any) {
+      return {};
+    }
+  } else {
     return {};
   }
 }
