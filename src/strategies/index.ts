@@ -391,6 +391,7 @@ import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
 import * as anchorage from './anchorage';
 import * as dsla from './dsla';
+import * as rep3Badges from './rep3-badges';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -786,7 +787,8 @@ const strategies = {
   spreadsheet,
   anchorage,
   'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
-  dsla
+  dsla,
+  'rep3-badges': rep3Badges
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
