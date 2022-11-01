@@ -71,6 +71,7 @@ async function fetchLandsAndEstatesInRentalsContract(
   options,
   snapshot
 ): Promise<RentalsLandOrEstate[]> {
+  // Separate the addresses in batches to optimize the subgraph query.
   const addressBatches = batchify<string>(
     addresses,
     SUBGRAPH_QUERY_IN_FILTER_MAX_LENGTH
@@ -145,6 +146,7 @@ async function fetchMarketplaceEstatesForProvidedRentalAssets(
     rentalEstatesByTokenId.set(tokenId, rentalEstate);
   }
 
+  // Separate the estate token ids in batches to optimize the subgraph query.
   const rentalEstateTokenIdBatches = batchify(
     rentalEstatesTokenIds,
     SUBGRAPH_QUERY_IN_FILTER_MAX_LENGTH
