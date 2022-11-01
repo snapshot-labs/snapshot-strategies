@@ -9,6 +9,8 @@ const DSSVestAbi = [
   'function usr(uint256 _id) external view returns (address)',
   'function tot(uint256 _id) external view returns (uint256)',
   'function accrued(uint256 _id) external view returns (uint256)',
+  'function bgn(uint256 _id) external view returns (uint256)',
+  'function fin(uint256 _id) external view returns (uint256)',
   'function ids() external view returns (uint256)'
 ];
 
@@ -92,6 +94,32 @@ export async function strategy(
   const multiVestAccrued: Record<string, BigNumberish> =
     await multiVestAccruedCaller.execute();
 
+  // 3. beginning time (after cliff period: bgn = startVesting + cliff)
+  const multiVestBgnCaller = new Multicaller(
+    options.vestingNetwork,
+    provider,
+    DSSVestAbi,
+    { blockTag }
+  );
+  ids.forEach((id) =>
+    multiVestBgnCaller.call(id, options.DSSVestAddress, 'bgn', [id])
+  );
+  const multiVestBgn: Record<string, BigNumberish> =
+    await multiVestBgnCaller.execute();
+
+  // 4. end time (with cliff period: end = startVesting + cliff + duration = bgn + duration)
+  const multiVestFinCaller = new Multicaller(
+    options.vestingNetwork,
+    provider,
+    DSSVestAbi,
+    { blockTag }
+  );
+  ids.forEach((id) =>
+    multiVestFinCaller.call(id, options.DSSVestAddress, 'fin', [id])
+  );
+  const multiVestFin: Record<string, BigNumberish> =
+    await multiVestFinCaller.execute();
+
   return Object.fromEntries(
     addresses.map((address) => {
       const initialVotingPower = [address, 0];
@@ -103,11 +131,14 @@ export async function strategy(
       if (id === undefined) return initialVotingPower;
       const totalVested = multiVestTot[id];
       const totalAccrued = multiVestAccrued[id];
-      if (!(id && totalAccrued && totalVested)) return initialVotingPower;
+      const bgn = multiVestBgn[id];
+      const fin = multiVestFin[id];
+      if (!(id && totalAccrued && totalVested && bgn && fin))
+        return initialVotingPower;
       const votingPower = vestedAmountPower(
         BigNumber.from(totalVested).sub(totalAccrued),
-        options.startVesting,
-        options.vestingDuration,
+        BigNumber.from(bgn).sub(options.cliffDuration),
+        BigNumber.from(fin).sub(bgn).add(options.cliffDuration),
         now
       );
       return [address, parseFloat(formatUnits(votingPower, options.decimals))];
