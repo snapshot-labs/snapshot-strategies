@@ -71,56 +71,27 @@ export async function strategy(
   const vestedAddresses: Record<string, string> = await multiVest.execute();
 
   // 1. total vested
-  const multiVestTotCaller = new Multicaller(
-    options.vestingNetwork,
-    provider,
-    DSSVestAbi,
-    { blockTag }
-  );
-  ids.forEach((id) =>
-    multiVestTotCaller.call(id, options.DSSVestAddress, 'tot', [id])
-  );
-  const multiVestTot: Record<string, BigNumberish> =
-    await multiVestTotCaller.execute();
-
   // 2. total claimed
-  const multiVestAccruedCaller = new Multicaller(
-    options.vestingNetwork,
-    provider,
-    DSSVestAbi,
-    { blockTag }
-  );
-  ids.forEach((id) =>
-    multiVestAccruedCaller.call(id, options.DSSVestAddress, 'accrued', [id])
-  );
-  const multiVestAccrued: Record<string, BigNumberish> =
-    await multiVestAccruedCaller.execute();
-
   // 3. beginning time (after cliff period: bgn = startVesting + cliff)
-  const multiVestBgnCaller = new Multicaller(
-    options.vestingNetwork,
-    provider,
-    DSSVestAbi,
-    { blockTag }
-  );
-  ids.forEach((id) =>
-    multiVestBgnCaller.call(id, options.DSSVestAddress, 'bgn', [id])
-  );
-  const multiVestBgn: Record<string, BigNumberish> =
-    await multiVestBgnCaller.execute();
-
   // 4. end time (with cliff period: end = startVesting + cliff + duration = bgn + duration)
-  const multiVestFinCaller = new Multicaller(
+
+  const multiVestCaller = new Multicaller(
     options.vestingNetwork,
     provider,
     DSSVestAbi,
     { blockTag }
   );
-  ids.forEach((id) =>
-    multiVestFinCaller.call(id, options.DSSVestAddress, 'fin', [id])
-  );
-  const multiVestFin: Record<string, BigNumberish> =
-    await multiVestFinCaller.execute();
+  ids.forEach((id) => {
+    multiVestCaller.call('tot' + id, options.DSSVestAddress, 'tot', [id]);
+    multiVestCaller.call('accrued' + id, options.DSSVestAddress, 'accrued', [
+      id
+    ]);
+    multiVestCaller.call('bgn' + id, options.DSSVestAddress, 'bgn', [id]);
+    multiVestCaller.call('fin' + id, options.DSSVestAddress, 'fin', [id]);
+  });
+
+  const multiVestResult: Record<string, BigNumberish> =
+    await multiVestCaller.execute();
 
   return Object.fromEntries(
     addresses.map((address) => {
@@ -131,10 +102,11 @@ export async function strategy(
           ([, _address]) => _address === address
         ) ?? [];
       if (id === undefined) return initialVotingPower;
-      const totalVested = multiVestTot[id];
-      const totalAccrued = multiVestAccrued[id];
-      const bgn = multiVestBgn[id];
-      const fin = multiVestFin[id];
+      const totalVested = multiVestResult['tot' + id];
+      const totalAccrued = multiVestResult['accrued' + id];
+
+      const bgn = multiVestResult['bgn' + id];
+      const fin = multiVestResult['fin' + id];
       if (!(id && totalAccrued && totalVested && bgn && fin))
         return initialVotingPower;
       const votingPower = vestedAmountPower(
