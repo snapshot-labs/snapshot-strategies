@@ -4,7 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'rep3-gg';
+export const author = 'eth-jashan';
 export const version = '1.0.0';
 
 const REP3_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
@@ -20,7 +20,7 @@ const abi = [
 function fetchMembershipsForAddress(
   network: string,
   contractAddress: string,
-  claimer: string,
+
   blockTag: number | string
 ): Promise<any> {
   const url = REP3_SUBGRAPH_API_URLS_BY_CHAIN_ID[network];
@@ -33,8 +33,7 @@ function fetchMembershipsForAddress(
     membershipNFTs: {
       __args: {
         where: {
-          contractAddress: contractAddress,
-          claimer: claimer
+          contractAddress: contractAddress
         },
         block: blockTag != 'latest' ? { number: blockTag } : null
       },
@@ -53,7 +52,6 @@ function fetchMembershipsForAddress(
 function fetchAssociationBadgesForAddress(
   network: string,
   contractAddress: string,
-  claimer: string,
   blockTag: number | string
 ): Promise<any> {
   const url = REP3_SUBGRAPH_API_URLS_BY_CHAIN_ID[network];
@@ -66,8 +64,7 @@ function fetchAssociationBadgesForAddress(
     associationBadges: {
       __args: {
         where: {
-          contractAddress: contractAddress,
-          claimer: claimer
+          contractAddress: contractAddress
         },
         block: blockTag != 'latest' ? { number: blockTag } : null
       },
@@ -174,33 +171,39 @@ export async function strategy(
   );
 
   let associationBadges: any[] = [];
-  const validMembershipNft: any[] = await Promise.all(
-    addresses.map(async (address: string) => {
-      const allMembershipbadges = await fetchMembershipsForAddress(
-        options.subgraphNetwork,
-        options.rep3ContractAddress,
-        address,
-        'latest'
-      );
-      const allAssociationBadges = await fetchAssociationBadgesForAddress(
-        options.subgraphNetwork,
-        options.rep3ContractAddress,
-        address,
-        'latest'
-      );
-      if (allAssociationBadges.associationBadges.length) {
-        associationBadges = associationBadges.concat(
-          allAssociationBadges.associationBadges
-        );
-      }
-      if (allMembershipbadges.membershipNFTs.length) {
-        const latestMembership = allMembershipbadges.membershipNFTs.sort(
-          (p1, p2) => (p1.time < p2.time ? 1 : p1.time > p2.time ? -1 : 0)
-        );
-        return latestMembership[0];
-      }
-    })
+
+  const allMembershipbadges = await fetchMembershipsForAddress(
+    options.subgraphNetwork,
+    options.rep3ContractAddress,
+    'latest'
   );
+  const allAssociationBadges = await fetchAssociationBadgesForAddress(
+    options.subgraphNetwork,
+    options.rep3ContractAddress,
+
+    'latest'
+  );
+
+  const validMembershipNft: any[] = addresses.map((address: string) => {
+    const membershipNftForAddress = allMembershipbadges.membershipNFTs.filter(
+      (x) => getAddress(x.claimer) === address
+    );
+    const associationBadgeForAddress =
+      allAssociationBadges.associationBadges.filter(
+        (x) => getAddress(x.claimer) === address
+      );
+    if (associationBadgeForAddress.length > 0) {
+      associationBadges = associationBadges.concat(associationBadgeForAddress);
+    }
+    if (membershipNftForAddress.length > 1) {
+      const latestMembership = allMembershipbadges.membershipNFTs.sort(
+        (p1, p2) => (p1.time < p2.time ? 1 : p1.time > p2.time ? -1 : 0)
+      );
+      return latestMembership[0];
+    } else if (membershipNftForAddress.length === 1) {
+      return membershipNftForAddress[0];
+    }
+  });
 
   let allWeightableBadges = validMembershipNft.concat(associationBadges);
   allWeightableBadges = allWeightableBadges.filter((x) => x !== undefined);

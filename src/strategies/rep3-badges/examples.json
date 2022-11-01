@@ -48,31 +48,58 @@
       "0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc",
       "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
       "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
-      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58",
-      "0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45",
-      "0x69ABF813a683391C0ec888351912E14590B56e88",
-      "0x85924aA0B2cb5a0BbeC583Dd090bF7CEdBa5D2Ea",
-      "0x9149B2b87159c4CC9e2f10C2711357720Da4DA08",
-      "0xa0710d3b4BA0f848f7edf9CC827aF70A183EAd26",
-      "0xAE1220f6bFEb414Ed0A95fbb5A6Ecc303b10aa46",
-      "0xebe986802F7858E1919451C6Ff893e294F31CE54",
-      "0x2d7cAA8462023af022A5004dA7b781b8ccF81Da7",
-      "0xE26217836Dd71f49c58a68aD70DabFA1E6d0B75b",
-      "0x7C572bE1751DdCFeE930286836bF21E6d87c10e6",
-      "0x6fDcfFDBa2699543a926f0C092F769f3302D3519",
-      "0x1BAfBebC93eFA8d68bC2B3FfC8124275336c4C36",
-      "0xF9e11762d522ea29Dd78178c9BAf83b7B093aacc",
-      "0xF624C52Ff68E8a2bE33d1C4b1dC6127E725E2Ef8",
-      "0x0D492C9BFd27778EE42270f7E5bBD9B73CF56c49",
-      "0xA670cF83E097583b9B77688161047B27f035C052",
-      "0x104562bFddadE5F08582eCf2A4Cd61A3759696fA",
-      "0x89261103FA88a913c8D0dEbD00574FD16895407D",
-      "0x5B60117255df27FDD885629c0210D9DD975fF975",
-      "0xff2469082cc5BF7e626fbfa9c25F467411d84cc2",
-      "0xA4CeC28d686EE53BC80dD3d79b404CF0dCe28016",
-      "0x14c6150db396FF57007f01E4b560D16C72905e51",
-      "0x3047bf8e87F0786702B8e8265c3B04cEdbA920e3"
+      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58"
     ],
     "snapshot": 15874502
+  },
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rep3-badges",
+      "params": {
+        "symbol": "REP-3",
+        "rep3ContractAddress": "0x959a3e7e2ea1ea56c9127ae9ed271ede495d145f",
+        "subgraphNetwork": 80001,
+        "specs": [
+          {
+            "type": 0,
+            "level": 1,
+            "weight": 5
+          },
+          {
+            "type": 0,
+            "level": 2,
+            "weight": 10
+          },
+          {
+            "type": 0,
+            "level": 3,
+            "weight": 15
+          },
+          {
+            "type": 0,
+            "level": 4,
+            "weight": 20
+          },
+          {
+            "type": 1,
+            "weight": 2
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x565CBd65Cb3e65445AfD14169003A528C985e9C7",
+      "0xD1fe5790AD50C9E8d2e9F03f4f42A09a9F59dec3",
+      "0x56d0b5ed3d525332f00c9bc938f93598ab16aaa7",
+      "0x49e4dbff86a2e5da27c540c9a9e8d2c3726e278f",
+      "0x4757ce43dc5429b8f1a132dc29ef970e55ae722b",
+      "0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc",
+      "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
+      "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
+      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58"
+    ],
+    "snapshot": 15864502
   }
 ]
