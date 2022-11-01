@@ -72,51 +72,63 @@ async function fetchLandsAndEstatesInRentalsContract(
   options,
   snapshot
 ): Promise<RentalsLandOrEstate[]> {
-  const query: any = {
-    rentalAssets: {
-      __args: {
-        where: {
-          contractAddress_in: [
-            options.addresses.estate.toLowerCase(),
-            options.addresses.land.toLowerCase()
-          ],
-          lessor_in: addresses.map((address) => address.toLowerCase()),
-          isClaimed: false
-        },
-        first: 1000,
-        skip: 0
-      },
-      id: true,
-      contractAddress: true,
-      tokenId: true,
-      lessor: true
-    }
-  };
+  const addressBatches: string[][] = [];
 
-  // If a snapshot is provided, use it as another filter of the query.
-  if (typeof snapshot === 'number') {
-    query.rentalAssets.__args.block = { number: snapshot };
+  for (let i = 0; i < addresses.length; i++) {
+    if (i % 500 === 0) {
+      addressBatches.push([]);
+    }
+
+    addressBatches[addressBatches.length - 1].push(addresses[i]);
   }
 
   let finalRentalLandsAndEstates: RentalsLandOrEstate[] = [];
 
-  let hasMoreResults = true;
+  for (const addressBatch of addressBatches) {
+    const query: any = {
+      rentalAssets: {
+        __args: {
+          where: {
+            contractAddress_in: [
+              options.addresses.estate.toLowerCase(),
+              options.addresses.land.toLowerCase()
+            ],
+            lessor_in: addressBatch.map((address) => address.toLowerCase()),
+            isClaimed: false
+          },
+          first: 1000,
+          skip: 0
+        },
+        id: true,
+        contractAddress: true,
+        tokenId: true,
+        lessor: true
+      }
+    };
 
-  while (hasMoreResults) {
-    const result = await subgraphRequest(options.subgraphs.rentals, query);
+    // If a snapshot is provided, use it as another filter of the query.
+    if (typeof snapshot === 'number') {
+      query.rentalAssets.__args.block = { number: snapshot };
+    }
 
-    const rentalLandsAndEstates: RentalsLandOrEstate[] = result.rentalAssets;
+    let hasMoreResults = true;
 
-    // If the received length matches the requested length, there might be more results.
-    hasMoreResults =
-      rentalLandsAndEstates.length === query.rentalAssets.__args.first;
-    // If there are more results, skip the ones we already have on the next query.
-    query.rentalAssets.__args.skip += query.rentalAssets.__args.first;
+    while (hasMoreResults) {
+      const result = await subgraphRequest(options.subgraphs.rentals, query);
 
-    finalRentalLandsAndEstates = [
-      ...finalRentalLandsAndEstates,
-      ...rentalLandsAndEstates
-    ];
+      const rentalLandsAndEstates: RentalsLandOrEstate[] = result.rentalAssets;
+
+      // If the received length matches the requested length, there might be more results.
+      hasMoreResults =
+        rentalLandsAndEstates.length === query.rentalAssets.__args.first;
+      // If there are more results, skip the ones we already have on the next query.
+      query.rentalAssets.__args.skip += query.rentalAssets.__args.first;
+
+      finalRentalLandsAndEstates = [
+        ...finalRentalLandsAndEstates,
+        ...rentalLandsAndEstates
+      ];
+    }
   }
 
   return finalRentalLandsAndEstates;
@@ -139,24 +151,16 @@ async function fetchMarketplaceEstatesForProvidedRentalAssets(
     rentalEstatesByTokenId.set(tokenId, rentalEstate);
   }
 
-  const query: any = {
-    estates: {
-      __args: {
-        where: {
-          tokenId_in: rentalEstatesTokenIds,
-          size_gt: 0
-        },
-        first: 1000,
-        skip: 0
-      },
-      tokenId: true,
-      size: true
-    }
-  };
+  const rentalEstateTokenIdBatches: string[][] = [];
 
-  // If a snapshot is provided, use it as another filter of the query.
-  if (typeof snapshot === 'number') {
-    query.estates.__args.block = { number: snapshot };
+  for (let i = 0; i < rentalEstatesTokenIds.length; i++) {
+    if (i % 500 === 0) {
+      rentalEstateTokenIdBatches.push([]);
+    }
+
+    rentalEstateTokenIdBatches[rentalEstateTokenIdBatches.length - 1].push(
+      rentalEstatesTokenIds[i]
+    );
   }
 
   const rentalAndMarketplaceEstates: [
@@ -164,25 +168,50 @@ async function fetchMarketplaceEstatesForProvidedRentalAssets(
     MarketplaceEstate
   ][] = [];
 
-  let hasMoreResults = true;
+  for (const rentalEstateTokenIdBatch of rentalEstateTokenIdBatches) {
+    const query: any = {
+      estates: {
+        __args: {
+          where: {
+            tokenId_in: rentalEstateTokenIdBatch,
+            size_gt: 0
+          },
+          first: 1000,
+          skip: 0
+        },
+        tokenId: true,
+        size: true
+      }
+    };
 
-  while (hasMoreResults) {
-    const result = await subgraphRequest(options.subgraphs.marketplace, query);
+    // If a snapshot is provided, use it as another filter of the query.
+    if (typeof snapshot === 'number') {
+      query.estates.__args.block = { number: snapshot };
+    }
 
-    const marketplaceEstates: MarketplaceEstate[] = result.estates;
+    let hasMoreResults = true;
 
-    // If the received length matches the requested length, there might be more results.
-    hasMoreResults = marketplaceEstates.length === query.estates.__args.first;
-    // If there are more results, skip the ones we already have on the next query.
-    query.estates.__args.skip += query.estates.__args.first;
-
-    for (const marketplaceEstate of marketplaceEstates) {
-      const rentalEstate = rentalEstatesByTokenId.get(
-        marketplaceEstate.tokenId
+    while (hasMoreResults) {
+      const result = await subgraphRequest(
+        options.subgraphs.marketplace,
+        query
       );
 
-      if (rentalEstate) {
-        rentalAndMarketplaceEstates.push([rentalEstate, marketplaceEstate]);
+      const marketplaceEstates: MarketplaceEstate[] = result.estates;
+
+      // If the received length matches the requested length, there might be more results.
+      hasMoreResults = marketplaceEstates.length === query.estates.__args.first;
+      // If there are more results, skip the ones we already have on the next query.
+      query.estates.__args.skip += query.estates.__args.first;
+
+      for (const marketplaceEstate of marketplaceEstates) {
+        const rentalEstate = rentalEstatesByTokenId.get(
+          marketplaceEstate.tokenId
+        );
+
+        if (rentalEstate) {
+          rentalAndMarketplaceEstates.push([rentalEstate, marketplaceEstate]);
+        }
       }
     }
   }
