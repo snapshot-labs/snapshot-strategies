@@ -49,7 +49,7 @@ export async function strategy(
     scores[getAddress(land.lessor)] += options.multipliers.land;
   }
 
-  // Fill the estateSize prop on locked estates.
+  // Fetch and match Estates from the marketplace subgraph with the ones from the rentals subgraph.
   const rentalAndMarketplaceEstates =
     await fetchMarketplaceEstatesForProvidedRentalAssets(
       rentalEstates,
