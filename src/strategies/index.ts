@@ -390,6 +390,7 @@ import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
 import * as anchorage from './anchorage';
+import * as dsla from './dsla';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -784,7 +785,8 @@ const strategies = {
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
   anchorage,
-  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
+  dsla
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
