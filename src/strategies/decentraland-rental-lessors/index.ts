@@ -5,6 +5,8 @@ import { MarketplaceEstate, RentalsLandOrEstate, Scores } from './types';
 export const author = 'fzavalia';
 export const version = '0.1.0';
 
+const SUBGRAPH_QUERY_IN_FILTER_MAX_LENGTH = 500;
+
 export async function strategy(
   space,
   network,
@@ -72,15 +74,10 @@ async function fetchLandsAndEstatesInRentalsContract(
   options,
   snapshot
 ): Promise<RentalsLandOrEstate[]> {
-  const addressBatches: string[][] = [];
-
-  for (let i = 0; i < addresses.length; i++) {
-    if (i % 500 === 0) {
-      addressBatches.push([]);
-    }
-
-    addressBatches[addressBatches.length - 1].push(addresses[i]);
-  }
+  const addressBatches = batchify<string>(
+    addresses,
+    SUBGRAPH_QUERY_IN_FILTER_MAX_LENGTH
+  );
 
   let finalRentalLandsAndEstates: RentalsLandOrEstate[] = [];
 
@@ -151,17 +148,10 @@ async function fetchMarketplaceEstatesForProvidedRentalAssets(
     rentalEstatesByTokenId.set(tokenId, rentalEstate);
   }
 
-  const rentalEstateTokenIdBatches: string[][] = [];
-
-  for (let i = 0; i < rentalEstatesTokenIds.length; i++) {
-    if (i % 500 === 0) {
-      rentalEstateTokenIdBatches.push([]);
-    }
-
-    rentalEstateTokenIdBatches[rentalEstateTokenIdBatches.length - 1].push(
-      rentalEstatesTokenIds[i]
-    );
-  }
+  const rentalEstateTokenIdBatches = batchify(
+    rentalEstatesTokenIds,
+    SUBGRAPH_QUERY_IN_FILTER_MAX_LENGTH
+  );
 
   const rentalAndMarketplaceEstates: [
     RentalsLandOrEstate,
@@ -217,4 +207,18 @@ async function fetchMarketplaceEstatesForProvidedRentalAssets(
   }
 
   return rentalAndMarketplaceEstates;
+}
+
+function batchify<T>(elements: T[], batchSize: number): T[][] {
+  const batches: T[][] = [];
+
+  for (let i = 0; i < elements.length; i++) {
+    if (i % batchSize === 0) {
+      batches.push([]);
+    }
+
+    batches[batches.length - 1].push(elements[i]);
+  }
+
+  return batches;
 }
