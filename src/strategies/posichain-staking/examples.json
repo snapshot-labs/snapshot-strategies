@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "posichain-staking",
+      "params": {
+        "symbol": "POSI"
+      }
+    },
+    "network": "900000",
+    "addresses": [
+      "0xD3Ee1d798eCea22Fde4D29590eFF0c77bA7e6b9e",
+      "0xb065c1a5BC1B3c1b1dF8781D369cffc534B65731"
+    ],
+    "snapshot": 3989273
+  }
+]
