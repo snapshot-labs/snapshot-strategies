@@ -22,7 +22,7 @@ export async function strategy(
     scores[getAddress(address)] = 0;
   }
 
-  // For the provided addresses, fetch all their Lands and Estates that have been locked in the rentals contract.
+  // For the provided addresses, fetch all their Lands and Estates that have been transferred to the rentals contract.
   const rentalLandsAndEstates = await fetchLandsAndEstatesInRentalsContract(
     addresses,
     options,
