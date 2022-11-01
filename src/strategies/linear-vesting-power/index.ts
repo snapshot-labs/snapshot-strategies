@@ -40,7 +40,9 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const now = BigNumber.from(Math.round(Date.now() / 1000));
+
+  const block = await provider.getBlock(blockTag);
+  const now = block.timestamp;
   // fetch the number of vesting accounts
   const maxId: BigNumber = await call(
     provider,
