@@ -30,22 +30,24 @@ export async function strategy(
   // Get dpToken Balances
   const multi = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address) =>
-    multi.call(address, options.LP_TOKEN, 'balanceOf', [address])
+    multi.call(address, options.xDSLA_LP, 'balanceOf', [address])
   );
   const dpTokenBalances: Record<string, BigNumberish> = await multi.execute();
 
   // Get duToken Balances
   addresses.forEach((address) =>
-    multi.call(address, options.SP_TOKEN, 'balanceOf', [address])
+    multi.call(address, options.xDSLA, 'balanceOf', [address])
   );
   const duTokenBalances: Record<string, BigNumberish> = await multi.execute();
 
   // Get totalSupply of user/provider pools
   const multi2 = new Multicaller(network, provider, abi, { blockTag });
-  multi2.call('userTotalSupply', options.LP_TOKEN, 'totalSupply', []);
-  multi2.call('providerTotalSupply', options.SP_TOKEN, 'totalSupply', []);
+  multi2.call('userTotalSupply', options.xDSLA, 'totalSupply', []);
+  multi2.call('providerTotalSupply', options.xDSLA_LP, 'totalSupply', []);
   multi2.call('usersPool', options.StakingSLA, 'usersPool', [options.DSLA]);
-  multi2.call('providersPool', options.StakingSLA, 'providersPool', [options.DSLA]);
+  multi2.call('providersPool', options.StakingSLA, 'providersPool', [
+    options.DSLA
+  ]);
   const res2: Record<string, BigNumberish> = await multi2.execute();
 
   // Sum up duTokenBalance and dpTokenBalances
@@ -54,7 +56,9 @@ export async function strategy(
   const balances = Object.fromEntries(
     Object.entries(dpTokenBalances).map(([address, balance]) => [
       address,
-      BigNumber.from(balance).mul(res2.providersPool).div(res2.providerTotalSupply)
+      BigNumber.from(balance)
+        .mul(res2.providersPool)
+        .div(res2.providerTotalSupply)
     ])
   );
   Object.entries(duTokenBalances).forEach(([address, balance]) => {
@@ -62,7 +66,7 @@ export async function strategy(
     balances[address] = prevBal.add(
       BigNumber.from(balance).mul(res2.usersPool).div(res2.userTotalSupply)
     );
-  })
+  });
 
   const result = Object.fromEntries(
     Object.entries(balances).map(([address, balance]) => [
