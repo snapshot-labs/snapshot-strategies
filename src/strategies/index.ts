@@ -279,6 +279,7 @@ import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
@@ -399,6 +400,7 @@ const strategies = {
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
+  'giveth-gnosis-balance-v2': givethGnosisBalanceV2,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
