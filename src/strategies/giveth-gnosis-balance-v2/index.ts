@@ -3,7 +3,7 @@ import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'mateodaza';
-export const version = '0.2.0';
+export const version = '0.1.0';
 
 const GIVETH_SUBGRAPH_API =
   'https://api.thegraph.com/subgraphs/name/giveth/giveth-economy-second-xdai';
