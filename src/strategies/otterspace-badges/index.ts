@@ -52,7 +52,8 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
   if (specs && specs.length > 0) {
     const specConfig = specs.find((spec: any) => spec.id === badgeSpecID);
     badgeWeight =
-      specConfig && !isBadgeExpired(specConfig.expiresAt)
+      specConfig &&
+      isBadgeActive(specConfig.status, specConfig.metadata?.expiresAt || null)
         ? specConfig.weight
         : 0;
   } else {
@@ -62,8 +63,10 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
   return badgeWeight;
 }
 
-function isBadgeExpired(expiresAt: string | null): boolean {
-  return expiresAt ? Date.now() - Number(new Date(expiresAt)) > 0 : false;
+function isBadgeActive(status: string, expiresAt: string | null): boolean {
+  return !['REVOKED', 'BURNED'].includes(status) && expiresAt
+    ? Date.now() - Number(new Date(expiresAt)) <= 0
+    : true;
 }
 
 function applyBadgeWeights(badges: [], options: any) {
