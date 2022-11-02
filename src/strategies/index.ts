@@ -789,7 +789,8 @@ const strategies = {
   spreadsheet,
   anchorage,
   'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
-  'dsla-parametric-staking-service-credits': dslaParametricStakingServiceCredits,
+  'dsla-parametric-staking-service-credits':
+    dslaParametricStakingServiceCredits,
   'rep3-badges': rep3Badges
 };
 
