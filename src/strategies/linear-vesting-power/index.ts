@@ -9,10 +9,9 @@ const DSSVestAbi = [
   'function usr(uint256 _id) external view returns (address)',
   'function tot(uint256 _id) external view returns (uint256)',
   'function accrued(uint256 _id) external view returns (uint256)',
+  'function bgn(uint256 _id) external view returns (uint256)',
+  'function fin(uint256 _id) external view returns (uint256)',
   'function ids() external view returns (uint256)'
-];
-const ERC20abi = [
-  'function balanceOf(address account) external view returns (uint256)'
 ];
 
 const vestedAmountPower = (
@@ -23,7 +22,6 @@ const vestedAmountPower = (
 ) => {
   now = BigNumber.from(now);
   const amount = BigNumber.from(totalVestedNotClaimed);
-
   if (now.lte(startDate)) return BigNumber.from(0);
   if (now.gt(BigNumber.from(startDate).add(period)))
     return totalVestedNotClaimed;
@@ -58,16 +56,6 @@ export async function strategy(
   // create an array of each vesting ID: [1:maxId]
   const ids = idsArray(maxId.toNumber());
 
-  // We first fetch the balance of ERC20 for each addresses
-  const multiBalanceOf = new Multicaller(network, provider, ERC20abi, {
-    blockTag
-  });
-  addresses.forEach((address) =>
-    multiBalanceOf.call(address, options.ERC20Address, 'balanceOf', [address])
-  );
-  const addressesBalanceOf: Record<string, BigNumberish> =
-    await multiBalanceOf.execute();
-
   // And then, we fetch the vesting data for each vesting ID
   // 1. vester address
   const multiVest = new Multicaller(
@@ -82,53 +70,50 @@ export async function strategy(
   ids.forEach((id) => multiVest.call(id, options.DSSVestAddress, 'usr', [id]));
   const vestedAddresses: Record<string, string> = await multiVest.execute();
 
-  // 2. total vested
-  const multiVestTotCaller = new Multicaller(
-    options.vestingNetwork,
-    provider,
-    DSSVestAbi,
-    { blockTag }
-  );
-  ids.forEach((id) =>
-    multiVestTotCaller.call(id, options.DSSVestAddress, 'tot', [id])
-  );
-  const multiVestTot: Record<string, BigNumberish> =
-    await multiVestTotCaller.execute();
+  // 1. total vested
+  // 2. total claimed
+  // 3. beginning time (after cliff period: bgn = startVesting + cliff)
+  // 4. end time (with cliff period: end = startVesting + cliff + duration = bgn + duration)
 
-  // 3. total claimed
-  const multiVestAccruedCaller = new Multicaller(
+  const multiVestCaller = new Multicaller(
     options.vestingNetwork,
     provider,
     DSSVestAbi,
     { blockTag }
   );
-  ids.forEach((id) =>
-    multiVestAccruedCaller.call(id, options.DSSVestAddress, 'accrued', [id])
-  );
-  const multiVestAccrued: Record<string, BigNumberish> =
-    await multiVestAccruedCaller.execute();
+  ids.forEach((id) => {
+    multiVestCaller.call('tot' + id, options.DSSVestAddress, 'tot', [id]);
+    multiVestCaller.call('accrued' + id, options.DSSVestAddress, 'accrued', [
+      id
+    ]);
+    multiVestCaller.call('bgn' + id, options.DSSVestAddress, 'bgn', [id]);
+    multiVestCaller.call('fin' + id, options.DSSVestAddress, 'fin', [id]);
+  });
+
+  const multiVestResult: Record<string, BigNumberish> =
+    await multiVestCaller.execute();
+
   return Object.fromEntries(
-    Object.entries(addressesBalanceOf).map(([address, balance]) => {
-      const initialVotingPower = [
-        address,
-        parseFloat(formatUnits(balance, options.decimals))
-      ];
+    addresses.map((address) => {
+      const initialVotingPower = [address, 0];
       // fetch vested users data
       const [id] =
         Object.entries(vestedAddresses).find(
           ([, _address]) => _address === address
         ) ?? [];
       if (id === undefined) return initialVotingPower;
-      const totalVested = multiVestTot[id];
-      const totalAccrued = multiVestAccrued[id];
-      if (!(id && totalAccrued && totalVested)) return initialVotingPower;
-      const votingPower = BigNumber.from(balance).add(
-        vestedAmountPower(
-          BigNumber.from(totalVested).sub(totalAccrued),
-          options.startVesting,
-          options.vestingDuration,
-          now
-        )
+      const totalVested = multiVestResult['tot' + id];
+      const totalAccrued = multiVestResult['accrued' + id];
+
+      const bgn = multiVestResult['bgn' + id];
+      const fin = multiVestResult['fin' + id];
+      if (!(id && totalAccrued && totalVested && bgn && fin))
+        return initialVotingPower;
+      const votingPower = vestedAmountPower(
+        BigNumber.from(totalVested).sub(totalAccrued),
+        BigNumber.from(bgn).sub(options.cliffDuration),
+        BigNumber.from(fin).sub(bgn).add(options.cliffDuration),
+        now
       );
       return [address, parseFloat(formatUnits(votingPower, options.decimals))];
     })
