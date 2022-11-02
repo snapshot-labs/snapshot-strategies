@@ -1,0 +1,105 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rep3-badges",
+      "params": {
+        "symbol": "REP-3",
+        "rep3ContractAddress": "0x959a3e7e2ea1ea56c9127ae9ed271ede495d145f",
+        "erc20Token": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "erc20Symbol": "DAI",
+        "erc20Decimal": 18,
+        "subgraphNetwork": 80001,
+        "specs": [
+          {
+            "type": 0,
+            "level": 1,
+            "weight": 5
+          },
+          {
+            "type": 0,
+            "level": 2,
+            "weight": 10
+          },
+          {
+            "type": 0,
+            "level": 3,
+            "weight": 15
+          },
+          {
+            "type": 0,
+            "level": 4,
+            "weight": 20
+          },
+          {
+            "type": 1,
+            "weight": 2
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x565CBd65Cb3e65445AfD14169003A528C985e9C7",
+      "0xD1fe5790AD50C9E8d2e9F03f4f42A09a9F59dec3",
+      "0x56d0b5ed3d525332f00c9bc938f93598ab16aaa7",
+      "0x49e4dbff86a2e5da27c540c9a9e8d2c3726e278f",
+      "0x4757ce43dc5429b8f1a132dc29ef970e55ae722b",
+      "0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc",
+      "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
+      "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
+      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58"
+    ],
+    "snapshot": 15874502
+  },
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rep3-badges",
+      "params": {
+        "symbol": "REP-3",
+        "rep3ContractAddress": "0x959a3e7e2ea1ea56c9127ae9ed271ede495d145f",
+        "subgraphNetwork": 80001,
+        "specs": [
+          {
+            "type": 0,
+            "level": 1,
+            "weight": 5
+          },
+          {
+            "type": 0,
+            "level": 2,
+            "weight": 10
+          },
+          {
+            "type": 0,
+            "level": 3,
+            "weight": 15
+          },
+          {
+            "type": 0,
+            "level": 4,
+            "weight": 20
+          },
+          {
+            "type": 1,
+            "weight": 2
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x565CBd65Cb3e65445AfD14169003A528C985e9C7",
+      "0xD1fe5790AD50C9E8d2e9F03f4f42A09a9F59dec3",
+      "0x56d0b5ed3d525332f00c9bc938f93598ab16aaa7",
+      "0x49e4dbff86a2e5da27c540c9a9e8d2c3726e278f",
+      "0x4757ce43dc5429b8f1a132dc29ef970e55ae722b",
+      "0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc",
+      "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
+      "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
+      "0x2AC89522CB415AC333E64F52a1a5693218cEBD58"
+    ],
+    "snapshot": 15864502
+  }
+]
