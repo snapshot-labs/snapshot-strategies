@@ -392,7 +392,7 @@ import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
 import * as anchorage from './anchorage';
-import * as dsla from './dsla';
+import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
 import * as rep3Badges from './rep3-badges';
 
 const strategies = {
@@ -791,7 +791,8 @@ const strategies = {
   spreadsheet,
   anchorage,
   'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
-  dsla,
+  'dsla-parametric-staking-service-credits':
+    dslaParametricStakingServiceCredits,
   'rep3-badges': rep3Badges
 };
 
