@@ -1,6 +1,7 @@
 [
   {
     "name": "Example query",
+    "space": "test7.shot.eth",
     "strategy": {
       "name": "offchain-delegation",
       "params": {

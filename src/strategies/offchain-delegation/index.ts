@@ -39,6 +39,7 @@ export async function strategy(
   const text = await res.text();
   const csv = csvToJson(text) || [];
 
+  const delegationSpace = options.delegationSpace || space;
   const delegations = Object.fromEntries(
     csv
       .map((item) => ({
@@ -50,7 +51,7 @@ export async function strategy(
       .filter(
         (item) =>
           item.ts <= ts &&
-          item.space === space &&
+          item.space === delegationSpace &&
           !addresses.includes(item.delegator)
       )
       .sort((a, b) => a.ts - b.ts)
