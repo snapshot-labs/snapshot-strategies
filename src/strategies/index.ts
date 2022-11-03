@@ -391,7 +391,7 @@ import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
-import * as anchorage from './anchorage';
+import * as offchainDelegation from './offchain-delegation';
 import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
 import * as rep3Badges from './rep3-badges';
 
@@ -789,7 +789,7 @@ const strategies = {
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
-  anchorage,
+  'offchain-delegation': offchainDelegation,
   'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
   'dsla-parametric-staking-service-credits':
     dslaParametricStakingServiceCredits,
