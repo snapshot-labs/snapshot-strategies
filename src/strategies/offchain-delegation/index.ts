@@ -38,7 +38,6 @@ export async function strategy(
   const res = await fetch(url);
   const text = await res.text();
   const csv = csvToJson(text) || [];
-
   const delegationSpace = options.delegationSpace || space;
   const delegations = Object.fromEntries(
     csv
