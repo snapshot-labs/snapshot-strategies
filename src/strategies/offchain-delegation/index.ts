@@ -33,7 +33,7 @@ export async function strategy(
   const block = await provider.getBlock(snapshot);
   const ts = block.timestamp;
   const SPREADSHEET_ID = options.sheetId ?? DEFAULT_SPREADSHEET_ID;
-  const GID_ID = options.gid ?? DEFAULT_GID_ID;
+  const GID = options.gid ?? DEFAULT_GID;
   const url = `https://docs.google.com/spreadsheets/d/e/${SPREADSHEET_ID}/pub?gid=${GID}&single=true&output=csv`;
   const res = await fetch(url);
   const text = await res.text();
