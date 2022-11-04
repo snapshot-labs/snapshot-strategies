@@ -65,4 +65,3 @@ Here is an example of parameters:
   "decimals": 18
 }
 ```
-
