@@ -1,0 +1,134 @@
+import { BigNumber } from '@ethersproject/bignumber';
+import { formatUnits } from '@ethersproject/units';
+import { Multicaller } from '../../utils';
+
+export const author = 'etedwardelric';
+export const version = '0.0.1';
+
+const abi = [
+  'function balanceOf(address _owner) view returns (uint256 balance)',
+  'function userInfo(uint256, address) view returns (uint256 amount, uint256 rewardDebt)',
+  'function stakedWantTokens(uint256 _pid, address _user) view returns (uint256)',
+  'function totalSupply() view returns (uint256)'
+];
+
+export async function strategy(
+  space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+): Promise<Record<string, number>> {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+  addresses.forEach((address) => {
+    multi.call(`${address}-${options.token}`, options.token, 'balanceOf', [
+      address
+    ]);
+    if (options.miningMasters)
+      options.miningMasters.forEach((miningMaster) =>
+        multi.call(
+          `${address}-${miningMaster.address}-${miningMaster.pid}`,
+          miningMaster.address,
+          'userInfo',
+          [miningMaster.pid, address]
+        )
+      );
+    if (options.upMiningMasters)
+      options.upMiningMasters.forEach((upMiningMaster) =>
+        multi.call(
+          `${address}-${upMiningMaster.address}-${upMiningMaster.pid}`,
+          upMiningMaster.address,
+          'stakedWantTokens',
+          [upMiningMaster.pid, address]
+        )
+      );
+  });
+
+  addresses.forEach((address) =>
+    options.lps.forEach((lp) => {
+      multi.call(`${lp.lpToken}-${options.token}`, options.token, 'balanceOf', [
+        lp.lpToken
+      ]);
+      multi.call(`${lp.lpToken}`, lp.lpToken, 'totalSupply');
+      multi.call(`${address}-${lp.lpToken}`, lp.lpToken, 'balanceOf', [
+        address
+      ]);
+      if (lp.miningMasters)
+        lp.miningMasters.forEach((miningMaster) =>
+          multi.call(
+            `${address}-${lp.lpToken}-${miningMaster.address}-${miningMaster.pid}`,
+            miningMaster.address,
+            'userInfo',
+            [miningMaster.pid, address]
+          )
+        );
+      if (lp.upMiningMasters)
+        lp.upMiningMasters.forEach((upMiningMaster) =>
+          multi.call(
+            `${address}-${lp.lpToken}-${upMiningMaster.address}-${upMiningMaster.pid}`,
+            upMiningMaster.address,
+            'stakedWantTokens',
+            [upMiningMaster.pid, address]
+          )
+        );
+    })
+  );
+
+  const result = await multi.execute();
+
+  return Object.fromEntries(
+    addresses.map((address) => {
+      let amount = BigNumber.from(0);
+      amount = amount.add(result[`${address}-${options.token}`]);
+      if (options.miningMasters)
+        for (let miningMaster of options.miningMasters) {
+          amount = amount.add(
+            result[`${address}-${miningMaster.address}-${miningMaster.pid}`][0]
+          );
+        }
+      if (options.upMiningMasters)
+        for (let upMiningMaster of options.upMiningMasters) {
+          amount = amount.add(
+            result[`${address}-${upMiningMaster.address}-${upMiningMaster.pid}`]
+          );
+        }
+      for (let lp of options.lps) {
+        amount = amount.add(
+          result[`${address}-${lp.lpToken}`].mul(
+            result[`${lp.lpToken}-${options.token}`].div(
+              result[`${lp.lpToken}`]
+            )
+          )
+        );
+        if (lp.miningMasters)
+          for (let miningMaster of lp.miningMasters) {
+            amount = amount.add(
+              result[
+                `${address}-${lp.lpToken}-${miningMaster.address}-${miningMaster.pid}`
+              ][0].mul(
+                result[`${lp.lpToken}-${options.token}`].div(
+                  result[`${lp.lpToken}`]
+                )
+              )
+            );
+          }
+        if (lp.upMiningMasters)
+          for (let upMiningMaster of lp.upMiningMasters) {
+            amount = amount.add(
+              result[
+                `${address}-${lp.lpToken}-${upMiningMaster.address}-${upMiningMaster.pid}`
+              ].mul(
+                result[`${lp.lpToken}-${options.token}`].div(
+                  result[`${lp.lpToken}`]
+                )
+              )
+            );
+          }
+      }
+      return [address, parseFloat(formatUnits(amount))];
+    })
+  );
+}
