@@ -23,6 +23,20 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
+
+  if (options.miningMasters)
+    options.miningMasters = options.miningMasters.slice(0, 20);
+  if (options.upMiningMasters)
+    options.upMiningMasters = options.upMiningMasters.slice(0, 20);
+  if (options.lps) {
+    options.lps = options.lps.slice(0, 5);
+    options.lps.forEach((lp) => {
+      if (lp.miningMasters) lp.miningMasters = lp.miningMasters.slice(0, 20);
+      if (lp.upMiningMasters)
+        lp.upMiningMasters = lp.upMiningMasters.slice(0, 20);
+    });
+  }
+
   addresses.forEach((address) => {
     multi.call(`${address}-${options.token}`, options.token, 'balanceOf', [
       address
