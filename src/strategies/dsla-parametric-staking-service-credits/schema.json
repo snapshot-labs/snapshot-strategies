@@ -9,9 +9,7 @@
         "xDSLA": {
           "type": "string",
           "title": "xDSLA",
-          "examples": [
-            "e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
-          ],
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -19,9 +17,7 @@
         "xDSLA_LP": {
           "type": "string",
           "title": "xDSLA_LP",
-          "examples": [
-            "e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
-          ],
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -29,9 +25,7 @@
         "DSLA": {
           "type": "string",
           "title": "DSLA",
-          "examples": [
-            "e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
-          ],
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -39,9 +33,7 @@
         "StakingSLA": {
           "type": "string",
           "title": "StakingSLA",
-          "examples": [
-            "e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
-          ],
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -49,18 +41,10 @@
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": [
-            "e.g. 18"
-          ]
+          "examples": ["e.g. 18"]
         }
       },
-      "required": [
-        "xDSLA",
-        "xDSLA_LP",
-        "StakingSLA",
-        "DSLA",
-        "decimals"
-      ],
+      "required": ["xDSLA", "xDSLA_LP", "StakingSLA", "DSLA", "decimals"],
       "additionalProperties": false
     }
   }
