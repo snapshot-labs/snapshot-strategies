@@ -18,6 +18,7 @@
         "lps": [
           {
             "lpToken": "0x40B605d8BeED09568E702Deadce90fb23cfd74d8",
+            "multi": 1500,
             "miningMasters": [
               {
                 "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a",
@@ -41,6 +42,7 @@
           },
           {
             "lpToken": "0xe47cCE810174Ac2aCEaB936e6FF93690888bcF24",
+            "multi": 2000,
             "miningMasters": [
               {
                 "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a",
@@ -82,7 +84,8 @@
       "0xeaac9ebbdd62c7a7f3d881763dbb23770deb353b",
       "0x1d9155f814a832af287bf6965bd66fbf12c69d4f",
       "0x711cae85542082daf93a14403d148bb91299c6fb",
-      "0x75f9a46a78757d0ea1557abf6cb04499960ef951"
+      "0x75f9a46a78757d0ea1557abf6cb04499960ef951",
+      "0xbf329b00b533485987c957182bfb02bcee9c3994"
     ],
     "snapshot": 22704707
   }

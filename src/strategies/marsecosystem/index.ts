@@ -111,22 +111,22 @@ export async function strategy(
         }
       for (let lp of options.lps) {
         amount = amount.add(
-          result[`${address}-${lp.lpToken}`].mul(
-            result[`${lp.lpToken}-${options.token}`].div(
-              result[`${lp.lpToken}`]
-            )
-          )
+          result[`${address}-${lp.lpToken}`]
+            .mul(result[`${lp.lpToken}-${options.token}`])
+            .mul(lp.multi ?? 1000)
+            .div(result[`${lp.lpToken}`])
+            .div(1000)
         );
         if (lp.miningMasters)
           for (let miningMaster of lp.miningMasters) {
             amount = amount.add(
               result[
                 `${address}-${lp.lpToken}-${miningMaster.address}-${miningMaster.pid}`
-              ][0].mul(
-                result[`${lp.lpToken}-${options.token}`].div(
-                  result[`${lp.lpToken}`]
-                )
-              )
+              ][0]
+                .mul(result[`${lp.lpToken}-${options.token}`])
+                .mul(lp.multi ?? 1000)
+                .div(result[`${lp.lpToken}`])
+                .div(1000)
             );
           }
         if (lp.upMiningMasters)
@@ -134,11 +134,11 @@ export async function strategy(
             amount = amount.add(
               result[
                 `${address}-${lp.lpToken}-${upMiningMaster.address}-${upMiningMaster.pid}`
-              ].mul(
-                result[`${lp.lpToken}-${options.token}`].div(
-                  result[`${lp.lpToken}`]
-                )
-              )
+              ]
+                .mul(result[`${lp.lpToken}-${options.token}`])
+                .mul(lp.multi ?? 1000)
+                .div(result[`${lp.lpToken}`])
+                .div(1000)
             );
           }
       }
