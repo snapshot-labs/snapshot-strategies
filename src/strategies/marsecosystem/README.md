@@ -20,6 +20,7 @@ Here is an example of parameters:
   "lps": [
     {
       "lpToken": "0x40B605d8BeED09568E702Deadce90fb23cfd74d8",
+      "multi": 1500,
       "miningMasters": [
         {
           "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a",
@@ -43,6 +44,7 @@ Here is an example of parameters:
     },
     {
       "lpToken": "0xe47cCE810174Ac2aCEaB936e6FF93690888bcF24",
+      "multi": 2000,
       "miningMasters": [
         {
           "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a",
