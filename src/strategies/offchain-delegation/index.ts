@@ -38,7 +38,6 @@ export async function strategy(
   const res = await fetch(url);
   const text = await res.text();
   const csv = csvToJson(text) || [];
-  const delegationSpace = options.delegationSpace || space;
   const delegations = Object.fromEntries(
     csv
       .map((item) => ({
@@ -47,12 +46,7 @@ export async function strategy(
         delegate: getAddress(item.delegate),
         ts: parseInt(item.timestamp || '0')
       }))
-      .filter(
-        (item) =>
-          item.ts <= ts &&
-          item.space === delegationSpace &&
-          !addresses.includes(item.delegator)
-      )
+      .filter((item) => item.ts <= ts && !addresses.includes(item.delegator))
       .sort((a, b) => a.ts - b.ts)
       .map((item) => [item.delegator, item.delegate])
   );

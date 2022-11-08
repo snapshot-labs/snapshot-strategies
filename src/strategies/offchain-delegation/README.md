@@ -11,26 +11,23 @@ This strategy is used to handle offchain delegations.
 - And use the id after "pub?gid=" as "gid" parameter
 - You are ready!
 
-
 ## Parameters
 - `sheetId`: The id of the spreadsheet
 - `gid`: The id of the sheet
 - `strategies`: The strategies to use, to calculate the score of the delegations
-- `delegationSpace`: The space to use for the delegations (Optional, default: space of the proposal)
 
 Here is an example of the strategy parameters:
-
 ```json
 {
   "sheetId": "2PACX-1vTAo2yFq6GyBZcB3BOnIw_Rzub7KEEzqhhgFY5CD6eCW-Rfx9d4NaMJP8IP67G9YnV3PNPHKvgJeSNY",
   "gid": "1557274211",
   "strategies": [
     {
-        "name": "erc20-balance-of",
-        "params": {
-            "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
-            "decimals": 18
-        }
+      "name": "erc20-balance-of",
+      "params": {
+        "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+        "decimals": 18
+      }
     }
   ]
 }

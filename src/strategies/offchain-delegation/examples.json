@@ -4,10 +4,9 @@
     "strategy": {
       "name": "offchain-delegation",
       "params": {
-        "symbol": "DAI DELEGATEDW",
+        "symbol": "DAI (delegated)",
         "sheetId": "2PACX-1vTAo2yFq6GyBZcB3BOnIw_Rzub7KEEzqhhgFY5CD6eCW-Rfx9d4NaMJP8IP67G9YnV3PNPHKvgJeSNY",
         "gid": "1557274211",
-        "delegationSpace": "test7.shot.eth",
         "strategies": [
           {
             "name": "erc20-balance-of",

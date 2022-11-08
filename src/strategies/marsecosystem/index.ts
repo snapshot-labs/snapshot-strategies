@@ -98,18 +98,18 @@ export async function strategy(
       let amount = BigNumber.from(0);
       amount = amount.add(result[`${address}-${options.token}`]);
       if (options.miningMasters)
-        for (let miningMaster of options.miningMasters) {
+        for (const miningMaster of options.miningMasters) {
           amount = amount.add(
             result[`${address}-${miningMaster.address}-${miningMaster.pid}`][0]
           );
         }
       if (options.upMiningMasters)
-        for (let upMiningMaster of options.upMiningMasters) {
+        for (const upMiningMaster of options.upMiningMasters) {
           amount = amount.add(
             result[`${address}-${upMiningMaster.address}-${upMiningMaster.pid}`]
           );
         }
-      for (let lp of options.lps) {
+      for (const lp of options.lps) {
         amount = amount.add(
           result[`${address}-${lp.lpToken}`]
             .mul(result[`${lp.lpToken}-${options.token}`])
@@ -118,7 +118,7 @@ export async function strategy(
             .div(1000)
         );
         if (lp.miningMasters)
-          for (let miningMaster of lp.miningMasters) {
+          for (const miningMaster of lp.miningMasters) {
             amount = amount.add(
               result[
                 `${address}-${lp.lpToken}-${miningMaster.address}-${miningMaster.pid}`
@@ -130,7 +130,7 @@ export async function strategy(
             );
           }
         if (lp.upMiningMasters)
-          for (let upMiningMaster of lp.upMiningMasters) {
+          for (const upMiningMaster of lp.upMiningMasters) {
             amount = amount.add(
               result[
                 `${address}-${lp.lpToken}-${upMiningMaster.address}-${upMiningMaster.pid}`
