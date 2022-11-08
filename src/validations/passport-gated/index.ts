@@ -4,10 +4,10 @@ import {
   getPassport,
   getVerifiedStamps,
   hasValidIssuanceAndExpiration
-} from './helper';
+} from '../passport-weighted/helper';
 
 export default class extends Validation {
-  public id = 'passport';
+  public id = 'passport-gated';
   public github = 'snapshot-labs';
   public version = '0.1.0';
 
@@ -19,27 +19,27 @@ export default class extends Validation {
     const verifiedStamps: any[] = await getVerifiedStamps(
       passport,
       this.author,
-      this.params.stamps
+      this.params.stamps.map((stamp) => ({
+        id: stamp
+      }))
     );
     if (!verifiedStamps.length) return false;
 
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
 
-    let weight = 0;
-    this.params.stamps.forEach((stamp: any) => {
-      const verifiedStamp = verifiedStamps.find(
-        (s: any) => s.provider === stamp.id
-      );
-
-      // check that the credential is still valid (created before snapshot block and not expired)
-      if (
-        verifiedStamp &&
-        hasValidIssuanceAndExpiration(verifiedStamp.credential, proposalTs)
-      )
-        weight += stamp.weight;
-    });
-
-    return weight >= this.params.min_weight;
+    const operand = this.params.operand || 'AND';
+    const validStamps = verifiedStamps.filter(
+      (stamp) =>
+        hasValidIssuanceAndExpiration(stamp.credential, proposalTs) &&
+        this.params.stamps.includes(stamp.provider)
+    );
+    if (operand === 'AND') {
+      return validStamps.length === this.params.stamps.length;
+    } else if (operand === 'OR') {
+      return validStamps.length > 0;
+    } else {
+      return false;
+    }
   }
 }
