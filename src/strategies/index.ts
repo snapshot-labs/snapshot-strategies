@@ -139,6 +139,7 @@ import * as erc721Enumerable from './erc721-enumerable';
 import * as erc721WithMultiplier from './erc721-with-multiplier';
 import * as protofiErc721TierWeighted from './protofi-erc721-tier-weighted';
 import * as erc721WithTokenId from './erc721-with-tokenid';
+import * as erc721WithTokenIdXP from './erc721-with-tokenid-xp';
 import * as erc721WithTokenIdRangeWeights from './erc721-with-tokenid-range-weights';
 import * as erc721WithTokenIdRangeWeightsSimple from './erc721-with-tokenid-range-weights-simple';
 import * as erc721WithTokenIdWeighted from './erc721-with-tokenid-weighted';
@@ -453,6 +454,7 @@ const strategies = {
   'erc721-with-multiplier': erc721WithMultiplier,
   'protofi-erc721-tier-weighted': protofiErc721TierWeighted,
   'erc721-with-tokenid': erc721WithTokenId,
+  'erc721-with-tokenid-xp': erc721WithTokenIdXP,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple':
     erc721WithTokenIdRangeWeightsSimple,
