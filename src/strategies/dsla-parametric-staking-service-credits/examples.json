@@ -2,10 +2,10 @@
   {
     "name": "Example query of DSLA Staking",
     "strategy": {
-      "name": "dsla",
+      "name": "dsla-parametric-staking-service-credits",
       "params": {
-        "LP_TOKEN": "0xAC104C0438A7bb15C714503537c6FA271FDB284E",
-        "SP_TOKEN": "0xcf4ea46eba95fe3643b6c954d29516d7376913dc",
+        "xDSLA": "0xcf4ea46eba95fe3643b6c954d29516d7376913dc",
+        "xDSLA_LP": "0xAC104C0438A7bb15C714503537c6FA271FDB284E",
         "DSLA": "0x3aFfCCa64c2A6f4e3B6Bd9c64CD2C969EFd1ECBe",
         "StakingSLA": "0x091ee4d4D8FfD00698c003C21F1ba69EA6310241",
         "decimals": 18

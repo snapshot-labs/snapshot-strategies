@@ -281,6 +281,7 @@ import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
@@ -391,9 +392,10 @@ import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
-import * as anchorage from './anchorage';
-import * as dsla from './dsla';
+import * as offchainDelegation from './offchain-delegation';
+import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
 import * as rep3Badges from './rep3-badges';
+import * as marsecosystem from './marsecosystem';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -402,6 +404,7 @@ const strategies = {
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
+  'giveth-gnosis-balance-v2': givethGnosisBalanceV2,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
@@ -789,10 +792,12 @@ const strategies = {
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
-  anchorage,
+  'offchain-delegation': offchainDelegation,
   'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
-  dsla,
-  'rep3-badges': rep3Badges
+  'dsla-parametric-staking-service-credits':
+    dslaParametricStakingServiceCredits,
+  'rep3-badges': rep3Badges,
+  marsecosystem
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
