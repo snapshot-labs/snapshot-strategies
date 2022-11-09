@@ -395,6 +395,7 @@ import * as offchainDelegation from './offchain-delegation';
 import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
 import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
+import * as ari10StakingLocked from './ari10-staking-locked';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -795,7 +796,8 @@ const strategies = {
   'dsla-parametric-staking-service-credits':
     dslaParametricStakingServiceCredits,
   'rep3-badges': rep3Badges,
-  marsecosystem
+  marsecosystem,
+  'ari10-staking-locked': ari10StakingLocked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
