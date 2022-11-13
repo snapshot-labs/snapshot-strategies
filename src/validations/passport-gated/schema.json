@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Validation",
+  "definitions": {
+    "Validation": {
+      "title": "Validation",
+      "type": "object",
+      "properties": {
+        "stamps": {
+          "type": "array",
+          "title": "Stamps",
+          "minItems": 1,
+          "maxItems": 32
+        },
+        "operand": {
+          "type": "string",
+          "title": "Operand",
+          "enum": [
+            "AND",
+            "OR"
+          ]
+        }
+      },
+      "required": [
+        "stamps"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
