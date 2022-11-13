@@ -43,26 +43,30 @@ export async function strategy(
   getTokenSupply.tokens.__args.where.event_.id_in = options.eventIds.map(
     (eventId) => eventId.id
   );
-  const poapWeights = {};
   const supplyResponse = await subgraphRequest(
     POAP_API_ENDPOINT_URL[network],
     getTokenSupply
   );
+  const addressesMap = addresses.reduce((map, address) => {
+    map[address.toLowerCase()] = 0;
+    return map;
+  }, {});
 
   if (supplyResponse && supplyResponse.tokens) {
-    supplyResponse.tokens.forEach((token: any) => {
-      if (!poapWeights[token.owner.id.toLowerCase()])
-        poapWeights[token.owner.id.toLowerCase()] = 0;
-      poapWeights[token.owner.id.toLowerCase()] +=
-        options.eventIds.find((a) => a.id === token.id).weight *
-        parseInt(token.event.tokenCount);
+    const eventIdsWeightMap = options.eventIds.reduce((map, { id, weight }) => {
+      map[id] = weight;
+      return map;
+    }, {});
+
+    supplyResponse.tokens.forEach((token) => {
+      const tokenOwnerId = token.owner.id.toLowerCase();
+
+      if (addressesMap[tokenOwnerId] === undefined) return;
+
+      addressesMap[tokenOwnerId] +=
+        eventIdsWeightMap[token.event.id] * parseInt(token.event.tokenCount);
     });
   }
 
-  return Object.fromEntries(
-    addresses.map((address: any) => [
-      address,
-      poapWeights[address.toLowerCase()] || 0
-    ])
-  );
+  return addressesMap;
 }
