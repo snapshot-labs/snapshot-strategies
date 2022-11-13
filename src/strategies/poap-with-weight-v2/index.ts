@@ -20,6 +20,7 @@ const getTokenSupply = {
       }
     },
     event: {
+      id: true,
       tokenCount: true
     },
     id: true,
