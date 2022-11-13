@@ -1,26 +1,21 @@
-export default async function validate(
-  author: string,
-  space,
-  proposal,
-  options
-): Promise<boolean> {
-  const onlyMembers = options.onlyMembers || space.filters?.onlyMembers;
-  const members = (space.members || []).map((address) => address.toLowerCase());
-  const { propEntryStart = 0, propEntryEnd = 0 } = options;
+import Validation from '../validation';
 
-  if (!propEntryStart || !propEntryEnd || propEntryStart >= propEntryEnd)
-    return false;
+export default class extends Validation {
+  public id = 'timeperiod';
+  public github = 'stevef';
+  public version = '0.2.0';
 
-  if (members.includes(author.toLowerCase())) return true;
+  async validate(): Promise<boolean> {
+    const { propEntryStart = 0, propEntryEnd = 0 } = this.params;
 
-  if (onlyMembers) return false;
+    if (!propEntryStart || !propEntryEnd || propEntryStart >= propEntryEnd)
+      return false;
 
-  const now = new Date().getTime();
-  const startTime = new Date(propEntryStart).getTime();
-  const endTime = new Date(propEntryEnd).getTime();
+    const now = new Date().getTime();
+    const startTime = new Date(propEntryStart).getTime();
+    const endTime = new Date(propEntryEnd).getTime();
 
-  // Only allow proposals being submitted in this time window.
-  if (now >= startTime && now <= endTime) return true;
-
-  return false;
+    // Only allow proposals being submitted in this time window.
+    return now >= startTime && now <= endTime;
+  }
 }

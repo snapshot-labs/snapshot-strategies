@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example of a passport proposal validation",
+    "author": "0x24F15402C6Bb870554489b2fd2049A85d75B982f",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "stamps": [
+        { "id": "Ens", "weight": 2 },
+        { "id": "Twitter", "weight": 0.5 },
+        { "id": "GitHub", "weight": 0.5 },
+        { "id": "POAP", "weight": 2 },
+        { "id": "SnapshotVotesProvider", "weight": 2 }
+      ],
+      "min_weight": 1
+    }
+  }
+]

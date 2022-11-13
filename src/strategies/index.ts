@@ -18,6 +18,7 @@ import * as vDfynVault from './balance-in-vdfyn-vault';
 import * as ensDomainsOwned from './ens-domains-owned';
 import * as ensReverseRecord from './ens-reverse-record';
 import * as ens10kClub from './ens-10k-club';
+import * as ensAllClubDigits from './ens-all-club-digits';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
@@ -36,6 +37,7 @@ import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
+import * as linearVestingPower from './linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
@@ -205,6 +207,7 @@ import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
 import * as sUmamiHolders from './sumami-holders';
+import * as singleStakingAutoCompoundBalanceOf from './single-staking-autocompound-balanceof';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprStaking from './hopr-staking';
@@ -278,6 +281,7 @@ import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
@@ -363,6 +367,7 @@ import * as erc721PairWeights from './erc721-pair-weights';
 import * as harmonyStaking from './harmony-staking';
 import * as echelonCachedErc1155Decay from './echelon-cached-erc1155-decay';
 import * as orcaPod from './orca-pod';
+import * as metropolisPod from './metropolis-pod';
 import * as proxyProtocolErc20BalanceOf from './proxyprotocol-erc20-balance-of';
 import * as proxyProtocolErc721BalanceOf from './proxyprotocol-erc721-balance-of';
 import * as proxyProtocolErc1155BalanceOf from './proxyprotocol-erc1155-balance-of';
@@ -379,7 +384,18 @@ import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cach
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+import * as posichainStaking from './posichain-staking';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
+import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
+import * as sdVoteBoost from './sd-vote-boost';
+import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
+import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
+import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
+import * as spreadsheet from './spreadsheet';
+import * as offchainDelegation from './offchain-delegation';
+import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
+import * as rep3Badges from './rep3-badges';
+import * as marsecosystem from './marsecosystem';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -388,6 +404,7 @@ const strategies = {
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
+  'giveth-gnosis-balance-v2': givethGnosisBalanceV2,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
@@ -408,6 +425,7 @@ const strategies = {
   'ens-domains-owned': ensDomainsOwned,
   'ens-reverse-record': ensReverseRecord,
   'ens-10k-club': ens10kClub,
+  'ens-all-club-digits': ensAllClubDigits,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
   'erc20-votes': erc20Votes,
@@ -590,6 +608,7 @@ const strategies = {
   'flexa-capacity-staking': flexaCapacityStaking,
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
+  'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-staking': hoprStaking,
   'hopr-staking-s2': hoprStakingS2,
@@ -727,6 +746,7 @@ const strategies = {
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  'linear-vesting-power': linearVestingPower,
   apeswap,
   h2o,
   dopamine,
@@ -747,9 +767,11 @@ const strategies = {
   'echelon-cached-erc1155-decay': echelonCachedErc1155Decay,
   'erc3525-flexible-voucher': erc3525FlexibleVoucher,
   'orca-pod': orcaPod,
+  'metropolis-pod': metropolisPod,
   'proxyprotocol-erc20-balance-of': proxyProtocolErc20BalanceOf,
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
+  'posichain-staking': posichainStaking,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
@@ -763,7 +785,19 @@ const strategies = {
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
-  'erc20-tokens-per-uni': erc20TokensPerUni
+  'erc20-tokens-per-uni': erc20TokensPerUni,
+  'bancor-standard-rewards-underlying-balance':
+    bancorStandardRewardsUnderlyingBalance,
+  'sd-vote-boost': sdVoteBoost,
+  'sd-vote-boost-twavp': sdVoteBoostTWAVP,
+  'clqdr-balance-with-lp': clqdrBalanceWithLp,
+  spreadsheet,
+  'offchain-delegation': offchainDelegation,
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
+  'dsla-parametric-staking-service-credits':
+    dslaParametricStakingServiceCredits,
+  'rep3-badges': rep3Badges,
+  marsecosystem
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

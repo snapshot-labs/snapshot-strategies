@@ -1,31 +1,12 @@
 [
   {
     "name": "Example of Nouns Proposition Power proposal validation",
-    "validation": {
-      "name": "nouns",
-      "params": {}
-    },
+    "author": "0x03CD30Ab7b6eFaDfdc5D49Ec2B83DDD6a898e054",
+    "space": "nouns.eth",
     "network": "4",
-    "userAddress": "0x03CD30Ab7b6eFaDfdc5D49Ec2B83DDD6a898e054",
-    "space": {
-      "name": "Nouns",
-      "skin": "nouns",
-      "admins": [
-        "0xe6bcaacdca149114446612255cc4721bf7261b5b",
-        "0xC4D2f3231879A26A2cAB5F1783D8a65f6B7191bE"
-      ],
-      "avatar": "ipfs://QmRKdsssCU3EmkN52ZaxgKvDyPFUR5DdPvnKxwyLRncKS",
-      "domain": "signal.nouns.com",
-      "github": "nouns",
-      "symbol": "NOUNS",
-      "filters": {
-        "minScore": 1,
-        "onlyMembers": false
-      },
-      "members": [],
-      "network": "4",
-      "plugins": {},
-      "twitter": "NounishNounlet",
+    "snapshot": "latest",
+    "params": {
+      "minScore": 1,
       "strategies": [
         {
           "name": "erc20-balance-of",

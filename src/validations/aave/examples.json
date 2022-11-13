@@ -1,31 +1,12 @@
 [
   {
     "name": "Example of Aave Proposition Power proposal validation",
-    "validation": {
-      "name": "aave",
-      "params": {}
-    },
+    "author": "0x5BC928BF0DAb1e4A2ddd9e347b0F22e88026D76c",
+    "space": "aave.eth",
     "network": "1",
-    "userAddress": "0x5BC928BF0DAb1e4A2ddd9e347b0F22e88026D76c",
-    "space": {
-      "name": "Aave",
-      "skin": "aave",
-      "admins": [
-        "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
-        "0xc8E0345596D7196941E61D3aB607E57Fe61F85E7"
-      ],
-      "avatar": "ipfs://QmRKgfxSiCU3EmkN52ZaxgKvDyPFUR5DdPvnKxwyLRncKS",
-      "domain": "signal.aave.com",
-      "github": "aave",
-      "symbol": "AAVE",
-      "filters": {
-        "minScore": 1,
-        "onlyMembers": false
-      },
-      "members": [],
-      "network": "1",
-      "plugins": {},
-      "twitter": "AaveAave",
+    "snapshot": "latest",
+    "params": {
+      "minScore": 1,
       "strategies": [
         {
           "name": "erc20-balance-of",
