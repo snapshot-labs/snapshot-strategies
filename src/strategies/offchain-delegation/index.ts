@@ -6,9 +6,9 @@ export const author = 'bonustrack';
 export const version = '0.1.0';
 export const dependOnOtherAddress = true;
 
-const SPREADSHEET_ID =
+const DEFAULT_SPREADSHEET_ID =
   '2PACX-1vQsn8e6KQOwqfHoA4rWDke63jTwfcshHxcZwOzVharOoAARWy6aX0TvN-uzzgtmAn3F5vDbuDKnk5Jw';
-const GID = '506976679';
+const DEFAULT_GID = '506976679';
 
 function csvToJson(csv) {
   const lines = csv.split('\n');
@@ -32,12 +32,12 @@ export async function strategy(
 ) {
   const block = await provider.getBlock(snapshot);
   const ts = block.timestamp;
-
+  const SPREADSHEET_ID = options.sheetId ?? DEFAULT_SPREADSHEET_ID;
+  const GID = options.gid ?? DEFAULT_GID;
   const url = `https://docs.google.com/spreadsheets/d/e/${SPREADSHEET_ID}/pub?gid=${GID}&single=true&output=csv`;
   const res = await fetch(url);
   const text = await res.text();
   const csv = csvToJson(text) || [];
-
   const delegations = Object.fromEntries(
     csv
       .map((item) => ({
@@ -46,12 +46,7 @@ export async function strategy(
         delegate: getAddress(item.delegate),
         ts: parseInt(item.timestamp || '0')
       }))
-      .filter(
-        (item) =>
-          item.ts <= ts &&
-          item.space === space &&
-          !addresses.includes(item.delegator)
-      )
+      .filter((item) => item.ts <= ts && !addresses.includes(item.delegator))
       .sort((a, b) => a.ts - b.ts)
       .map((item) => [item.delegator, item.delegate])
   );

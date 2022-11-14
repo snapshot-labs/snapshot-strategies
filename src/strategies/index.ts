@@ -37,6 +37,7 @@ import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
+import * as linearVestingPower from './linear-vesting-power';
 import * as thresholds from './thresholds';
 import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
@@ -151,6 +152,7 @@ import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
 import * as decentralandWearableRariry from './decentraland-wearable-rarity';
+import * as decentralandRentalLessors from './decentraland-rental-lessors';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
 import * as xrc20BalanceOf from './xrc20-balance-of';
@@ -279,6 +281,7 @@ import * as balancerPoolid from './balancer-poolid';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethXdaiBalance from './giveth-xdai-balance';
+import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
@@ -390,7 +393,10 @@ import * as sdVoteBoostTWAVP from './sd-vote-boost-twavp';
 import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
-import * as anchorage from './anchorage';
+import * as offchainDelegation from './offchain-delegation';
+import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
+import * as rep3Badges from './rep3-badges';
+import * as marsecosystem from './marsecosystem';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -399,6 +405,7 @@ const strategies = {
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
+  'giveth-gnosis-balance-v2': givethGnosisBalanceV2,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
@@ -549,6 +556,7 @@ const strategies = {
   liftkitchen,
   'decentraland-estate-size': decentralandEstateSize,
   'decentraland-wearable-rarity': decentralandWearableRariry,
+  'decentraland-rental-lessors': decentralandRentalLessors,
   brightid,
   'inverse-xinv': inverseXINV,
   modefi,
@@ -739,6 +747,7 @@ const strategies = {
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
   'solv-voucher-claimable': solvVoucherClaimable,
   'balance-of-with-linear-vesting-power': balanceOfWithLinearVestingPower,
+  'linear-vesting-power': linearVestingPower,
   apeswap,
   h2o,
   dopamine,
@@ -785,8 +794,12 @@ const strategies = {
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
-  anchorage,
-  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc
+  'offchain-delegation': offchainDelegation,
+  'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
+  'dsla-parametric-staking-service-credits':
+    dslaParametricStakingServiceCredits,
+  'rep3-badges': rep3Badges,
+  marsecosystem
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
