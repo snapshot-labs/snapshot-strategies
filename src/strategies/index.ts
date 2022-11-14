@@ -385,6 +385,7 @@ import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as posichainStaking from './posichain-staking';
+import * as posichainTotalBalance from './posichain-total-balance';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
 import * as sdVoteBoost from './sd-vote-boost';
@@ -772,6 +773,7 @@ const strategies = {
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
   'posichain-staking': posichainStaking,
+  'posichain-total-balance': posichainTotalBalance,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
