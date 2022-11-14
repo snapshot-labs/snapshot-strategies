@@ -4,7 +4,7 @@ import { multicall } from '../../utils';
 export const author = 'drgorillamd';
 export const version = '0.2.0';
 
-const JBTicketBooth = {
+const JBTokenStore = {
   1: '0xee2eBCcB7CDb34a8A822b589F9E8427C24351bfc',
   2: '0xCBB8e16d998161AdB20465830107ca298995f371',
   3: '0x6FA996581D7edaABE62C15eaE19fEeD4F1DdDfE7'
@@ -26,7 +26,7 @@ export async function strategy(
     provider,
     abi,
     addresses.map((address: any) => [
-      JBTicketBooth[options.protocolVersion],
+      JBTokenStore[options.protocolVersion],
       'balanceOf',
       [address, options.projectId]
     ]),
