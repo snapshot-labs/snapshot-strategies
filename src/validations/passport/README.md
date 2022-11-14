@@ -1,1 +1,0 @@
-# Gitcoin passport validation

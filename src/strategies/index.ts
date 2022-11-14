@@ -152,6 +152,7 @@ import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
 import * as decentralandWearableRariry from './decentraland-wearable-rarity';
+import * as decentralandRentalLessors from './decentraland-rental-lessors';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
 import * as xrc20BalanceOf from './xrc20-balance-of';
@@ -385,6 +386,7 @@ import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as posichainStaking from './posichain-staking';
+import * as posichainTotalBalance from './posichain-total-balance';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
 import * as sdVoteBoost from './sd-vote-boost';
@@ -555,6 +557,7 @@ const strategies = {
   liftkitchen,
   'decentraland-estate-size': decentralandEstateSize,
   'decentraland-wearable-rarity': decentralandWearableRariry,
+  'decentraland-rental-lessors': decentralandRentalLessors,
   brightid,
   'inverse-xinv': inverseXINV,
   modefi,
@@ -772,6 +775,7 @@ const strategies = {
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
   'posichain-staking': posichainStaking,
+  'posichain-total-balance': posichainTotalBalance,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
