@@ -39,33 +39,70 @@ export async function strategy(
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   snapshot
 ) {
-  // Set eventIds as arguments for GQL query
-  getTokenSupply.tokens.__args.where.event_.id_in = options.eventIds.map(
-    (eventId) => eventId.id
-  );
-  const supplyResponse = await subgraphRequest(
-    POAP_API_ENDPOINT_URL[network],
-    getTokenSupply
-  );
+  if (options.eventIds.length > EVENT_IDS_LIMIT) {
+    throw new Error(`Max number (${EVENT_IDS_LIMIT}) of event ids exceeded`);
+  }
+
+  const eventIds = options.eventIds.map((eventId) => eventId.id);
   const addressesMap = addresses.reduce((map, address) => {
     map[address.toLowerCase()] = 0;
     return map;
   }, {});
 
-  if (supplyResponse && supplyResponse.tokens) {
-    const eventIdsWeightMap = options.eventIds.reduce((map, { id, weight }) => {
-      map[id] = weight;
-      return map;
-    }, {});
+  const query = {
+    tokens: {
+      __args: {
+        where: {
+          event_: {
+            id_in: eventIds
+          }
+        },
+        first: MAX_TOKENS_PER_PAGE,
+        skip: 0
+      },
+      event: {
+        id: true,
+        tokenCount: true
+      },
+      id: true,
+      owner: {
+        id: true
+      }
+    }
+  };
 
-    supplyResponse.tokens.forEach((token) => {
-      const tokenOwnerId = token.owner.id.toLowerCase();
+  while (true) {
+    const supplyResponse = await subgraphRequest(
+      POAP_API_ENDPOINT_URL[network],
+      query
+    );
 
-      if (addressesMap[tokenOwnerId] === undefined) return;
+    if (supplyResponse && supplyResponse.tokens) {
+      const eventIdsWeightMap = options.eventIds.reduce(
+        (map, { id, weight }) => {
+          map[id] = weight;
+          return map;
+        },
+        {}
+      );
 
-      addressesMap[tokenOwnerId] +=
-        eventIdsWeightMap[token.event.id] * parseInt(token.event.tokenCount);
-    });
+      supplyResponse.tokens.forEach((token) => {
+        const tokenOwnerId = token.owner.id.toLowerCase();
+
+        if (addressesMap[tokenOwnerId] === undefined) return;
+
+        addressesMap[tokenOwnerId] +=
+          eventIdsWeightMap[token.event.id] * parseInt(token.event.tokenCount);
+      });
+    }
+
+    // if the number of tokens received is less than the max per page,
+    // then we have received all the tokens and can stop making requests
+    if (supplyResponse?.tokens?.length < MAX_TOKENS_PER_PAGE) {
+      break;
+    }
+
+    query.tokens.__args.skip += MAX_TOKENS_PER_PAGE;
   }
 
   return addressesMap;
