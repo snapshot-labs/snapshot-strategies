@@ -26,7 +26,9 @@ export async function strategy(
     provider,
     abi,
     addresses.map((address: any) => [
-      options.protocolVersion ? JBTokenStore[options.protocolVersion] : JBTokenStore['1'],
+      options.protocolVersion
+        ? JBTokenStore[options.protocolVersion]
+        : JBTokenStore['3'],
       'balanceOf',
       [address, options.projectId]
     ]),
