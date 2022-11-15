@@ -4,7 +4,7 @@ import { mergeBalanceMaps } from './commons';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'luzzif';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
   space,
