@@ -9,26 +9,9 @@ const POAP_API_ENDPOINT_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap',
   '100': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai'
 };
-
-const getTokenSupply = {
-  tokens: {
-    __args: {
-      where: {
-        event_: {
-          id_in: undefined
-        }
-      }
-    },
-    event: {
-      id: true,
-      tokenCount: true
-    },
-    id: true,
-    owner: {
-      id: true
-    }
-  }
-};
+// subgraph query in filter has max length of 500
+const EVENT_IDS_LIMIT = 500;
+const MAX_TOKENS_PER_PAGE = 1000;
 
 export async function strategy(
   space,
