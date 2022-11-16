@@ -38,7 +38,7 @@ ts-node test/scores.ts
 
 ### Checklist for adding a new strategy
 
-Here is a simple checklist to look when reviewing a PR for a new strategy:
+Here is a simple checklist to look at when reviewing a PR for a new strategy:
 
 #### Overview
 
@@ -65,7 +65,7 @@ Here is a simple checklist to look when reviewing a PR for a new strategy:
 
 #### Recommended
 
-- Add a README.md file that describe the strategy and provide an example of parameters.
+- Add a README.md file that describes the strategy and provides an example of parameters.
 - Use string ABI instead of object.
 
 ### License
