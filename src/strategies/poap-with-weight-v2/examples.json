@@ -4,7 +4,6 @@
     "strategy": {
       "name": "poap-with-weight-v2",
       "params": {
-        "network": "100",
         "symbol": "POAP",
         "eventIds": [
           { "id": "1213", "weight": 10 },
