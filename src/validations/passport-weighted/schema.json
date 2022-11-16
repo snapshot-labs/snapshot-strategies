@@ -9,6 +9,7 @@
         "stamps": {
           "type": "array",
           "title": "Stamps",
+          "uniqueItems": true,
           "minItems": 1,
           "maxItems": 32,
           "items": {
