@@ -1,6 +1,6 @@
+import snapshotjs from '@snapshot-labs/snapshot.js';
 import snapshot from '../src';
 import examples from '../src/validations/passport-gated/examples.json';
-import snapshotjs from '@snapshot-labs/snapshot.js';
 
 const [example] = examples;
 const id = 'passport-gated';
@@ -11,7 +11,7 @@ describe('validation', () => {
       example.author,
       example.space,
       example.network,
-      'latest',
+      example.snapshot,
       example.params
     );
     expect(await validation.validate()).toBe(true);
