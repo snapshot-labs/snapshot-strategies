@@ -4,7 +4,6 @@
     "strategy": {
       "name": "poap-with-weight",
       "params": {
-        "network": "100",
         "symbol": "POAP",
         "tokenIds": [
           { "id": "100001", "weight": 100 },
