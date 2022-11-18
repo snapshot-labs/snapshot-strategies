@@ -27,7 +27,7 @@
             },
             {
               "const": "OR",
-              "title": "validation.passport-gated.operator.enum.or"
+              "title": "Require at least one stamp"
             }
           ]
         }
