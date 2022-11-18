@@ -20,7 +20,7 @@
         "operator": {
           "type": "string",
           "title": "Select approval operator",
-          "description": "validation.passport-gated.operator.description",
+          "description": "Control how many or which stamps are required to vote.",
           "anyOf": [{
               "const": "AND",
               "title": "validation.passport-gated.operator.enum.and"
