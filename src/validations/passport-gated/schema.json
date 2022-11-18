@@ -19,7 +19,7 @@
         },
         "operator": {
           "type": "string",
-          "title": "validation.passport-gated.operator.title",
+          "title": "Select approval operator",
           "description": "validation.passport-gated.operator.description",
           "anyOf": [{
               "const": "AND",
