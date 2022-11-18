@@ -28,15 +28,15 @@ export default class extends Validation {
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
 
-    const operand = this.params.operand || 'AND';
+    const operator = this.params.operator || 'AND';
     const validStamps = verifiedStamps.filter(
       (stamp) =>
         hasValidIssuanceAndExpiration(stamp.credential, proposalTs) &&
         this.params.stamps.includes(stamp.provider)
     );
-    if (operand === 'AND') {
+    if (operator === 'AND') {
       return validStamps.length === this.params.stamps.length;
-    } else if (operand === 'OR') {
+    } else if (operator === 'OR') {
       return validStamps.length > 0;
     } else {
       return false;

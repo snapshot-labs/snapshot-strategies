@@ -9,7 +9,7 @@
       "stamps": [
         { "id": "Ens", "weight": 2 },
         { "id": "Twitter", "weight": 0.5 },
-        { "id": "GitHub", "weight": 0.5 },
+        { "id": "Github", "weight": 0.5 },
         { "id": "POAP", "weight": 2 },
         { "id": "SnapshotVotesProvider", "weight": 2 }
       ],

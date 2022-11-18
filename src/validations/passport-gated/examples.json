@@ -9,11 +9,11 @@
       "stamps": [
         "Ens",
         "Twitter",
-        "GitHub",
+        "Github",
         "POAP",
         "SnapshotVotesProvider"
       ],
-      "operand": "OR"
+      "operator": "OR"
     }
   }
 ]
