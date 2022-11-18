@@ -399,6 +399,7 @@ import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-
 import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
 import * as multichainSerie from './multichain-serie';
+import * as ctsiStaking from './ctsi-staking';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -803,7 +804,8 @@ const strategies = {
     dslaParametricStakingServiceCredits,
   'rep3-badges': rep3Badges,
   marsecosystem,
-  'multichain-serie': multichainSerie
+  'multichain-serie': multichainSerie,
+  'ctsi-staking': ctsiStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
