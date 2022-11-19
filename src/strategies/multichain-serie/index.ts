@@ -12,7 +12,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const promises: any = [];
+  const results: any = [];
   const blocks = await getSnapshots(
     network,
     snapshot,
@@ -29,8 +29,8 @@ export async function strategy(
       continue;
     }
 
-    promises.push(
-      strategies[strategy.name].strategy(
+    results.push(
+      await strategies[strategy.name].strategy(
         space,
         strategy.network,
         getProvider(strategy.network),
@@ -39,12 +39,6 @@ export async function strategy(
         blocks[strategy.network]
       )
     );
-  }
-
-  const results: any = [];
-  for (const promise of promises) {
-    const result = await promise;
-    results.push(result);
   }
 
   return results.reduce((finalResults: any, strategyResult: any) => {
