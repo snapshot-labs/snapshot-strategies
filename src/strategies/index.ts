@@ -152,6 +152,7 @@ import * as liftkitchen from './liftkitchen';
 import * as coordinape from './coordinape';
 import * as decentralandEstateSize from './decentraland-estate-size';
 import * as decentralandWearableRariry from './decentraland-wearable-rarity';
+import * as decentralandRentalLessors from './decentraland-rental-lessors';
 import * as iotexBalance from './iotex-balance';
 import * as iotexStakedBalance from './iotex-staked-balance';
 import * as xrc20BalanceOf from './xrc20-balance-of';
@@ -185,6 +186,7 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
 import * as poapWithWeight from './poap-with-weight';
+import * as poapWithWeightV2 from './poap-with-weight-v2';
 import * as uniswapV3 from './uniswap-v3';
 import * as uniswapV3Staking from './uniswap-v3-staking';
 import * as l2Deversifi from './l2-deversifi';
@@ -384,6 +386,7 @@ import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as posichainStaking from './posichain-staking';
+import * as posichainTotalBalance from './posichain-total-balance';
 import * as erc20TokensPerUni from './erc20-tokens-per-uni';
 import * as bancorStandardRewardsUnderlyingBalance from './bancor-standard-rewards-underlying-balance';
 import * as sdVoteBoost from './sd-vote-boost';
@@ -396,6 +399,8 @@ import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-
 import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
 import * as ari10StakingLocked from './ari10-staking-locked';
+import * as multichainSerie from './multichain-serie';
+import * as ctsiStaking from './ctsi-staking';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -555,6 +560,7 @@ const strategies = {
   liftkitchen,
   'decentraland-estate-size': decentralandEstateSize,
   'decentraland-wearable-rarity': decentralandWearableRariry,
+  'decentraland-rental-lessors': decentralandRentalLessors,
   brightid,
   'inverse-xinv': inverseXINV,
   modefi,
@@ -589,6 +595,7 @@ const strategies = {
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
   'poap-with-weight': poapWithWeight,
+  'poap-with-weight-v2': poapWithWeightV2,
   'uniswap-v3': uniswapV3,
   'uniswap-v3-staking': uniswapV3Staking,
   'l2-deversifi': l2Deversifi,
@@ -771,6 +778,7 @@ const strategies = {
   'proxyprotocol-erc721-balance-of': proxyProtocolErc721BalanceOf,
   'proxyprotocol-erc1155-balance-of': proxyProtocolErc1155BalanceOf,
   'posichain-staking': posichainStaking,
+  'posichain-total-balance': posichainTotalBalance,
   'arrow-vesting': arrowVesting,
   'tutellus-protocol': tutellusProtocol,
   'fight-club': fightClub,
@@ -797,7 +805,9 @@ const strategies = {
     dslaParametricStakingServiceCredits,
   'rep3-badges': rep3Badges,
   marsecosystem,
-  'ari10-staking-locked': ari10StakingLocked
+  'ari10-staking-locked': ari10StakingLocked,
+  'multichain-serie': multichainSerie,
+  'ctsi-staking': ctsiStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
