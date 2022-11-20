@@ -37,7 +37,7 @@ export async function strategy(
           event_: {
             id_in: eventIds
           },
-          owner_in: addresses.map(a => a.toLowerCase())
+          owner_in: addresses.map((a) => a.toLowerCase())
         },
         first: MAX_TOKENS_PER_PAGE,
         skip: 0
