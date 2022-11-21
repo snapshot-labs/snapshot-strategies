@@ -1,0 +1,46 @@
+[
+  {
+    "name": "positive score (400)",
+    "strategies": [
+      {
+        "name": "poap-with-weight-v2",
+        "params": {
+          "symbol": "POAP",
+          "eventIds": [
+            {
+              "id": "83779",
+              "weight": 100
+            }
+          ]
+        }
+      }
+    ],
+    "network": "100",
+    "address": "0xef15ba5684478e591f652333a49f314a5bbbda6a",
+    "space": "agreene.eth",
+    "snapshot": 25082528,
+    "expectedVp": 400
+  },
+  {
+    "name": "0 score",
+    "strategies": [
+      {
+        "name": "poap-with-weight-v2",
+        "params": {
+          "symbol": "POAP",
+          "eventIds": [
+            {
+              "id": "83779",
+              "weight": 100
+            }
+          ]
+        }
+      }
+    ],
+    "network": "100",
+    "address": "0xa0186AC28413Cb48De7e78213143386C9b8a43e5",
+    "space": "agreene.eth",
+    "snapshot": 25082528,
+    "expectedVp": 0
+  }
+]
