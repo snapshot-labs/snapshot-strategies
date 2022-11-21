@@ -106,12 +106,10 @@ describe.each(examples)(
       );
     });
 
-    it('Returned addresses should be either same case as input addresses or checksum addresses', () => {
+    it('Returned addresses should be checksum addresses', () => {
       expect(
         Object.keys(scores[0]).every(
-          (address) =>
-            example.addresses.includes(address) ||
-            getAddress(address) === address
+          (address) => getAddress(address) === address
         )
       ).toBe(true);
     });
