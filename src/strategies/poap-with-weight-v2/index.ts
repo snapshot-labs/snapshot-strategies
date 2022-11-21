@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'gawainb';
@@ -26,7 +27,7 @@ export async function strategy(
 
   const eventIds = options.eventIds.map((eventId) => eventId.id);
   const addressesMap = addresses.reduce((map, address) => {
-    map[address.toLowerCase()] = 0;
+    map[getAddress(address)] = 0;
     return map;
   }, {});
 
@@ -69,7 +70,7 @@ export async function strategy(
       );
 
       supplyResponse.tokens.forEach((token) => {
-        const tokenOwnerId = token.owner.id.toLowerCase();
+        const tokenOwnerId = getAddress(token.owner.id);
 
         if (addressesMap[tokenOwnerId] === undefined) return;
 
