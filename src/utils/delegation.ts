@@ -1,14 +1,20 @@
 import { getAddress } from '@ethersproject/address';
 import { getDelegatesBySpace } from '../utils';
 
-export async function getDelegations(space, network, addresses, snapshot) {
+// delegations with overrides
+export async function getDelegations(
+  space,
+  network,
+  addresses,
+  snapshot,
+  allowOverride = true
+) {
   const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
   const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
-
   const delegations = delegatesBySpace.filter(
     (delegation: any) =>
       addressesLc.includes(delegation.delegate) &&
-      !addressesLc.includes(delegation.delegator)
+      (allowOverride ? !addressesLc.includes(delegation.delegator) : true)
   );
   if (!delegations) return {};
 
