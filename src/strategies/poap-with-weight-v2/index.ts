@@ -1,5 +1,4 @@
 import { getAddress } from '@ethersproject/address';
-
 import { subgraphRequest } from '../../utils';
 
 export const author = 'gawainb';
