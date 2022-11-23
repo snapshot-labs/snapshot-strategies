@@ -13,6 +13,7 @@ The sub strategies defined in params are used to delegate vote from one address 
 | ----------- | ----------- |
 | strategies      | list of sub strategies to calculate voting power based on delegation      |
 | delegationSpace (optional)   | Get delegations of a particular space (by default it take delegations of current space)  |
+| delegationNetwork (optional)   | Get delegations of a particular network (by default it take delegations of current network)  |
 
 Here is an example of parameters:
 
