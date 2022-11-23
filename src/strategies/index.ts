@@ -26,6 +26,7 @@ import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
 import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
+import * as erc20BalanceOfWithDelegation from './erc20-balance-of-with-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as ethalendBalanceOf from './ethalend-balance-of';
@@ -89,6 +90,7 @@ import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
+import * as withDelegation from './with-delegation';
 import * as ticket from './ticket';
 import * as work from './work';
 import * as ticketValidity from './ticket-validity';
@@ -441,6 +443,7 @@ const strategies = {
   'erc20-balance-of-coeff': erc20BalanceOfCoeff,
   'erc20-with-balance': erc20WithBalance,
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
+  'erc20-balance-of-with-delegation': erc20BalanceOfWithDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'minto-balance-of-all': mintoBalanceAll,
@@ -512,6 +515,7 @@ const strategies = {
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
+  'with-delegation': withDelegation,
   ticket,
   work,
   'ticket-validity': ticketValidity,
