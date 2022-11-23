@@ -1,6 +1,6 @@
 import { getAddress } from '@ethersproject/address';
 import { getDelegationsData } from '../../utils/delegation';
-import { getScoresDirect } from '../../utils';
+import { getScoresDirect, getSnapshots } from '../../utils';
 
 export const author = 'snapshot-labs';
 export const version = '0.1.0';
@@ -15,11 +15,20 @@ export async function strategy(
 ) {
   addresses = addresses.map(getAddress);
   const delegationSpace = options.delegationSpace || space;
+  const delegationNetwork = options.delegationNetwork || network;
+  let delegationSnapshot = snapshot;
+  if (delegationNetwork !== network) {
+    const snapshots = await getSnapshots(network, snapshot, provider, [
+      delegationNetwork
+    ]);
+    delegationSnapshot = snapshots[delegationNetwork];
+  }
+
   const delegationsData = await getDelegationsData(
     delegationSpace,
-    network,
+    delegationNetwork,
     addresses,
-    snapshot
+    delegationSnapshot
   );
   const delegations = delegationsData.delegations;
 
