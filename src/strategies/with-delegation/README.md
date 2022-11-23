@@ -1,7 +1,11 @@
 # with-delegation
 
 If you want to delegate your voting power to another wallet address,
-Unlike `delegation` strategy, delegator can't take back their voting power from the delegatee.
+Unlike `delegation` strategy, delegator can't take back their voting power from the delegatee. and also delegate's voting power is added up. so no need to have an additional strategy
+
+```TEXT
+Total VP = delegated VP + own VP (if not delegated to anyone)
+```
 
 The sub strategies defined in params are used to delegate vote from one address to another.
 
