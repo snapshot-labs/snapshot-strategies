@@ -1,23 +1,48 @@
 import DIDKit from '@spruceid/didkit-wasm-node/didkit_wasm';
 import { Tulons } from 'tulons';
+import fetch from 'cross-fetch';
 
 const CERAMIC_URL = 'https://ceramic.passport-iam.gitcoin.co';
 const CERAMIC_NETWORK_ID = 1;
+const CERAMIC_GITCOIN_PASSPORT_STREAM_ID =
+  'kjzl6cwe1jw148h1e14jb5fkf55xmqhmyorp29r9cq356c7ou74ulowf8czjlzs';
+const IAM_ISSUER_DID =
+  'did:key:z6MkghvGHLobLEdj1bgRLhS4LPGJAvbMA1tn2zcRyqmYU5LC';
 
 export const getPassport = async (address) => {
-  // Ceramic connection details
-
-  // Ceramic definition ids on the Ceramic account model
-  const CERAMIC_GITCOIN_PASSPORT_STREAM_ID =
-    'kjzl6cwe1jw148h1e14jb5fkf55xmqhmyorp29r9cq356c7ou74ulowf8czjlzs';
   const tulons = new Tulons(CERAMIC_URL, CERAMIC_NETWORK_ID);
-
   // Ceramic data is stored as address -> DID -> Genesis/IDX Stream -> Data Stream
   const { streams } = await tulons.getGenesis(address);
   if (streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID]) {
-    return await tulons.getHydrated(
-      await tulons.getStream(streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID])
+    const passport: any = await tulons.getStream(
+      streams[CERAMIC_GITCOIN_PASSPORT_STREAM_ID]
     );
+    const streamIDs = passport.stamps.map((ceramicStamp) => {
+      return ceramicStamp.credential;
+    });
+    // `stamps` is stored as ceramic URLs - must load actual VC data from URL
+    const stampsToLoad = passport.stamps.map(async (_stamp, idx) => {
+      const streamUrl = `${CERAMIC_URL}/api/v0/streams/${streamIDs[
+        idx
+      ].substring(10)}`;
+      const response = await fetch(streamUrl);
+      const loadedCred = await response.json();
+      const { provider } = _stamp;
+
+      return {
+        provider,
+        credential: loadedCred.state.content,
+        streamId: streamIDs[idx]
+      };
+    });
+    // load all the stamps (unlike gitcoin UI, not ignoring any failing stamps)
+    const stamps = await Promise.all(stampsToLoad);
+
+    return {
+      issuanceDate: new Date(passport.issuanceDate),
+      expiryDate: new Date(passport.expiryDate),
+      stamps
+    };
   }
   return false;
 };
@@ -63,23 +88,19 @@ const verifyStamp = async (stamp, address) => {
 };
 
 const verifyCredential = async (credential) => {
-  const { expirationDate, proof } = credential;
-
-  // check that the credential is still valid (not expired)
-  if (new Date(expirationDate) > new Date()) {
-    try {
-      const verify = JSON.parse(
-        await DIDKit.verifyCredential(
-          JSON.stringify(credential),
-          `{"proofPurpose":"${proof.proofPurpose}"}`
-        )
-      ) as { checks: string[]; warnings: string[]; errors: string[] };
-      return verify.errors.length === 0;
-    } catch (e) {
-      return false;
-    }
+  const { proof } = credential;
+  try {
+    const verify = JSON.parse(
+      await DIDKit.verifyCredential(
+        JSON.stringify(credential),
+        `{"proofPurpose":"${proof.proofPurpose}"}`
+      )
+    ) as { checks: string[]; warnings: string[]; errors: string[] };
+    const has_correct_issuer = credential.issuer === IAM_ISSUER_DID;
+    return verify.errors.length === 0 && has_correct_issuer;
+  } catch (e) {
+    return false;
   }
-  return false;
 };
 
 export const hasValidIssuanceAndExpiration = (credential, proposalTs) => {
