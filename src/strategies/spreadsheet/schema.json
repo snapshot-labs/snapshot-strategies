@@ -12,13 +12,18 @@
           "examples": ["e.g. UNI"],
           "maxLength": 16
         },
-        "id": {
+        "sheetId": {
           "type": "string",
           "title": "Spreadsheet id",
           "examples": ["e.g. 2PACX-1vTmam7vShzrscND..."]
+        },
+        "gid": {
+          "type": "string",
+          "title": "gid",
+          "examples": ["0"]
         }
       },
-      "required": ["id"],
+      "required": ["sheetId"],
       "additionalProperties": false
     }
   }
