@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-delegation-with-blacklist",
+      "params": {
+        "symbol": "veBAL",
+        "address": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+        "decimals": 18,
+        "delegationSpace": "balancer.eth"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfF052381092420B7F24cc97FDEd9C0c17b2cbbB9",
+      "0xc0a893145aD461AF44241A7DB5bb99B8998e7d2c",
+      "0x1E7267fA2628d66538822Fc44f0EDb62b07272A4",
+      "0xc407e861f5a16256534B0c92fDD8220A35831840",
+      "0x28fb86D294b714368d47d6b371eD78D4399C4341",
+      "0x2ad55394E12016c510D3C35d91Da7d90A758b7FD"
+    ],
+
+    "blacklist": [
+      "0x2ad55394E12016c510D3C35d91Da7d90A758b7FD"
+    ],
+    "snapshot": 16017351
+  }
+]

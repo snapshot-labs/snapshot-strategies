@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-with-blacklist",
+      "params": {
+        "address": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+        "symbol": "veBAL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfF052381092420B7F24cc97FDEd9C0c17b2cbbB9",
+      "0xc0a893145aD461AF44241A7DB5bb99B8998e7d2c",
+      "0x1E7267fA2628d66538822Fc44f0EDb62b07272A4",
+      "0xc407e861f5a16256534B0c92fDD8220A35831840"
+    ],
+    "blacklist": [
+      "0xc0a893145aD461AF44241A7DB5bb99B8998e7d2c"
+    ],
+    "snapshot": 16017351
+  }
+]

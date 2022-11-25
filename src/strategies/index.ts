@@ -403,6 +403,8 @@ import * as marsecosystem from './marsecosystem';
 import * as ari10StakingLocked from './ari10-staking-locked';
 import * as multichainSerie from './multichain-serie';
 import * as ctsiStaking from './ctsi-staking';
+import * as erc20Blacklist from './erc20-balance-of-with-blacklist';
+import * as erc20DelegateBlacklist from './erc20-balance-of-delegation-with-blacklist';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -811,7 +813,9 @@ const strategies = {
   marsecosystem,
   'ari10-staking-locked': ari10StakingLocked,
   'multichain-serie': multichainSerie,
-  'ctsi-staking': ctsiStaking
+  'ctsi-staking': ctsiStaking,
+  'erc20-balance-of-with-blacklist': erc20Blacklist,
+  'erc20-balance-of-delegation-with-blacklist': erc20DelegateBlacklist
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
