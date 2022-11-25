@@ -3,7 +3,7 @@
   "$ref": "#/definitions/Validation",
   "definitions": {
     "Validation": {
-      "title": "Validation",
+      "title": "Gitcoin passport gated",
       "type": "object",
       "properties": {
         "stamps": {

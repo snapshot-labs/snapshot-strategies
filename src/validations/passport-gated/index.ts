@@ -12,14 +12,15 @@ export default class extends Validation {
   public version = '0.1.0';
 
   async validate(): Promise<boolean> {
+    const requiredStamps = this.params.stamps;
     const passport: any = await getPassport(this.author);
     if (!passport) return false;
-    if (!passport.stamps?.length || !this.params.stamps?.length) return false;
+    if (!passport.stamps?.length || !requiredStamps?.length) return false;
 
     const verifiedStamps: any[] = await getVerifiedStamps(
       passport,
       this.author,
-      this.params.stamps.map((stamp) => ({
+      requiredStamps.map((stamp) => ({
         id: stamp
       }))
     );
@@ -28,16 +29,23 @@ export default class extends Validation {
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
 
-    const operator = this.params.operator || 'AND';
-    const validStamps = verifiedStamps.filter(
-      (stamp) =>
-        hasValidIssuanceAndExpiration(stamp.credential, proposalTs) &&
-        this.params.stamps.includes(stamp.provider)
-    );
+    const operator = this.params.operator;
+
+    // check issuance and expiration
+    const validStamps = verifiedStamps
+      .filter((stamp) =>
+        hasValidIssuanceAndExpiration(stamp.credential, proposalTs)
+      )
+      .map((stamp) => stamp.provider);
+
+    // console.log('validStamps', validStamps);
+    // console.log('requiredStamps', requiredStamps);
+    // console.log('operator', operator);
+
     if (operator === 'AND') {
-      return validStamps.length === this.params.stamps.length;
+      return requiredStamps.every((stamp) => validStamps.includes(stamp));
     } else if (operator === 'OR') {
-      return validStamps.length > 0;
+      return requiredStamps.some((stamp) => validStamps.includes(stamp));
     } else {
       return false;
     }
