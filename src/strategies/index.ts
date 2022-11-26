@@ -403,6 +403,7 @@ import * as marsecosystem from './marsecosystem';
 import * as ari10StakingLocked from './ari10-staking-locked';
 import * as multichainSerie from './multichain-serie';
 import * as ctsiStaking from './ctsi-staking';
+import * as skaleDelegationWeighted from './skale-delegation-weighted';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -811,7 +812,8 @@ const strategies = {
   marsecosystem,
   'ari10-staking-locked': ari10StakingLocked,
   'multichain-serie': multichainSerie,
-  'ctsi-staking': ctsiStaking
+  'ctsi-staking': ctsiStaking,
+  'skale-delegation-weighted': skaleDelegationWeighted
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
