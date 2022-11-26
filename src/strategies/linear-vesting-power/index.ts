@@ -97,24 +97,27 @@ export async function strategy(
     addresses.map((address) => {
       const initialVotingPower = [address, 0];
       // fetch vested users data
-      const [id] =
-        Object.entries(vestedAddresses).find(
-          ([, _address]) => _address === address
-        ) ?? [];
-      if (id === undefined) return initialVotingPower;
-      const totalVested = multiVestResult['tot' + id];
-      const totalAccrued = multiVestResult['accrued' + id];
+      const ids = Object.entries(vestedAddresses)
+        .filter(([, _address]) => _address === address)
+        .map(([id]) => id);
 
-      const bgn = multiVestResult['bgn' + id];
-      const fin = multiVestResult['fin' + id];
-      if (!(id && totalAccrued && totalVested && bgn && fin))
-        return initialVotingPower;
-      const votingPower = vestedAmountPower(
-        BigNumber.from(totalVested).sub(totalAccrued),
-        BigNumber.from(bgn).sub(options.cliffDuration),
-        BigNumber.from(fin).sub(bgn).add(options.cliffDuration),
-        now
-      );
+      if (!ids.length) return initialVotingPower;
+      const votingPower = ids.reduce((vp, id) => {
+        const totalVested = multiVestResult['tot' + id];
+        const totalAccrued = multiVestResult['accrued' + id];
+
+        const bgn = multiVestResult['bgn' + id];
+        const fin = multiVestResult['fin' + id];
+        if (!(id && totalAccrued && totalVested && bgn && fin)) return vp;
+        return vp.add(
+          vestedAmountPower(
+            BigNumber.from(totalVested).sub(totalAccrued),
+            BigNumber.from(bgn).sub(options.cliffDuration),
+            BigNumber.from(fin).sub(bgn).add(options.cliffDuration),
+            now
+          )
+        );
+      }, BigNumber.from(0));
       return [address, parseFloat(formatUnits(votingPower, options.decimals))];
     })
   );
