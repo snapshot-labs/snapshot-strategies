@@ -28,7 +28,9 @@ export async function strategy(
   const ts = block.timestamp;
 
   const res = await fetch(
-    `https://docs.google.com/spreadsheets/d/e/${options.sheetId}/pub?gid=${options.gid || "0"}&single=true&output=csv`
+    `https://docs.google.com/spreadsheets/d/e/${options.sheetId}/pub?gid=${
+      options.gid || '0'
+    }&single=true&output=csv`
   );
   const text = await res.text();
   const csv = (csvToJson(text) || []).map((item) => ({
