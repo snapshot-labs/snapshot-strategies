@@ -8,12 +8,16 @@ export const version = '0.1.0';
 const COMMUNITY_REWARDS = '0x0Cd73c18C085dEB287257ED2307eC713e9Af3460';
 const STAKING_REWARDS = '0xFD6FF39DA508d281C2d255e9bBBfAb34B6be60c3';
 const GFI = '0xdab396cCF3d84Cf2D07C4454e10C8A6F5b008D2b';
+const MEMBERSHIP_REWARDS = '0x4e5d9b093986d864331d88e0a13a616e1d508838';
 
 const COMMUNITY_REWARDS_ABI = [
   'function totalUnclaimed(address owner) view returns (uint256)'
 ];
 const STAKING_REWARDS_ABI = [
   'function totalOptimisticClaimable(address owner) view returns (uint256)'
+];
+const MEMBERSHIP_REWARDS_ABI = [
+  'function votingPower(address owner) view returns (uint256)'
 ];
 
 export async function strategy(
@@ -64,6 +68,18 @@ export async function strategy(
     { blockTag }
   );
 
+  const membershipRewards = await multicall(
+    network,
+    provider,
+    MEMBERSHIP_REWARDS_ABI,
+    addresses.map((address: any) => [
+      MEMBERSHIP_REWARDS,
+      'votingPower',
+      [address]
+    ]),
+    { blockTag }
+  );
+
   addresses.forEach((address, index) => {
     const parsedCommunityRewards = parseFloat(
       formatUnits(unclaimedCommunityRewards[index][0], options.decimals)
@@ -71,8 +87,11 @@ export async function strategy(
     const parsedStakingRewards = parseFloat(
       formatUnits(unclaimedStakingRewards[index][0], options.decimals)
     );
+    const parsedMembershipRewards = parseFloat(
+      formatUnits(membershipRewards[index][0], options.decimals)
+    );
     gfiResult[address] =
-      gfiResult[address] + parsedCommunityRewards + parsedStakingRewards;
+      gfiResult[address] + parsedCommunityRewards + parsedStakingRewards + parsedMembershipRewards;
   });
 
   return gfiResult;
