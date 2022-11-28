@@ -3,131 +3,13 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller, call } from '../../utils';
 
-export const author = 'beethovenx';
+export const author = '0xSkly';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'owner',
-        type: 'address'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function',
-    name: 'relicPositionsOfOwner',
-    outputs: [
-      {
-        internalType: 'uint256[]',
-        name: 'relicIds',
-        type: 'uint256[]'
-      },
-      {
-        internalType: 'struct PositionInfo[]',
-        name: 'positionInfos',
-        type: 'tuple[]',
-        components: [
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'rewardDebt',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'rewardCredit',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'entry',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'poolId',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'level',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'genesis',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'lastMaturityBonus',
-            type: 'uint256'
-          }
-        ]
-      }
-    ]
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'pid',
-        type: 'uint256'
-      }
-    ],
-    name: 'getLevelInfo',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'uint256[]',
-            name: 'requiredMaturity',
-            type: 'uint256[]'
-          },
-          {
-            internalType: 'uint256[]',
-            name: 'allocPoint',
-            type: 'uint256[]'
-          },
-          {
-            internalType: 'uint256[]',
-            name: 'balance',
-            type: 'uint256[]'
-          }
-        ],
-        internalType: 'struct LevelInfo',
-        name: 'levelInfo',
-        type: 'tuple'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: 'relicId',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function',
-    name: 'levelOnUpdate',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'level',
-        type: 'uint256'
-      }
-    ]
-  }
+  'function relicPositionsOfOwner(address owner) view returns (uint256[] relicIds, tuple(uint256 amount, uint256 rewardDebt, uint256 rewardCredit, uint256 entry, uint256 poolId, uint256 level, uint256 genesis, uint256 lastMaturityBonus)[] positionInfos)',
+  'function getLevelInfo(uint256 pid) view returns (tuple(uint256[] requiredMaturity, uint256[] allocPoint, uint256[] balance) levelInfo)',
+  'function levelOnUpdate(uint256 relicId) view returns (uint256 level)'
 ];
 
 export async function strategy(
