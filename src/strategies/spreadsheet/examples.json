@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "spreadsheet",
+      "params": {
+        "sheetId": "2PACX-1vTmam7vShzrscNDQ0zy0IC11jJztebhWrK5_5kFT6N_WsEJXDXStmxrOlNmHt9IRf9g7VenegU8vGzh",
+        "gid": "0"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x5BC928BF0DAb1e4A2ddd9e347b0F22e88026D76c",
+      "0x4C7909d6F029b3a5798143C843F4f8e5341a3473",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0xdD36Aa96D9BD4b49DA6E6734fF18Cc69F90F9435"
+    ],
+    "snapshot": 12857715
+  }
+]

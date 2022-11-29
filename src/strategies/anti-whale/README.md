@@ -2,9 +2,9 @@
 
 ## Description
 
-This strategy executes a configured strategy and applies an anti-whale measure to its results to reduce the impact of big wallets in the the resulting value, reducing the effect on the voting power as the token amount increases.
+This strategy executes a configured strategy and applies an anti-whale measure to its results to reduce the impact of big wallets in the resulting value, reducing the effect on the voting power as the token amount increases.
 
-It will apply the the following to the result:
+It will apply the following to the result:
   
   ```none
   If result > antiWhale.threshold

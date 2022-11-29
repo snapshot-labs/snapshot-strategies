@@ -51,12 +51,22 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
 
   if (specs && specs.length > 0) {
     const specConfig = specs.find((spec: any) => spec.id === badgeSpecID);
-    badgeWeight = specConfig ? specConfig.weight : 0;
+    badgeWeight =
+      specConfig &&
+      isBadgeActive(specConfig.status, specConfig.metadata?.expiresAt || null)
+        ? specConfig.weight
+        : 0;
   } else {
     badgeWeight = 1;
   }
 
   return badgeWeight;
+}
+
+function isBadgeActive(status: string, expiresAt: string | null): boolean {
+  return !['REVOKED', 'BURNED'].includes(status) && expiresAt
+    ? Date.now() - Number(new Date(expiresAt)) <= 0
+    : true;
 }
 
 function applyBadgeWeights(badges: [], options: any) {

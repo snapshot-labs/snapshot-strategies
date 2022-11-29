@@ -1,20 +1,36 @@
+import snapshotjs from '@snapshot-labs/snapshot.js';
 import snapshot from '../src';
-import examples from '../src/validations/aave/examples.json';
+import examples from '../src/validations/passport-gated/examples.json';
 
-const name = examples[0].validation.name;
-const params = examples[0].validation.params || {};
-const author = examples[0].userAddress;
-const space = examples[0].space;
-const proposal = {};
+const [example] = examples;
+const id = 'passport-gated';
 
-describe('', () => {
-  it('validation', async () => {
-    const validation = await snapshot.validations[name](
-      author,
-      space,
-      proposal,
-      params
+describe('validation', () => {
+  it(`validate: ${id} "${example.name}"`, async () => {
+    const validation = new snapshot.validations[id].validation(
+      example.author,
+      example.space,
+      example.network,
+      example.snapshot,
+      example.params
     );
-    expect(validation).toMatchSnapshot();
-  }, 20e3);
+    expect(await validation.validate()).toBe(true);
+  }, 10e3);
+
+  // Check schema is valid with examples.json
+  let schema;
+  try {
+    schema = require(`../src/validations/${id}/schema.json`);
+  } catch (error) {
+    schema = null;
+  }
+  (schema ? it : it.skip)(
+    'Check schema (if available) is valid with examples.json',
+    async () => {
+      expect(typeof schema).toBe('object');
+      expect(snapshotjs.utils.validateSchema(schema, example.params)).toBe(
+        true
+      );
+    }
+  );
 });
