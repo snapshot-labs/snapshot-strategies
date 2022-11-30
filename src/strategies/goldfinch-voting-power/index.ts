@@ -17,7 +17,7 @@ const STAKING_REWARDS_ABI = [
   'function totalOptimisticClaimable(address owner) view returns (uint256)'
 ];
 const MEMBERSHIP_REWARDS_ABI = [
-  'function votingPower(address owner) view returns (uint256)'
+  'function votingPower(address addr) view returns (uint256)'
 ];
 
 export async function strategy(
