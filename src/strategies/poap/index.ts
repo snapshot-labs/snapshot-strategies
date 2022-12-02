@@ -35,32 +35,34 @@ export async function strategy(
     lowercaseAddressBatches.push(slice);
   }
 
-  for (const addresses of lowercaseAddressBatches) {
-    const query = {
-      accounts: {
-        __args: {
-          where: {
-            id_in: addresses
-          }
-        },
-        id: true,
-        tokensOwned: true
-      }
-    };
+  const results = await Promise.allSettled<{
+    accounts: { id: string; tokensOwned: string }[];
+  }>(
+    lowercaseAddressBatches.map((addresses) => {
+      const query = {
+        accounts: {
+          __args: {
+            where: {
+              id_in: addresses
+            }
+          },
+          id: true,
+          tokensOwned: true
+        }
+      };
+      return subgraphRequest(POAP_API_ENDPOINT_URL[network], query);
+    })
+  );
 
-    const supplyResponse = await subgraphRequest(
-      POAP_API_ENDPOINT_URL[network],
-      query
-    );
+  for (const supplyResponse of results) {
+    if (supplyResponse.status === 'rejected') continue;
 
-    if (supplyResponse && supplyResponse.accounts) {
-      supplyResponse.accounts.forEach((account) => {
-        const accountId = getAddress(account.id);
+    for (const account of supplyResponse.value.accounts) {
+      const accountId = getAddress(account.id);
 
-        if (addressesMap[accountId] === undefined) return;
+      if (addressesMap[accountId] === undefined) return;
 
-        addressesMap[accountId] = parseInt(account.tokensOwned);
-      });
+      addressesMap[accountId] = parseInt(account.tokensOwned);
     }
   }
 
