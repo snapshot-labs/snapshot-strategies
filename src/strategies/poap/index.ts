@@ -60,7 +60,7 @@ export async function strategy(
     for (const account of supplyResponse.value.accounts) {
       const accountId = getAddress(account.id);
 
-      if (addressesMap[accountId] === undefined) return;
+      if (addressesMap[accountId] === undefined) continue;
 
       addressesMap[accountId] = parseInt(account.tokensOwned);
     }
