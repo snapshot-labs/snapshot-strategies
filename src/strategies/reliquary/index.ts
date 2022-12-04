@@ -32,7 +32,7 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
-  for (let address of addresses) {
+  for (const address of addresses) {
     multi.call(address, options.reliquaryAddress, 'relicPositionsOfOwner', [
       address
     ]);
@@ -72,7 +72,7 @@ export async function strategy(
 
   // if the strategy should use the level on update, we override the level
   if (options.useLevelOnUpdate) {
-    for (let relicPosition of relevantRelicPositions) {
+    for (const relicPosition of relevantRelicPositions) {
       multi.call(
         `${relicPosition.owner}.${relicPosition.relicId}.level`,
         options.reliquaryAddress,
@@ -87,7 +87,7 @@ export async function strategy(
       };
     } = await multi.execute();
 
-    for (let relicPosition of relevantRelicPositions) {
+    for (const relicPosition of relevantRelicPositions) {
       relicPosition.level =
         relicLevelByVoterAndRelic[relicPosition.owner][
           relicPosition.relicId
@@ -102,7 +102,7 @@ export async function strategy(
     So the formula used is: relicAmount * level / maxLevel
   */
   if (options.strategy === 'level') {
-    for (let relicPosition of relevantRelicPositions) {
+    for (const relicPosition of relevantRelicPositions) {
       const multiplier =
         relicPosition.level >= options.minVotingLevel
           ? Math.min(options.maxVotingLevel, relicPosition.level)
@@ -143,7 +143,7 @@ export async function strategy(
 
   const maxLevelAllocation = poolLevelInfo.allocPoint[options.maxVotingLevel];
 
-  for (let relicPosition of relevantRelicPositions) {
+  for (const relicPosition of relevantRelicPositions) {
     const multiplier =
       poolLevelInfo.allocPoint[
         Math.min(options.maxVotingLevel, relicPosition.level)

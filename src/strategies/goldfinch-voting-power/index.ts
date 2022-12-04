@@ -91,7 +91,10 @@ export async function strategy(
       formatUnits(membershipRewards[index][0], options.decimals)
     );
     gfiResult[address] =
-      gfiResult[address] + parsedCommunityRewards + parsedStakingRewards + parsedMembershipRewards;
+      gfiResult[address] +
+      parsedCommunityRewards +
+      parsedStakingRewards +
+      parsedMembershipRewards;
   });
 
   return gfiResult;
