@@ -225,6 +225,7 @@ import * as cyberkongzV3 from './cyberkongz-v3';
 import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
+import * as hashflowGovernancePower from './hashflow-governance-power';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
@@ -637,6 +638,7 @@ const strategies = {
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
   'hashes-voting': hashesVoting,
+  'hashflow-governance-power': hashflowGovernancePower,
   'pod-leader': podLeader,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
   'polis-balance': polisBalance,
