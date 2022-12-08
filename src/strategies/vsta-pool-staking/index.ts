@@ -1,4 +1,5 @@
 import { formatUnits } from '@ethersproject/units';
+import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
 
 export const author = 'shinitakunai';
@@ -45,7 +46,7 @@ export async function strategy(
 
   const result = Object.fromEntries(
     Object.entries(userBalances).map(([address, lpBalance]) => [
-      address,
+      getAddress(address),
       parseFloat(formatUnits(vstaPerLp.mul(lpBalance), options.decimals))
     ])
   );
