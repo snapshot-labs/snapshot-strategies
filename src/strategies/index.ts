@@ -407,6 +407,7 @@ import * as ctsiStaking from './ctsi-staking';
 import * as ctsiStakingPool from './ctsi-staking-pool';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
+import * as vstaPoolStaking from './vsta-pool-staking';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -819,7 +820,8 @@ const strategies = {
   'ctsi-staking': ctsiStaking,
   'ctsi-staking-pool': ctsiStakingPool,
   'skale-delegation-weighted': skaleDelegationWeighted,
-  reliquary
+  reliquary,
+  'vsta-pool-staking': vstaPoolStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
