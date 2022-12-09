@@ -9,19 +9,18 @@ export async function strategy(
   network,
   provider,
   addresses,
-  options,
+  _options,
   snapshot
 ) {
-  const lowercaseAddresses = addresses.map((a) => a.toLowerCase());
   const results = await erc721Strategy(
     space,
     network,
     provider,
-    lowercaseAddresses,
-    options,
+    addresses,
+    { address: '0x22C1f6050E56d2876009903609a2cC3fEf83B415' },
     snapshot
   );
-  return lowercaseAddresses.reduce((map, address) => {
+  return addresses.reduce((map, address) => {
     map[getAddress(address)] = results[address] ?? 0;
     return map;
   }, {});
