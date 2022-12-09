@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-at",
+      "params": {
+        "address": "0xb4B486496469B3269c8907543706C377daAA4dD9",
+        "symbol": "PYE",
+        "decimals": 9,
+        "snapshotId": 1
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x2E9012CeE533a78D822ed3cdb0fe5C6F3A76092F",
+      "0x848AE3318A798bA0354c4B817e4005a5DE72ca69",
+      "0xA4F971216d178C840F03cEcbe945811378aFb25d",
+      "0x76Cb562A83C71B8457c9705072201740A4463100",
+      "0x08386c3e469420Ed44522C3AF38fC91713D2Cbbf",
+      "0x7EFc2150058EB91B3DDd885f6a6991C28E0De39d",
+      "0x59444C2bfB8b5ef089d630701d467AB6656D05Bc",
+      "0xf6f2B0C7f0c806Fb27FD2b16DC298997B957E0B5",
+      "0xac0ebcd2f8ed5a56F9765EBB820D3C081a1030A4",
+      "0x595f6cf9086Bc85d574100962ac201cDA7e5315F"
+    ],
+    "snapshot": 23711285
+  }
+]

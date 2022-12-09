@@ -21,6 +21,7 @@ import * as ens10kClub from './ens-10k-club';
 import * as ensAllClubDigits from './ens-all-club-digits';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
+import * as erc20BalanceOfAt from './erc20-balance-of-at';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
@@ -408,6 +409,7 @@ import * as ctsiStaking from './ctsi-staking';
 import * as ctsiStakingPool from './ctsi-staking-pool';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
+import * as vstaPoolStaking from './vsta-pool-staking';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -440,6 +442,7 @@ const strategies = {
   'ens-all-club-digits': ensAllClubDigits,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-balance-of-at': erc20BalanceOfAt,
   'erc20-votes': erc20Votes,
   'erc20-votes-with-override': erc20VotesWithOverride,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
@@ -821,7 +824,8 @@ const strategies = {
   'ctsi-staking': ctsiStaking,
   'ctsi-staking-pool': ctsiStakingPool,
   'skale-delegation-weighted': skaleDelegationWeighted,
-  reliquary
+  reliquary,
+  'vsta-pool-staking': vstaPoolStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
