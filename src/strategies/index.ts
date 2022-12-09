@@ -204,6 +204,9 @@ import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
+import * as lodestarAelinVesting from './lodestar-aelin-vesting';
+import * as lodestarVesting from './lodestar-vesting';
+import * as lodestarStakedLp from './lodestar-staked-lp';
 import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
@@ -819,7 +822,10 @@ const strategies = {
   'ctsi-staking': ctsiStaking,
   'ctsi-staking-pool': ctsiStakingPool,
   'skale-delegation-weighted': skaleDelegationWeighted,
-  reliquary
+  reliquary,
+  'lodestar-aelin-vesting': lodestarAelinVesting,
+  'lodestar-vesting': lodestarVesting,
+  'lodestar-staked-lp': lodestarStakedLp
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
