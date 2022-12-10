@@ -2,7 +2,7 @@
     {
         "name": "Example query",
         "strategy": {
-            "name": "jpegd-boosts",
+            "name": "jpegd-locked-jpeg-of",
             "params": {
                 "collectionToProviderAddress": {
                     "CRYPTOPUNKS": "0xdf7806eaa13497efffdb1541d6b0fdd1a9566fd0",

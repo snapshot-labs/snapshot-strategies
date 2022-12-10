@@ -410,7 +410,7 @@ import * as ctsiStakingPool from './ctsi-staking-pool';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
 import * as vstaPoolStaking from './vsta-pool-staking';
-import * as jpegdBoosts from './jpegd-boosts';
+import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -827,7 +827,7 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
-  'jpegd-boosts': jpegdBoosts
+  'jpegd-locked-jpeg-of': jpegdLockedJpegOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
