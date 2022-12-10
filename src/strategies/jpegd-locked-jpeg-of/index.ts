@@ -11,68 +11,12 @@ const UNISWAP_SUBGRAPH_URL = {
 };
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    name: 'traitBoostPositions',
-    outputs: [
-      {
-        internalType: 'address',
-        name: 'owner',
-        type: 'address'
-      },
-      {
-        internalType: 'uint256',
-        name: 'unlockAt',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'lockedValue',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    name: 'ltvBoostPositions',
-    outputs: [
-      {
-        internalType: 'address',
-        name: 'owner',
-        type: 'address'
-      },
-      {
-        internalType: 'uint256',
-        name: 'unlockAt',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'lockedValue',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function traitBoostPositions(uint256 _nftIndex) view returns (address owner, uint256 unlockAt, uint256 lockedValue)',
+  'function ltvBoostPositions(uint256 _nftIndex) view returns (address owner, uint256 unlockAt, uint256 lockedValue)'
 ];
 
 export async function strategy(
-  space,
+  _space,
   network,
   provider,
   addresses,
