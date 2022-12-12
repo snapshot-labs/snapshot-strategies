@@ -32,7 +32,8 @@ export async function strategy(
       __args: {
         where: {
           owner_in: addresses.map((address) => address.toLowerCase())
-        }
+        },
+        block: blockTag != 'latest' ? { number: blockTag } : null
       },
       owner: { id: true },
       collection: { id: true },
