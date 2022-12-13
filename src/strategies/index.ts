@@ -21,6 +21,7 @@ import * as ens10kClub from './ens-10k-club';
 import * as ensAllClubDigits from './ens-all-club-digits';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
+import * as erc20BalanceOfAt from './erc20-balance-of-at';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
 import * as erc20BalanceOfCv from './erc20-balance-of-cv';
@@ -187,6 +188,7 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
 import * as poapWithWeightV2 from './poap-with-weight-v2';
 import * as uniswapV3 from './uniswap-v3';
@@ -408,6 +410,8 @@ import * as ctsiStakingPool from './ctsi-staking-pool';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
+import * as vstaPoolStaking from './vsta-pool-staking';
+import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -441,6 +445,7 @@ const strategies = {
   'ens-all-club-digits': ensAllClubDigits,
   'governor-delegator': governorDelegator,
   'erc20-balance-of': erc20BalanceOf,
+  'erc20-balance-of-at': erc20BalanceOfAt,
   'erc20-votes': erc20Votes,
   'erc20-votes-with-override': erc20VotesWithOverride,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
@@ -604,6 +609,7 @@ const strategies = {
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
+  poap: poap,
   'poap-with-weight': poapWithWeight,
   'poap-with-weight-v2': poapWithWeightV2,
   'uniswap-v3': uniswapV3,
@@ -821,7 +827,9 @@ const strategies = {
   'ctsi-staking': ctsiStaking,
   'ctsi-staking-pool': ctsiStakingPool,
   'skale-delegation-weighted': skaleDelegationWeighted,
-  reliquary
+  reliquary,
+  'vsta-pool-staking': vstaPoolStaking,
+  'jpegd-locked-jpeg-of': jpegdLockedJpegOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
