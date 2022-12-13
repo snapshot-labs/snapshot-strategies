@@ -142,7 +142,6 @@ export async function strategy(
     ])
   );
 
-  console.log(stakedBalancesPlusRewards, lastExchangeRate.toString());
 
   return stakedBalancesPlusRewards;
 }
