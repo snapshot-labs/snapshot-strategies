@@ -29,6 +29,52 @@ const abi = [
     outputs: [{ internalType: 'uint256', name: '', type: 'uint256' }],
     stateMutability: 'view',
     type: 'function'
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'stakedToken',
+        type: 'address'
+      },
+      {
+        internalType: 'address',
+        name: 'account',
+        type: 'address'
+      }
+    ],
+    name: 'getUserStake',
+    outputs: [
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'cumulativeBalance',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'averageDepositTime',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'rewardsAccumulatedPerToken',
+            type: 'uint256'
+          },
+          {
+            internalType: 'uint256',
+            name: 'rewardsOutstanding',
+            type: 'uint256'
+          }
+        ],
+        internalType: 'struct AcceleratingDistributor.UserDeposit',
+        name: '',
+        type: 'tuple'
+      }
+    ],
+    stateMutability: 'view',
+    type: 'function'
   }
 ];
 
