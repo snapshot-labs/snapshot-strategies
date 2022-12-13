@@ -4,7 +4,8 @@
     "strategy": {
       "name": "poap",
       "params": {
-        "symbol": "POAP"
+        "symbol": "POAP",
+        "eventIds": ["1213", "1293"]
       }
     },
     "network": "100",
@@ -13,6 +14,6 @@
       "0x00ac36c51500e900ab0f4e692fc1338cf70571b2",
       "0xdd6f702c2907ce401888d993d7dc185e7a824466"
     ],
-    "snapshot": 13040844
+    "snapshot": 25283078
   }
 ]
