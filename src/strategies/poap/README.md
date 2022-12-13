@@ -8,12 +8,6 @@ Here are some examples of parameters:
 
 ```json
 {
-  "symbol": "POAP"
-}
-```
-
-```json
-{
   "symbol": "POAP",
   "eventIds": ["1213", "1293"]
 }

@@ -3,7 +3,7 @@ import { subgraphRequest } from '../../utils';
 import { strategy as erc721Strategy } from '../erc721';
 
 export const author = 'greenealexander';
-export const version = '2.0.0';
+export const version = '1.2.0';
 
 // subgraph query in filter has max length of 500
 const EVENT_IDS_LIMIT = 500;

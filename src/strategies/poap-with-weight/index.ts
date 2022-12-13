@@ -14,6 +14,7 @@ const POAP_API_ENDPOINT_URL = {
 const getTokenSupply = {
   tokens: {
     __args: {
+      block: undefined as undefined | { number: number },
       where: {
         id_in: undefined
       }
