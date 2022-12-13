@@ -409,11 +409,13 @@ import * as ctsiStaking from './ctsi-staking';
 import * as ctsiStakingPool from './ctsi-staking-pool';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
+import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 
 const strategies = {
   'forta-shares': fortaShares,
+  'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
