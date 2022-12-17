@@ -36,9 +36,9 @@ export async function strategy(
   );
 
   return Object.fromEntries(
-    response.map((value, i) => [
-      addresses[i],
-      parseFloat(formatUnits(value.toString(), 0)) > 0
+    addresses.map((address, i) => [
+      address,
+      parseFloat(formatUnits(response[i].toString(), 0)) > 0
         ? Math.floor(
             erc20Balance[addresses[i]] / (options.weighted || 10000000000)
           )
