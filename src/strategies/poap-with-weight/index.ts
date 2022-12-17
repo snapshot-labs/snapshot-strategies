@@ -3,7 +3,7 @@ import { subgraphRequest } from '../../utils';
 import examplesFile from './examples.json';
 
 export const author = 'gawainb';
-export const version = '1.2.0';
+export const version = '1.1.0';
 export const examples = examplesFile;
 
 const POAP_API_ENDPOINT_URL = {
@@ -46,7 +46,7 @@ export async function strategy(
     (token) => token.id
   );
   if (snapshot !== 'latest') {
-    getTokenSupply.tokens.__args['block'] = { number: snapshot };
+    getTokenSupply.tokens.__args.block = { number: snapshot };
   }
   const supplyResponse = await subgraphRequest(
     POAP_API_ENDPOINT_URL[network],
