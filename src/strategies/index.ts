@@ -412,6 +412,7 @@ import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
+import * as babywealthyclub from './babywealthyclub';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -829,7 +830,8 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
-  'jpegd-locked-jpeg-of': jpegdLockedJpegOf
+  'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
+  babywealthyclub
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
