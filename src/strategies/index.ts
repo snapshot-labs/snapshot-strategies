@@ -45,6 +45,7 @@ import * as ethBalance from './eth-balance';
 import * as ethWithBalance from './eth-with-balance';
 import * as ethWalletAge from './eth-wallet-age';
 import * as multichain from './multichain';
+import * as multichainMinBalance from './multichain-min-balance';
 import * as gooddollarMultichain from './gooddollar-multichain';
 import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
@@ -485,6 +486,7 @@ const strategies = {
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
   'prepo-vesting': prepoVesting,
   multichain,
+  'multichain-min-balance' : multichainMinBalance,
   'gooddollar-multichain': gooddollarMultichain,
   uni,
   'frax-finance': fraxFinance,
