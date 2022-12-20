@@ -3,7 +3,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import snapshots from '@snapshot-labs/snapshot.js';
 
 export const author = 'allmysmarts';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
@@ -58,7 +58,8 @@ export async function strategy(
   const walletToAttributeValue = {} as Record<string, number>;
   for (const [walletId, tokenID] of Object.entries(walletIdToTokenID)) {
     const walletAddress = walletId.split('-')[0];
-    const tokenData = metadata.find((x) => x[tokenID.toString()]);
+    const tokenData = metadata.find((x) => x[tokenID.toString()] > 0);
+    if (!tokenData) continue;
     walletToAttributeValue[walletAddress] =
       (walletToAttributeValue[walletAddress] || 0) +
       tokenData[tokenID.toString()];
