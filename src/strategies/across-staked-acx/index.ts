@@ -142,6 +142,5 @@ export async function strategy(
     ])
   );
 
-
   return stakedBalancesPlusRewards;
 }
