@@ -413,6 +413,7 @@ import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as babywealthyclub from './babywealthyclub';
+import * as erc721WithMethodWeight from './erc721-with-method-weight';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -480,6 +481,7 @@ const strategies = {
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
+  'erc721-with-method-weight': erc721WithMethodWeight,
   'erc721-multi-registry': erc721MultiRegistry,
   'erc1155-balance-of': erc1155BalanceOf,
   'erc1155-balance-of-cv': erc1155BalanceOfCv,
