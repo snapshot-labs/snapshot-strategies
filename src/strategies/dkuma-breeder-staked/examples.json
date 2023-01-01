@@ -4,9 +4,20 @@
     "strategy": {
       "name": "dkuma-breeder-staked",
       "params": {
-        "address": "0x82a3D73B983396154Cff07101E84d7d339C4f0E3",
-        "symbol": "dKUMA Breeder",
-        "decimals": 18
+        "dbreederAddress": "0x82a3D73B983396154Cff07101E84d7d339C4f0E3",
+        "dbreederAbi": {
+          "inputs": [{ "internalType": "address", "name": "", "type": "address" }],
+          "name": "stakeInfo",
+          "outputs": [
+            { "internalType": "uint256", "name": "amount", "type": "uint256" },
+            { "internalType": "uint256", "name": "enteredAt", "type": "uint256" },
+            { "internalType": "uint256", "name": "rewardTaken", "type": "uint256" },
+            { "internalType": "uint256", "name": "rewardTakenActual", "type": "uint256" },
+            { "internalType": "uint256", "name": "bag", "type": "uint256" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
       }
     },
     "network": "1",
@@ -20,16 +31,7 @@
       "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
       "0x1f254336E5c46639A851b9CfC165697150a6c327",
       "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
-      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
-      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
-      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
-      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
-      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
-      "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
-      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
-      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
-      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
-      "0x38C0039247A31F3939baE65e953612125cB88268"
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2"
     ],
     "snapshot": 16298732
   }
