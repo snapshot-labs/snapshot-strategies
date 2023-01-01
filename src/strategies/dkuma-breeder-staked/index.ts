@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 // import { multicall } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'TheKdev9';
+export const author = 'theKdev9';
 export const version = '0.1.0';
 
 interface walletInfoInt {
