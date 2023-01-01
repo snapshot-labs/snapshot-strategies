@@ -2,6 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 // import { multicall } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'TheKdev9';
 export const version = '0.1.0';
@@ -28,13 +29,15 @@ export async function strategy(
     blockTag
   });
   addresses.forEach((address) =>
-    multi.call(address, options.dbreeder.address, 'stakeInfo', [address])
+    multi.call(getAddress(address), options.dbreeder.address, 'stakeInfo', [
+      address
+    ])
   );
   const result: Record<string, walletInfoInt> = await multi.execute();
 
   return Object.fromEntries(
     Object.entries(result).map(([address, walletInfo]) => [
-      address,
+      getAddress(address),
       parseFloat(formatUnits(walletInfo.amount, options.decimals))
     ])
   );
