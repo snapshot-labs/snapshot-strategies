@@ -39,29 +39,3 @@ export async function strategy(
     ])
   );
 }
-
-// export async function strategy(
-//   space,
-//   network,
-//   provider,
-//   addresses,
-//   options,
-//   snapshot
-// ): Promise<Record<string, number>> {
-//   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-//   const response: walletInfoInt[] = await multicall(
-//     network,
-//     provider,
-//     [abi],
-//     addresses.map((address: any) => [options.dbreeder.address, abi.name, [address]]),
-//     { blockTag }
-//   );
-
-//   return Object.fromEntries(
-//     response.map((value, i) => [
-//       addresses[i],
-//       parseFloat(formatUnits(value.amount, options.decimals))
-//     ])
-//   );
-// }
