@@ -37,7 +37,7 @@ export async function strategy(
 
   return Object.fromEntries(
     Object.entries(result).map(([address, walletInfo]) => [
-      getAddress(address),
+      address,
       parseFloat(formatUnits(walletInfo.amount, options.decimals))
     ])
   );
