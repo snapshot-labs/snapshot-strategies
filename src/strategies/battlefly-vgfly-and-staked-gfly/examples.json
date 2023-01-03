@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Battlefly vgFLY holders and gFLY stakers",
+    "strategy": {
+      "name": "battlefly-vgfly-and-staked-gfly",
+      "params": {
+        "graphUrl": "https://api.thegraph.com/subgraphs/name/battlefly-game/gfly-main",
+        "symbol": "gFLY",
+        "decimals": 18
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x0eB468F89E5bcFA4c933c8982D8d19554e101cfe",
+      "0x78063Ed58Edea4Ae4981946D6b4Cc63d8928CCBC",
+      "0x4026b3Da349C2952255Ca9db4F055ea57F4e037C"
+    ],
+    "snapshot": 47081042
+  }
+]

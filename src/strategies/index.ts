@@ -413,6 +413,7 @@ import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as babywealthyclub from './babywealthyclub';
+import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -831,7 +832,8 @@ const strategies = {
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
-  babywealthyclub
+  babywealthyclub,
+  'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
