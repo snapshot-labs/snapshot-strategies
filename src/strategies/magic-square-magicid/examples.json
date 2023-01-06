@@ -1,0 +1,16 @@
+[
+  {
+    "name": "magic-square-magicid",
+    "strategy": {
+      "name": "magic-square-magicid"
+    },
+    "space": "magicappstore.eth",
+    "network": "97",
+    "addresses": [
+      "0x3c07c8e11dbf785105b82488ee29182b7a4ad651",
+      "0x232f0bc8ef0b0c686e06779b57167ce8284a61d6",
+      "0x17A4382bd5cAB0e3D452b9e8BF07C96BC5Ec817A"
+    ],
+    "snapshot": 26047980
+  }
+]
