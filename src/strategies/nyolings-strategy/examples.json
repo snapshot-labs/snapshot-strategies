@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Nyolings Strategy",
+    "strategy": {
+      "name": "nyolings-strategy",
+      "params": {
+        "stakingAddr": "0x63827d2f4588ef5041434e7d7e964a64cbf2d269",
+        "address": "0xb16dfd9aaaf874fcb1db8a296375577c1baa6f21",
+        "symbol": "NYOLINGS",
+        "decimals": 0
+      }
+    },
+    "network": "1",
+    "addresses": ["0x65d13f8A7081283b4ef8061710DD36cd06DD7831"],
+    "snapshot": 11437846
+  }
+]
