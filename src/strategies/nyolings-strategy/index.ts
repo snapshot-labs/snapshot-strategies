@@ -33,7 +33,7 @@ export async function strategy(
     })
   );
 
-  const output = results.reduce((finalResults: any, strategyResult: any) => {
+  return results.reduce((finalResults: any, strategyResult: any) => {
     for (const [address, value] of Object.entries(strategyResult)) {
       if (!finalResults[address]) {
         finalResults[address] = 0;
@@ -42,6 +42,4 @@ export async function strategy(
     }
     return finalResults;
   }, {});
-
-  return output;
 }
