@@ -2,12 +2,13 @@
 
 Each POAP is implemented as an erc721 with a max supply tokens.
 
-This strategy returns the number of POAP ERC721 NFTs owned by each account.
+If no `eventIds` are passed, then this strategy returns the number of tokens owned by each account. Otherwise, it returns the number of tokens per account where the event id is included in `eventIds`.
 
-Here is an example of parameters:
+Here are some examples of parameters:
 
 ```json
 {
-  "symbol": "POAP"
+  "symbol": "POAP",
+  "eventIds": ["1213", "1293"]
 }
 ```
