@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Nyolings Strategy",
+    "strategy": {
+      "name": "nyolings-strategy",
+      "params": {
+        "symbol": "NYOLINGS",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "network": "1",
+            "params": {
+              "address": "0x63827d2f4588ef5041434e7d7e964a64cbf2d269",
+              "decimals": 0
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "1",
+            "params": {
+              "address": "0xb16dfd9aaaf874fcb1db8a296375577c1baa6f21",
+              "decimals": 0
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x65d13f8a7081283b4ef8061710dd36cd06dd7831",
+      "0x0052d2e4af4548e6cf19e817b944cedb23ae09df",
+      "0x54f4f0e98dc46f9017eecdd00c8976bc60c94328"
+    ],
+    "snapshot": 11437846
+  }
+]
