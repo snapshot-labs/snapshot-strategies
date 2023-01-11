@@ -1,12 +1,8 @@
-import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
-import { Multicaller } from '../../utils';
+import { getProvider, getSnapshots } from '../../utils';
+import strategies from '..';
 
 export const author = 'jsmth';
-export const version = '0.0.1';
-const ABI = [
-  'function balanceOf(address account) external view returns (uint256)'
-];
+export const version = '1.1.0';
 
 export async function strategy(
   space,
@@ -16,25 +12,36 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const multi = new Multicaller(network, provider, ABI, { blockTag });
-
-  // Get the balance of nyolings for each address
-  addresses.forEach((address) =>
-    multi.call(address, options.stakingAddr, 'balanceOf', [address])
+  const blocks = await getSnapshots(
+    network,
+    snapshot,
+    provider,
+    options.strategies.map((s) => s.network || network)
   );
 
-  // Get the total staked for each address
-  addresses.forEach((address) =>
-    multi.call(address, options.address, 'balanceOf', [address])
+  const results = await Promise.all(
+    options.strategies.map(async (strategy) => {
+      const result = await strategies[strategy.name].strategy(
+        space,
+        strategy.network,
+        getProvider(strategy.network),
+        addresses,
+        strategy.params,
+        blocks[strategy.network]
+      );
+      return result;
+    })
   );
 
-  const result: Record<string, BigNumberish> = await multi.execute();
+  const output = results.reduce((finalResults: any, strategyResult: any) => {
+    for (const [address, value] of Object.entries(strategyResult)) {
+      if (!finalResults[address]) {
+        finalResults[address] = 0;
+      }
+      finalResults[address] += value;
+    }
+    return finalResults;
+  }, {});
 
-  return Object.fromEntries(
-    Object.entries(result).map(([address, balance]) => [
-      address,
-      parseFloat(formatUnits(balance, options.decimals))
-    ])
-  );
+  return output;
 }
