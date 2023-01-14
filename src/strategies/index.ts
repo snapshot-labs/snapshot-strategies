@@ -413,6 +413,7 @@ import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
+import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 
@@ -431,6 +432,7 @@ const strategies = {
   balancer,
   sunder,
   'balancer-smart-pool': balancerSmartPool,
+  'lit-dao-governance': litDaoGovernance,
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
