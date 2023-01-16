@@ -73,72 +73,54 @@ export async function strategy(
     ([id, address]) => address !== erc721Owners[id]
   );
 
-  const addressesWithVotingPower = erc721OwnersArr
-    .filter(([, addr]) => formattedAddressesThatVoted.includes(addr))
-    .map(([, addr]) => addr);
-
-  erc721SignersArr
-    .filter(([, addr]) => formattedAddressesThatVoted.includes(addr))
-    .reduce((acc, [id]) => {
-      if (!addressesWithVotingPower.includes(erc721OwnersArr[id][1])) {
-        acc.push(erc721OwnersArr[id][1]);
+  const votingAddressToOwnerAddressMap = erc721OwnersArr.reduce(
+    (acc, [id, addr]) => {
+      if (!formattedAddressesThatVoted.includes(addr)) {
+        return acc;
       }
+      if (delegatedTokens.some((delegated) => delegated[0] === id)) {
+        return acc;
+      }
+      acc.set(addr, [addr]);
       return acc;
-    }, addressesWithVotingPower);
+    },
+    new Map<string, string[]>()
+  );
 
-  addressesWithVotingPower.forEach((address) => {
-    erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
+  erc721SignersArr.reduce((acc, [id, addr]) => {
+    if (!formattedAddressesThatVoted.includes(addr)) {
+      return acc;
+    }
+
+    if (!delegatedTokens.some((delegated) => delegated[0] === id)) {
+      return acc;
+    }
+
+    if (!votingAddressToOwnerAddressMap.has(addr)) {
+      acc.set(addr, []);
+    }
+    acc.get(addr)?.push(erc721OwnersArr[id][1]);
+
+    return acc;
+  }, votingAddressToOwnerAddressMap);
+
+  votingAddressToOwnerAddressMap.forEach((addresses) => {
+    addresses.forEach((address) => {
+      erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
+    });
   });
 
   const erc20Balances: Record<string, BigNumberish> =
     await erc20BalanceCaller.execute();
 
-  const result = Object.fromEntries(
-    formattedAddressesThatVoted.map((address) => {
-      // Getting ids of all tokens delegated to this address
-      const tokenDelegations = delegatedTokens
-        .filter(([, addr]) => addr === address)
-        .map(([id]) => id);
-
-      //if there are passports delegated to this address
-      if (tokenDelegations?.length) {
-        //find the owner address of the passport
-        const realOwners = erc721OwnersArr.filter(([id]) =>
-          tokenDelegations.includes(id)
-        );
-
-        if (!realOwners?.length) {
-          return [address, 0.0];
-        }
-
-        const ownerAddresses = realOwners.map(([, addr]) => addr);
-
-        const erc20Balance = ownerAddresses.reduce((sum, addr) => {
-          return sum.add(erc20Balances[addr] || 0);
-        }, BigNumber.from(0));
-
-        return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
-      } else {
-        const erc20Balance = erc20Balances[address];
-        const erc721Token = erc721OwnersArr.find(
-          ([, addr]) => addr === address
-        );
-
-        if (!erc721Token) {
-          return [address, 0.0];
-        }
-
-        const isUsersTokenDelegated = delegatedTokens.find(
-          ([id]) => id === erc721Token[0]
-        );
-
-        if (erc721Token && !isUsersTokenDelegated) {
-          return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
-        }
-
-        return [address, 0.0];
-      }
-    })
-  );
+  const agg = formattedAddressesThatVoted.map((addr) => {
+    const holderAddresses = votingAddressToOwnerAddressMap.get(addr);
+    const total =
+      holderAddresses?.reduce((sum, addr) => {
+        return sum.add(erc20Balances[addr] || 0);
+      }, BigNumber.from(0)) || 0;
+    return [addr, parseFloat(formatUnits(total, DECIMALS))];
+  });
+  const result = Object.fromEntries(agg);
   return result;
 }
