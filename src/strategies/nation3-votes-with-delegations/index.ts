@@ -29,7 +29,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const formattedAddresses = addresses.map((addr) => getAddress(addr));
+  const formattedAddressesThatVoted = addresses.map((addr) => getAddress(addr));
 
   const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
     blockTag
@@ -50,18 +50,7 @@ export async function strategy(
 
   erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
 
-  formattedAddresses.forEach((address) => {
-    erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
-  });
-
-  const [erc20Balances, lastIndex]: [
-    Record<string, BigNumberish>,
-    Record<string, BigNumberish>
-  ] = await Promise.all([
-    erc20BalanceCaller.execute(),
-    erc721LastTokenIdCaller.execute()
-  ]);
-
+  const lastIndex = await erc721LastTokenIdCaller.execute();
   const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
 
   for (let i = 0; i < lastTokenId; i++) {
@@ -84,14 +73,36 @@ export async function strategy(
     ([id, address]) => address !== erc721Owners[id]
   );
 
+  const addressesWithVotingPower = erc721OwnersArr
+    .filter(([, addr]) => formattedAddressesThatVoted.includes(addr))
+    .map(([, addr]) => addr);
+
+  erc721SignersArr
+    .filter(([, addr]) => formattedAddressesThatVoted.includes(addr))
+    .reduce((acc, [id]) => {
+      if (!addressesWithVotingPower.includes(erc721OwnersArr[id][1])) {
+        acc.push(erc721OwnersArr[id][1]);
+      }
+      return acc;
+    }, addressesWithVotingPower);
+
+  addressesWithVotingPower.forEach((address) => {
+    erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
+  });
+
+  const erc20Balances: Record<string, BigNumberish> =
+    await erc20BalanceCaller.execute();
+
   const result = Object.fromEntries(
-    formattedAddresses.map((address) => {
+    formattedAddressesThatVoted.map((address) => {
       // Getting ids of all tokens delegated to this address
       const tokenDelegations = delegatedTokens
         .filter(([, addr]) => addr === address)
         .map(([id]) => id);
 
+      //if there are passports delegated to this address
       if (tokenDelegations?.length) {
+        //find the owner address of the passport
         const realOwners = erc721OwnersArr.filter(([id]) =>
           tokenDelegations.includes(id)
         );
