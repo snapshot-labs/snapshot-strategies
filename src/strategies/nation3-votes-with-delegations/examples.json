@@ -11,13 +11,12 @@
     "network": "1",
     "addresses": [
       "0xEdd000B7Db3cb8931d4E0cb1D0DBe6B947Ceb09A",
-      "0x327b0c1Ecd110651dC9994b6764b695c9cdC29bA",
       "0x47d80912400ef8f8224531EBEB1ce8f2ACf4b75a",
       "0x636d65212C815b93B8E5b069f7082169cec851b7",
       "0x460AF11e497dc273fC163414943C6fd95d17B1fd",
       "0x1512BB3b85696Fa4D85Cb4bbf78e9C4FE95DB90F",
       "0x79438224Bc21b0E6B45ECF9F8caADfBdB874DedD"
     ],
-    "snapshot": 16333119
+    "snapshot": 16399660
   }
 ]

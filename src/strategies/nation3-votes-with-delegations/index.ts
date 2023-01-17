@@ -69,49 +69,22 @@ export async function strategy(
   const erc721OwnersArr = Object.entries(erc721Owners);
   const erc721SignersArr = Object.entries(erc721Signers);
 
-  const delegatedTokens = erc721SignersArr.filter(
-    ([id, address]) => address !== erc721Owners[id]
+  //There is slightly confusing logic here, but ultimately the
+  //resultant Map below Maps the Voting Address to the list of
+  //addresses for which they are voting on behalf of. In the
+  //majority cases this will be a one to one mapping.
+  const votingAddressToOwnerAddressMap = buildPowerMap(
+    formattedAddressesThatVoted,
+    erc721OwnersArr,
+    erc721SignersArr
   );
-
-  const votingAddressToOwnerAddressMap = erc721OwnersArr.reduce(
-    (acc, [id, addr]) => {
-      if (!formattedAddressesThatVoted.includes(addr)) {
-        return acc;
-      }
-      if (delegatedTokens.some((delegated) => delegated[0] === id)) {
-        return acc;
-      }
-      acc.set(addr, [addr]);
-      return acc;
-    },
-    new Map<string, string[]>()
-  );
-
-  erc721SignersArr.reduce((acc, [id, addr]) => {
-    if (!formattedAddressesThatVoted.includes(addr)) {
-      return acc;
-    }
-
-    if (!delegatedTokens.some((delegated) => delegated[0] === id)) {
-      return acc;
-    }
-
-    if (!votingAddressToOwnerAddressMap.has(addr)) {
-      acc.set(addr, []);
-    }
-    acc.get(addr)?.push(erc721OwnersArr[id][1]);
-
-    return acc;
-  }, votingAddressToOwnerAddressMap);
-
-  votingAddressToOwnerAddressMap.forEach((addresses) => {
-    addresses.forEach((address) => {
-      erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
-    });
-  });
 
   const erc20Balances: Record<string, BigNumberish> =
-    await erc20BalanceCaller.execute();
+    await getVEBalancesForAddressMap(
+      votingAddressToOwnerAddressMap,
+      erc20BalanceCaller,
+      options.erc20
+    );
 
   const agg = formattedAddressesThatVoted.map((addr) => {
     const holderAddresses = votingAddressToOwnerAddressMap.get(addr);
@@ -123,4 +96,92 @@ export async function strategy(
   });
   const result = Object.fromEntries(agg);
   return result;
+}
+
+function buildPowerMap(
+  formattedAddressesThatVoted: string[],
+  erc721OwnersArr: [string, string][],
+  erc721SignersArr: [string, string][]
+) {
+  const delegatedTokens = erc721SignersArr.filter(
+    ([id, address]) => address !== erc721OwnersArr[id]
+  );
+
+  const votingAddressToOwnerAddressMap = mapOwnersVotingPower(
+    formattedAddressesThatVoted,
+    erc721OwnersArr,
+    delegatedTokens
+  );
+
+  addDelegatedVotingPowerToMap(
+    formattedAddressesThatVoted,
+    erc721OwnersArr,
+    erc721SignersArr,
+    delegatedTokens,
+    votingAddressToOwnerAddressMap
+  );
+
+  return votingAddressToOwnerAddressMap;
+}
+
+function mapOwnersVotingPower(
+  formattedAddressesThatVoted: string[],
+  erc721OwnersArr: [string, string][],
+  delegatedTokens: [string, string][]
+) {
+  return erc721OwnersArr.reduce((acc, [id, addr]) => {
+    if (!formattedAddressesThatVoted.includes(addr)) {
+      return acc;
+    }
+    //If the address that voted is the owner, but the owner has
+    //delegated their vote on this passport then they do not
+    //get any voting power from this passport.
+    if (delegatedTokens.some((delegated) => delegated[0] === id)) {
+      return acc;
+    }
+    acc.set(addr, [addr]);
+    return acc;
+  }, new Map<string, string[]>());
+}
+
+function addDelegatedVotingPowerToMap(
+  formattedAddressesThatVoted: string[],
+  erc721OwnersArr: [string, string][],
+  erc721SignersArr: [string, string][],
+  delegatedTokens: [string, string][],
+  mapThatGetsUpdated: Map<string, string[]>
+) {
+  erc721SignersArr.reduce((acc, [id, addr]) => {
+    if (!formattedAddressesThatVoted.includes(addr)) {
+      return acc;
+    }
+
+    //This works because the signerOf is defaulted to the ownerOf value
+    if (!delegatedTokens.some((delegated) => delegated[0] === id)) {
+      return acc;
+    }
+
+    if (!mapThatGetsUpdated.has(addr)) {
+      acc.set(addr, []);
+    }
+    acc.get(addr)?.push(erc721OwnersArr[id][1]);
+
+    return acc;
+  }, mapThatGetsUpdated);
+}
+
+async function getVEBalancesForAddressMap(
+  votingAddressToOwnerAddressMap: Map<string, string[]>,
+  erc20BalanceCaller,
+  veNationAddress: string
+) {
+  votingAddressToOwnerAddressMap.forEach((addresses) => {
+    addresses.forEach((address) => {
+      erc20BalanceCaller.call(address, veNationAddress, 'balanceOf', [address]);
+    });
+  });
+
+  const erc20Balances: Record<string, BigNumberish> =
+    await erc20BalanceCaller.execute();
+  return erc20Balances;
 }
