@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'caranell';
+export const author = 'nation3';
 export const version = '0.1.0';
 const DECIMALS = 18;
 
