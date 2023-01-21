@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "frankendao-votingpower",
+      "params": {
+        "address": "0xDeC1Bb260A0991d4E3834abcBe8baB47B9Ebe797"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x20643627A2d02F520A006dF56Acc51E3e67E3Ee5",
+      "0x6079dCdfB2afF3Ec70ED233BAa2a5ce665E59b3b",
+      "0x2Bf1F005A318EeFf57e952ac794EaEEdb4789F3e"
+    ],
+    "snapshot": 8351620
+  }
+]

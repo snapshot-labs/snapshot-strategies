@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0x37a0a06F00d22F945D972090dddaBd981988a2e8"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["address"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -415,7 +415,11 @@ import * as vstaPoolStaking from './vsta-pool-staking';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
+<<<<<<< HEAD
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
+=======
+import * as frankendaoVotingPower from './frankendao-votingpower';
+>>>>>>> 5653af6 (Add new voting strategy, FrankenDAO VotingPower)
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -837,7 +841,11 @@ const strategies = {
   'vsta-pool-staking': vstaPoolStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
+<<<<<<< HEAD
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY
+=======
+  'frankendao-votingpower': frankendaoVotingPower
+>>>>>>> 5653af6 (Add new voting strategy, FrankenDAO VotingPower)
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
