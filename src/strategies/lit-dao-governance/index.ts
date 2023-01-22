@@ -20,35 +20,36 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const degenContract = "0x5f5541C618E76ab98361cdb10C67D1dE28740cC3";
+  const degenContract = '0x5f5541C618E76ab98361cdb10C67D1dE28740cC3';
 
   // Use the existing masterchef strategy to get the staked lit balance
-  var stakedLitResults = await masterchefStrategy(
-    space, 
-    network, 
-    provider, 
-    addresses, 
-    { 
-      "pid": "0",
-      "symbol": "Staked LIT",
-      "weight": 1,
-      "tokenIndex": null,
-      "chefAddress": "0x6c4f932a367ebbfef5528022459b47274618aaaf",
-      "uniPairAddress": null,
-      "weightDecimals": 0 
-    }, 
-    snapshot);
+  const stakedLitResults = await masterchefStrategy(
+    space,
+    network,
+    provider,
+    addresses,
+    {
+      pid: '0',
+      symbol: 'Staked LIT',
+      weight: 1,
+      tokenIndex: null,
+      chefAddress: '0x6c4f932a367ebbfef5528022459b47274618aaaf',
+      uniPairAddress: null,
+      weightDecimals: 0
+    },
+    snapshot
+  );
 
   // Book
   // LP2
   // LP2F
   // Squiggle
   // Degenaissance
-  const contracts: String[] = [
-    "0x915bDf48e61fB3Cb39c8339Fb10108D9B596171C",
-    "0xFC0946B334B3bA133D239207a4d01Da1B75CF51B",
-    "0x76723D9524a743d8908458082FBdFAAf7F60B3eD",
-    "0x6F75bEAa3D3d8A15e08a9F499464C696fC4D4cde",
+  const contracts: string[] = [
+    '0x915bDf48e61fB3Cb39c8339Fb10108D9B596171C',
+    '0xFC0946B334B3bA133D239207a4d01Da1B75CF51B',
+    '0x76723D9524a743d8908458082FBdFAAf7F60B3eD',
+    '0x6F75bEAa3D3d8A15e08a9F499464C696fC4D4cde',
 
     // DEGEN HAS TO BE LAST FOR THE MULTIPLIER
     degenContract
@@ -77,12 +78,14 @@ export async function strategy(
       // Apply degen multiplier to NFT based voting power
       merged[address] *= 2;
     } else {
-      merged[address] += parsedValue
+      merged[address] += parsedValue;
     }
   });
 
   Object.keys(stakedLitResults).map((address: any) => {
-    const stakedLitVotingPower = Math.floor(stakedLitResults[address] / 3000000);
+    const stakedLitVotingPower = Math.floor(
+      stakedLitResults[address] / 3000000
+    );
     if (degenOwnership[address]) {
       merged[address] += stakedLitVotingPower * 2;
     } else {
