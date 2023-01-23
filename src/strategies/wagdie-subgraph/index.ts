@@ -5,8 +5,8 @@ const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet'
 };
 
-export const author = 'IcculusHerEmissary';
-export const version = '0.1.0';
+export const author = 'LookingForOwls';
+export const version = '0.2.0';
 
 export async function strategy(
   _space,
@@ -45,6 +45,9 @@ export async function strategy(
       },
       location: {
         id: true
+      },
+      searedConcord: {
+        id: true
       }
     }
   };
@@ -65,12 +68,23 @@ export async function strategy(
     for (const character of characters) {
       const userAddress = getAddress(character.owner.id);
       const charId = character?.location?.id;
+      let characterValue = options.scoreMultiplier;
       if (
         options.location.includes('all') ||
         options.location.includes(charId)
       ) {
+        // Staked character 1 bonus point
+        if (character.location?.id) 
+        {
+          characterValue += 1
+        }
+        // Seared character 4 bonus points
+        if (character.searedConcord?.id) 
+        {
+          characterValue += 4
+        }
         scores[userAddress] =
-          (scores[userAddress] ?? 0) + options.scoreMultiplier;
+          (scores[userAddress] ?? 0) + characterValue;
       }
     }
 
