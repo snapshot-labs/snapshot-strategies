@@ -839,7 +839,7 @@ const strategies = {
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
-  'nexon-army': nexonArmy,
+  'nexon-army-nft': nexonArmy,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
