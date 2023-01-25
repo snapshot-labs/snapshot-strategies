@@ -416,6 +416,7 @@ import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
+import * as nyolingsStrategy from './nyolings-strategy';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -426,6 +427,7 @@ const strategies = {
   'giveth-balancer-balance': givethBalancerBalance,
   'giveth-xdai-balance': givethXdaiBalance,
   'giveth-gnosis-balance-v2': givethGnosisBalanceV2,
+  'nyolings-strategy': nyolingsStrategy,
   'nouns-rfp-power': nounsPower,
   coordinape,
   'anti-whale': antiWhale,
