@@ -99,6 +99,44 @@ export async function strategy(
     );
   }
 
+  const balancerHelpers = new Contract(
+    options.balancer.BalancerHelpers,
+    BalancerHelpersAbi,
+    provider
+  );
+
+  const exitPoolRequest = constructExitPoolRequest(
+    poolTokens,
+    parseUnits('1', options.sePSP2.decimals)
+  );
+
+  const queryExitResult: QueryExitResult =
+    await balancerHelpers.callStatic.queryExit(
+      options.balancer.poolId,
+      ZERO_ADDRESS,
+      ZERO_ADDRESS,
+      exitPoolRequest
+    );
+
+  console.log(
+    'queryExitResult',
+    queryExitResult.amountsOut.map((am) => am.toString())
+  );
+
+  const pspFor1BPT = parseFloat(
+    formatUnits(queryExitResult.amountsOut[tokenIndex], options.decimals)
+  );
+
+  const address2PSPinSePSP2_SIMPLE = Object.fromEntries(
+    Object.entries(account2BPTBalance).map(([address, bptBalance]) => {
+      const pspBalance = pspFor1BPT * bptBalance;
+
+      const checksummedAddress = getAddress(address);
+
+      return [checksummedAddress, pspBalance * options.multiplier];
+    })
+  );
+
   const multi = new Multicaller(network, provider, BalancerHelpersAbi, {
     blockTag
   });
@@ -145,9 +183,9 @@ export async function strategy(
     })
   );
 
-  console.log('FINAL SCORE', address2PSPinSePSP2);
+  console.log('FINAL SCORE', address2PSPinSePSP2, address2PSPinSePSP2_SIMPLE);
 
-  return address2PSPinSePSP2;
+  return address2PSPinSePSP2_SIMPLE;
 }
 
 interface ExitPoolRequest {
