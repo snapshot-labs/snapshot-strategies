@@ -5,7 +5,7 @@ const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet'
 };
 
-export const author = 'LookingForOwls';
+export const author = 'IcculusHerEmissary';
 export const version = '0.2.0';
 
 export async function strategy(
