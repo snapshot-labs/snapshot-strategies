@@ -13,17 +13,17 @@ const sePSP_balance = BPT_balance = SPSP.PSPBalance(address)
 const [tokens] = await Vault.getPoolTokens(poolId)
 ```
 
-3. Construct an exit pool request the account would use if intending to unstake BPT balance
+3. Construct an exit pool request that could be used to unstake 1 BPT balance
 ```js
 const exitPoolRequest = {
   assets: tokens, // Balancer Pools underlying tokens
   minAmountsOut: [0,0], // minimal amounts received
-  userData, // endoded [1, BPT_balance], // ExitKind.EXACT_BPT_IN_FOR_TOKENS_OUT = 1
+  userData, // endoded [1, 1e18], // ExitKind.EXACT_BPT_IN_FOR_TOKENS_OUT = 1
   toInternalBalance: false, // transfer tokens to recipient, as opposed to depositing to internal balance
 }
   ```
 
-4. Find how many tokens the account would receive by unstaking its BPT balance
+4. Find how many tokens you would receive by unstaking 1 BPT balance
 ```js
 const [amountsOut] = await BalancerHelpers.callStatic.queryExit(
   poolId,
@@ -33,16 +33,16 @@ const [amountsOut] = await BalancerHelpers.callStatic.queryExit(
   )
 // sender & recipient don't matter as we only getting an estimate
 ```
-`amountsOut` is a representation of BPT balance in the Balancer Pool's underlying tokens. Ordered the same as `assets`
+`amountsOut` is a representation of BPT balance in the Balancer Pool's underlying tokens. In the same order as `assets`
 
-5. One of the `amountsOut` is PSP balance the account has locked in sePSP2.
+5. One of the `amountsOut` is PSP portion of 1 BPT.
 ```js
-const PSP_balance = amountsOut[index_from_assets]
+const PSP_In_1_BPT = amountsOut[index_from_assets]
 ```
 
 6. Multiply PSP_balance by score multiplier.
 ```js
-const Vote_power = PSP_balance * 2.5
+const Vote_power = PSP_In_1_BPT * BPT_balance * 2.5
 ```
 
 Here is an example of parameters:
