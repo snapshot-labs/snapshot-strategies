@@ -2,7 +2,7 @@
   {
     "name": "Nexon Army NFT Holders",
     "strategy": {
-      "name": "nexon-army"
+      "name": "nexon-army-nft"
     },
     "network": "137",
     "addresses": [
