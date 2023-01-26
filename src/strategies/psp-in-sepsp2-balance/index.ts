@@ -31,13 +31,6 @@ interface QueryExitResult {
   amountsOut: BigNumber[];
 }
 
-type QueryExitInput = [
-  poolId: string,
-  sender: string,
-  recipient: string,
-  exitRequest: ExitPoolRequest
-];
-
 interface StrategyOptions {
   address: string;
   symbol: string;
@@ -84,7 +77,7 @@ export async function strategy(
   );
 
   const { tokens: poolTokens }: PoolTokensFromVault =
-    await balancerVault.getPoolTokens(options.balancer.poolId);
+    await balancerVault.getPoolTokens(options.balancer.poolId, { blockTag });
 
   const tokenLowercase = options.address.toLowerCase();
   const tokenIndex = poolTokens.findIndex(
@@ -114,7 +107,8 @@ export async function strategy(
       options.balancer.poolId,
       ZERO_ADDRESS,
       ZERO_ADDRESS,
-      exitPoolRequest
+      exitPoolRequest,
+      { blockTag }
     );
 
   const pspFor1BPT = parseFloat(
