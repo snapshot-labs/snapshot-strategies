@@ -3,15 +3,10 @@ import { formatUnits, parseUnits } from '@ethersproject/units';
 import { Contract } from '@ethersproject/contracts';
 import { defaultAbiCoder } from '@ethersproject/abi';
 import { strategy as fetchERC20Balances } from '../erc20-balance-of';
-import { Multicaller } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'paraswap';
 export const version = '0.1.0';
-
-// const abi = [
-//   'function PSPBalance(address _account) view returns (uint256 pspAmount_)'
-// ];
 
 const BalancerVaultAbi = [
   'function getPoolTokens(bytes32 poolId) external view returns (address[] tokens, uint256[] balances, uint256 lastChangeBlock)'
