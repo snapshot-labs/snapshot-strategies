@@ -77,8 +77,6 @@ export async function strategy(
     snapshot
   );
 
-  console.log('account2BPTBalance', account2BPTBalance);
-
   const balancerVault = new Contract(
     options.balancer.Vault,
     BalancerVaultAbi,
@@ -107,6 +105,7 @@ export async function strategy(
 
   const exitPoolRequest = constructExitPoolRequest(
     poolTokens,
+    // how much will get for 1 BPT
     parseUnits('1', options.sePSP2.decimals)
   );
 
@@ -118,16 +117,11 @@ export async function strategy(
       exitPoolRequest
     );
 
-  console.log(
-    'queryExitResult',
-    queryExitResult.amountsOut.map((am) => am.toString())
-  );
-
   const pspFor1BPT = parseFloat(
     formatUnits(queryExitResult.amountsOut[tokenIndex], options.decimals)
   );
 
-  const address2PSPinSePSP2_SIMPLE = Object.fromEntries(
+  const address2PSPinSePSP2 = Object.fromEntries(
     Object.entries(account2BPTBalance).map(([address, bptBalance]) => {
       const pspBalance = pspFor1BPT * bptBalance;
 
@@ -137,55 +131,7 @@ export async function strategy(
     })
   );
 
-  const multi = new Multicaller(network, provider, BalancerHelpersAbi, {
-    blockTag
-  });
-
-  Object.entries(account2BPTBalance).forEach(([address, _bptBalance]) => {
-    try {
-      const bptBalance = parseUnits(
-        _bptBalance.toString(10),
-        options.sePSP2.decimals
-      );
-      const exitPoolRequest = constructExitPoolRequest(poolTokens, bptBalance);
-      const params: QueryExitInput = [
-        options.balancer.poolId,
-        ZERO_ADDRESS,
-        ZERO_ADDRESS,
-        exitPoolRequest
-      ];
-
-      return multi.call(
-        address,
-        options.balancer.BalancerHelpers,
-        'queryExit',
-        params
-      );
-    } catch (error) {
-      console.log(error);
-    }
-  });
-
-  const address2ExitResult: Record<string, QueryExitResult> =
-    await multi.execute();
-
-  const address2PSPinSePSP2 = Object.fromEntries(
-    Object.entries(address2ExitResult).map(([address, exitResult]) => {
-      const pspBalance = exitResult.amountsOut[tokenIndex];
-
-      const checksummedAddress = getAddress(address);
-
-      return [
-        checksummedAddress,
-        parseFloat(formatUnits(pspBalance, options.decimals)) *
-          options.multiplier
-      ];
-    })
-  );
-
-  console.log('FINAL SCORE', address2PSPinSePSP2, address2PSPinSePSP2_SIMPLE);
-
-  return address2PSPinSePSP2_SIMPLE;
+  return address2PSPinSePSP2;
 }
 
 interface ExitPoolRequest {
