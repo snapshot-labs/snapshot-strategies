@@ -416,6 +416,7 @@ import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
+import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -837,7 +838,8 @@ const strategies = {
   'vsta-pool-staking': vstaPoolStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
-  'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY
+  'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
+  'psp-in-sepsp2-balance': pspInSePSP2Balance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
