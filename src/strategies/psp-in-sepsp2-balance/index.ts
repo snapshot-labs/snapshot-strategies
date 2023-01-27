@@ -51,17 +51,12 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const erc20Options = {
-    ...options.sePSP2,
-    symbol: 'sePSP2'
-  };
-
   const account2BPTBalance = await fetchERC20Balances(
     space,
     network,
     provider,
     addresses,
-    erc20Options,
+    options.sePSP2,
     snapshot
   );
 
