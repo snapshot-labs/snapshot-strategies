@@ -3,7 +3,7 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller, call } from '../../utils';
 
-export const author = '0xSkly';
+export const author = '0xSkly'; // coAuthor = 'franzns'
 export const version = '0.1.0';
 
 const abi = [
