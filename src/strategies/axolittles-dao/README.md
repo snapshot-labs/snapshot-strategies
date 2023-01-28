@@ -10,10 +10,7 @@ Here is an example of parameters:
     "name": "Example Query",
     "strategy": {
       "name": "axolittles-dao",
-      "params": {
-        "symbol": "AXO",
-        "decimals": 0
-      }
+      "params": {}
     },
     "network": "1",
     "addresses": [
