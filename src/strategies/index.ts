@@ -827,8 +827,6 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'lodestar-aelin-vesting': lodestarAelinVesting,
-  'lodestar-vesting': lodestarVesting,
-  'lodestar-staked-lp': lodestarStakedLp
   'vsta-pool-staking': vstaPoolStaking
 };
 
