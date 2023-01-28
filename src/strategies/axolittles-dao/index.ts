@@ -1,6 +1,4 @@
-// import { getAddress } from '@ethersproject/address';
 import fetch from 'cross-fetch';
-// import { formatUnits } from '@ethersproject/units';
 
 export const author = 'toast';
 export const version = '0.0.1';
