@@ -4,12 +4,12 @@
     "strategy": {
       "name": "reliquary",
       "params": {
-        "reliquaryAddress": "0xb0fc43069089d0fa02baaa896ac2efcb596d7d05",
+        "reliquaryAddress": "0x1ed6411670c709F4e163854654BD52c74E66D7eC",
         "poolId": 1,
         "minVotingLevel": 1,
         "maxVotingLevel": 7,
         "decimals": 18,
-        "strategy": "allocation",
+        "strategy": "multiplier",
         "useLevelOnUpdate": false
       }
     },
@@ -20,6 +20,6 @@
       "0x1E243A85822E2CD42C81359E0ea42033000D02a4",
       "0xf7Ee8A9d014E9046D007bD448AaE7C667eF91E98"
     ],
-    "snapshot": 50967176
+    "snapshot": 54393483
   }
 ]
