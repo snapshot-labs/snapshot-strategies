@@ -206,8 +206,6 @@ import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
 import * as lodestarAelinVesting from './lodestar-aelin-vesting';
-import * as lodestarVesting from './lodestar-vesting';
-import * as lodestarStakedLp from './lodestar-staked-lp';
 import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
