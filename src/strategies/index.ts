@@ -417,7 +417,7 @@ import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
-import * as stakedotlinkVesting from "./stakedotlink-vesting";
+import * as stakedotlinkVesting from './stakedotlink-vesting';
 
 const strategies = {
   'forta-shares': fortaShares,
