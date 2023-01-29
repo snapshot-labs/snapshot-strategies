@@ -74,17 +74,14 @@ export async function strategy(
         options.location.includes(charId)
       ) {
         // Staked character 1 bonus point
-        if (character.location?.id) 
-        {
-          characterValue += 1
+        if (character.location?.id) {
+          characterValue += 1;
         }
         // Seared character 4 bonus points
-        if (character.searedConcord?.id) 
-        {
-          characterValue += 4
+        if (character.searedConcord?.id) {
+          characterValue += 4;
         }
-        scores[userAddress] =
-          (scores[userAddress] ?? 0) + characterValue;
+        scores[userAddress] = (scores[userAddress] ?? 0) + characterValue;
       }
     }
 
