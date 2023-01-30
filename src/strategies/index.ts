@@ -416,6 +416,8 @@ import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
+import * as nexonArmyNFT from './nexon-army-nft';
+import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 
 const strategies = {
@@ -839,6 +841,8 @@ const strategies = {
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
+  'nexon-army-nft': nexonArmyNFT,
+  'stakedotlink-vesting': stakedotlinkVesting,
   'psp-in-sepsp2-balance': pspInSePSP2Balance
 };
 

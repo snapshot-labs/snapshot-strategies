@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'nation3';
-export const version = '0.1.0';
+export const version = '0.2.0';
 const DECIMALS = 18;
 
 const balanceAbi = [
@@ -29,7 +29,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const formattedAddresses = addresses.map((addr) => getAddress(addr));
+  const formattedAddressesThatVoted = addresses.map((addr) => getAddress(addr));
 
   const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
     blockTag
@@ -50,18 +50,7 @@ export async function strategy(
 
   erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
 
-  formattedAddresses.forEach((address) => {
-    erc20BalanceCaller.call(address, options.erc20, 'balanceOf', [address]);
-  });
-
-  const [erc20Balances, lastIndex]: [
-    Record<string, BigNumberish>,
-    Record<string, BigNumberish>
-  ] = await Promise.all([
-    erc20BalanceCaller.execute(),
-    erc721LastTokenIdCaller.execute()
-  ]);
-
+  const lastIndex = await erc721LastTokenIdCaller.execute();
   const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
 
   for (let i = 0; i < lastTokenId; i++) {
@@ -80,54 +69,119 @@ export async function strategy(
   const erc721OwnersArr = Object.entries(erc721Owners);
   const erc721SignersArr = Object.entries(erc721Signers);
 
-  const delegatedTokens = erc721SignersArr.filter(
-    ([id, address]) => address !== erc721Owners[id]
+  //There is slightly confusing logic here, but ultimately the
+  //resultant Map below Maps the Voting Address to the list of
+  //addresses for which they are voting on behalf of. In the
+  //majority cases this will be a one to one mapping.
+  const votingAddressToOwnerAddressMap = buildPowerMap(
+    formattedAddressesThatVoted,
+    erc721OwnersArr,
+    erc721SignersArr
   );
 
-  const result = Object.fromEntries(
-    formattedAddresses.map((address) => {
-      // Getting ids of all tokens delegated to this address
-      const tokenDelegations = delegatedTokens
-        .filter(([, addr]) => addr === address)
-        .map(([id]) => id);
+  const erc20Balances: Record<string, BigNumberish> =
+    await getVEBalancesForAddressMap(
+      votingAddressToOwnerAddressMap,
+      erc20BalanceCaller,
+      options.erc20
+    );
 
-      if (tokenDelegations?.length) {
-        const realOwners = erc721OwnersArr.filter(([id]) =>
-          tokenDelegations.includes(id)
-        );
-
-        if (!realOwners?.length) {
-          return [address, 0.0];
-        }
-
-        const ownerAddresses = realOwners.map(([, addr]) => addr);
-
-        const erc20Balance = ownerAddresses.reduce((sum, addr) => {
-          return sum.add(erc20Balances[addr] || 0);
-        }, BigNumber.from(0));
-
-        return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
-      } else {
-        const erc20Balance = erc20Balances[address];
-        const erc721Token = erc721OwnersArr.find(
-          ([, addr]) => addr === address
-        );
-
-        if (!erc721Token) {
-          return [address, 0.0];
-        }
-
-        const isUsersTokenDelegated = delegatedTokens.find(
-          ([id]) => id === erc721Token[0]
-        );
-
-        if (erc721Token && !isUsersTokenDelegated) {
-          return [address, parseFloat(formatUnits(erc20Balance, DECIMALS))];
-        }
-
-        return [address, 0.0];
-      }
-    })
-  );
+  const agg = formattedAddressesThatVoted.map((addr) => {
+    const holderAddresses = votingAddressToOwnerAddressMap.get(addr);
+    const total =
+      holderAddresses?.reduce((sum, addr) => {
+        return sum.add(erc20Balances[addr] || 0);
+      }, BigNumber.from(0)) || 0;
+    return [addr, parseFloat(formatUnits(total, DECIMALS))];
+  });
+  const result = Object.fromEntries(agg);
   return result;
+}
+
+function buildPowerMap(
+  formattedAddressesThatVoted: string[],
+  erc721OwnersArr: [string, string][],
+  erc721SignersArr: [string, string][]
+) {
+  const delegatedTokens = erc721SignersArr.filter(
+    ([id, address]) => address !== erc721OwnersArr[id]
+  );
+
+  const votingAddressToOwnerAddressMap = mapOwnersVotingPower(
+    formattedAddressesThatVoted,
+    erc721OwnersArr,
+    delegatedTokens
+  );
+
+  addDelegatedVotingPowerToMap(
+    formattedAddressesThatVoted,
+    erc721OwnersArr,
+    erc721SignersArr,
+    delegatedTokens,
+    votingAddressToOwnerAddressMap
+  );
+
+  return votingAddressToOwnerAddressMap;
+}
+
+function mapOwnersVotingPower(
+  formattedAddressesThatVoted: string[],
+  erc721OwnersArr: [string, string][],
+  delegatedTokens: [string, string][]
+) {
+  return erc721OwnersArr.reduce((acc, [id, addr]) => {
+    if (!formattedAddressesThatVoted.includes(addr)) {
+      return acc;
+    }
+    //If the address that voted is the owner, but the owner has
+    //delegated their vote on this passport then they do not
+    //get any voting power from this passport.
+    if (delegatedTokens.some((delegated) => delegated[0] === id)) {
+      return acc;
+    }
+    acc.set(addr, [addr]);
+    return acc;
+  }, new Map<string, string[]>());
+}
+
+function addDelegatedVotingPowerToMap(
+  formattedAddressesThatVoted: string[],
+  erc721OwnersArr: [string, string][],
+  erc721SignersArr: [string, string][],
+  delegatedTokens: [string, string][],
+  mapThatGetsUpdated: Map<string, string[]>
+) {
+  erc721SignersArr.reduce((acc, [id, addr]) => {
+    if (!formattedAddressesThatVoted.includes(addr)) {
+      return acc;
+    }
+
+    //This works because the signerOf is defaulted to the ownerOf value
+    if (!delegatedTokens.some((delegated) => delegated[0] === id)) {
+      return acc;
+    }
+
+    if (!mapThatGetsUpdated.has(addr)) {
+      acc.set(addr, []);
+    }
+    acc.get(addr)?.push(erc721OwnersArr[id][1]);
+
+    return acc;
+  }, mapThatGetsUpdated);
+}
+
+async function getVEBalancesForAddressMap(
+  votingAddressToOwnerAddressMap: Map<string, string[]>,
+  erc20BalanceCaller,
+  veNationAddress: string
+) {
+  votingAddressToOwnerAddressMap.forEach((addresses) => {
+    addresses.forEach((address) => {
+      erc20BalanceCaller.call(address, veNationAddress, 'balanceOf', [address]);
+    });
+  });
+
+  const erc20Balances: Record<string, BigNumberish> =
+    await erc20BalanceCaller.execute();
+  return erc20Balances;
 }
