@@ -1,12 +1,12 @@
 import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'ppoliani';
+export const version = '0.1.0';
 
 const abi = [
-  'function balanceOf(address account) external view returns (uint256)'
+  'function balanceOf(address account) external view returns (uint256)',
+  'function balanceOf(address account, uint256 tokenId) external view returns (uint256)'
 ];
 
 type Balance = {
@@ -14,8 +14,8 @@ type Balance = {
   erc1155: number;
 };
 
-const JBAS_ADDRESS = '0x2120d19431e0dd49411e5412629f8e41a72cfabd'
-const JAFS_ADDRESS = '0x56cA59ab1b3c7086b3c4aF417593fDeE566A3320'
+const JBAS_ADDRESS = '0x2120d19431e0dd49411e5412629f8e41a72cfabd';
+const JAFS_ADDRESS = '0x56cA59ab1b3c7086b3c4aF417593fDeE566A3320';
 
 export async function strategy(
   space,
@@ -28,43 +28,61 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  const erc1155TokenId = options.tokenId
+  const erc1155TokenId = options.tokenId;
 
   // get the ERC721 balance
   addresses.forEach((address) => {
-    multi.call(`${address}-721`, JBAS_ADDRESS, 'balanceOf', [address])
-    multi.call(`${address}-1155`, JAFS_ADDRESS, 'balanceOf', [address, erc1155TokenId])
+    multi.call(`${address}-721`, JBAS_ADDRESS, 'balanceOf', [address]);
+    multi.call(`${address}-1155`, JAFS_ADDRESS, 'balanceOf', [
+      address,
+      erc1155TokenId
+    ]);
   });
 
   const result: Record<string, BigNumberish> = await multi.execute();
-  const balances: Record<string, Balance> = Object.entries(result)
-  .reduce((acc, [path, balance]) => {
-    const parts = path.split('-');
-    const address = parts[0];
-    const nftType = parts[1];
+  const balances: Record<string, Balance> = Object.entries(result).reduce(
+    (acc, [path, balance]) => {
+      const parts = path.split('-');
+      const address = parts[0];
+      const nftType = parts[1];
 
-    const accountBalances = acc[address] || {erc721: 0, erc1155: 0};
-    let newErc721Bal;
-    let newErc1155Bal;
+      const accountBalances = acc[address] || {
+        erc721: 0,
+        erc1155: 0
+      };
 
-    switch (nftType) {
-      case '721':
-        newErc721Bal = accountBalances.erc721 + balance;
-        newErc1155Bal = accountBalances.erc1155;
-        acc[address] = {erc721: newErc721Bal, erc1155: newErc1155Bal}
-        break
-      case '1155':
-        newErc721Bal = accountBalances.erc721;
-        newErc1155Bal = accountBalances.erc1155 + balance;
-        acc[address] = {erc721: newErc721Bal, erc1155: newErc1155Bal}
-        break
-    }
+      let newErc721Bal;
+      let newErc1155Bal;
 
-    return acc
-  }, {});
+      switch (nftType) {
+        case '721':
+          newErc721Bal = accountBalances.erc721 + balance;
+          newErc1155Bal = accountBalances.erc1155;
+          acc[address] = {
+            erc721: newErc721Bal,
+            erc1155: newErc1155Bal
+          };
+          break;
+        case '1155':
+          newErc721Bal = accountBalances.erc721;
+          newErc1155Bal = accountBalances.erc1155 + balance;
+          acc[address] = {
+            erc721: newErc721Bal,
+            erc1155: newErc1155Bal
+          };
+
+          break;
+      }
+
+      return acc;
+    },
+    {}
+  );
 
   return Object.fromEntries(
-    Object.entries(balances)
-    .map(([address, balance]) => [address, Math.min(balance.erc721, balance.erc1155)])
+    Object.entries(balances).map(([address, balance]) => [
+      address,
+      Math.min(balance.erc721, balance.erc1155)
+    ])
   );
 }

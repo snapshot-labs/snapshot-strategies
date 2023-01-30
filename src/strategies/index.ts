@@ -268,6 +268,7 @@ import * as snetLiquidityProviders from './snet-liquidity-providers';
 import * as minMaxMcnFarm from './minmax-mcn-farm';
 import * as unstackedToadzAndStackedToadzStakers from './unstackedtoadz-and-stackedtoadz-stakers';
 import * as jadeSmrt from './jade-smrt';
+import * as jbasNft from './jbas-nft';
 import * as oceanDAOBrightID from './ocean-dao-brightid';
 import * as saddleFinance from './saddle-finance';
 import * as saddleFinanceV2 from './saddle-finance-v2';
@@ -695,6 +696,7 @@ const strategies = {
   'unstackedtoadz-and-stackedtoadz-stakers':
     unstackedToadzAndStackedToadzStakers,
   'jade-smrt': jadeSmrt,
+  'jbas-nft': jbasNft,
   'ocean-dao-brightid': oceanDAOBrightID,
   'saddle-finance': saddleFinance,
   'saddle-finance-v2': saddleFinanceV2,
