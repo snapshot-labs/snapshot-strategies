@@ -1,6 +1,6 @@
 import { getAddress } from '@ethersproject/address';
 import { JsonRpcProvider } from '@ethersproject/providers';
-import * as blake2b from './blake2b.umd.min';
+import { blake2bHex } from './blake2b';
 
 export const author = 'crystalin';
 export const version = '0.1.0';
@@ -24,9 +24,10 @@ export async function strategy(
     await Promise.all(
       addresses.map(async (address) => {
         // Computes "system.account" key for given address
-        const key = `${accountPrefix}${await blake2b.blake2b(
+        const key = `${accountPrefix}${await blake2bHex(
           Buffer.from(address.substring(2), 'hex'),
-          128
+          null,
+          16
         )}${address.substring(2)}`;
 
         // Retrieves storage data for the "system.account" key
