@@ -14,6 +14,9 @@ type Balance = {
   erc1155: number;
 };
 
+const JBAS_ADDRESS = '0x2120d19431e0dd49411e5412629f8e41a72cfabd'
+const JAFS_ADDRESS = '0x56cA59ab1b3c7086b3c4aF417593fDeE566A3320'
+
 export async function strategy(
   space,
   network,
@@ -29,8 +32,8 @@ export async function strategy(
 
   // get the ERC721 balance
   addresses.forEach((address) => {
-    multi.call(`${address}-721`, options.address, 'balanceOf', [address])
-    multi.call(`${address}-1155`, options.address, 'balanceOf', [address, erc1155TokenId])
+    multi.call(`${address}-721`, JBAS_ADDRESS, 'balanceOf', [address])
+    multi.call(`${address}-1155`, JAFS_ADDRESS, 'balanceOf', [address, erc1155TokenId])
   });
 
   const result: Record<string, BigNumberish> = await multi.execute();
