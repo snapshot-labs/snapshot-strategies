@@ -31,7 +31,7 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
   const erc1155TokenId = options.jafsTokensId;
 
-  // get the ERC721 balance
+  // get the both ERC721 and ERC1155 balances
   addresses.forEach((address) => {
     const checksum = getAddress(address);
     multi.call(`${checksum}-721`, JBAS_ADDRESS, 'balanceOf(address)', [
