@@ -1,4 +1,5 @@
 import { BigNumberish } from '@ethersproject/bignumber';
+import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
 
 export const author = 'ppoliani';
@@ -32,11 +33,17 @@ export async function strategy(
 
   // get the ERC721 balance
   addresses.forEach((address) => {
-    multi.call(`${address}-721`, JBAS_ADDRESS, 'balanceOf(address)', [address]);
-    multi.call(`${address}-1155`, JAFS_ADDRESS, 'balanceOf(address, uint256)', [
-      address,
-      erc1155TokenId
+    const checksum = getAddress(address);
+    multi.call(`${checksum}-721`, JBAS_ADDRESS, 'balanceOf(address)', [
+      checksum
     ]);
+
+    multi.call(
+      `${checksum}-1155`,
+      JAFS_ADDRESS,
+      'balanceOf(address, uint256)',
+      [checksum, erc1155TokenId]
+    );
   });
 
   const result: Record<string, BigNumberish> = await multi.execute();
