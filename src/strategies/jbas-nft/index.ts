@@ -28,18 +28,19 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  const erc1155TokenId = options.tokenId;
+  const erc1155TokenId = options.jafsTokensId;
 
   // get the ERC721 balance
   addresses.forEach((address) => {
-    multi.call(`${address}-721`, JBAS_ADDRESS, 'balanceOf', [address]);
-    multi.call(`${address}-1155`, JAFS_ADDRESS, 'balanceOf', [
+    multi.call(`${address}-721`, JBAS_ADDRESS, 'balanceOf(address)', [address]);
+    multi.call(`${address}-1155`, JAFS_ADDRESS, 'balanceOf(address, uint256)', [
       address,
       erc1155TokenId
     ]);
   });
 
   const result: Record<string, BigNumberish> = await multi.execute();
+
   const balances: Record<string, Balance> = Object.entries(result).reduce(
     (acc, [path, balance]) => {
       const parts = path.split('-');
