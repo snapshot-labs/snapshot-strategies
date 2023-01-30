@@ -11,7 +11,9 @@
     },
     "network": "1",
     "addresses": [
-      "0x50dd57F50A17d57304e7A4F262Da30bEB31C2E87"
+      "0x50dd57F50A17d57304e7A4F262Da30bEB31C2E87",
+      "0x1fbF1E602530fB2e849Ae46B34A29493BCd75EC9",
+      "0xD130470E8b4B73d74FB723d5cb8A9DfD83462a1f"
     ],
     "snapshot": 16521706
   }
