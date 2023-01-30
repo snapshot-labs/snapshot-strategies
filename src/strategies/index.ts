@@ -418,6 +418,7 @@ import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as moonbeamFreeBalance from './moonbeam-free-balance';
+import * as stakedotlinkVesting from './stakedotlink-vesting';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -842,6 +843,7 @@ const strategies = {
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
   'moonbeam-free-balance': moonbeamFreeBalance,
+  'stakedotlink-vesting': stakedotlinkVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
