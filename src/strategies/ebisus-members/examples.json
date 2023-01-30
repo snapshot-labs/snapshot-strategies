@@ -1,0 +1,20 @@
+[
+    {
+      "name": "Example query",
+      "strategy": {
+        "name": "ebisus-members",
+        "params": {
+          "address": "0x7a3CdB2364f92369a602CAE81167d0679087e6a3"
+        }
+      },
+      "network": "25",
+      "addresses": [
+        "0x454cfAa623A629CC0b4017aEb85d54C42e91479d",
+        "0x6bE5E7da4aD8523f9C622544A938F344a1f62Cf5",
+        "0xB5d4f12b5E7d8Ce43FECe177a6C75dF14994FBe6",
+        "0xC5e1569772b2d425Ac9469d39F17341C01e1CF4c"
+      ],
+      "snapshot": 6726963
+    }
+  ]
+  

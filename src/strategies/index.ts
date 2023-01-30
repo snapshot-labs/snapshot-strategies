@@ -418,6 +418,7 @@ import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
+import * as ebisusMembers from './ebisus-members';
 
 const strategies = {
   'forta-shares': fortaShares,
@@ -841,7 +842,8 @@ const strategies = {
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
-  'stakedotlink-vesting': stakedotlinkVesting
+  'stakedotlink-vesting': stakedotlinkVesting,
+  'ebisus-members' : ebisusMembers
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
