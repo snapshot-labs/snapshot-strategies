@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'gawainb';
-export const version = '2.0.0';
+export const version = '2.1.0';
 
 const POAP_API_ENDPOINT_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap',
@@ -13,12 +13,11 @@ const EVENT_IDS_LIMIT = 500;
 const MAX_TOKENS_PER_PAGE = 1000;
 
 export async function strategy(
-  space,
+  _space,
   network,
-  provider,
+  _provider,
   addresses,
   options,
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   snapshot
 ) {
   if (options.eventIds.length > EVENT_IDS_LIMIT) {
@@ -53,6 +52,9 @@ export async function strategy(
       }
     }
   };
+  if (snapshot !== 'latest') {
+    query.tokens.__args['block'] = { number: snapshot };
+  }
 
   while (true) {
     const supplyResponse = await subgraphRequest(

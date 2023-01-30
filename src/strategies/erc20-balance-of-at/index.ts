@@ -16,10 +16,12 @@ export async function strategy(
   addresses,
   options
 ): Promise<Record<string, number>> {
-
   const multi = new Multicaller(network, provider, abi);
   addresses.forEach((address) =>
-    multi.call(address, options.address, 'balanceOfAt', [address, options.snapshotId])
+    multi.call(address, options.address, 'balanceOfAt', [
+      address,
+      options.snapshotId
+    ])
   );
   const result: Record<string, BigNumberish> = await multi.execute();
 

@@ -1,15 +1,15 @@
 # reliquary
 
 This strategy utilizes Relic NFTs from Reliquary to calculate voting power. The strategy can be configured to either
-use the level number to weight the voting power or the allocation points assigned to each level.
+use the level number to weight the voting power or the multiplier assigned to each level.
 
 If we use the levels strategy, the formula to calculate the voting power is
 
 `votingPower = level / maxVotingLevel * amount`
 
-or if we use allocation points
+or if we use multiplier
 
-`votingPower = levelAllocationPoint / maxLevelAllocationPoint * amount`
+`votingPower = levelMultiplier / maxLevelMultiplier * amount`
 
 In other words, if the nft has reached max voting level the voting power is equal to the amount deposited.
 
@@ -24,7 +24,7 @@ Configuration:
 | minVotingLevel | number | 0...n | min level required to vote
 | maxVotingLevel | number | 0...n | max voting level
 | decimals | number | 6..18 | number of decimals of the token deposited into this pool
-| strategy | string | 'level' / 'allocation' | which strategy to use to weight voting power
+| strategy | string | 'level' / 'multiplier' | which strategy to use to weight voting power
 | useLevelOnUpdate | boolean | true / false | use hypothetical level after update
 
 ```json
@@ -34,7 +34,7 @@ Configuration:
   "minVotingLevel": 1,
   "maxVotingLevel": 7,
   "decimals": 18,
-  "strategy": "allocation",
+  "strategy": "multiplier",
   "useLevelOnUpdate": false
 }
 ```
