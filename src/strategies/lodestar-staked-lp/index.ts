@@ -68,6 +68,10 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
   options.stakingPoolAddresses.forEach(stakingPoolAddress => {
+    if (options.stakingPoolAddresses.length >= 4) {
+      console.error("ERROR: Too many stake pool addresses provided.");
+      return;
+    }
     addresses.forEach((address) =>
       multi.call(address, stakingPoolAddress, 'userInfo', [address])
     );
