@@ -417,6 +417,8 @@ import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
+import * as nexonArmyNFT from './nexon-army-nft';
+import * as stakedotlinkVesting from './stakedotlink-vesting';
 
 const strategies = {
   'eco-voting-power': ecoVotingPower,
@@ -839,7 +841,9 @@ const strategies = {
   'vsta-pool-staking': vstaPoolStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
-  'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY
+  'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
+  'nexon-army-nft': nexonArmyNFT,
+  'stakedotlink-vesting': stakedotlinkVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
