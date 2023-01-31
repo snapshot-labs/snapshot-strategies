@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as ecoVotingPower from './eco-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
@@ -420,6 +421,7 @@ import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
 
 const strategies = {
+  'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
