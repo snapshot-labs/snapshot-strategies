@@ -13,7 +13,8 @@ IPFS endpoint is defined as a url starting with any of the following:
   - `https://gateway.pinata.cloud/ipfs/'
   - 'https://ipfs.io/ipfs/'
   - 'https://cloudflare-ipfs.com/ipfs/'
-```
+
+```javascript
 1. `param.api`: The first part of the URL (e.g. `https://gateway.pinata.cloud/ipfs/`)
 
 2. `param.strategy`: The IPFS hash
@@ -24,7 +25,7 @@ The final URL is expected to look something like: `https://gateway.pinata.cloud/
 ```
 
 ### For non-IPFS endpoints:
-```
+```javascript
 1. `param.api`: The first part of the URL (e.g. `https://www.myapi.com/`)
 
 2. `param.strategy`: The resource name (e.g. `get_vote_count`)
@@ -40,7 +41,7 @@ The final URL is expected to look something like: `https://www.myapi.com/get_vot
 
 ## Expected return of API
 The API should return an object with the following structure:
-```
+```javascript
 {
   score: [
     {
