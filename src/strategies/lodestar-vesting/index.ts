@@ -26,7 +26,7 @@ export async function strategy(
       options.beneficiaryAddresses.length >= 25 ||
       options.contractAddresses.length >= 25
     ) {
-      console.error('ERROR: Too many stake pool addresses provided.');
+      throw new Error('Too many beneficiary/contract addresses provided.');
       return;
     }
     if (options.beneficiaryAddresses.includes(address)) {
