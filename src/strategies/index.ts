@@ -188,6 +188,7 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
 import * as poapWithWeightV2 from './poap-with-weight-v2';
 import * as uniswapV3 from './uniswap-v3';
@@ -227,6 +228,7 @@ import * as compLikeVotesInclusive from './comp-like-votes-inclusive';
 import * as mstable from './mstable';
 import * as hashesVoting from './hashes-voting';
 import * as hashflowGovernancePower from './hashflow-governance-power';
+import * as hashflowVeHft from './hashflow-vehft';
 import * as podLeader from './pod-leader';
 import * as aavegotchiWagmiGuild from './aavegotchi-wagmi-guild';
 import * as polisBalance from './polis-balance';
@@ -408,11 +410,19 @@ import * as ctsiStaking from './ctsi-staking';
 import * as ctsiStakingPool from './ctsi-staking-pool';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
+import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
 import * as lodestarVesting from './lodestar-vesting';
+import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
+import * as litDaoGovernance from './lit-dao-governance';
+import * as babywealthyclub from './babywealthyclub';
+import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
+import * as nexonArmyNFT from './nexon-army-nft';
+import * as stakedotlinkVesting from './stakedotlink-vesting';
 
 const strategies = {
   'forta-shares': fortaShares,
+  'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
@@ -425,6 +435,7 @@ const strategies = {
   balancer,
   sunder,
   'balancer-smart-pool': balancerSmartPool,
+  'lit-dao-governance': litDaoGovernance,
   'balancer-erc20-internal-balance-of': balancerErc20InternalBalanceOf,
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
@@ -606,6 +617,7 @@ const strategies = {
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
+  poap: poap,
   'poap-with-weight': poapWithWeight,
   'poap-with-weight-v2': poapWithWeightV2,
   'uniswap-v3': uniswapV3,
@@ -643,6 +655,7 @@ const strategies = {
   mstable,
   'hashes-voting': hashesVoting,
   'hashflow-governance-power': hashflowGovernancePower,
+  'hashflow-vehft': hashflowVeHft,
   'pod-leader': podLeader,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
   'polis-balance': polisBalance,
@@ -825,7 +838,12 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
-  'lodestar-vesting': lodestarVesting
+  'lodestar-vesting': lodestarVesting,
+  'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
+  babywealthyclub,
+  'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
+  'nexon-army-nft': nexonArmyNFT,
+  'stakedotlink-vesting': stakedotlinkVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

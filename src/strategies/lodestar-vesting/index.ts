@@ -20,15 +20,15 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) => {
-    if (
+if (
       options.beneficiaryAddresses.length >= 25 ||
       options.contractAddresses.length >= 25
     ) {
       console.error('ERROR: Too many stake pool addresses provided.');
       return;
     }
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+  addresses.forEach((address) => {
     if (options.beneficiaryAddresses.includes(address)) {
       const index = options.beneficiaryAddresses.indexOf(address);
       const contractAddress = options.contractAddresses[index];
