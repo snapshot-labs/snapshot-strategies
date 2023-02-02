@@ -13,35 +13,38 @@ IPFS endpoint is defined as a url starting with any of the following:
   - `https://gateway.pinata.cloud/ipfs/'
   - 'https://ipfs.io/ipfs/'
   - 'https://cloudflare-ipfs.com/ipfs/'
-
-```javascript
+```
 1. `param.api`: The first part of the URL (e.g. `https://gateway.pinata.cloud/ipfs/`)
 
 2. `param.strategy`: The IPFS hash
 
-3. `param.additionalParameters`: Any additional parameters you want to include (i.e. `decimals`)
+3. `param.decimals`: The decimalsOrUnitName per https://docs.ethers.org/v3/api-utils.html?highlight=formatunits#ether-strings-and-wei. Used by the strategy when processing the API response.
+
+4. `param.additionalParameters` (optional): Any additional parameters you want to include.
 
 The final URL is expected to look something like: `https://gateway.pinata.cloud/ipfs/QmQnW3TtpN8WS2YMXtWB1p7DFcVjetfZmMfJvXm5yAZ6QN`
 ```
 
 ### For non-IPFS endpoints:
-```javascript
+```
 1. `param.api`: The first part of the URL (e.g. `https://www.myapi.com/`)
 
 2. `param.strategy`: The resource name (e.g. `get_vote_count`)
 
-3. `network`: Set by the Snapshot space settings (i.e. Ethereum = 1)
+3. `param.decimals`: The decimalsOrUnitName per https://docs.ethers.org/v3/api-utils.html?highlight=formatunits#ether-strings-and-wei. Used by the strategy when processing the API response.
 
-4. `snapshot`: Set by blockheight of the proposal (i.e. 11437846)
+4. `network`: Set by the Snapshot space settings (i.e. Ethereum = 1)
 
-5. `addresses`: A comma separated list of addresses to be queried
+5. `snapshot`: Set by blockheight of the proposal (i.e. 11437846)
+
+6. `addresses`: A comma separated list of addresses to be queried
 
 The final URL is expected to look something like: `https://www.myapi.com/get_vote_count?network=1&snapshot=11437846&addresses=0xeD2bcC3104Da5F5f8fA988D6e9fAFd74Ae62f319,0x3c4B8C52Ed4c29eE402D9c91FfAe1Db2BAdd228D`
 ```
 
 ## Expected return of API
 The API should return an object with the following structure:
-```javascript
+```
 {
   score: [
     {
