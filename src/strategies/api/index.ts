@@ -43,7 +43,12 @@ export async function strategy(
   return Object.fromEntries(
     data.score.map((value) => [
       getAddress(value.address),
-      parseFloat(formatUnits(value.score.toString(), (options.hasOwnProperty("decimals") ? options.decimals : 0)))
+      parseFloat(
+        formatUnits(
+          value.score.toString(),
+          options.hasOwnProperty('decimals') ? options.decimals : 0
+        )
+      )
     ])
   );
 }
