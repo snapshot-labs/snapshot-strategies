@@ -32,8 +32,6 @@ export async function strategy(
       const index = options.beneficiaryAddresses.indexOf(address);
       const contractAddress = options.contractAddresses[index];
       multi.call(address, options.address, 'balanceOf', [contractAddress]);
-    } else {
-      return;
     }
   });
 
