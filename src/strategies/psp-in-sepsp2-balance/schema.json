@@ -9,16 +9,12 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": [
-            "PSP"
-          ]
+          "examples": ["PSP"]
         },
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": [
-            "18"
-          ]
+          "examples": ["18"]
         },
         "address": {
           "type": "string",
@@ -26,9 +22,7 @@
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42,
-          "examples": [
-            "0xcafe001067cdef266afb7eb5a286dcfd277f3de5"
-          ]
+          "examples": ["0xcafe001067cdef266afb7eb5a286dcfd277f3de5"]
         },
         "sePSP2": {
           "type": "object",
@@ -40,16 +34,12 @@
               "pattern": "^0x[a-fA-F0-9]{40}$",
               "minLength": 42,
               "maxLength": 42,
-              "examples": [
-                "0x593F39A4Ba26A9c8ed2128ac95D109E8e403C485"
-              ]
+              "examples": ["0x593F39A4Ba26A9c8ed2128ac95D109E8e403C485"]
             },
             "decimals": {
               "type": "number",
               "title": "Decimals",
-              "examples": [
-                "18"
-              ]
+              "examples": ["18"]
             }
           }
         },
@@ -73,9 +63,7 @@
               "pattern": "^0x[a-fA-F0-9]{40}$",
               "minLength": 42,
               "maxLength": 42,
-              "examples": [
-                "0x5aDDCCa35b7A0D07C74063c48700C8590E87864E"
-              ]
+              "examples": ["0x5aDDCCa35b7A0D07C74063c48700C8590E87864E"]
             },
             "Vault": {
               "type": "string",
@@ -83,27 +71,17 @@
               "pattern": "^0x[a-fA-F0-9]{40}$",
               "minLength": 42,
               "maxLength": 42,
-              "examples": [
-                "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
-              ]
+              "examples": ["0xBA12222222228d8Ba445958a75a0704d566BF2C8"]
             }
           }
         },
         "multiplier": {
           "type": "number",
           "title": "Multiplier",
-          "examples": [
-            "2.5"
-          ]
+          "examples": ["2.5"]
         }
       },
-      "required": [
-        "decimals",
-        "address",
-        "sePSP2",
-        "balancer",
-        "multiplier"
-      ],
+      "required": ["decimals", "address", "sePSP2", "balancer", "multiplier"],
       "additionalProperties": false
     }
   }
