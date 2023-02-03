@@ -419,7 +419,7 @@ import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
-import * as gainsStaking from './gains-staking';
+import * as gainsVaultStakedBalance from './gains-vault-staked-balance';
 
 const strategies = {
   'eco-voting-power': ecoVotingPower,
@@ -845,7 +845,7 @@ const strategies = {
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
   'stakedotlink-vesting': stakedotlinkVesting,
-  'gains-staking': gainsStaking
+  'gains-vault-staked-balance': gainsVaultStakedBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

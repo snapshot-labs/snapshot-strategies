@@ -1,8 +1,8 @@
 [
   {
-    "name": "Example Gains Vault deposit balance query",
+    "name": "Example Gains Vault Staked balance query",
     "strategy": {
-      "name": "gains-staking",
+      "name": "gains-vault-staked-balance",
       "params": {
         "vault": "0x107AC627918445a0122d25A834F3f00229cb1Dbe",
         "symbol": "GAINS",
@@ -25,9 +25,9 @@
     "snapshot": 16516454
   },
   {
-    "name": "Example Gains Vault deposit balance query on BSC",
+    "name": "Example Gains Vault Staked balance query on BSC",
     "strategy": {
-      "name": "gains-staking",
+      "name": "gains-vault-staked-balance",
       "params": {
         "vault": "0x484Dd565c93b3f03B3DB8295f9776bFB085Af529",
         "symbol": "GAINS",

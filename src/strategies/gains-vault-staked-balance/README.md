@@ -1,4 +1,4 @@
-# Gains Vault staking balance
+# Gains Vault Staked balance
 
 This strategy returns the staking balance for each user in a specified Gains vault.
 
