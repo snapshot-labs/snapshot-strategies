@@ -37,11 +37,18 @@ export async function strategy(
       'Content-Type': 'application/json'
     }
   });
+
   const data = await response.json();
+
   return Object.fromEntries(
     data.score.map((value) => [
       getAddress(value.address),
-      parseFloat(formatUnits(value.score.toString(), options.decimals))
+      parseFloat(
+        formatUnits(
+          value.score.toString(),
+          options.hasOwnProperty('decimals') ? options.decimals : 0
+        )
+      )
     ])
   );
 }
