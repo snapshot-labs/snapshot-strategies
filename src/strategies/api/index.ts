@@ -35,7 +35,6 @@ export async function strategy(
       api_url += '&' + options.additionalParameters;
   }
 
-  console.log('API URL: ' + api_url);
   const response = await fetch(api_url, {
     method: 'GET',
     headers: {
