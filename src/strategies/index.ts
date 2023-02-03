@@ -419,6 +419,7 @@ import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
+import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 import * as gainsVaultStakedBalance from './gains-vault-staked-balance';
 
 const strategies = {
@@ -845,7 +846,8 @@ const strategies = {
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
   'stakedotlink-vesting': stakedotlinkVesting,
-  'gains-vault-staked-balance': gainsVaultStakedBalance
+  'psp-in-sepsp2-balance': pspInSePSP2Balance,
+  'gains-vault-staked-balance': gainsVaultStakedBalance,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
