@@ -13,6 +13,10 @@ const isIPFS = (apiURL) => {
   );
 };
 
+const isDataAPI = (apiURL: string): boolean => {
+  return apiURL.endsWith('.json');
+};
+
 export async function strategy(
   space,
   network,
@@ -22,14 +26,16 @@ export async function strategy(
   snapshot
 ) {
   let api_url = options.api + '/' + options.strategy;
-  if (!isIPFS(api_url)) {
+
+  if (!isIPFS(api_url) && !isDataAPI(api_url)) {
     api_url += '?network=' + network;
     api_url += '&snapshot=' + snapshot;
     api_url += '&addresses=' + addresses.join(',');
+    if (options.additionalParameters)
+      api_url += '&' + options.additionalParameters;
   }
-  if (options.additionalParameters)
-    api_url += '&' + options.additionalParameters;
 
+  console.log('API URL: ' + api_url);
   const response = await fetch(api_url, {
     method: 'GET',
     headers: {
@@ -43,7 +49,12 @@ export async function strategy(
   return Object.fromEntries(
     data.score.map((value) => [
       getAddress(value.address),
-      parseFloat(formatUnits(value.score.toString(), (options.hasOwnProperty("decimals") ? options.decimals : 0)))
+      parseFloat(
+        formatUnits(
+          value.score.toString(),
+          options.hasOwnProperty('decimals') ? options.decimals : 0
+        )
+      )
     ])
   );
 }
