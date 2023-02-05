@@ -21,14 +21,18 @@ export async function strategy(
   options,
   snapshot
 ) {
-  let api_url = options.api + '/' + options.strategy;
-  if (!isIPFS(api_url)) {
+  const api: string = options.api;
+  const strategy: string = options.strategy || '';
+  const additionalParameters: string = options.additionalParameters || '';
+  const staticFile: boolean = options.staticFile || false;
+
+  let api_url = api + '/' + strategy
+  if (!isIPFS(api_url) && !staticFile) {
     api_url += '?network=' + network;
     api_url += '&snapshot=' + snapshot;
     api_url += '&addresses=' + addresses.join(',');
   }
-  if (options.additionalParameters)
-    api_url += '&' + options.additionalParameters;
+  if (additionalParameters) api_url += '&' + additionalParameters;
 
   const response = await fetch(api_url, {
     method: 'GET',
