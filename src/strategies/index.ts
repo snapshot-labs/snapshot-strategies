@@ -413,6 +413,8 @@ import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
+import * as lodestarVesting from './lodestar-vesting';
+import * as lodestarStakedLp from './lodestar-staked-lp';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
@@ -841,6 +843,8 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
+  'lodestar-vesting': lodestarVesting,
+  'lodestar-staked-lp': lodestarStakedLp,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
