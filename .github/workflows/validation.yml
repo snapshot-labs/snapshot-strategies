@@ -23,5 +23,5 @@ jobs:
         yarn install --frozen-lockfile
         VALIDATION=$(echo $PR_TITLE | sed -e 's/.*\[\(.*\)\].*/\1/')
         if [ -n "$VALIDATION" ]; then
-          yarn test:validation --validation=$STRATEGY
+          yarn test:validation --validation=$VALIDATION
         fi
