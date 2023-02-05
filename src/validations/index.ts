@@ -47,7 +47,12 @@ Object.keys(validationClasses).forEach(function (validationName) {
     validation: validationClasses[validationName],
     examples,
     schema,
-    about
+    about,
+    id: new validationClasses[validationName]().id,
+    github: new validationClasses[validationName]().github,
+    version: new validationClasses[validationName]().version,
+    title: new validationClasses[validationName]().title,
+    description: new validationClasses[validationName]().description
   };
 });
 
