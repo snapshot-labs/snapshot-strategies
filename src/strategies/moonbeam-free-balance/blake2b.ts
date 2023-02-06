@@ -1,22 +1,6 @@
 // Blake2B in pure Javascript
 // Original: https://github.com/dcposch/blakejs
 
-const ERROR_MSG_INPUT = 'Input must be an string, Buffer or Uint8Array';
-
-// For convenience, let people hash a string, not just a Uint8Array
-function normalizeInput(input) {
-  let ret;
-  if (input instanceof Uint8Array) {
-    ret = input;
-  } else if (typeof input === 'string') {
-    const encoder = new TextEncoder();
-    ret = encoder.encode(input);
-  } else {
-    throw new Error(ERROR_MSG_INPUT);
-  }
-  return ret;
-}
-
 function toHex(bytes) {
   return Array.prototype.map
     .call(bytes, function (n) {
@@ -189,12 +173,18 @@ const parameterBlock = new Uint8Array([
   0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0
 ]);
 
-// Creates a BLAKE2b hashing context
-// Requires an output length between 1 and 64 bytes
-// Takes an optional Uint8Array key
-// Takes an optinal Uint8Array salt
-// Takes an optinal Uint8Array personal
-function blake2bInit(outlen) {
+// Computes the BLAKE2B hash of a string or byte array, and returns a Uint8Array
+//
+// Returns a n-byte Uint8Array
+//
+// Parameters:
+// - input - the input bytes, as Uint8Array
+// - outlen - optional output length in bytes, default 64
+export function blake2b(input: Uint8Array, outlen: number) {
+  // preprocess inputs
+  outlen = outlen || 64;
+
+  // do the math
   if (outlen === 0 || outlen > 64) {
     throw new Error('Illegal output length, expected 0 < length <= 64');
   }
@@ -219,12 +209,6 @@ function blake2bInit(outlen) {
     ctx.h[i] = BLAKE2B_IV32[i] ^ B2B_GET32(parameterBlock, i * 4);
   }
 
-  return ctx;
-}
-
-// Updates a BLAKE2b streaming hash
-// Requires hash context and Uint8Array (byte array)
-function blake2bUpdate(ctx, input) {
   for (let i = 0; i < input.length; i++) {
     if (ctx.c === 128) {
       // buffer full ?
@@ -234,11 +218,7 @@ function blake2bUpdate(ctx, input) {
     }
     ctx.b[ctx.c++] = input[i];
   }
-}
 
-// Completes a BLAKE2b streaming hash
-// Returns a Uint8Array containing the message digest
-function blake2bFinal(ctx) {
   ctx.t += ctx.c; // mark last block offset
 
   while (ctx.c < 128) {
@@ -255,37 +235,14 @@ function blake2bFinal(ctx) {
   return out;
 }
 
-// Computes the BLAKE2B hash of a string or byte array, and returns a Uint8Array
-//
-// Returns a n-byte Uint8Array
-//
-// Parameters:
-// - input - the input bytes, as a string, Buffer or Uint8Array
-// - outlen - optional output length in bytes, default 64
-function blake2b(input, outlen) {
-  // preprocess inputs
-  outlen = outlen || 64;
-  input = normalizeInput(input);
-
-  // do the math
-  const ctx = blake2bInit(outlen);
-  blake2bUpdate(ctx, input);
-  return blake2bFinal(ctx);
-}
-
 // Computes the BLAKE2B hash of a string or byte array
 //
 // Returns an n-byte hash in hex, all lowercase
 //
 // Parameters:
-// - input - the input bytes, as a string, Buffer, or Uint8Array
+// - input - the input bytes, as Uint8Array
 // - outlen - optional output length in bytes, default 64
-function blake2bHex(input, outlen) {
+export function blake2bHex(input: Uint8Array, outlen: number) {
   const output = blake2b(input, outlen);
   return toHex(output);
 }
-
-module.exports = {
-  blake2b: blake2b,
-  blake2bHex: blake2bHex
-};

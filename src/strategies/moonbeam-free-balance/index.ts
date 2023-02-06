@@ -13,9 +13,7 @@ export async function strategy(
   space: string,
   network: string,
   provider: JsonRpcProvider,
-  addresses: string[],
-  options: {},
-  snapshot: string | number
+  addresses: string[]
 ) {
   // Pre-encoded key prefix for "system.account" storage
   const accountPrefix = `0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9`;
@@ -26,7 +24,6 @@ export async function strategy(
         // Computes "system.account" key for given address
         const key = `${accountPrefix}${await blake2bHex(
           Buffer.from(address.substring(2), 'hex'),
-          null,
           16
         )}${address.substring(2)}`;
 
@@ -40,10 +37,10 @@ export async function strategy(
         //   providers: 8 bits
         //   sufficients: 8 bits
         //   data: {
-        //     free: 32 bits 
-        //     reserved: 32 bits 
-        //     miscFrozen: 32 bits 
-        //     feeFrozen: 32 bits 
+        //     free: 32 bits
+        //     reserved: 32 bits
+        //     miscFrozen: 32 bits
+        //     feeFrozen: 32 bits
         //   }
         // }
         const free = readLittleEndianBigInt(
