@@ -21,6 +21,14 @@ IPFS endpoint is defined as a url starting with any of the following:
 
 The final URL is expected to look something like: `https://gateway.pinata.cloud/ipfs/QmbmhTivxYuLE5uhNEALoBmvP7Yg9acA2Lkw9V9PqaEmw6`
 
+## For static endpoints
+If your endpoint is not IPFS, you can use the `static` param so not all addresses are passed to the API. This is useful for APIs that have a limit on the number of addresses that can be passed in a single request.
+
+1. `param.api`: The first part of the URL (e.g. https://www.myapi.com/)
+
+2. `param.strategy`: The resource name (e.g. get_vote_count)
+
+3. `param.static`: Set to `true`
 
 ### For non-IPFS endpoints:
 
@@ -36,9 +44,14 @@ The final URL is expected to look something like: `https://gateway.pinata.cloud/
 
 The final URL is expected to look something like: `https://www.myapi.com/get_vote_count?network=1&snapshot=11437846&addresses=0xeD2bcC3104Da5F5f8fA988D6e9fAFd74Ae62f319,0x3c4B8C52Ed4c29eE402D9c91FfAe1Db2BAdd228D`
 
-
-## `decimals` param (optional)
-Users can optionally include a `decimals` property. This will be used by the strategy when processing the scores from the API response. `decimals` is used as the second argument of `formatUnits` (https://docs.ethers.org/v3/api-utils.html?highlight=formatunits#ether-strings-and-wei). Default value is 0.
+### List of params:
+| Param | Description | Required | Default |
+| --- | --- | --- | --- |
+| `api` | The first part of the URL (e.g. https://www.myapi.com/) | Yes | |
+| `strategy` (optional) | The resource name (e.g. get_vote_count) | Yes | '' |
+| `static` (optional) | Set to `true` if you want to use the `static` endpoint | No | `false` |
+| `additionalParameters` (optional) | Any additional parameters you want to include | No | |
+| `decimals` (optional) | The number of decimals to use when processing the scores from the API response | No | `0` |
 
 ## Expected return of API
 The API should return an object with the following structure:
