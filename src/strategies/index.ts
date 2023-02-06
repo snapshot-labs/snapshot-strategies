@@ -413,12 +413,15 @@ import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
+import * as lodestarVesting from './lodestar-vesting';
+import * as lodestarStakedLp from './lodestar-staked-lp';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
+import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 
 const strategies = {
   'eco-voting-power': ecoVotingPower,
@@ -839,11 +842,14 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
+  'lodestar-vesting': lodestarVesting,
+  'lodestar-staked-lp': lodestarStakedLp,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
-  'stakedotlink-vesting': stakedotlinkVesting
+  'stakedotlink-vesting': stakedotlinkVesting,
+  'psp-in-sepsp2-balance': pspInSePSP2Balance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

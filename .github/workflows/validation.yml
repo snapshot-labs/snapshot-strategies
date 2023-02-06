@@ -1,0 +1,27 @@
+name: Test validation
+on:
+  pull_request:
+    types:
+      - edited
+      - labeled
+      - synchronize
+      - ready_for_review
+      - review_requested
+      - reopened
+
+jobs:
+  test-validation:
+    if: contains(toJson(github.event.pull_request.labels), 'validation')
+    runs-on: ubuntu-latest
+    env:
+      PR_TITLE: ${{ github.event.pull_request.title }}
+
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - name: yarn install and test validation
+      run: |
+        yarn install --frozen-lockfile
+        VALIDATION=$(echo $PR_TITLE | sed -e 's/.*\[\(.*\)\].*/\1/')
+        if [ -n "$VALIDATION" ]; then
+          yarn test:validation --validation=$VALIDATION
+        fi
