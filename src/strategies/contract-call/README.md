@@ -2,6 +2,17 @@
 
 Allows any contract method to be used to calculate voter scores.
 
+## Params
+
+| Param | Description | Default |
+| :--- | :--- | :--- |
+| address | The address of the contract |  |
+| decimals | The decimals of the output |  |
+| symbol | The symbol of the output |  |
+| methodABI | The ABI of the method to call |  |
+| args | The arguments to pass to the method | ["%{address}"] |
+| output | The output of the method in case it is not uint256 (use param name or index if it is a array) |  |
+
 ## Examples
 
 Can be used instead of the erc20-balance-of strategy, the space config will look like this:
