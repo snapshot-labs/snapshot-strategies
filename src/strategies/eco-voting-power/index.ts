@@ -44,7 +44,7 @@ function calculateVotingPower(
   ecoVp: BigNumber,
   stakedEcoXVp: BigNumber
 ): BigNumber {
-  return stakedEcoXVp.add(ecoVp.mul(10));
+  return stakedEcoXVp.add(ecoVp.div(10));
 }
 
 function createDelegationList(
