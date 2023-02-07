@@ -22,7 +22,9 @@ IPFS endpoint is defined as a url starting with any of the following:
 The final URL is expected to look something like: `https://gateway.pinata.cloud/ipfs/QmbmhTivxYuLE5uhNEALoBmvP7Yg9acA2Lkw9V9PqaEmw6`
 
 ## For static endpoints
-If your endpoint is not IPFS, you can use the `static` param so not all addresses are passed to the API. This is useful for APIs that have a limit on the number of addresses that can be passed in a single request.
+If your endpoint is not IPFS, but API is returning static data:
+You can use an API URL that ends with `.json` for example: `https://www.myapi.com/vote_count.json`
+Or You can use the `staticFile` param so not all addresses are passed to the API. This is useful for APIs that have a limit on the number of addresses that can be passed in a single request.
 
 1. `param.api`: The first part of the URL (e.g. https://www.myapi.com/)
 

@@ -13,6 +13,10 @@ const isIPFS = (apiURL) => {
   );
 };
 
+const isStaticAPI = (apiURL: string): boolean => {
+  return apiURL.endsWith('.json');
+};
+
 export async function strategy(
   space,
   network,
@@ -27,7 +31,7 @@ export async function strategy(
   const staticFile: boolean = options.staticFile || false;
 
   let api_url = api + '/' + strategy
-  if (!isIPFS(api_url) && !staticFile) {
+  if (!isIPFS(api_url) && !isStaticAPI(api_url) && !staticFile) {
     api_url += '?network=' + network;
     api_url += '&snapshot=' + snapshot;
     api_url += '&addresses=' + addresses.join(',');
