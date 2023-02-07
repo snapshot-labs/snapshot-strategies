@@ -35,9 +35,8 @@ export async function strategy(
     api_url += '?network=' + network;
     api_url += '&snapshot=' + snapshot;
     api_url += '&addresses=' + addresses.join(',');
-    if (options.additionalParameters)
-      api_url += '&' + options.additionalParameters;
   }
+  if (additionalParameters) api_url += '&' + additionalParameters;
 
   const response = await fetch(api_url, {
     method: 'GET',
