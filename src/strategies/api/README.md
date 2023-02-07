@@ -28,7 +28,7 @@ If your endpoint is not IPFS, you can use the `static` param so not all addresse
 
 2. `param.strategy`: The resource name (e.g. get_vote_count)
 
-3. `param.static`: Set to `true`
+3. `param.staticFile`: Set to `true`
 
 ### For non-IPFS endpoints:
 
@@ -49,7 +49,7 @@ The final URL is expected to look something like: `https://www.myapi.com/get_vot
 | --- | --- | --- | --- |
 | `api` | The first part of the URL (e.g. https://www.myapi.com/) | Yes | |
 | `strategy` (optional) | The resource name (e.g. get_vote_count) | Yes | '' |
-| `static` (optional) | Set to `true` if you want to use the `static` endpoint | No | `false` |
+| `staticFile` (optional) | Set to `true` if you want to use the `static` endpoint | No | `false` |
 | `additionalParameters` (optional) | Any additional parameters you want to include | No | |
 | `decimals` (optional) | The number of decimals to use when processing the scores from the API response | No | `0` |
 
