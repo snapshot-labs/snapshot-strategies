@@ -67,17 +67,18 @@ export async function strategy(
   options,
   snapshot: number | 'latest'
 ): Promise<Record<string, number>> {
+  const _addresses = addresses.map((addr) => addr.toLowerCase());
   const blockNumber =
     snapshot !== 'latest' ? snapshot : await getBlockNumber(provider);
 
   const baseFilter = {
     blockStarted_lte: blockNumber,
-    delegator_in: addresses.map((addr) => addr.toLowerCase())
+    delegator_in: _addresses
   };
 
   const query = {
     account: {
-      __args: { id: options.delegatee },
+      __args: { id: options.delegatee.toLowerCase() },
       ecoTokenDelegatees: {
         __aliasFor: 'tokenDelegatees',
         __args: {
@@ -162,7 +163,7 @@ export async function strategy(
   );
 
   return Object.fromEntries(
-    addresses.map((address) => {
+    _addresses.map((address) => {
       const ecoHistorical = ecoHistoricalDelegations[address] || Zero;
       const ecoCurrent = ecoCurrentDelegations[address] || Zero;
       const stakedEcoXHistorical =

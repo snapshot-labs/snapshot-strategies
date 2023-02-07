@@ -13,7 +13,7 @@ const isIPFS = (apiURL) => {
   );
 };
 
-const isDataAPI = (apiURL: string): boolean => {
+const isStaticAPI = (apiURL: string): boolean => {
   return apiURL.endsWith('.json');
 };
 
@@ -25,9 +25,13 @@ export async function strategy(
   options,
   snapshot
 ) {
-  let api_url = options.api + '/' + options.strategy;
+  const api: string = options.api;
+  const strategy: string = options.strategy || '';
+  const additionalParameters: string = options.additionalParameters || '';
+  const staticFile: boolean = options.staticFile || false;
 
-  if (!isIPFS(api_url) && !isDataAPI(api_url)) {
+  let api_url = api + '/' + strategy
+  if (!isIPFS(api_url) && !isStaticAPI(api_url) && !staticFile) {
     api_url += '?network=' + network;
     api_url += '&snapshot=' + snapshot;
     api_url += '&addresses=' + addresses.join(',');

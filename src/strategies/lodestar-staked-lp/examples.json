@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "lodestar-staked-lp",
+      "params": {
+        "stakingPoolAddresses": ["0x4Ce0C8C8944205C0A134ef37A772ceEE327B4c11"],
+        "tokenAddress": "0xF19547f9ED24aA66b03c3a552D181Ae334FBb8DB",
+        "lpTokenAddress": "0xFB36f24872b9C57aa8264E1F9a235405C4D3fC36",
+        "symbol": "LODE",
+        "decimals": 18
+      }
+    },
+    "addresses": [
+      "0xcada41bdb95227ee3f3c2f4a37a843d384fbb48d",
+      "0xdee375c0976e1e5b5a2cfdf1846eb055d6d107ed",
+      "0xa79456cc03fc4eca28ecd675988a6c78e421e12e"
+    ],
+    "network": 42161,
+    "snapshot": 44754575
+  }
+]

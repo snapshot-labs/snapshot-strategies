@@ -10,7 +10,9 @@ export default class extends Validation {
   public id = 'passport-gated';
   public github = 'snapshot-labs';
   public version = '0.1.0';
-
+  public title = 'Gitcoin Passport Gated';
+  public description =
+    'Protect your proposals from spam and vote manipulation by requiring users to have a Gitcoin Passport.';
   async validate(): Promise<boolean> {
     const requiredStamps = this.params.stamps;
     const passport: any = await getPassport(this.author);

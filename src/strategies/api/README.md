@@ -2,23 +2,18 @@
 
 Voting strategy using a REST API endpoint. Number of votes depends on the return of the API endpoint.
 
-## Constructing the API URL
-
-This strategy will create an `api_url` based on the supplied parameters and the Proposal&Space settings.
+## Cosntructing the API URL
+This strategy will create an `api_url` based on the supplied parameters and the Proposal&Space settings. 
 
 `api_url` is constructed as such:
 
 ### For IPFS endpoints
-
 IPFS endpoint is defined as a url starting with any of the following:
+  - https://gateway.pinata.cloud/ipfs/
+  - https://ipfs.io/ipfs/
+  - https://cloudflare-ipfs.com/ipfs/
 
-- <https://gateway.pinata.cloud/ipfs/>
-- <https://ipfs.io/ipfs/>
-- <https://cloudflare-ipfs.com/ipfs/>
-
-Parameters:
-
-1. `param.api`: The first part of the URL (e.g. <https://gateway.pinata.cloud/ipfs/>)
+1. `param.api`: The first part of the URL (e.g. https://gateway.pinata.cloud/ipfs/)
 
 2. `param.strategy`: The IPFS hash
 
@@ -26,11 +21,20 @@ Parameters:
 
 The final URL is expected to look something like: `https://gateway.pinata.cloud/ipfs/QmbmhTivxYuLE5uhNEALoBmvP7Yg9acA2Lkw9V9PqaEmw6`
 
-### For non-IPFS endpoints
+## For static endpoints
+If your endpoint is not IPFS, but API is returning static data:
+You can use an API URL that ends with `.json` for example: `https://www.myapi.com/vote_count.json`
+Or You can use the `staticFile` param so not all addresses are passed to the API. This is useful for APIs that have a limit on the number of addresses that can be passed in a single request.
 
-Parameters:
+1. `param.api`: The first part of the URL (e.g. https://www.myapi.com/)
 
-1. `param.api`: The first part of the URL (e.g. <https://www.myapi.com/>)
+2. `param.strategy`: The resource name (e.g. get_vote_count)
+
+3. `param.staticFile`: Set to `true`
+
+### For non-IPFS endpoints:
+
+1. `param.api`: The first part of the URL (e.g. https://www.myapi.com/)
 
 2. `param.strategy`: The resource name (e.g. get_vote_count)
 
@@ -42,20 +46,17 @@ Parameters:
 
 The final URL is expected to look something like: `https://www.myapi.com/get_vote_count?network=1&snapshot=11437846&addresses=0xeD2bcC3104Da5F5f8fA988D6e9fAFd74Ae62f319,0x3c4B8C52Ed4c29eE402D9c91FfAe1Db2BAdd228D`
 
-### For API that return static data (e.g. a JSON file)
+### List of params:
+| Param | Description | Required | Default |
+| --- | --- | --- | --- |
+| `api` | The first part of the URL (e.g. https://www.myapi.com/) | Yes | |
+| `strategy` (optional) | The resource name (e.g. get_vote_count) | Yes | '' |
+| `staticFile` (optional) | Set to `true` if you want to use the `static` endpoint | No | `false` |
+| `additionalParameters` (optional) | Any additional parameters you want to include | No | |
+| `decimals` (optional) | The number of decimals to use when processing the scores from the API response | No | `0` |
 
-1. `param.api`: The first part of the URL (e.g. <https://www.myapi.com/>)
-2. `param.strategy`: The resource name (e.g. get_vote_count)
-3. URL should end with `.json` (e.g. <https://www.myapi.com/votedata.json>)
-
-## `decimals` param (optional)
-
-Users can optionally include a `decimals` property. This will be used by the strategy when processing the scores from the API response. `decimals` is used as the second argument of `formatUnits` (<https://docs.ethers.org/v3/api-utils.html?highlight=formatunits#ether-strings-and-wei>). Default value is 0.
-
-## API should return a response with the following structure
-
+## Expected return of API
 The API should return an object with the following structure:
-
 ```
 {
   "score": [
@@ -88,6 +89,10 @@ The API should return an object with the following structure:
 ```
 
 Note that for the example above, `element.score` is a string representation in wei. Your response can return any value as long as:
-
   1. The return can be stringified `.toString()`
-  2. The stringified version of your response can be passed into the second argument of `formatUnits`: <https://docs.ethers.org/v3/api-utils.html?highlight=formatunits#ether-strings-and-wei>
+  2. The stringified version of your response can be passed into the second argument of `formatUnits`: https://docs.ethers.org/v3/api-utils.html?highlight=formatunits#ether-strings-and-wei
+
+## Testing
+You can test this strategy by updating the `examples.json` file and running `npm run test --strategy=api`
+
+To test local changes, change to this directory and run: `npm run build & npm run test --strategy=api`
