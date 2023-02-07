@@ -140,26 +140,32 @@ export async function strategy(
     throw new Error(`Unsupported network with id: ${network}`);
   }
 
-  const { account: delegateesResult, inflationMultipliers }: QueryResult =
+  const { account: account, inflationMultipliers }: QueryResult =
     await subgraphRequest(subgraphUrl, query);
+
+  if (!account) {
+    return Object.fromEntries(
+      _addresses.map((address) => [getAddress(address), 0])
+    );
+  }
 
   const inflationMultiplier = inflationMultipliers.length
     ? BigNumber.from(inflationMultipliers[0].value)
     : WeiPerEther;
 
   const ecoHistoricalDelegations = createDelegationList(
-    delegateesResult.ecoTokenDelegatees,
+    account.ecoTokenDelegatees,
     inflationMultiplier
   );
   const ecoCurrentDelegations = createDelegationList(
-    delegateesResult.ecoCurrentTokenDelegatees,
+    account.ecoCurrentTokenDelegatees,
     inflationMultiplier
   );
   const stakedEcoXHistoricalDelegations = createDelegationList(
-    delegateesResult.stakedEcoXTokenDelegatees
+    account.stakedEcoXTokenDelegatees
   );
   const stakedEcoXCurrentDelegations = createDelegationList(
-    delegateesResult.stakedEcoXCurrentTokenDelegatees
+    account.stakedEcoXCurrentTokenDelegatees
   );
 
   return Object.fromEntries(
