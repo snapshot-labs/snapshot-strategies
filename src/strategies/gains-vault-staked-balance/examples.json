@@ -1,0 +1,52 @@
+[
+  {
+    "name": "Example Gains Vault Staked balance query",
+    "strategy": {
+      "name": "gains-vault-staked-balance",
+      "params": {
+        "vault": "0x107AC627918445a0122d25A834F3f00229cb1Dbe",
+        "symbol": "GAINS",
+        "decimals": 18
+      }
+    },
+    "network": 1,
+    "addresses": [
+      "0xf1f3050671ad54Bc0201BbDA76A2a7880A64a1E0",
+      "0xc1a9aa958008BE511875feF83460253baf6fB8b4",
+      "0x9C6f5FBf7A3bb4F66e4b2e293734Db2bbd1AeCbB",
+      "0x07b7F25E19B1b08D0b5009cbBCC8e30ba393dD2B",
+      "0x9270003CA7B946afa04B4C237c27E47000A60408",
+      "0x6884832680aD5E6eD1218D9d2385a96B419b22a7",
+      "0x7037c3521616Ca33F3362cC4a8ef29dc172cC392",
+      "0x13F19CE2cfEc95Ff021763b64774eb4f4E2D55C4",
+      "0x5c10763C17173EB9FE5ee66d0Bf987480Dedd710",
+      "0x21e6ecE971f3F4c7D26c400fCdC0F8EB8bc249E6"
+    ],
+    "snapshot": 16516454
+  },
+  {
+    "name": "Example Gains Vault Staked balance query on BSC",
+    "strategy": {
+      "name": "gains-vault-staked-balance",
+      "params": {
+        "vault": "0x484Dd565c93b3f03B3DB8295f9776bFB085Af529",
+        "symbol": "GAINS",
+        "decimals": 18
+      }
+    },
+    "network": 56,
+    "addresses": [
+      "0xf1f3050671ad54Bc0201BbDA76A2a7880A64a1E0",
+      "0xC0B0B967EED2CDF5371238cd1875Da8634246D98",
+      "0x179622678234cfc911BB1d23D5e71d1264314777",
+      "0x864839328f6e25828E7807b39f3736EA65B8ED08",
+      "0x80b555769aa2959CB4C6eD4693b4ba9DBf57d649",
+      "0xB6646ADbFE27e7E0A4288155868D89B2E1dE1Eda",
+      "0x712A55888C3a5799da0FF8162A891df964E6091b",
+      "0x8aFE5926889e23d22CB334576Cf60c31E361655A",
+      "0x4b66AB39cF72A483ad4aF1D073b8FaeD2C31A508",
+      "0x8E7c78f9684E22Cc4d2505De4E037737f8a2c10B"
+    ],
+    "snapshot": 25296387
+  }
+]
