@@ -2,8 +2,8 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'Poseidon-DAO';
-export const version = '0.1.1';
+export const author = 'viganzeqiri';
+export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
