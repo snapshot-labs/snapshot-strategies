@@ -1,0 +1,20 @@
+[
+  {
+    "name": "PDN balances and vests",
+    "strategy": {
+      "name": "pdn-balances-and-vests",
+      "params": {
+        "address": "0xdd0d06EC5dB655f76641bdA81Fec3221C167787e",
+        "symbol": "PDN",
+        "decimals": 18
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0xB6097b6932ad88D1159c10bA7D290ba05087507D",
+      "0x0a767592E4C4CbD5A65BAc08bd3c7112d68496A5",
+      "0x7db3c4099660a6f33bBfF63B3318CBf9b4D07743"
+    ],
+    "snapshot": 8458274
+  }
+]
