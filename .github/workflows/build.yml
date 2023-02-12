@@ -1,0 +1,23 @@
+name: Build CI
+
+on: [push, pull_request]
+
+jobs:
+  build_lint:
+    runs-on: ubuntu-latest
+
+    strategy:
+      matrix:
+        node-version: [16.10.x]
+
+    steps:
+    - uses: actions/checkout@v2.3.4
+    - name: Use Node.js ${{ matrix.node-version }}
+      uses: actions/setup-node@v1
+      with:
+        node-version: ${{ matrix.node-version }}
+    - name: yarn install, build and lint
+      run: |
+        yarn install --frozen-lockfile
+        yarn build
+        yarn lint

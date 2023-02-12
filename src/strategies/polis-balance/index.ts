@@ -60,10 +60,8 @@ export async function strategy(
   );
 
   const result_pools: Record<string, BigNumberish> = await multi_pool.execute();
-  const result_delegated_pools: Record<
-    string,
-    BigNumberish[]
-  > = await multi_delegated.execute();
+  const result_delegated_pools: Record<string, BigNumberish[]> =
+    await multi_delegated.execute();
 
   const multi_own_staked = new Multicaller(
     network,
@@ -99,15 +97,11 @@ export async function strategy(
 
   const final_balances = {};
 
-  const result_pools_own: Record<
-    string,
-    BigNumberish
-  > = await multi_own_staked.execute();
+  const result_pools_own: Record<string, BigNumberish> =
+    await multi_own_staked.execute();
 
-  const result_pools_staked: Record<
-    string,
-    BigNumberish
-  > = await multi_staked.execute();
+  const result_pools_staked: Record<string, BigNumberish> =
+    await multi_staked.execute();
 
   Object.keys(result_pools_own).map((addr) => {
     final_balances[addr] = parseFloat(

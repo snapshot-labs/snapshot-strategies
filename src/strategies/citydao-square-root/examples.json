@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Example",
+    "strategy": {
+      "name": "citydao-square-root",
+      "params": {
+        "symbol": "CITIZEN",
+        "address": "0x7EeF591A6CC0403b9652E98E88476fe1bF31dDeb",
+        "tokenId": 42,
+        "decimals": 0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xafa46468De1D6f1ab77DEFAe5F7657467911182d",
+      "0x944Fd37C2a46A3ad6B5EE11f7e26035Ed2F1E4FE",
+      "0x4c55C41Bd839B3552fb2AbecaCFdF4a5D2879Cb9"
+    ],
+    "snapshot": 14616178
+  },
+  {
+    "name": "Plural Voting Example",
+    "strategy": {
+      "name": "citydao-square-root",
+      "params": {
+        "symbol": "CITIZEN",
+        "address": "0x7EeF591A6CC0403b9652E98E88476fe1bF31dDeb",
+        "tokenId": 42,
+        "decimals": 0,
+        "voiceCredits": 9
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xafa46468De1D6f1ab77DEFAe5F7657467911182d",
+      "0x944Fd37C2a46A3ad6B5EE11f7e26035Ed2F1E4FE",
+      "0x4c55C41Bd839B3552fb2AbecaCFdF4a5D2879Cb9"
+    ],
+    "snapshot": 14616178
+  }
+]

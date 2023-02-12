@@ -5,19 +5,17 @@ import { strategy as pagination } from '../pagination';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'philipappiah';
-export const version = '0.1.0';
+export const version = '0.1.2';
 
-const UNISWAP_SUBGRAPH_URL = {
-  '82':
-    'https://graph.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph',
+const VOLTSWAP_SUBGRAPH = {
+  '82': 'https://graph-meter.voltswap.finance/subgraphs/name/meterio/uniswap-v2-subgraph',
   '361':
-    'https://theta-graph.voltswap.finance/subgraphs/name/theta/uniswap-v2-subgraph'
+    'https://graph-theta.voltswap.finance/subgraphs/name/theta/uniswap-v2-subgraph'
 };
 
-const SUBGRAPH_URL = {
-  '82': 'https://newgraph.voltswap.finance/subgraphs/name/meter/geyser-v2',
-  '361':
-    'https://geyser-graph-on-theta.voltswap.finance/subgraphs/name/theta/geyser-v2'
+const STAKING_SUBGRAPH = {
+  '82': 'https://graph-meter.voltswap.finance/subgraphs/name/meter/geyser-v2',
+  '361': 'https://graph-theta.voltswap.finance/subgraphs/name/theta/geyser-v2'
 };
 
 export async function strategy(
@@ -31,6 +29,8 @@ export async function strategy(
   const voltAddress = options.voltAddress.toLowerCase();
   const tokenDecimals = options.tokenDecimals;
   const network = options.network || _network;
+  const UNI_GRAPH = options.swapSubgraph || VOLTSWAP_SUBGRAPH[network];
+  const STAKE_GRAPH = options.stakingSubgraph || STAKING_SUBGRAPH[network];
   const blockTag = 'latest';
 
   const voltDataparams = {
@@ -81,12 +81,9 @@ export async function strategy(
     }
   };
 
-  const poolData = await subgraphRequest(SUBGRAPH_URL[network], voltDataparams);
+  const poolData = await subgraphRequest(STAKE_GRAPH, voltDataparams);
 
-  const subgraphData = await subgraphRequest(
-    UNISWAP_SUBGRAPH_URL[network],
-    subgraphDataParams
-  );
+  const subgraphData = await subgraphRequest(UNI_GRAPH, subgraphDataParams);
 
   let totalVoltComposition = 0;
   let totalStake = 0;
@@ -138,20 +135,21 @@ export async function strategy(
         );
         if (user && user.vaults.length) {
           user.vaults.forEach((v) => {
-            const voltLock = v.locks.find(
-              (r) => r.token.toLowerCase() === voltAddress
-            );
-            const lpLock = v.locks.find(
-              (r) => r.token.toLowerCase() === lpTokenAddress
-            );
-            if (voltLock)
-              userCurrentStakeInVolt = parseFloat(
-                formatUnits(voltLock.amount, tokenDecimals)
-              );
-            if (lpLock)
-              userCurrentStakeInLP = parseFloat(
-                formatUnits(lpLock.amount, tokenDecimals)
-              );
+            v.locks
+              .filter((r) => r.token.toLowerCase() === voltAddress)
+              .forEach((vlock) => {
+                userCurrentStakeInVolt =
+                  userCurrentStakeInVolt +
+                  Number(formatUnits(vlock.amount, tokenDecimals));
+              });
+            v.locks
+              .filter((r) => r.token.toLowerCase() === lpTokenAddress)
+              .forEach((lplock) => {
+                userCurrentStakeInLP =
+                  userCurrentStakeInLP +
+                  Number(formatUnits(lplock.amount, tokenDecimals));
+              });
+
             userLpShare = (userCurrentStakeInLP / totalStake) * 100;
             stakesOfVoltInLp = (userLpShare / 100) * totalVoltComposition;
           });

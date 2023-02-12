@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "auraLocker": {
+          "type": "string",
+          "title": "auraLocker",
+          "examples": ["e.g. 0x3Fa73f1E5d8A792C80F426fc8F84FBF7Ce9bBCAC"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "auraVoterProxy": {
+          "type": "string",
+          "title": "auraVoterProxy",
+          "examples": ["e.g. 0xaF52695E1bB01A16D33D7194C28C42b10e0Dbec2"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "votingEscrow": {
+          "type": "string",
+          "title": "votingEscrow",
+          "examples": ["e.g. 0xC128a9954e6c874eA3d62ce62B468bA073093F25"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["auraLocker", "auraVoterProxy", "votingEscrow"],
+      "additionalProperties": false
+    }
+  }
+}
