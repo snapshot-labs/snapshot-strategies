@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "hftVault": {
+          "type": "string",
+          "title": "HFT Staking Vault Address",
+          "examples": ["e.g. 0x15725391A37A5fFeB04F79cf25DA8460A3f068F6"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "nftContract": {
+          "type": "string",
+          "title": "NFT Contract Address",
+          "examples": ["e.g. 0xb99E4E9b8Fd99c2C90aD5382dBC6ADfDfE3A33f3"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["hftVault", "nftContract"],
+      "additionalProperties": false
+    }
+  }
+}
