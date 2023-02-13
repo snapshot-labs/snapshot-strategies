@@ -6,7 +6,7 @@ import { subgraphRequest } from '../../utils';
 export const author = '0xleez';
 export const version = '0.1.0';
 
-const UNISWAP_SUBGRAPH_URL = {
+const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/jpegd/jpegd-core-mainnet'
 };
 
@@ -44,18 +44,22 @@ export async function strategy(
     }
   };
 
-  const result = await subgraphRequest(UNISWAP_SUBGRAPH_URL[network], params);
+  const result = await subgraphRequest(SUBGRAPH_URL[network], params);
   const jpegLocks = result.jpeglocks ?? [];
 
   const responses = await multicall(
     network,
     provider,
     abi,
-    jpegLocks.map((jpegLock: any) => [
-      collectionToProviderAddress[jpegLock.collection.id],
-      jpegLock.type === 'LTV' ? 'ltvBoostPositions' : 'traitBoostPositions',
-      [jpegLock.nftIndex]
-    ]),
+    jpegLocks
+      .filter((jpegLock) =>
+        Boolean(collectionToProviderAddress[jpegLock.collection.id])
+      )
+      .map((jpegLock: any) => [
+        collectionToProviderAddress[jpegLock.collection.id],
+        jpegLock.type === 'LTV' ? 'ltvBoostPositions' : 'traitBoostPositions',
+        [jpegLock.nftIndex]
+      ]),
     { blockTag }
   );
 
