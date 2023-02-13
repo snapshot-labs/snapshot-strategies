@@ -30,7 +30,7 @@ export async function strategy(
   const additionalParameters: string = options.additionalParameters || '';
   const staticFile: boolean = options.staticFile || false;
 
-  let api_url = api + '/' + strategy
+  let api_url = api + '/' + strategy;
   if (!isIPFS(api_url) && !isStaticAPI(api_url) && !staticFile) {
     api_url += '?network=' + network;
     api_url += '&snapshot=' + snapshot;
