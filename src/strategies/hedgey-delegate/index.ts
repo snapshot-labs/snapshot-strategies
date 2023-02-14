@@ -5,7 +5,7 @@ export const author = 'hedgey';
 export const version = '0.0.1';
 
 const abi = [
-  'function getDelegatedVotesFromNFT(address token, address account, address hedgeyNFT) public view returns (uint256)'
+  'function getDelegatedVotesFromNFT(address token, address delegate, address hedgeyNFT) public view returns (uint256 lockedBalance)'
 ];
 
 export async function strategy(
