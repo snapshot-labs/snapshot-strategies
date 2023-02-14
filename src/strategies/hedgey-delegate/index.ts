@@ -1,5 +1,4 @@
-import { BigNumberish } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
 export const author = 'hedgey';
@@ -21,14 +20,18 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address) =>
-    multi.call(address, options.address, 'getDelegatedVotesFromNFT', [address])
+    multi.call(address, options.delegateContract, 'getDelegatedVotesFromNFT', [
+      options.token,
+      address,
+      options.hedgeyNFT
+    ])
   );
   const result: Record<string, BigNumberish> = await multi.execute();
 
   return Object.fromEntries(
-    Object.entries(result).map(([address, balance]) => [
+    Object.entries(result).map(([address, votes]) => [
       address,
-      parseFloat(formatUnits(balance, options.decimals))
+      BigNumber.from(votes).toNumber()
     ])
   );
 }

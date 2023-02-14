@@ -6,27 +6,32 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "symbol": {
+        "delegateContract": {
           "type": "string",
-          "title": "Symbol",
-          "examples": ["e.g. UNI"],
-          "maxLength": 16
-        },
-        "address": {
-          "type": "string",
-          "title": "Contract address",
+          "title": "Delegation contract",
           "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         },
-        "decimals": {
-          "type": "number",
-          "title": "Decimals",
-          "examples": ["e.g. 18"]
+        "token": {
+          "type": "string",
+          "title": "ERC-20 contract address with delegate function",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "hedgeyNFT": {
+          "type": "string",
+          "title": "Hedgey NFT contract address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
         }
       },
-      "required": ["address", "decimals"],
+      "required": ["delegateContract", "token", "hedgeyNFT"],
       "additionalProperties": false
     }
   }
