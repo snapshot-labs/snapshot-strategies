@@ -1,7 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'hedgey';
+export const author = 'hedgey-finance';
 export const version = '0.0.1';
 
 const abi = [
