@@ -14,7 +14,7 @@ Can be used instead of the erc20-balance-of strategy, the space config will look
       "address": "0x8befB4b534e711A844AA9a10C3E7D00cbbAeBc66",
       // token decimals
       "decimals": 18,
-      // ABI for balanceOf method
+      // ABI for getTotalDeposit method
       "methodABI": {
           "inputs": [
             { "internalType": "address", "name": "addr", "type": "address" }
