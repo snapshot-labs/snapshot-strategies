@@ -422,6 +422,7 @@ import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly'
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
+import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 
 const strategies = {
   'eco-voting-power': ecoVotingPower,
@@ -849,7 +850,8 @@ const strategies = {
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
   'stakedotlink-vesting': stakedotlinkVesting,
-  'psp-in-sepsp2-balance': pspInSePSP2Balance
+  'psp-in-sepsp2-balance': pspInSePSP2Balance,
+  'pdn-balances-and-vests': pdnBalancesAndVests
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
