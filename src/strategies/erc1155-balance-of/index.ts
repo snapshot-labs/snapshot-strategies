@@ -5,30 +5,7 @@ export const author = 'dave4506';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'owner',
-        type: 'address'
-      },
-      {
-        internalType: 'uint256',
-        name: 'id',
-        type: 'uint256'
-      }
-    ],
-    name: 'balanceOf',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function balanceOf(address owner, uint256 id) view returns (uint256)'
 ];
 
 export async function strategy(
