@@ -423,7 +423,7 @@ import * as nexonArmyNFT from './nexon-army-nft';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 import * as pdnBalancesAndVests from './pdn-balances-and-vests';
-import * as izumiVeiZi from './izumi-veizi'
+import * as izumiVeiZi from './izumi-veizi';
 
 const strategies = {
   'izumi-veizi': izumiVeiZi,
