@@ -424,8 +424,10 @@ import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 import * as izumiVeiZi from './izumi-veizi';
+import * as greenblockcapitalstake from './greenblockcapital-stake';
 
 const strategies = {
+  'greenblockcapital-stake': greenblockcapitalstake,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
