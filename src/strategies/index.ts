@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as ecoVotingPower from './eco-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
@@ -412,6 +413,8 @@ import * as skaleDelegationWeighted from './skale-delegation-weighted';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as vstaPoolStaking from './vsta-pool-staking';
+import * as lodestarVesting from './lodestar-vesting';
+import * as lodestarStakedLp from './lodestar-staked-lp';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
@@ -419,8 +422,13 @@ import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly'
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as moonbeamFreeBalance from './moonbeam-free-balance';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
+import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
+import * as pdnBalancesAndVests from './pdn-balances-and-vests';
+import * as izumiVeiZi from './izumi-veizi';
 
 const strategies = {
+  'izumi-veizi': izumiVeiZi,
+  'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
@@ -838,12 +846,16 @@ const strategies = {
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
   'vsta-pool-staking': vstaPoolStaking,
+  'lodestar-vesting': lodestarVesting,
+  'lodestar-staked-lp': lodestarStakedLp,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
   'moonbeam-free-balance': moonbeamFreeBalance,
-  'stakedotlink-vesting': stakedotlinkVesting
+  'stakedotlink-vesting': stakedotlinkVesting,
+  'psp-in-sepsp2-balance': pspInSePSP2Balance,
+  'pdn-balances-and-vests': pdnBalancesAndVests
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
