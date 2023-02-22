@@ -39,9 +39,9 @@ export default class extends Validation {
       .filter((stamp) => hasValidIssuanceAndExpiration(stamp, proposalTs))
       .map((stamp) => stamp.provider);
 
-    console.log('validStamps', validStamps);
-    console.log('requiredStamps', requiredStamps);
-    console.log('operator', operator);
+    // console.log('validStamps', validStamps);
+    // console.log('requiredStamps', requiredStamps);
+    // console.log('operator', operator);
 
     if (operator === 'AND') {
       return requiredStamps.every((stamp) => validStamps.includes(stamp));
