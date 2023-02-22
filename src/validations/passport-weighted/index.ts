@@ -38,7 +38,7 @@ export default class extends Validation {
       // check that the credential is still valid (created before snapshot block and not expired)
       if (
         verifiedStamp &&
-        hasValidIssuanceAndExpiration(verifiedStamp.credential, proposalTs)
+        hasValidIssuanceAndExpiration(verifiedStamp, proposalTs)
       )
         weight += stamp.weight;
     });
