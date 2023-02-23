@@ -8,15 +8,8 @@ Here is an example of parameters:
 
 ```json
 {
-  "strategies": [
-    [
-      "greenblockcapital-stake",
-      {
-        "poolAddress": "0xe322ea8cbc9d0a5b12110c64f07f489e8bfe1788",
-        "symbol": "GBT",
-        "decimals": 18
-      }
-    ]
-  ]
+  "address": "0xe322ea8cbc9d0a5b12110c64f07f489e8bfe1788",
+  "symbol": "GBT",
+  "decimals": 18
 }
 ```
