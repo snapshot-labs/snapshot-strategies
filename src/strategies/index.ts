@@ -336,6 +336,7 @@ import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
+import * as etherorcsComboBalanceOf from './etherorcs-combo-balanceof';
 import * as hedgey from './hedgey';
 import * as hedgeyMulti from './hedgey-multi';
 import * as sybilProtection from './sybil-protection';
@@ -431,6 +432,7 @@ const strategies = {
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
+  'etherorcs-combo-balanceof': etherorcsComboBalanceOf,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
