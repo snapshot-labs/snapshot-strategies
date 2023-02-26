@@ -1,6 +1,6 @@
 [
   {
-    "name": "Ether Orcs Balance Of",
+    "name": "Ether Orcs Balance Of Example",
     "strategy": {
       "name": "etherorcs-combo-balanceof"
     },
