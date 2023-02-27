@@ -1,7 +1,7 @@
 import { getAddress } from '@ethersproject/address';
 import { fetchJson } from '@ethersproject/web';
 import { JsonRpcProvider } from '@ethersproject/providers';
-import { blake2bHex } from './blake2b';
+import { blake2bHex } from 'blakejs';
 
 export const author = 'crystalin';
 export const version = '0.1.0';
@@ -41,6 +41,7 @@ export async function strategy(
         async (address) =>
           `${accountPrefix}${await blake2bHex(
             Buffer.from(address.substring(2), 'hex'),
+            undefined,
             16
           )}${address.substring(2)}`
       )
