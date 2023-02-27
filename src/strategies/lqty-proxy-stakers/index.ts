@@ -2,8 +2,8 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'majkic99';
+export const version = '0.1.0';
 
 const abiStaking = ['function stakes(address) public view returns (uint256)'];
 const abiProxyRegistry = [
