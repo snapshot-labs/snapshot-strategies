@@ -426,6 +426,7 @@ import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 import * as izumiVeiZi from './izumi-veizi';
+import * as lqtyProxyStakers from './lqty-proxy-stakers';
 
 const strategies = {
   'izumi-veizi': izumiVeiZi,
@@ -857,7 +858,8 @@ const strategies = {
   'moonbeam-free-balance': moonbeamFreeBalance,
   'stakedotlink-vesting': stakedotlinkVesting,
   'psp-in-sepsp2-balance': pspInSePSP2Balance,
-  'pdn-balances-and-vests': pdnBalancesAndVests
+  'pdn-balances-and-vests': pdnBalancesAndVests,
+  'lqty-proxy-stakers': lqtyProxyStakers
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
