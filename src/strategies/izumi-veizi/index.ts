@@ -44,10 +44,10 @@ export async function strategy(
   });
 
   const stakingCheck = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address)=>{
+  addresses.forEach((address) => {
     const stakedPath = address + '-' + 'staked';
     stakingCheck.call(stakedPath, options.address, 'stakedNft', [address]);
-  })
+  });
 
   const ids: Record<string, BigNumberish> = await nftIdCall.execute();
   const stakedIds: Record<string, BigNumberish> = await stakingCheck.execute();
