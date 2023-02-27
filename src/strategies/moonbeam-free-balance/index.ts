@@ -74,6 +74,9 @@ export async function strategy(
     ).then(
       (payloads: { id: number; result: string }[]) => {
         for (const payload of payloads) {
+          if (payload.result === null) {
+            return;
+          }
           // Computes "system.account" key for given address
           // Retrieves storage data for the "system.account" key
           // account data structure (little endian):
