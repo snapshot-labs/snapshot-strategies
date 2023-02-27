@@ -56,7 +56,7 @@ export async function strategy(
     }));
 
     // Query batch of storage items
-    await fetchJson(
+    const payloads: { id: number; result: string }[] = await fetchJson(
       provider.connection,
       JSON.stringify(reqs),
       (payload: {
@@ -71,50 +71,43 @@ export async function strategy(
         }
         return payload;
       }
-    ).then(
-      (payloads: { id: number; result: string }[]) => {
-        for (const payload of payloads) {
-          if (payload.result === null) {
-            return;
-          }
-          // Computes "system.account" key for given address
-          // Retrieves storage data for the "system.account" key
-          // account data structure (little endian):
-          // {
-          //   nonce: 8 bits
-          //   consumers: 8 bits
-          //   providers: 8 bits
-          //   sufficients: 8 bits
-          //   data: {
-          //     free: 32 bits
-          //     reserved: 32 bits
-          //     miscFrozen: 32 bits
-          //     feeFrozen: 32 bits
-          //   }
-          // }
-          // Converts the bigint into number.
-          // Result won't be precise, but should be lower than real value.
-
-          const free =
-            payload.result.length >= 2 + 8 + 8 + 8 + 8 + 32
-              ? Number(
-                  readLittleEndianBigInt(
-                    payload.result.substring(
-                      2 + 8 + 8 + 8 + 8,
-                      2 + 8 + 8 + 8 + 8 + 32
-                    )
-                  )
-                )
-              : 0;
-          balances[getAddress(addressBatch[(payload.id - 1) % batchSize])] =
-            free;
-        }
-        return;
-      },
-      (error) => {
-        throw error;
-      }
     );
+    
+    for (const payload of payloads) {
+      if (payload.result === null) {
+        break;
+      }
+      // Computes "system.account" key for given address
+      // Retrieves storage data for the "system.account" key
+      // account data structure (little endian):
+      // {
+      //   nonce: 8 bits
+      //   consumers: 8 bits
+      //   providers: 8 bits
+      //   sufficients: 8 bits
+      //   data: {
+      //     free: 32 bits
+      //     reserved: 32 bits
+      //     miscFrozen: 32 bits
+      //     feeFrozen: 32 bits
+      //   }
+      // }
+      // Converts the bigint into number.
+      // Result won't be precise, but should be lower than real value.
+
+      const free =
+        payload.result.length >= 2 + 8 + 8 + 8 + 8 + 32
+          ? Number(
+              readLittleEndianBigInt(
+                payload.result.substring(
+                  2 + 8 + 8 + 8 + 8,
+                  2 + 8 + 8 + 8 + 8 + 32
+                )
+              )
+            )
+          : 0;
+      balances[getAddress(addressBatch[(payload.id - 1) % batchSize])] = free;
+    }
   }
   return balances;
 }
