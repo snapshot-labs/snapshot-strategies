@@ -421,6 +421,7 @@ import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
+import * as moonbeamFreeBalance from './moonbeam-free-balance';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 import * as pdnBalancesAndVests from './pdn-balances-and-vests';
@@ -854,6 +855,7 @@ const strategies = {
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
+  'moonbeam-free-balance': moonbeamFreeBalance,
   'stakedotlink-vesting': stakedotlinkVesting,
   'psp-in-sepsp2-balance': pspInSePSP2Balance,
   'pdn-balances-and-vests': pdnBalancesAndVests,
