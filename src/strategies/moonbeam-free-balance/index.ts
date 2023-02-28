@@ -2,6 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { fetchJson } from '@ethersproject/web';
 import { JsonRpcProvider } from '@ethersproject/providers';
 import { blake2bHex } from 'blakejs';
+import { formatFixed } from '@ethersproject/bignumber';
 
 export const author = 'crystalin';
 export const version = '0.1.0';
@@ -14,10 +15,12 @@ export async function strategy(
   space: string,
   network: string,
   provider: JsonRpcProvider,
-  addresses: string[]
+  addresses: string[],
+  options
 ) {
   // Pre-encoded key prefix for "system.account" storage
   const accountPrefix = `0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9`;
+  const { decimals } = options;
 
   const batchSize = 100;
   const batches = addresses.reduce((resultArray, item, index) => {
@@ -72,7 +75,7 @@ export async function strategy(
         return payload;
       }
     );
-    
+
     for (const payload of payloads) {
       if (payload.result === null) {
         break;
@@ -97,12 +100,15 @@ export async function strategy(
 
       const free =
         payload.result.length >= 2 + 8 + 8 + 8 + 8 + 32
-          ? Number(
-              readLittleEndianBigInt(
-                payload.result.substring(
-                  2 + 8 + 8 + 8 + 8,
-                  2 + 8 + 8 + 8 + 8 + 32
-                )
+          ? parseFloat(
+              formatFixed(
+                readLittleEndianBigInt(
+                  payload.result.substring(
+                    2 + 8 + 8 + 8 + 8,
+                    2 + 8 + 8 + 8 + 8 + 32
+                  )
+                ),
+                decimals
               )
             )
           : 0;
