@@ -16,7 +16,7 @@ export async function strategy(
   network: string,
   provider: JsonRpcProvider,
   addresses: string[],
-  options
+  options: { decimals }
 ) {
   // Pre-encoded key prefix for "system.account" storage
   const accountPrefix = `0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9`;
