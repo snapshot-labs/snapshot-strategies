@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Example query",
+    "space": "balancer.eth",
+    "strategy": {
+      "name": "delegation-with-overrides",
+      "params": {
+        "symbol": "veBAL (delegated)",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "symbol": "veBAL",
+              "address": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+              "decimals": 18
+            },
+            "delegationSpace": "balancer.eth"
+          }
+        ],
+        "overrides": {
+          "0xAD9992f3631028CEF19e6D6C31e822C5bc2442CC": "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045"
+        },
+        "delegationSpace": "balancer.eth"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xAD9992f3631028CEF19e6D6C31e822C5bc2442CC",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3",
+      "0xE58585B22cC2aC4270a2b92c2D2d8C5dB5A3330E"
+    ],
+    "snapshot": 16693494
+  }
+]
