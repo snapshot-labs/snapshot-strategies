@@ -12,9 +12,7 @@ export async function strategy(
   space,
   network,
   provider,
-  addresses,
-  _options,
-  _snapshot
+  addresses
 ): Promise<Record<string, number>> {
   const count: Record<string, number> = {};
   const res = await fetch('https://open-api.etherorcs.com/api/graphql', {
