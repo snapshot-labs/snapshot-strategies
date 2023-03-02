@@ -137,6 +137,7 @@ import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
 import * as apiPost from './api-post';
+import * as apiV2 from './api-v2';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -588,6 +589,7 @@ const strategies = {
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
   'api-post': apiPost,
+  'api-v2': apiV2,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
