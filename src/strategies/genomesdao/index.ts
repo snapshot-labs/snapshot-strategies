@@ -1,6 +1,7 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
+import snapshotMain from '../../../src';
 
 export const author = 'Charles-repo';
 export const version = '0.1.2';
@@ -21,6 +22,18 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const viewWeb3onArb = snapshotMain.utils.getProvider('42161');
+
+  const multi4arbi = new Multicaller('42161', viewWeb3onArb, abi, {
+    blockTag: 65834212
+  });
+
+  addresses.forEach((address: any) =>
+    multi4arbi.call(address, options.veaddress4arbi, 'balanceOf', [address])
+  );
+  const veresult4arbi: Record<string, BigNumberish> =
+    await multi4arbi.execute();
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
   addresses.forEach((address: any) =>
@@ -62,7 +75,8 @@ export async function strategy(
         .div(totalSupply);
       bal = bal
         .add(result[address])
-        .add(BigNumber.from(veresult[address]).mul(5));
+        .add(BigNumber.from(veresult[address]).mul(5))
+        .add(BigNumber.from(veresult4arbi[address]).mul(5));
       return [address, parseFloat(formatUnits(bal, options.decimals))];
     })
   );
