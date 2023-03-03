@@ -23,8 +23,13 @@
         },
         "veaddress": {
           "type": "string",
-          "title": "veGNOME Token Contract Address",
+          "title": "veGNOME Token Contract Address on Polygon",
           "examples": ["e.g. 0xae059C276904B9E885710c4a68434b4Bc437da6e"]
+        },
+        "veaddress4arbi": {
+          "type": "string",
+          "title": "veGNOME Token Contract Address on Aritrum",
+          "examples": ["e.g. 0x6F4FdE73a4CC025a253d07d63040A8dd9df545A9"]
         },
         "symbol": {
           "type": "string",
