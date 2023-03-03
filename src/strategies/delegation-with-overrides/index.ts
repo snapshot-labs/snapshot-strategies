@@ -15,10 +15,22 @@ export async function strategy(
   snapshot
 ) {
   const delegationSpace = options.delegationSpace || space;
+  const overrides: { [delegatee: string]: string } = Object.fromEntries(
+    Object.entries(options.overrides ?? {}).map(([key, value]) => [
+      getAddress(key),
+      getAddress(value as string)
+    ])
+  );
+
+  // Remove duplicates
+  const allAddresses = addresses
+    .concat(Object.keys(overrides))
+    .filter((v, i, a) => a.indexOf(v) === i);
+
   const delegations = await getDelegations(
     delegationSpace,
     network,
-    addresses,
+    allAddresses,
     snapshot
   );
   if (Object.keys(delegations).length === 0) return {};
@@ -36,14 +48,7 @@ export async function strategy(
     )
   ).filter((score) => Object.keys(score).length !== 0);
 
-  const overrides: { [delegatee: string]: string } = Object.fromEntries(
-    Object.entries(options.overrides ?? {}).map(([key, value]) => [
-      getAddress(key),
-      getAddress(value as string)
-    ])
-  );
-
-  return addresses
+  return allAddresses
     .map((address) => {
       const addressScore = delegations[address]
         ? delegations[address].reduce(
