@@ -92,6 +92,7 @@ import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
+import * as delegationWithOverrides from './delegation-with-overrides';
 import * as withDelegation from './with-delegation';
 import * as ticket from './ticket';
 import * as work from './work';
@@ -136,6 +137,7 @@ import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
 import * as apiPost from './api-post';
+import * as apiV2 from './api-v2';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -336,6 +338,7 @@ import * as citydaoSquareRoot from './citydao-square-root';
 import * as recusalList from './recusal-list';
 import * as rowdyRoos from './rowdy-roos';
 import * as ethermon721 from './ethermon-erc721';
+import * as etherorcsComboBalanceOf from './etherorcs-combo-balanceof';
 import * as hedgey from './hedgey';
 import * as hedgeyMulti from './hedgey-multi';
 import * as sybilProtection from './sybil-protection';
@@ -420,10 +423,12 @@ import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
+import * as moonbeamFreeBalance from './moonbeam-free-balance';
 import * as stakedotlinkVesting from './stakedotlink-vesting';
 import * as pspInSePSP2Balance from './psp-in-sepsp2-balance';
 import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 import * as izumiVeiZi from './izumi-veizi';
+import * as lqtyProxyStakers from './lqty-proxy-stakers';
 
 const strategies = {
   'izumi-veizi': izumiVeiZi,
@@ -431,6 +436,7 @@ const strategies = {
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
+  'etherorcs-combo-balanceof': etherorcsComboBalanceOf,
   'recusal-list': recusalList,
   'landdao-token-tiers': landDaoTiers,
   'giveth-balancer-balance': givethBalancerBalance,
@@ -541,6 +547,7 @@ const strategies = {
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
+  'delegation-with-overrides': delegationWithOverrides,
   'with-delegation': withDelegation,
   ticket,
   work,
@@ -582,6 +589,7 @@ const strategies = {
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
   'api-post': apiPost,
+  'api-v2': apiV2,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
@@ -851,9 +859,11 @@ const strategies = {
   babywealthyclub,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
+  'moonbeam-free-balance': moonbeamFreeBalance,
   'stakedotlink-vesting': stakedotlinkVesting,
   'psp-in-sepsp2-balance': pspInSePSP2Balance,
-  'pdn-balances-and-vests': pdnBalancesAndVests
+  'pdn-balances-and-vests': pdnBalancesAndVests,
+  'lqty-proxy-stakers': lqtyProxyStakers
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
