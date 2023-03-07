@@ -5,7 +5,7 @@
       "name": "ogn",
       "params": {
         "ognAddress": "0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
-        "stakingAddress": "0x501804B374EF06fa9C427476147ac09F1551B9A0",
+        "seriesAddress": "0xCcE8E784c777fb9435F89f4E45f8b7FC49f7669f",
         "symbol": "OGN",
         "decimals": 18
       }
@@ -31,6 +31,6 @@
       "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
       "0x38C0039247A31F3939baE65e953612125cB88268"
     ],
-    "snapshot": 12842590
+    "snapshot": 16767676
   }
 ]
