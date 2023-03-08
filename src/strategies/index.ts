@@ -92,6 +92,7 @@ import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
+import * as delegationWithOverrides from './delegation-with-overrides';
 import * as withDelegation from './with-delegation';
 import * as ticket from './ticket';
 import * as work from './work';
@@ -136,6 +137,7 @@ import * as avnBalanceOfStaked from './avn-balance-of-staked';
 import * as badgeth from './badgeth';
 import * as api from './api';
 import * as apiPost from './api-post';
+import * as apiV2 from './api-v2';
 import * as xseen from './xseen';
 import * as molochAll from './moloch-all';
 import * as molochLoot from './moloch-loot';
@@ -545,6 +547,7 @@ const strategies = {
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
+  'delegation-with-overrides': delegationWithOverrides,
   'with-delegation': withDelegation,
   ticket,
   work,
@@ -586,6 +589,7 @@ const strategies = {
   'avn-balance-of-staked': avnBalanceOfStaked,
   api,
   'api-post': apiPost,
+  'api-v2': apiV2,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,

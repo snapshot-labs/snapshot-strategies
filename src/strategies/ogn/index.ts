@@ -3,12 +3,10 @@ import { getBlockNumber } from '../../utils';
 import { multicall } from '../../utils';
 
 export const author = 'franckc';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const abi = [
-  'function balanceOf(address account) external view returns (uint256)',
-  // Staking
-  'function totalStaked(address account) external view returns (uint256)'
+  'function balanceOf(address account) external view returns (uint256)'
 ];
 
 // Number of blocks in 30 days, assuming 15 sec per block.
@@ -35,8 +33,8 @@ export async function strategy(
     [address]
   ]);
   const stakingCalls = addresses.map((address: any) => [
-    options.stakingAddress,
-    'totalStaked',
+    options.seriesAddress,
+    'balanceOf',
     [address]
   ]);
 
@@ -47,6 +45,7 @@ export async function strategy(
     multicall(network, provider, abi, stakingCalls, { blockTag: blockTag1 }),
     multicall(network, provider, abi, stakingCalls, { blockTag: blockTag2 })
   ];
+
   const responses = await Promise.all(multicalls);
 
   // Compute an average score.

@@ -3,7 +3,9 @@
     "name": "moonbeam-free-balance",
     "strategy": {
       "name": "moonbeam-free-balance",
-      "params": {}
+      "params": {
+        "decimals": 18
+      }
     },
     "network": "1284",
     "addresses": [
@@ -11,6 +13,6 @@
       "0x01bb6ce8b88f09a7d0bfb40eff7f2ad5e0df2e98",
       "0xe751b9ea560a200161d1b70249495e3d22ec5b00"
     ],
-    "snapshot": 2800000
+    "snapshot": 3044139
   }
 ]
