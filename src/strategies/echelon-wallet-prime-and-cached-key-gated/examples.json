@@ -16,7 +16,7 @@
           "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
           "0xFCfcC87E312f323768f9553255250A9357a04109"
         ],
-        "blacklist": ["0xE6be99cbC7796F90baff870a2ffE838a540E27C9", ]
+        "blacklist": ["0xE6be99cbC7796F90baff870a2ffE838a540E27C9"]
       }
     },
     "network": "1",

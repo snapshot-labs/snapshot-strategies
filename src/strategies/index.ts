@@ -866,7 +866,7 @@ const strategies = {
   'pdn-balances-and-vests': pdnBalancesAndVests,
   'lqty-proxy-stakers': lqtyProxyStakers,
   'echelon-wallet-prime-and-cached-key-gated':
-  echelonWalletPrimeAndCachedKeyGated
+    echelonWalletPrimeAndCachedKeyGated
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
