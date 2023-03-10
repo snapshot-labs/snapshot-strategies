@@ -55,7 +55,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, {
     blockTag,
-    callsLimit: 250
+    limit: 250
   });
 
   // Get current vesting state from smart contract using the vestingId
