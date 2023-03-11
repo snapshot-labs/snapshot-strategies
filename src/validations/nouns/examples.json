@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example of a basic proposal validation",
+    "author": "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "minScore": 1,
+      "strategies": [
+        {
+          "name": "ticket",
+          "params": {}
+        },
+        {
+          "name": "nouns-rfp-power",
+          "params": {
+            "symbol": "NOUNS",
+            "decimals": 1,
+            "powerType": "vote",
+            "governanceStrategy": "0x50Acc1831E954fB5bB407d7A3CFe1e7769A41ab0"
+          }
+        }
+      ]
+    }
+  }
+]
