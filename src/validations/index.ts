@@ -1,15 +1,11 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 import basic from './basic';
-import aave from './aave';
-import nouns from './nouns';
 import passportGated from './passport-gated';
 import passportWeighted from './passport-weighted';
 
 const validationClasses = {
   basic,
-  aave,
-  nouns,
   'passport-gated': passportGated,
   'passport-weighted': passportWeighted
 };
