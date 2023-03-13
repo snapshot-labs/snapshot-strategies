@@ -7,7 +7,7 @@ import { getBlockNumber, subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'carlosfebres';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 const ECO_SUBGRAPH_BY_CHAIN_ID = {
   '1': 'https://api.thegraph.com/subgraphs/name/ecographs/the-eco-currency-subgraphs',
@@ -178,7 +178,7 @@ export async function strategy(
 
       return [
         getAddress(address),
-        parseFloat(
+        parseInt(
           formatEther(
             calculateVotingPower(
               ecoHistorical.add(ecoCurrent),

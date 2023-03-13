@@ -53,7 +53,10 @@ export async function strategy(
   const allocationsList: [[AllocationDetails]] = await response.json();
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const multi = new Multicaller(network, provider, abi, { blockTag });
+  const multi = new Multicaller(network, provider, abi, {
+    blockTag,
+    limit: 250
+  });
 
   // Get current vesting state from smart contract using the vestingId
   addresses.forEach((address) => {

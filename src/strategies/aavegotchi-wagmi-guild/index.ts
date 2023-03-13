@@ -5,7 +5,7 @@ export const author = 'programmablewealth';
 export const version = '0.1.0';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
-  137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
+  137: 'https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-core-matic/api'
 };
 
 const itemPriceParams = {

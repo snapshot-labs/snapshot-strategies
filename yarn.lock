@@ -1163,10 +1163,10 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snapshot-labs/snapshot.js@^0.4.62":
-  version "0.4.62"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.62.tgz#47f3805a9aa413a999b223a1727f02a9fb3009af"
-  integrity sha512-LzKIjaUsBVT+h1WA5SJAajt2r2Y0Bsvc5Doh+m/c5k+Gns5qB8HdOisGFjCwVkZkLIm6ruvnf1Khvku72l3jCQ==
+"@snapshot-labs/snapshot.js@^0.4.70":
+  version "0.4.70"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.70.tgz#af64ff487913f479f15f59857ce33e537081d32b"
+  integrity sha512-9z18FqmMPxzUKgTh/7DAItABHqr2sFSUOWq22TCeLTu+4WTsZGh7f18Gjvnnw6xIixenfVZXchlC25TYVC/tVg==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.6.4"
@@ -1675,6 +1675,11 @@ binary-extensions@^2.0.0:
   version "2.2.0"
   resolved "https://registry.yarnpkg.com/binary-extensions/-/binary-extensions-2.2.0.tgz#75f502eeaf9ffde42fc98829645be4ea76bd9e2d"
   integrity sha512-jDctJ/IVQbZoJykoeHbhXpOlNBqGNcwXJKJog42E5HDPUwQTSdjCHdihjj0DlnheQ7blbT6dHOafNAiS8ooQKA==
+
+blakejs@^1.2.1:
+  version "1.2.1"
+  resolved "https://registry.yarnpkg.com/blakejs/-/blakejs-1.2.1.tgz#5057e4206eadb4a97f7c0b6e197a505042fc3814"
+  integrity sha512-QXUSXI3QVc/gJME0dBpXrag1kbzOqCjCX8/b54ntNyW6sjtoqxqRk3LTmXzaJoh71zMsDCjM+47jS7XiwN/+fQ==
 
 bn.js@^4.11.9:
   version "4.12.0"
