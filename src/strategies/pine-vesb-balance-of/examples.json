@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "pine-vesb-balance-of",
+      "params": {
+        "address": "0x90dFb72736481BBacc7938d2D3673590B92647AE",
+        "symbol": "tvesbPINE",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x854F1269b659A727a2268AB86FF77CFB30BfB358",
+      "0x26B874Fb637c12086C66ECAdeF337bDcc862233f",
+      "0xbb058d516Cab5323b839E973962fcEF48C243C19"
+    ],
+    "snapshot": 40338033
+  }
+]
