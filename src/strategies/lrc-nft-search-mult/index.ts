@@ -3,7 +3,7 @@
 
 import { subgraphRequest } from '../../utils';
 export const author = 'raecaug';
-export const version = '0.1.3';
+export const version = '0.1.0';
 
 const LIMIT = 1000;
 
