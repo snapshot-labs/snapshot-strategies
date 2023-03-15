@@ -12,11 +12,11 @@
         ],
         "blacklisted_account_ids": [""],
         "blacklisted_nft_ids": [""],
-        "multiplier": "10"
+        "multiplier": "1"
       }
     },
     "network": "1",
-    "addresses": ["0xeE253D3fCC30787a1E58570E355010d0b9C33B60"],
+    "addresses": ["0xeE253D3fCC30787a1E58570E355010d0b9C33B60","0xddCCE06088517c56FA938bD99cD0820094010F8e","0x9Fd19B8ca6E49eD92142339F54026497cE913492"],
     "snapshot": 15677787
   }
 ]
