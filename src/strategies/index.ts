@@ -365,6 +365,7 @@ import * as lrcL2SubgraphBalanceOf from './lrc-l2-subgraph-balance-of';
 import * as lrcL2NftBalanceOf from './lrc-l2-nft-balance-of';
 import * as lrcLPSubgraphBalanceOf from './lrc-lp-subgraph-balance-of';
 import * as lrcNFTDAOSearch from './lrc-nft-dao-search';
+import * as lrcNFTmult from './lrc-nft-search-mult';
 import * as erc3525VestingVoucher from './erc3525-vesting-voucher';
 import * as rariFuse from './rari-fuse';
 import * as selfswap from './selfswap';
@@ -803,6 +804,7 @@ const strategies = {
   'lrc-l2-nft-balance-of': lrcL2NftBalanceOf,
   'lrc-lp-subgraph-balance-of': lrcLPSubgraphBalanceOf,
   'lrc-nft-dao-search': lrcNFTDAOSearch,
+  'lrc-nft-search-mult': lrcNFTmult,
   'rari-fuse': rariFuse,
   'bancor-pool-token-underlying-balance': bancorPoolTokenUnderlyingBalance,
   selfswap,
