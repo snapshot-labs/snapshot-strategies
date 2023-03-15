@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "bravearena",
+      "params": {
+        "symbol": "VP",
+        "chainId": 5
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x4F724132F907359C6B280263EC5AbdF1a9954586",
+      "0xFA26360cAb48a8b235e0F4B080C83BF2A78c5c68",
+      "0x09D9C39E87EfD3C4A6A69F16Fe33E8C781D0085c"
+    ],
+    "snapshot": 8658916
+  }
+]
