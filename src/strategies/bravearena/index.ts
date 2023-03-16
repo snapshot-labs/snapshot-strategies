@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-// const { getAddress } = require('@ethersproject/address');
+const { getAddress } = require('@ethersproject/address');
 
 export const author = 'bravearena';
 export const version = '0.1.0';
@@ -52,7 +52,7 @@ export async function strategy(
   });
   const result = {};
   for (let index = 0; index < addresses.length; index ++) {
-    result[addresses[index]] = vpList[index];
+    result[getAddress(addresses[index])] = vpList[index];
   }
   return result;
 }
