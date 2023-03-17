@@ -1,5 +1,107 @@
 [
   {
+    "name": "Example simple contract call plus / minus",
+    "strategy": {
+      "name": "math",
+      "params": {
+        "symbol": "MATH",
+        "operands": [
+          {
+            "type": "strategy",
+            "strategy": {
+              "network": "1",
+              "name": "contract-call",
+              "params": {
+                "args": ["%{address}"],
+                "symbol": "Locked CVX",
+                "address": "0x96C68D861aDa016Ed98c30C810879F9df7c64154",
+                "decimals": 18,
+                "methodABI": {
+                  "name": "getUserInfo",
+                  "type": "function",
+                  "inputs": [
+                    {
+                      "name": "_account",
+                      "type": "address",
+                      "internalType": "address"
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "name": "totalDeposited",
+                      "type": "uint256",
+                      "internalType": "uint256"
+                    }
+                  ],
+                  "constant": true,
+                  "stateMutability": "view"
+                }
+              }
+            }
+          },
+          {
+            "type": "strategy",
+            "strategy": {
+              "network": "1",
+              "name": "contract-call",
+              "params": {
+                "args": ["%{address}"],
+                "symbol": "Locked CVX",
+                "address": "0x96C68D861aDa016Ed98c30C810879F9df7c64154",
+                "decimals": 18,
+                "output": "totalBorrowed",
+                "methodABI": {
+                  "name": "getUserInfo",
+                  "type": "function",
+                  "inputs": [
+                    {
+                      "name": "_account",
+                      "type": "address",
+                      "internalType": "address"
+                    }
+                  ],
+                  "outputs": [
+                    {
+                      "name": "totalDeposited",
+                      "type": "uint256",
+                      "internalType": "uint256"
+                    },
+                    {
+                      "name": "totalPendingUnlocked",
+                      "type": "uint256",
+                      "internalType": "uint256"
+                    },
+                    {
+                      "name": "totalUnlocked",
+                      "type": "uint256",
+                      "internalType": "uint256"
+                    },
+                    {
+                      "name": "totalBorrowed",
+                      "type": "uint256",
+                      "internalType": "uint256"
+                    }
+                  ],
+
+                  "constant": true,
+                  "stateMutability": "view"
+                }
+              }
+            }
+          }
+        ],
+        "operation": "minus"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xB286927b6434077e59c0fc4cb6e812a25e7e88c7",
+      "0x009cF7bC57584b7998236eff51b98A168DceA9B0",
+      "0x044a9c43e95AA9FD28EEa25131A62b602D304F1f"
+    ],
+    "snapshot": 16847746
+  },
+  {
     "name": "Example nested query",
     "strategy": {
       "name": "math",
@@ -28,7 +130,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0xCba1A275e2D858EcffaF7a87F606f74B719a8A93",
@@ -84,7 +186,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
@@ -130,7 +232,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
@@ -171,7 +273,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",

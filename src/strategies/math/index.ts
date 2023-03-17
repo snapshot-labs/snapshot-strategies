@@ -140,6 +140,27 @@ function resolveOperation(
         )
       );
     }
+    case Operation.MINUS: {
+      const arr = Object.entries(resolvedOperands[0]).map(
+        ([address, score]: [string, number]) => [
+          address,
+          score > resolvedOperands[1][address]
+            ? score - resolvedOperands[1][address]
+            : 0
+        ]
+      );
+      return Object.fromEntries(arr);
+    }
+    case Operation.SUM: {
+      return Object.fromEntries(
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score + resolvedOperands[1][address]
+          ]
+        )
+      );
+    }
   }
 }
 
