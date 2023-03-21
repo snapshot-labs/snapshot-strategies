@@ -69,7 +69,7 @@ export async function strategy( // *****Logical execution begins here; args pass
   let blacklisted_account_ids = options.blacklisted_account_ids;
   let blacklisted_nft_ids = options.blacklisted_nft_ids;
 
-  let multiplier = options.multiplier; // Multiplier to be applied against returned NFT amounts
+  const multiplier = options.multiplier; // Multiplier to be applied against returned NFT amounts
 
   let nft_ids = options.nft_ids; // Unique NFT ids, distinguishable from 1155 token contracts
 
@@ -114,7 +114,7 @@ export async function strategy( // *****Logical execution begins here; args pass
       if (!balances.hasOwnProperty(slot.account.address)) {
         balances[slot.account.address] = 0; // If nothing returned, set this accounts balance to 0
       }
-      balances[slot.account.address] += (multiplier * parseInt(slot.balance)); // Otherwise, a bigint is returned; parse it, apply multiplier and store in balances array
+      balances[slot.account.address] += multiplier * parseInt(slot.balance); // Otherwise, a bigint is returned; parse it, apply multiplier and store in balances array
     });
     response_size = response.accountNFTSlots.length; // Value is set to 0 on loop entry, updated here, will break loop for anything other than 1000
     skip += response_size;
