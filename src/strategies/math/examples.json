@@ -1,5 +1,40 @@
 [
   {
+    "name": "Example simple contract call plus / minus",
+    "strategy": {
+      "name": "math",
+      "params": {
+        "symbol": "MATH",
+        "operands": [
+          {
+            "type": "strategy",
+            "strategy": {
+              "network": "1",
+              "name": "erc20-balance-of",
+              "params": {
+                "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                "symbol": "USDT",
+                "decimals": 6
+              }
+            }
+          },
+          {
+            "type": "constant",
+            "value": 6
+          }
+        ],
+        "operation": "minus"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x5C52cC7c96bDE8594e5B77D5b76d042CB5FaE5f2",
+      "0x4D19C0a5357bC48be0017095d3C871D9aFC3F21d",
+      "0xf59869753f41Db720127Ceb8DbB8afAF89030De4"
+    ],
+    "snapshot": 16847746
+  },
+  {
     "name": "Example nested query",
     "strategy": {
       "name": "math",
@@ -28,7 +63,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0xCba1A275e2D858EcffaF7a87F606f74B719a8A93",
@@ -84,7 +119,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
@@ -130,7 +165,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
@@ -171,7 +206,7 @@
     },
     "network": "1",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
       "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
