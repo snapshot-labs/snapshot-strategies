@@ -5,7 +5,7 @@
       "name": "galxe-loyalty-points",
       "params": {
         "symbol": "PTS",
-        "spaceId": 263,
+        "spaceId": 263
       }
     },
     "network": "137",
