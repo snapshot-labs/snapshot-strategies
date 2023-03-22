@@ -14,7 +14,7 @@ Here’s how to set it up:
    ```
    {
    "symbol": "PTS", // Voting power unit shows in proposal
-   "spaceId": 263 // Galxe Space Id
+   "space_url": "https://stg.galxe.com/Summertest02/campaigns" // Galxe space url
    }
    ```
 4. Input some addresses to test the voting power of each address, and you’re good to go!

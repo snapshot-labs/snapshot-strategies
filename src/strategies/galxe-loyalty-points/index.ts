@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { error } from 'console';
 
 export const author = 'HaynarCool';
 export const version = '0.1.0';
@@ -13,6 +14,11 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const url = new URL(options.space_url);
+  const parts = url.pathname.split('/');
+  if (parts.length < 2) {
+    throw error('invalid galxe space url');
+  }
   const graphqlParams = {
     method: 'POST',
     headers: {
@@ -20,8 +26,8 @@ export async function strategy(
     },
     body: JSON.stringify({
       operationName: 'galxeLoyaltyPoints',
-      query: `query galxeLoyaltyPoints($spaceId: Int! $addresses: [String!]!) {
-        space(id: $spaceId) {
+      query: `query galxeLoyaltyPoints($alias: String! $addresses: [String!]!) {
+        space(alias: $alias) {
           addressesLoyaltyPoints(addresses: $addresses) {
             address
             space
@@ -30,7 +36,7 @@ export async function strategy(
         }
       }`,
       variables: {
-        spaceId: options.spaceId,
+        alias: parts[1],
         addresses: addresses
       }
     })
