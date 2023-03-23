@@ -1,9 +1,6 @@
 # Arbitrum Bps of Votable Supply
 
 - [Overview](#overview)
-- [Example](#example)
-- [Snapshot Delegations](#snapshot-delegations)
-- [Example With Snapshot Delegations](#example-with-snapshot-delegations)
 - [Options](#options)
 
 
