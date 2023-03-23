@@ -1,4 +1,3 @@
-import { BigNumber } from '@ethersproject/bignumber';
 import { multicall } from '../../utils';
 
 export const author = 'gzeoneth';
@@ -46,7 +45,7 @@ export async function strategy(
     response.map((value, i) => [
       addresses[i],
       parseFloat(
-        BigNumber.from(value.toString()).mul(10000).div(votableSupply).toString()
+        value[0].mul(10000).div(votableSupply).toString()
       )
     ])
   );
