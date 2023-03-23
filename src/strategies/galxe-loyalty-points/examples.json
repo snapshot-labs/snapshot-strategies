@@ -5,7 +5,7 @@
       "name": "galxe-loyalty-points",
       "params": {
         "symbol": "PTS",
-        "space_url": "https://stg.galxe.com/Summertest02/campaigns"
+        "space_url": "https://galxe.com/SummerSpace/campaigns"
       }
     },
     "network": "137",

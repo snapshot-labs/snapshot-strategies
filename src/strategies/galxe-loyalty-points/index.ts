@@ -4,7 +4,7 @@ import { error } from 'console';
 export const author = 'HaynarCool';
 export const version = '0.1.0';
 
-const graphqlUrl = 'https://graphigo.stg.galaxy.eco/query';
+const graphqlUrl = 'https://graphigo.prd.galaxy.eco/query';
 
 export async function strategy(
   space,
