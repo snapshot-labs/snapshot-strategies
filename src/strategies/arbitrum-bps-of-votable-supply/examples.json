@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "arbitrum-bps-of-votable-supply",
+      "params": {
+        "address": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+        "symbol": "ARB"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x00000000000000000000000000000000000A4B86",
+      "0x2B384212EDc04Ae8bB41738D05BA20E33277bf33",
+      "0xAC5720d6EE2d7872b88914C9c5Fa9BF38e72FaF6"
+    ],
+    "snapshot": 72697700
+  }
+]
