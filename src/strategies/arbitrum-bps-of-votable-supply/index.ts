@@ -30,7 +30,7 @@ export async function strategy(
     ],
     { blockTag }
   );
-  const circSupply = totalSupply.sub(excludedSupply);
+  const votableSupply = totalSupply.sub(excludedSupply);
   const response = await multicall(
     network,
     provider,
@@ -46,7 +46,7 @@ export async function strategy(
     response.map((value, i) => [
       addresses[i],
       parseFloat(
-        BigNumber.from(value.toString()).mul(10000).div(circSupply).toString()
+        BigNumber.from(value.toString()).mul(10000).div(votableSupply).toString()
       )
     ])
   );
