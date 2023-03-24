@@ -1,0 +1,20 @@
+[
+  {
+    "name": "RDNT DLP Query",
+    "strategy": {
+      "name": "rdnt-capital-dlp",
+      "params": {
+        "symbol": "RDNT DLP",
+        "address": "0x76ba3eC5f5adBf1C58c91e86502232317EeA72dE",
+        "decimals": 18
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x2eaa7327e9b5ff46bc2b7452ace9e44a1528eb84",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C"
+    ],
+    "snapshot": 72768437
+  }
+]
