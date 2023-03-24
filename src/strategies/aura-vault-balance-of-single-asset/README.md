@@ -1,4 +1,4 @@
-# aura-vlaura-vebal
+# aura-vault-balance-of-single-asset
 
 This strategy returns the balance of an underlying asset in a BPT LP pair staked on Aura
 
