@@ -352,6 +352,7 @@ import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
 import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
 import * as auraBalanceOfVlauraVebal from './aura-balance-of-vlaura-vebal';
+import * as auraBalanceOfSingleAsset from './aura-vault-balance-of-single-asset';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
@@ -789,6 +790,7 @@ const strategies = {
   'aura-vlaura-vebal': auraFinance,
   'aura-vlaura-vebal-with-overrides': auraFinanceWithOverrides,
   'aura-balance-of-vlaura-vebal': auraBalanceOfVlauraVebal,
+  'aura-vault-balance-of-single-asset': auraBalanceOfSingleAsset,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
