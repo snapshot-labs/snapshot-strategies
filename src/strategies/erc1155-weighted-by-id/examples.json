@@ -1,8 +1,8 @@
 [
   {
-    "name": "ERC-1155 Weighted by id",
+    "name": "ERC1155 Weighted by id",
     "strategy": {
-      "name": "erc-1155-weighted-by-id",
+      "name": "erc1155-weighted-by-id",
       "params": {
         "symbol": "COINAGE",
         "address": "0x4776defcf622c60c6419cccc9ee9e9042fadf3f7",
@@ -21,7 +21,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "erc-1155-weighted-by-id",
+      "name": "erc1155-weighted-by-id",
       "params": {
         "symbol": "COINAGE",
         "address": "0x4776defcf622c60c6419cccc9ee9e9042fadf3f7",

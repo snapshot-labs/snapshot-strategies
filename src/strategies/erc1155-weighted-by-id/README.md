@@ -1,6 +1,6 @@
-# erc-1155-weighted-by-id
+# erc1155-weighted-by-id
 
-This strategy takes in an array of erc-1155 token ids and the weight attached to each token ID. It returns the highest value a wallet holds, and does not calculate a sum.
+This strategy takes in an array of ERC1155 token ids and the weight attached to each token ID. It returns the highest value a wallet holds, and does not calculate a sum.
 
 ## Params
 

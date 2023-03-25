@@ -293,7 +293,7 @@ import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
 import * as givethBalancerBalance from './giveth-balancer-balance';
 import * as erc1155BalanceOfIds from './erc1155-balance-of-ids';
 import * as erc1155BalanceOfIdsWeighted from './erc1155-balance-of-ids-weighted';
-import * as erc1155weighted from './erc-1155-weighted-by-id';
+import * as erc1155weighted from './erc1155-weighted-by-id';
 import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
@@ -726,7 +726,7 @@ const strategies = {
   'staked-uniswap-modifiable': stakedUniswapModifiable,
   'erc1155-balance-of-ids': erc1155BalanceOfIds,
   'erc1155-balance-of-ids-weighted': erc1155BalanceOfIdsWeighted,
-  'erc-1155-weighted-by-id': erc1155weighted,
+  'erc1155-weighted-by-id': erc1155weighted,
   'stakers-and-holders': stakersAndHolders,
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
