@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "echelon-wallet-prime-and-cached-key-gated",
+      "params": {
+        "symbol": "PRIME VOTE",
+        "address": "0xb23d80f5FefcDDaa212212F028021B41DEd428CF",
+        "decimals": 18,
+        "stakingAddress": "0x3399eff96D4b6Bae8a56F4852EB55736c9C2b041",
+        "baseValue": 4000,
+        "startingBlock": 15166749,
+        "monthsToDecay": 12,
+        "erc1155Address": "0x76BE3b62873462d2142405439777e971754E8E77",
+        "whitelist": [
+          "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+          "0xFCfcC87E312f323768f9553255250A9357a04109"
+        ],
+        "blacklist": ["0xE6be99cbC7796F90baff870a2ffE838a540E27C9"]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xE6be99cbC7796F90baff870a2ffE838a540E27C9",
+      "0xf98A4A42853cC611eED664627087d4ae19740ED8",
+      "0xbdc3C931387e2c6647b0D7237Ed30c702260fa80",
+      "0x5566eec3684F3ED896740590cc372758f25f056f",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0xFCfcC87E312f323768f9553255250A9357a04109",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030"
+    ],
+    "snapshot": 15540462
+  }
+]

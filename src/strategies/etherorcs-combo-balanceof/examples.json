@@ -1,19 +1,13 @@
 [
   {
-    "name": "OGN Snapshot strategy",
+    "name": "Ether Orcs Balance Of Example",
     "strategy": {
-      "name": "ogn",
-      "params": {
-        "ognAddress": "0x8207c1ffc5b6804f6024322ccf34f29c3541ae26",
-        "seriesAddress": "0xCcE8E784c777fb9435F89f4E45f8b7FC49f7669f",
-        "symbol": "OGN",
-        "decimals": 18
-      }
+      "name": "etherorcs-combo-balanceof"
     },
     "network": "1",
     "addresses": [
-      "0xD85A569F3C26f81070544451131c742283360400",
-      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x90da518CfC3ceb176eD92eB83f933E8586880B8a",
+      "0x0d388658633418e8E51A7CF67c7059F863F053d9",
       "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
       "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
@@ -31,6 +25,6 @@
       "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
       "0x38C0039247A31F3939baE65e953612125cB88268"
     ],
-    "snapshot": 16767676
+    "snapshot": 11437846
   }
 ]
