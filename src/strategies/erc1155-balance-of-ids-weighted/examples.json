@@ -11,26 +11,7 @@
       }
     },
     "network": "1",
-    "addresses": ["0x2274091DAad5B7bF734f426B9aA8513955075b9E"],
+    "addresses": ["0x34518f5559425a7bb06f66196920af10e1938b5f"],
     "snapshot": 14039001
-  },
-  {
-    "name": "ERC1155 Weighted by id",
-    "strategy": {
-      "name": "erc1155-balance-of-ids-weighted",
-      "params": {
-        "symbol": "COINAGE",
-        "address": "0x4776defcf622c60c6419cccc9ee9e9042fadf3f7",
-        "ids": ["1", "2", "3"],
-        "weight": 10
-      }
-    },
-    "network": "1",
-    "addresses": [
-      "0x2274091DAad5B7bF734f426B9aA8513955075b9E",
-      "0x65A922561638015E394A20356C31E9A6217513B8",
-      "0x1A9deC77516BA05316938D7Fb32F51D646f8d91f"
-    ],
-    "snapshot": 16648731
   }
 ]
