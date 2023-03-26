@@ -5,7 +5,7 @@ import { Multicaller } from '../../utils';
 export const author = 'chuddster';
 export const version = '0.1.0';
 
-const BALANCER_VAULT = "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+const BALANCER_VAULT = '0xBA12222222228d8Ba445958a75a0704d566BF2C8';
 
 const abi = [
   'function asset() external view returns (address)',
@@ -37,18 +37,23 @@ export async function strategy(
 
   const bptAssetResult: Record<string, string> = await multi.execute();
 
-  multi.call('poolId', bptAssetResult.bptAsset, 'getPoolId', [])
+  multi.call('poolId', bptAssetResult.bptAsset, 'getPoolId', []);
 
-  const poolIdResult: Record<string, string>  = await multi.execute();
+  const poolIdResult: Record<string, string> = await multi.execute();
 
-  multi.call('underlyingBalance', BALANCER_VAULT, 'getPoolTokens', [poolIdResult.poolId])
+  multi.call('underlyingBalance', BALANCER_VAULT, 'getPoolTokens', [
+    poolIdResult.poolId
+  ]);
 
-  const underlyingBalanceResult  = await multi.execute();
-  const underlyingBalance = underlyingBalanceResult.underlyingBalance.balances[parseInt(options.tokenIndex)]
+  const underlyingBalanceResult = await multi.execute();
+  const underlyingBalance =
+    underlyingBalanceResult.underlyingBalance.balances[
+      parseInt(options.tokenIndex)
+    ];
 
-  multi.call('bptTotalSupply', bptAssetResult.bptAsset, 'totalSupply', [])
+  multi.call('bptTotalSupply', bptAssetResult.bptAsset, 'totalSupply', []);
 
-  const bptTotalSupply: Record<string, BigNumberish>  = await multi.execute();
+  const bptTotalSupply: Record<string, BigNumberish> = await multi.execute();
 
   addresses.forEach((address) =>
     multi.call(address, options.auraVaultDeposit, 'balanceOf', [address])
@@ -58,7 +63,12 @@ export async function strategy(
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance.mul(underlyingBalance).div(bptTotalSupply.bptTotalSupply), parseInt(options.decimals)))
+      parseFloat(
+        formatUnits(
+          balance.mul(underlyingBalance).div(bptTotalSupply.bptTotalSupply),
+          parseInt(options.decimals)
+        )
+      )
     ])
   );
 }
