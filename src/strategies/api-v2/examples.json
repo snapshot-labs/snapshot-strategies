@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "api-v2",
+      "params": {
+        "url": "ipfs://QmbmhTivxYuLE5uhNEALoBmvP7Yg9acA2Lkw9V9PqaEmw6",
+        "type": "ipfs"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xeD2bcC3104Da5F5f8fA988D6e9fAFd74Ae62f319",
+      "0x3c4B8C52Ed4c29eE402D9c91FfAe1Db2BAdd228D",
+      "0xd649bACfF66f1C85618c5376ee4F38e43eE53b63",
+      "0x726022a9fe1322fA9590FB244b8164936bB00489",
+      "0xc6665eb39d2106fb1DBE54bf19190F82FD535c19",
+      "0x6ef2376fa6e12dabb3a3ed0fb44e4ff29847af68",
+      "0x89446aF03652c5257dB5C8E4E85495EB754196c5"
+    ],
+    "snapshot": 11437846
+  }
+]

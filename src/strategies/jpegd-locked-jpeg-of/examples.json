@@ -17,15 +17,14 @@
                     "FIDENZAS": "0x1a6fA849D5bF62F9b7B83D125E77e15292c54b4f",
                     "RINGERS": "0x927318B867f0939Ab501dFd7b1B8d60E52ea5B59"
                 },
-                "start": 15363080
+                "network": "1",
+                "addresses": [
+                    "0x9c5083dd4838e120dbeac44c052179692aa5dac5",
+                    "0xB0dAfc466871c29662E5cbf4227322C96A8Ccbe9",
+                    "0x0017dfe08bcc0dc9a323ca5d4831e371534e9320"
+                ],
+                "snapshot": 16119881
             }
-        },
-        "network": "1",
-        "addresses": [
-            "0x9c5083dd4838e120dbeac44c052179692aa5dac5",
-            "0xB0dAfc466871c29662E5cbf4227322C96A8Ccbe9",
-            "0x0017dfe08bcc0dc9a323ca5d4831e371534e9320"
-        ],
-        "snapshot": 16119881
+        }
     }
 ]

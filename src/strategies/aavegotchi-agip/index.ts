@@ -3,11 +3,15 @@ import { subgraphRequest } from '../../utils';
 export const author = 'candoizo';
 export const version = '0.2.5';
 
+interface Prices {
+  [id: string]: 0 | 5 | 10 | 20 | 50 | 100 | 300 | 2000 | 3000 | 10000;
+}
+
 const AAVEGOTCHI_SUBGRAPH_URL = {
-  137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
+  137: 'https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-core-matic/api'
 };
 
-const prices = {
+const prices: Prices = {
   '0': 0,
   '1': 5,
   '2': 5,
@@ -323,7 +327,29 @@ const prices = {
   '312': 2000,
   '313': 10000,
   '314': 10000,
-  '315': 10000
+  '315': 10000,
+
+  //new
+  '350': 5,
+  '351': 5,
+  '352': 5,
+  '353': 5,
+  '354': 10,
+  '355': 100,
+  '356': 10,
+  '357': 100,
+  '358': 300,
+  '359': 300,
+  '360': 300,
+  '361': 300,
+  '362': 2000,
+  '363': 2000,
+  '364': 2000,
+  '365': 2000,
+  '366': 10000,
+  '367': 10000,
+  '368': 10000,
+  '369': 10000
 };
 
 const tokenAbi = [
@@ -443,7 +469,7 @@ export async function strategy(
         ownerItemValue = ownerItemInfo.reduce((total, { balance, itemId }) => {
           const amountOwned = Number(balance.toString());
           const id = Number(itemId.toString());
-          const pricetag = parseFloat(prices[id]);
+          const pricetag = prices[id];
           let cost = pricetag * amountOwned;
           if (isNaN(cost)) cost = 0;
           return total + cost;
