@@ -4,7 +4,7 @@ import { multicall } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
 export const author = '0xleez';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/jpegd/jpegd-core-mainnet'
