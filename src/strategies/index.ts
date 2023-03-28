@@ -431,7 +431,7 @@ import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 import * as izumiVeiZi from './izumi-veizi';
 import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
-import * as rdntCapitalDLP from './rdnt-capital-dlp';
+import * as rdntCapitalLockedDLP from './rdnt-capital-locked-dlp';
 
 const strategies = {
   'izumi-veizi': izumiVeiZi,
@@ -870,7 +870,7 @@ const strategies = {
   'lqty-proxy-stakers': lqtyProxyStakers,
   'echelon-wallet-prime-and-cached-key-gated':
     echelonWalletPrimeAndCachedKeyGated,
-  'rdnt-capital-dlp': rdntCapitalDLP
+  'rdnt-capital-locked-dlp': rdntCapitalLockedDLP
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

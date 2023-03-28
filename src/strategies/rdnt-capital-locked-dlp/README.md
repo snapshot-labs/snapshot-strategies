@@ -4,6 +4,6 @@ Here is an example of parameters:
 
 {
     "symbol": "RDNT DLP",
-    "address": "0x76ba3eC5f5adBf1C58c91e86502232317EeA72dE",
+    "address": "0xd4966DC49a10aa5467D65f4fA4b1449b5d874399",
     "decimals": 18
 }

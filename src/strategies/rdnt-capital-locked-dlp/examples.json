@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Locked dLP",
+    "strategy": {
+      "name": "rdnt-capital-locked-dlp",
+      "params": {
+        "symbol": "RDNT DLP",
+        "address": "0xd4966DC49a10aa5467D65f4fA4b1449b5d874399",
+        "decimals": 18
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x2eaa7327e9b5ff46bc2b7452ace9e44a1528eb84",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4"
+    ],
+    "snapshot": 74316793
+  }
+]
