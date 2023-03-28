@@ -24,10 +24,10 @@
     },
     "network": "5",
     "addresses": [
-      "0xbb9ecfd5685502977b5b7c1ac0cdff8c136a4da8",
-      "0x33d0bbd05cf3c7e040d33bc1f338585a087e5dd9",
+      "0xbB9ECfD5685502977B5b7C1AC0cdff8C136A4Da8",
+      "0x33d0BBd05cf3C7E040d33bc1F338585A087e5Dd9",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547",
-      "0xeade2ceedea3b8d0d1d10537f507b9d262870748"
+      "0xEAde2cEeDeA3b8d0D1d10537f507b9d262870748"
     ],
     "snapshot": 7509588
   },
@@ -43,10 +43,10 @@
     },
     "network": "5",
     "addresses": [
-      "0xbb9ecfd5685502977b5b7c1ac0cdff8c136a4da8",
-      "0x33d0bbd05cf3c7e040d33bc1f338585a087e5dd9",
+      "0xbB9ECfD5685502977B5b7C1AC0cdff8C136A4Da8",
+      "0x33d0BBd05cf3C7E040d33bc1F338585A087e5Dd9",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547",
-      "0xeade2ceedea3b8d0d1d10537f507b9d262870748"
+      "0xEAde2cEeDeA3b8d0D1d10537f507b9d262870748"
     ],
     "snapshot": 7509588
   },
@@ -71,8 +71,8 @@
     },
     "network": "10",
     "addresses": [
-      "0x76d84163bc0bbf58d6d3f2332f8a9c5b339df983",
-      "0x73677662f66088236ddfc95da42e405cf3f4ce13",
+      "0x76D84163bc0BbF58d6d3F2332f8A9c5B339dF983",
+      "0x73677662f66088236dDFc95DA42e405Cf3F4ce13",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
     "snapshot": 21528802
@@ -89,8 +89,8 @@
     },
     "network": "10",
     "addresses": [
-      "0x76d84163bc0bbf58d6d3f2332f8a9c5b339df983",
-      "0x73677662f66088236ddfc95da42e405cf3f4ce13",
+      "0x76D84163bc0BbF58d6d3F2332f8A9c5B339dF983",
+      "0x73677662f66088236dDFc95DA42e405Cf3F4ce13",
       "0x0F1c502d4EF5b1940a7A77062e51353D8B366547"
     ],
     "snapshot": 21528802

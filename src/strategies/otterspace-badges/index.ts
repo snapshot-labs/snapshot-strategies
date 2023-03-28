@@ -5,8 +5,11 @@ export const author = 'otterspace-xyz';
 export const version = '1.0.0';
 
 const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
+  '1': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-mainnet',
   '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli',
-  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism'
+  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism',
+  '420':
+    'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-goerli'
 };
 
 function fetchBadgesForRaft(
@@ -51,6 +54,7 @@ function getBadgeWeight(specs: any[], badgeSpecID: string): number {
 
   if (specs && specs.length > 0) {
     const specConfig = specs.find((spec: any) => spec.id === badgeSpecID);
+
     badgeWeight =
       specConfig &&
       isBadgeActive(specConfig.status, specConfig.metadata?.expiresAt || null)
@@ -75,9 +79,17 @@ function applyBadgeWeights(badges: [], options: any) {
   badges.forEach((badge: any) => {
     const badgeAddress = badge.owner.toLowerCase();
 
-    if (badgeWeights[badgeAddress]) return;
+    const badgeWeight = getBadgeWeight(options.specs, badge.spec.id);
 
-    badgeWeights[badgeAddress] = getBadgeWeight(options.specs, badge.spec.id);
+    // picks the highest weight when multiple badges are held by the same address
+    if (
+      !badgeWeights[badgeAddress] ||
+      badgeWeight > badgeWeights[badgeAddress]
+    ) {
+      badgeWeights[badgeAddress] = badgeWeight;
+    } else {
+      return;
+    }
   });
 
   return badgeWeights;
