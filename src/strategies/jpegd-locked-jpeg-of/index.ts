@@ -4,7 +4,7 @@ import { multicall } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
 export const author = '0xleez';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/jpegd/jpegd-core-mainnet'
@@ -25,8 +25,6 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const { collectionToProviderAddress } = options;
-
   const params = {
     jpeglocks: {
       __args: {
@@ -36,7 +34,7 @@ export async function strategy(
         block: blockTag != 'latest' ? { number: blockTag } : null
       },
       owner: { id: true },
-      collection: { id: true },
+      collection: { id: true, nftValueProviderAddress: true },
       type: true,
       nftIndex: true,
       amount: true,
@@ -51,15 +49,11 @@ export async function strategy(
     network,
     provider,
     abi,
-    jpegLocks
-      .filter((jpegLock) =>
-        Boolean(collectionToProviderAddress[jpegLock.collection.id])
-      )
-      .map((jpegLock: any) => [
-        collectionToProviderAddress[jpegLock.collection.id],
-        jpegLock.type === 'LTV' ? 'ltvBoostPositions' : 'traitBoostPositions',
-        [jpegLock.nftIndex]
-      ]),
+    jpegLocks.map((jpegLock: any) => [
+      getAddress(jpegLock.collection.nftValueProviderAddress),
+      jpegLock.type === 'LTV' ? 'ltvBoostPositions' : 'traitBoostPositions',
+      [jpegLock.nftIndex]
+    ]),
     { blockTag }
   );
 
