@@ -3,11 +3,13 @@ import path from 'path';
 import basic from './basic';
 import passportGated from './passport-gated';
 import passportWeighted from './passport-weighted';
+import arbitrum from './arbitrum';
 
 const validationClasses = {
   basic,
   'passport-gated': passportGated,
-  'passport-weighted': passportWeighted
+  'passport-weighted': passportWeighted,
+  'arbitrum': arbitrum
 };
 
 const validations = {};
