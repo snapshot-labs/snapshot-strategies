@@ -15,6 +15,5 @@ You should use this validation module with erc20-votes strategy configured with 
 
 - **minBps:** The minimum basis points required to pass validation, e.g. 1
 - **address:** The address of the ERC-20 token contract, e.g. "0x912CE59144191C1204E64559FE8253a0e49E6548"
-- **symbol:** The display symbol for the token, e.g. "ARB".
 - **decimals:** The decimal of the token, e.g. 18
 - **excludeaddr** The special delegation address for non-votable token, e.g. "0x00000000000000000000000000000000000A4B86"
