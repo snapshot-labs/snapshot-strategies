@@ -1,15 +1,12 @@
 import { Multicaller } from '../../utils';
-import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
-import fetch from 'cross-fetch';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'JDoy99';
 export const version = '0.1.0';
 
 const abi = [
   {
-    name: 'lockedUsdValue',
-    type: 'function',
     inputs: [
       {
         internalType: 'address',
@@ -17,18 +14,32 @@ const abi = [
         type: 'address'
       }
     ],
+    name: 'lockedBalances',
     outputs: [
       {
         internalType: 'uint256',
-        name: '',
+        name: 'total',
         type: 'uint256'
+      },
+      {
+        components: [
+          {
+            internalType: 'uint256',
+            name: 'amount',
+            type: 'uint256'
+          }
+        ],
+        internalType: 'struct LockedBalance[]',
+        name: 'lockData',
+        type: 'tuple[]'
       }
     ],
-    stateMutability: 'view'
+    stateMutability: 'view',
+    type: 'function'
   }
 ];
 
-const contractAddress = '0xd4966DC49a10aa5467D65f4fA4b1449b5d874399';
+const contractAddress = '0x76ba3eC5f5adBf1C58c91e86502232317EeA72dE';
 
 export async function strategy(
   space,
@@ -43,29 +54,18 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
   addresses.forEach((address) => {
-    multi.call(`${address}.lockedUsdValue`, contractAddress, 'lockedUsdValue', [
+    multi.call(`${address}.lockedBalances`, contractAddress, 'lockedBalances', [
       address
     ]);
   });
 
-  async function getTokenPrice() {
-    const url = `https://api.coingecko.com/api/v3/coins/markets?vs_currency=usd&ids=radiant-capital`;
-    const response = await fetch(url);
-    const data = await response.json();
-    return data[0].current_price;
-  }
-
   const result = await multi.execute();
-  const rdntPrice = await getTokenPrice();
 
   return Object.fromEntries(
     Object.entries(result).map(([address, value]: any) => {
-      const usdValue: BigNumber = value.lockedUsdValue;
-      const formattedUsdValue = usdValue.toNumber() / 100000000;
-      const rdntPortion = formattedUsdValue * 0.8;
-      const rdntPriceValue = parseFloat(rdntPrice);
-      const rdntPortionFormatted = rdntPortion / rdntPriceValue;
-      return [getAddress(address), rdntPortionFormatted];
+      const lockedBalances = value.lockedBalances as { total: string };
+      const totalLocked = BigNumber.from(lockedBalances.total);
+      return [getAddress(address), parseFloat(totalLocked.toString())];
     })
   );
 }
