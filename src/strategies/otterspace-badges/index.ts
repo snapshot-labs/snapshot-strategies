@@ -2,7 +2,7 @@ import { error } from 'console';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'otterspace-xyz';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
   '1': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-mainnet',
