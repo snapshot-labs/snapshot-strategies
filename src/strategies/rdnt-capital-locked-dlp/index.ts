@@ -1,130 +1,76 @@
-import { Multicaller } from '../../utils';
-import { BigNumber } from '@ethersproject/bignumber';
-import { getAddress } from '@ethersproject/address';
-import { Contract } from '@ethersproject/contracts';
+import { BigNumberish } from '@ethersproject/bignumber';
+import { formatUnits } from '@ethersproject/units';
+import { Multicaller, multicall, call } from '../../utils';
 
 export const author = 'JDoy99';
 export const version = '0.1.0';
 
-const lockedBalancesAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'user',
-        type: 'address'
-      }
-    ],
-    name: 'lockedBalances',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'total',
-        type: 'uint256'
-      },
-      {
-        components: [
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256'
-          }
-        ],
-        internalType: 'struct LockedBalance[]',
-        name: 'lockData',
-        type: 'tuple[]'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+const erc20Abi = [
+  'function balanceOf(address owner) external returns (uint256)'
 ];
-
-const totalSupplyAbi = [
-  {
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+const lpTokenAbi = [
+  'function getReserves() view returns (uint112, uint112, uint32)',
+  'function token0() view returns (address)',
+  'function totalSupply() view returns (uint256)'
 ];
-
-const pancakeLPAbi = [
-  {
-    constant: true,
-    inputs: [],
-    name: 'totalSupply',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    constant: true,
-    inputs: [],
-    name: 'getReserves',
-    outputs: [
-      {
-        internalType: 'uint112',
-        name: '_reserve0',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint112',
-        name: '_reserve1',
-        type: 'uint112'
-      },
-      {
-        internalType: 'uint32',
-        name: '_blockTimestampLast',
-        type: 'uint32'
-      }
-    ],
-    payable: false,
-    stateMutability: 'view',
-    type: 'function'
-  }
+const mfdAbi = [
+  'function lockedBalances(address) view returns (uint256, uint256, uint256, uint256, tuple(uint256,uint256,uint256,uint256)[])'
 ];
-
 const balancerVaultAbi = [
-  {
-    inputs: [
-      {
-        internalType: 'bytes32',
-        name: 'poolId',
-        type: 'bytes32'
-      },
-      {
-        internalType: 'contract IERC20',
-        name: 'token',
-        type: 'address'
-      }
-    ],
-    name: 'getPoolTokenInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'balance',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getPoolTokenInfo(bytes32,address) view returns (uint256)'
 ];
+
+const toJsNum = (bn: BigNumberish) => {
+  return parseFloat(formatUnits(bn));
+};
+
+const rdntPerBalancerLpToken = async (network, provider, options, blockTag) => {
+  const rdntInVault = await call(provider, balancerVaultAbi, [
+    options.balancerVault,
+    'getPoolTokenInfo',
+    [options.balancerPoolId, options.rdnt],
+    { blockTag }
+  ]);
+  const rdntInLp = toJsNum(rdntInVault);
+
+  const [totalSupplyBn] = await multicall(
+    network,
+    provider,
+    lpTokenAbi,
+    [[options.lpToken, 'totalSupply']],
+    { blockTag }
+  );
+
+  const totalSupply = toJsNum(totalSupplyBn[0]);
+  return rdntInLp / totalSupply;
+};
+
+const rdntPerUniLpToken = async (network, provider, options, blockTag) => {
+  const [totalSupplyBn, token0s, reserves] = await multicall(
+    network,
+    provider,
+    lpTokenAbi,
+    [
+      [options.lpToken, 'totalSupply'],
+      [options.lpToken, 'token0'],
+      [options.lpToken, 'getReserves']
+    ],
+    { blockTag }
+  );
+
+  const totalSupply = toJsNum(totalSupplyBn[0]);
+  const [reserve0, reserve1] = reserves;
+  const [token0] = token0s;
+
+  let rdntInLp;
+  if (token0.toLowerCase() === options.rdnt.toLowerCase()) {
+    rdntInLp = toJsNum(reserve0);
+  } else {
+    rdntInLp = toJsNum(reserve1);
+  }
+
+  return rdntInLp / totalSupply;
+};
 
 export async function strategy(
   space,
@@ -133,66 +79,61 @@ export async function strategy(
   addresses,
   options,
   snapshot
-) {
+): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  let lockedBalancesAddress;
-  let poolId;
-  let rdntToken;
-  let rdntLP;
-  let balancerVault;
-
-  if (network === 42161) {
-    lockedBalancesAddress = '0x76ba3eC5f5adBf1C58c91e86502232317EeA72dE';
-    poolId =
-      '0x32df62dc3aed2cd6224193052ce665dc181658410002000000000000000003bd';
-    rdntToken = '0x3082cc23568ea640225c2467653db90e9250aaa0';
-    rdntLP = new Contract(
-      '0x32dF62dc3aEd2cD6224193052Ce665DC18165841',
-      totalSupplyAbi,
-      provider
+  // Get RDNT per LP token (LP provider dependent)
+  let rdntPerLp;
+  if (network === '42161') {
+    rdntPerLp = await rdntPerBalancerLpToken(
+      network,
+      provider,
+      options,
+      blockTag
     );
-    balancerVault = new Contract(
-      '0xBA12222222228d8Ba445958a75a0704d566BF2C8',
-      balancerVaultAbi,
-      provider
-    );
-  } else if (network === 56) {
-    lockedBalancesAddress = '0x4FD9F7C5ca0829A656561486baDA018505dfcB5E';
-    rdntToken = '0xf7DE7E8A6bd59ED41a4b5fe50278b3B7f31384dF';
-    rdntLP = new Contract(
-      '0x346575fc7f07e6994d76199e41d13dc1575322e1',
-      pancakeLPAbi,
-      provider
-    );
+  } else if (network === '56') {
+    rdntPerLp = await rdntPerUniLpToken(network, provider, options, blockTag);
   }
 
-  const multi = new Multicaller(network, provider, lockedBalancesAbi, {
+  // console.log(`RDNT per LP token: ${rdntPerLp}`);
+
+  // Get non-locked LP balances
+  const lpBalanceMulticall = new Multicaller(network, provider, erc20Abi, {
     blockTag
   });
+  addresses.forEach((address) =>
+    lpBalanceMulticall.call(address, options.lpToken, 'balanceOf', [address])
+  );
+  const lpBalances: Record<string, BigNumberish> =
+    await lpBalanceMulticall.execute();
 
+  // Get locked LP balances
+  const mfdMulticall = new Multicaller(network, provider, mfdAbi, {
+    blockTag
+  });
   addresses.forEach((address) => {
-    multi.call(
-      `${address}.lockedBalances`,
-      lockedBalancesAddress,
-      'lockedBalances',
-      [address]
-    );
+    mfdMulticall.call(address, options.lockingContract, 'lockedBalances', [
+      address
+    ]);
+  });
+  const lockedBalances = await mfdMulticall.execute();
+
+  // Combined locked & unlocked LP balances for all users
+  // TODO: better way of handling this accumulation w/ new typed result obj
+  Object.keys(lockedBalances).forEach(function (key, index) {
+    if (lpBalances.hasOwnProperty(key)) {
+      lpBalances[key] =
+        toJsNum(lpBalances[key]) + toJsNum(lockedBalances[key][2]);
+    } else {
+      lpBalances[key] = toJsNum(lockedBalances[key][2]);
+    }
   });
 
-  const result = await multi.execute();
-  const lpTotalSupply = await rdntLP.totalSupply();
-  const rdntInVault = await balancerVault.getPoolTokenInfo(poolId, rdntToken);
-
-
+  // User's total LP balance * RDNT per LP token => total RDNT in their LP positions
   return Object.fromEntries(
-    Object.entries(result).map(([address, value]: any) => {
-      const lockedBalances = value.lockedBalances as { total: string };
-      const totalLocked = BigNumber.from(lockedBalances.total);
-      const totalLockedFormatted = parseFloat(totalLocked.toString());
-      const lpShare = totalLockedFormatted / lpTotalSupply;
-      const rdntOwned = (lpShare * rdntInVault) / 1e18;
-      return [getAddress(address), rdntOwned];
-    })
+    Object.entries(lpBalances).map(([address, balance]) => [
+      address,
+      <number>balance * rdntPerLp
+    ])
   );
 }
