@@ -7,7 +7,7 @@ export const version = '1.0.1';
 const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
   '1': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-mainnet',
   '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli',
-  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism',
+  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-alpha',
   '420':
     'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-goerli'
 };
@@ -39,7 +39,9 @@ function fetchBadgesForRaft(
         },
         block: blockTag != 'latest' ? { number: blockTag } : null
       },
-      owner: true,
+      owner: {
+        id: true
+      },
       spec: {
         id: true
       }
@@ -77,7 +79,7 @@ function applyBadgeWeights(badges: [], options: any) {
   const badgeWeights = {};
 
   badges.forEach((badge: any) => {
-    const badgeAddress = badge.owner.toLowerCase();
+    const badgeAddress = badge.owner.id.toLowerCase();
 
     const badgeWeight = getBadgeWeight(options.specs, badge.spec.id);
 
