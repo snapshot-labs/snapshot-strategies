@@ -2,7 +2,7 @@
   {
     "name": "RDNT in dLP - Arbitrum",
     "strategy": {
-      "name": "rdnt-capital-locked-dlp",
+      "name": "rdnt-capital-voting",
       "params": {
         "rdnt": "0x3082cc23568ea640225c2467653db90e9250aaa0",
         "lpToken": "0x32DF62DC3AED2CD6224193052CE665DC18165841",
@@ -22,7 +22,7 @@
   {
     "name": "RDNT in dLP - BSC",
     "strategy": {
-      "name": "rdnt-capital-locked-dlp",
+      "name": "rdnt-capital-voting",
       "params": {
         "rdnt": "0xf7DE7E8A6bd59ED41a4b5fe50278b3B7f31384dF",
         "lpToken": "0x346575fc7f07e6994d76199e41d13dc1575322e1",

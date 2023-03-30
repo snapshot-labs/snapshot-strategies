@@ -120,7 +120,7 @@ export async function strategy(
 
   // Combined locked & unlocked LP balances for all users
   // TODO: better way of handling this accumulation w/ new typed result obj
-  Object.keys(lockedBalances).forEach(function (key, index) {
+  Object.keys(lockedBalances).forEach(function (key) {
     if (lpBalances.hasOwnProperty(key)) {
       lpBalances[key] =
         toJsNum(lpBalances[key]) + toJsNum(lockedBalances[key][2]);
