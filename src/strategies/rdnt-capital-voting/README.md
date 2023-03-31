@@ -3,7 +3,9 @@ This strategy returns the total locked dLP of a user
 Here is an example of parameters:
 
 {
-    "symbol": "RDNT DLP",
-    "address": "0xd4966DC49a10aa5467D65f4fA4b1449b5d874399",
-    "decimals": 18
-}
+        "rdnt": "0x3082cc23568ea640225c2467653db90e9250aaa0",
+        "lpToken": "0x32DF62DC3AED2CD6224193052CE665DC18165841",
+        "lockingContract": "0x76ba3eC5f5adBf1C58c91e86502232317EeA72dE",
+        "balancerPoolId": "0x32df62dc3aed2cd6224193052ce665dc181658410002000000000000000003bd",
+        "balancerVault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+      }
