@@ -1,4 +1,4 @@
-This strategy returns the total locked dLP of a user
+This strategy returns the total dLP of a user
 
 Here is an example of parameters:
 
