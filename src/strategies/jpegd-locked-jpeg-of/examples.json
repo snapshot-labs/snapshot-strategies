@@ -1,16 +1,16 @@
 [
-    {
-        "name": "Example query",
-        "strategy": {
-            "name": "jpegd-locked-jpeg-of",
-            "params": {}
-        },
-        "network": "1",
-        "addresses": [
-            "0x9c5083dd4838e120dbeac44c052179692aa5dac5",
-            "0xB0dAfc466871c29662E5cbf4227322C96A8Ccbe9",
-            "0x0017dfe08bcc0dc9a323ca5d4831e371534e9320"
-        ],
-        "snapshot": 16119881
-    }
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "jpegd-locked-jpeg-of",
+      "params": {}
+    },
+    "network": "1",
+    "addresses": [
+      "0x9c5083dd4838e120dbeac44c052179692aa5dac5",
+      "0xB0dAfc466871c29662E5cbf4227322C96A8Ccbe9",
+      "0x0017dfe08bcc0dc9a323ca5d4831e371534e9320"
+    ],
+    "snapshot": 16119881
+  }
 ]

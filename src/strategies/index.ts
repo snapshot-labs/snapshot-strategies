@@ -435,7 +435,6 @@ import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
 import * as rdntCapitalVoting from './rdnt-capital-voting';
 
-
 const strategies = {
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
