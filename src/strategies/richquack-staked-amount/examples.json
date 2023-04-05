@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "richquack-staked-amount",
+      "params": {
+        "stakingAddress": "0x24E1FB7a781d255EdC40e80C89d9289dC61925F2"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x8575697851F5A11494a725FF43534e859BF49710",
+      "0xB4433e91F287a6E116aBaF413E64B4E0697DdCce",
+      "0x4089bd5C7544de334b0FBc125654cEFBB9B62cDE",
+      "0xc2d06aD1063d895405f2243D0c79b15e676b9Db0",
+      "0x523D44c7E7557C724b34BABba2A931410634173B"
+    ],
+    "snapshot": 27084195
+  }
+]
