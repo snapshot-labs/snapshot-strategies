@@ -175,6 +175,7 @@ import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as balancerDelegation from './balancer-delegation';
 import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
+import * as IntegralDAO from './integral-dao';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
@@ -620,6 +621,7 @@ const strategies = {
   'celer-sgn-delegation': celerSgnDelegation,
   'balancer-delegation': balancerDelegation,
   'infinityprotocol-liquidity-pools': infinityProtocolPools,
+  'integral-dao': IntegralDAO,
   'aave-governance-power': aaveGovernancePower,
   cake,
   aks,

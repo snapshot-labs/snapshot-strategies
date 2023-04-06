@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Integral vote weighting strategy",
+    "strategy": {
+      "name": "integral-dao",
+      "params": {
+        "symbol": "ITGR",
+        "contractAddresses": [
+          "0xd502f487e1841fdc805130e13eae80c61186bc98",
+          "0x36bD665392236b20bd42e161f02Bf0ae1d9441Ff",
+          "0xFFc0EAC1a1aE79C697607229Aca43Ef422625a40"
+        ],
+        "decimals": 18,
+        "pageSize": 100
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x39c6f54b47c1ccb896221eb5e4e24765108cf145",
+      "0xa3f2d88fb722d4f2a082edbf98354b81dc34829e",
+      "0xd5a71e5170ab8213862b324c5c10d17f2356bab3",
+      "0x3dadf003afcc96d404041d8ae711b94f8c68c6a5",
+      "0x1a3f00a013670becaf3e51b5db8c0a530b5bf08f",
+      "0x80b5da500b832ae5fca7514079375cc70ddbd20e",
+      "0xd1b040469c053df278004cfccc0e352c5e0032b1",
+      "0x013f107eb48401b1a58607d7bb37127ce075002c",
+      "0x6b174b2f42dae970fed64cfa61cd0b993d59ef66",
+      "0x02b2d6a3298a4b20aa4f7a0a57e920e9fc9ad864",
+      "0x502d629728b9c461726beee240f89c5d82c5f1c5",
+      "0x384f28360caabd007e27c872b95e63302bf2492f",
+      "0x6b879dd45cf492b0950e4ac94f2657d811341169",
+      "0x671e53a32573ab447796bbc6b98b9c166f960fe8",
+      "0xaef031994435202aa92e1c1f3289d07a89b8ae54",
+      "0x5bbe5c40af27dbe17adb4cf24a4793d4dbff5614",
+      "0x430a5965bcee916b7629353be63f0ba9f9fdb18b",
+      "0xc16f2313e360c53803f728bbd3a798048f656c52",
+      "0x8f49f0eb2b30ef269dc22b44bdead34c81887e7b"
+    ],
+    "snapshot": 12511580
+  }
+]
