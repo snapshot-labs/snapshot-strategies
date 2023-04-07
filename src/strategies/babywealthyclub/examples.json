@@ -4,20 +4,64 @@
     "strategy": {
       "name": "babywealthyclub",
       "params": {
-        "address": "0x1f9655c660B915b4344b71e2A6d3155C57AD1bB6",
-        "symbol": "BRC",
-        "decimals": "9",
-        "weighted": 20000000000
+        "strategies": [
+          {
+            "name": "erc721",
+            "network": "1",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "42161",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "137",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "43114",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "10",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "56",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          }
+        ]
       }
     },
     "network": "56",
     "addresses": [
-      "0x7F57612b01689a0E4f133730AE20cC19E3dF0208",
-      "0x4A7998DF2Cd16815271bb6b7d3aE7EB30f50a73a",
-      "0x08D816526BdC9d077DD685Bd9FA49F58A5Ab8e48",
-      "0x21fF20E7e1B820020415707298b92299CF0951fE",
-      "0xa7A01B93B889ff0639d5ec02914A77529924a46F"
+      "0xe0e4f69A250b10c4e9ce1334fcA51599eA39C0e4",
+      "0x9feab70f3c4a944b97b7565bac4991df5b7a69ff",
+      "0xaca39b187352d9805deced6e73a3d72abf86e7a0"
     ],
-    "snapshot": 23976608
+    "snapshot": 26920121
   }
 ]
