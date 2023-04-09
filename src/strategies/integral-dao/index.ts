@@ -6,7 +6,6 @@ export const author = 'ken';
 export const version = '0.1.0';
 
 const abi = [
-  'function getPriorVotes(address account, uint256 blockNumber) external view returns (uint96)',
   'function getCurrentVotes(address account) external view returns (uint96)'
 ];
 
@@ -14,21 +13,11 @@ async function getVotes(
   multi: any,
   addresses: string[],
   contractAddress: string,
-  decimals: number,
-  blockTag: string | number
+  decimals: number
 ) {
-  if (blockTag === 'latest') {
-    addresses.forEach((address) => {
-      multi.call(address, contractAddress, 'getCurrentVotes', [address]);
-    });
-  } else {
-    addresses.forEach((address) => {
-      multi.call(address, contractAddress, 'getPriorVotes', [
-        address,
-        blockTag
-      ]);
-    });
-  }
+  addresses.forEach((address) => {
+    multi.call(address, contractAddress, 'getCurrentVotes', [address]);
+  });
   const result: Record<string, BigNumberish> = await multi.execute();
   return Object.fromEntries(
     Object.entries(result).map(([address, balance]) => [
@@ -53,8 +42,7 @@ export async function strategy(
         new Multicaller(network, provider, abi, { blockTag }),
         addresses,
         contractAddress,
-        options.decimals,
-        blockTag
+        options.decimals
       )
     )
   );
