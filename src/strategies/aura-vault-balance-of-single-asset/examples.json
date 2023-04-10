@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "aura-vault-balance-of-single-asset",
+      "params": {
+        "auraVaultDeposit": "0x712cc5bed99aa06fc4d5fb50aea3750fa5161d0f",
+        "tokenIndex": "1",
+        "decimals": "18"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x905c1cA2ac32eE0799E4Aa31927f1166A93F3b17",
+      "0x4F76fF660dc5e37b098De28E6ec32978E4b5bEb6",
+      "0xDA6b2a5e0c56542984d84A710F90EefD94CA1991",
+      "0xa669070D106E96CC2390523E9745B425a1b3a0E0"
+    ],
+    "snapshot": 16897224
+  }
+]

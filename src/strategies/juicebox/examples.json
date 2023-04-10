@@ -5,14 +5,55 @@
       "name": "juicebox",
       "params": {
         "projectId": "1",
-        "symbol": "JBX"
+        "symbol": "JBX",
+        "protocolVersion": "1"
       }
     },
     "network": "1",
     "addresses": [
-      "0x754F37225CE0E30639093Af47C16ef057B544b4f",
-      "0x6877be9E00d0bc5886c28419901E8cC98C1c2739"
+      "0x63A2368F4B509438ca90186cb1C15156713D5834",
+      "0x6877be9E00d0bc5886c28419901E8cC98C1c2739",
+      "0x823b92d6a4b2AED4b15675c7917c9f922ea8ADAD",
+      "0x1e54110DC48dD83F48187b846DF7E32bB76d0D0b"
     ],
-    "snapshot": 13714984
+    "snapshot": 15971323
+  },
+  {
+    "name": "Juicebox Projects",
+    "strategy": {
+      "name": "juicebox",
+      "params": {
+        "projectId": "1",
+        "symbol": "JBX",
+        "protocolVersion": "2"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x63A2368F4B509438ca90186cb1C15156713D5834",
+      "0x6877be9E00d0bc5886c28419901E8cC98C1c2739",
+      "0x823b92d6a4b2AED4b15675c7917c9f922ea8ADAD",
+      "0x1e54110DC48dD83F48187b846DF7E32bB76d0D0b"
+    ],
+    "snapshot": 15971323
+  },
+  {
+    "name": "Juicebox Projects",
+    "strategy": {
+      "name": "juicebox",
+      "params": {
+        "projectId": "311",
+        "symbol": "GO",
+        "protocolVersion": "3"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x63A2368F4B509438ca90186cb1C15156713D5834",
+      "0x6877be9E00d0bc5886c28419901E8cC98C1c2739",
+      "0x823b92d6a4b2AED4b15675c7917c9f922ea8ADAD",
+      "0x1e54110DC48dD83F48187b846DF7E32bB76d0D0b"
+    ],
+    "snapshot": 15971421
   }
 ]

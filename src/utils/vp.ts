@@ -1,5 +1,6 @@
 import { formatBytes32String } from '@ethersproject/strings';
 import { getAddress } from '@ethersproject/address';
+import subgraphs from '@snapshot-labs/snapshot.js/src/delegationSubgraphs.json';
 import {
   getProvider,
   getSnapshots,
@@ -7,7 +8,6 @@ import {
   subgraphRequest
 } from '../utils';
 import _strategies from '../strategies';
-import subgraphs from '@snapshot-labs/snapshot.js/src/delegationSubgraphs.json';
 
 const DELEGATION_CONTRACT = '0x469788fE6E9E9681C6ebF3bF78e7Fd26Fc015446';
 const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -25,7 +25,7 @@ export async function getVp(
   strategies: any[],
   snapshot: number | 'latest',
   space: string,
-  delegation: boolean
+  delegation?: boolean
 ) {
   const networks = [...new Set(strategies.map((s) => s.network || network))];
   const snapshots = await getSnapshots(
@@ -54,6 +54,7 @@ export async function getVp(
       if (addresses.length === 0) return {};
     }
 
+    addresses = addresses.map(getAddress);
     return _strategies[strategy.name].strategy(
       space,
       n,
@@ -75,6 +76,7 @@ export async function getVp(
       addresses = [...new Set(addresses)];
     }
 
+    addresses = addresses.map(getAddress);
     return addresses.reduce((a, b) => a + (score[b] || 0), 0);
   });
   const vp = vpByStrategy.reduce((a, b) => a + b, 0);

@@ -18,10 +18,12 @@ const ERC20abi = [
 const vestedAmountPower = (
   totalVestedNotClaimed: BigNumberish,
   startDate: BigNumberish,
-  period: BigNumberish
+  period: BigNumberish,
+  now: BigNumberish
 ) => {
+  now = BigNumber.from(now);
   const amount = BigNumber.from(totalVestedNotClaimed);
-  const now = BigNumber.from(Math.round(Date.now() / 1000));
+
   if (now.lte(startDate)) return BigNumber.from(0);
   if (now.gt(BigNumber.from(startDate).add(period)))
     return totalVestedNotClaimed;
@@ -41,6 +43,8 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  const block = await provider.getBlock(blockTag);
+  const now = block.timestamp;
   // fetch the number of vesting accounts
   const maxId: BigNumber = await call(
     provider,
@@ -122,7 +126,8 @@ export async function strategy(
         vestedAmountPower(
           BigNumber.from(totalVested).sub(totalAccrued),
           options.startVesting,
-          options.vestingDuration
+          options.vestingDuration,
+          now
         )
       );
       return [address, parseFloat(formatUnits(votingPower, options.decimals))];

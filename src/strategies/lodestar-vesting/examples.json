@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "lodestar-vesting",
+      "params": {
+        "address": "0xF19547f9ED24aA66b03c3a552D181Ae334FBb8DB",
+        "symbol": "LODE",
+        "decimals": 18,
+        "beneficiaryAddresses": [
+          "0x719Df6573bfA3bD240932cAD63839cfB85de3aB5",
+          "0xeAc36dF6A6212CC1D5c59b6F59547eeC083A1bDa",
+          "0x85EB5a2077E88559B8A63206Fbc9A9311f8e63a5"
+        ],
+        "contractAddresses": [
+          "0x71C85F343715C406C58c1e8099F13890f2925c85",
+          "0x2DD5B039a7c54132B8733573a28Cd9d1a5Fa5328",
+          "0x05bc2c8310D18dB816264E95383b1C50FC32d297"
+        ]
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xeAc36dF6A6212CC1D5c59b6F59547eeC083A1bDa",
+      "0x719Df6573bfA3bD240932cAD63839cfB85de3aB5",
+      "0x85EB5a2077E88559B8A63206Fbc9A9311f8e63a5"
+    ],
+    "snapshot": 44776525
+  }
+]

@@ -13,7 +13,7 @@ import {
 } from './options';
 
 export const author = 'xJonathanLEI';
-export const version = '0.2.1';
+export const version = '0.2.2';
 
 export async function strategy(
   space,
@@ -139,6 +139,17 @@ function resolveOperation(
           ]
         )
       );
+    }
+    case Operation.MINUS: {
+      const arr = Object.entries(resolvedOperands[0]).map(
+        ([address, score]: [string, number]) => [
+          address,
+          score > resolvedOperands[1][address]
+            ? score - resolvedOperands[1][address]
+            : 0
+        ]
+      );
+      return Object.fromEntries(arr);
     }
   }
 }
