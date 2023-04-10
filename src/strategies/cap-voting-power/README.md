@@ -7,6 +7,7 @@ Some things to note if you plan on using this strategy:
 1. All vestingAddresses objects MUST have address, lockedTokens, cliffMonths, vestingMonths, startDateTimestamp and initialReleasePercentage.
 2. The Vesting Contract's voting power is clamped to a percentage (clampPercentage) of the total voting power. This value must be between 0 and 1.
 3. Total voting power is calculated based on the Voting Escrow Contract's voting power. Therefore, you must specify the voting escrow contract address (votingEscrowContractAddress) and the number of decimals in your token (decimals) as parameters.
+4. For optimal performance and memory management, the strategy imposes a limit of 500 vesting addresses in the parameters. Adhere to this limit when setting up the strategy.
 
 Here is an example of parameters:
 

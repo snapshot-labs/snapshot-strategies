@@ -9,6 +9,7 @@ const abi = ['function totalSupply(uint256 t) external view returns (uint256)'];
 
 const maxLockupDuration = 4 * 365 * 24 * 60 * 60; // Maximum lockup duration is 4 years in seconds based on Curve VE contract
 const maxVestingDuration = 4 * 365 * 24 * 60 * 60; // Maximum vesting duration is 4 years in seconds
+const maxVestingAddressCount = 500; // Maximum number of vesting addresses
 
 export async function strategy(
   space,
@@ -19,6 +20,16 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   // Assertions/checks to validate options
+  if (!options.vestingAddresses || options.vestingAddresses.length === 0) {
+    throw new Error(
+      'Invalid options provided! Please make sure vestingAddresses is provided.'
+    );
+  }
+  if (options.vestingAddresses.length > maxVestingAddressCount) {
+    throw new Error(
+      `Too many vesting addresses provided! The maximum allowed is ${maxVestingAddressCount}.`
+    );
+  }
   options.vestingAddresses.forEach((vestingAddress) => {
     if (
       !('address' in vestingAddress) ||
