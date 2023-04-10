@@ -1,7 +1,7 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'mitesh-mutha';
+export const author = 'aorfevre';
 export const version = '0.1.0';
 
 const abi = [
