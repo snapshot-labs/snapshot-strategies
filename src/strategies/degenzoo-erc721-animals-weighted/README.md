@@ -1,4 +1,4 @@
-# ERC721 with Metadata attribute
+# degenzoo-erc721-animals-weighted
 
 This strategy allows you to determine the voting power by reading the metadata attribute of holding NFT.
 `tokenURI(tokenID)` returns the individual metadata URI in ERC721.
