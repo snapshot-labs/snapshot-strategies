@@ -1,6 +1,5 @@
 import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
-import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
@@ -43,7 +42,7 @@ export async function strategy(
       .map((item) => ({
         ...item,
         delegate: getAddress(item.delegate),
-        amount: BigNumber.from(item.amount),
+        amount: item.amount,
         ts: parseInt(item.timestamp || '0')
       }))
       .filter((item) => item.ts <= ts && !addresses.includes(item.delegate))
