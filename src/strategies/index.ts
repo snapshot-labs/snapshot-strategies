@@ -408,6 +408,7 @@ import * as clqdrBalanceWithLp from './clqdr-balance-with-lp';
 import * as ninechroniclesStakedAndDcc from './ninechronicles-staked-and-dcc';
 import * as spreadsheet from './spreadsheet';
 import * as offchainDelegation from './offchain-delegation';
+import * as offchainDelegation2 from './offchain-delegation-2';
 import * as dslaParametricStakingServiceCredits from './dsla-parametric-staking-service-credits';
 import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
@@ -849,6 +850,7 @@ const strategies = {
   'clqdr-balance-with-lp': clqdrBalanceWithLp,
   spreadsheet,
   'offchain-delegation': offchainDelegation,
+  'offchain-delegation-2': offchainDelegation2,
   'ninechronicles-staked-and-dcc': ninechroniclesStakedAndDcc,
   'dsla-parametric-staking-service-credits':
     dslaParametricStakingServiceCredits,

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "offchain-delegation-2",
+      "params": {
+        "symbol": "TEST (delegated)",
+        "sheetId": "2PACX-1vSiB0k576wpy0jEb5y2YFDTZEoCpfF-FM9O-PdUyFFTBUaqjyArc-nbc6h0Ob6ckQxv3W0lK6QK_x0G",
+        "gid": "0",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x3eb6728795CDC298742880F6fFF4D63e627601e8",
+      "0x0b0854389083f9a35fd1d316d14eeebd8d36d898",
+      "0xe070fde008071d4ab6c1f98b64a7704023ffce31"
+    ],
+    "snapshot": 17028036
+  }
+]
