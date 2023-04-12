@@ -26,9 +26,9 @@ export async function strategy(
     },
     body: JSON.stringify({
       operationName: 'galxeLoyaltyPoints',
-      query: `query galxeLoyaltyPoints($alias: String! $addresses: [String!]!) {
+      query: `query galxeLoyaltyPoints($alias: String! $addresses: [String!]! $snapshotId: String!) {
         space(alias: $alias) {
-          addressesLoyaltyPoints(addresses: $addresses) {
+          addressesLoyaltyPoints(addresses: $addresses, snapshotId: $snapshotId) {
             address
             space
             points
@@ -37,7 +37,8 @@ export async function strategy(
       }`,
       variables: {
         alias: parts[1],
-        addresses: addresses
+        addresses: addresses,
+        snapshotId: typeof snapshot === 'number' ? snapshot : ''
       }
     })
   };
