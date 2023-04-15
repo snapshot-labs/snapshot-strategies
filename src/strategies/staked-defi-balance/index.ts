@@ -4,8 +4,6 @@ import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
 import { multicall } from '../../utils';
 
-export const name = 'Staked Defi Balance';
-export const token = 'cFRM';
 export const author = 'taha-abbasi';
 export const version = '0.1.0';
 
