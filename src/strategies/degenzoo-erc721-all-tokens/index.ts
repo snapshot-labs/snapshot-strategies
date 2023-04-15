@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'aorfevre';
-export const version = '0.1';
+export const version = '0.1.0';
 
 
 export async function strategy(
