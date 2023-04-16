@@ -36,6 +36,9 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  if (options.contractAddresses.length > 5) {
+    throw new Error('Contract number exceed limit 5');
+  }
   const results = await Promise.all(
     options.contractAddresses.map((contractAddress) =>
       getVotes(
