@@ -251,6 +251,7 @@ import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
 import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
+import * as galxeLoyaltyPoints from './galxe-loyalty-points';
 import * as gatenetTotalStaked from './gatenet-total-staked';
 import * as vesper from './vesper';
 import * as thales from './thales';
@@ -434,7 +435,7 @@ import * as izumiVeiZi from './izumi-veizi';
 import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
 import * as rdntCapitalVoting from './rdnt-capital-voting';
-
+import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
 
 const strategies = {
   'izumi-veizi': izumiVeiZi,
@@ -695,6 +696,7 @@ const strategies = {
   'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
   'galaxy-nft-with-score': galaxyNftWithScore,
+  'galxe-loyalty-points': galxeLoyaltyPoints,
   'gatenet-total-staked': gatenetTotalStaked,
   vesper,
   thales,
@@ -875,7 +877,8 @@ const strategies = {
   'lqty-proxy-stakers': lqtyProxyStakers,
   'echelon-wallet-prime-and-cached-key-gated':
     echelonWalletPrimeAndCachedKeyGated,
-  'rdnt-capital-voting': rdntCapitalVoting
+  'rdnt-capital-voting': rdntCapitalVoting,
+  'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

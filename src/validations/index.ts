@@ -9,7 +9,7 @@ const validationClasses = {
   basic,
   'passport-gated': passportGated,
   'passport-weighted': passportWeighted,
-  'arbitrum': arbitrum
+  arbitrum: arbitrum
 };
 
 const validations = {};
