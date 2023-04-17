@@ -434,8 +434,9 @@ import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 import * as izumiVeiZi from './izumi-veizi';
 import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
-import * as rdntCapitalVoting from './rdnt-capital-voting';
+import * as rdntCapitalVoting from './rdnt-capital-voting;
 import * as degenzooErc721AllTokens from './degenzoo-erc721-all-tokens';
+import * as stakedDefiBalance from './staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
 
 const strategies = {
@@ -880,6 +881,7 @@ const strategies = {
     echelonWalletPrimeAndCachedKeyGated,
   'rdnt-capital-voting': rdntCapitalVoting,
   'degenzoo-erc721-all-tokens': degenzooErc721AllTokens,
+  'staked-defi-balance': stakedDefiBalance,
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted
 };
 
