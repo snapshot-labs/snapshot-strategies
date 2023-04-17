@@ -437,8 +437,10 @@ import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and
 import * as rdntCapitalVoting from './rdnt-capital-voting';
 import * as stakedDefiBalance from './staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
+import * as capVotingPower from './cap-voting-power';
 
 const strategies = {
+  'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
