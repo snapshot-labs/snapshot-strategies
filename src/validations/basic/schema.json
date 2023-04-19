@@ -12,7 +12,6 @@
           "minimum": 1
         },
         "strategies": {
-          "$id": "strategies",
           "title": "Strategies",
           "type": "array",
           "items": {
