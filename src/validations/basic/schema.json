@@ -40,7 +40,7 @@
                 "type": "object"
               }
             },
-            "required": ["name", "network", "params"]
+            "required": ["name", "params"]
           }
         }
       },
