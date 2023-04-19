@@ -23,9 +23,11 @@
             "title": "Strategy",
             "type": "object",
             "default": {
-              "name": "erc20-balance-of",
+              "name": "ticket",
               "network": "1",
-              "params": {}
+              "params": {
+                "symbol": "DAI"
+              }
             },
             "properties": {
               "name": {
