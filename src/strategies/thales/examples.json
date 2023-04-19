@@ -5,7 +5,9 @@
       "name": "thales",
       "params": {
         "symbol": "THALES",
-        "decimals": 18
+        "decimals": 18,
+        "blockOptimism": 88627878,
+        "blockArbitrum": 78979794
       }
     },
     "network": "10",
