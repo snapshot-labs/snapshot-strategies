@@ -37,7 +37,8 @@
               "params": {
                 "type": "object"
               }
-            }
+            },
+            "required": ["name", "network", "params"]
           }
         }
       },
