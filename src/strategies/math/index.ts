@@ -29,7 +29,7 @@ export async function strategy(
   // Recursively resolve operands
   const operandPromises: Promise<Record<string, number>>[] =
     strategyOptions.operands.map((item) =>
-      resolveOperand(item, addresses, space, network, provider, snapshot)
+      resolveOperand(item, addresses, space, provider, snapshot)
     );
   const resolvedOperands: Record<string, number>[] = await Promise.all(
     operandPromises
@@ -158,7 +158,6 @@ async function resolveOperand(
   operand: Operand,
   addresses: string[],
   space: any,
-  network: any,
   provider: any,
   snapshot: any
 ): Promise<Record<string, number>> {
@@ -170,7 +169,7 @@ async function resolveOperand(
         strategyOperand.strategy.name
       ].strategy(
         space,
-        network,
+        strategyOperand.strategy.network,
         provider,
         addresses,
         strategyOperand.strategy.params,
