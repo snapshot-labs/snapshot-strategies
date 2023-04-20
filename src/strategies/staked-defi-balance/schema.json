@@ -1,27 +1,17 @@
 {
-    "$schema": "http://json-schema.org/draft-07/schema#",
-    "title": "Staked Defi Balance",
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "StrategyParams",
+  "type": "array",
+  "items": {
     "type": "object",
     "properties": {
-      "tokenContractAddress": {
-        "type": "string",
-        "pattern": "^0x[a-fA-F0-9]{40}$"
-      },
-      "symbol": {
-        "type": "string"
-      },
-      "decimals": {
-        "type": "integer",
-        "minimum": 0
-      },
-      "minStakedBalance": {
-        "type": "string",
-        "pattern": "^[0-9]+$"
-      },
-      "stakingPoolContractAddress": {
-        "type": "string",
-        "pattern": "^0x[a-fA-F0-9]{40}$"
-      },
+      "network": { "type": "string" },
+      "snapshot": { "type": "integer" },
+      "tokenContractAddress": { "type": "string" },
+      "symbol": { "type": "string" },
+      "decimals": { "type": "integer" },
+      "minStakedBalance": { "type": "string" },
+      "stakingPoolContractAddress": { "type": "string" },
       "methodABI": {
         "type": "array",
         "items": {
@@ -29,28 +19,12 @@
           "properties": {
             "inputs": {
               "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "internalType": { "type": "string" },
-                  "name": { "type": "string" },
-                  "type": { "type": "string" }
-                },
-                "required": ["internalType", "name", "type"]
-              }
+              "items": { "type": "object" }
             },
             "name": { "type": "string" },
             "outputs": {
               "type": "array",
-              "items": {
-                "type": "object",
-                "properties": {
-                  "internalType": { "type": "string" },
-                  "name": { "type": "string" },
-                  "type": { "type": "string" }
-                },
-                "required": ["internalType", "name", "type"]
-              }
+              "items": { "type": "object" }
             },
             "stateMutability": { "type": "string" },
             "type": { "type": "string" }
@@ -59,6 +33,15 @@
         }
       }
     },
-    "required": ["tokenContractAddress", "decimals", "minStakedBalance", "stakingPoolContractAddress", "methodABI"]
+    "required": [
+      "network",
+      "snapshot",
+      "tokenContractAddress",
+      "symbol",
+      "decimals",
+      "minStakedBalance",
+      "stakingPoolContractAddress",
+      "methodABI"
+    ]
   }
-  
+}

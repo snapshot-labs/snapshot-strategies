@@ -5,7 +5,7 @@ import { getAddress } from '@ethersproject/address';
 import { multicall } from '../../utils';
 
 export const author = 'taha-abbasi';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
     space,
@@ -15,37 +15,44 @@ export async function strategy(
     options,
     snapshot
 ): Promise<Record<string, number>> {
-    const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-    const stakingPoolContractAddress = options.stakingPoolContractAddress;
-    const abi = options.methodABI;
+    const addressScores = {};
 
-    const stakingCalls = addresses.map(address => {
-        return [
-            stakingPoolContractAddress,
-            'stakeOf',
-            [options.tokenContractAddress, address]
-        ];
-    });
+    for (const params of options) {
+        const blockTag = typeof params.snapshot === 'number' ? params.snapshot : 'latest';
 
-    const stakes = await multicall(network, provider, abi, stakingCalls, { blockTag });
+        if (params.network.toString() === network) {
+            const stakingPoolContractAddress = params.stakingPoolContractAddress;
+            const abi = params.methodABI;
 
-    const stakesMapped = {};
-    for (let i = 0; i < addresses.length; i++) {
-        stakesMapped[getAddress(addresses[i])] = stakes[i][0];
+            const stakingCalls = addresses.map((address) => {
+                const inputs = abi[0].inputs.map((input) => {
+                    if (input.name === 'id') {
+                        return params.tokenContractAddress;
+                    } else if (input.name === 'staker' || input.name === 'account') {
+                        return address;
+                    }
+                });
+                return [stakingPoolContractAddress, abi[0].name, inputs];
+            });
+
+            const stakes = await multicall(network, provider, abi, stakingCalls, { blockTag });
+
+            const stakesMapped = {};
+            for (let i = 0; i < addresses.length; i++) {
+                stakesMapped[getAddress(addresses[i])] = stakes[i][0];
+            }
+
+            addresses.forEach((address) => {
+                const normalizedAddress = getAddress(address);
+                const stakedBalance = stakesMapped[normalizedAddress];
+                const formattedStakedBalance = parseFloat(formatUnits(stakedBalance, params.decimals));
+
+                if (stakedBalance.gte(params.minStakedBalance)) {
+                    addressScores[normalizedAddress] = (addressScores[normalizedAddress] || 0) + formattedStakedBalance;
+                }
+            });
+        }
     }
-
-    const addressScores = Object.fromEntries(
-        addresses.map((address) => {
-            const normalizedAddress = getAddress(address);
-            const stakedBalance = stakesMapped[normalizedAddress];
-            const formattedStakedBalance = parseFloat(formatUnits(stakedBalance, options.decimals));
-            return [
-                normalizedAddress,
-                stakedBalance.gte(options.minStakedBalance) ? formattedStakedBalance : 0
-            ];
-        })
-    );
 
     return addressScores;
 }
-
