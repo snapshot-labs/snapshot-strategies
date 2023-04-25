@@ -438,6 +438,7 @@ import * as rdntCapitalVoting from './rdnt-capital-voting';
 import * as stakedDefiBalance from './staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
 import * as capVotingPower from './cap-voting-power';
+import * as zunamiPoolGaugeAggregatedBalanceOf from './zunami-pool-gauge-aggregated-balance-of';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -882,7 +883,8 @@ const strategies = {
     echelonWalletPrimeAndCachedKeyGated,
   'rdnt-capital-voting': rdntCapitalVoting,
   'staked-defi-balance': stakedDefiBalance,
-  'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted
+  'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
+  'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
