@@ -170,7 +170,7 @@ async function resolveOperand(
         strategyOperand.strategy.name
       ].strategy(
         space,
-        network,
+        strategyOperand.strategy.network ?? network,
         provider,
         addresses,
         strategyOperand.strategy.params,
