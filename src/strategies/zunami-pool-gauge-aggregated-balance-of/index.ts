@@ -16,6 +16,7 @@ interface StrategyOptions {
   decimals: number;
   lpPriceDecimals: number;
   curvePoolAddress: string;
+  blackListAddresses: string[];
 }
 
 export async function strategy(
@@ -24,7 +25,6 @@ export async function strategy(
   provider,
   addresses: string[],
   options: StrategyOptions,
-  blackListAddresses: string[],
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
@@ -44,8 +44,8 @@ export async function strategy(
   const multi = new Multicaller(network, provider, zunamiSnapshotHelperAbi, {
     blockTag
   });
-  const blackListAddressesArr = Array.from(blackListAddresses).map((address) =>
-    address.toLowerCase()
+  const blackListAddressesArr = Array.from(options.blackListAddresses).map(
+    (address) => address.toLowerCase()
   );
   addresses
     .filter((address) => !blackListAddressesArr.includes(address.toLowerCase()))

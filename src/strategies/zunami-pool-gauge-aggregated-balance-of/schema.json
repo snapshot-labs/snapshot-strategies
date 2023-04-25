@@ -33,9 +33,17 @@
           "title": "Curve lp price decimals",
           "examples": ["e.g. 18"],
           "minimum": 1
+        },
+        "blackListAddresses": {
+          "type": "array",
+          "title": "Black listed addresses",
+          "examples": [
+            "0xBdCA4F610e7101Cc172E2135ba025737B99AbD30",
+            "0xbc61f6973cE564eFFB16Cd79B5BC3916eaD592E2"
+          ]
         }
       },
-      "required": ["address", "decimals", "curvePoolAddress", "lpPriceDecimals"],
+      "required": ["address", "decimals", "curvePoolAddress", "lpPriceDecimals", "blackListAddresses"],
       "additionalProperties": false
     }
   }
