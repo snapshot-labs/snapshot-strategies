@@ -46,7 +46,7 @@ const calcVotingPower = (
     if (element.type === 'v1') {
       v1 += 1;
     } else if (element.type === 'v2') {
-      v2 += 2;
+      v2 += 1;
     }
   });
 
