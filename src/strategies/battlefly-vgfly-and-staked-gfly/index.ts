@@ -13,16 +13,21 @@ const abi = [
   'function token1() external view returns (address)',
   'function totalSupply() external view returns (uint256)',
   'function getReserves() external view returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast)',
-  'function totalClaimableOf(address account) external view returns (uint256 total)'
+  'function totalClaimableOf(address account) external view returns (uint256 total)',
+  'function currentV1BackingInMagic() external view returns(uint256)',
+  'function currentV2BackingInMagic() external view returns(uint256)'
 ];
 
 const calcVotingPower = (
   stakedAsString: string,
   stakedLPAsString: string,
   vestingAsString: string,
+  founderStakes: { type: string }[],
   claimableOf: BigNumberish,
   decimals: number,
-  tokenWeight: number
+  tokenWeight: number,
+  currentV1BackingInMagic: BigNumberish,
+  currentV2BackingInMagic: BigNumberish
 ) => {
   const staked = parseFloat(
     formatUnits(BigNumber.from(stakedAsString), decimals)
@@ -33,7 +38,28 @@ const calcVotingPower = (
   const vesting = parseFloat(
     formatUnits(BigNumber.from(vestingAsString).sub(claimableOf), decimals)
   );
-  return staked + vesting + stakedLP * tokenWeight;
+
+  let v1 = 0;
+  let v2 = 0;
+
+  founderStakes.map((element) => {
+    if (element.type === 'v1') {
+      v1 += 1;
+    } else if (element.type === 'v2') {
+      v2 += 2;
+    }
+  });
+
+  const founders = parseFloat(
+    formatUnits(
+      BigNumber.from(v1)
+        .mul(currentV1BackingInMagic)
+        .add(BigNumber.from(v2).mul(currentV2BackingInMagic)),
+      decimals
+    )
+  );
+
+  return staked + vesting + stakedLP * tokenWeight + founders;
 };
 
 export async function strategy(
@@ -59,6 +85,12 @@ export async function strategy(
           id_in: addresses.map((addr: string) => addr.toLowerCase())
         },
         first: 1000
+      },
+      founderStakes: {
+        __args: {
+          first: 1000
+        },
+        type: true
       },
       id: true,
       staked: true,
@@ -91,7 +123,9 @@ export async function strategy(
       [options.lpAddress, 'token1', []],
       [options.lpAddress, 'getReserves', []],
       [options.lpAddress, 'totalSupply', []],
-      [options.lpAddress, 'decimals', []]
+      [options.lpAddress, 'decimals', []],
+      [options.foundersBurn, 'currentV1BackingInMagic', []],
+      [options.foundersBurn, 'currentV2BackingInMagic', []]
     ],
     { blockTag }
   );
@@ -103,6 +137,8 @@ export async function strategy(
   const lpTokenReserves = fetchContractData[2];
   const lpTokenTotalSupply = fetchContractData[3][0];
   const lpTokenDecimals = fetchContractData[4][0];
+  const currentV1BackingInMagic = fetchContractData[5][0];
+  const currentV2BackingInMagic = fetchContractData[6][0];
 
   // calculate single lp token weight
 
@@ -135,9 +171,12 @@ export async function strategy(
         a.staked,
         a.stakedLP,
         a.vesting,
+        a.founderStakes,
         claimableOfResult[getAddress(a.id)],
         options.decimals,
-        tokenWeight
+        tokenWeight,
+        currentV1BackingInMagic,
+        currentV2BackingInMagic
       )
     ])
   );
