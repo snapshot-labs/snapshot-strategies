@@ -40,10 +40,22 @@
           "examples": [
             "0xBdCA4F610e7101Cc172E2135ba025737B99AbD30",
             "0xbc61f6973cE564eFFB16Cd79B5BC3916eaD592E2"
-          ]
+          ],
+          "items": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "minLength": 42,
+            "maxLength": 42
+          }
         }
       },
-      "required": ["address", "decimals", "curvePoolAddress", "lpPriceDecimals", "blackListAddresses"],
+      "required": [
+        "address",
+        "decimals",
+        "curvePoolAddress",
+        "lpPriceDecimals",
+        "blackListAddresses"
+      ],
       "additionalProperties": false
     }
   }
