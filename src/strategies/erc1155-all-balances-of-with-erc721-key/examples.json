@@ -1,0 +1,35 @@
+[
+  {
+    "name": "ERC1155 All Balances of with ERC721 key",
+    "strategy": {
+      "name": "erc1155-all-balances-of-with-erc721-key",
+      "params": {
+        "networks": [
+          {
+            "networkId": "1",
+            "erc1155Address": "0x265adf13881c1d88eec6e0b6073a6271d33b2000"
+          },
+          {
+            "networkId": "137",
+            "erc1155Address": "0x99a63fD2C3b4f6E9E1DC914B08811fd3b9F1dc00"
+          }
+        ],
+        "tokenIds": [
+          0,
+          1
+        ],
+        "erc721KeyAddress": "0xd88329bf3b7776bff90d0c942f160cb55bf5baec"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xb86e7cde83F4215811D0288f26bb10c92fcb7139",
+      "0xb165014c736c50da0638283eac2e19c88eab74f3",
+      "0x90E2Bc7FD43ecDc8F60Fd8e6DcA06ebbD8CA16D4",
+      "0xb56C15F3A9e93E085c959Fd614c91502B03404f7",
+      "0xb45ec216e287871b3aD3Cee985B92B9319f305a6",
+      "0xEda72F9bd83eCea6b91Af74210D65B2288E42f99"
+    ],
+    "snapshot": 17130950
+  }
+]
