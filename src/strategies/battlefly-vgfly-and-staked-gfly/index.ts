@@ -13,9 +13,7 @@ const abi = [
   'function token1() external view returns (address)',
   'function totalSupply() external view returns (uint256)',
   'function getReserves() external view returns (uint112 _reserve0, uint112 _reserve1, uint32 _blockTimestampLast)',
-  'function totalClaimableOf(address account) external view returns (uint256 total)',
-  'function currentV1BackingInMagic() external view returns(uint256)',
-  'function currentV2BackingInMagic() external view returns(uint256)'
+  'function totalClaimableOf(address account) external view returns (uint256 total)'
 ];
 
 const calcVotingPower = (
@@ -26,8 +24,10 @@ const calcVotingPower = (
   claimableOf: BigNumberish,
   decimals: number,
   tokenWeight: number,
-  currentV1BackingInMagic: BigNumberish,
-  currentV2BackingInMagic: BigNumberish
+  v1VaultGFlyStaked: BigNumber,
+  v2VaultGFlyStaked: BigNumber,
+  totalV1FoundersStaked: BigNumber,
+  totalV2FoundersStaked: BigNumber
 ) => {
   const staked = parseFloat(
     formatUnits(BigNumber.from(stakedAsString), decimals)
@@ -53,8 +53,10 @@ const calcVotingPower = (
   const founders = parseFloat(
     formatUnits(
       BigNumber.from(v1)
-        .mul(currentV1BackingInMagic)
-        .add(BigNumber.from(v2).mul(currentV2BackingInMagic)),
+        .mul(v1VaultGFlyStaked.div(totalV1FoundersStaked))
+        .add(
+          BigNumber.from(v2).mul(v2VaultGFlyStaked.div(totalV2FoundersStaked))
+        ),
       decimals
     )
   );
@@ -99,13 +101,40 @@ export async function strategy(
     }
   };
 
+  // Setup subgraph query to fetch amount of gFLY staked by V1 and V2 vaults
+  const paramsV1AndV2 = {
+    _meta: {
+      block: {
+        number: true
+      }
+    },
+    accounts: {
+      __args: {
+        where: {
+          id_in: [
+            options.v1FoundersVault.toLowerCase(),
+            options.v2FoundersVault.toLowerCase()
+          ]
+        }
+      },
+      id: true,
+      staked: true
+    }
+  };
+
   if (snapshot !== 'latest') {
     // @ts-ignore
     params.accounts.__args.block = { number: snapshot };
+    // @ts-ignore
+    paramsV1AndV2.accounts.__args.block = params.accounts.__args.block;
   }
 
   const result = await subgraphRequest(DF_SUBGRAPH_URL, {
     ...params
+  });
+
+  const resultV1andV2 = await subgraphRequest(DF_SUBGRAPH_URL, {
+    ...paramsV1AndV2
   });
 
   // Take the same block number than from subgraph for consistency
@@ -124,8 +153,8 @@ export async function strategy(
       [options.lpAddress, 'getReserves', []],
       [options.lpAddress, 'totalSupply', []],
       [options.lpAddress, 'decimals', []],
-      [options.foundersBurn, 'currentV1BackingInMagic', []],
-      [options.foundersBurn, 'currentV2BackingInMagic', []]
+      [options.foundersToken, 'balanceOf', [options.v1FoundersVault]],
+      [options.foundersToken, 'balanceOf', [options.v2FoundersVault]]
     ],
     { blockTag }
   );
@@ -137,8 +166,8 @@ export async function strategy(
   const lpTokenReserves = fetchContractData[2];
   const lpTokenTotalSupply = fetchContractData[3][0];
   const lpTokenDecimals = fetchContractData[4][0];
-  const currentV1BackingInMagic = fetchContractData[5][0];
-  const currentV2BackingInMagic = fetchContractData[6][0];
+  const totalV1FoundersStaked = fetchContractData[5][0];
+  const totalV2FoundersStaked = fetchContractData[6][0];
 
   // calculate single lp token weight
 
@@ -164,6 +193,17 @@ export async function strategy(
   );
   const claimableOfResult: Record<string, BigNumberish> = await multi.execute();
 
+  let v1VaultGFlyStaked;
+  let v2VaultGFlyStaked;
+
+  resultV1andV2.accounts.map((element) => {
+    if (element.id === options.v1FoundersVault.toLowerCase()) {
+      v1VaultGFlyStaked = BigNumber.from(element.staked);
+    } else if (element.id === options.v2FoundersVault.toLowerCase()) {
+      v2VaultGFlyStaked = BigNumber.from(element.staked);
+    }
+  });
+
   return Object.fromEntries(
     result.accounts.map((a) => [
       getAddress(a.id),
@@ -175,8 +215,10 @@ export async function strategy(
         claimableOfResult[getAddress(a.id)],
         options.decimals,
         tokenWeight,
-        currentV1BackingInMagic,
-        currentV2BackingInMagic
+        v1VaultGFlyStaked,
+        v2VaultGFlyStaked,
+        BigNumber.from(totalV1FoundersStaked),
+        BigNumber.from(totalV2FoundersStaked)
       )
     ])
   );
