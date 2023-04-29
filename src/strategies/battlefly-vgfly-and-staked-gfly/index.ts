@@ -4,7 +4,7 @@ import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'Archethect';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',

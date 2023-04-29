@@ -5,6 +5,7 @@ This strategy calculates the voting power for addresses with one or more of the 
 * An amount of unvested tokens
 * An amount of staked tokens
 * An amount of staked LP tokens
+* An amount of staked founder tokens
 
 As input a graphUrl is required which will return those amounts for each queried address.
 Additionally, the gFLY, magic vgFLY and LP token addresses are required for some on-chain calls that are not possible with Subgraph.

@@ -1,6 +1,6 @@
 [
   {
-    "name": "Battlefly vgFLY holders and gFLY stakers",
+    "name": "Battlefly vgFLY holders, gFLY stakers and founder token stakers",
     "strategy": {
       "name": "battlefly-vgfly-and-staked-gfly",
       "params": {
