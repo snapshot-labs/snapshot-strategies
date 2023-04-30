@@ -886,7 +886,7 @@ const strategies = {
   'staked-defi-balance': stakedDefiBalance,
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
   'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf,
-  'erc721-collateral-held': erc721CollateralHeld,
+  'erc721-collateral-held': erc721CollateralHeld
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

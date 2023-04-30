@@ -30,17 +30,22 @@ export async function strategy(
 
   // get the vault number owned by each user.
   const multi2 = new Multicaller(network, provider, abi, { blockTag });
-  const tokenIds: Record<string, BigNumberish[]> = Object.fromEntries(addresses.map((address) => [address, []]));
+  const tokenIds: Record<string, BigNumberish[]> = Object.fromEntries(
+    addresses.map((address) => [address, []])
+  );
   for (const address of addresses) {
     const balance = result[address];
     for (let i = 0; i < balance; i++) {
-      multi2.call(`${address}_${i}`, options.address, 'tokenOfOwnerByIndex', [address, i]);
+      multi2.call(`${address}_${i}`, options.address, 'tokenOfOwnerByIndex', [
+        address,
+        i
+      ]);
     }
   }
   const tokenIdsResult = await multi2.execute();
 
   for (const key in tokenIdsResult) {
-    const [address,] = key.split('_');
+    const [address] = key.split('_');
     tokenIds[address].push(tokenIdsResult[key]);
   }
 
@@ -56,7 +61,9 @@ export async function strategy(
   const resultWithDefault = {};
   for (const address of addresses) {
     const balance = collaterals[address] || 0;
-    resultWithDefault[address] = parseFloat(formatUnits(balance, options.decimals));
+    resultWithDefault[address] = parseFloat(
+      formatUnits(balance, options.decimals)
+    );
   }
 
   // Convert addresses to checksum format before returning
