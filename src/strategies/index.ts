@@ -435,9 +435,12 @@ import * as izumiVeiZi from './izumi-veizi';
 import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
 import * as rdntCapitalVoting from './rdnt-capital-voting';
+import * as stakedDefiBalance from './staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
+import * as capVotingPower from './cap-voting-power';
 
 const strategies = {
+  'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
@@ -878,6 +881,7 @@ const strategies = {
   'echelon-wallet-prime-and-cached-key-gated':
     echelonWalletPrimeAndCachedKeyGated,
   'rdnt-capital-voting': rdntCapitalVoting,
+  'staked-defi-balance': stakedDefiBalance,
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted
 };
 
