@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "posichain-total-balance",
+      "params": {
+        "symbol": "POSI"
+      }
+    },
+    "network": "900000",
+    "addresses": [
+      "0xD3Ee1d798eCea22Fde4D29590eFF0c77bA7e6b9e",
+      "0xb065c1a5BC1B3c1b1dF8781D369cffc534B65731",
+      "0x7fd592690ec6A7300289B059ee8711f4f9BBfD8a"
+    ],
+    "snapshot": 3989273
+  }
+]

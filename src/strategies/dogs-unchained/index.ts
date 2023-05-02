@@ -3,10 +3,11 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall, subgraphRequest } from '../../utils';
 
 export const author = 'dogsunchained';
-export const version = '0.0.1';
+export const version = '0.1.1';
 
 const abi721or20 = [
-  'function balanceOf(address account) external view returns (uint256)'
+  'function balanceOf(address account) external view returns (uint256)',
+  'function totalSupply() external view returns (uint256)'
 ];
 
 const SUBGRAPH_URL =
@@ -30,6 +31,8 @@ export async function strategy(
     calls721.push([options.steaks, 'balanceOf', [address]]);
     calls20.push([options.boom, 'balanceOf', [address]]);
   });
+  calls721.push([options.steaks, 'totalSupply', []]);
+  calls20.push([options.boom, 'totalSupply', []]);
 
   const response721 = await multicall(network, provider, abi721or20, calls721, {
     blockTag
@@ -37,6 +40,8 @@ export async function strategy(
   const response20 = await multicall(network, provider, abi721or20, calls20, {
     blockTag
   });
+  let totalNFTs = parseInt(response721.pop().toString()) * NFT_VALUE;
+  const totalBOOM = parseFloat(formatUnits(response20.pop().toString(), 18));
 
   const paginate = (skip, reverse = false, where = {}) => {
     const req = {
@@ -47,6 +52,7 @@ export async function strategy(
         orderDirection: reverse ? 'desc' : 'asc',
         where: where
       },
+      id: true,
       owner: {
         id: true
       }
@@ -62,11 +68,7 @@ export async function strategy(
     'd3:dogs': paginate(2000, false, { burned: false }),
     'd4:dogs': paginate(3000, false, { burned: false }),
     'd5:dogs': paginate(4000, false, { burned: false }),
-    'd6:dogs': paginate(0, true, { burned: false }),
-    'd7:dogs': paginate(1000, true, { burned: false }),
-    'd8:dogs': paginate(2000, true, { burned: false }),
-    'd9:dogs': paginate(3000, true, { burned: false }),
-    'd10:dogs': paginate(4000, true, { burned: false })
+    'd6:dogs': paginate(5000, false, { burned: false })
   };
 
   const dogsResult = await subgraphRequest(SUBGRAPH_URL, dogParams);
@@ -77,36 +79,17 @@ export async function strategy(
     'p3:puppies': paginate(2000),
     'p4:puppies': paginate(3000),
     'p5:puppies': paginate(4000),
-    'p6:puppies': paginate(0, true),
-    'p7:puppies': paginate(1000, true),
-    'p8:puppies': paginate(2000, true),
-    'p9:puppies': paginate(3000, true),
-    'p10:puppies': paginate(4000, true)
+    'p6:puppies': paginate(5000)
   };
 
   const puppiesResult = await subgraphRequest(SUBGRAPH_URL, puppyParams);
 
   const stakeParams = {
     'p1:stakes': paginate(0),
-    'p2:stakes': paginate(1000),
-    'p3:stakes': paginate(2000),
-    'p4:stakes': paginate(3000),
-    'p5:stakes': paginate(4000),
-    'p6:stakes': paginate(0, true),
-    'p7:stakes': paginate(1000, true),
-    'p8:stakes': paginate(2000, true),
-    'p9:stakes': paginate(3000, true),
-    'p10:stakes': paginate(4000, true)
+    'p2:stakes': paginate(1000)
   };
 
   const stakesResult = await subgraphRequest(SUBGRAPH_URL, stakeParams);
-
-  let totalBOOM = 0;
-  let totalNFTs = 0;
-
-  response20.map((value: any) => {
-    totalBOOM += parseFloat(formatUnits(value.toString(), 18));
-  });
 
   const merged = {};
 
@@ -115,7 +98,6 @@ export async function strategy(
     if (address == options.staking) return;
     merged[address] = (merged[address] || 0) as number;
     merged[address] += parseFloat(formatUnits(value.toString(), 0)) * NFT_VALUE;
-    totalNFTs += parseFloat(formatUnits(value.toString(), 0)) * NFT_VALUE;
   });
 
   for (const key in dogsResult) {
@@ -144,7 +126,6 @@ export async function strategy(
       const address = getAddress(value.owner.id);
       merged[address] = (merged[address] || 0) as number;
       merged[address] += NFT_VALUE;
-      totalNFTs += NFT_VALUE;
     });
   }
 

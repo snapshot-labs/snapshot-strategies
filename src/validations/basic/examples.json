@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example of a basic validation",
+    "author": "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "minScore": 1,
+      "strategies": [
+        {
+          "name": "ticket",
+          "params": {}
+        }
+      ]
+    }
+  }
+]

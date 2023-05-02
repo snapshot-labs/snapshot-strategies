@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ethalend-balance-of",
+      "params": {
+        "registry": "0x583B965462e11Da63D1d4bC6D2d43d391F79af1f",
+        "address": "0x56bA9a2f00A4F581a05bfE9Fd0b16277eD130349",
+        "symbol": "veETHA",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc",
+      "0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20",
+      "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
+      "0x4e46cd691b0a159fbe5e2d08a3951a324e2fb4c0",
+      "0x1de9184f070627a33eab44e329c699b3068c073d",
+      "0x77c66d0457b6bd390c1824b3e44d6f9c31fa4166",
+      "0x358271f5578868e8051441677fbaacbd5d80ae39",
+      "0xae80dcf8109e2774d38884ece6c11191c7a1c583",
+      "0xe07d2caf3be9447ee71ed721ac2730b8e8e985f0",
+      "0xf758e816b602feb404948626b2f7f16e948a578c",
+      "0xb7f5566100751c64b06280b1cb5a9286b08ae161",
+      "0x647f3d7f8d513bdf67bd407f2f98b90a84e8edb5",
+      "0xd3670fd0e5bbdc6c04634c66c1b94e9788d71473",
+      "0x642FC634b8a0809D4d591A9A5367424E52a698C4"
+    ],
+    "snapshot": 32843708
+  }
+]

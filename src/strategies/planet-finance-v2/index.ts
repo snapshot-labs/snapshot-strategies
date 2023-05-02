@@ -3,12 +3,11 @@ import { multicall } from '../../utils';
 import { Multicaller } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
-export const author = 'planet-finance';
-export const version = '0.0.1';
+export const author = 'defininja';
+export const version = '0.0.2';
 
 const planetFinanceFarmAbi = [
-  'function poolInfo(uint256) returns (address want,uint256 allocPoint,uint256 lastRewardBlock,uint256 accAQUAPerShare,address strat)',
-  'function stakedWantTokens(uint256 _pid, address _user) returns (uint256)'
+  'function userInfo(uint256, address) view returns (uint256, uint256,  uint256,  uint256,  uint256,  uint256,  uint256, uint256)'
 ];
 
 const bep20Abi: any = [
@@ -24,15 +23,15 @@ const aquaLendingAbi = [
   'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)'
 ];
 
-const gammaFarmAddress = '0xB87F7016585510505478D1d160BDf76c1f41b53d';
+const gammaFarmAddress = '0x9EBce8B8d535247b2a0dfC0494Bc8aeEd7640cF9';
 
 const aquaAddress = '0x72B7D61E8fC8cF971960DD9cfA59B8C829D91991';
 
 const aquaBnbLpTokenAddress = '0x03028D2F8B275695A1c6AFB69A4765e3666e36d9';
 
-const aquaLendingAddress = '0xb7eD4A5AF620B52022fb26035C565277035d4FD7';
+const aquaLendingAddress = '0x2f5d7A9D8D32c16e41aF811744DB9f15d853E0A5';
 
-const aquaInfinityAddress = '0x6E7a174836b2Df12599ecB2Dc64C1F9e1576aC45';
+const aquaInfinityAddress = '0xddd0626BB795BdF9CfA925da5102eFA5E7008114';
 
 const increase_in_voting = 5; //increase 5 times
 
@@ -73,15 +72,15 @@ export async function strategy(
     { blockTag }
   );
 
-  // returns user's aqua balance in aqua-bnb vault
+  // returns user's aqua balance in aqua-bnb pool
   let usersNewAquaBnbVaultBalances: any = multicall(
     network,
     provider,
     planetFinanceFarmAbi,
     addresses.map((address: any) => [
       gammaFarmAddress,
-      'stakedWantTokens',
-      ['1', address]
+      'userInfo',
+      ['2', address]
     ]),
     { blockTag }
   );
@@ -102,7 +101,7 @@ export async function strategy(
   const result = await Promise.all([
     score,
     usergAquaBalInAquaInfinityVault,
-    usersNewAquaBnbVaultBalances, // new pool aqua bnb
+    usersNewAquaBnbVaultBalances,
     usersAquaInLending
   ]);
 
@@ -112,8 +111,10 @@ export async function strategy(
   usersAquaInLending = result[3];
 
   //AQUA-BNB
+  // total supply of aqua bnb lp token
   erc20Multi.call('aquaBnbTotalSupply', aquaBnbLpTokenAddress, 'totalSupply');
 
+  // aqua balance of aqua bnb lp
   erc20Multi.call('aquaBnbAquaBal', aquaAddress, 'balanceOf', [
     aquaBnbLpTokenAddress
   ]);
@@ -131,7 +132,7 @@ export async function strategy(
 
         address[1] +
           (parseFloat(
-            formatUnits(usersNewAquaBnbVaultBalances[index].toString(), 18)
+            formatUnits(usersNewAquaBnbVaultBalances[index]['0'].toString(), 18)
           ) /
             parseFloat(formatUnits(totalSupply, 18))) *
             parseFloat(formatUnits(contractAquaBalance, 18)) +

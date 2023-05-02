@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query for Synthetic Nouns that are owned by the original claiming address",
+    "strategy": {
+      "name": "synthetic-nouns-with-claimer",
+      "params": {
+        "address": "0x8761b55af5a703d5855f1865db8fe4dd18e94c53",
+        "symbol": "sNOUN"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x8d25687829d6b85d9e0020b8c89e3ca24de20a89",
+      "0x368f593244f04c599b3328a23493680b23818fa6",
+      "0x6ab075abfA7cdD7B19FA83663b1f2a83e4A957e3",
+      "0x7f16D5c969380E3420E17B4c3456A3844745A578"
+    ],
+    "snapshot": 15486783
+  }
+]

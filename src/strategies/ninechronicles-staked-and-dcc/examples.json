@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ninechronicles-staked-and-dcc",
+      "params": {
+        "symbol": "Staked 9c assets + DCC",
+        "ethLPTokenStakingAddress": "0xc53b567A70dB04E928FB96D6A417971aa88fdA38",
+        "ethLPTokenAddress": "0xe8cc7e765647625b95f59c15848379d10b9ab4af",
+        "ethWNCGAddress": "0xf203ca1769ca8e9e8fe1da9d147db68b6c919817",
+        "ethBalancerVaultAddress": "0xba12222222228d8ba445958a75a0704d566bf2c8",
+        "ethDccAddress": "0xcea65a86195c911912ce48b6636ddd365c208130",
+        "ncGraphQLEndpoint": "http://rpc-for-snapshot.nine-chronicles.com/graphql",
+        "ncBlockHash": "711ce4bcdc0fb5264577876f217a794b2448ccce24e3c7ea0fb9794e420863e4",
+        "wNCGDecimals": 18,
+        "weights": {
+          "stakedWNCG": 1,
+          "stakedNCG": 1,
+          "dcc": 999
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x10e19ba32927b28eb5424f7b6a3e2eaa5a607f47",
+      "0x97aa9e72FAf4B83A719D31B840Bd4F60282E9833",
+      "0x7916d7c934a7a5ba67f4c88ddb0c9fec76ebd8b5",
+      "0x93b220bc7c36ea8e4c64192301b680273a184ec3",
+      "0x30f1d1ffad34b24bb8310ad9dd237b854b4daea7",
+      "0x961c18a23306fe44c4323adcb3bc343b0d193670",
+      "0x03eA88F51D9D290e5E72e6F7C70abD2bB9CE9b78",
+      "0x8D45A60b37D09bEEdA9c1C86b7e4d714Ae625254"
+    ],
+    "snapshot": 15797760
+  }
+]

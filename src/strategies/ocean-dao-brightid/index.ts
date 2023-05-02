@@ -31,7 +31,7 @@ async function getBlocks(snapshot, provider, options, network) {
       number: true
     }
   };
-  const url = 'https://blockfinder.snapshot.org/graphql';
+  const url = 'https://blockfinder.snapshot.org';
   const data = await subgraphRequest(url, query);
   data.blocks.forEach((block) => (blocks[block.network] = block.number));
   data.blocks[network] = snapshot;
@@ -71,9 +71,9 @@ export async function strategy(
   );
 
   const totalScores = {};
-  const delegatorAddresses = Object.values(
-    delegations
-  ).reduce((a: string[], b: string[]) => a.concat(b));
+  const delegatorAddresses = Object.values(delegations).reduce(
+    (a: string[], b: string[]) => a.concat(b)
+  );
 
   // remove duplicates
   const allAddresses = addresses
