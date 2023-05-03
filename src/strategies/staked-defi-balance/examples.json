@@ -10,7 +10,7 @@
                     "tokenContractAddress": "0xe685d3CC0be48BD59082eDe30C3b64CbFc0326e2",
                     "symbol": "cFRM",
                     "decimals": 18,
-                    "minStakedBalance": "100000000000000000000000",
+                    "minStakedBalance": "500000000000000000000000",
                     "stakingPoolContractAddress": "0xb4927895cbee88e651e0582893051b3b0f8d7db8",
                     "methodABI": [
                         {
@@ -41,11 +41,11 @@
                 },
                 {
                     "network": "56",
-                    "snapshot": 27756709,
+                    "snapshot": 27877333,
                     "tokenContractAddress": "0xaf329a957653675613D0D98f49fc93326AeB36Fc",
                     "symbol": "cFRM",
                     "decimals": 18,
-                    "minStakedBalance": "100000000000000000000000",
+                    "minStakedBalance": "500000000000000000000000",
                     "stakingPoolContractAddress": "0x35e15ff9ebb37d8c7a413fd85bad515396dc8008",
                     "methodABI": [
                         {
@@ -80,7 +80,7 @@
                     "tokenContractAddress": "0x9f6AbbF0Ba6B5bfa27f4deb6597CC6Ec20573FDA",
                     "symbol": "FRM",
                     "decimals": 18,
-                    "minStakedBalance": "100000000000000000000000",
+                    "minStakedBalance": "500000000000000000000000",
                     "stakingPoolContractAddress": "0x2bE7904c81dd3535f31B2C7B524a6ed91FDb37EC",
                     "methodABI": [
                         {
@@ -116,4 +116,3 @@
         "snapshot": 75322593
     }
 ]
-
