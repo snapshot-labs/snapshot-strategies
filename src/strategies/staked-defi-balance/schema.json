@@ -6,7 +6,7 @@
     "type": "object",
     "properties": {
       "network": { "type": "string" },
-      "snapshot": { "type": "integer" },
+      "snapshot": { "oneOf": [ { "type": "integer" }, { "type": "string", "enum": ["latest"] } ] },
       "tokenContractAddress": { "type": "string" },
       "symbol": { "type": "string" },
       "decimals": { "type": "integer" },

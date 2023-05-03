@@ -6,7 +6,7 @@
             "params": [
                 {
                     "network": "42161",
-                    "snapshot": 85322593,
+                    "snapshot": "latest",
                     "tokenContractAddress": "0xe685d3CC0be48BD59082eDe30C3b64CbFc0326e2",
                     "symbol": "cFRM",
                     "decimals": 18,
@@ -76,7 +76,7 @@
                 },
                 {
                     "network": "42161",
-                    "snapshot": 85322593,
+                    "snapshot": "latest",
                     "tokenContractAddress": "0x9f6AbbF0Ba6B5bfa27f4deb6597CC6Ec20573FDA",
                     "symbol": "FRM",
                     "decimals": 18,

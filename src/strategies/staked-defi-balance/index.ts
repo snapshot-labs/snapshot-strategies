@@ -1,9 +1,11 @@
+// src/strategies/staked-defi-balance/index.ts
+
 import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
 import { multicall, getProvider } from '../../utils';
 
 export const author = 'taha-abbasi';
-export const version = '1.0.0';
+export const version = '1.1.0';
 
 export async function strategy(
   space,
