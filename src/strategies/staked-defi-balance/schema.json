@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "StrategyParams",
+  "title": "Staked Defi Balance",
   "type": "array",
   "items": {
     "type": "object",
