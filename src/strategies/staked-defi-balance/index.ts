@@ -3,7 +3,7 @@ import { getAddress } from '@ethersproject/address';
 import { multicall, getProvider } from '../../utils';
 
 export const author = 'taha-abbasi';
-export const version = '0.1.1';
+export const version = '1.0.0';
 
 export async function strategy(
   space,
