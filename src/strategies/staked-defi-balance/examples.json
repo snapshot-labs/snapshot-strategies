@@ -1,48 +1,118 @@
 [
-  {
-    "name": "Staked Defi Balance",
-    "strategy": {
-      "name": "staked-defi-balance",
-      "params": {
-        "tokenContractAddress": "0xe685d3CC0be48BD59082eDe30C3b64CbFc0326e2",
-        "symbol": "cFRM",
-        "decimals": 18,
-        "minStakedBalance": "100000000000000000000000",
-        "stakingPoolContractAddress": "0xb4927895cbee88e651e0582893051b3b0f8d7db8",
-        "methodABI": [
-          {
-            "inputs": [
-              {
-                "internalType": "address",
-                "name": "id",
-                "type": "address"
-              },
-              {
-                "internalType": "address",
-                "name": "staker",
-                "type": "address"
-              }
-            ],
-            "name": "stakeOf",
-            "outputs": [
-              {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-              }
-            ],
-            "stateMutability": "view",
-            "type": "function"
-          }
-        ]
-      }
-    },
-    "network": "42161",
-    "addresses": [
-      "0x4c4180bf5ec78af9025bdd935ed69e29c2f6cbae",
-      "0x5785530b6f0ea72b0dba474d55b43e1af1182cad",
-      "0x2ed211293b1db5e7d177e2711bea83700e45b150"
-    ],
-    "snapshot": 74259791
-  }
+    {
+        "name": "Staked Defi Balance",
+        "strategy": {
+            "name": "staked-defi-balance",
+            "params": [
+                {
+                    "network": "42161",
+                    "snapshot": 85322593,
+                    "tokenContractAddress": "0xe685d3CC0be48BD59082eDe30C3b64CbFc0326e2",
+                    "symbol": "cFRM",
+                    "decimals": 18,
+                    "minStakedBalance": "500000000000000000000000",
+                    "stakingPoolContractAddress": "0xb4927895cbee88e651e0582893051b3b0f8d7db8",
+                    "methodABI": [
+                        {
+                            "inputs": [
+                                {
+                                    "internalType": "address",
+                                    "name": "id",
+                                    "type": "address"
+                                },
+                                {
+                                    "internalType": "address",
+                                    "name": "staker",
+                                    "type": "address"
+                                }
+                            ],
+                            "name": "stakeOf",
+                            "outputs": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "stateMutability": "view",
+                            "type": "function"
+                        }
+                    ]
+                },
+                {
+                    "network": "56",
+                    "snapshot": 27877333,
+                    "tokenContractAddress": "0xaf329a957653675613D0D98f49fc93326AeB36Fc",
+                    "symbol": "cFRM",
+                    "decimals": 18,
+                    "minStakedBalance": "500000000000000000000000",
+                    "stakingPoolContractAddress": "0x35e15ff9ebb37d8c7a413fd85bad515396dc8008",
+                    "methodABI": [
+                        {
+                            "inputs": [
+                                {
+                                    "internalType": "address",
+                                    "name": "id",
+                                    "type": "address"
+                                },
+                                {
+                                    "internalType": "address",
+                                    "name": "staker",
+                                    "type": "address"
+                                }
+                            ],
+                            "name": "stakeOf",
+                            "outputs": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "stateMutability": "view",
+                            "type": "function"
+                        }
+                    ]
+                },
+                {
+                    "network": "42161",
+                    "snapshot": 85322593,
+                    "tokenContractAddress": "0x9f6AbbF0Ba6B5bfa27f4deb6597CC6Ec20573FDA",
+                    "symbol": "FRM",
+                    "decimals": 18,
+                    "minStakedBalance": "500000000000000000000000",
+                    "stakingPoolContractAddress": "0x2bE7904c81dd3535f31B2C7B524a6ed91FDb37EC",
+                    "methodABI": [
+                        {
+                            "inputs": [
+                                {
+                                    "internalType": "address",
+                                    "name": "account",
+                                    "type": "address"
+                                }
+                            ],
+                            "name": "stakeOf",
+                            "outputs": [
+                                {
+                                    "internalType": "uint256",
+                                    "name": "",
+                                    "type": "uint256"
+                                }
+                            ],
+                            "stateMutability": "view",
+                            "type": "function"
+                        }
+                    ]
+                }
+            ]
+        },
+        "network": "42161",
+        "addresses": [
+            "0x4c4180bf5ec78af9025bdd935ed69e29c2f6cbae",
+            "0x5785530b6f0ea72b0dba474d55b43e1af1182cad",
+            "0x468b83D6c8941115E9c61385aff8b71ADD5B8cE8",
+            "0x6479f7157f06e6610174b1029388B8D4193c00A0"
+        ],
+        "snapshot": 75322593
+    }
 ]
