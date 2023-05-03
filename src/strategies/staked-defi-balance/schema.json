@@ -5,13 +5,39 @@
   "items": {
     "type": "object",
     "properties": {
-      "network": { "type": "string" },
-      "snapshot": { "oneOf": [ { "type": "integer" }, { "type": "string", "enum": ["latest"] } ] },
-      "tokenContractAddress": { "type": "string" },
-      "symbol": { "type": "string" },
-      "decimals": { "type": "integer" },
-      "minStakedBalance": { "type": "string" },
-      "stakingPoolContractAddress": { "type": "string" },
+      "network": {
+        "type": "string"
+      },
+      "snapshot": {
+        "oneOf": [
+          {
+            "type": "integer"
+          },
+          {
+            "type": "string",
+            "enum": [
+              "latest"
+            ]
+          }
+        ]
+      },
+      "tokenContractAddress": {
+        "type": "string",
+        "pattern": "^0x[a-fA-F0-9]{40}$"
+      },
+      "symbol": {
+        "type": "string"
+      },
+      "decimals": {
+        "type": "integer"
+      },
+      "minStakedBalance": {
+        "type": "string"
+      },
+      "stakingPoolContractAddress": {
+        "type": "string",
+        "pattern": "^0x[a-fA-F0-9]{40}$"
+      },
       "methodABI": {
         "type": "array",
         "items": {
@@ -19,17 +45,33 @@
           "properties": {
             "inputs": {
               "type": "array",
-              "items": { "type": "object" }
+              "items": {
+                "type": "object"
+              }
             },
-            "name": { "type": "string" },
+            "name": {
+              "type": "string"
+            },
             "outputs": {
               "type": "array",
-              "items": { "type": "object" }
+              "items": {
+                "type": "object"
+              }
             },
-            "stateMutability": { "type": "string" },
-            "type": { "type": "string" }
+            "stateMutability": {
+              "type": "string"
+            },
+            "type": {
+              "type": "string"
+            }
           },
-          "required": ["inputs", "name", "outputs", "stateMutability", "type"]
+          "required": [
+            "inputs",
+            "name",
+            "outputs",
+            "stateMutability",
+            "type"
+          ]
         }
       }
     },
