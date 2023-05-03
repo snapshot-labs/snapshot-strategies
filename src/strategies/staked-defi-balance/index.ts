@@ -1,3 +1,5 @@
+// src/strategies/staked-defi-balance/index.ts
+
 import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
 import { multicall, getProvider } from '../../utils';
