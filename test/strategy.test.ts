@@ -61,6 +61,7 @@ describe.each(examples)(
 
     it('Must use a snapshot block number in the past', async () => {
       expect(typeof example.snapshot).toBe('number');
+
       const provider = snapshot.utils.getProvider(example.network);
       const blockNumber = await snapshot.utils.getBlockNumber(provider);
       expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
