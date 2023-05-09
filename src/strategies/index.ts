@@ -436,6 +436,7 @@ import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
 import * as rdntCapitalVoting from './rdnt-capital-voting';
 import * as stakedDefiBalance from './staked-defi-balance';
+import * as multiStakedDefiBalance from './multi-staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
 import * as capVotingPower from './cap-voting-power';
 import * as zunamiPoolGaugeAggregatedBalanceOf from './zunami-pool-gauge-aggregated-balance-of';
@@ -884,6 +885,7 @@ const strategies = {
     echelonWalletPrimeAndCachedKeyGated,
   'rdnt-capital-voting': rdntCapitalVoting,
   'staked-defi-balance': stakedDefiBalance,
+  'multi-staked-defi-balance': multiStakedDefiBalance,
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
   'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf,
   'erc721-collateral-held': erc721CollateralHeld
