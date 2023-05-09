@@ -27,16 +27,13 @@ export async function strategy(
       typeof snapshot === 'number' ? snapshot : 'latest';
 
     const stakingPoolContractAddress = params.stakingPoolContractAddress;
-    // Modify the initialization of the abi variable
     let abi: ABI;
     switch (params.stakingType) {
       case 'open':
         abi = openStakingAbi[0] as ABI;
-        console.log(`ABI selected Open Staking `, abi);
         break;
       case 'standard':
         abi = standardStakingAbi[0] as ABI;
-        console.log(`ABI selected Standard Staking `, abi);
         break;
       default:
         throw new Error(`Invalid stakingType: ${params.stakingType}`);
