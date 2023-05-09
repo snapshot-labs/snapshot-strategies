@@ -5,22 +5,6 @@
   "items": {
     "type": "object",
     "properties": {
-      "network": {
-        "type": "string"
-      },
-      "snapshot": {
-        "oneOf": [
-          {
-            "type": "integer"
-          },
-          {
-            "type": "string",
-            "enum": [
-              "latest"
-            ]
-          }
-        ]
-      },
       "tokenContractAddress": {
         "type": "string",
         "pattern": "^0x[a-fA-F0-9]{40}$"
@@ -38,52 +22,30 @@
         "type": "string",
         "pattern": "^0x[a-fA-F0-9]{40}$"
       },
-      "methodABI": {
-        "type": "array",
-        "items": {
-          "type": "object",
-          "properties": {
-            "inputs": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
-            },
-            "name": {
-              "type": "string"
-            },
-            "outputs": {
-              "type": "array",
-              "items": {
-                "type": "object"
-              }
-            },
-            "stateMutability": {
-              "type": "string"
-            },
-            "type": {
-              "type": "string"
-            }
+      "stakingType": {
+        "oneOf": [
+          {
+            "type": "string",
+            "enum": [
+              "standard"
+            ]
           },
-          "required": [
-            "inputs",
-            "name",
-            "outputs",
-            "stateMutability",
-            "type"
-          ]
-        }
+          {
+            "type": "string",
+            "enum": [
+              "open"
+            ]
+          }
+        ]
       }
     },
     "required": [
-      "network",
-      "snapshot",
       "tokenContractAddress",
       "symbol",
       "decimals",
       "minStakedBalance",
       "stakingPoolContractAddress",
-      "methodABI"
+      "stakingType"
     ]
   }
 }

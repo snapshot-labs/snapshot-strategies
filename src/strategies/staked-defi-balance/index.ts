@@ -3,9 +3,13 @@
 import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
 import { multicall, getProvider } from '../../utils';
+import openStakingAbi from './ABI/openStakingABI.json';
+import standardStakingAbi from './ABI/standardStakingABI.json';
+import { ABI } from './types';
+
 
 export const author = 'taha-abbasi';
-export const version = '1.1.0';
+export const version = '1.2.6';
 
 export async function strategy(
   space,
@@ -18,12 +22,26 @@ export async function strategy(
   const addressScores = {};
 
   for (const params of options) {
-    const paramNetwork = params.network.toString();
+    const paramNetwork = network.toString();
     const paramSnapshot =
-      typeof params.snapshot === 'number' ? params.snapshot : 'latest';
+      typeof snapshot === 'number' ? snapshot : 'latest';
 
     const stakingPoolContractAddress = params.stakingPoolContractAddress;
-    const abi = params.methodABI[0];
+    // Modify the initialization of the abi variable
+    let abi: ABI;
+    switch (params.stakingType) {
+      case 'open':
+        abi = openStakingAbi[0] as ABI;
+        console.log(`ABI selected Open Staking `, abi);
+        break;
+      case 'standard':
+        abi = standardStakingAbi[0] as ABI;
+        console.log(`ABI selected Standard Staking `, abi);
+        break;
+      default:
+        throw new Error(`Invalid stakingType: ${params.stakingType}`);
+    }
+
 
     const stakingCalls = addresses.map((address) => {
       const inputs = abi.inputs.map((input) => {
@@ -35,7 +53,7 @@ export async function strategy(
       });
       return [stakingPoolContractAddress, abi.name, inputs];
     });
-    
+
     try {
       const stakes = await multicall(
         paramNetwork,
