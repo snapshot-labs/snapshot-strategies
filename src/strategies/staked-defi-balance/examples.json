@@ -4,7 +4,7 @@
         "strategy": {
             "name": "staked-defi-balance",
             "params": {
-                "minStakedBalance": "1",
+                "minStakedBalance": "300000",
                 "contracts": [
                     {
                         "tokenContractAddress": "0xaf329a957653675613D0D98f49fc93326AeB36Fc",
