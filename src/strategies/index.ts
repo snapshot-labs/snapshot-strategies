@@ -343,6 +343,7 @@ import * as ethermon721 from './ethermon-erc721';
 import * as etherorcsComboBalanceOf from './etherorcs-combo-balanceof';
 import * as hedgey from './hedgey';
 import * as hedgeyMulti from './hedgey-multi';
+import * as hedgeyDelegate from './hedgey-delegate';
 import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
@@ -791,6 +792,7 @@ const strategies = {
   'rowdy-roos': rowdyRoos,
   hedgey,
   'hedgey-multi': hedgeyMulti,
+  'hedgey-delegate': hedgeyDelegate,
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
