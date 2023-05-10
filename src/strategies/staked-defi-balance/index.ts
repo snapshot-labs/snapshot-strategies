@@ -43,7 +43,6 @@ export async function strategy(
         throw new Error(`Invalid stakingType: ${params.stakingType}`);
     }
 
-
     const stakingCalls = addresses.map((address) => {
       const inputs = abi.inputs.map((input) => {
         if (input.name === 'id') {
