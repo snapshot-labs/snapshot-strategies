@@ -470,7 +470,6 @@ const strategies = {
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
   'dps-nft-strategy': dpsNFTStrategy,
-  'dps-nft-strategy-nova': dpsNFTStrategyNova,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
