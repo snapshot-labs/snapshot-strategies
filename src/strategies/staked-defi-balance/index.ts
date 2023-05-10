@@ -7,7 +7,6 @@ import openStakingAbi from './ABI/openStakingABI.json';
 import standardStakingAbi from './ABI/standardStakingABI.json';
 import { ABI } from './types';
 
-
 export const author = 'taha-abbasi';
 export const version = '1.3.0';
 
@@ -27,8 +26,7 @@ export async function strategy(
 
   for (const params of options.contracts) {
     const paramNetwork = network.toString();
-    const paramSnapshot =
-      typeof snapshot === 'number' ? snapshot : 'latest';
+    const paramSnapshot = typeof snapshot === 'number' ? snapshot : 'latest';
 
     const stakingPoolContractAddress = params.stakingPoolContractAddress;
     let abi: ABI;
@@ -70,7 +68,6 @@ export async function strategy(
     addresses.forEach((address) => {
       const normalizedAddress = getAddress(address);
       const stakedBalance = stakesMapped[normalizedAddress];
-
       const formattedStakedBalance = parseFloat(
         formatUnits(stakedBalance, params.decimals)
       );
