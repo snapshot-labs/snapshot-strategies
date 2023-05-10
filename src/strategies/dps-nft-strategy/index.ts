@@ -11,7 +11,7 @@ const DPS_SUBGRAPH_URL_MOONBEAM = {
 
 const PAGE_SIZE = 1000;
 
-const params_moonbeam = {
+const params = {
   holders: {
     __args: {
       block: { number: 2847359 },
@@ -39,18 +39,18 @@ export async function strategy(
 ) {
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params_moonbeam.holders.__args.block = { number: snapshot };
+    params.holders.__args.block = { number: snapshot };
   }
 
   const score = {};
   let page = 0;
 
   while (page !== -1) {
-    params_moonbeam.holders.__args.skip = page * PAGE_SIZE;
+    params.holders.__args.skip = page * PAGE_SIZE;
 
     const result = await subgraphRequest(
       DPS_SUBGRAPH_URL_MOONBEAM[network],
-      params_moonbeam
+      params
     );
 
     if (result && result.holders) {
