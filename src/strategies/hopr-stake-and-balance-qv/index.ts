@@ -64,7 +64,7 @@ async function subgraphRequestsToVariousServices(
     // first try with hosted service
     return subgraphRequest(hostedSubgraphUrl, builtQuery);
   } catch (error) {
-    console.log('Failed to get data from hostedSubgraphUrl');
+    // console.log('Failed to get data from hostedSubgraphUrl');
   }
 
   // then try with studio dev service
@@ -72,7 +72,7 @@ async function subgraphRequestsToVariousServices(
     try {
       return subgraphRequest(stuidoDevSubgraphUrl, builtQuery);
     } catch (error) {
-      console.log('Failed to get data from stuidoDevSubgraphUrl');
+      // console.log('Failed to get data from stuidoDevSubgraphUrl');
     }
   }
 
@@ -81,7 +81,7 @@ async function subgraphRequestsToVariousServices(
     try {
       return subgraphRequest(studioProdSubgraphUrl, builtQuery);
     } catch (error) {
-      console.log('Failed to get data from studioProdSubgraphUrl');
+      // console.log('Failed to get data from studioProdSubgraphUrl');
     }
   }
   return null;
@@ -288,9 +288,9 @@ export async function strategy(
     block.timestamp,
     options.fallbackGnosisBlock
   );
-  console.log(
-    `Block on mainnet: ${block.number} and on Gnosis ${subgraphBlock}`
-  );
+  // console.log(
+  //   `Block on mainnet: ${block.number} and on Gnosis ${subgraphBlock}`
+  // );
 
   // trim addresses to sub of "QUERY_LIMIT" addresses.
   const addressSubsets = Array.apply(
