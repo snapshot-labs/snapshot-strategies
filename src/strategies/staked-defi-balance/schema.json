@@ -1,69 +1,51 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Staked Defi Balance",
-  "type": "object",
-  "properties": {
-    "tokenContractAddress": {
-      "type": "string",
-      "pattern": "^0x[a-fA-F0-9]{40}$"
-    },
-    "symbol": {
-      "type": "string"
-    },
-    "decimals": {
-      "type": "integer",
-      "minimum": 0
-    },
-    "minStakedBalance": {
-      "type": "string",
-      "pattern": "^[0-9]+$"
-    },
-    "stakingPoolContractAddress": {
-      "type": "string",
-      "pattern": "^0x[a-fA-F0-9]{40}$"
-    },
-    "methodABI": {
-      "type": "array",
-      "items": {
-        "type": "object",
-        "properties": {
-          "inputs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "internalType": { "type": "string" },
-                "name": { "type": "string" },
-                "type": { "type": "string" }
-              },
-              "required": ["internalType", "name", "type"]
-            }
+  "type": "array",
+  "items": {
+    "type": "object",
+    "properties": {
+      "tokenContractAddress": {
+        "type": "string",
+        "pattern": "^0x[a-fA-F0-9]{40}$"
+      },
+      "symbol": {
+        "type": "string"
+      },
+      "decimals": {
+        "type": "integer"
+      },
+      "minStakedBalance": {
+        "type": "string"
+      },
+      "stakingPoolContractAddress": {
+        "type": "string",
+        "pattern": "^0x[a-fA-F0-9]{40}$"
+      },
+      "stakingType": {
+        "oneOf": [
+          {
+            "type": "string",
+            "enum": [
+              "standard"
+            ]
           },
-          "name": { "type": "string" },
-          "outputs": {
-            "type": "array",
-            "items": {
-              "type": "object",
-              "properties": {
-                "internalType": { "type": "string" },
-                "name": { "type": "string" },
-                "type": { "type": "string" }
-              },
-              "required": ["internalType", "name", "type"]
-            }
-          },
-          "stateMutability": { "type": "string" },
-          "type": { "type": "string" }
-        },
-        "required": ["inputs", "name", "outputs", "stateMutability", "type"]
+          {
+            "type": "string",
+            "enum": [
+              "open"
+            ]
+          }
+        ]
       }
-    }
-  },
-  "required": [
-    "tokenContractAddress",
-    "decimals",
-    "minStakedBalance",
-    "stakingPoolContractAddress",
-    "methodABI"
-  ]
+    },
+    "required": [
+      "tokenContractAddress",
+      "symbol",
+      "decimals",
+      "minStakedBalance",
+      "stakingPoolContractAddress",
+      "stakingType"
+    ]
+  }
 }

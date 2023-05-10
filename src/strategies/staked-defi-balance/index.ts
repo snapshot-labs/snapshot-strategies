@@ -2,10 +2,13 @@
 
 import { formatUnits } from '@ethersproject/units';
 import { getAddress } from '@ethersproject/address';
-import { multicall } from '../../utils';
+import { multicall, getProvider } from '../../utils';
+import openStakingAbi from './ABI/openStakingABI.json';
+import standardStakingAbi from './ABI/standardStakingABI.json';
+import { ABI } from './types';
 
 export const author = 'taha-abbasi';
-export const version = '0.1.0';
+export const version = '1.2.6';
 
 export async function strategy(
   space,
@@ -15,40 +18,80 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const stakingPoolContractAddress = options.stakingPoolContractAddress;
-  const abi = options.methodABI;
-
-  const stakingCalls = addresses.map((address) => {
-    return [
-      stakingPoolContractAddress,
-      'stakeOf',
-      [options.tokenContractAddress, address]
-    ];
-  });
-
-  const stakes = await multicall(network, provider, abi, stakingCalls, {
-    blockTag
-  });
-
-  const stakesMapped = {};
-  for (let i = 0; i < addresses.length; i++) {
-    stakesMapped[getAddress(addresses[i])] = stakes[i][0];
+  const maxContractsPerStrategy = 5;
+  if (options.length > maxContractsPerStrategy) {
+    throw new Error(
+      'Maximum of 5 contracts allowed per strategy, see details: https://github.com/snapshot-labs/snapshot-strategies#code'
+    );
   }
+  const addressScores = {};
 
-  const addressScores = Object.fromEntries(
-    addresses.map((address) => {
+  for (const params of options) {
+    const paramNetwork = network.toString();
+    const paramSnapshot = typeof snapshot === 'number' ? snapshot : 'latest';
+
+    const stakingPoolContractAddress = params.stakingPoolContractAddress;
+    let abi: ABI;
+    switch (params.stakingType) {
+      case 'open':
+        abi = openStakingAbi[0] as ABI;
+        break;
+      case 'standard':
+        abi = standardStakingAbi[0] as ABI;
+        break;
+      default:
+        throw new Error(`Invalid stakingType: ${params.stakingType}`);
+    }
+
+    const stakingCalls = addresses.map((address) => {
+      const inputs = abi.inputs.map((input) => {
+        if (input.name === 'id') {
+          return params.tokenContractAddress;
+        } else if (input.name === 'staker' || input.name === 'account') {
+          return address;
+        }
+      });
+      return [stakingPoolContractAddress, abi.name, inputs];
+    });
+
+    const stakes = await multicall(
+      paramNetwork,
+      getProvider(paramNetwork),
+      [abi],
+      stakingCalls,
+      { blockTag: paramSnapshot }
+    );
+
+    const stakesMapped = {};
+    for (let i = 0; i < addresses.length; i++) {
+      stakesMapped[getAddress(addresses[i])] = stakes[i][0];
+    }
+
+    addresses.forEach((address) => {
       const normalizedAddress = getAddress(address);
       const stakedBalance = stakesMapped[normalizedAddress];
       const formattedStakedBalance = parseFloat(
-        formatUnits(stakedBalance, options.decimals)
+        formatUnits(stakedBalance, params.decimals)
       );
-      return [
-        normalizedAddress,
-        stakedBalance.gte(options.minStakedBalance) ? formattedStakedBalance : 0
-      ];
-    })
+
+      // Initialize address score if it doesn't exist
+      if (!addressScores[normalizedAddress]) {
+        addressScores[normalizedAddress] = 0;
+      }
+
+      addressScores[normalizedAddress] += formattedStakedBalance;
+    });
+  }
+
+  // Filter out addresses that have a total staked balance less than the minStakedBalance
+  const minStakedBalance = parseFloat(
+    formatUnits(options[0].minStakedBalance, options[0].decimals)
   );
+  Object.keys(addressScores).forEach((address) => {
+    if (addressScores[address] < minStakedBalance) {
+      delete addressScores[address];
+    }
+  });
 
   return addressScores;
 }
