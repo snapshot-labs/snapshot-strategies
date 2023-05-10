@@ -1,6 +1,6 @@
 [
   {
-    "name": "Example query",
+    "name": "Example voting based on hedgey vesting token with delegation and multiplier",
     "strategy": {
       "name": "hedgey-delegate",
       "params": {
