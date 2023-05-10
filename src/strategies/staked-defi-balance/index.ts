@@ -84,7 +84,11 @@ export async function strategy(
         addressScores[normalizedAddress] += formattedStakedBalance;
       });
     } catch (error) {
-      console.error('Error in multicall:', error);
+      if (error instanceof Error) {
+        throw new Error(`Error in multicall: ${error.message}`);
+      } else {
+        throw new Error(`Error in multicall: ${error}`);
+      }
     }
   }
 
