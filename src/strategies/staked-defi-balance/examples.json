@@ -3,16 +3,18 @@
         "name": "Staked Defi Balance",
         "strategy": {
             "name": "staked-defi-balance",
-            "params": [
-                {
-                    "tokenContractAddress": "0xaf329a957653675613D0D98f49fc93326AeB36Fc",
-                    "symbol": "cFRM",
-                    "decimals": 18,
-                    "minStakedBalance": "1000000000000000000",
-                    "stakingPoolContractAddress": "0x35e15ff9ebb37d8c7a413fd85bad515396dc8008",
-                    "stakingType": "open"
-                }
-            ]
+            "params": {
+                "minStakedBalance": "1",
+                "contracts": [
+                    {
+                        "tokenContractAddress": "0xaf329a957653675613D0D98f49fc93326AeB36Fc",
+                        "symbol": "cFRM",
+                        "decimals": 18,
+                        "stakingPoolContractAddress": "0x35e15ff9ebb37d8c7a413fd85bad515396dc8008",
+                        "stakingType": "open"
+                    }
+                ]
+            }
         },
         "network": "56",
         "addresses": [
