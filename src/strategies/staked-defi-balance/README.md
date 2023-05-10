@@ -36,3 +36,5 @@ Examples
 --------
 
 To use this strategy in your Snapshot configuration, you can refer to the following example:
+
+<img width="1036" alt="image" src="https://github.com/taha-abbasi/snapshot-strategies/assets/11986835/0c5598e4-5071-4134-b6dd-4dfcf708642a">
