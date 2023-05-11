@@ -8,7 +8,7 @@ import standardStakingAbi from './ABI/standardStakingABI.json';
 import { ABI } from './types';
 
 export const author = 'taha-abbasi';
-export const version = '1.2.6';
+export const version = '1.3.0';
 
 export async function strategy(
   space,
@@ -19,14 +19,12 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const maxContractsPerStrategy = 5;
-  if (options.length > maxContractsPerStrategy) {
-    throw new Error(
-      'Maximum of 5 contracts allowed per strategy, see details: https://github.com/snapshot-labs/snapshot-strategies#code'
-    );
+  if (options.contracts.length > maxContractsPerStrategy) {
+    throw new Error('Maximum of 5 contracts allowed per strategy, see details: https://github.com/snapshot-labs/snapshot-strategies#code');
   }
   const addressScores = {};
 
-  for (const params of options) {
+  for (const params of options.contracts) {
     const paramNetwork = network.toString();
     const paramSnapshot = typeof snapshot === 'number' ? snapshot : 'latest';
 
@@ -74,7 +72,6 @@ export async function strategy(
         formatUnits(stakedBalance, params.decimals)
       );
 
-      // Initialize address score if it doesn't exist
       if (!addressScores[normalizedAddress]) {
         addressScores[normalizedAddress] = 0;
       }
@@ -83,10 +80,8 @@ export async function strategy(
     });
   }
 
-  // Filter out addresses that have a total staked balance less than the minStakedBalance
-  const minStakedBalance = parseFloat(
-    formatUnits(options[0].minStakedBalance, options[0].decimals)
-  );
+  const minStakedBalance = parseFloat(options.minStakedBalance);
+
   Object.keys(addressScores).forEach((address) => {
     if (addressScores[address] < minStakedBalance) {
       delete addressScores[address];
