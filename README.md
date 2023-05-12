@@ -14,7 +14,7 @@ yarn
 yarn build
 ```
 
-### Test strategy with predefined tests
+### Test strategy with predefined tests (params from examples.json file)
 
 > Note: If you're writing a new strategy, make sure to add it to strategies/index.ts before testing*
 
@@ -26,6 +26,12 @@ yarn test --strategy=erc20-received
 yarn test --strategy=eth-balance
 # Test with more addresses from addresses.json
 yarn test --strategy=eth-balance --more=200
+```
+
+### Test validation with predefined tests (params from examples.json file)
+
+```
+yarn test:validation --validation=basic
 ```
 
 ### Test strategy with different parameters
