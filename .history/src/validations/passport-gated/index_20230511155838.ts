@@ -1,3 +1,59 @@
+// import snapshot from '@snapshot-labs/snapshot.js';
+// import Validation from '../validation';
+// import {
+//   getPassport,
+//   getVerifiedStamps,
+//   hasValidIssuanceAndExpiration
+// } from '../passport-weighted/helper';
+
+// export default class extends Validation {
+//   public id = 'passport-gated';
+//   public github = 'snapshot-labs';
+//   public version = '0.1.0';
+//   public title = 'Gitcoin Passport Gated';
+//   public description =
+//     'Protect your proposals from spam and vote manipulation by requiring users to have a Gitcoin Passport.';
+//   async validate(): Promise<boolean> {
+//     const requiredStamps = this.params.stamps;
+//     const passport: any = await getPassport(this.author);
+//     if (!passport) return false;
+//     if (!passport.stamps?.length || !requiredStamps?.length) return false;
+
+//     const verifiedStamps: any[] = await getVerifiedStamps(
+//       passport,
+//       this.author,
+//       requiredStamps.map((stamp) => ({
+//         id: stamp
+//       }))
+//     );
+//     if (!verifiedStamps.length) return false;
+
+//     const provider = snapshot.utils.getProvider(this.network);
+//     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
+
+//     const operator = this.params.operator;
+
+//     // check issuance and expiration
+//     const validStamps = verifiedStamps
+//       .filter((stamp) =>
+//         hasValidIssuanceAndExpiration(stamp.credential, proposalTs)
+//       )
+//       .map((stamp) => stamp.provider);
+
+//     // console.log('validStamps', validStamps);
+//     // console.log('requiredStamps', requiredStamps);
+//     // console.log('operator', operator);
+
+//     if (operator === 'AND') {
+//       return requiredStamps.every((stamp) => validStamps.includes(stamp));
+//     } else if (operator === 'OR') {
+//       return requiredStamps.some((stamp) => validStamps.includes(stamp));
+//     } else {
+//       return false;
+//     }
+//   }
+// }
+
 /**
  * @fileoverview Passport-gated validation strategy for Snapshot. 
  * This implementation integrates with the Gitcoin API to validate 
@@ -9,14 +65,14 @@
  * has a valid passport. With the Passport API, we can simply check if
  * the user has a valid passport by looking for a score.
  * 
- * * In this function, we are returning a boolean depending on a weighted
- * threshold score between 0-100 that indicates how likely it is that a
- * passport is owned by an honest user.
+ * In this function, we are returning a binary score (0 or 1) depending
+ * on wether the user's passport is flagged as a likely Sybil.
  * 
  */
 
 // TODO: Run code in Snapshot playground
 // TODO: Test API endpoints
+// TODO: Make new .env file that has a binary unique humanity score
 
 // QUESTION: Is this.author imply the users wallet already connected?
 
@@ -25,6 +81,8 @@
 import snapshot from '@snapshot-labs/snapshot.js';
 import fetch from 'cross-fetch';
 import Validation from '../validation';
+import dotenv from 'dotenv';
+dotenv.config({ path: '.env.local' });
 
 // these lines read the API key and scorer ID from the .env.local file
 const API_KEY = process.env.NEXT_PUBLIC_GC_API_KEY
@@ -35,13 +93,18 @@ const SIGNING_MESSAGE_URI = 'https://api.scorer.gitcoin.co/registry/signing-mess
 // endpoint for submitting passport
 const SUBMIT_PASSPORT_URI = 'https://api.scorer.gitcoin.co/registry/submit-passport'
 
-// score needed to be validated
-const THRESHOLD_NUMBER = 20
-
 const headers = API_KEY ? ({
   'Content-Type': 'application/json',
   'X-API-Key': API_KEY
 }) : undefined
+
+// global.d.ts
+declare global {
+  interface Window {
+    ethereum: any;
+  }
+}
+
 
 export default class extends Validation {
     public id = 'passport-gated';
@@ -70,12 +133,15 @@ export default class extends Validation {
         try {
           // call the API to get the signing message and the nonce
           const { message, nonce } = await this.getSigningMessage()
+          console.log(message, nonce);
+
+          // if (typeof window === 'undefined' || !window.ethereum) {
+          //   throw new Error('Wallet not connected');
+          // }
+      
+          //const provider = snapshot.utils.getProvider(this.network);
+          //const signer = await provider.getSigner()
           
-          const provider = snapshot.utils.getProvider(this.network);
-          const signer = await provider.getSigner()
-          // ask the user to sign the message
-          const signature = await signer.signMessage(message)
-          // QUESTION: is this how to get the address?
           const address = this.author;
     
           // call the API, sending the signing message, the signature, and the nonce
@@ -85,7 +151,7 @@ export default class extends Validation {
             body: JSON.stringify({
               address,
               scorer_id: SCORER_ID,
-              signature,
+              // signature,
               nonce
             })
           })
@@ -100,18 +166,31 @@ export default class extends Validation {
     /* check the user's passport for scoring and returns true if user has a score */
     async validate(currentAddress = this.author): Promise<boolean> {
         const GET_PASSPORT_SCORE_URI = `https://api.scorer.gitcoin.co/registry/score/${SCORER_ID}/${currentAddress}`
+        //await this.getSigningMessage();
+        //await this.submitPassport();
+
+        // Testing getSigningMessage
+        console.log('Testing getSigningMessage...');
+        const signingMessageResult = await this.getSigningMessage();
+        console.log('getSigningMessage result:', signingMessageResult);
+
+        // Testing submitPassport
+        console.log('Testing submitPassport...');
+        const submitPassportResult = await this.submitPassport();
+        console.log('submitPassport result:', submitPassportResult);
 
         try {
           const response = await fetch(GET_PASSPORT_SCORE_URI, {
             headers
           })
+          console.log(response)
           const passportData = await response.json()
+          console.log(passportData.score)
           if (passportData.score) {
-            // if the user has a score, round it and check if its >= threshold number
-            const roundedScore = Math.round(passportData.score * 100) / 100
-            return (roundedScore >= THRESHOLD_NUMBER);
+            // if the user has a score, they have a valid passport
+            return true;
           } else {
-            // if the user has no score, display a message letting them know to submit thier passport
+            // if the user has no score, display a message letting them know to submit their passport
             console.log('You do not have a valid Gitcoin Passport. Create one by visiting https://passport.gitcoin.co/ ')
             return false;
             }
@@ -119,6 +198,5 @@ export default class extends Validation {
           console.log('error: ', err)
           return false;
         }
-     return false;
     }
   }

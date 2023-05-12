@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Example of a passport gated validation",
+    "author": "0x475Eaa9b5386F2fD85D821CF72eec45FE7E4c09a",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "stamps": ["Ens", "Twitter", "Github", "POAP", "SnapshotVotesProvider"],
+      "operator": "OR"
+    }
+  }
+]
