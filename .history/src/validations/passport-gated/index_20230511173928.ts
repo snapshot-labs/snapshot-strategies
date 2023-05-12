@@ -4,7 +4,7 @@ import Validation from '../validation';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
-const API_KEY = process.env.NEXT_PUBLIC_GC_API_KEY 
+const API_KEY = process.env.NEXT_PUBLIC_GC_API_KEY || 
 const SCORER_ID = process.env.NEXT_PUBLIC_GC_SCORER_ID
 
 const SIGNING_MESSAGE_URI = 'https://api.scorer.gitcoin.co/registry/signing-message'
