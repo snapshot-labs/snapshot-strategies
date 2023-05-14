@@ -20,7 +20,9 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const maxContractsPerStrategy = 5;
   if (options.contracts.length > maxContractsPerStrategy) {
-    throw new Error('Maximum of 5 contracts allowed per strategy, see details: https://github.com/snapshot-labs/snapshot-strategies#code');
+    throw new Error(
+      'Maximum of 5 contracts allowed per strategy, see details: https://github.com/snapshot-labs/snapshot-strategies#code'
+    );
   }
   const addressScores = {};
 
