@@ -29,15 +29,11 @@
             "oneOf": [
               {
                 "type": "string",
-                "enum": [
-                  "standard"
-                ]
+                "enum": ["standard"]
               },
               {
                 "type": "string",
-                "enum": [
-                  "open"
-                ]
+                "enum": ["open"]
               }
             ]
           }
@@ -52,8 +48,5 @@
       }
     }
   },
-  "required": [
-    "minStakedBalance",
-    "contracts"
-  ]
+  "required": ["minStakedBalance", "contracts"]
 }
