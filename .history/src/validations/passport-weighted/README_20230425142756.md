@@ -1,1 +1,0 @@
-# Gitcoin passport weighted validation
