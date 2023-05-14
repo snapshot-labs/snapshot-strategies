@@ -6,3 +6,4 @@ dist
 .idea
 .vscode
 .env
+.history
