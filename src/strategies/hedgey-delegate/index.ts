@@ -6,31 +6,8 @@ export const author = 'hedgeyfinance';
 export const version = '1.0.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'delegate',
-        type: 'address'
-      },
-      {
-        internalType: 'address',
-        name: 'token',
-        type: 'address'
-      }
-    ],
-    name: 'delegatedBalances',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'delegatedBalance',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+  'function delegatedBalances(address delegate, address token) view returns (uint256 delegatedBalance)'
+]
 
 export async function strategy(
   space,
