@@ -12,13 +12,16 @@
           "examples": ["e.g. UNI"],
           "maxLength": 16
         },
-        "contract": {
-          "type": "string",
-          "title": "Hedgey Contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
+        "contracts": {
+          "type": "array",
+          "title": "Hedgey Contract addresses",
+          "items": {
+            "type": "string",
+            "examples": ["e.g. 0xCe7Ac66E78aAE01d899eb90b63D1f20bE2E9c4B1"],
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "minLength": 42,
+            "maxLength": 42
+          }
         },
         "token": {
           "type": "string",
@@ -39,7 +42,7 @@
           "examples": ["e.g. 1"]
         }
       },
-      "required": ["contract", "token", "decimals", "multiplier"],
+      "required": ["contracts", "token", "decimals", "multiplier"],
       "additionalProperties": false
     }
   }
