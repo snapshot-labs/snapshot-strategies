@@ -7,7 +7,7 @@ export const version = '1.0.0';
 
 const abi = [
   'function delegatedBalances(address delegate, address token) view returns (uint256 delegatedBalance)'
-]
+];
 
 export async function strategy(
   space,
@@ -20,12 +20,15 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
-  addresses.forEach((address) =>
-    multi.call(address, options.contract, 'delegatedBalances', [
-      address,
-      options.token
-    ])
-  );
+  options.contracts.forEach((contract) => {
+    addresses.forEach((address) =>
+      multi.call(address, contract, 'delegatedBalances', [
+        address,
+        options.token
+      ])
+    );
+  });
+
   const result: Record<string, BigNumberish> = await multi.execute();
 
   return Object.fromEntries(
