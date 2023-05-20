@@ -1,8 +1,8 @@
 [
   {
-    "name": "Nexon Army NFT Holders",
+    "name": "Eralend Army NFT Holders",
     "strategy": {
-      "name": "nexon-army-nft"
+      "name": "eralend-army-nft"
     },
     "network": "137",
     "addresses": [
