@@ -1,0 +1,66 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "cap-voting-power",
+      "params": {
+        "votingEscrowContractAddress": "0x3362A77AC77fF5098618F8C7CFB4eA27E738229f",
+        "decimals": 18,
+        "vestingAddresses": [
+          {
+            "address": "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+            "lockedTokens": 1000,
+            "cliffMonths": 12,
+            "vestingMonths": 24,
+            "startDateTimestamp": 1602033545,
+            "initialReleasePercentage": 0.25
+          },
+          {
+            "address": "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+            "lockedTokens": 2000,
+            "cliffMonths": 12,
+            "vestingMonths": 24,
+            "startDateTimestamp": 1602033545,
+            "initialReleasePercentage": 0.25
+          },
+          {
+            "address": "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+            "lockedTokens": 5000,
+            "cliffMonths": 12,
+            "vestingMonths": 24,
+            "startDateTimestamp": 1602033545,
+            "initialReleasePercentage": 0.25
+          },
+          {
+            "address": "0xC83df6FD76484938C10843fa37c7Cbba327c8eDC",
+            "lockedTokens": 10000,
+            "cliffMonths": 12,
+            "vestingMonths": 24,
+            "startDateTimestamp": 1602033545,
+            "initialReleasePercentage": 0.25
+          },
+          {
+            "address": "0x8E83aD3ecC12E2e2Df1021CDe01e53C9465D5883",
+            "lockedTokens": 20000,
+            "cliffMonths": 12,
+            "vestingMonths": 24,
+            "startDateTimestamp": 1602033545,
+            "initialReleasePercentage": 0.25
+          }
+        ],
+        "clampPercentage": 0.4
+      }
+    },
+    "network": "80001",
+    "addresses": [
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0xC83df6FD76484938C10843fa37c7Cbba327c8eDC",
+      "0x8E83aD3ecC12E2e2Df1021CDe01e53C9465D5883"
+    ],
+    "snapshot": 33129875
+  }
+]
