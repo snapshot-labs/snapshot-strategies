@@ -27,14 +27,14 @@ export async function getDelegatesBySpace(
     }
   };
   if (snapshot !== 'latest') {
-    params.delegations.__args.block = { number: snapshot };
+    params.delegations.__args.block = { number: Number(snapshot) };
   }
 
   while (true) {
     params.delegations.__args.skip = page * PAGE_SIZE;
 
     const pageResult = await subgraphRequest(
-      'https://api.thegraph.com/subgraphs/name/andyesp/multi-delegation',
+      'https://api.thegraph.com/subgraphs/name/1emu/multi-delegation-polygon',
       params
     );
     const pageDelegations = pageResult.delegations || [];
