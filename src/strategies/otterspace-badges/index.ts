@@ -9,7 +9,8 @@ const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
   '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli',
   '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-alpha',
   '420':
-    'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-goerli'
+    'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-goerli',
+  '137': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-polygon'
 };
 
 function fetchBadgesForRaft(
