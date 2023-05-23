@@ -12,7 +12,6 @@ export default class extends Validation {
     if (this.params.strategies?.length > 8)
       throw new Error(`Max number of strategies exceeded`);
     const minScore = this.params.minScore;
-    console.log(minScore);
 
     if (minScore) {
       const scores = await getScoresDirect(
