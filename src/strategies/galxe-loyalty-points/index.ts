@@ -38,7 +38,7 @@ export async function strategy(
       variables: {
         alias: parts[1],
         addresses: addresses,
-        snapshotId: typeof snapshot === 'number' ? snapshot : ''
+        snapshotId: options.snapshot_id
       }
     })
   };
