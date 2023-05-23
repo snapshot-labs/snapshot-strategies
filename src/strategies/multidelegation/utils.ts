@@ -56,14 +56,13 @@ export async function getMultiDelegations(
 }> {
   const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
 
-  const delegationsReverse: Record<string, Set<string>> = {};
-  delegatesBySpace.forEach(
-    (delegation) =>
-      (delegationsReverse[delegation.delegator] = new Set([
-        ...(delegationsReverse[delegation.delegator] || []),
-        delegation.delegate
-      ]))
-  );
+  const delegationsReverse = delegatesBySpace.reduce((accum, delegation) => {
+    accum[delegation.delegator] = new Set([
+      ...(accum[delegation.delegator] || []),
+      delegation.delegate
+    ]);
+    return accum;
+  }, {} as Record<string, Set<string>>);
 
   return Object.fromEntries(
     addresses.map((address) => [
