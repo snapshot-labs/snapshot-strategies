@@ -3,6 +3,7 @@ import path from 'path';
 
 import * as ecoVotingPower from './eco-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
+import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
@@ -222,6 +223,7 @@ import * as hoprStaking from './hopr-staking';
 import * as hoprStakingS2 from './hopr-staking-s2';
 import * as hoprStakingBySeason from './hopr-staking-by-season';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
+import * as hoprStakeAndBalanceQV from './hopr-stake-and-balance-qv';
 import * as lootCharacterGuilds from './loot-character-guilds';
 import * as swapr from './swapr';
 import * as cyberkongz from './cyberkongz';
@@ -343,6 +345,7 @@ import * as ethermon721 from './ethermon-erc721';
 import * as etherorcsComboBalanceOf from './etherorcs-combo-balanceof';
 import * as hedgey from './hedgey';
 import * as hedgeyMulti from './hedgey-multi';
+import * as hedgeyDelegate from './hedgey-delegate';
 import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
@@ -435,9 +438,14 @@ import * as izumiVeiZi from './izumi-veizi';
 import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as echelonWalletPrimeAndCachedKeyGated from './echelon-wallet-prime-and-cached-key-gated';
 import * as rdntCapitalVoting from './rdnt-capital-voting';
+import * as stakedDefiBalance from './staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
+import * as capVotingPower from './cap-voting-power';
+import * as zunamiPoolGaugeAggregatedBalanceOf from './zunami-pool-gauge-aggregated-balance-of';
+import * as erc721CollateralHeld from './erc721-collateral-held';
 
 const strategies = {
+  'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
@@ -465,6 +473,7 @@ const strategies = {
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
   'dps-nft-strategy': dpsNFTStrategy,
+  'dps-nft-strategy-nova': dpsNFTStrategyNova,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
@@ -665,6 +674,7 @@ const strategies = {
   'hopr-staking': hoprStaking,
   'hopr-staking-s2': hoprStakingS2,
   'hopr-staking-by-season': hoprStakingBySeason,
+  'hopr-stake-and-balance-qv': hoprStakeAndBalanceQV,
   'hopr-bridged-balance': hoprBridgedBalance,
   'occ-stake-of': occStakeOf,
   swapr,
@@ -786,6 +796,7 @@ const strategies = {
   'rowdy-roos': rowdyRoos,
   hedgey,
   'hedgey-multi': hedgeyMulti,
+  'hedgey-delegate': hedgeyDelegate,
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
@@ -878,7 +889,10 @@ const strategies = {
   'echelon-wallet-prime-and-cached-key-gated':
     echelonWalletPrimeAndCachedKeyGated,
   'rdnt-capital-voting': rdntCapitalVoting,
-  'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted
+  'staked-defi-balance': stakedDefiBalance,
+  'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
+  'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf,
+  'erc721-collateral-held': erc721CollateralHeld
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
