@@ -13,14 +13,17 @@ export default class extends Validation {
   public github = 'gzeoneth';
   public version = '0.1.0';
   public title = 'Arbitrum DAO Percentage of Votable Supply';
-  public description = 'Use with erc20-votes to validate by percentage of votable supply.';
+  public description =
+    'Use with erc20-votes to validate by percentage of votable supply.';
+  public proposalValidationOnly = true;
 
   async validate(): Promise<boolean> {
     if (this.params.strategies?.length > 8)
       throw new Error(`Max number of strategies exceeded`);
     const minBps = this.params.minBps;
     const decimals = this.params.decimals;
-    const excludeaddr = this.params.excludeaddr ?? '0x00000000000000000000000000000000000A4B86';
+    const excludeaddr =
+      this.params.excludeaddr ?? '0x00000000000000000000000000000000000A4B86';
 
     if (minBps) {
       const scores = await getScoresDirect(
@@ -46,8 +49,10 @@ export default class extends Validation {
         ],
         { blockTag: this.snapshot || 'latest' }
       );
-      const votableSupply = parseFloat(formatUnits(totalSupply.sub(excludedSupply).toString(), decimals))
-      const bpsOfVotable = totalScore * 10000 / votableSupply
+      const votableSupply = parseFloat(
+        formatUnits(totalSupply.sub(excludedSupply).toString(), decimals)
+      );
+      const bpsOfVotable = (totalScore * 10000) / votableSupply;
       if (bpsOfVotable < minBps) return false;
     }
 
