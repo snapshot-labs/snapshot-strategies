@@ -9,7 +9,7 @@
         "minScore": {
           "type": "number",
           "title": "Minimum score",
-          "minimum": 15
+          "minimum": 10
         },
         "stamps": {
           "type": "array",
