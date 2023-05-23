@@ -7,7 +7,7 @@
       "type": "object",
       "properties": {
         "minScore": {
-                    "type": "number",
+          "type": "number",
           "title": "Minimum score",
           "minimum": 15
         },
