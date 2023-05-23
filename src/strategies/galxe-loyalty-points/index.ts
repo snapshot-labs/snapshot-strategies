@@ -18,6 +18,7 @@ export async function strategy(
   if (parts.length < 2) {
     throw error('invalid galxe space url');
   }
+  if (options.snapshot_id) throw error('pass valid snapshot_id');
   const graphqlParams = {
     method: 'POST',
     headers: {
