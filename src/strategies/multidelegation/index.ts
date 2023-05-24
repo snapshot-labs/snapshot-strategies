@@ -1,38 +1,14 @@
-// @ts-nocheck
-import { getLegacyDelegations, getMultiDelegations } from './utils';
+import {
+  getLegacyDelegations,
+  getMultiDelegations,
+  mergeDelegations
+} from './utils';
 import { getSnapshots } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'dcl-DAO';
 export const version = '0.1.0';
 export const dependOnOtherAddress = true;
-
-function mergeDelegations(
-  legacyDelegations: Record<string, string>,
-  multiDelegations: Record<string, string[]>
-) {
-  const mergedDelegations: Record<string, string[]> = {};
-
-  const delegators = new Set([
-    ...Object.keys(legacyDelegations),
-    ...Object.keys(multiDelegations)
-  ]);
-
-  // Iterate over legacyDelegations
-  for (const delegator of delegators) {
-    const legacyDelegate = legacyDelegations[delegator];
-    const multiDelegates = multiDelegations[delegator];
-
-    // Check if multiDelegations has a list for the current address
-    if (!!multiDelegates && multiDelegates.length > 0) {
-      mergedDelegations[delegator] = multiDelegates;
-    } else {
-      mergedDelegations[delegator] = [legacyDelegate];
-    }
-  }
-
-  return mergedDelegations;
-}
 
 export async function strategy(
   space,

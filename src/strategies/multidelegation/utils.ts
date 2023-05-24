@@ -101,3 +101,30 @@ export async function getLegacyDelegations(
 
   return result;
 }
+
+// legacy and multi delegations are both objects with delegator as key and delegate(s) as value
+export function mergeDelegations(
+  legacyDelegations: Record<string, string>,
+  multiDelegations: Record<string, string[]>
+) {
+  const mergedDelegations: Record<string, string[]> = {};
+
+  const delegators = new Set([
+    ...Object.keys(legacyDelegations || {}),
+    ...Object.keys(multiDelegations || {})
+  ]);
+
+  for (const delegator of delegators) {
+    const legacyDelegate = legacyDelegations[delegator];
+    const multiDelegates = multiDelegations[delegator];
+
+    // Check if multiDelegations has a list for the current address
+    if (!!multiDelegates && multiDelegates.length > 0) {
+      mergedDelegations[delegator] = multiDelegates;
+    } else if (!!legacyDelegate) {
+      mergedDelegations[delegator] = [legacyDelegate];
+    }
+  }
+
+  return mergedDelegations;
+}
