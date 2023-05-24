@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "multiface-ss",
+      "params": {
+        "address": "0x337610d27c682E347C9cD60BD4b3b107C9d34dDd",
+        "symbol": "USDT",
+        "decimals": 18,
+        "url": "https://0db7-185-82-246-2.ngrok-free.app/api"
+      }
+    },
+    "network": "97",
+    "addresses": [
+        "0x25D424E50DAe77F6322a45f2783EA9C9c45a0bF9",
+        "0xB962dB5a9bcf1b84c5A2e192FbE15bf8D0b96784",
+        "0x7e7d1b070C4539373e930aF98D46e9DAdfcf655C",
+        "0x2Cb358bC561a7f03faEa5c95A61FDAD90DeB20a1",
+        "0x15335b5d845dC658ddFE07ee039291A1cCCD90f3"
+    ],
+    "snapshot": 11437846
+  }
+]
