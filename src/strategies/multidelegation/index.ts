@@ -46,13 +46,22 @@ export async function strategy(
     legacyDelegationsPromise,
     multiDelegationsPromise
   ]);
+  console.log('legacyDelegations', legacyDelegations);
+  console.log('multiDelegations', multiDelegations);
 
-  const isLegacyDelegationEmpty = Object.keys(legacyDelegations).length === 0;
-  const isMultiDelegationEmpty = Object.keys(multiDelegations).length === 0;
+  const isLegacyDelegationEmpty = legacyDelegations.size === 0;
+  const isMultiDelegationEmpty = multiDelegations.size === 0;
 
   if (isLegacyDelegationEmpty && isMultiDelegationEmpty) return {};
 
-  return mergeDelegations(legacyDelegations, multiDelegations);
+  const mergedDelegations = mergeDelegations(
+    legacyDelegations,
+    multiDelegations
+  );
+
+  console.log('mergedDelegations', mergedDelegations);
+
+  return mergedDelegations;
 
   // // TODO: check if getScoresDirect can be called with multiDelegations
   // const scores = (
