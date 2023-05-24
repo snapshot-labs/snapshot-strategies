@@ -51,51 +51,52 @@ export async function getMultiDelegations(
   network: string,
   addresses: string[],
   snapshot?: string
-): Promise<{
-  [k: string]: any;
-}> {
+): Promise<Map<string, string[]>> {
   const delegatesBySpace = await getPolygonDelegatesBySpace(
     network,
     space,
     snapshot
   );
 
-  const delegationsReverse = delegatesBySpace.reduce((accum, delegation) => {
+  return delegatesBySpace.reduce((accum, delegation) => {
     const delegator = getAddress(delegation.delegator);
-    accum[delegator] = [
-      ...(accum[delegator] || []),
-      getAddress(delegation.delegate)
-    ];
+    const delegate = getAddress(delegation.delegate);
+    const existingDelegates = accum.get(delegator) || [];
+    accum.set(delegator, [...existingDelegates, delegate]);
     return accum;
-  }, {} as Record<string, string[]>);
-
-  return delegationsReverse;
+  }, new Map<string, string[]>());
 }
 
 export async function getLegacyDelegations(
-  space,
-  network,
-  addresses,
-  snapshot
-) {
+  space: string,
+  network: string,
+  addresses: string[],
+  snapshot: string
+): Promise<Map<string, string>> {
   const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
-  const delegationsReverse = {};
-  delegatesBySpace.forEach(
-    (delegation: any) =>
-      (delegationsReverse[delegation.delegator] = delegation.delegate)
-  );
+  const delegationsReverse = new Map<string, string>();
+
+  delegatesBySpace.forEach((delegation: any) => {
+    const delegator = delegation.delegator.toLowerCase();
+    const delegate = delegation.delegate.toLowerCase();
+    delegationsReverse.set(delegator, delegate);
+  });
+
   delegatesBySpace
     .filter((delegation: any) => delegation.space !== '')
-    .forEach(
-      (delegation: any) =>
-        (delegationsReverse[delegation.delegator] = delegation.delegate)
-    );
+    .forEach((delegation: any) => {
+      const delegator = delegation.delegator.toLowerCase();
+      const delegate = delegation.delegate.toLowerCase();
+      delegationsReverse.set(delegator, delegate);
+    });
 
-  const result = {};
+  const result = new Map<string, string>();
   addresses.forEach((address) => {
     const addressLc = address.toLowerCase();
-    if (delegationsReverse[addressLc]) {
-      result[getAddress(addressLc)] = getAddress(delegationsReverse[addressLc]);
+    const delegate = delegationsReverse.get(addressLc);
+    if (!!delegate) {
+      const delegator = getAddress(addressLc);
+      result.set(delegator, getAddress(delegate));
     }
   });
 
@@ -104,25 +105,25 @@ export async function getLegacyDelegations(
 
 // legacy and multi delegations are both objects with delegator as key and delegate(s) as value
 export function mergeDelegations(
-  legacyDelegations: Record<string, string>,
-  multiDelegations: Record<string, string[]>
-) {
-  const mergedDelegations: Record<string, string[]> = {};
+  legacyDelegations: Map<string, string>,
+  multiDelegations: Map<string, string[]>
+): Map<string, string[]> {
+  const mergedDelegations: Map<string, string[]> = new Map();
 
   const delegators = new Set([
-    ...Object.keys(legacyDelegations || {}),
-    ...Object.keys(multiDelegations || {})
+    ...(legacyDelegations?.keys() || []),
+    ...(multiDelegations?.keys() || [])
   ]);
 
   for (const delegator of delegators) {
-    const legacyDelegate = legacyDelegations[delegator];
-    const multiDelegates = multiDelegations[delegator];
+    const legacyDelegate = legacyDelegations.get(delegator);
+    const multiDelegates = multiDelegations.get(delegator);
 
     // Check if multiDelegations has a list for the current address
-    if (!!multiDelegates && multiDelegates.length > 0) {
-      mergedDelegations[delegator] = multiDelegates;
-    } else if (!!legacyDelegate) {
-      mergedDelegations[delegator] = [legacyDelegate];
+    if (multiDelegates && multiDelegates.length > 0) {
+      mergedDelegations.set(delegator, multiDelegates);
+    } else if (legacyDelegate) {
+      mergedDelegations.set(delegator, [legacyDelegate]);
     }
   }
 
