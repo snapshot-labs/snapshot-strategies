@@ -1,9 +1,11 @@
 import {
+  getDelegateScore,
   getLegacyDelegations,
   getMultiDelegations,
-  mergeDelegations
+  mergeDelegations,
+  reverseDelegations
 } from './utils';
-import { getSnapshots } from '../../utils';
+import { getScoresDirect, getSnapshots } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'dcl-DAO';
@@ -61,33 +63,34 @@ export async function strategy(
 
   console.log('mergedDelegations', mergedDelegations);
 
-  return mergedDelegations;
+  const reversedDelegations = reverseDelegations(mergedDelegations);
+  console.log('reversedDelegations', reversedDelegations);
 
-  // // TODO: check if getScoresDirect can be called with multiDelegations
-  // const scores = (
-  //   await getScoresDirect(
-  //     space,
-  //     options.strategies,
-  //     network,
-  //     provider,
-  //     Object.values(multiDelegations).reduce((a: string[], b: string[]) =>
-  //       a.concat(b)
-  //     ),
-  //     snapshot
-  //   )
-  // ).filter((score) => Object.keys(score).length !== 0);
-  //
-  // return Object.fromEntries(
-  //   addresses.map((address) => {
-  //     const addressScore =
-  //       legacyDelegations[address] ||
-  //       (multiDelegations[address]
-  //         ? multiDelegations[address].reduce(
-  //             (a, b) => a + scores.reduce((x, y) => (y[b] ? x + y[b] : x), 0),
-  //             0
-  //           )
-  //         : 0);
-  //     return [address, addressScore];
-  //   })
-  // );
+  const delegationAddresses = Array.from(reversedDelegations.values()).reduce(
+    (accumulator, addresses) => accumulator.concat(addresses),
+    []
+  );
+
+  const scores = (
+    await getScoresDirect(
+      space,
+      options.strategies,
+      network,
+      provider,
+      delegationAddresses,
+      snapshot
+    )
+  ).filter((score) => Object.keys(score).length !== 0);
+
+  console.log('scores', scores);
+
+  return Object.fromEntries(
+    addresses.map((delegate) => {
+      const delegations = reversedDelegations.get(delegate);
+      const delegateScore = delegations
+        ? getDelegateScore(delegations, scores)
+        : 0;
+      return [delegate, delegateScore];
+    })
+  );
 }

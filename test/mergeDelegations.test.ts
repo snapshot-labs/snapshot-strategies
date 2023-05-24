@@ -109,7 +109,6 @@ describe('when legacyDelegations or multiDelegations is null or undefined', () =
   });
 });
 
-// Test when a multiDelegation has an empty array and has a common key with legacyDelegations
 describe('when a multiDelegation has an empty array and has a common key with legacyDelegations', () => {
   it('returns merged delegations', () => {
     const legacyDelegations = new Map([
@@ -134,7 +133,6 @@ describe('when a multiDelegation has an empty array and has a common key with le
   });
 });
 
-// Test when a multiDelegation has an empty array and has no common key with legacyDelegations
 describe('when a multiDelegation has an empty array and has no common key with legacyDelegations', () => {
   it('returns merged delegations', () => {
     const legacyDelegations = new Map([

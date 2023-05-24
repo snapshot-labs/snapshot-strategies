@@ -133,7 +133,7 @@ const SNAPSHOT = 'snapshot1';
 // }
 
 test('pruebita', async () => {
-  const SNAPSHOT = 17316799;
+  const SNAPSHOT = 'latest';
   const NETWORK = '1';
   const PROVIDER = snapshot.utils.getProvider(NETWORK);
   const SPACE = '1emu.eth';

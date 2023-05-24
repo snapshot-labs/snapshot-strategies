@@ -119,7 +119,6 @@ export function mergeDelegations(
     const legacyDelegate = legacyDelegations.get(delegator);
     const multiDelegates = multiDelegations.get(delegator);
 
-    // Check if multiDelegations has a list for the current address
     if (multiDelegates && multiDelegates.length > 0) {
       mergedDelegations.set(delegator, multiDelegates);
     } else if (legacyDelegate) {
@@ -128,4 +127,43 @@ export function mergeDelegations(
   }
 
   return mergedDelegations;
+}
+
+// delegations is an object with delegator as key and delegate(s) as value
+export function reverseDelegations(delegations: Map<string, string[]>) {
+  const invertedDelegations = new Map<string, string[]>();
+
+  for (const [delegator, delegates] of delegations) {
+    for (const delegate of delegates) {
+      if (invertedDelegations.has(delegate)) {
+        invertedDelegations.get(delegate)?.push(delegator);
+      } else {
+        invertedDelegations.set(delegate, [delegator]);
+      }
+    }
+  }
+
+  return invertedDelegations;
+}
+
+export function getDelegatorScores(
+  scores: Record<string, number>[],
+  delegatorAddress: string
+) {
+  return scores.reduce((strategiesAcumScore, strategyScores) => {
+    return strategyScores[delegatorAddress] !== undefined
+      ? strategiesAcumScore + strategyScores[delegatorAddress]
+      : strategiesAcumScore;
+  }, 0);
+}
+
+export function getDelegateScore(
+  delegations: string[],
+  scores: Record<string, number>[]
+) {
+  return delegations.reduce(
+    (delegationsAcumScore, delegatorAddress) =>
+      delegationsAcumScore + getDelegatorScores(scores, delegatorAddress),
+    0
+  );
 }
