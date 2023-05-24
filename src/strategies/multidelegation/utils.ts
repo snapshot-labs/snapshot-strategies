@@ -1,7 +1,7 @@
 import { getAddress } from '@ethersproject/address';
-import { subgraphRequest } from '../../utils';
+import { getDelegatesBySpace, subgraphRequest } from '../../utils';
 
-export async function getDelegatesBySpace(
+export async function getPolygonDelegatesBySpace(
   network: string,
   space: string,
   snapshot = 'latest'
@@ -54,22 +54,50 @@ export async function getMultiDelegations(
 ): Promise<{
   [k: string]: any;
 }> {
-  const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
+  const delegatesBySpace = await getPolygonDelegatesBySpace(
+    network,
+    space,
+    snapshot
+  );
 
   const delegationsReverse = delegatesBySpace.reduce((accum, delegation) => {
-    accum[delegation.delegator] = new Set([
-      ...(accum[delegation.delegator] || []),
-      delegation.delegate
-    ]);
+    const delegator = getAddress(delegation.delegator);
+    accum[delegator] = [
+      ...(accum[delegator] || []),
+      getAddress(delegation.delegate)
+    ];
     return accum;
-  }, {} as Record<string, Set<string>>);
+  }, {} as Record<string, string[]>);
 
-  return Object.fromEntries(
-    addresses.map((address) => [
-      address.toLowerCase(),
-      Object.entries(delegationsReverse)
-        .filter(([, delegates]) => delegates.has(address.toLowerCase()))
-        .map(([delegator]) => getAddress(delegator))
-    ])
+  return delegationsReverse;
+}
+
+export async function getLegacyDelegations(
+  space,
+  network,
+  addresses,
+  snapshot
+) {
+  const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
+  const delegationsReverse = {};
+  delegatesBySpace.forEach(
+    (delegation: any) =>
+      (delegationsReverse[delegation.delegator] = delegation.delegate)
   );
+  delegatesBySpace
+    .filter((delegation: any) => delegation.space !== '')
+    .forEach(
+      (delegation: any) =>
+        (delegationsReverse[delegation.delegator] = delegation.delegate)
+    );
+
+  const result = {};
+  addresses.forEach((address) => {
+    const addressLc = address.toLowerCase();
+    if (delegationsReverse[addressLc]) {
+      result[getAddress(addressLc)] = getAddress(delegationsReverse[addressLc]);
+    }
+  });
+
+  return result;
 }

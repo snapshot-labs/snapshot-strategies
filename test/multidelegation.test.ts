@@ -319,7 +319,9 @@ test('pruebita', async () => {
   const ADDRESSES = [
     '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
     '0x549A9021661a85B6BC51c07B3A451135848d0048',
-    '0x30b1f4bd5476906f38385b891f2c09973196b742'
+    '0x30b1f4bd5476906f38385b891f2c09973196b742',
+    '0x511a22cDd2c4eE8357bB02df2578037Ffe8a4d8d',
+    '0xb0F847e61C502Fb82D758C515b3F914de42831D5'
   ];
 
   // [{address1: vp, address2: score}, {address1: 0}]
@@ -333,5 +335,5 @@ test('pruebita', async () => {
     SNAPSHOT
   );
 
-  console.log('result', result);
+  console.log('result', JSON.stringify(result));
 });

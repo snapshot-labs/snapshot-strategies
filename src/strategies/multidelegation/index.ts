@@ -1,25 +1,37 @@
 // @ts-nocheck
-import { getMultiDelegations } from './utils';
-import { getDelegations } from '../../utils/delegation';
-import fetch from 'cross-fetch';
+import { getLegacyDelegations, getMultiDelegations } from './utils';
+import { getSnapshots } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'dcl-DAO';
 export const version = '0.1.0';
 export const dependOnOtherAddress = true;
 
-async function getPolygonBlockNumber(snapshot) {
-  const result = await fetch(
-    `https://api.etherscan.io/api?module=block&action=getblockreward&blockno=${snapshot}`
-  );
+function mergeDelegations(
+  legacyDelegations: Record<string, string>,
+  multiDelegations: Record<string, string[]>
+) {
+  const mergedDelegations: Record<string, string[]> = {};
 
-  const fullResult = await result.json();
-  const timestamp = fullResult.result.timeStamp;
-  const anotherResult = await fetch(
-    `https://api-testnet.polygonscan.com/api?module=block&action=getblocknobytime&timestamp=${timestamp}&closest=before`
-  );
+  const delegators = new Set([
+    ...Object.keys(legacyDelegations),
+    ...Object.keys(multiDelegations)
+  ]);
 
-  const anotherFullResult = await anotherResult.json();
-  return anotherFullResult.result;
+  // Iterate over legacyDelegations
+  for (const delegator of delegators) {
+    const legacyDelegate = legacyDelegations[delegator];
+    const multiDelegates = multiDelegations[delegator];
+
+    // Check if multiDelegations has a list for the current address
+    if (!!multiDelegates && multiDelegates.length > 0) {
+      mergedDelegations[delegator] = multiDelegates;
+    } else {
+      mergedDelegations[delegator] = [legacyDelegate];
+    }
+  }
+
+  return mergedDelegations;
 }
 
 export async function strategy(
@@ -31,20 +43,26 @@ export async function strategy(
   snapshot
 ) {
   const delegationSpace = options.delegationSpace || space;
-
+  const checksummedAddresses = addresses.map(getAddress);
   // Retro compatibility with the legacy delegation strategy
-  const legacyDelegationsPromise = getDelegations(
-    'lemu.dcl.eth',
-    1,
-    addresses,
+  const legacyDelegationsPromise = getLegacyDelegations(
+    'snapshot.dcl.eth',
+    network,
+    checksummedAddresses,
     snapshot
   );
 
-  const polygonBlockNumber = await getPolygonBlockNumber(snapshot);
+  const polygonChainId = '80001';
+  const blocks = await getSnapshots(network, snapshot, provider, [
+    polygonChainId
+  ]);
+
+  const polygonBlockNumber = blocks[polygonChainId];
+
   const multiDelegationsPromise = getMultiDelegations(
     delegationSpace,
     network,
-    addresses,
+    checksummedAddresses,
     polygonBlockNumber
   );
 
@@ -58,7 +76,7 @@ export async function strategy(
 
   if (isLegacyDelegationEmpty && isMultiDelegationEmpty) return {};
 
-  return [legacyDelegations, multiDelegations];
+  return mergeDelegations(legacyDelegations, multiDelegations);
 
   // // TODO: check if getScoresDirect can be called with multiDelegations
   // const scores = (
