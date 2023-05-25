@@ -3,8 +3,8 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import fetch from 'cross-fetch';
 
-export const author = 'tzhak';
-export const version = '0.0.1';
+export const author = 'zhakt';
+export const version = '0.0.2';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)'
@@ -21,7 +21,8 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
-  const url = `${options.url}?block=${snapshot}`;
+  const url = new URL(options.url);
+  url.searchParams.set('block', snapshot);
 
   const res = await fetch(url, {
     method: 'GET',
@@ -30,6 +31,11 @@ export async function strategy(
       'Content-Type': 'application/json'
     }
   });
+
+  if (res.status !== 200) {
+    throw new Error('Ошибка при выполнении запроса');
+  }
+
   const addressList = await res.json();
 
   const addressListObjects: { address: string; balance: number }[] =
@@ -43,9 +49,9 @@ export async function strategy(
     await multi.execute();
 
   const addressObject = addressListObjects.reduce(
-    (a: any, v: any) => ({
-      ...a,
-      ...v
+    (accumulator: any, currentValue: any) => ({
+      ...accumulator,
+      ...currentValue
     }),
     {}
   );
