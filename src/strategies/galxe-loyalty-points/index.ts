@@ -39,7 +39,7 @@ export async function strategy(
       variables: {
         alias: parts[1],
         addresses: addresses,
-        snapshotId: options.snapshot_id
+        snapshotId: options.snapshot_id ? options.snapshot_id : (typeof snapshot === 'number' ? snapshot : '')
       }
     })
   };
