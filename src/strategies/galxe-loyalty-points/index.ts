@@ -11,7 +11,8 @@ export async function strategy(
   network,
   provider,
   addresses,
-  options
+  options,
+  snapshot
 ) {
   const url = new URL(options.space_url);
   const parts = url.pathname.split('/');
