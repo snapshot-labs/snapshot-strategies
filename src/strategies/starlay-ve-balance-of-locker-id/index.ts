@@ -6,45 +6,9 @@ export const author = 'wolfwarrier14';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'ownerToId',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  },
-  {
-    inputs: [
-      {
-        internalType: 'uint256',
-        name: '_lockerId',
-        type: 'uint256'
-      }
-    ],
-    name: 'balanceOfLockerId',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: '',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
-];
+  'function ownerToId(address) view returns (uint256)',
+  'function balanceOfLockerId(uint256 _lockerId) view returns (uint256)'
+]
 
 export async function strategy(
   space,
