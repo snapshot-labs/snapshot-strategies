@@ -444,6 +444,7 @@ import * as capVotingPower from './cap-voting-power';
 import * as zunamiPoolGaugeAggregatedBalanceOf from './zunami-pool-gauge-aggregated-balance-of';
 import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as multifaceSS from './multiface-ss';
+import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -894,7 +895,8 @@ const strategies = {
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
   'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf,
   'erc721-collateral-held': erc721CollateralHeld,
-  'multiface-ss': multifaceSS
+  'multiface-ss': multifaceSS,
+  'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
