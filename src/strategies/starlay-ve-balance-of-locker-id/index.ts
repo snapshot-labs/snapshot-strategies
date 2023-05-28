@@ -8,7 +8,7 @@ export const version = '0.1.0';
 const abi = [
   'function ownerToId(address) view returns (uint256)',
   'function balanceOfLockerId(uint256 _lockerId) view returns (uint256)'
-]
+];
 
 export async function strategy(
   space,
