@@ -38,16 +38,18 @@ export async function getDelegations(space, network, addresses, snapshot) {
 }
 
 export async function getDelegationsData(space, network, addresses, snapshot) {
-  const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
-
   const cacheKey = `${space}-${network}-${snapshot}`;
-  const cacheEntry = DELEGATION_DATA_CACHE[cacheKey];
-
-  let delegationsReverse =
-    cacheEntry && cacheEntry.expireAt > Date.now() ? cacheEntry.data : null;
+  let delegationsReverse = DELEGATION_DATA_CACHE[cacheKey];
 
   if (!delegationsReverse) {
     delegationsReverse = {};
+
+    const delegatesBySpace = await getDelegatesBySpace(
+      network,
+      space,
+      snapshot
+    );
+
     delegatesBySpace.forEach((delegation: any) => {
       delegationsReverse[delegation.delegator] = {
         delegate: delegation.delegate,
@@ -57,12 +59,10 @@ export async function getDelegationsData(space, network, addresses, snapshot) {
       };
     });
 
-    if (space === 'stgdao.eth') {
+    if (space === 'stgdao.eth' && snapshot !== 'latest') {
+      // TODO: implement LRU so memory doesn't explode
       // we only cache stgdao for now
-      DELEGATION_DATA_CACHE[cacheKey] = {
-        data: delegationsReverse,
-        expireAt: Date.now() + 1000 * 60 * 5 // 5 minutes
-      };
+      DELEGATION_DATA_CACHE[cacheKey] = delegationsReverse;
     }
   }
 
