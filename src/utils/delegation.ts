@@ -37,6 +37,15 @@ export async function getDelegations(space, network, addresses, snapshot) {
   );
 }
 
+function getDelegationReverseData(delegation) {
+  return {
+    delegate: delegation.delegate,
+    delegateAddress: getAddress(delegation.delegate),
+    delegator: delegation.delegator,
+    delegatorAddress: getAddress(delegation.delegator)
+  };
+}
+
 export async function getDelegationsData(space, network, addresses, snapshot) {
   const cacheKey = `${space}-${network}-${snapshot}`;
   let delegationsReverse = DELEGATION_DATA_CACHE[cacheKey];
@@ -50,14 +59,12 @@ export async function getDelegationsData(space, network, addresses, snapshot) {
       snapshot
     );
 
-    delegatesBySpace.forEach((delegation: any) => {
-      delegationsReverse[delegation.delegator] = {
-        delegate: delegation.delegate,
-        delegateAddress: getAddress(delegation.delegate),
-        delegator: delegation.delegator,
-        delegatorAddress: getAddress(delegation.delegator)
-      };
-    });
+    delegatesBySpace.forEach((delegation: any) =>
+      getDelegationReverseData(delegation)
+    );
+    delegatesBySpace
+      .filter((delegation: any) => delegation.space !== '')
+      .forEach((delegation: any) => getDelegationReverseData(delegation));
 
     if (space === 'stgdao.eth' && snapshot !== 'latest') {
       // TODO: implement LRU so memory doesn't explode
