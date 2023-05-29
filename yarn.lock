@@ -1163,7 +1163,7 @@
   dependencies:
     "@sinonjs/commons" "^1.7.0"
 
-"@snapshot-labs/snapshot.js@^0.4.89":
+"@snapshot-labs/snapshot.js@^0.4.88":
   version "0.4.89"
   resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.4.89.tgz#533b6d99ec90f889470821b6f6b755eca830b069"
   integrity sha512-O2slv4S0fvtzz1ajuD+oOSY5RvkNLmHvAW7huxlzfgMhrNnM35Blgp8Uw1rLhkIwtF0GrhPn/m1VZninchPIYQ==
