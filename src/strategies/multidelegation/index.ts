@@ -22,6 +22,7 @@ export async function strategy(
 ) {
   const delegationSpace = options.delegationSpace || space;
   const checksummedAddresses = addresses.map(getAddress);
+
   // Retro compatibility with the legacy delegation strategy
   const legacyDelegationsPromise = getLegacyDelegations(
     'snapshot.dcl.eth',
@@ -34,7 +35,6 @@ export async function strategy(
   const blocks = await getSnapshots(network, snapshot, provider, [
     polygonChainId
   ]);
-
   const polygonBlockNumber = blocks[polygonChainId];
 
   const multiDelegationsPromise = getMultiDelegations(
@@ -47,15 +47,13 @@ export async function strategy(
     legacyDelegationsPromise,
     multiDelegationsPromise
   ]);
-  console.log('legacyDelegations', legacyDelegations);
-  console.log('multiDelegations', multiDelegations);
 
   const isLegacyDelegationEmpty = legacyDelegations.size === 0;
   const isMultiDelegationEmpty = multiDelegations.size === 0;
 
   if (isLegacyDelegationEmpty && isMultiDelegationEmpty) {
     return Object.fromEntries(
-      addresses.map((address) => [getAddress(address), 0])
+      checksummedAddresses.map((address) => [address, 0])
     );
   }
 
@@ -63,11 +61,7 @@ export async function strategy(
     legacyDelegations,
     multiDelegations
   );
-
-  console.log('mergedDelegations', mergedDelegations);
-
   const reversedDelegations = reverseDelegations(mergedDelegations);
-  console.log('reversedDelegations', reversedDelegations);
 
   const delegationAddresses = Array.from(reversedDelegations.values()).reduce(
     (accumulator, addresses) => accumulator.concat(addresses),
@@ -85,10 +79,8 @@ export async function strategy(
     )
   ).filter((score) => Object.keys(score).length !== 0);
 
-  console.log('scores', scores);
-
   return Object.fromEntries(
-    addresses.map((delegate) => {
+    checksummedAddresses.map((delegate) => {
       const delegations = reversedDelegations.get(delegate);
       const delegateScore = delegations
         ? getDelegateScore(delegations, scores)
