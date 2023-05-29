@@ -40,7 +40,6 @@ export async function strategy(
   const multiDelegationsPromise = getMultiDelegations(
     delegationSpace,
     network,
-    checksummedAddresses,
     polygonBlockNumber
   );
 
@@ -54,7 +53,11 @@ export async function strategy(
   const isLegacyDelegationEmpty = legacyDelegations.size === 0;
   const isMultiDelegationEmpty = multiDelegations.size === 0;
 
-  if (isLegacyDelegationEmpty && isMultiDelegationEmpty) return {};
+  if (isLegacyDelegationEmpty && isMultiDelegationEmpty) {
+    return Object.fromEntries(
+      addresses.map((address) => [getAddress(address), 0])
+    );
+  }
 
   const mergedDelegations = mergeDelegations(
     legacyDelegations,

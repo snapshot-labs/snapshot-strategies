@@ -49,7 +49,6 @@ export async function getPolygonDelegatesBySpace(
 export async function getMultiDelegations(
   space: string,
   network: string,
-  addresses: string[],
   snapshot?: string
 ): Promise<Map<string, string[]>> {
   const delegatesBySpace = await getPolygonDelegatesBySpace(
