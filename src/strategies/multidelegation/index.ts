@@ -26,7 +26,7 @@ export async function strategy(
 
   // Retro compatibility with the legacy delegation strategy
   const legacyDelegationsPromise = getLegacyDelegations(
-    'snapshot.dcl.eth',
+    delegationSpace,
     network,
     checksummedAddresses,
     snapshot

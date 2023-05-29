@@ -8,7 +8,7 @@ import { getAddress } from '@ethersproject/address';
 const SNAPSHOT = 'latest';
 const NETWORK = '1';
 const PROVIDER = snapshot.utils.getProvider(NETWORK);
-const SPACE = '1emu.eth';
+const SPACE = 'some.space.eth';
 const OPTIONS = {
   strategies: [
     {
