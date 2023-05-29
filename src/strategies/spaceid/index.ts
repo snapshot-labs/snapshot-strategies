@@ -5,7 +5,7 @@ import { WeiPerEther } from '@ethersproject/constants';
 import { getScoresDirect } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'Marcus';
+export const author = 'SID-Marcus';
 export const version = '0.0.1';
 
 const SPACE_NAME = 'dao.spaceid.eth';
