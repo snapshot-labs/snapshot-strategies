@@ -1,8 +1,11 @@
 import { getAddress } from '@ethersproject/address';
-import { getDelegatesBySpace, subgraphRequest } from '../../utils';
+import {
+  getDelegatesBySpace,
+  getSnapshots,
+  subgraphRequest
+} from '../../utils';
 
 export async function getPolygonDelegatesBySpace(
-  network: string,
   space: string,
   snapshot = 'latest'
 ) {
@@ -51,11 +54,7 @@ export async function getMultiDelegations(
   network: string,
   snapshot?: string
 ): Promise<Map<string, string[]>> {
-  const delegatesBySpace = await getPolygonDelegatesBySpace(
-    network,
-    space,
-    snapshot
-  );
+  const delegatesBySpace = await getPolygonDelegatesBySpace(space, snapshot);
 
   return delegatesBySpace.reduce((accum, delegation) => {
     const delegator = getAddress(delegation.delegator);
@@ -164,5 +163,49 @@ export function getDelegateScore(
     (delegationsAcumScore, delegatorAddress) =>
       delegationsAcumScore + getDelegatorScores(scores, delegatorAddress),
     0
+  );
+}
+
+export function getAddressTotalDelegatedScore(
+  delegate,
+  reversedDelegations: Map<string, string[]>,
+  scores
+) {
+  const delegations = reversedDelegations.get(delegate);
+  const delegateScore = delegations ? getDelegateScore(delegations, scores) : 0;
+  return [delegate, delegateScore];
+}
+
+export async function getPolygonBlockNumber(network, snapshot, provider) {
+  const polygonChainId = '80001';
+  const blocks = await getSnapshots(network, snapshot, provider, [
+    polygonChainId
+  ]);
+  return blocks[polygonChainId];
+}
+
+export async function getPolygonMultiDelegations(
+  network,
+  snapshot,
+  provider,
+  delegationSpace
+) {
+  const polygonBlockNumber = await getPolygonBlockNumber(
+    network,
+    snapshot,
+    provider
+  );
+
+  return getMultiDelegations(delegationSpace, network, polygonBlockNumber);
+}
+
+export function getDelegationAddresses(
+  reversedDelegations: Map<string, string[]>
+) {
+  return Array.from(
+    Array.from(reversedDelegations.values()).reduce(
+      (accumulator, addresses) => new Set([...accumulator, ...addresses]),
+      new Set<string>()
+    )
   );
 }

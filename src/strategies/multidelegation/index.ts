@@ -1,11 +1,12 @@
 import {
-  getDelegateScore,
+  getAddressTotalDelegatedScore,
+  getDelegationAddresses,
   getLegacyDelegations,
-  getMultiDelegations,
+  getPolygonMultiDelegations,
   mergeDelegations,
   reverseDelegations
 } from './utils';
-import { getScoresDirect, getSnapshots } from '../../utils';
+import { getScoresDirect } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'dcl-DAO';
@@ -30,17 +31,11 @@ export async function strategy(
     checksummedAddresses,
     snapshot
   );
-
-  const polygonChainId = '80001';
-  const blocks = await getSnapshots(network, snapshot, provider, [
-    polygonChainId
-  ]);
-  const polygonBlockNumber = blocks[polygonChainId];
-
-  const multiDelegationsPromise = getMultiDelegations(
-    delegationSpace,
+  const multiDelegationsPromise = getPolygonMultiDelegations(
     network,
-    polygonBlockNumber
+    snapshot,
+    provider,
+    delegationSpace
   );
 
   const [legacyDelegations, multiDelegations] = await Promise.all([
@@ -62,11 +57,7 @@ export async function strategy(
     multiDelegations
   );
   const reversedDelegations = reverseDelegations(mergedDelegations);
-
-  const delegationAddresses = Array.from(reversedDelegations.values()).reduce(
-    (accumulator, addresses) => accumulator.concat(addresses),
-    []
-  );
+  const delegationAddresses = getDelegationAddresses(reversedDelegations);
 
   const scores = (
     await getScoresDirect(
@@ -81,11 +72,11 @@ export async function strategy(
 
   return Object.fromEntries(
     checksummedAddresses.map((delegate) => {
-      const delegations = reversedDelegations.get(delegate);
-      const delegateScore = delegations
-        ? getDelegateScore(delegations, scores)
-        : 0;
-      return [delegate, delegateScore];
+      return getAddressTotalDelegatedScore(
+        delegate,
+        reversedDelegations,
+        scores
+      );
     })
   );
 }

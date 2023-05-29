@@ -1,7 +1,7 @@
-// @ts-nocheck
 import { strategy } from '../src/strategies/multidelegation';
 import * as utils from '../src/utils';
-import * as multidelegationUtils from '../src/strategies/multidelegation/utils';
+import * as multiDelegationUtils from '../src/strategies/multidelegation/utils';
+import { getDelegationAddresses } from '../src/strategies/multidelegation/utils';
 import snapshot from '../src';
 import { getAddress } from '@ethersproject/address';
 
@@ -120,15 +120,15 @@ const DELEGATOR_SCORE = OPTIONS.strategies.length * SCORE_PER_STRATEGY;
 
 function mockGetLegacyDelegations(result: string[][]) {
   return jest
-    .spyOn(multidelegationUtils, 'getLegacyDelegations')
+    .spyOn(multiDelegationUtils, 'getLegacyDelegations')
     .mockResolvedValue(
       new Map(result.map((array) => [getAddress(array[0]), array[1]]))
     );
 }
 
-function mockGetMultiDelegations(result: string[][]) {
+function mockGetMultiDelegations(result: [string, string[]][]) {
   return jest
-    .spyOn(multidelegationUtils, 'getMultiDelegations')
+    .spyOn(multiDelegationUtils, 'getMultiDelegations')
     .mockResolvedValue(
       new Map(result.map((array) => [getAddress(array[0]), array[1]]))
     );
@@ -145,11 +145,13 @@ function mockGetScoresDirect() {
         provider,
         addresses: string[]
       ) =>
-        strategies.map(() => {
-          return Object.fromEntries(
-            addresses.map((address) => [address, SCORE_PER_STRATEGY])
-          );
-        })
+        Promise.resolve(
+          strategies.map(() => {
+            return Object.fromEntries(
+              addresses.map((address) => [address, SCORE_PER_STRATEGY])
+            );
+          })
+        )
     );
 }
 
@@ -216,14 +218,14 @@ describe('multidelegation', () => {
       });
 
       describe('when some of the input addresses are not checksummed', () => {
-        const ADDRESS_LOWERCASE = [ADDRESS_L.toLowerCase()];
+        const ADDRESS_LOWERCASE = ADDRESS_L.toLowerCase();
 
         it('should return the same calculated amount for the checksum address', async () => {
           const result = await strategy(
             SPACE,
             NETWORK,
             PROVIDER,
-            ADDRESS_LOWERCASE,
+            [ADDRESS_LOWERCASE],
             OPTIONS,
             SNAPSHOT
           );
@@ -232,6 +234,47 @@ describe('multidelegation', () => {
           expect(result[ADDRESS_LOWERCASE]).toBeUndefined();
         });
       });
+    });
+  });
+});
+
+describe('getDelegationAddresses', () => {
+  describe('when it receives a list of addresses with repeated delegations', () => {
+    const reversedDelegations = new Map([
+      [
+        '0x549A9021661a85B6BC51c07B3A451135848d0048',
+        [
+          '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
+          '0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5',
+          '0xBf363AeDd082Ddd8DB2D6457609B03f9ee74a2F1'
+        ]
+      ],
+      [
+        '0xb0F847e61C502Fb82D758C515b3F914de42831D5',
+        ['0x549A9021661a85B6BC51c07B3A451135848d0048']
+      ],
+      [
+        '0x0f051A642A1c4B2c268C7D6a83186159b149021b',
+        ['0x30b1f4Bd5476906f38385B891f2c09973196b742']
+      ],
+      [
+        '0x511a22cDd2c4eE8357bB02df2578037Ffe8a4d8d',
+        ['0xb0F847e61C502Fb82D758C515b3F914de42831D5']
+      ],
+      [
+        '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
+        ['0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5']
+      ]
+    ]);
+    it('does not include repeated addresses', () => {
+      expect(getDelegationAddresses(reversedDelegations)).toEqual([
+        '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
+        '0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5',
+        '0xBf363AeDd082Ddd8DB2D6457609B03f9ee74a2F1',
+        '0x549A9021661a85B6BC51c07B3A451135848d0048',
+        '0x30b1f4Bd5476906f38385B891f2c09973196b742',
+        '0xb0F847e61C502Fb82D758C515b3F914de42831D5'
+      ]);
     });
   });
 });
