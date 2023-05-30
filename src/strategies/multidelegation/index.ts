@@ -9,7 +9,7 @@ import {
 import { getScoresDirect } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'dcl-DAO';
+export const author = 'ncomerci';
 export const version = '0.1.0';
 export const dependOnOtherAddress = true;
 
