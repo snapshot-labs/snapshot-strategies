@@ -117,6 +117,14 @@ const OPTIONS = {
 };
 const SCORE_PER_STRATEGY = 10;
 const DELEGATOR_SCORE = OPTIONS.strategies.length * SCORE_PER_STRATEGY;
+const ADDRESS_N = '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7';
+const ADDRESS_L = '0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F';
+const ADDRESS_G = '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B';
+const ADDRESS_X = '0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc';
+const ADDRESS_Y = '0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20';
+const ADDRESS_A = '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701';
+const ADDRESS_GS = '0x2AC89522CB415AC333E64F52a1a5693218cEBD58';
+const ADDRESS_Z = '0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45';
 
 function mockGetLegacyDelegations(result: string[][]) {
   return jest
@@ -128,7 +136,7 @@ function mockGetLegacyDelegations(result: string[][]) {
 
 function mockGetMultiDelegations(result: [string, string[]][]) {
   return jest
-    .spyOn(multiDelegationUtils, 'getMultiDelegations')
+    .spyOn(multiDelegationUtils, 'getPolygonMultiDelegations')
     .mockResolvedValue(
       new Map(result.map((array) => [getAddress(array[0]), array[1]]))
     );
@@ -155,85 +163,185 @@ function mockGetScoresDirect() {
     );
 }
 
-const ADDRESS_N = '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F';
-const ADDRESS_L = '0x549A9021661a85B6BC51c07B3A451135848d0048';
-const ADDRESS_G = '0x511a22cDd2c4eE8357bB02df2578037Ffe8a4d8d';
-const ADDRESS_X = '0x30b1f4Bd5476906f38385B891f2c09973196b742';
-const ADDRESS_Y = '0x0f051A642A1c4B2c268C7D6a83186159b149021b';
-const ADDRESS_A = '0xb0F847e61C502Fb82D758C515b3F914de42831D5';
-const ADDRESS_GS = '0xBf363AeDd082Ddd8DB2D6457609B03f9ee74a2F1';
-const ADDRESS_Z = '0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5';
+function mockGetScoresDirectNoWMANA() {
+  return jest.spyOn(utils, 'getScoresDirect').mockResolvedValue([
+    {},
+    { '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B': 2000 },
+    {},
+    {
+      '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7': 100,
+      '0x549a9021661a85b6bc51c07b3a451135848d0048': 0,
+      '0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc': 127.5,
+      '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B': 120,
+      '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701': 50
+    },
+    {},
+    {},
+    {}
+  ]);
+}
 
 describe('multidelegation', () => {
   const ADDRESSES = [ADDRESS_N, ADDRESS_L, ADDRESS_Y, ADDRESS_G, ADDRESS_A];
-  beforeEach(() => mockGetScoresDirect());
 
-  describe('when there are some legacy delegations', () => {
-    beforeEach(() => {
-      mockGetLegacyDelegations([
-        [ADDRESS_N, ADDRESS_L],
-        [ADDRESS_L, ADDRESS_G],
-        [ADDRESS_X, ADDRESS_Y],
-        [ADDRESS_A, ADDRESS_G]
-      ]);
-    });
+  describe('when every address has a score of 10 for every strategy', () => {
+    beforeEach(() => mockGetScoresDirect());
 
-    describe('when there are some multi delegations overriding legacy delegations', () => {
+    describe('when there are some legacy delegations', () => {
       beforeEach(() => {
-        mockGetMultiDelegations([
-          [ADDRESS_L, [ADDRESS_A]],
-          [ADDRESS_Z, [ADDRESS_L, ADDRESS_N]],
-          [ADDRESS_GS, [ADDRESS_L]]
+        mockGetLegacyDelegations([
+          [ADDRESS_N, ADDRESS_L],
+          [ADDRESS_L, ADDRESS_G],
+          [ADDRESS_X, ADDRESS_Y],
+          [ADDRESS_A, ADDRESS_G]
         ]);
       });
 
-      it('returns a score for each received address', async () => {
-        const result = await strategy(
-          SPACE,
-          NETWORK,
-          PROVIDER,
-          ADDRESSES,
-          OPTIONS,
-          SNAPSHOT
-        );
+      describe('when there are some multi delegations overriding legacy delegations', () => {
+        beforeEach(() => {
+          mockGetMultiDelegations([
+            [ADDRESS_L, [ADDRESS_A]],
+            [ADDRESS_Z, [ADDRESS_L, ADDRESS_N]],
+            [ADDRESS_GS, [ADDRESS_L]]
+          ]);
+        });
 
-        expect(Object.keys(result).length).toEqual(ADDRESSES.length);
-      });
-
-      it('returns the delegated score for each address', async () => {
-        const result = await strategy(
-          SPACE,
-          NETWORK,
-          PROVIDER,
-          ADDRESSES,
-          OPTIONS,
-          SNAPSHOT
-        );
-
-        expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE * 3);
-        expect(result[ADDRESS_N]).toEqual(DELEGATOR_SCORE);
-        expect(result[ADDRESS_A]).toEqual(DELEGATOR_SCORE);
-        expect(result[ADDRESS_Y]).toEqual(DELEGATOR_SCORE);
-        expect(result[ADDRESS_G]).toEqual(DELEGATOR_SCORE);
-      });
-
-      describe('when some of the input addresses are not checksummed', () => {
-        const ADDRESS_LOWERCASE = ADDRESS_L.toLowerCase();
-
-        it('should return the same calculated amount for the checksum address', async () => {
+        it('returns a score for each received address', async () => {
           const result = await strategy(
             SPACE,
             NETWORK,
             PROVIDER,
-            [ADDRESS_LOWERCASE],
+            ADDRESSES,
+            OPTIONS,
+            SNAPSHOT
+          );
+
+          expect(Object.keys(result).length).toEqual(ADDRESSES.length);
+        });
+
+        it('returns the delegated score for each address', async () => {
+          const result = await strategy(
+            SPACE,
+            NETWORK,
+            PROVIDER,
+            ADDRESSES,
             OPTIONS,
             SNAPSHOT
           );
 
           expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE * 3);
-          expect(result[ADDRESS_LOWERCASE]).toBeUndefined();
+          expect(result[ADDRESS_N]).toEqual(DELEGATOR_SCORE);
+          expect(result[ADDRESS_A]).toEqual(DELEGATOR_SCORE);
+          expect(result[ADDRESS_Y]).toEqual(DELEGATOR_SCORE);
+          expect(result[ADDRESS_G]).toEqual(DELEGATOR_SCORE);
+        });
+
+        describe('when some of the input addresses are not checksummed', () => {
+          const ADDRESS_LOWERCASE = ADDRESS_L.toLowerCase();
+
+          it('should return the same calculated amount for the checksum address', async () => {
+            const result = await strategy(
+              SPACE,
+              NETWORK,
+              PROVIDER,
+              [ADDRESS_LOWERCASE],
+              OPTIONS,
+              SNAPSHOT
+            );
+
+            expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE * 3);
+            expect(result[ADDRESS_LOWERCASE]).toBeUndefined();
+          });
         });
       });
+    });
+  });
+
+  describe('when there is no scores for any address for a particular strategy', () => {
+    beforeEach(() => {
+      mockGetScoresDirectNoWMANA();
+      mockGetLegacyDelegations([[ADDRESS_G, ADDRESS_L]]);
+      mockGetMultiDelegations([[ADDRESS_G, [ADDRESS_N]]]);
+    });
+
+    it('should not throw', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N],
+        OPTIONS,
+        SNAPSHOT
+      );
+
+      expect(result[ADDRESS_L]).toEqual(0);
+      expect(result[ADDRESS_N]).toEqual(2120);
+    });
+  });
+
+  describe('when there are no legacy delegations', () => {
+    beforeEach(() => {
+      mockGetScoresDirectNoWMANA();
+      mockGetLegacyDelegations([]);
+      mockGetMultiDelegations([[ADDRESS_G, [ADDRESS_N]]]);
+    });
+
+    it('should not throw', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N],
+        OPTIONS,
+        SNAPSHOT
+      );
+
+      expect(result[ADDRESS_N]).toEqual(2120);
+      expect(result[ADDRESS_L]).toEqual(0);
+    });
+  });
+
+  describe('when there are only legacy delegations', () => {
+    beforeEach(() => {
+      mockGetScoresDirectNoWMANA();
+      mockGetLegacyDelegations([[ADDRESS_G, ADDRESS_L]]);
+      mockGetMultiDelegations([]);
+    });
+
+    it('should not throw', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N],
+        OPTIONS,
+        SNAPSHOT
+      );
+
+      expect(result[ADDRESS_L]).toEqual(2120);
+      expect(result[ADDRESS_N]).toEqual(0);
+    });
+  });
+
+  describe('when there are no delegations', () => {
+    beforeEach(() => {
+      mockGetScoresDirectNoWMANA();
+      mockGetLegacyDelegations([]);
+      mockGetMultiDelegations([]);
+    });
+
+    it('should not throw', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N],
+        OPTIONS,
+        SNAPSHOT
+      );
+
+      expect(result[ADDRESS_L]).toEqual(0);
+      expect(result[ADDRESS_N]).toEqual(0);
     });
   });
 });
@@ -242,38 +350,38 @@ describe('getDelegationAddresses', () => {
   describe('when it receives a list of addresses with repeated delegations', () => {
     const reversedDelegations = new Map([
       [
-        '0x549A9021661a85B6BC51c07B3A451135848d0048',
+        '0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F',
         [
-          '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
-          '0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5',
-          '0xBf363AeDd082Ddd8DB2D6457609B03f9ee74a2F1'
+          '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7',
+          '0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45',
+          '0x2AC89522CB415AC333E64F52a1a5693218cEBD58'
         ]
       ],
       [
-        '0xb0F847e61C502Fb82D758C515b3F914de42831D5',
-        ['0x549A9021661a85B6BC51c07B3A451135848d0048']
+        '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701',
+        ['0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F']
       ],
       [
-        '0x0f051A642A1c4B2c268C7D6a83186159b149021b',
-        ['0x30b1f4Bd5476906f38385B891f2c09973196b742']
+        '0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20',
+        ['0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc']
       ],
       [
-        '0x511a22cDd2c4eE8357bB02df2578037Ffe8a4d8d',
-        ['0xb0F847e61C502Fb82D758C515b3F914de42831D5']
+        '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B',
+        ['0xC9dA7343583fA8Bb380A6F04A208C612F86C7701']
       ],
       [
-        '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
-        ['0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5']
+        '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7',
+        ['0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45']
       ]
     ]);
     it('does not include repeated addresses', () => {
       expect(getDelegationAddresses(reversedDelegations)).toEqual([
-        '0x6Cd7694d30c10bdAB1E644FC1964043a95cEEa5F',
-        '0x76DA87b314aa6878d06344eE14fcd1bBB7E8FDb5',
-        '0xBf363AeDd082Ddd8DB2D6457609B03f9ee74a2F1',
-        '0x549A9021661a85B6BC51c07B3A451135848d0048',
-        '0x30b1f4Bd5476906f38385B891f2c09973196b742',
-        '0xb0F847e61C502Fb82D758C515b3F914de42831D5'
+        '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7',
+        '0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45',
+        '0x2AC89522CB415AC333E64F52a1a5693218cEBD58',
+        '0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F',
+        '0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc',
+        '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701'
       ]);
     });
   });
