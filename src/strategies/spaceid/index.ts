@@ -67,7 +67,7 @@ export async function strategy(
 ) {
   let LPScore = {};
   switch (network) {
-    case 1:
+    case '1':
       LPScore = await UniswapV3Strategy(
         space,
         network,
@@ -80,7 +80,7 @@ export async function strategy(
         snapshot
       );
       break;
-    case 56:
+    case '56':
       LPScore = await getLpTokenOnBsc(addresses, snapshot);
       break;
   }
