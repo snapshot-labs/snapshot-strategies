@@ -3,6 +3,7 @@ import path from 'path';
 
 import * as ecoVotingPower from './eco-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
+import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
@@ -344,6 +345,7 @@ import * as ethermon721 from './ethermon-erc721';
 import * as etherorcsComboBalanceOf from './etherorcs-combo-balanceof';
 import * as hedgey from './hedgey';
 import * as hedgeyMulti from './hedgey-multi';
+import * as hedgeyDelegate from './hedgey-delegate';
 import * as sybilProtection from './sybil-protection';
 import * as veBalanceOfAtNFT from './ve-balance-of-at-nft';
 import * as genzeesFromSubgraph from './genzees-from-subgraph';
@@ -441,6 +443,7 @@ import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weight
 import * as capVotingPower from './cap-voting-power';
 import * as zunamiPoolGaugeAggregatedBalanceOf from './zunami-pool-gauge-aggregated-balance-of';
 import * as erc721CollateralHeld from './erc721-collateral-held';
+import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -471,6 +474,7 @@ const strategies = {
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,
   'dps-nft-strategy': dpsNFTStrategy,
+  'dps-nft-strategy-nova': dpsNFTStrategyNova,
   'eth-received': ethReceived,
   'eth-philanthropy': ethPhilanthropy,
   'ens-domains-owned': ensDomainsOwned,
@@ -793,6 +797,7 @@ const strategies = {
   'rowdy-roos': rowdyRoos,
   hedgey,
   'hedgey-multi': hedgeyMulti,
+  'hedgey-delegate': hedgeyDelegate,
   've-balance-of-at-nft': veBalanceOfAtNFT,
   'genzees-from-subgraph': genzeesFromSubgraph,
   'gin-finance': ginFinance,
@@ -888,7 +893,8 @@ const strategies = {
   'staked-defi-balance': stakedDefiBalance,
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
   'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf,
-  'erc721-collateral-held': erc721CollateralHeld
+  'erc721-collateral-held': erc721CollateralHeld,
+  'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
