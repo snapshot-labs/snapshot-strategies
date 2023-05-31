@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Galxe users loyalty points",
+    "strategy": {
+      "name": "galxe-loyalty-points",
+      "params": {
+        "symbol": "PTS",
+        "space_url": "https://galxe.com/Galxe/campaigns",
+        "snapshot_id": "chm75g3gm3qfltgb9av0"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xC229c465E08C4bbE5743B36F321A677D8a398062",
+      "0x447D24B00937BCc3fE5768c828fb2fae52c3e8C5",
+      "0x498d038C3F0aFA27D80B4A82e76dcEf5A1dE7840",
+      "0xfDAc618DDB79f77eb2Ea5c52b7c50f8f728DAFce"
+    ],
+    "snapshot": 1
+  }
+]

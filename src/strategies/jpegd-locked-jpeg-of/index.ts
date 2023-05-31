@@ -4,9 +4,9 @@ import { multicall } from '../../utils';
 import { subgraphRequest } from '../../utils';
 
 export const author = '0xleez';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
-const UNISWAP_SUBGRAPH_URL = {
+const SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/jpegd/jpegd-core-mainnet'
 };
 
@@ -25,8 +25,6 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const { collectionToProviderAddress } = options;
-
   const params = {
     jpeglocks: {
       __args: {
@@ -36,7 +34,7 @@ export async function strategy(
         block: blockTag != 'latest' ? { number: blockTag } : null
       },
       owner: { id: true },
-      collection: { id: true },
+      collection: { id: true, nftValueProviderAddress: true },
       type: true,
       nftIndex: true,
       amount: true,
@@ -44,7 +42,7 @@ export async function strategy(
     }
   };
 
-  const result = await subgraphRequest(UNISWAP_SUBGRAPH_URL[network], params);
+  const result = await subgraphRequest(SUBGRAPH_URL[network], params);
   const jpegLocks = result.jpeglocks ?? [];
 
   const responses = await multicall(
@@ -52,7 +50,7 @@ export async function strategy(
     provider,
     abi,
     jpegLocks.map((jpegLock: any) => [
-      collectionToProviderAddress[jpegLock.collection.id],
+      getAddress(jpegLock.collection.nftValueProviderAddress),
       jpegLock.type === 'LTV' ? 'ltvBoostPositions' : 'traitBoostPositions',
       [jpegLock.nftIndex]
     ]),

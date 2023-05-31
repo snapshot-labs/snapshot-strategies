@@ -4,7 +4,7 @@
     "strategy": {
       "name": "eco-voting-power",
       "params": {
-        "delegatee": "0x64923706f6ca6F3C364292834C5370e4f03e2368"
+        "delegatee": "0xbFB97a6e13E42518522379C94e0Ddd99F7b70b8b"
       }
     },
     "network": "5",
@@ -16,7 +16,7 @@
       "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
       "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
       "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
-      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0xE3DE066aC4CFa2C6169C6e8ccc2afe7b4E440C1D",
       "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
       "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
       "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
@@ -29,6 +29,6 @@
       "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
       "0x38C0039247A31F3939baE65e953612125cB88268"
     ],
-    "snapshot": 8253435
+    "snapshot": 8620080
   }
 ]
