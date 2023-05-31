@@ -129,7 +129,7 @@ const ADDRESS_Z = '0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45';
 
 function mockGetLegacyDelegations(result: string[][]) {
   return jest
-    .spyOn(multiDelegationUtils, 'getLegacyDelegations')
+    .spyOn(multiDelegationUtils, 'getSingleDelegations')
     .mockResolvedValue(
       new Map(result.map((array) => [getAddress(array[0]), array[1]]))
     );

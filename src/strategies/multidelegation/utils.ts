@@ -67,7 +67,7 @@ export async function getMultiDelegations(
   }, new Map<string, string[]>());
 }
 
-export async function getLegacyDelegations(
+export async function getSingleDelegations(
   space: string,
   network: string,
   addresses: string[],

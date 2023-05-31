@@ -1,8 +1,8 @@
 import {
   getAddressTotalDelegatedScore,
   getDelegationAddresses,
-  getLegacyDelegations,
   getPolygonMultiDelegations,
+  getSingleDelegations,
   mergeDelegations,
   reverseDelegations
 } from './utils';
@@ -37,8 +37,8 @@ export async function strategy(
     (options?.polygonChain && MULTI_DELEGATION_ENV[options.polygonChain]) ||
     MULTI_DELEGATION_ENV.mumbai;
 
-  // Retro compatibility with the legacy delegation strategy
-  const legacyDelegationsPromise = getLegacyDelegations(
+  // Retro compatibility with the one-to-one delegation strategy
+  const singleDelegationsPromise = getSingleDelegations(
     delegationSpace,
     network,
     checksummedAddresses,
@@ -52,22 +52,22 @@ export async function strategy(
     delegationSpace
   );
 
-  const [legacyDelegations, multiDelegations] = await Promise.all([
-    legacyDelegationsPromise,
+  const [singleDelegations, multiDelegations] = await Promise.all([
+    singleDelegationsPromise,
     multiDelegationsPromise
   ]);
 
-  const isLegacyDelegationEmpty = legacyDelegations.size === 0;
+  const isSingleDelegationEmpty = singleDelegations.size === 0;
   const isMultiDelegationEmpty = multiDelegations.size === 0;
 
-  if (isLegacyDelegationEmpty && isMultiDelegationEmpty) {
+  if (isSingleDelegationEmpty && isMultiDelegationEmpty) {
     return Object.fromEntries(
       checksummedAddresses.map((address) => [address, 0])
     );
   }
 
   const mergedDelegations = mergeDelegations(
-    legacyDelegations,
+    singleDelegations,
     multiDelegations
   );
   const reversedDelegations = reverseDelegations(mergedDelegations);
