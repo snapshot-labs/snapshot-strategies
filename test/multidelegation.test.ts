@@ -180,14 +180,14 @@ function mockScore(delegator: string, delegatorScore: number) {
 function mockGetScoresDirectNoWMANA() {
   return jest.spyOn(utils, 'getScoresDirect').mockResolvedValue([
     {},
-    { '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B': 2000 },
+    { [ADDRESS_G]: 2000 },
     {},
     {
-      '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7': 100,
-      '0x549a9021661a85b6bc51c07b3a451135848d0048': 0,
-      '0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc': 127.5,
-      '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B': 120,
-      '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701': 50
+      [ADDRESS_N]: 100,
+      [ADDRESS_L]: 0,
+      [ADDRESS_X]: 127.5,
+      [ADDRESS_G]: 120,
+      [ADDRESS_A]: 50
     },
     {},
     {},
@@ -384,44 +384,71 @@ describe('multidelegation', () => {
       expect(result[ADDRESS_N]).toEqual(DELEGATOR_SCORE / DELEGATES.length);
     });
   });
+
+  describe('when the delegator score is 0', () => {
+    const DELEGATES = [ADDRESS_L, ADDRESS_N];
+    const DELEGATOR_SCORE = 0;
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockGetMultiDelegations([[ADDRESS_G, DELEGATES]]);
+      mockScore(ADDRESS_G, DELEGATOR_SCORE);
+    });
+    it('should be 0 for all delegates', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N],
+        OPTIONS,
+        SNAPSHOT
+      );
+      expect(result[ADDRESS_L]).toEqual(0);
+      expect(result[ADDRESS_N]).toEqual(0);
+    });
+  });
+
+  describe('when there are empty delegations in polygon', () => {
+    const DELEGATES = [];
+    const DELEGATOR_SCORE = 1000;
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockGetLegacyDelegations([[ADDRESS_G, ADDRESS_L]]);
+      mockGetMultiDelegations([[ADDRESS_G, DELEGATES]]);
+      mockScore(ADDRESS_G, DELEGATOR_SCORE);
+    });
+    it('uses the legacy delegation as fallback', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N, ADDRESS_G],
+        OPTIONS,
+        SNAPSHOT
+      );
+      expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE);
+      expect(result[ADDRESS_N]).toEqual(0);
+      expect(result[ADDRESS_G]).toEqual(0);
+    });
+  });
 });
 
 describe('getDelegationAddresses', () => {
   describe('when it receives a list of addresses with repeated delegations', () => {
     const reversedDelegations = new Map([
-      [
-        '0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F',
-        [
-          '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7',
-          '0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45',
-          '0x2AC89522CB415AC333E64F52a1a5693218cEBD58'
-        ]
-      ],
-      [
-        '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701',
-        ['0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F']
-      ],
-      [
-        '0x6E33e22f7aC5A4b58A93C7f6D8Da8b46c50A3E20',
-        ['0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc']
-      ],
-      [
-        '0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B',
-        ['0xC9dA7343583fA8Bb380A6F04A208C612F86C7701']
-      ],
-      [
-        '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7',
-        ['0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45']
-      ]
+      [ADDRESS_L, [ADDRESS_N, ADDRESS_Z, ADDRESS_GS]],
+      [ADDRESS_A, [ADDRESS_L]],
+      [ADDRESS_Y, [ADDRESS_X]],
+      [ADDRESS_G, [ADDRESS_A]],
+      [ADDRESS_N, [ADDRESS_Z]]
     ]);
     it('does not include repeated addresses', () => {
       expect(getDelegationAddresses(reversedDelegations)).toEqual([
-        '0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7',
-        '0xd90c6f6D37716b1Cc4dd2B116be42e8683550F45',
-        '0x2AC89522CB415AC333E64F52a1a5693218cEBD58',
-        '0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F',
-        '0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc',
-        '0xC9dA7343583fA8Bb380A6F04A208C612F86C7701'
+        ADDRESS_N,
+        ADDRESS_Z,
+        ADDRESS_GS,
+        ADDRESS_L,
+        ADDRESS_X,
+        ADDRESS_A
       ]);
     });
   });
