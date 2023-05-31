@@ -74,6 +74,7 @@ export async function strategy(
     checksummedAddresses.map((delegate) => {
       return getAddressTotalDelegatedScore(
         delegate,
+        mergedDelegations,
         reversedDelegations,
         scores
       );

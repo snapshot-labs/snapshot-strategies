@@ -163,6 +163,20 @@ function mockGetScoresDirect() {
     );
 }
 
+function mockScore(delegator: string, delegatorScore: number) {
+  jest
+    .spyOn(utils, 'getScoresDirect')
+    .mockResolvedValue([
+      { [delegator]: delegatorScore },
+      {},
+      {},
+      {},
+      {},
+      {},
+      {}
+    ]);
+}
+
 function mockGetScoresDirectNoWMANA() {
   return jest.spyOn(utils, 'getScoresDirect').mockResolvedValue([
     {},
@@ -229,8 +243,10 @@ describe('multidelegation', () => {
             SNAPSHOT
           );
 
-          expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE * 3);
-          expect(result[ADDRESS_N]).toEqual(DELEGATOR_SCORE);
+          expect(result[ADDRESS_L]).toEqual(
+            DELEGATOR_SCORE * 2 + DELEGATOR_SCORE / 2
+          );
+          expect(result[ADDRESS_N]).toEqual(DELEGATOR_SCORE / 2);
           expect(result[ADDRESS_A]).toEqual(DELEGATOR_SCORE);
           expect(result[ADDRESS_Y]).toEqual(DELEGATOR_SCORE);
           expect(result[ADDRESS_G]).toEqual(DELEGATOR_SCORE);
@@ -249,7 +265,9 @@ describe('multidelegation', () => {
               SNAPSHOT
             );
 
-            expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE * 3);
+            expect(result[ADDRESS_L]).toEqual(
+              DELEGATOR_SCORE * 2 + DELEGATOR_SCORE / 2
+            );
             expect(result[ADDRESS_LOWERCASE]).toBeUndefined();
           });
         });
@@ -342,6 +360,28 @@ describe('multidelegation', () => {
 
       expect(result[ADDRESS_L]).toEqual(0);
       expect(result[ADDRESS_N]).toEqual(0);
+    });
+  });
+
+  describe('when there are multidelegations', () => {
+    const DELEGATES = [ADDRESS_L, ADDRESS_N];
+    const DELEGATOR_SCORE = 1000;
+    beforeEach(() => {
+      jest.clearAllMocks();
+      mockGetMultiDelegations([[ADDRESS_G, DELEGATES]]);
+      mockScore(ADDRESS_G, DELEGATOR_SCORE);
+    });
+    it('should split the scores equally between the delegators', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        [ADDRESS_L, ADDRESS_N],
+        OPTIONS,
+        SNAPSHOT
+      );
+      expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE / DELEGATES.length);
+      expect(result[ADDRESS_N]).toEqual(DELEGATOR_SCORE / DELEGATES.length);
     });
   });
 });

@@ -1,8 +1,8 @@
 # multidelegation
 
-If you want to delegate your voting power to multiple wallet addresses, you can do this using the “multidelegation strategy”. This strategy is based on [delegation strategy](https://github.com/snapshot-labs/snapshot-strategies/tree/master/src/strategies/delegation) with the exeption that you can delegate to several addresses at the same time.
+If you want to delegate your voting power to multiple wallet addresses, you can do this using the “multidelegation strategy”. This strategy is based on [delegation strategy](https://github.com/snapshot-labs/snapshot-strategies/tree/master/src/strategies/delegation) with the exception that you can delegate to several addresses at the same time.
 
-If A delegates to B and C, A's score is splitted equaly to B and C. In case A already has a delegation made with the [delegation strategy](https://github.com/snapshot-labs/snapshot-strategies/tree/master/src/strategies/delegation), this “multidelegation strategy” overrides it.
+If A delegates to B and C, A's score is splitted equally to B and C. In case A already has a delegation made with the [delegation strategy](https://github.com/snapshot-labs/snapshot-strategies/tree/master/src/strategies/delegation), this “multidelegation strategy” overrides it.
 
 The multidelegation smart contract is in Polygon, so the gas fee to delegate is way lower.
 

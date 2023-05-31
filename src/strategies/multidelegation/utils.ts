@@ -157,22 +157,29 @@ export function getDelegatorScores(
 
 export function getDelegateScore(
   delegations: string[],
-  scores: Record<string, number>[]
+  scores: Record<string, number>[],
+  mergedDelegations: Map<string, string[]>
 ) {
-  return delegations.reduce(
-    (delegationsAcumScore, delegatorAddress) =>
-      delegationsAcumScore + getDelegatorScores(scores, delegatorAddress),
-    0
-  );
+  return delegations.reduce((delegationsAcumScore, delegatorAddress) => {
+    const delegatorDelegations = mergedDelegations.get(delegatorAddress);
+    const delegationsAmount = delegatorDelegations?.length || 1;
+    return (
+      delegationsAcumScore +
+      getDelegatorScores(scores, delegatorAddress) / delegationsAmount
+    );
+  }, 0);
 }
 
 export function getAddressTotalDelegatedScore(
   delegate,
+  mergedDelegations: Map<string, string[]>,
   reversedDelegations: Map<string, string[]>,
   scores
 ) {
   const delegations = reversedDelegations.get(delegate);
-  const delegateScore = delegations ? getDelegateScore(delegations, scores) : 0;
+  const delegateScore = delegations
+    ? getDelegateScore(delegations, scores, mergedDelegations)
+    : 0;
   return [delegate, delegateScore];
 }
 
