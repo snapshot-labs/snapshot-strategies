@@ -10,6 +10,7 @@ const NETWORK = '1';
 const PROVIDER = snapshot.utils.getProvider(NETWORK);
 const SPACE = 'some.space.eth';
 const OPTIONS = {
+  polygonChain: 'mumbai',
   strategies: [
     {
       name: 'erc20-balance-of',
@@ -428,6 +429,23 @@ describe('multidelegation', () => {
       expect(result[ADDRESS_L]).toEqual(DELEGATOR_SCORE);
       expect(result[ADDRESS_N]).toEqual(0);
       expect(result[ADDRESS_G]).toEqual(0);
+    });
+  });
+
+  describe('when the delegation strategy is called without strategies', () => {
+    const EMPTY_OPTIONS = {};
+    it('returns a score for each received address', async () => {
+      const result = await strategy(
+        SPACE,
+        NETWORK,
+        PROVIDER,
+        ADDRESSES,
+        EMPTY_OPTIONS,
+        SNAPSHOT
+      );
+
+      expect(Object.keys(result).length).toEqual(ADDRESSES.length);
+      expect(result[ADDRESSES[0]]).toEqual(0);
     });
   });
 });

@@ -6,6 +6,7 @@ import {
 } from '../../utils';
 
 export async function getPolygonDelegatesBySpace(
+  subgraphUrl: string,
   space: string,
   snapshot = 'latest'
 ) {
@@ -36,10 +37,7 @@ export async function getPolygonDelegatesBySpace(
   while (true) {
     params.delegations.__args.skip = page * PAGE_SIZE;
 
-    const pageResult = await subgraphRequest(
-      'https://api.thegraph.com/subgraphs/name/1emu/multi-delegation-polygon',
-      params
-    );
+    const pageResult = await subgraphRequest(subgraphUrl, params);
     const pageDelegations = pageResult.delegations || [];
     result = result.concat(pageDelegations);
     page++;
@@ -50,11 +48,15 @@ export async function getPolygonDelegatesBySpace(
 }
 
 export async function getMultiDelegations(
+  subgraphUrl: string,
   space: string,
-  network: string,
   snapshot?: string
 ): Promise<Map<string, string[]>> {
-  const delegatesBySpace = await getPolygonDelegatesBySpace(space, snapshot);
+  const delegatesBySpace = await getPolygonDelegatesBySpace(
+    subgraphUrl,
+    space,
+    snapshot
+  );
 
   return delegatesBySpace.reduce((accum, delegation) => {
     const delegator = getAddress(delegation.delegator);
@@ -183,8 +185,12 @@ export function getAddressTotalDelegatedScore(
   return [delegate, delegateScore];
 }
 
-export async function getPolygonBlockNumber(network, snapshot, provider) {
-  const polygonChainId = '80001';
+export async function getPolygonBlockNumber(
+  polygonChainId,
+  network,
+  snapshot,
+  provider
+) {
   const blocks = await getSnapshots(network, snapshot, provider, [
     polygonChainId
   ]);
@@ -192,18 +198,24 @@ export async function getPolygonBlockNumber(network, snapshot, provider) {
 }
 
 export async function getPolygonMultiDelegations(
+  multiDelegationEnv,
   network,
   snapshot,
   provider,
   delegationSpace
 ) {
   const polygonBlockNumber = await getPolygonBlockNumber(
+    multiDelegationEnv.polygonChainId,
     network,
     snapshot,
     provider
   );
 
-  return getMultiDelegations(delegationSpace, network, polygonBlockNumber);
+  return getMultiDelegations(
+    multiDelegationEnv.subgraphUrl,
+    delegationSpace,
+    polygonBlockNumber
+  );
 }
 
 export function getDelegationAddresses(

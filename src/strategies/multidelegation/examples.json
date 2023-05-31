@@ -5,6 +5,8 @@
       "name": "multidelegation",
       "params": {
         "symbol": "VP (delegated)",
+        "polygonChain": "mumbai",
+        "delegationSpace": "1emu.eth",
         "strategies": [
           {
             "name": "erc20-balance-of",
@@ -114,6 +116,6 @@
       "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
       "0x69ABF813a683391C0ec888351912E14590B56e88"
     ],
-    "snapshot": 17331246
+    "snapshot": 17380758
   }
 ]

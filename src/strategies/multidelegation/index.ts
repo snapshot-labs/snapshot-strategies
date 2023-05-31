@@ -13,6 +13,15 @@ export const author = 'ncomerci';
 export const version = '0.1.0';
 export const dependOnOtherAddress = true;
 
+const MULTI_DELEGATION_ENV = {
+  mainnet: { polygonChainId: '137', subgraphUrl: '' },
+  mumbai: {
+    polygonChainId: '80001',
+    subgraphUrl:
+      'https://api.thegraph.com/subgraphs/name/1emu/multi-delegation-polygon'
+  }
+};
+
 export async function strategy(
   space,
   network,
@@ -24,6 +33,10 @@ export async function strategy(
   const delegationSpace = options.delegationSpace || space;
   const checksummedAddresses = addresses.map(getAddress);
 
+  const multiDelegationEnv =
+    (options?.polygonChain && MULTI_DELEGATION_ENV[options.polygonChain]) ||
+    MULTI_DELEGATION_ENV.mumbai;
+
   // Retro compatibility with the legacy delegation strategy
   const legacyDelegationsPromise = getLegacyDelegations(
     delegationSpace,
@@ -32,6 +45,7 @@ export async function strategy(
     snapshot
   );
   const multiDelegationsPromise = getPolygonMultiDelegations(
+    multiDelegationEnv,
     network,
     snapshot,
     provider,
@@ -62,7 +76,7 @@ export async function strategy(
   const scores = (
     await getScoresDirect(
       space,
-      options.strategies,
+      options.strategies || [],
       network,
       provider,
       delegationAddresses,
