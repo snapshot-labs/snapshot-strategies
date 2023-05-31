@@ -26,6 +26,7 @@ export default class extends Validation {
         id: stamp
       }))
     );
+    console.log('verifiedStamps', verifiedStamps);
     if (!verifiedStamps.length) return false;
 
     const provider = snapshot.utils.getProvider(this.network);
@@ -35,9 +36,7 @@ export default class extends Validation {
 
     // check issuance and expiration
     const validStamps = verifiedStamps
-      .filter((stamp) =>
-        hasValidIssuanceAndExpiration(stamp.credential, proposalTs)
-      )
+      .filter((stamp) => hasValidIssuanceAndExpiration(stamp, proposalTs))
       .map((stamp) => stamp.provider);
 
     // console.log('validStamps', validStamps);
