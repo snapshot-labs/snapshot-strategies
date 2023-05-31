@@ -1,4 +1,4 @@
-import { mergeDelegations } from '../src/strategies/multidelegation/utils';
+import { mergeDelegations } from '../../../src/strategies/multidelegation/utils';
 
 describe('when both legacyDelegations and multiDelegations are empty objects', () => {
   it('returns an empty object', () => {

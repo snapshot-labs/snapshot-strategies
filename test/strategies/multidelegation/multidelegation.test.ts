@@ -1,8 +1,8 @@
-import { strategy } from '../src/strategies/multidelegation';
-import * as utils from '../src/utils';
-import * as multiDelegationUtils from '../src/strategies/multidelegation/utils';
-import { getDelegationAddresses } from '../src/strategies/multidelegation/utils';
-import snapshot from '../src';
+import { strategy } from '../../../src/strategies/multidelegation';
+import * as utils from '../../../src/utils';
+import * as multiDelegationUtils from '../../../src/strategies/multidelegation/utils';
+import { getDelegationAddresses } from '../../../src/strategies/multidelegation/utils';
+import snapshot from '../../../src';
 import { getAddress } from '@ethersproject/address';
 
 const SNAPSHOT = 'latest';
