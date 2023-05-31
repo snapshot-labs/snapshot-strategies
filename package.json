@@ -14,6 +14,7 @@
   "scripts": {
     "build": "tsc -p .",
     "test": "jest -i strategy.test.ts",
+    "test:all": "find ./src/strategies -type d -depth 1 | xargs basename | xargs -I @ sh -c 'yarn test --strategy=@ || exit 255'",
     "test:vp": "jest -i vp.test.ts",
     "test:delegation": "jest -i delegation.test.ts",
     "test:validation": "jest -i validation.test.ts",
