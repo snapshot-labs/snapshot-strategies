@@ -1,16 +1,31 @@
 import fetch from 'cross-fetch';
 import Validation from '../validation';
-import dotenv from 'dotenv';
-dotenv.config({ path: '.env' });
+import snapshot from '@snapshot-labs/snapshot.js';
 
-const API_KEY = process.env.PUBLIC_GC_API_KEY || '0cErnp4F.nRDEUU4Z8y5YyxcU32swrggDFNfWtXtI'
+const API_KEY =
+  process.env.PASSPORT_API_KEY || '0cErnp4F.nRDEUU4Z8y5YyxcU32swrggDFNfWtXtI';
 
-const headers = API_KEY ? ({
-  'Content-Type': 'application/json',
-  'X-API-Key': API_KEY
-}) : undefined
+const headers = API_KEY
+  ? {
+      'Content-Type': 'application/json',
+      'X-API-Key': API_KEY
+    }
+  : undefined;
 
 const GET_PASSPORT_STAMPS_URI = `https://api.scorer.gitcoin.co/registry/stamps/`;
+
+function hasValidIssuanceAndExpiration(credential, proposalTs) {
+  const issuanceDate = Number(
+    new Date(credential.issuanceDate).getTime() / 1000
+  ).toFixed(0);
+  const expirationDate = Number(
+    new Date(credential.expirationDate).getTime() / 1000
+  ).toFixed(0);
+  if (issuanceDate <= proposalTs && expirationDate >= proposalTs) {
+    return true;
+  }
+  return false;
+}
 
 export default class extends Validation {
   public id = 'passport-gated';
@@ -22,28 +37,37 @@ export default class extends Validation {
 
   async validate(currentAddress = this.author): Promise<boolean> {
     const requiredStamps = this.params.stamps || [];
+    const operator = this.params.operator;
+    if (!operator) throw new Error('Operator is required');
 
-    try {
-      const stampsResponse = await fetch(GET_PASSPORT_STAMPS_URI + currentAddress, { headers });
+    const stampsResponse = await fetch(
+      GET_PASSPORT_STAMPS_URI + currentAddress,
+      { headers }
+    );
 
-      const stampsData = await stampsResponse.json();
+    const stampsData = await stampsResponse.json();
 
-      if (!stampsData || !stampsData.items) {
-        throw new Error('You do not have a valid Gitcoin Passport. Create one by visiting https://passport.gitcoin.co/ ');
-      }
-
-      const userStamps = stampsData.items.map(item => item.credential.credentialSubject.provider);
-      for (const stamp of requiredStamps) {
-        if (!userStamps.includes(stamp)) {
-          throw new Error(`You do not have the required stamp: ${stamp}`);
-        }
-      }
-      return true;
-
-    } catch (err) {
-      console.error(err);
-      throw err;
+    if (!stampsData?.items) {
+      // throw new Error(
+      //   'You do not have a valid Gitcoin Passport. Create one by visiting https://passport.gitcoin.co/ '
+      // );
+      return false;
     }
+
+    const provider = snapshot.utils.getProvider(this.network);
+    const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
+    // check expiration for all stamps
+    const validStamps = stampsData.items
+      .filter((stamp) =>
+        hasValidIssuanceAndExpiration(stamp.credential, proposalTs)
+      )
+      .map((stamp) => stamp.credential.credentialSubject.provider);
+
+    if (operator === 'AND') {
+      return requiredStamps.every((stamp) => validStamps.includes(stamp));
+    } else if (operator === 'OR') {
+      return requiredStamps.some((stamp) => validStamps.includes(stamp));
+    }
+    return false;
   }
 }
-     
