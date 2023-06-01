@@ -7,7 +7,6 @@ This repository provides a passport-gated validation strategy for Snapshot. The 
 Before using this code, ensure that you have the following information stored in a `.env` file at the project root:
 
 - `NEXT_PUBLIC_GC_API_KEY=<your-api-key>`
-- `NEXT_PUBLIC_GC_SCORER_ID=<your-scorer-id>`
 
 ## Overview
 
