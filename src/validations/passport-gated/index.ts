@@ -3,7 +3,7 @@ import Validation from '../validation';
 import dotenv from 'dotenv';
 dotenv.config({ path: '.env' });
 
-const API_KEY = process.env.NEXT_PUBLIC_GC_API_KEY
+const API_KEY = process.env.PUBLIC_GC_API_KEY || '0cErnp4F.nRDEUU4Z8y5YyxcU32swrggDFNfWtXtI'
 
 const headers = API_KEY ? ({
   'Content-Type': 'application/json',
