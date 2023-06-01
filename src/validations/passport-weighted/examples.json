@@ -6,6 +6,7 @@
     "network": "1",
     "snapshot": "latest",
     "params": {
+      "minScore": 10,
       "stamps": [
         { "id": "Ens", "weight": 2 },
         { "id": "Twitter", "weight": 0.5 },
