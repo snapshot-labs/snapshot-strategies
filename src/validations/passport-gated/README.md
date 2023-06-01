@@ -10,7 +10,7 @@ Before using this code, ensure that you have the following information stored in
 
 ## Overview
 
-This implementation uses the Gitcoin Passport API to check whether a user has a valid passport by looking for their passport score.
+This implementation uses the Gitcoin Passport API to check whether a user has a valid passport by looking for their stamps.
 
 ## Code Explanation
 
