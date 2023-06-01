@@ -13,16 +13,15 @@ Before using this code, ensure that you have the following information stored in
 This implementation uses the Gitcoin Passport API to check whether a user has a valid passport by looking for their stamps.
 
 ## Code Explanation
-
-The main function in this codebase returns a binary score based on whether the user's passport is flagged as a likely Sybil.
+[Soon] The main function in this codebase returns a binary score based on whether the user's passport is flagged as a likely Sybil.
 
 ## Modifications
 
-The original code utilized the Passport SDK to check if the user has a valid passport. However, with the introduction of the Passport API, we can now simplify the process by checking for a score.
+The original code utilized the Passport SDK to check if the user has a valid passport. [Soon] However, with the introduction of the Passport API, we can now simplify the process by checking for a score.
 
 ## Last Modified
 
-This code was last modified on May 11, 2023.
+This code was last modified on June 1, 2023.
 
 Feel free to customize and extend this implementation to suit your specific needs.
 
