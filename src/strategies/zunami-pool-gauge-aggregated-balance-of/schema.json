@@ -14,6 +14,14 @@
           "minLength": 42,
           "maxLength": 42
         },
+        "fraxStakingAddress": {
+          "type": "string",
+          "title": "Zunami convex frax staking address",
+          "examples": ["e.g. 0xb8ebc210BCF78be8Ef3F09Dd0d8e85Fa5e252e86"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
         "decimals": {
           "type": "number",
           "title": "Decimals",
