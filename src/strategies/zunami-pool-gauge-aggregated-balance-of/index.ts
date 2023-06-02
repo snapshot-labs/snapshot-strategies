@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { call, Multicaller } from '../../utils';
 
 export const author = 'fextr';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 const zunamiSnapshotHelperAbi = [
   'function aggregatedBalanceOf(address _account) external view returns (uint256)'
