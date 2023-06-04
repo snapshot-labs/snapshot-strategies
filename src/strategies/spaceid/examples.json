@@ -3,8 +3,7 @@
     "name": "spaceid query on ethers",
     "strategy": {
       "name": "spaceid",
-      "params": {
-      }
+      "params": {}
     },
     "network": "1",
     "addresses": [
