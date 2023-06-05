@@ -28,28 +28,26 @@ export async function strategy(
   const multicaller = new Multicaller(network, provider, abi, { blockTag });
 
   // Get each user's active indexes and dividend stakes
-  await Promise.all(
-    addresses.map(async (address) => {
-      await multicaller.call(
-        `activeIndexes.${address}`,
-        options.address,
-        'getActiveIndexes',
-        [address]
-      );
-      await multicaller.call(
-        `dividendStakes.${address}`,
-        options.address,
-        'getDividendStake',
-        [address, true]
-      );
-      await multicaller.call(
-        `dividendStakesVested.${address}`,
-        options.address,
-        'getDividendStake',
-        [address, false]
-      );
-    })
-  );
+  addresses.map(async (address) => {
+    multicaller.call(
+      `activeIndexes.${address}`,
+      options.address,
+      'getActiveIndexes',
+      [address]
+    );
+    multicaller.call(
+      `dividendStakes.${address}`,
+      options.address,
+      'getDividendStake',
+      [address, true]
+    );
+    multicaller.call(
+      `dividendStakesVested.${address}`,
+      options.address,
+      'getDividendStake',
+      [address, false]
+    );
+  });
 
   const result: {
     activeIndexes: Record<string, number[]>;
