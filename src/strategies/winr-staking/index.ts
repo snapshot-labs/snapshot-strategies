@@ -58,17 +58,15 @@ export async function strategy(
   const multicaller2 = new Multicaller(network, provider, abi, { blockTag });
 
   // Get each user's staked amount from each active index
-  await Promise.all(
-    addresses.map(async (address) => {
-      const activeIndexes = result.activeIndexes[address];
-      await multicaller2.call(
-        `stakedAmount.${address}`,
-        options.address,
-        'vestingStakedAmount',
-        [address, activeIndexes]
-      );
-    })
-  );
+  addresses.map(async (address) => {
+    const activeIndexes = result.activeIndexes[address];
+    multicaller2.call(
+      `stakedAmount.${address}`,
+      options.address,
+      'vestingStakedAmount',
+      [address, activeIndexes]
+    );
+  });
 
   const result2: {
     stakedAmount: Record<string, BigNumber>;
