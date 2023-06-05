@@ -44,6 +44,7 @@ async function getLpTokenOnBsc(addresses, snapshot) {
 
   const pancakeIDLPScore = {};
   for (const account of pools.accounts) {
+    account.id = getAddress(account.id);
     let IdLPToken: BigNumber = BigNumber.from(0);
     for (const withdraw of account.withdraws) {
       IdLPToken = IdLPToken.add(BigNumber.from(withdraw.inputTokenAmounts[0]));
