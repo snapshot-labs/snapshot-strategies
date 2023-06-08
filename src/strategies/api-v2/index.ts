@@ -46,18 +46,27 @@ export async function strategy(
     },
     body
   });
+  let responseData: any = await response.text();
+  try {
+    responseData = JSON.parse(responseData);
+  } catch (e) {
+    throw new Error(
+      `[api-v2] Errors found in API: URL: ${url}, Status: ${
+        response.status
+      }, Response: ${responseData.substring(0, 512)}`
+    );
+  }
 
-  const data = await response.json();
-
-  if (!data.score) throw new Error('Invalid response from API');
+  if (!responseData?.score) throw new Error('Invalid response from API');
 
   return Object.fromEntries(
     addresses.map((address) => [
       getAddress(address),
       parseFloat(
         formatUnits(
-          data.score.find((s) => s.address === address)?.score?.toString() ||
-            '0',
+          responseData.score
+            .find((s) => s.address === address)
+            ?.score?.toString() || '0',
           options.hasOwnProperty('decimals') ? options.decimals : 0
         )
       )
