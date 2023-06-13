@@ -192,6 +192,7 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
 import * as poapWithWeightV2 from './poap-with-weight-v2';
@@ -651,6 +652,7 @@ const strategies = {
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
+  'taraxa-delegation': taraxaDelegation,
   poap: poap,
   'poap-with-weight': poapWithWeight,
   'poap-with-weight-v2': poapWithWeightV2,
