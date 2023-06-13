@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Seedify",
+    "strategy": {
+      "name": "seedify-token-lp-stake-farm",
+      "params": {
+        "address": "0x477bC8d23c634C154061869478bce96BE6045D12",
+        "symbol": "SFUND",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x63c089DFD1aFf7a677C9a2caCFBd29d8B9E5FA3b",
+      "0x3108fC89729016b3199DD8b5adAc3085E7e002f0",
+      "0x9f2566125e1eA778BACA0fa3b8A826caA2806A62",
+      "0x8B3b9710A1452Abbe6e673cd276eC9515e3BE77A",
+      "0x1bcf2B5262e4147540Fd2F2fE796F03BFfD47337"
+    ],
+    "snapshot": 29042360
+  }
+]
