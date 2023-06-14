@@ -48,7 +48,7 @@ export async function strategy(
   // required to use: erc20BalanceOfStrategy
   options.address = options.sfundAddress;
 
-  // returns user's SFUND balance of their address
+  //////// return SFUND, in user's wallet ////////
   let score: any = erc20BalanceOfStrategy(
     space,
     network,
@@ -58,7 +58,8 @@ export async function strategy(
     snapshot
   );
 
-  // return LP from SFUND-BNB pool, deposited into farming contract by user
+  //////// return LP from SFUND-BNB pool, deposited into farming contract ////////
+  // current farming
   let userLPStaked_SFUND_BNB: any = multicall(
     network,
     provider,
@@ -70,7 +71,7 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  // same but for legacy farming contract
+  // legacy farming
   let userLPStaked_SFUND_BNB_legacyFarming: any = multicall(
     network,
     provider,
@@ -83,7 +84,44 @@ export async function strategy(
     { blockTag }
   );
 
-  // returns user's SFUND balance in Staking contract (IDOLocking)
+  //////// return user's SFUND balance in staking contract (IDOLocking) ////////
+  // current 30 days
+  let userStakedBalance_30days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.sfundStakingAddress_30days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // current 90 days
+  let userStakedBalance_90days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.sfundStakingAddress_90days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // current 180 days
+  let userStakedBalance_180days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.sfundStakingAddress_180days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // current 270 days
   let userStakedBalance_270days: any = multicall(
     network,
     provider,
@@ -100,6 +138,9 @@ export async function strategy(
     score,
     userLPStaked_SFUND_BNB,
     userLPStaked_SFUND_BNB_legacyFarming,
+    userStakedBalance_30days,
+    userStakedBalance_90days,
+    userStakedBalance_180days,
     userStakedBalance_270days
   ]);
 
@@ -133,7 +174,7 @@ export async function strategy(
     Object.entries(score).map((sfundBalance: any, index) => [
       sfundBalance[0],
       sfundBalance[1] +
-        // SFUND from farming contracts (current & legacy)
+        ////// SFUND from farming contracts (current & legacy) //////
         calculateBep20InLPForUser(
           userLPStaked_SFUND_BNB[index],
           sfundBnbTotalSupply,
@@ -144,7 +185,11 @@ export async function strategy(
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
-        // SFUND from staking contracts (current & legacy)
+        ////// SFUND from staking contracts (current & legacy) //////
+        // current
+        getBalanceOf(userStakedBalance_30days[index]) +
+        getBalanceOf(userStakedBalance_90days[index]) +
+        getBalanceOf(userStakedBalance_180days[index]) +
         getBalanceOf(userStakedBalance_270days[index])
     ])
   );

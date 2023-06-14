@@ -10,6 +10,9 @@
         "lpAddress_SFUND_BNB": "0x74fA517715C4ec65EF01d55ad5335f90dce7CC87",
         "farmingAddress_SFUND_BNB": "0x71d058369D39a8488D8e9F5FD5B050610ca788C0",
         "legacyfarmingAddress_SFUND_BNB": "0x1f10564bad9367cff4247a138ebba9a9aaeb789e",
+        "sfundStakingAddress_30days": "0x60b9F788F4436f0B5c33785b3499b2ee1D8dbFd4",
+        "sfundStakingAddress_90days": "0x5b384955ac3460c996402Bf03736624A33e55273",
+        "sfundStakingAddress_180days": "0xd01650999BB5740F9bb41168401e9664B28FF47f",
         "sfundStakingAddress_270days": "0x89aaaB217272C89dA91825D9Effbe65dEd384859"
       }
     },
