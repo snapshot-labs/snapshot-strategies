@@ -83,16 +83,30 @@ export async function strategy(
     ]),
     { blockTag }
   );
+  // same but for legacy farming contract
+  let userLPStaked_SFUND_BNB_legacyFarming: any = multicall(
+    network,
+    provider,
+    sfundFarmingAbi,
+    addresses.map((address: any) => [
+      options.legacyfarmingAddress_SFUND_BNB,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
 
   const result = await Promise.all([
     score,
     userStakedBalance_270days,
-    userLPStaked_SFUND_BNB
+    userLPStaked_SFUND_BNB,
+    userLPStaked_SFUND_BNB_legacyFarming
   ]);
 
   score = result[0];
   userStakedBalance_270days = result[1];
   userLPStaked_SFUND_BNB = result[2];
+  userLPStaked_SFUND_BNB_legacyFarming = result[3];
 
   const erc20Multi = new Multicaller(network, provider, bep20Abi, {
     blockTag
@@ -122,6 +136,11 @@ export async function strategy(
         getBalanceOf(userStakedBalance_270days[index]) +
         calculateBep20InLPForUser(
           userLPStaked_SFUND_BNB[index],
+          sfundBnbTotalSupply,
+          sfundInSfundBnbPool
+        ) +
+        calculateBep20InLPForUser(
+          userLPStaked_SFUND_BNB_legacyFarming[index],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         )
