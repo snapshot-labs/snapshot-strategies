@@ -58,19 +58,6 @@ export async function strategy(
     snapshot
   );
 
-  // returns user's SFUND balance in Staking contract (IDOLocking)
-  let userStakedBalance_270days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.sfundStakingAddress_270days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-
   // return LP from SFUND-BNB pool, deposited into farming contract by user
   let userLPStaked_SFUND_BNB: any = multicall(
     network,
@@ -96,17 +83,30 @@ export async function strategy(
     { blockTag }
   );
 
+  // returns user's SFUND balance in Staking contract (IDOLocking)
+  let userStakedBalance_270days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.sfundStakingAddress_270days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+
   const result = await Promise.all([
     score,
-    userStakedBalance_270days,
     userLPStaked_SFUND_BNB,
-    userLPStaked_SFUND_BNB_legacyFarming
+    userLPStaked_SFUND_BNB_legacyFarming,
+    userStakedBalance_270days
   ]);
 
   score = result[0];
-  userStakedBalance_270days = result[1];
-  userLPStaked_SFUND_BNB = result[2];
-  userLPStaked_SFUND_BNB_legacyFarming = result[3];
+  userLPStaked_SFUND_BNB = result[1];
+  userLPStaked_SFUND_BNB_legacyFarming = result[2];
+  userStakedBalance_270days = result[3];
 
   const erc20Multi = new Multicaller(network, provider, bep20Abi, {
     blockTag
@@ -133,7 +133,7 @@ export async function strategy(
     Object.entries(score).map((sfundBalance: any, index) => [
       sfundBalance[0],
       sfundBalance[1] +
-        getBalanceOf(userStakedBalance_270days[index]) +
+        // SFUND from farming contracts (current & legacy)
         calculateBep20InLPForUser(
           userLPStaked_SFUND_BNB[index],
           sfundBnbTotalSupply,
@@ -143,7 +143,9 @@ export async function strategy(
           userLPStaked_SFUND_BNB_legacyFarming[index],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
-        )
+        ) +
+        // SFUND from staking contracts (current & legacy)
+        getBalanceOf(userStakedBalance_270days[index])
     ])
   );
 }
