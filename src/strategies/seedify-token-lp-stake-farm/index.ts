@@ -85,7 +85,8 @@ export async function strategy(
   );
 
   //////// return user's SFUND balance in staking contract (IDOLocking) ////////
-  // current 30 days
+  //// current ////
+  // 30 days
   let userStakedBalance_30days: any = multicall(
     network,
     provider,
@@ -97,7 +98,7 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  // current 90 days
+  // 90 days
   let userStakedBalance_90days: any = multicall(
     network,
     provider,
@@ -109,7 +110,7 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  // current 180 days
+  // 180 days
   let userStakedBalance_180days: any = multicall(
     network,
     provider,
@@ -121,13 +122,86 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  // current 270 days
+  // 270 days
   let userStakedBalance_270days: any = multicall(
     network,
     provider,
     sfundStakingAbi,
     addresses.map((address: any) => [
       options.sfundStakingAddress_270days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  //// legacy ////
+  // 7 days
+  let legacy_userStakedBalance_7days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.legacysfundStakingAddress_7days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // 14 days
+  let legacy_userStakedBalance_14days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.legacysfundStakingAddress_14days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // 30 days
+  let legacy_userStakedBalance_30days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.legacysfundStakingAddress_30days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // 60 days
+  let legacy_userStakedBalance_60days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.legacysfundStakingAddress_60days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // 90 days
+  let legacy_userStakedBalance_90days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.legacysfundStakingAddress_90days,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+  // 180 days
+  let legacy_userStakedBalance_180days: any = multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    addresses.map((address: any) => [
+      options.legacysfundStakingAddress_180days,
       'userDeposits',
       [address]
     ]),
@@ -141,7 +215,13 @@ export async function strategy(
     userStakedBalance_30days,
     userStakedBalance_90days,
     userStakedBalance_180days,
-    userStakedBalance_270days
+    userStakedBalance_270days,
+    legacy_userStakedBalance_7days,
+    legacy_userStakedBalance_14days,
+    legacy_userStakedBalance_30days,
+    legacy_userStakedBalance_60days,
+    legacy_userStakedBalance_90days,
+    legacy_userStakedBalance_180days
   ]);
 
   score = result[0];
@@ -190,7 +270,14 @@ export async function strategy(
         getBalanceOf(userStakedBalance_30days[index]) +
         getBalanceOf(userStakedBalance_90days[index]) +
         getBalanceOf(userStakedBalance_180days[index]) +
-        getBalanceOf(userStakedBalance_270days[index])
+        getBalanceOf(userStakedBalance_270days[index]) +
+        // legacy
+        getBalanceOf(legacy_userStakedBalance_7days[index]) +
+        getBalanceOf(legacy_userStakedBalance_14days[index]) +
+        getBalanceOf(legacy_userStakedBalance_30days[index]) +
+        getBalanceOf(legacy_userStakedBalance_60days[index]) +
+        getBalanceOf(legacy_userStakedBalance_90days[index]) +
+        getBalanceOf(legacy_userStakedBalance_180days[index])
     ])
   );
 }

@@ -13,7 +13,13 @@
         "sfundStakingAddress_30days": "0x60b9F788F4436f0B5c33785b3499b2ee1D8dbFd4",
         "sfundStakingAddress_90days": "0x5b384955ac3460c996402Bf03736624A33e55273",
         "sfundStakingAddress_180days": "0xd01650999BB5740F9bb41168401e9664B28FF47f",
-        "sfundStakingAddress_270days": "0x89aaaB217272C89dA91825D9Effbe65dEd384859"
+        "sfundStakingAddress_270days": "0x89aaaB217272C89dA91825D9Effbe65dEd384859",
+        "legacysfundStakingAddress_7days": "0xb667c499b88AC66899E54e27Ad830d423d9Fba69",
+        "legacysfundStakingAddress_14days": "0x027fC3A49383D0E7Bd6b81ef6C7512aFD7d22a9e",
+        "legacysfundStakingAddress_30days": "0x8900475BF7ed42eFcAcf9AE8CfC24Aa96098f776",
+        "legacysfundStakingAddress_60days": "0x66b8c1f8DE0574e68366E8c4e47d0C8883A6Ad0b",
+        "legacysfundStakingAddress_90days": "0x5745b7E077a76bE7Ba37208ff71d843347441576",
+        "legacysfundStakingAddress_180days": "0xf420F0951F0F50f50C741f6269a4816985670054"
       }
     },
     "network": "56",
