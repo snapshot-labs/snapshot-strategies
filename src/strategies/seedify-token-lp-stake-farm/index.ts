@@ -9,17 +9,15 @@ export const version = '0.1.0';
 const sfundStakingAbi = [
   'function userDeposits(address) external view returns (uint256, uint256, uint256, uint256, uint256, bool)'
 ];
-
 const sfundFarmingAbi = [
   'function userDeposits(address from) external view returns (uint256, uint256, uint256, uint256)'
 ];
-
 const bep20Abi = [
   'function totalSupply() view returns (uint256)',
   'function balanceOf(address) view returns (uint256)'
 ];
 
-const getStakedBalance = (userStakedBalance: any) => {
+const getBalanceOf = (userStakedBalance: any) => {
   return toDecimals(userStakedBalance['0']);
 };
 
@@ -46,6 +44,9 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  // required to use: erc20BalanceOfStrategy
+  options.address = options.sfundAddress;
 
   // returns user's SFUND balance of their address
   let score: any = erc20BalanceOfStrategy(
@@ -102,7 +103,7 @@ export async function strategy(
     options.lpAddress_SFUND_BNB,
     'totalSupply'
   );
-  erc20Multi.call('sfundInSfundBnbPool', options.address, 'balanceOf', [
+  erc20Multi.call('sfundInSfundBnbPool', options.sfundAddress, 'balanceOf', [
     options.lpAddress_SFUND_BNB
   ]);
 
@@ -118,7 +119,7 @@ export async function strategy(
     Object.entries(score).map((sfundBalance: any, index) => [
       sfundBalance[0],
       sfundBalance[1] +
-        getStakedBalance(userStakedBalance_270days[index]) +
+        getBalanceOf(userStakedBalance_270days[index]) +
         calculateBep20InLPForUser(
           userLPStaked_SFUND_BNB[index],
           sfundBnbTotalSupply,
