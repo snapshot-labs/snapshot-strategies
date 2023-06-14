@@ -6,7 +6,10 @@
       "params": {
         "address": "0x477bC8d23c634C154061869478bce96BE6045D12",
         "symbol": "SFUND",
-        "decimals": 18
+        "decimals": 18,
+        "sfundStakingAddress_270days": "0x89aaaB217272C89dA91825D9Effbe65dEd384859",
+        "farmingAddress_SFUND_BNB": "0x71d058369D39a8488D8e9F5FD5B050610ca788C0",
+        "lpAddress_SFUND_BNB": "0x74fA517715C4ec65EF01d55ad5335f90dce7CC87"
       }
     },
     "network": "56",

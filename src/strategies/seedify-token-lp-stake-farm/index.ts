@@ -19,11 +19,6 @@ const bep20Abi = [
   'function balanceOf(address) view returns (uint256)'
 ];
 
-const stakingAddress_270days = '0x89aaaB217272C89dA91825D9Effbe65dEd384859';
-
-const farming_SFUND_BNB = '0x71d058369D39a8488D8e9F5FD5B050610ca788C0';
-const lp_SFUND_BNB = '0x74fA517715C4ec65EF01d55ad5335f90dce7CC87';
-
 const getStakedBalance = (userStakedBalance: any) => {
   return toDecimals(userStakedBalance['0']);
 };
@@ -68,7 +63,7 @@ export async function strategy(
     provider,
     sfundStakingAbi,
     addresses.map((address: any) => [
-      stakingAddress_270days,
+      options.sfundStakingAddress_270days,
       'userDeposits',
       [address]
     ]),
@@ -81,7 +76,7 @@ export async function strategy(
     provider,
     sfundFarmingAbi,
     addresses.map((address: any) => [
-      farming_SFUND_BNB,
+      options.farmingAddress_SFUND_BNB,
       'userDeposits',
       [address]
     ]),
@@ -102,9 +97,13 @@ export async function strategy(
     blockTag
   });
 
-  erc20Multi.call('sfundBnbTotalSupply', lp_SFUND_BNB, 'totalSupply');
+  erc20Multi.call(
+    'sfundBnbTotalSupply',
+    options.lpAddress_SFUND_BNB,
+    'totalSupply'
+  );
   erc20Multi.call('sfundInSfundBnbPool', options.address, 'balanceOf', [
-    lp_SFUND_BNB
+    options.lpAddress_SFUND_BNB
   ]);
 
   const erc20Result = await erc20Multi.execute();
