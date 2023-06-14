@@ -9,7 +9,7 @@ export const version = '0.1.0';
 const sfundStakingAbi = [
   'function userDeposits(address) external view returns (uint256, uint256, uint256, uint256, uint256, bool)'
 ];
-const sfundFarmingAbi = [
+const farmingAbi = [
   'function userDeposits(address from) external view returns (uint256, uint256, uint256, uint256)'
 ];
 const bep20Abi = [
@@ -63,7 +63,7 @@ export async function strategy(
   let userLPStaked_SFUND_BNB: any = multicall(
     network,
     provider,
-    sfundFarmingAbi,
+    farmingAbi,
     addresses.map((address: any) => [
       options.farmingAddress_SFUND_BNB,
       'userDeposits',
@@ -75,9 +75,22 @@ export async function strategy(
   let userLPStaked_SFUND_BNB_legacyFarming: any = multicall(
     network,
     provider,
-    sfundFarmingAbi,
+    farmingAbi,
     addresses.map((address: any) => [
       options.legacyfarmingAddress_SFUND_BNB,
+      'userDeposits',
+      [address]
+    ]),
+    { blockTag }
+  );
+
+  //////// return LP from SNFTS-SFUND pool, deposited into farming contract ////////
+  let userLPStaked_SNFTS_SFUND: any = multicall(
+    network,
+    provider,
+    farmingAbi,
+    addresses.map((address: any) => [
+      options.farmingAddress_SNFTS_SFUND,
       'userDeposits',
       [address]
     ]),
@@ -212,6 +225,7 @@ export async function strategy(
     score,
     userLPStaked_SFUND_BNB,
     userLPStaked_SFUND_BNB_legacyFarming,
+    userLPStaked_SNFTS_SFUND,
     userStakedBalance_30days,
     userStakedBalance_90days,
     userStakedBalance_180days,
@@ -241,11 +255,21 @@ export async function strategy(
   erc20Multi.call('sfundInSfundBnbPool', options.sfundAddress, 'balanceOf', [
     options.lpAddress_SFUND_BNB
   ]);
+  erc20Multi.call(
+    'snftsSfundTotalSupply',
+    options.lpAddress_SNFTS_SFUND,
+    'totalSupply'
+  );
+  erc20Multi.call('snftsInSnftsSfundPool', options.snftsAddress, 'balanceOf', [
+    options.lpAddress_SNFTS_SFUND
+  ]);
 
   const erc20Result = await erc20Multi.execute();
 
   const sfundBnbTotalSupply = toDecimals(erc20Result.sfundBnbTotalSupply);
   const sfundInSfundBnbPool = toDecimals(erc20Result.sfundInSfundBnbPool);
+  const snftsSfundTotalSupply = toDecimals(erc20Result.snftsSfundTotalSupply);
+  const snftsInSnftsSfundPool = toDecimals(erc20Result.snftsInSnftsSfundPool);
 
   // console.log('score: ' + score);
   // console.log("userStakedBalance_270days: " + userStakedBalance_270days);
@@ -264,6 +288,12 @@ export async function strategy(
           userLPStaked_SFUND_BNB_legacyFarming[index],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
+        ) +
+        ////// SNFTS from farming contract //////
+        calculateBep20InLPForUser(
+          userLPStaked_SNFTS_SFUND[index],
+          snftsSfundTotalSupply,
+          snftsInSnftsSfundPool
         ) +
         ////// SFUND from staking contracts (current & legacy) //////
         // current
