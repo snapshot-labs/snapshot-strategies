@@ -10,6 +10,8 @@
         "lpAddress_SFUND_BNB": "0x74fA517715C4ec65EF01d55ad5335f90dce7CC87",
         "farmingAddress_SFUND_BNB": "0x71d058369D39a8488D8e9F5FD5B050610ca788C0",
         "legacyfarmingAddress_SFUND_BNB": "0x1f10564bad9367cff4247a138ebba9a9aaeb789e",
+        "lpAddress_SNFTS_SFUND": "0xe4399d0c968fBc3f5449525146ea98B0dC7Fc203",
+        "farmingAddress_SNFTS_SFUND": "0x19ee35c5B2CcaBaAE367B6f99b2f5747E6a6C0d0",
         "sfundStakingAddress_30days": "0x60b9F788F4436f0B5c33785b3499b2ee1D8dbFd4",
         "sfundStakingAddress_90days": "0x5b384955ac3460c996402Bf03736624A33e55273",
         "sfundStakingAddress_180days": "0xd01650999BB5740F9bb41168401e9664B28FF47f",
@@ -19,10 +21,7 @@
         "legacysfundStakingAddress_30days": "0x8900475BF7ed42eFcAcf9AE8CfC24Aa96098f776",
         "legacysfundStakingAddress_60days": "0x66b8c1f8DE0574e68366E8c4e47d0C8883A6Ad0b",
         "legacysfundStakingAddress_90days": "0x5745b7E077a76bE7Ba37208ff71d843347441576",
-        "legacysfundStakingAddress_180days": "0xf420F0951F0F50f50C741f6269a4816985670054",
-        "snftsAddress": "0x6f51A1674BEFDD77f7ab1246b83AdB9f13613762",
-        "lpAddress_SNFTS_SFUND": "0xe4399d0c968fBc3f5449525146ea98B0dC7Fc203",
-        "farmingAddress_SNFTS_SFUND": "0x19ee35c5B2CcaBaAE367B6f99b2f5747E6a6C0d0"
+        "legacysfundStakingAddress_180days": "0xf420F0951F0F50f50C741f6269a4816985670054"
       }
     },
     "network": "56",
