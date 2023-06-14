@@ -241,7 +241,17 @@ export async function strategy(
   score = result[0];
   userLPStaked_SFUND_BNB = result[1];
   userLPStaked_SFUND_BNB_legacyFarming = result[2];
-  userStakedBalance_270days = result[3];
+  userLPStaked_SNFTS_SFUND = result[3];
+  userStakedBalance_30days = result[4];
+  userStakedBalance_90days = result[5];
+  userStakedBalance_180days = result[6];
+  userStakedBalance_270days = result[7];
+  legacy_userStakedBalance_7days = result[8];
+  legacy_userStakedBalance_14days = result[9];
+  legacy_userStakedBalance_30days = result[10];
+  legacy_userStakedBalance_60days = result[11];
+  legacy_userStakedBalance_90days = result[12];
+  legacy_userStakedBalance_180days = result[13];
 
   const erc20Multi = new Multicaller(network, provider, bep20Abi, {
     blockTag
