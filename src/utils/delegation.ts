@@ -75,6 +75,7 @@ export async function getDelegationsData(space, network, addresses, snapshot) {
     if (space === 'stgdao.eth' && snapshot !== 'latest') {
       // TODO: implement LRU so memory doesn't explode
       // we only cache stgdao for now
+      console.log(`[with-delegation] Caching ${cacheKey}`);
       DELEGATION_DATA_CACHE[cacheKey] = delegationsReverse;
     }
   }
