@@ -87,7 +87,6 @@
       },
       "required": [
         "sfundAddress",
-        "symbol",
         "decimals",
         "lpAddress_SFUND_BNB",
         "farmingAddress_SFUND_BNB",
@@ -95,9 +94,9 @@
         "lpAddress_SNFTS_SFUND",
         "farmingAddress_SNFTS_SFUND",
         "sfundStakingAddresses",
-        "sfundStakingAddressesLegacy"
+        "legacySfundStakingAddresses"
       ],
-      "additionalProperties": false
+      "additionalProperties": true
     }
   }
 }
