@@ -59,20 +59,28 @@ export async function strategy(
     const promises: any = [];
     for (let i = 0; i < stakingAddresses.length; i++) {
       promises.push(
-        multicall(
-          network,
-          provider,
-          sfundStakingAbi,
-          addresses.map((address: any) => [
-            stakingAddresses[i],
-            'userDeposits',
-            [address]
-          ]),
-          { blockTag }
-        )
+        createPromise(sfundStakingAbi, stakingAddresses[i], 'userDeposits')
       );
     }
     return promises;
+  };
+
+  const createPromise: any = (
+    abi: any,
+    contractAddress: any,
+    functionToCall: any
+  ) => {
+    return multicall(
+      network,
+      provider,
+      abi,
+      addresses.map((address: any) => [
+        contractAddress,
+        functionToCall,
+        [address]
+      ]),
+      { blockTag }
+    );
   };
 
   // required to use: erc20BalanceOfStrategy
@@ -90,41 +98,23 @@ export async function strategy(
 
   //////// return LP from SFUND-BNB pool, deposited into farming contract ////////
   // current farming
-  let userLPStaked_SFUND_BNB: any = multicall(
-    network,
-    provider,
+  let userLPStaked_SFUND_BNB: any = createPromise(
     farmingAbi,
-    addresses.map((address: any) => [
-      options.farmingAddress_SFUND_BNB,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
+    options.farmingAddress_SFUND_BNB,
+    'userDeposits'
   );
   // legacy farming
-  let userLPStaked_SFUND_BNB_legacyFarming: any = multicall(
-    network,
-    provider,
+  let userLPStaked_SFUND_BNB_legacyFarming: any = createPromise(
     farmingAbi,
-    addresses.map((address: any) => [
-      options.legacyfarmingAddress_SFUND_BNB,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
+    options.legacyfarmingAddress_SFUND_BNB,
+    'userDeposits'
   );
 
   //////// return LP from SNFTS-SFUND pool, deposited into farming contract ////////
-  let userLPStaked_SNFTS_SFUND: any = multicall(
-    network,
-    provider,
+  let userLPStaked_SNFTS_SFUND: any = createPromise(
     farmingAbi,
-    addresses.map((address: any) => [
-      options.farmingAddress_SNFTS_SFUND,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
+    options.farmingAddress_SNFTS_SFUND,
+    'userDeposits'
   );
 
   //////// return user's SFUND balance in staking contract (IDOLocking) ////////
