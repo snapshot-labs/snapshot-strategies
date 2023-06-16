@@ -4,11 +4,11 @@ Strategy which calculates the balance of SFUND for each of these contracts:
 
 - SFUND (raw balance)
 - Farming
-  - SFUND farming:
+  - SFUND-BNB farming:
     - LP_CONTRACT_SFUND_BNB = 0x74fA517715C4ec65EF01d55ad5335f90dce7CC87
     - SFUND_FARM_CONTRACT_LEGACY = 0x1F10564BAD9367CfF4247A138eBbA9a9aaeb789E
     - SFUND_FARM_CONTRACT_NEW = 0x71d058369D39a8488D8e9F5FD5B050610ca788C0
-  - SNFTS farming:
+  - SFUND-SNFTS farming (only calculates SFUND amount):
     - LP_CONTRACT_SNFTS_SFUND = 0xe4399d0c968fBc3f5449525146ea98B0dC7Fc203
     - SNFTS_FARM_CONTRACT = 0x19ee35c5B2CcaBaAE367B6f99b2f5747E6a6C0d0
 - Staking:
@@ -23,12 +23,12 @@ Strategy which calculates the balance of SFUND for each of these contracts:
   - SFUND_STAKE_CONTRACT_180_DAYS_NEW = 0xd01650999BB5740F9bb41168401e9664B28FF47f
   - SFUND_STAKE_CONTRACT_270_DAYS_NEW = 0x89aaaB217272C89dA91825D9Effbe65dEd384859
 
-Here is an example of parameters:
+Here is an example of parameters that can be usde in `examples.json`:
 
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
+  "sfundAddress": "0x477bC8d23c634C154061869478bce96BE6045D12",
+  "symbol": "SFUND",
   "decimals": 18
 }
 ```
