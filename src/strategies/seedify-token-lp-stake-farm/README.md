@@ -1,6 +1,6 @@
 # seedify-token-lp-stake-farm
 
-Strategy which calculates the balance of SFUND for each of these contracts:
+Strategy which calculates SFUND Cumulative Voting Power (hodl, farming & staking):
 
 - SFUND (raw balance)
 - Farming

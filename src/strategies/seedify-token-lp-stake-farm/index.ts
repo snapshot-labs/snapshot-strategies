@@ -174,7 +174,7 @@ export async function strategy(
     Object.entries(score).map((sfundBalance: any, userIndex) => [
       sfundBalance[0],
       sfundBalance[1] +
-        ////// SFUND from farming contracts (current & legacy) //////
+        ////// SFUND from SFUND-BNB farming contracts (current & legacy) //////
         calculateBep20InLPForUser(
           userLPStaked_SFUND_BNB[userIndex],
           sfundBnbTotalSupply,
@@ -185,7 +185,7 @@ export async function strategy(
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
-        ////// SNFTS from farming contract //////
+        ////// SFUND from SFNTS-SFUND farming contract //////
         calculateBep20InLPForUser(
           userLPStaked_SNFTS_SFUND[userIndex],
           snftsSfundTotalSupply,

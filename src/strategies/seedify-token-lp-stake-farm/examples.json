@@ -1,6 +1,6 @@
 [
   {
-    "name": "Seedify",
+    "name": "Seedify: SFUND Cumulative Voting Power (hodl, farming & staking)",
     "strategy": {
       "name": "seedify-token-lp-stake-farm",
       "params": {
