@@ -30,5 +30,20 @@ Here is an example of parameters that can be usde in `examples.json`:
   "sfundAddress": "0x477bC8d23c634C154061869478bce96BE6045D12",
   "symbol": "SFUND",
   "decimals": 18
+  // Calculate SFUND from staked LP tokens use:
+  "lpAddress_SFUND_BNB": "0x74fA517715C4ec65EF01d55ad5335f90dce7CC87",
+  "farmingAddress_SFUND_BNB": "0x71d058369D39a8488D8e9F5FD5B050610ca788C0",
+  "legacyfarmingAddress_SFUND_BNB": "0x1f10564bad9367cff4247a138ebba9a9aaeb789e",
+  "lpAddress_SNFTS_SFUND": "0xe4399d0c968fBc3f5449525146ea98B0dC7Fc203",
+  "farmingAddress_SNFTS_SFUND": "0x19ee35c5B2CcaBaAE367B6f99b2f5747E6a6C0d0",
+  // Calculate SFUND staked in ALL staking contracts use:
+  "sfundStakingAddresses": [
+    "0x60b9F788F4436f0B5c33785b3499b2ee1D8dbFd4",
+    ...
+  ],
+  "legacySfundStakingAddresses": [
+    "0xb667c499b88AC66899E54e27Ad830d423d9Fba69",
+    ...
+  ]
 }
 ```
