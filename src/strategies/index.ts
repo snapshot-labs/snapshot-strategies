@@ -446,7 +446,7 @@ import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
-import * as seedifyTokenLpStakeFarm from './seedify-token-lp-stake-farm';
+import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -900,7 +900,8 @@ const strategies = {
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
   spaceid,
-  'seedify-token-lp-stake-farm': seedifyTokenLpStakeFarm,
+  'seedify-cumulative-voting-power-hodl-staking-farming':
+    seedifyHoldStakingFarming
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -3,7 +3,7 @@
   "$ref": "#/definitions/Strategy",
   "definitions": {
     "Strategy": {
-      "title": "seedify-token-lp-stake-farm",
+      "title": "seedify-cumulative-voting-power-hodl-staking-farming",
       "type": "object",
       "properties": {
         "sfundAddress": {

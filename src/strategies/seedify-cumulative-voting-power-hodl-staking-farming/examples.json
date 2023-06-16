@@ -2,7 +2,7 @@
   {
     "name": "Seedify: SFUND Cumulative Voting Power (hodl, farming & staking)",
     "strategy": {
-      "name": "seedify-token-lp-stake-farm",
+      "name": "seedify-cumulative-voting-power-hodl-staking-farming",
       "params": {
         "sfundAddress": "0x477bC8d23c634C154061869478bce96BE6045D12",
         "symbol": "SFUND",

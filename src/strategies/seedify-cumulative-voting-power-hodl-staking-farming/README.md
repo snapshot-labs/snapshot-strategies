@@ -1,4 +1,4 @@
-# seedify-token-lp-stake-farm
+# seedify-cumulative-voting-power-hodl-staking-farming
 
 Strategy which calculates SFUND Cumulative Voting Power (hodl, farming & staking):
 
@@ -47,3 +47,5 @@ Here is an example of parameters that can be usde in `examples.json`:
   ]
 }
 ```
+
+Run tests: `yarn test --strategy=seedify-cumulative-voting-power-hodl-staking-farming`
