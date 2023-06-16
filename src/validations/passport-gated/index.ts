@@ -48,11 +48,10 @@ export default class extends Validation {
     const stampsData = await stampsResponse.json();
 
     if (!stampsData?.items) {
-      // throw new Error(
-      //   'You do not have a valid Gitcoin Passport. Create one by visiting https://passport.gitcoin.co/ '
-      // );
-      return false;
+      console.log('[passport] Unknown error', stampsData);
+      throw new Error('Unknown error');
     }
+    if (stampsData.items.length === 0) return false;
 
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
