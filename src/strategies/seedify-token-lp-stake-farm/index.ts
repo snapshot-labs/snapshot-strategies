@@ -17,8 +17,18 @@ const bep20Abi = [
   'function balanceOf(address) view returns (uint256)'
 ];
 
-const getBalanceOf = (userStakedBalance: any) => {
-  return toDecimals(userStakedBalance['0']);
+const getStakingBalanceOf = (stakedBalances: any, userIndex: any) => {
+  let sum: number = 0;
+  let balance: any;
+  for (
+    let stakingContractIndex = 0;
+    stakingContractIndex < stakedBalances.length;
+    stakingContractIndex++
+  ) {
+    balance = toDecimals(stakedBalances[stakingContractIndex][userIndex]['0']);
+    sum += balance;
+  }
+  return sum;
 };
 
 const toDecimals = (bigNumber: any) => {
@@ -44,6 +54,26 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  const createStakingPromises: any = (stakingAddresses: any[]) => {
+    const promises: any = [];
+    for (let i = 0; i < stakingAddresses.length; i++) {
+      promises.push(
+        multicall(
+          network,
+          provider,
+          sfundStakingAbi,
+          addresses.map((address: any) => [
+            stakingAddresses[i],
+            'userDeposits',
+            [address]
+          ]),
+          { blockTag }
+        )
+      );
+    }
+    return promises;
+  };
 
   // required to use: erc20BalanceOfStrategy
   options.address = options.sfundAddress;
@@ -98,127 +128,9 @@ export async function strategy(
   );
 
   //////// return user's SFUND balance in staking contract (IDOLocking) ////////
-  //// current ////
-  // 30 days
-  let userStakedBalance_30days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.sfundStakingAddress_30days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 90 days
-  let userStakedBalance_90days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.sfundStakingAddress_90days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 180 days
-  let userStakedBalance_180days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.sfundStakingAddress_180days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 270 days
-  let userStakedBalance_270days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.sfundStakingAddress_270days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  //// legacy ////
-  // 7 days
-  let legacy_userStakedBalance_7days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.legacysfundStakingAddress_7days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 14 days
-  let legacy_userStakedBalance_14days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.legacysfundStakingAddress_14days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 30 days
-  let legacy_userStakedBalance_30days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.legacysfundStakingAddress_30days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 60 days
-  let legacy_userStakedBalance_60days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.legacysfundStakingAddress_60days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 90 days
-  let legacy_userStakedBalance_90days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.legacysfundStakingAddress_90days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
-  );
-  // 180 days
-  let legacy_userStakedBalance_180days: any = multicall(
-    network,
-    provider,
-    sfundStakingAbi,
-    addresses.map((address: any) => [
-      options.legacysfundStakingAddress_180days,
-      'userDeposits',
-      [address]
-    ]),
-    { blockTag }
+  let sfundStaking: any = createStakingPromises(options.sfundStakingAddresses);
+  let legacySfundStaking: any = createStakingPromises(
+    options.legacySfundStakingAddresses
   );
 
   const result = await Promise.all([
@@ -226,32 +138,19 @@ export async function strategy(
     userLPStaked_SFUND_BNB,
     userLPStaked_SFUND_BNB_legacyFarming,
     userLPStaked_SNFTS_SFUND,
-    userStakedBalance_30days,
-    userStakedBalance_90days,
-    userStakedBalance_180days,
-    userStakedBalance_270days,
-    legacy_userStakedBalance_7days,
-    legacy_userStakedBalance_14days,
-    legacy_userStakedBalance_30days,
-    legacy_userStakedBalance_60days,
-    legacy_userStakedBalance_90days,
-    legacy_userStakedBalance_180days
+    ...sfundStaking,
+    ...legacySfundStaking
   ]);
 
   score = result[0];
   userLPStaked_SFUND_BNB = result[1];
   userLPStaked_SFUND_BNB_legacyFarming = result[2];
   userLPStaked_SNFTS_SFUND = result[3];
-  userStakedBalance_30days = result[4];
-  userStakedBalance_90days = result[5];
-  userStakedBalance_180days = result[6];
-  userStakedBalance_270days = result[7];
-  legacy_userStakedBalance_7days = result[8];
-  legacy_userStakedBalance_14days = result[9];
-  legacy_userStakedBalance_30days = result[10];
-  legacy_userStakedBalance_60days = result[11];
-  legacy_userStakedBalance_90days = result[12];
-  legacy_userStakedBalance_180days = result[13];
+  sfundStaking = result.slice(4, 4 + options.sfundStakingAddresses.length);
+  legacySfundStaking = result.slice(
+    8,
+    8 + options.legacySfundStakingAddresses.length
+  );
 
   const erc20Multi = new Multicaller(network, provider, bep20Abi, {
     blockTag
@@ -281,43 +180,30 @@ export async function strategy(
   const snftsSfundTotalSupply = toDecimals(erc20Result.snftsSfundTotalSupply);
   const sfundInSnftsSfundPool = toDecimals(erc20Result.sfundInSnftsSfundPool);
 
-  // console.log('score: ' + score);
-  // console.log("userStakedBalance_270days: " + userStakedBalance_270days);
-
   return Object.fromEntries(
-    Object.entries(score).map((sfundBalance: any, index) => [
+    Object.entries(score).map((sfundBalance: any, userIndex) => [
       sfundBalance[0],
       sfundBalance[1] +
         ////// SFUND from farming contracts (current & legacy) //////
         calculateBep20InLPForUser(
-          userLPStaked_SFUND_BNB[index],
+          userLPStaked_SFUND_BNB[userIndex],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
         calculateBep20InLPForUser(
-          userLPStaked_SFUND_BNB_legacyFarming[index],
+          userLPStaked_SFUND_BNB_legacyFarming[userIndex],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
         ////// SNFTS from farming contract //////
         calculateBep20InLPForUser(
-          userLPStaked_SNFTS_SFUND[index],
+          userLPStaked_SNFTS_SFUND[userIndex],
           snftsSfundTotalSupply,
           sfundInSnftsSfundPool
         ) +
         ////// SFUND from staking contracts (current & legacy) //////
-        // current
-        getBalanceOf(userStakedBalance_30days[index]) +
-        getBalanceOf(userStakedBalance_90days[index]) +
-        getBalanceOf(userStakedBalance_180days[index]) +
-        getBalanceOf(userStakedBalance_270days[index]) +
-        // legacy
-        getBalanceOf(legacy_userStakedBalance_7days[index]) +
-        getBalanceOf(legacy_userStakedBalance_14days[index]) +
-        getBalanceOf(legacy_userStakedBalance_30days[index]) +
-        getBalanceOf(legacy_userStakedBalance_60days[index]) +
-        getBalanceOf(legacy_userStakedBalance_90days[index]) +
-        getBalanceOf(legacy_userStakedBalance_180days[index])
+        getStakingBalanceOf(sfundStaking, userIndex) +
+        getStakingBalanceOf(legacySfundStaking, userIndex)
     ])
   );
 }
