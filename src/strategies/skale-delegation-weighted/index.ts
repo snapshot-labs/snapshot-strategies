@@ -18,48 +18,7 @@ function returnGraphParamsValidatorPower(
   snapshot: number | string,
   addresses: string[]
 ) {
-  return {
-    delegations: {
-      __args: {
-        where: {
-          and: [
-            {
-              or: [{ state: 'DELEGATED' }]
-            },
-            {
-              holder_: {
-                id_not_in: addresses.map((address: string) =>
-                  address.toLowerCase()
-                )
-              }
-            },
-            {
-              validator_: {
-                address_in: addresses.map((address: string) =>
-                  address.toLowerCase()
-                )
-              }
-            }
-          ]
-        },
-        block: {
-          number: snapshot
-        },
-        first: 1000
-      },
-      holder: {
-        id: true
-      },
-      validator: {
-        address: true
-      },
-      amount: true
-    }
-  };
-}
-
-function returnGraphParamsValidatorPowerWithoutBlock(addresses: string[]) {
-  return {
+  const output = {
     delegations: {
       __args: {
         where: {
@@ -94,31 +53,18 @@ function returnGraphParamsValidatorPowerWithoutBlock(addresses: string[]) {
       amount: true
     }
   };
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    output.delegations.__args.block = { number: snapshot };
+  }
+  return output;
 }
 
 function returnGraphParamsValidatorOnly(
   snapshot: number | string,
   addresses: string[]
 ) {
-  return {
-    validators: {
-      __args: {
-        where: {
-          address_in: addresses.map((address: string) => address.toLowerCase())
-        },
-        block: {
-          number: snapshot
-        },
-        first: 1000
-      },
-      address: true,
-      currentDelegationAmount: true
-    }
-  };
-}
-
-function returnGraphParamsValidatorOnlyWithoutBlock(addresses: string[]) {
-  return {
+  const output = {
     validators: {
       __args: {
         where: {
@@ -130,6 +76,11 @@ function returnGraphParamsValidatorOnlyWithoutBlock(addresses: string[]) {
       currentDelegationAmount: true
     }
   };
+  if (snapshot !== 'latest') {
+    // @ts-ignore
+    output.validators.__args.block = { number: snapshot };
+  }
+  return output;
 }
 
 export async function strategy(
@@ -203,9 +154,7 @@ export async function strategy(
   if (options.validatorPower !== false && !options.validatorOnly) {
     const results = await subgraphRequest(
       GRAPH_API_URL,
-      blockTag == 'latest'
-        ? returnGraphParamsValidatorPowerWithoutBlock(combinedAddresses)
-        : returnGraphParamsValidatorPower(blockTag, combinedAddresses)
+      returnGraphParamsValidatorPower(blockTag, combinedAddresses)
     );
 
     const validatorsVotePower = new Map<string, BigNumberish>();
@@ -229,9 +178,7 @@ export async function strategy(
   } else if (options.validatorOnly) {
     const results = await subgraphRequest(
       GRAPH_API_URL,
-      blockTag == 'latest'
-        ? returnGraphParamsValidatorOnlyWithoutBlock(combinedAddresses)
-        : returnGraphParamsValidatorOnly(blockTag, combinedAddresses)
+      returnGraphParamsValidatorOnly(blockTag, combinedAddresses)
     );
 
     const validatorsVotePower = new Map<string, BigNumberish>();
