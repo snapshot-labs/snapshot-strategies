@@ -1,49 +1,16 @@
-import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
 import { Multicaller } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
+import {
+  createPromise,
+  createStakingPromises,
+  toDecimals,
+  calculateBep20InLPForUser,
+  getStakingBalanceOf
+} from './utils';
+import { farmingAbi, bep20Abi } from './utils';
 
 export const author = 'theo6890';
 export const version = '0.1.0';
-
-const sfundStakingAbi = [
-  'function userDeposits(address) external view returns (uint256, uint256, uint256, uint256, uint256, bool)'
-];
-const farmingAbi = [
-  'function userDeposits(address from) external view returns (uint256, uint256, uint256, uint256)'
-];
-const bep20Abi = [
-  'function totalSupply() view returns (uint256)',
-  'function balanceOf(address) view returns (uint256)'
-];
-
-const getStakingBalanceOf = (stakedBalances: any, userIndex: any) => {
-  let sum: number = 0;
-  let balance: any;
-  for (
-    let stakingContractIndex = 0;
-    stakingContractIndex < stakedBalances.length;
-    stakingContractIndex++
-  ) {
-    balance = toDecimals(stakedBalances[stakingContractIndex][userIndex]['0']);
-    sum += balance;
-  }
-  return sum;
-};
-
-const toDecimals = (bigNumber: any) => {
-  return parseFloat(formatUnits(bigNumber.toString(), 18));
-};
-
-const calculateBep20InLPForUser = (
-  lpStaked: any,
-  totalLPSupply: any,
-  totalBep20InPool: any
-) => {
-  lpStaked = toDecimals(lpStaked['0']);
-
-  return (lpStaked / totalLPSupply) * totalBep20InPool;
-};
 
 export async function strategy(
   space,
@@ -54,34 +21,6 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
-  const createStakingPromises: any = (stakingAddresses: any[]) => {
-    const promises: any = [];
-    for (let i = 0; i < stakingAddresses.length; i++) {
-      promises.push(
-        createPromise(sfundStakingAbi, stakingAddresses[i], 'userDeposits')
-      );
-    }
-    return promises;
-  };
-
-  const createPromise: any = (
-    abi: any,
-    contractAddress: any,
-    functionToCall: any
-  ) => {
-    return multicall(
-      network,
-      provider,
-      abi,
-      addresses.map((address: any) => [
-        contractAddress,
-        functionToCall,
-        [address]
-      ]),
-      { blockTag }
-    );
-  };
 
   // required to use: erc20BalanceOfStrategy
   options.address = options.sfundAddress;
