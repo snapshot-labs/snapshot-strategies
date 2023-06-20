@@ -5,7 +5,6 @@ import { getAddress } from '@ethersproject/address';
 
 export const author = 'Taraxa-project';
 export const version = '0.1.0';
-export const dependOnOtherAddress = false;
 
 const abi = [
   'function getDelegations(address delegator, uint32 batch) view returns (tuple(address account, tuple(uint256 stake, uint256 rewards) delegation)[] delegations, bool end)'
