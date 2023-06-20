@@ -1,10 +1,11 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Contract } from '@ethersproject/contracts';
 import { formatUnits } from '@ethersproject/units';
+import { getAddress } from '@ethersproject/address';
 
-export const author = 'taraxa';
+export const author = 'Taraxa-project';
 export const version = '0.1.0';
-export const dependOnOtherAddress = true;
+export const dependOnOtherAddress = false;
 
 const abi = [
   'function getDelegations(address delegator, uint32 batch) view returns (tuple(address account, tuple(uint256 stake, uint256 rewards) delegation)[] delegations, bool end)'
@@ -41,7 +42,7 @@ const getTotalDelegationOfAddress = async (
   let hasNextPage = true;
   while (hasNextPage) {
     try {
-      const allDelegations = await mainnetDpos!.getDelegations(address, page, {
+      const allDelegations = await mainnetDpos.getDelegations(address, page, {
         blockTag
       });
 
@@ -74,7 +75,7 @@ const getDelegations = async (
   provider,
   snapshot
 ): Promise<Record<string, number>> => {
-  let result: Record<string, BigNumberish> = {};
+  const result: Record<string, BigNumberish> = {};
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   for (const address of addresses) {
     const delegation = await getTotalDelegationOfAddress(
@@ -106,7 +107,7 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address) => {
       const addressScore = delegations[address] ? delegations[address] : 0;
-      return [address, addressScore];
+      return [getAddress(address), addressScore];
     })
   );
 }
