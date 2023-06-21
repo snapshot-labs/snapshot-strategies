@@ -5,6 +5,8 @@ import snapshot from '../src';
 import snapshotjs from '@snapshot-labs/snapshot.js';
 import addresses from './addresses.json';
 
+jest.useFakeTimers({ advanceTimers: true });
+
 const strategyArg =
   process.env['npm_config_strategy'] ||
   (
