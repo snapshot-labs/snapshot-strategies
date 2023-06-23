@@ -21,7 +21,7 @@ Currently supported operations are:
 
 ## Examples
 
-The following example takes the cube root of a user's DAI token balance as voting score.
+The following example takes the square root of a user's DAI token balance as voting score.
 
 ```json
 {
