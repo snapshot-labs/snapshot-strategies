@@ -1,5 +1,4 @@
 import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
 
 export const sfundStakingAbi = [
   'function userDeposits(address) external view returns (uint256, uint256, uint256, uint256, uint256, bool)'
@@ -20,7 +19,7 @@ export const getStakingBalanceOf = (stakedBalances: any, userIndex: any) => {
     stakingContractIndex < stakedBalances.length;
     stakingContractIndex++
   ) {
-    balance = toDecimals(stakedBalances[stakingContractIndex][userIndex]['0']);
+    balance = toDecimals(stakedBalances[userIndex]['0']);
     sum += balance;
   }
   return sum;
@@ -40,34 +39,32 @@ export const calculateBep20InLPForUser = (
   return (lpStaked / totalLPSupply) * totalBep20InPool;
 };
 
-export const createStakingPromises: any = (stakingAddresses: any[]) => {
+export const createCallsToReadUsersData: any = (
+  addresses: any[],
+  stakingAddresses: any[],
+  functionToCall: string
+) => {
   const promises: any = [];
   for (let i = 0; i < stakingAddresses.length; i++) {
     promises.push(
-      createPromise(sfundStakingAbi, stakingAddresses[i], 'userDeposits')
+      ...createCallToReadUsersData(
+        addresses,
+        stakingAddresses[i],
+        functionToCall
+      )
     );
   }
   return promises;
 };
 
-export const createPromise: any = (
-  network: any,
-  provider: any,
-  abi: any,
+export const createCallToReadUsersData: any = (
   addresses: any,
   contractAddress: any,
-  functionToCall: any,
-  blockTag: any
+  functionToCall: any
 ) => {
-  return multicall(
-    network,
-    provider,
-    abi,
-    addresses.map((address: any) => [
-      contractAddress,
-      functionToCall,
-      [address]
-    ]),
-    { blockTag }
-  );
+  return addresses.map((address: any) => [
+    contractAddress,
+    functionToCall,
+    [address]
+  ]);
 };

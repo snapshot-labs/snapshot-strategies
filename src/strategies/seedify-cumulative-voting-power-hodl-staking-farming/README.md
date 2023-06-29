@@ -49,3 +49,5 @@ Here is an example of parameters that can be usde in `examples.json`:
 ```
 
 Run tests: `yarn test --strategy=seedify-cumulative-voting-power-hodl-staking-farming`
+
+Tests fails with current data in `examples.json` as wallet addresses do not hold any funds in `legacyfarmingAddress_SFUND_BNB` anymore. To prevent tests from failing them comment calculation for `legacyfarmingAddress_SFUND_BNB`.

@@ -1,10 +1,11 @@
-import { Multicaller } from '../../utils';
+import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import {
-  createPromise,
-  createStakingPromises,
+  createCallToReadUsersData,
+  createCallsToReadUsersData,
   toDecimals,
   calculateBep20InLPForUser,
+  sfundStakingAbi,
   getStakingBalanceOf
 } from './utils';
 import { farmingAbi, bep20Abi } from './utils';
@@ -20,13 +21,20 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
+  if (options.sfundStakingAddresses.length > 10) {
+    throw new Error('More than 10 staking addresses');
+  }
+  if (options.legacySfundStakingAddresses.length > 10) {
+    throw new Error('More than 10 LEGACY staking addresses');
+  }
+
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // required to use: erc20BalanceOfStrategy
   options.address = options.sfundAddress;
 
   //////// return SFUND, in user's wallet ////////
-  let score: any = erc20BalanceOfStrategy(
+  let score: any = await erc20BalanceOfStrategy(
     space,
     network,
     provider,
@@ -35,79 +43,86 @@ export async function strategy(
     snapshot
   );
 
-  //////// return LP from SFUND-BNB pool, deposited into farming contract ////////
-  // current farming
-  let userLPStaked_SFUND_BNB: any = createPromise(
+  //////// return LP deposited into farming contract ////////
+  const farming = await multicall(
+    network,
+    provider,
     farmingAbi,
-    options.farmingAddress_SFUND_BNB,
-    'userDeposits'
+    [
+      // from SFUND-BNB pool
+      ...createCallToReadUsersData(
+        addresses,
+        options.farmingAddress_SFUND_BNB,
+        'userDeposits'
+      ),
+      ...createCallToReadUsersData(
+        addresses,
+        options.legacyfarmingAddress_SFUND_BNB,
+        'userDeposits'
+      ),
+      // from SNFTS-SFUND pool
+      ...createCallToReadUsersData(
+        addresses,
+        options.farmingAddress_SNFTS_SFUND,
+        'userDeposits'
+      )
+    ],
+    { blockTag }
   );
-  // legacy farming
-  let userLPStaked_SFUND_BNB_legacyFarming: any = createPromise(
-    farmingAbi,
-    options.legacyfarmingAddress_SFUND_BNB,
-    'userDeposits'
+  const sfundBnbCurrentFarming = farming.slice(0, addresses.length);
+  const sfundBnbLegacyFarming = farming.slice(
+    addresses.length,
+    1 + addresses.length * 2
   );
-
-  //////// return LP from SNFTS-SFUND pool, deposited into farming contract ////////
-  let userLPStaked_SNFTS_SFUND: any = createPromise(
-    farmingAbi,
-    options.farmingAddress_SNFTS_SFUND,
-    'userDeposits'
-  );
-
-  //////// return user's SFUND balance in staking contract (IDOLocking) ////////
-  let sfundStaking: any = createStakingPromises(options.sfundStakingAddresses);
-  let legacySfundStaking: any = createStakingPromises(
-    options.legacySfundStakingAddresses
-  );
-
-  const result = await Promise.all([
-    score,
-    userLPStaked_SFUND_BNB,
-    userLPStaked_SFUND_BNB_legacyFarming,
-    userLPStaked_SNFTS_SFUND,
-    ...sfundStaking,
-    ...legacySfundStaking
-  ]);
-
-  score = result[0];
-  userLPStaked_SFUND_BNB = result[1];
-  userLPStaked_SFUND_BNB_legacyFarming = result[2];
-  userLPStaked_SNFTS_SFUND = result[3];
-  sfundStaking = result.slice(4, 4 + options.sfundStakingAddresses.length);
-  legacySfundStaking = result.slice(
-    8,
-    8 + options.legacySfundStakingAddresses.length
+  const snftsSfundFarming = farming.slice(
+    1 + addresses.length * 2,
+    farming.length
   );
 
-  const erc20Multi = new Multicaller(network, provider, bep20Abi, {
-    blockTag
-  });
-
-  erc20Multi.call(
-    'sfundBnbTotalSupply',
-    options.lpAddress_SFUND_BNB,
-    'totalSupply'
+  const staking = await multicall(
+    network,
+    provider,
+    sfundStakingAbi,
+    [
+      ...createCallsToReadUsersData(
+        addresses,
+        options.sfundStakingAddresses,
+        'userDeposits'
+      ),
+      ...createCallsToReadUsersData(
+        addresses,
+        options.legacySfundStakingAddresses,
+        'userDeposits'
+      )
+    ],
+    { blockTag }
   );
-  erc20Multi.call('sfundInSfundBnbPool', options.sfundAddress, 'balanceOf', [
-    options.lpAddress_SFUND_BNB
-  ]);
-  erc20Multi.call(
-    'snftsSfundTotalSupply',
-    options.lpAddress_SNFTS_SFUND,
-    'totalSupply'
+  const sfundStaking = staking.slice(
+    0,
+    addresses.length * options.sfundStakingAddresses.length
   );
-  erc20Multi.call('sfundInSnftsSfundPool', options.sfundAddress, 'balanceOf', [
-    options.lpAddress_SNFTS_SFUND
-  ]);
+  const legacySfundStaking = staking.slice(
+    addresses.length * options.sfundStakingAddresses.length,
+    staking.length
+  );
 
-  const erc20Result = await erc20Multi.execute();
+  const erc20Res = await multicall(
+    network,
+    provider,
+    bep20Abi,
+    [
+      [options.lpAddress_SFUND_BNB, 'totalSupply'],
+      [options.sfundAddress, 'balanceOf', [options.lpAddress_SFUND_BNB]],
+      [options.lpAddress_SNFTS_SFUND, 'totalSupply'],
+      [options.sfundAddress, 'balanceOf', [options.lpAddress_SNFTS_SFUND]]
+    ],
+    { blockTag }
+  );
 
-  const sfundBnbTotalSupply = toDecimals(erc20Result.sfundBnbTotalSupply);
-  const sfundInSfundBnbPool = toDecimals(erc20Result.sfundInSfundBnbPool);
-  const snftsSfundTotalSupply = toDecimals(erc20Result.snftsSfundTotalSupply);
-  const sfundInSnftsSfundPool = toDecimals(erc20Result.sfundInSnftsSfundPool);
+  const sfundBnbTotalSupply = toDecimals(erc20Res[0]);
+  const sfundInSfundBnbPool = toDecimals(erc20Res[1]);
+  const snftsSfundTotalSupply = toDecimals(erc20Res[2]);
+  const sfundInSnftsSfundPool = toDecimals(erc20Res[3]);
 
   return Object.fromEntries(
     Object.entries(score).map((sfundBalance: any, userIndex) => [
@@ -115,22 +130,22 @@ export async function strategy(
       sfundBalance[1] +
         ////// SFUND from SFUND-BNB farming contracts (current & legacy) //////
         calculateBep20InLPForUser(
-          userLPStaked_SFUND_BNB[userIndex],
+          sfundBnbCurrentFarming[userIndex],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
         calculateBep20InLPForUser(
-          userLPStaked_SFUND_BNB_legacyFarming[userIndex],
+          sfundBnbLegacyFarming[userIndex],
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
-        ////// SFUND from SFNTS-SFUND farming contract //////
+        ////// SFUND from SNFTS-SFUND farming contract //////
         calculateBep20InLPForUser(
-          userLPStaked_SNFTS_SFUND[userIndex],
+          snftsSfundFarming[userIndex],
           snftsSfundTotalSupply,
           sfundInSnftsSfundPool
         ) +
-        ////// SFUND from staking contracts (current & legacy) //////
+        //// SFUND from staking contracts (current & legacy) //////
         getStakingBalanceOf(sfundStaking, userIndex) +
         getStakingBalanceOf(legacySfundStaking, userIndex)
     ])
