@@ -5,7 +5,11 @@
     "Strategy": {
       "title": "Strategy",
       "type": "object",
-      "properties": {},
+      "properties": {
+        "backendUrl": {
+          "type": "string"
+        }
+      },
       "additionalProperties": false
     }
   }
