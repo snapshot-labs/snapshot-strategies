@@ -6,6 +6,11 @@
       "title": "Gitcoin passport weighted",
       "type": "object",
       "properties": {
+        "minScore": {
+          "type": "number",
+          "title": "Minimum score",
+          "minimum": 10
+        },
         "stamps": {
           "type": "array",
           "title": "Stamps",
@@ -57,7 +62,7 @@
                   },
                   {
                     "const": "POAP",
-                    "title": "POAP onwer"
+                    "title": "POAP owner"
                   },
                   {
                     "const": "Facebook",
