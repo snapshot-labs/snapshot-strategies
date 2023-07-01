@@ -446,7 +446,7 @@ import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
-import * as delegateRegistryV2 from 'delegate-registry-v2';
+import * as delegateRegistryV2 from './delegate-registry-v2';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
