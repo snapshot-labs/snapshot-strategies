@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "delegate-registry",
+      "name": "delegate-registry-v2",
       "params": {
         "backendUrl": "https://delegate-registry-backend.vercel.app"
       }
