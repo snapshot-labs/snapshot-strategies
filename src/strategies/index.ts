@@ -446,6 +446,7 @@ import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
+import * as erc721AndErc1155Flattened from './erc721-and-erc1155-flattened';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -898,7 +899,8 @@ const strategies = {
   'erc721-collateral-held': erc721CollateralHeld,
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
-  spaceid
+  spaceid,
+  'erc721-and-erc1155-flattened': erc721AndErc1155Flattened
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
