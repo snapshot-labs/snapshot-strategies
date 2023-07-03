@@ -1,7 +1,7 @@
 import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 
-export const author = 'gnosis-guild';
+export const author = 'gnosis';
 export const version = '0.0.1';
 
 const DEFAULT_BACKEND_URL = 'https://delegate-registry-backend.vercel.app';
@@ -20,6 +20,9 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  console.log('space', space);
+
+  // 1. get delegated votes (must return 0 for the addresses that has delegated)
   const response = await fetch(
     `${options.backendUrl}/api/${space}/snapshot/${blockTag}/strategy-formatted-vote-weights`,
     {
@@ -31,6 +34,8 @@ export async function strategy(
       body: JSON.stringify(addresses)
     }
   );
+
+  // 2. get the not delegated raw votes
 
   return response.json();
 }
