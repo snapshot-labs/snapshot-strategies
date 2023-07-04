@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. RARE"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0xba5BDe662c17e2aDFF1075610382B9B691296350"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "rareStakingRegistryAddress": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0xeDA483A62cE93B7932e3eE473c2EEd3F4a8E745C"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["address", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

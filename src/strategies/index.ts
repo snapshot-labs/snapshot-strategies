@@ -459,6 +459,7 @@ import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as friendTech from './friend-tech';
+import * as rareprotocolStakedBalance from './rareprotocol-staked-balance';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -926,7 +927,8 @@ const strategies = {
   'gelato-staking': gelatoStaking,
   'erc4626-assets-of': erc4626AssetsOf,
   'friend-tech': friendTech,
-  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2
+  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
+  'rareprotocol-staked-balance': rareprotocolStakedBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

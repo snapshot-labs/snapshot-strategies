@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rareprotocol-staked-balance",
+      "params": {
+        "address": "0x3c95F1764a9b72a49d772ba09F1b81B993cF7E48",
+        "symbol": "RARE",
+        "decimals": 18,
+        "rareStakingRegistryAddress": "0xeDA483A62cE93B7932e3eE473c2EEd3F4a8E745C"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0xec8c1050B45789f9ee4D09dCC7D64aAF9e233338",
+      "0x55372173689C288552885D897d32f5F706F79aA6",
+      "0x337101dEF3EEb6F06e071EFE02216274507937Bb",
+      "0x01cB023186CAB05220554EE75b4D69921DD051f1",
+      "0xb3007FF3c3F40bDF0126fEc7c8E43c3Fc50Ea813",
+      "0x36BD6221c2016371C3aF00071726578b91AcB007",
+      "0x26439aEB008d63B6686798b5F08a84C7AbeFbd80",
+      "0xfB3DF26810B5F41172731eE406C2Ad577D5C8A5A",
+      "0x817E2368138736c22366175bd67CdfA6EB95adcD",
+      "0x26439aEB008d63B6686798b5F08a84C7AbeFbd80",
+      "0x13c942e3f8bE4faf966eF03E6038B33d000db22f",
+      "0xDcD50efb4CCdc9c409b4a4D8eB919Ed301C86ABe",
+      "0x09B14B1c8a92BcA0cc592A80Dc311BF1A3fDe9f5"
+    ],
+    "snapshot": 9285790
+  }
+]
