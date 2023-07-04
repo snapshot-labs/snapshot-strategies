@@ -1,4 +1,4 @@
-// import { getAddress } from '@ethersproject/address';
+import { getAddress } from '@ethersproject/address';
 import { performance } from 'perf_hooks';
 // import fetch from 'cross-fetch';
 import snapshot from '../src';
@@ -25,7 +25,8 @@ const strategyArg =
 
 const strategy = Object.keys(snapshot.strategies).find((s) => {
   return strategyArg == s;
- });
+});
+
 if (!strategy) throw `Strategy not found: ${strategyArg}`;
 const examples = require(`../src/strategies/${strategy}/examples.json`).map(
   (example, index) => ({ index, example })
@@ -80,74 +81,74 @@ describe.each(examples)(
       console.log(`Resolved in ${(getScoresTime / 1e3).toFixed(2)} sec.`);
     }, 2e4);
 
-  //   it('Should return an array of object with addresses', () => {
-  //     expect(scores).toBeTruthy();
-  //     // Check array
-  //     expect(Array.isArray(scores)).toBe(true);
-  //     // Check array contains a object
-  //     expect(typeof scores[0]).toBe('object');
-  //     // Check object contains at least one address from example.json
-  //     expect(Object.keys(scores[0]).length).toBeGreaterThanOrEqual(1);
-  //     expect(
-  //       Object.keys(scores[0]).some((address) =>
-  //         example.addresses
-  //           .map((v) => v.toLowerCase())
-  //           .includes(address.toLowerCase())
-  //       )
-  //     ).toBe(true);
-  //     // Check if all scores are numbers
-  //     expect(
-  //       Object.values(scores[0]).every((val) => typeof val === 'number')
-  //     ).toBe(true);
-  //   });
+    it('Should return an array of object with addresses', () => {
+      expect(scores).toBeTruthy();
+      // Check array
+      expect(Array.isArray(scores)).toBe(true);
+      // Check array contains a object
+      expect(typeof scores[0]).toBe('object');
+      // Check object contains at least one address from example.json
+      expect(Object.keys(scores[0]).length).toBeGreaterThanOrEqual(1);
+      expect(
+        Object.keys(scores[0]).some((address) =>
+          example.addresses
+            .map((v) => v.toLowerCase())
+            .includes(address.toLowerCase())
+        )
+      ).toBe(true);
+      // Check if all scores are numbers
+      expect(
+        Object.values(scores[0]).every((val) => typeof val === 'number')
+      ).toBe(true);
+    });
 
-  //   it('Should take less than 10 sec. to resolve', () => {
-  //     expect(getScoresTime).toBeLessThanOrEqual(10000);
-  //   });
+    it('Should take less than 10 sec. to resolve', () => {
+      expect(getScoresTime).toBeLessThanOrEqual(10000);
+    });
 
-  //   it('File examples.json should include at least 1 address with a positive score', () => {
-  //     expect(Object.values(scores[0]).some((score: any) => score > 0)).toBe(
-  //       true
-  //     );
-  //   });
+    it('File examples.json should include at least 1 address with a positive score', () => {
+      expect(Object.values(scores[0]).some((score: any) => score > 0)).toBe(
+        true
+      );
+    });
 
-  //   it('Returned addresses should be checksum addresses', () => {
-  //     expect(
-  //       Object.keys(scores[0]).every(
-  //         (address) => getAddress(address) === address
-  //       )
-  //     ).toBe(true);
-  //   });
+    it('Returned addresses should be checksum addresses', () => {
+      expect(
+        Object.keys(scores[0]).every(
+          (address) => getAddress(address) === address
+        )
+      ).toBe(true);
+    });
 
-  //   (snapshot.strategies[strategy].dependOnOtherAddress ? it.skip : it)(
-  //     'Voting power should not depend on other addresses',
-  //     async () => {
-  //       // limit addresses to have only 10 addresses
-  //       const testAddresses = example.addresses.slice(0, 10);
-  //       const scoresOneByOne = await Promise.all(
-  //         testAddresses.map((address) =>
-  //           callGetScores({
-  //             ...example,
-  //             addresses: [address]
-  //           })
-  //         )
-  //       );
+    (snapshot.strategies[strategy].dependOnOtherAddress ? it.skip : it)(
+      'Voting power should not depend on other addresses',
+      async () => {
+        // limit addresses to have only 10 addresses
+        const testAddresses = example.addresses.slice(0, 10);
+        const scoresOneByOne = await Promise.all(
+          testAddresses.map((address) =>
+            callGetScores({
+              ...example,
+              addresses: [address]
+            })
+          )
+        );
 
-  //       const oldScores = {};
-  //       const newScores = {};
+        const oldScores = {};
+        const newScores = {};
 
-  //       scoresOneByOne.forEach((score) => {
-  //         const address = Object.keys(score[0])[0];
-  //         const value = Object.values(score[0])[0];
-  //         if (value) newScores[address] = value;
-  //         const oldScore = scores[0][address];
-  //         if (oldScore) oldScores[address] = oldScore;
-  //       });
+        scoresOneByOne.forEach((score) => {
+          const address = Object.keys(score[0])[0];
+          const value = Object.values(score[0])[0];
+          if (value) newScores[address] = value;
+          const oldScore = scores[0][address];
+          if (oldScore) oldScores[address] = oldScore;
+        });
 
-  //       expect(newScores).not.toEqual({});
-  //       expect(newScores).toEqual(oldScores);
-  //     }
-  //   );
+        expect(newScores).not.toEqual({});
+        expect(newScores).toEqual(oldScores);
+      }
+    );
   }
 );
 

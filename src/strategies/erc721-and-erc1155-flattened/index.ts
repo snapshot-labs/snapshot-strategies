@@ -1,4 +1,4 @@
-import { formatUnits } from '@ethersproject/units';
+// import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
 export const author = 'bonustrack';
@@ -17,7 +17,7 @@ export async function strategy(
   snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-  const response = await multicall(
+  const erc721Response = await multicall(
     network,
     provider,
     abi,
@@ -28,10 +28,27 @@ export async function strategy(
     ]),
     { blockTag }
   );
-  return Object.fromEntries(
-    response.map((value, i) => [
-      addresses[i],
-      parseFloat(formatUnits(value.toString(), 0))
-    ])
-  );
+
+  const values = <any>[];
+
+  for (let i = 0; i < erc721Response.length; i++) {
+    const val = {
+      address: addresses[i],
+      hasERC721Requirement: false
+    };
+
+    if (parseFloat(erc721Response[i]) >= options.minERC721Tokens) {
+      val.hasERC721Requirement = true;
+    }
+
+    values.push(val);
+  }
+
+  const finalObj = {};
+
+  for (let i = 0; i < values.length; i++) {
+    finalObj[values[i].address] = values[i].hasERC721Requirement ? 1 : 0;
+  }
+
+  return finalObj;
 }
