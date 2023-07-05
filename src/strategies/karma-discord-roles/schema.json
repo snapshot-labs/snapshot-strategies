@@ -8,7 +8,7 @@
       "properties": {
         "name": {
           "type": "string",
-          "title": "Dao Name",
+          "title": "DAO Name",
           "examples": ["e.g. apecoin, ens, gitcoin"],
           "maxLength": 18,
           "minLength": 18
@@ -16,10 +16,10 @@
         "roles": {
           "type": "array",
           "title": "Discord Roles",
-          "examples": ["e.g. Investidor, Trader"]
+          "examples": ["e.g. Assembly, Trader, Moderator"]
         }
       },
-      "required": ["discordId","roles"],
+      "required": ["name","roles"],
       "additionalProperties": false
     }
   }
