@@ -193,6 +193,7 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
 import * as poap from './poap';
+import * as poapUnlock from './poap-unlock';
 import * as poapWithWeight from './poap-with-weight';
 import * as poapWithWeightV2 from './poap-with-weight-v2';
 import * as uniswapV3 from './uniswap-v3';
@@ -652,6 +653,7 @@ const strategies = {
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
   poap: poap,
+  'poap-unlock': poapUnlock,
   'poap-with-weight': poapWithWeight,
   'poap-with-weight-v2': poapWithWeightV2,
   'uniswap-v3': uniswapV3,
