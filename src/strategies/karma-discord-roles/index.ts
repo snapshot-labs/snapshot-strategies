@@ -7,20 +7,37 @@ export const version = '0.0.1';
 const KARMA_API = 'https://api.karmahq.xyz/api/dao/discordUsers';
 
 export async function strategy(
-  options: any,
-  addresses: any
-): Promise<Record<string, number>> {
+  space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+): Promise<{
+  [k: string]: any;
+}> {
   const { name, roles } = options;
 
-  const response = await fetch(`${KARMA_API}/${name}/${roles.join(',')}`);
+  if (!name || !roles) return {};
 
-  const { data } = await response.json();
+  const response = await fetch(`${KARMA_API}/${name}/${roles.join(',')}`, {
+    method: 'GET',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json'
+    }
+  });
 
-  const votingPower: Record<string, number> = {};
+  const parsedResponse = !response.ok ? [] : await response.json();
+  const delegates = parsedResponse.data?.delegates || [];
 
-  const userAddresses = data.delegates.map((user) => user.publicAddress);
+  const votingPower = {};
 
-  [...addresses, userAddresses].forEach((address) => {
+  const userAddresses = delegates.map((user) => user.publicAddress);
+  const paramAddresses = addresses.length ? addresses : [];
+  const allAddresses = [...userAddresses, ...paramAddresses];
+
+  allAddresses.forEach((address) => {
     const checksumAddress = getAddress(address);
     votingPower[checksumAddress] = 1;
   });
