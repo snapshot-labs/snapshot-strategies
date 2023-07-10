@@ -5,7 +5,7 @@ const UNISWAP_SUBGRAPH_URL = {
   '1': 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v2-dev'
 };
 
-export const author = 'vfatouros';
+export const author = 'snapshot-labs';
 export const version = '0.1.0';
 
 async function subgraphRequestWithPagination(subgraphURL, addresses, snapshot) {
