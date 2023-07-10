@@ -60,7 +60,7 @@ async function subgraphRequestWithPagination(subgraphURL, addresses, snapshot) {
     const result = await subgraphRequest(subgraphURL, params);
     results.poolShares = results.poolShares.concat(result.poolShares);
   }
-  console.log('results', results);
+
   return results;
 }
 
