@@ -21,7 +21,7 @@ function buildBalancerSubgraphUrl(chainId, version) {
 }
 
 async function subgraphRequestWithPagination(subgraphURL, addresses, snapshot) {
-  const chunkSize = 2000;
+  const chunkSize = 1000;
   const chunks: string[][] = [];
   for (let i = 0; i < addresses.length; i += chunkSize) {
     chunks.push(addresses.slice(i, i + chunkSize));
@@ -60,6 +60,7 @@ async function subgraphRequestWithPagination(subgraphURL, addresses, snapshot) {
     const result = await subgraphRequest(subgraphURL, params);
     results.poolShares = results.poolShares.concat(result.poolShares);
   }
+  console.log('results', results);
   return results;
 }
 

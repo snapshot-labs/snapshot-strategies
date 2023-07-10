@@ -2104,4 +2104,9 @@ snapshot.utils
     scoreAPIObj.params.snapshot
   )
   .then(console.log)
+  .then(() => {
+    setTimeout(() => {
+      process.exit(0);
+    }, 1000);
+  })
   .catch(console.error);
