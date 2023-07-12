@@ -1,3 +1,5 @@
+import { BigNumber } from '@ethersproject/bignumber';
+
 import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 import {
@@ -30,6 +32,16 @@ export async function strategy(
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  const isUsingLegacyFarming =
+    options.farmingAddress_SFUND_BNB_legacy != undefined;
+
+  const zeroBalance = [
+    BigNumber.from('0'),
+    BigNumber.from('0'),
+    BigNumber.from('0'),
+    BigNumber.from('0')
+  ];
+
   // required to use: erc20BalanceOfStrategy
   options.address = options.sfundAddress;
 
@@ -44,40 +56,40 @@ export async function strategy(
   );
 
   //////// return LP deposited into farming contract ////////
-  const farming = await multicall(
-    network,
-    provider,
-    farmingAbi,
-    [
-      // from SFUND-BNB pool
-      ...createCallToReadUsersData(
-        addresses,
-        options.farmingAddress_SFUND_BNB,
-        'userDeposits'
-      ),
+  const farmingCalls = [
+    // from SNFTS-SFUND pool
+    ...createCallToReadUsersData(
+      addresses,
+      options.farmingAddress_SNFTS_SFUND,
+      'userDeposits'
+    ),
+    // from SFUND-BNB pool
+    ...createCallToReadUsersData(
+      addresses,
+      options.farmingAddress_SFUND_BNB,
+      'userDeposits'
+    )
+  ];
+  if (isUsingLegacyFarming) {
+    farmingCalls.push(
       ...createCallToReadUsersData(
         addresses,
         options.legacyfarmingAddress_SFUND_BNB,
         'userDeposits'
-      ),
-      // from SNFTS-SFUND pool
-      ...createCallToReadUsersData(
-        addresses,
-        options.farmingAddress_SNFTS_SFUND,
-        'userDeposits'
       )
-    ],
-    { blockTag }
-  );
-  const sfundBnbCurrentFarming = farming.slice(0, addresses.length);
-  const sfundBnbLegacyFarming = farming.slice(
+    );
+  }
+  const farming = await multicall(network, provider, farmingAbi, farmingCalls, {
+    blockTag
+  });
+  const snftsSfundFarming = farming.slice(0, addresses.length);
+  const sfundBnbCurrentFarming = farming.slice(
     addresses.length,
     1 + addresses.length * 2
   );
-  const snftsSfundFarming = farming.slice(
-    1 + addresses.length * 2,
-    farming.length
-  );
+  const sfundBnbLegacyFarming = isUsingLegacyFarming
+    ? farming.slice(1 + addresses.length * 2, farming.length)
+    : sfundBnbCurrentFarming;
 
   const staking = await multicall(
     network,
@@ -135,7 +147,7 @@ export async function strategy(
           sfundInSfundBnbPool
         ) +
         calculateBep20InLPForUser(
-          sfundBnbLegacyFarming[userIndex],
+          isUsingLegacyFarming ? sfundBnbLegacyFarming[userIndex] : zeroBalance,
           sfundBnbTotalSupply,
           sfundInSfundBnbPool
         ) +
