@@ -9,8 +9,7 @@ const abi721 = [
 ];
 
 const abi1155 = [
-  'function balanceOf(address _owner, uint256 _id) external view returns (uint256)',
-  'function owner() public view returns (address)'
+  'function balanceOf(address _owner, uint256 _id) external view returns (uint256)'
 ];
 
 export async function strategy(
