@@ -1,0 +1,64 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "erc721-and-erc1155-flattened",
+      "type": "object",
+      "properties": {
+        "erc721Address": {
+          "type": "string",
+          "title": "erc721Address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc1155Address": {
+          "type": "string",
+          "title": "erc1155Address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc721MinTokens": {
+          "type": "number",
+          "title": "Minimum ERC 721 Tokens",
+          "examples": ["e.g. 1"]
+        },
+        "erc1155MinTokens": {
+          "type": "number",
+          "title": "Minimum ERC 1155 Tokens",
+          "examples": ["e.g. 50"]
+        },
+        "erc721NetworkId": {
+          "type": "string",
+          "title": "ERC 721 Network Id",
+          "examples": ["e.g. 1"],
+          "minLength": 1,
+          "maxLength": 42
+        },
+        "erc1155NetworkId": {
+          "type": "string",
+          "title": "ERC 1155 Network Id",
+          "examples": ["e.g. 137"],
+          "minLength": 1,
+          "maxLength": 42
+        },
+        "erc721BlockTag": {
+          "type": "number",
+          "title": "ERC 721 Block Tag",
+          "examples": ["e.g. 17680834"]
+        },
+        "erc1155BlockTag": {
+          "type": "number",
+          "title": "ERC 1155 Block Tag",
+          "examples": ["e.g. 45008012"]
+        }
+      },
+      "required": ["erc721Address", "erc1155Address", "erc721MinTokens", "erc1155MinTokens", "erc721NetworkId", "erc1155NetworkId"],
+      "additionalProperties": false
+    }
+  }
+}
