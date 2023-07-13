@@ -428,6 +428,7 @@ import * as lodestarStakedLp from './lodestar-staked-lp';
 import * as jpegdLockedJpegOf from './jpegd-locked-jpeg-of';
 import * as litDaoGovernance from './lit-dao-governance';
 import * as babywealthyclub from './babywealthyclub';
+import * as babywealthyclubMulti from './babywealthyclub-multi';
 import * as battleflyVGFLYAndStakedGFLY from './battlefly-vgfly-and-staked-gfly';
 import * as nexonArmyNFT from './nexon-army-nft';
 import * as moonbeamFreeBalance from './moonbeam-free-balance';
@@ -883,6 +884,7 @@ const strategies = {
   'lodestar-vesting': lodestarVesting,
   'lodestar-staked-lp': lodestarStakedLp,
   babywealthyclub,
+  'babywealthyclub-multi': babywealthyclubMulti,
   'battlefly-vgfly-and-staked-gfly': battleflyVGFLYAndStakedGFLY,
   'nexon-army-nft': nexonArmyNFT,
   'moonbeam-free-balance': moonbeamFreeBalance,

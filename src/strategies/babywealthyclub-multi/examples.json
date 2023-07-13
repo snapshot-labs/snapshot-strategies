@@ -1,0 +1,67 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "babywealthyclub-multi",
+      "params": {
+        "strategies": [
+          {
+            "name": "erc721",
+            "network": "1",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "42161",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "137",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "43114",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "10",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          },
+          {
+            "name": "erc721",
+            "network": "56",
+            "params": {
+              "address": "0x75009fB6e3d4401b8C64548d33e9a3A9415F5d70",
+              "symbol": "BWC"
+            }
+          }
+        ]
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xe0e4f69A250b10c4e9ce1334fcA51599eA39C0e4",
+      "0x9feab70f3c4a944b97b7565bac4991df5b7a69ff",
+      "0xaca39b187352d9805deced6e73a3d72abf86e7a0"
+    ],
+    "snapshot": 26920121
+  }
+]
