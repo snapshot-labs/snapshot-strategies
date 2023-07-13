@@ -44,7 +44,7 @@ export async function strategy(
 }
 
 function throwDivZero() {
-  throw Error("Cannot divide by zero!")
+  throw Error('Cannot divide by zero!');
 }
 
 function resolveOperation(
@@ -159,8 +159,8 @@ function resolveOperation(
       const arr = Object.entries(resolvedOperands[0]).map(
         ([address, score]: [string, number]) => [
           address,
-          resolvedOperands[1][address] != 0 
-            ? score / resolvedOperands[1][address] 
+          resolvedOperands[1][address] != 0
+            ? score / resolvedOperands[1][address]
             : throwDivZero()
         ]
       );
