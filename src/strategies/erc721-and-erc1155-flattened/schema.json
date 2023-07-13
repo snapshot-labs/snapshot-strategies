@@ -57,7 +57,7 @@
           "examples": ["e.g. 45008012"]
         }
       },
-      "required": ["erc721Address", "erc1155Address", "erc721MinTokens", "erc1155MinTokens", "erc721NetworkId", "erc1155NetworkId", "erc721BlockTag", "erc1155BlockTag"],
+      "required": ["erc721Address", "erc1155Address", "erc721MinTokens", "erc1155MinTokens", "erc721NetworkId", "erc1155NetworkId"],
       "additionalProperties": false
     }
   }

@@ -21,6 +21,16 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const erc1155BlockTag =
+    typeof options.erc1155BlockTag === 'number'
+      ? options.erc1155BlockTag
+      : 'latest';
+
+  const erc721BlockTag =
+    typeof options.erc721BlockTag === 'number'
+      ? options.erc721BlockTag
+      : 'latest';
+
   const erc1155Response = await multicall(
     options.erc1155NetworkId,
     snapshotjs.utils.getProvider(options.erc1155NetworkId),
@@ -30,7 +40,7 @@ export async function strategy(
       'balanceOf',
       [address, 1]
     ]),
-    { blockTag: options.erc1155BlockTag }
+    { blockTag: erc1155BlockTag }
   );
 
   const erc721Response = await multicall(
@@ -42,7 +52,7 @@ export async function strategy(
       'balanceOf',
       [address]
     ]),
-    { blockTag: options.erc721BlockTag }
+    { blockTag: erc721BlockTag }
   );
 
   const values = <any>[];
