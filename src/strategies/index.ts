@@ -446,6 +446,7 @@ import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
+import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as erc721AndErc1155Flattened from './erc721-and-erc1155-flattened';
 
 const strategies = {
@@ -900,6 +901,8 @@ const strategies = {
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
   spaceid,
+  'seedify-cumulative-voting-power-hodl-staking-farming':
+    seedifyHoldStakingFarming,
   'erc721-and-erc1155-flattened': erc721AndErc1155Flattened
 };
 
