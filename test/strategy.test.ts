@@ -24,7 +24,7 @@ const moreArg: string | undefined =
     ?.pop();
 
 const strategy = Object.keys(snapshot.strategies).find((s) => strategyArg == s);
-if (!strategy) throw 'Strategy not found:';
+if (!strategy) throw 'Strategy not found';
 
 const examples = require(`../src/strategies/${strategy}/examples.json`).map(
   (example, index) => ({ index, example })
