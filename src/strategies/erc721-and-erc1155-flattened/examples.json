@@ -6,11 +6,15 @@
       "params": {
         "erc721Address": "0x63f8F23ce0f3648097447622209E95A391c44b00",
         "erc1155Address": "0x57AA5fd0914A46b8A426cC33DB842D1BB1aeADa2",
-        "minERC721Tokens": 1,
-        "minERC1155Tokens": 10
+        "erc721MinTokens": 1,
+        "erc1155MinTokens": 10,
+        "erc721NetworkId": "1",
+        "erc1155NetworkId": "137",
+        "erc721BlockTag": 17680834,
+        "erc1155BlockTag": 45008012
       }
     },
-    "network": "1",
+    "network": "10",
     "addresses": [
       "0x407Cf0e5Dd3C2c4bCE5a32B92109c2c6f7f1ce23",
       "0x6d7ddD863eB2Dad990bC05BDd3357E32850509E9",
@@ -19,6 +23,7 @@
       "0xf83b3A823653E8351b173Fa2Ae083Af37EAbCC01",
       "0xc4f6578c24c599F195c0758aD3D4861758d703A3"
     ],
-    "snapshot": 17618326
+    "snapshot": 45008012
+                
   }
 ]

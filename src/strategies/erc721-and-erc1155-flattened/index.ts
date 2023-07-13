@@ -1,11 +1,16 @@
-// import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
+import snapshotjs from '@snapshot-labs/snapshot.js';
 
-export const author = 'bonustrack';
+export const author = 'hotmanics';
 export const version = '0.1.0';
 
-const abi = [
+const abi721 = [
   'function balanceOf(address account) external view returns (uint256)'
+];
+
+const abi1155 = [
+  'function balanceOf(address _owner, uint256 _id) external view returns (uint256)',
+  'function owner() public view returns (address)'
 ];
 
 export async function strategy(
@@ -16,28 +21,44 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const erc1155Response = await multicall(
+    options.erc1155NetworkId,
+    snapshotjs.utils.getProvider(options.erc1155NetworkId),
+    abi1155,
+    addresses.map((address: any) => [
+      options.erc1155Address,
+      'balanceOf',
+      [address, 1]
+    ]),
+    { blockTag: options.erc1155BlockTag }
+  );
+
   const erc721Response = await multicall(
-    network,
-    provider,
-    abi,
+    options.erc721NetworkId,
+    snapshotjs.utils.getProvider(options.erc721NetworkId),
+    abi721,
     addresses.map((address: any) => [
       options.erc721Address,
       'balanceOf',
       [address]
     ]),
-    { blockTag }
+    { blockTag: options.erc721BlockTag }
   );
 
   const values = <any>[];
 
-  for (let i = 0; i < erc721Response.length; i++) {
+  for (let i = 0; i < addresses.length; i++) {
     const val = {
       address: addresses[i],
-      hasERC721Requirement: false
+      hasERC721Requirement: false,
+      hasERC1155Requirement: false
     };
 
-    if (parseFloat(erc721Response[i]) >= options.minERC721Tokens) {
+    if (erc1155Response[i] >= options.erc1155MinTokens) {
+      val.hasERC1155Requirement = true;
+    }
+
+    if (parseFloat(erc721Response[i]) >= options.erc721MinTokens) {
       val.hasERC721Requirement = true;
     }
 
@@ -47,7 +68,8 @@ export async function strategy(
   const finalObj = {};
 
   for (let i = 0; i < values.length; i++) {
-    finalObj[values[i].address] = values[i].hasERC721Requirement ? 1 : 0;
+    finalObj[values[i].address] =
+      values[i].hasERC721Requirement && values[i].hasERC1155Requirement ? 1 : 0;
   }
 
   return finalObj;
