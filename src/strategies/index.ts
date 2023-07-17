@@ -901,7 +901,7 @@ const strategies = {
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
   spaceid,
-  'karma-discord-roles': karmaDiscordRoles
+  'karma-discord-roles': karmaDiscordRoles,
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming
 };
