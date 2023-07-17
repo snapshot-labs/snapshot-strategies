@@ -53,7 +53,7 @@
               },
               {
                 "const": "POAP",
-                "title": "POAP onwer"
+                "title": "POAP owner"
               },
               {
                 "const": "Facebook",
@@ -77,7 +77,7 @@
               },
               {
                 "const": "FiveOrMoreGithubRepos",
-                "title": "Github repos > 4"
+                "title": "Github repos at least 5"
               },
               {
                 "const": "ForkedGithubRepoProvider",
@@ -89,73 +89,73 @@
               },
               {
                 "const": "TenOrMoreGithubFollowers",
-                "title": "Github followers > 9"
+                "title": "Github followers at least 10"
               },
               {
                 "const": "FiftyOrMoreGithubFollowers",
-                "title": "Github followers > 49"
+                "title": "Github followers at least 50"
               },
               {
                 "const": "GitcoinContributorStatistics#numGrantsContributeToGte#1",
-                "title": "Grants contributed > 1"
+                "title": "Grants contributed to at least 1"
               },
 
               {
                 "const": "GitcoinContributorStatistics#numGrantsContributeToGte#10",
-                "title": "Grants contributed > 10"
+                "title": "Grants contributed to at least 10"
               },
               {
                 "const": "GitcoinContributorStatistics#numGrantsContributeToGte#25",
-                "title": "Grants contributed > 25"
+                "title": "Grants contributed to at least 25"
               },
               {
                 "const": "GitcoinContributorStatistics#numGrantsContributeToGte#100",
-                "title": "Grants contributed > 100"
+                "title": "Grants contributed to at least 100"
               },
               {
                 "const": "GitcoinContributorStatistics#totalContributionAmountGte#10",
-                "title": "Grant contributions > $10"
+                "title": "Grant contributions at least $10"
               },
               {
                 "const": "GitcoinContributorStatistics#totalContributionAmountGte#100",
-                "title": "Grant contributions > $100"
+                "title": "Grant contributions at least $100"
               },
               {
                 "const": "GitcoinContributorStatistics#totalContributionAmountGte#1000",
-                "title": "Grant contributions > $1000"
+                "title": "Grant contributions at least $1000"
               },
               {
                 "const": "GitcoinGranteeStatistics#numOwnedGrants#1",
-                "title": "Grant owner > 1"
+                "title": "Grant owner of at least 1 Grant"
               },
               {
                 "const": "GitcoinGranteeStatistics#numGrantContributors#10",
-                "title": "Grant contributors > 10"
+                "title": "Grant contributors at least 10"
               },
               {
                 "const": "GitcoinGranteeStatistics#numGrantContributors#25",
-                "title": "Grant contributors > 25"
+                "title": "Grant contributors at least 25"
               },
 
               {
                 "const": "GitcoinGranteeStatistics#numGrantContributors#100",
-                "title": "Grant contributors > 100"
+                "title": "Grant contributors at least 100"
               },
               {
                 "const": "GitcoinGranteeStatistics#totalContributionAmount#100",
-                "title": "Grant contributions > $100"
+                "title": "Grant have received at least $100"
               },
               {
                 "const": "GitcoinGranteeStatistics#totalContributionAmount#1000",
-                "title": "Grant contributions > $1000"
+                "title": "Grant have received at least $1000"
               },
               {
                 "const": "GitcoinGranteeStatistics#totalContributionAmount#10000",
-                "title": "Grant contributions > $10000"
+                "title": "Grant have received at least $10000"
               },
               {
                 "const": "GitcoinGranteeStatistics#numGrantsInEcoAndCauseRound#1",
-                "title": "Grant owner Eco & Cause"
+                "title": "Grant owner at least 1 Eco & Cause"
               },
               {
                 "const": "Linkedin",
@@ -175,59 +175,59 @@
               },
               {
                 "const": "ethPossessionsGte#1",
-                "title": "ETH > 1"
+                "title": "ETH at least 1"
               },
               {
                 "const": "ethPossessionsGte#10",
-                "title": "ETH > 10"
+                "title": "ETH at least 10"
               },
               {
                 "const": "ethPossessionsGte#32",
-                "title": "ETH > 32"
+                "title": "ETH at least 32"
               },
               {
                 "const": "FirstEthTxnProvider",
-                "title": "First ETH > 30 days"
+                "title": "First ETH more than 30 days ago"
               },
               {
                 "const": "EthGTEOneTxnProvider",
-                "title": "ETH tx > 1"
+                "title": "ETH tx at least 1"
               },
               {
                 "const": "EthGasProvider",
-                "title": "ETH gas > 0.5"
+                "title": "ETH gas at least 0.5"
               },
               {
                 "const": "gtcPossessionsGte#10",
-                "title": "Gitcoin GTC > 10"
+                "title": "Gitcoin GTC at least 10"
               },
               {
                 "const": "gtcPossessionsGte#100",
-                "title": "Gitcoin GTC > 100"
+                "title": "Gitcoin GTC at least 100"
               },
               {
                 "const": "SelfStakingBronze",
-                "title": "GTC staked > 1"
+                "title": "GTC staked at least 1"
               },
               {
                 "const": "SelfStakingSilver",
-                "title": "GTC staked > 10"
+                "title": "GTC staked at least 10"
               },
               {
                 "const": "SelfStakingGold",
-                "title": "GTC staked > 100"
+                "title": "GTC staked at least 100"
               },
               {
                 "const": "CommunityStakingBronze",
-                "title": "Comm GTC staked > 1"
+                "title": "Comm GTC staked at least 1"
               },
               {
                 "const": "CommunityStakingSilver",
-                "title": "Comm GTC staked > 10"
+                "title": "Comm GTC staked at least 10"
               },
               {
                 "const": "CommunityStakingGold",
-                "title": "Comm GTC staked > 100"
+                "title": "Comm GTC staked at least 100"
               },
               {
                 "const": "NFT",

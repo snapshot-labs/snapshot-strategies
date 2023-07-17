@@ -1,11 +1,12 @@
 [
   {
-    "name": "Example of a passport-weighted proposal validation",
+    "name": "Example of a passport-weighted validation",
     "author": "0x24F15402C6Bb870554489b2fd2049A85d75B982f",
     "space": "fabien.eth",
     "network": "1",
     "snapshot": "latest",
     "params": {
+      "minScore": 10,
       "stamps": [
         { "id": "Ens", "weight": 2 },
         { "id": "Twitter", "weight": 0.5 },

@@ -2,6 +2,8 @@ export default class Validation {
   public id = '';
   public github = '';
   public version = '';
+  public title = '';
+  public description = '';
 
   public author: string;
   public space: string;

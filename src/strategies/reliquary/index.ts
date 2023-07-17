@@ -3,12 +3,12 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller, call } from '../../utils';
 
-export const author = '0xSkly';
+export const author = '0xSkly'; // coAuthor = 'franzns'
 export const version = '0.1.0';
 
 const abi = [
-  'function relicPositionsOfOwner(address owner) view returns (uint256[] relicIds, tuple(uint256 amount, uint256 rewardDebt, uint256 rewardCredit, uint256 entry, uint256 poolId, uint256 level, uint256 genesis, uint256 lastMaturityBonus)[] positionInfos)',
-  'function getLevelInfo(uint256 pid) view returns (tuple(uint256[] requiredMaturity, uint256[] allocPoint, uint256[] balance) levelInfo)',
+  'function relicPositionsOfOwner(address owner) view returns (uint256[] relicIds, tuple(uint256 amount, uint256 rewardDebt, uint256 rewardCredit, uint256 entry, uint256 poolId, uint256 level)[] positionInfos)',
+  'function getLevelInfo(uint256 pid) view returns (tuple(uint256[] requiredMaturities, uint256[] multipliers, uint256[] balance) levelInfo)',
   'function levelOnUpdate(uint256 relicId) view returns (uint256 level)'
 ];
 
@@ -23,7 +23,7 @@ export async function strategy(
     minVotingLevel: number;
     maxVotingLevel: number;
     decimals?: number;
-    strategy: 'level' | 'allocationPoints';
+    strategy: 'level' | 'multiplier';
     useLevelOnUpdate?: boolean;
   },
   snapshot?: number | string
@@ -50,8 +50,6 @@ export async function strategy(
         entry: BigNumber;
         poolId: BigNumber;
         level: BigNumber;
-        genesis: BigNumber;
-        lastMaturityBonus: BigNumber;
       }[] // correlating positions
     ]
   > = await multi.execute();
@@ -124,15 +122,15 @@ export async function strategy(
     return userVotingPower;
   }
   /*
-    otherwise we use the level allocations to weight the voting power. For this
-    we need to get the allocations for each level for the configured pool.
-    The formula used is: relicAmount * levelAllocation / maxAllocation
+    otherwise we use the level multiplier to weight the voting power. For this
+    we need to get the multipliers for each level for the configured pool.
+    The formula used is: relicAmount * levelMultiplier / maxMultiplier
 
   */
 
   const poolLevelInfo: {
-    requiredMaturity: BigNumber[];
-    allocPoint: BigNumber[];
+    requiredMaturities: BigNumber[];
+    multipliers: BigNumber[];
     balance: BigNumber[];
   } = await call(
     provider,
@@ -141,17 +139,17 @@ export async function strategy(
     { blockTag }
   );
 
-  const maxLevelAllocation = poolLevelInfo.allocPoint[options.maxVotingLevel];
+  const maxMultiplier = poolLevelInfo.multipliers[options.maxVotingLevel];
 
   for (const relicPosition of relevantRelicPositions) {
     const multiplier =
-      poolLevelInfo.allocPoint[
+      poolLevelInfo.multipliers[
         Math.min(options.maxVotingLevel, relicPosition.level)
       ].toNumber();
 
     const votingPower = parseFloat(
       formatUnits(
-        relicPosition.amount.mul(multiplier).div(maxLevelAllocation),
+        relicPosition.amount.mul(multiplier).div(maxMultiplier),
         options.decimals ?? 18
       )
     );

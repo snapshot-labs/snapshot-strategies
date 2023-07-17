@@ -2,68 +2,79 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 export const author = 'andreibadea20';
-export const version = '0.2.0';
+export const version = '0.3.1';
 
-const DPS_SUBGRAPH_URL = {
-  '1285':
-    'https://api.thegraph.com/subgraphs/name/andreibadea20/dps-subgraph-moonriver'
+const DPS_SUBGRAPH_URL_MOONBEAM = {
+  '1284':
+    'https://api.thegraph.com/subgraphs/name/andreibadea20/dps-holders-moonbeam'
 };
 
 const PAGE_SIZE = 1000;
 
 const params = {
-  users: {
+  holders: {
     __args: {
-      block: { number: 793940 },
+      block: { number: 2847359 },
       first: PAGE_SIZE,
       skip: 0
     },
     id: true,
-    numberOfTokens: true,
-    listOfNFTsLocked: {
+    listOfDPSOwned: true,
+    listOfDPSLocked: {
       tokenId: true
     },
-    listOfNFTsReturned: {
+    listOfDPSReturned: {
       tokenId: true
     }
   }
 };
 
 export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
+  space: any,
+  network: string | number,
+  provider: any,
+  addresses: any,
+  options: any,
+  snapshot: string
 ) {
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params.users.__args.block = { number: snapshot };
+    params.holders.__args.block = { number: snapshot };
   }
 
   const score = {};
   let page = 0;
 
   while (page !== -1) {
-    params.users.__args.skip = page * PAGE_SIZE;
-    const result = await subgraphRequest(DPS_SUBGRAPH_URL[network], params);
+    params.holders.__args.skip = page * PAGE_SIZE;
 
-    if (result && result.users) {
-      result.users.forEach((u) => {
-        const userAddress = getAddress(u.id);
+    const result = await subgraphRequest(
+      DPS_SUBGRAPH_URL_MOONBEAM[network],
+      params
+    );
 
-        let userScore = parseInt(u.numberOfTokens);
+    if (result && result.holders) {
+      result.holders.forEach(
+        (holder: {
+          id: string;
+          listOfDPSOwned: string;
+          listOfDPSLocked: string | any[];
+          listOfDPSReturned: string | any[];
+        }) => {
+          const userAddress = getAddress(holder.id);
 
-        const lockedNFTs = u.listOfNFTsLocked.length;
-        const claimedNFTs = u.listOfNFTsReturned.length;
+          let userScore = holder.listOfDPSOwned.length;
 
-        userScore = userScore + lockedNFTs - claimedNFTs;
+          const lockedNFTs = holder.listOfDPSLocked.length;
+          const claimedNFTs = holder.listOfDPSReturned.length;
 
-        if (!score[userAddress]) score[userAddress] = 0;
-        score[userAddress] = userScore;
-      });
-      page = result.users.length < PAGE_SIZE ? -1 : page + 1;
+          userScore = userScore + lockedNFTs - claimedNFTs;
+
+          if (!score[userAddress]) score[userAddress] = 0;
+          score[userAddress] = 3 * userScore;
+        }
+      );
+      page = result.holders.length < PAGE_SIZE ? -1 : page + 1;
     } else {
       page = -1;
     }
