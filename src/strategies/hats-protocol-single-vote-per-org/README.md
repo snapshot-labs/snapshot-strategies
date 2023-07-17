@@ -1,5 +1,12 @@
 # hsts-protocol-single-vote-per-org
 
+So far I have found many avenues to get the desired result, but none of them are scalable.
+Within this project you will find several such avenues. None are completed entirely as I stop work once it reaches an unscalable state.
+
+index.ts provides some early iterations along with the current subgraph implementation.
+index2.ts provides a simulated implementation calling directly tot he smart contract. It quickly becomes unscalable after 5+ hats are introduced.
+
+## description
 A strategy to get a single voting power based on passing in a set of addresses and checking if
 they have any number of provided hats.
 

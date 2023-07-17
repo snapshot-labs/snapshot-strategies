@@ -18,9 +18,14 @@
           "type": "array",
           "title": "Hats",
           "examples": ["123", "456"]
+        },
+        "baseHat": {
+          "type": "string",
+          "title": "Base Hat",
+          "examples": ["eg 3"]
         }
       },
-      "required": ["address", "hats"],
+      "required": ["address", "hats", "baseHat"],
       "additionalProperties": false
     }
   }
