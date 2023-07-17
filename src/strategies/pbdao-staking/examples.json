@@ -1,0 +1,19 @@
+[
+  {
+    "name": "PBDAO Staker and Holders",
+    "strategy": {
+      "name": "pbdao-staking",
+      "params": {
+        "staking": "0x68483E34A38DDABF956536C30aB96960f821EAd0"
+        
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x7C0Df718F7C55FCDacad80d654092D5dfD2ce1dA",
+      "0x1924560F4b53CC35b1559359c2Bf8a1c22833596",
+      "0x0Cbe93D85a6de8258E797962eB59249e39D1d069"
+    ],
+    "snapshot": 9287186
+  }
+]
