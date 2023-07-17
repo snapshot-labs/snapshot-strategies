@@ -902,7 +902,7 @@ const strategies = {
   'winr-staking': winrStaking,
   spaceid,
   'seedify-cumulative-voting-power-hodl-staking-farming': seedifyHoldStakingFarming,
-  'pbdaoStaking': pbdaoStaking
+  'pbdao-staking': pbdaoStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
