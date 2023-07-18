@@ -14,18 +14,13 @@
           "minLength": 42,
           "maxLength": 42
         },
-        "hats": {
-          "type": "array",
-          "title": "Hats",
-          "examples": ["123", "456"]
-        },
-        "baseHat": {
-          "type": "string",
-          "title": "Base Hat",
-          "examples": ["eg 3"]
+        "humanReadableTreeId": {
+          "type": "number",
+          "title": "Human Readable Tree Id",
+          "examples": ["e.g. 2, 221"]
         }
       },
-      "required": ["address", "hats", "baseHat"],
+      "required": ["address", "humanReadableTreeId"],
       "additionalProperties": false
     }
   }
