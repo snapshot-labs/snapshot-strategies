@@ -447,6 +447,7 @@ import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
+import * as stakedMoreKudasai from './staked-morekudasai';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -901,7 +902,8 @@ const strategies = {
   'winr-staking': winrStaking,
   spaceid,
   'seedify-cumulative-voting-power-hodl-staking-farming':
-    seedifyHoldStakingFarming
+    seedifyHoldStakingFarming,
+  'staked-morekudasai': stakedMoreKudasai
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
