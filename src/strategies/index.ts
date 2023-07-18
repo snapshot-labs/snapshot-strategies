@@ -447,6 +447,7 @@ import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
 import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-org';
+import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -901,6 +902,8 @@ const strategies = {
   'winr-staking': winrStaking,
   spaceid,
   'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg
+  'seedify-cumulative-voting-power-hodl-staking-farming':
+    seedifyHoldStakingFarming
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
