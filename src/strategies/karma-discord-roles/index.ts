@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'KarmaHq';
-export const version = '2.0.0';
+export const version = '1.0.0';
 
 const KARMA_API = 'https://api.karmahq.xyz/api/dao/discordUsers';
 
