@@ -158,8 +158,18 @@ export async function strategy(
           sfundInSnftsSfundPool
         ) +
         //// SFUND from staking contracts (current & legacy) //////
-        getStakingBalanceOf(sfundStaking, userIndex) +
-        getStakingBalanceOf(legacySfundStaking, userIndex)
+        getStakingBalanceOf(
+          sfundStaking,
+          userIndex,
+          options.sfundStakingAddresses.length,
+          addresses.length
+        ) +
+        getStakingBalanceOf(
+          legacySfundStaking,
+          userIndex,
+          options.legacySfundStakingAddresses.length,
+          addresses.length
+        )
     ])
   );
 }
