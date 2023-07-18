@@ -448,7 +448,6 @@ import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
 import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-org';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
-import * as stakedMoreKudasai from './staked-morekudasai';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -904,8 +903,7 @@ const strategies = {
   spaceid,
   'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg
   'seedify-cumulative-voting-power-hodl-staking-farming':
-    seedifyHoldStakingFarming,
-  'staked-morekudasai': stakedMoreKudasai
+    seedifyHoldStakingFarming
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
