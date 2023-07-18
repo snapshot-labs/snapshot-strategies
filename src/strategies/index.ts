@@ -902,7 +902,7 @@ const strategies = {
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
   spaceid,
-  'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg,
+  'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai

@@ -62,6 +62,7 @@ export async function strategy(
 
   let result;
 
+  console.log(network);
   switch (network) {
     case '1':
       result = await subgraphRequestHats(
@@ -73,6 +74,7 @@ export async function strategy(
         'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism',
         options.humanReadableTreeId
       );
+      console.log('Here I am');
       break;
     case '5':
       result = await subgraphRequestHats(
