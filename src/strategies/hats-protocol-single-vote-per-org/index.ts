@@ -6,13 +6,11 @@ import { multicall } from '../../utils';
 export const author = 'hotmanics';
 export const version = '0.1.1';
 
-const subgraphURL = `https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism`;
-
 const abi = [
   'function isWearerOfHat(address _user, uint256 _hatId) external view returns (bool isWearer)'
 ];
 
-async function subgraphRequestHats(humanReadableTreeId) {
+async function subgraphRequestHats(url, humanReadableTreeId) {
   const str1 = '0x';
   const length = humanReadableTreeId.toString().length;
   let resultString = str1.padEnd(10 - length, '0');
@@ -32,7 +30,7 @@ async function subgraphRequestHats(humanReadableTreeId) {
       }
     }
   };
-  const result = await subgraphRequest(subgraphURL, params);
+  const result = await subgraphRequest(url, params);
   return result;
 }
 
@@ -62,7 +60,47 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const result = await subgraphRequestHats(options.humanReadableTreeId);
+  let result;
+
+  console.log(network);
+  switch (network) {
+    case '1':
+      result = await subgraphRequestHats(
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-ethereum',
+        options.humanReadableTreeId
+      );
+    case '10':
+      result = await subgraphRequestHats(
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism',
+        options.humanReadableTreeId
+      );
+      console.log('Here I am');
+      break;
+    case '5':
+      result = await subgraphRequestHats(
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-goerli',
+        options.humanReadableTreeId
+      );
+      break;
+    case '137':
+      result = await subgraphRequestHats(
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-polygon',
+        options.humanReadableTreeId
+      );
+      break;
+    case '100':
+      result = await subgraphRequestHats(
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-gnosis-chain',
+        options.humanReadableTreeId
+      );
+      break;
+    case '42161':
+      result = await subgraphRequestHats(
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-arbitrum',
+        options.humanReadableTreeId
+      );
+      break;
+  }
 
   let wearersInAddresses = <any>[];
 
