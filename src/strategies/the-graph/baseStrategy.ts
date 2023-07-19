@@ -103,7 +103,6 @@ export async function baseStrategy(
     const pages = splitArray(addresses, pageSize);
     let pageNum = 1;
     for (const addressesPage of pages) {
-      console.info(`Processing page ${pageNum} of ${pages.length}`);
       const pageScores = await getScoresPage(
         _space,
         network,
