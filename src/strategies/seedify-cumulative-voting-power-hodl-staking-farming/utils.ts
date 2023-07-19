@@ -11,15 +11,21 @@ export const bep20Abi = [
   'function balanceOf(address) view returns (uint256)'
 ];
 
-export const getStakingBalanceOf = (stakedBalances: any, userIndex: any) => {
+export const getStakingBalanceOf = (
+  stakedBalances: any,
+  userIndex: any,
+  stakingAddrAmount: any,
+  userAmount: any
+) => {
   let sum: number = 0;
-  let balance: any;
+  let balance: any, userPosition: any;
   for (
     let stakingContractIndex = 0;
-    stakingContractIndex < stakedBalances.length;
+    stakingContractIndex < stakingAddrAmount;
     stakingContractIndex++
   ) {
-    balance = toDecimals(stakedBalances[userIndex]['0']);
+    userPosition = userAmount * stakingContractIndex;
+    balance = toDecimals(stakedBalances[userPosition + userIndex]['0']);
     sum += balance;
   }
   return sum;
