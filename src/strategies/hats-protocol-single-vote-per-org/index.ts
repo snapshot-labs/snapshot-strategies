@@ -1,7 +1,7 @@
 import { subgraphRequest } from '../../utils';
 import { utils } from 'ethers';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { multicall } from '../../utils';
+import { multicall, Multicaller } from '../../utils';
 
 export const author = 'hotmanics';
 export const version = '0.1.0';
