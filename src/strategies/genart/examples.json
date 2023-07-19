@@ -4,17 +4,20 @@
     "strategy": {
       "name": "genart",
       "params": {
-        "tokenAddress": "0xccdcfced87f8d91028b4fbbb589fb4cdc24d08fa",
+        "tokenAddress": "0x12e56851ec22874520dc4c7fa0a8a8d7dba1bac8",
         "membershipAddress": "0xbadc470f2e159f01396a546fc63d8c0db2697f3b",
+        "vaultAddress": "0xB8a5465BFC06fc8C82385dCFf949673D7b068D1a",
+        "interfaceAddress": "0x6bB38a82E3479f474d2985805B49B04881d8203c",
         "symbol": "GENART",
         "decimals": 18
       }
     },
-    "network": "4",
+    "network": "1",
     "addresses": [
-      "0x8939a7106957dD14bf3D3aCc9151b96E4bD81bC6",
-      "0x7C804f539De39Fd3E7d6F2834eebA24d52a30Ca4"
+      "0x1c2Ca609CB72b05A23d1539acba6C594c87E304e",
+      "0x8DCb640e52a9556DE2f1bE9656792698b859E616",
+      "0x166f2E250ac6c8EF7aAAaDf9853720376a6C4b86"
     ],
-    "snapshot": 9787953
+    "snapshot": 17721721
   }
 ]
