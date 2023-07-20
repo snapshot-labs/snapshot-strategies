@@ -101,7 +101,6 @@ export async function baseStrategy(
     // Paginate and get combined scores
     const pageSize = options.pageSize || DEFAULT_PAGE_SIZE;
     const pages = splitArray(addresses, pageSize);
-    let pageNum = 1;
     for (const addressesPage of pages) {
       const pageScores = await getScoresPage(
         _space,
@@ -113,7 +112,6 @@ export async function baseStrategy(
         graphStrategy
       );
       combinedScores = { ...combinedScores, ...pageScores };
-      pageNum += 1;
     }
   } else {
     console.error('ERROR: Strategy does not exist');
