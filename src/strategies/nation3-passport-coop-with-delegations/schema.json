@@ -6,14 +6,6 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "erc20": {
-          "type": "string",
-          "title": "veNation",
-          "examples": ["e.g. 0xf7def1d2fbda6b74bee7452fdf7894da9201065d"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
-        },
         "erc721": {
           "type": "string",
           "title": "nation3 passport",
@@ -23,7 +15,7 @@
           "maxLength": 42
         }
       },
-      "required": ["erc20", "erc721"],
+      "required": ["erc721"],
       "additionalProperties": false
     }
   }
