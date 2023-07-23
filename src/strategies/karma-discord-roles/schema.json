@@ -9,7 +9,7 @@
         "name": {
           "type": "string",
           "title": "DAO Name",
-          "examples": ["e.g. apecoin, ens, gitcoin"],
+          "examples": ["e.g. apecoin, ens, gitcoin"]
         },
         "roles": {
           "type": "array",
@@ -17,7 +17,7 @@
           "examples": ["e.g. Assembly, Trader, Moderator"]
         }
       },
-      "required": ["name","roles"],
+      "required": ["name", "roles"],
       "additionalProperties": false
     }
   }
