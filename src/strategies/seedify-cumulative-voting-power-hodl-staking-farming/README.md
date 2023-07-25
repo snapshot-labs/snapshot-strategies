@@ -53,3 +53,12 @@ All fields above are required except `legacyfarmingAddress_SFUND_BNB`.
 Run tests: `yarn test --strategy=seedify-cumulative-voting-power-hodl-staking-farming`
 
 Tests fails with current data in `examples.json` as wallet addresses do not hold any funds in `legacyfarmingAddress_SFUND_BNB` anymore. To prevent tests from failing them comment calculation for `legacyfarmingAddress_SFUND_BNB`.
+
+```
+"addresses": [
+  "0x756ea9Ae4866B962326d588CdF39d558e671dF61", // 30, 90 days sataking & SFUND-BNB farming
+  "0x000F06844e849E39E9661cAd08Bf39e1E762f99D", // 270 days & SFUND-BNB + SNFTS-SFUND farming
+  "0xf6320ae5459332C2dCDE9abB8F1708232D7Bed3E", // hodl
+  "0x043a0199506E671Ed03e883e64288E5cf003EF93" // 7 staking legacy
+]
+```

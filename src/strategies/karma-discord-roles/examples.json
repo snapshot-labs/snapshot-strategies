@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "karma-discord-roles",
+      "params": {
+        "name": "apecoin",
+        "roles": ["Assembly"]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x10cCD4136471c7c266a9Fc4569622989Fb4caB99",
+      "0x95e1eeb014eeB6c8709f2Ce4F19B847138fd5685",
+      "0x7B124228eC8e9C9C9ddC3278bb0ee4a6dAa5dDee"
+    ],
+
+    "snapshot": 11437846
+  }
+]

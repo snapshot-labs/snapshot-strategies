@@ -46,7 +46,7 @@ export async function strategy(
   options.address = options.sfundAddress;
 
   //////// return SFUND, in user's wallet ////////
-  let score: any = await erc20BalanceOfStrategy(
+  const score: any = await erc20BalanceOfStrategy(
     space,
     network,
     provider,
@@ -158,8 +158,18 @@ export async function strategy(
           sfundInSnftsSfundPool
         ) +
         //// SFUND from staking contracts (current & legacy) //////
-        getStakingBalanceOf(sfundStaking, userIndex) +
-        getStakingBalanceOf(legacySfundStaking, userIndex)
+        getStakingBalanceOf(
+          sfundStaking,
+          userIndex,
+          options.sfundStakingAddresses.length,
+          addresses.length
+        ) +
+        getStakingBalanceOf(
+          legacySfundStaking,
+          userIndex,
+          options.legacySfundStakingAddresses.length,
+          addresses.length
+        )
     ])
   );
 }
