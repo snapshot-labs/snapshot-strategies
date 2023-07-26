@@ -47,10 +47,5 @@ export async function strategy(
     .map(([, address]) => address)
     .filter((address) => addresses.includes(address));
 
-  return Object.fromEntries(
-    eligibleAddresses.map(value => [
-      value,
-      1
-    ])
-  );
+   return Object.fromEntries(eligibleAddresses.map(value => [value, 1]));
 }
