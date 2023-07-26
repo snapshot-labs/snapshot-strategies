@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Example query with provided recipient addresses",
+    "strategy": {
+      "name": "sablier-v2-total-amount",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x3a0706fa67aec21add40f0b46f72a3cf12f05c6b",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "snapshot": 9413278
+  },
+  {
+    "name": "Example query with all recipients (skip addresses)",
+    "strategy": {
+      "name": "sablier-v2-total-amount",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "isGlobal": true
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x3a0706fa67aec21add40f0b46f72a3cf12f05c6b",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "snapshot": 9413278
+  }
+]

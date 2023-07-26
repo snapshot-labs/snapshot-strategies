@@ -401,7 +401,7 @@ import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
-import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations'
+import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as posichainStaking from './posichain-staking';
@@ -452,6 +452,7 @@ import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-o
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
+import * as sablierV2TotalAmount from './sablier-v2-total-amount';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -863,7 +864,7 @@ const strategies = {
   'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
-  'nation3-passport-coop-with-delegations':nation3CoopPassportWithDelegations,
+  'nation3-passport-coop-with-delegations': nation3CoopPassportWithDelegations,
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni,
@@ -911,7 +912,8 @@ const strategies = {
   'karma-discord-roles': karmaDiscordRoles,
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
-  'staked-morekudasai': stakedMoreKudasai
+  'staked-morekudasai': stakedMoreKudasai,
+  'sablier-v2-total-amount': sablierV2TotalAmount
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
