@@ -52,7 +52,7 @@ export async function strategy(
     .filter((address) => addresses.includes(address));
 
   return Object.fromEntries(
-    eligibleAddresses.map((value, i) => [
+    eligibleAddresses.map(value => [
       value,
       1
     ])
