@@ -39,11 +39,7 @@ export async function strategy(
     erc721SignerCaller.call(i, options.erc721, 'signerOf', [i]);
   }
 
-  const [erc721Signers]: [
-    Record<string, string>
-  ] = await Promise.all([
-    erc721SignerCaller.execute()
-  ]);
+  const erc721Signers = await erc721SignerCaller.execute();
 
   const erc721SignersArr = Object.entries(erc721Signers);
 
