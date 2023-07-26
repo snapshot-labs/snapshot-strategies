@@ -3,8 +3,7 @@ import Validation from '../validation';
 import snapshot from '@snapshot-labs/snapshot.js';
 
 // Create one from https://scorer.gitcoin.co/#/dashboard/api-keys
-const API_KEY =
-  process.env.PASSPORT_API_KEY || '';
+const API_KEY = process.env.PASSPORT_API_KEY || '';
 
 const headers = API_KEY
   ? {
