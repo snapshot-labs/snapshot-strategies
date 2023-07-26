@@ -1,5 +1,5 @@
 import { subgraphRequest } from '../../utils';
-import { utils } from 'ethers';
+import { getAddress } from '@ethersproject/address';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { multicall } from '../../utils';
 
@@ -43,9 +43,9 @@ function checkIfExists(address, tree) {
   const addressWithHats = <any>[];
   tree.hats.forEach((hat) => {
     hat.wearers.forEach((wearer) => {
-      if (utils.getAddress(wearer.id) === address) {
+      if (getAddress(wearer.id) === address) {
         const addressWithHat = {
-          address: utils.getAddress(wearer.id),
+          address: getAddress(wearer.id),
           hat: BigInt(hat.id)
         };
         addressWithHats.push(addressWithHat);
