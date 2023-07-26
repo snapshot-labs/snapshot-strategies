@@ -44,7 +44,7 @@ export async function strategy(
   const erc721SignersArr = Object.entries(erc721Signers);
 
   const eligibleAddresses = erc721SignersArr
-    .map(([_, address]) => address)
+    .map(([, address]) => address)
     .filter((address) => addresses.includes(address));
 
   return Object.fromEntries(
