@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "wagumi-sbt",
+      "params": {
+        "url": "https://raw.githubusercontent.com/ikisuke/sbt/main/metadata/address.json"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x5A21E07C07fAf6549Ce8247ba7dd7b1257C0FC4d",
+      "0x89446aF03652c5257dB5C8E4E85495EB754196c5",
+      "0x9b5ab54058c7003c93d9ea9de87dd0eaaea902d3"
+    ],
+    "snapshot": 11437846
+  }
+]

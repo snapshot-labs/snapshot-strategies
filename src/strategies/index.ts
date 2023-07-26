@@ -449,8 +449,10 @@ import * as spaceid from './spaceid';
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
+import * as wagumiSbt from './wagumi-sbt';
 
 const strategies = {
+  'wagumi-sbt': wagumiSbt,
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
