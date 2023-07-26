@@ -359,6 +359,7 @@ import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
 import * as auraBalanceOfVlauraVebal from './aura-balance-of-vlaura-vebal';
 import * as auraBalanceOfSingleAsset from './aura-vault-balance-of-single-asset';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
+import * as rocketpoolNodeOperatorv2 from './rocketpool-node-operator-v2';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
@@ -400,6 +401,7 @@ import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
+import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations'
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as posichainStaking from './posichain-staking';
@@ -816,6 +818,7 @@ const strategies = {
   'aura-balance-of-vlaura-vebal': auraBalanceOfVlauraVebal,
   'aura-vault-balance-of-single-asset': auraBalanceOfSingleAsset,
   'rocketpool-node-operator': rocketpoolNodeOperator,
+  'rocketpool-node-operator-v2': rocketpoolNodeOperatorv2,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
@@ -860,6 +863,7 @@ const strategies = {
   'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
+  'nation3-passport-coop-with-delegations':nation3CoopPassportWithDelegations,
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni,

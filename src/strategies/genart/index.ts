@@ -48,10 +48,8 @@ export async function strategy(
     multiStake.call(address, options.vaultAddress, 'getStake', [address])
   );
 
-  const members: Record<
-    string,
-    BigNumberish[]
-  > = await multiMembership.execute();
+  const members: Record<string, BigNumberish[]> =
+    await multiMembership.execute();
 
   const tokens: Record<string, BigNumberish> = await multiToken.execute();
 

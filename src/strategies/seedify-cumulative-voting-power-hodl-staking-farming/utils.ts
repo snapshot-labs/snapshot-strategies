@@ -17,7 +17,7 @@ export const getStakingBalanceOf = (
   stakingAddrAmount: any,
   userAmount: any
 ) => {
-  let sum: number = 0;
+  let sum = 0;
   let balance: any, userPosition: any;
   for (
     let stakingContractIndex = 0;
