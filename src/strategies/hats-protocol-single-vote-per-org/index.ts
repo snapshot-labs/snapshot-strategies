@@ -74,6 +74,7 @@ export async function strategy(
         snapshot,
         options.humanReadableTreeId
       );
+      break;
     case '10':
       result = await subgraphRequestHats(
         'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism',
