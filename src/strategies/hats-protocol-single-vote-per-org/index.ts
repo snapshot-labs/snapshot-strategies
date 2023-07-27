@@ -4,7 +4,7 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { multicall } from '../../utils';
 
 export const author = 'hotmanics';
-export const version = '0.1.1';
+export const version = '0.1.2';
 
 const abi = [
   'function isWearerOfHat(address _user, uint256 _hatId) external view returns (bool isWearer)'
