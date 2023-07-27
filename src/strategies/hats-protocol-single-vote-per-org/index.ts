@@ -12,7 +12,6 @@ const abi = [
 
 async function subgraphRequestHats(url, snapshot, humanReadableTreeId) {
   const str1 = '0x';
-
   const hex = humanReadableTreeId.toString(16);
   const length = hex.toString().length;
   let resultString = str1.padEnd(10 - length, '0');
@@ -38,7 +37,6 @@ async function subgraphRequestHats(url, snapshot, humanReadableTreeId) {
     params.tree.__args.block = { number: snapshot };
   }
   const result = await subgraphRequest(url, params);
-
   return result;
 }
 
