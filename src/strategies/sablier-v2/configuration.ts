@@ -97,7 +97,12 @@ interface IOptions {
   address: string;
   decimals: number;
   symbol?: string;
-  isGlobal?: boolean;
+  policy:
+    | 'withdrawable-recipient'
+    | 'streamed-recipient'
+    | 'deposited-recipient'
+    | 'deposited-sender';
+  accounts: 'all' | 'addresses';
 }
 
 /**
@@ -106,34 +111,42 @@ interface IOptions {
  * ------------------------------------------------------
  */
 
-interface IStreamByAssetParams {
+interface IStreamsByAssetParams {
   asset: string;
   block: number;
   first?: number;
-  recipients?: string[];
+  accounts?: string[];
   skip?: number;
 }
 
-interface IStreamByAssetResult {
+type IAccountMap = Map<
+  string,
+  { id: string; contract: string; deposited: string; withdrawn: string }[]
+>;
+
+interface IStreamsByAssetResult {
   streams: {
     id: string;
     contract: {
       id: string;
     };
     recipient: string;
+    sender: string;
     tokenId: string;
+    depositAmount: string;
+    withdrawnAmount: string;
   }[];
 }
 
 /** @returns Streams by recipient and asset/token at the given block */
 
-const StreamByAsset = ({
+const RecipientStreamsByAsset = ({
   asset,
   block,
   first = page,
-  recipients,
+  accounts,
   skip = 0
-}: IStreamByAssetParams) => ({
+}: IStreamsByAssetParams) => ({
   streams: {
     __args: {
       block: { number: block },
@@ -143,9 +156,7 @@ const StreamByAsset = ({
       skip,
       where: {
         asset,
-        ...(recipients
-          ? { recipient_in: recipients }
-          : { recipient_not_in: [''] })
+        ...(accounts ? { recipient_in: accounts } : {})
       }
     },
     id: true,
@@ -153,11 +164,52 @@ const StreamByAsset = ({
       id: true
     },
     recipient: true,
-    tokenId: true
+    sender: true,
+    tokenId: true,
+    depositAmount: true,
+    withdrawnAmount: true
   }
 });
 
-const queries = { StreamByAsset };
+/** @returns Streams by recipient and asset/token at the given block */
 
-export type { IOptions, IStreamByAssetParams, IStreamByAssetResult };
+const SenderStreamsByAsset = ({
+  asset,
+  block,
+  first = page,
+  accounts,
+  skip = 0
+}: IStreamsByAssetParams) => ({
+  streams: {
+    __args: {
+      block: { number: block },
+      first,
+      orderBy: 'timestamp',
+      orderDirection: 'desc',
+      skip,
+      where: {
+        asset,
+        ...(accounts ? { sender_in: accounts } : {})
+      }
+    },
+    id: true,
+    contract: {
+      id: true
+    },
+    recipient: true,
+    sender: true,
+    tokenId: true,
+    depositAmount: true,
+    withdrawnAmount: true
+  }
+});
+
+const queries = { RecipientStreamsByAsset, SenderStreamsByAsset };
+
+export type {
+  IOptions,
+  IAccountMap,
+  IStreamsByAssetParams,
+  IStreamsByAssetResult
+};
 export { abi, chains, deployments, page, queries };

@@ -452,7 +452,7 @@ import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-o
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
-import * as sablierV2TotalAmount from './sablier-v2-total-amount';
+import * as sablierV2 from './sablier-v2';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -913,7 +913,7 @@ const strategies = {
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
-  'sablier-v2-total-amount': sablierV2TotalAmount
+  'sablier-v2': sablierV2
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

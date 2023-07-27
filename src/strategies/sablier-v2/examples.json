@@ -1,0 +1,82 @@
+[
+  {
+    "name": "Example query with policy: withdrawable-recipient (recommended) and voting power requested for all accounts",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "withdrawable-recipient",
+        "accounts": "all"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x3a0706fa67aec21add40f0b46f72a3cf12f05c6b",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "snapshot": 9413278
+  },
+  {
+    "name": "Example query with policy: streamed-recipient and voting power requested for all accounts",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "streamed-recipient",
+        "accounts": "all"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x3a0706fa67aec21add40f0b46f72a3cf12f05c6b",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "snapshot": 9413278
+  },
+  {
+    "name": "Example query with policy: deposited-recipient and voting power requested for all accounts",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "deposited-recipient",
+        "accounts": "all"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x3a0706fa67aec21add40f0b46f72a3cf12f05c6b",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "snapshot": 9413278
+  },
+  {
+    "name": "Example query with policy: deposited-sender and voting power requested for selected account addresses",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "deposited-sender",
+        "accounts": "addresses"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x1621960537d1c505ca02ec3efe3ed52386a8cd6b",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x0000000000000000000000000000000000000000"
+    ],
+    "snapshot": 9413278
+  }
+]
