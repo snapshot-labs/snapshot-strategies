@@ -16,7 +16,7 @@ import { multicall, subgraphRequest } from '../../utils';
  * @returns A mapping from each recipient to their list of owned streams.
  */
 async function getRecipientStreams(
-  recipients: string[] | undefined,
+  recipients: string[],
   options: IOptions,
   setup: {
     block: number;
@@ -37,7 +37,7 @@ async function getRecipientStreams(
   let skip = 0;
   while (true) {
     const params: IStreamsByAssetParams = {
-      accounts: recipients?.map((item) => item.toLowerCase()),
+      accounts: recipients.map((item) => item.toLowerCase()),
       block,
       asset: options.address.toLowerCase(),
       first: page,
@@ -51,7 +51,7 @@ async function getRecipientStreams(
 
     const list = results?.streams;
 
-    if (streams && list.length) {
+    if (list && list.length) {
       list.forEach((item) => {
         const recipient = item.recipient.toLowerCase();
         const entry = {
@@ -84,7 +84,7 @@ async function getRecipientStreams(
  * @returns A mapping from each sender to their list of started streams.
  */
 async function getSenderStreams(
-  senders: string[] | undefined,
+  senders: string[],
   options: IOptions,
   setup: {
     block: number;
@@ -105,7 +105,7 @@ async function getSenderStreams(
   let skip = 0;
   while (true) {
     const params: IStreamsByAssetParams = {
-      accounts: senders?.map((item) => item.toLowerCase()),
+      accounts: senders.map((item) => item.toLowerCase()),
       block,
       asset: options.address.toLowerCase(),
       first: page,
@@ -119,7 +119,7 @@ async function getSenderStreams(
 
     const list = results?.streams;
 
-    if (streams && list.length) {
+    if (list && list.length) {
       list.forEach((item) => {
         const sender = item.sender.toLowerCase();
         const entry = {

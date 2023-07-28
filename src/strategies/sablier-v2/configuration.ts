@@ -93,16 +93,20 @@ const abi = {
 
 const page = 1000;
 
+const policies = {
+  'withdrawable-recipient': 'withdrawable-recipient',
+  'streamed-recipient': 'streamed-recipient',
+  'deposited-recipient': 'deposited-recipient',
+  'deposited-sender': 'deposited-sender'
+};
+
+type IPolicy = typeof policies[keyof typeof policies];
+
 interface IOptions {
   address: string;
   decimals: number;
   symbol?: string;
-  policy:
-    | 'withdrawable-recipient'
-    | 'streamed-recipient'
-    | 'deposited-recipient'
-    | 'deposited-sender';
-  accounts: 'all' | 'addresses';
+  policy: IPolicy;
 }
 
 /**
@@ -112,10 +116,10 @@ interface IOptions {
  */
 
 interface IStreamsByAssetParams {
+  accounts: string[];
   asset: string;
   block: number;
   first?: number;
-  accounts?: string[];
   skip?: number;
 }
 
@@ -156,7 +160,7 @@ const RecipientStreamsByAsset = ({
       skip,
       where: {
         asset,
-        ...(accounts ? { recipient_in: accounts } : {})
+        recipient_in: accounts
       }
     },
     id: true,
@@ -188,8 +192,14 @@ const SenderStreamsByAsset = ({
       orderDirection: 'desc',
       skip,
       where: {
-        asset,
-        ...(accounts ? { sender_in: accounts } : {})
+        or: [
+          {
+            and: [{ asset: asset }, { sender_in: accounts }]
+          },
+          {
+            and: [{ asset: asset }, { proxender_in: accounts }]
+          }
+        ]
       }
     },
     id: true,
@@ -207,9 +217,10 @@ const SenderStreamsByAsset = ({
 const queries = { RecipientStreamsByAsset, SenderStreamsByAsset };
 
 export type {
-  IOptions,
   IAccountMap,
+  IOptions,
+  IPolicy,
   IStreamsByAssetParams,
   IStreamsByAssetResult
 };
-export { abi, chains, deployments, page, queries };
+export { abi, chains, deployments, page, policies, queries };

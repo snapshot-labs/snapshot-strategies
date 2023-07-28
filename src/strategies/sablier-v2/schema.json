@@ -31,15 +31,9 @@
             "e.g. withdrawable-recipient / streamed-recipient / deposited-recipient / deposited-sender"
           ],
           "pattern": "^((withdrawable-recipient)|(streamed-recipient)|(deposited-recipient)|(deposited-sender))$"
-        },
-        "accounts": {
-          "type": "string",
-          "title": "Accounts (All vs. From Addresses)",
-          "examples": ["e.g. all / addresses"],
-          "pattern": "^((all)|(addresses)|)$"
         }
       },
-      "required": ["address", "decimals", "policy", "accounts"],
+      "required": ["address", "decimals", "policy"],
       "additionalProperties": false
     }
   }
