@@ -1,12 +1,7 @@
-# earthfund-child-dao-staking-balance
+# eas-attestation
+Karma's solution to validate proposal creators using EAS Attest.sh.
 
-Earthfund's custom snapshot strategy, calculates voting score based of the staked balances of the voters for a specific child dao token in the staking rewards contract.
-
-Here is an example of parameters:
-
-```json
-{
-  "stakingRewardsContractAddress": "0x351e9c4de57a1854397E97Df909Ea0b3D7cbd219",
-  "childDaoTokenAddress": "0xbEdAf8563DE032A8A48ae8B04552c18c6Cb60B85"
-}
-```
+Parameters:
+`schemaId`: EAS's schema UID given when the schema is created. Example: [`0xc0f979976278d9e1d4fa97b7270c0cc07835aa5f27dd897a871b3332ec6cff22`](https://sepolia.easscan.org/schema/view/0xc0f979976278d9e1d4fa97b7270c0cc07835aa5f27dd897a871b3332ec6cff22)
+`address`: The proposer's address
+`network`: The chain ID. Currently supports only Mainnet (1)
