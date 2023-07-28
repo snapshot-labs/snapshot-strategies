@@ -4,7 +4,7 @@ import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { multicall } from '../../utils';
 
 export const author = 'hotmanics';
-export const version = '0.1.1';
+export const version = '0.1.2';
 
 const abi = [
   'function isWearerOfHat(address _user, uint256 _hatId) external view returns (bool isWearer)'
@@ -12,9 +12,10 @@ const abi = [
 
 async function subgraphRequestHats(url, snapshot, humanReadableTreeId) {
   const str1 = '0x';
-  const length = humanReadableTreeId.toString().length;
+  const hex = humanReadableTreeId.toString(16);
+  const length = hex.toString().length;
   let resultString = str1.padEnd(10 - length, '0');
-  resultString = resultString + humanReadableTreeId.toString();
+  resultString = resultString + hex.toString();
 
   const params = {
     tree: {
