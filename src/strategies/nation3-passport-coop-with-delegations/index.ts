@@ -39,7 +39,8 @@ export async function strategy(
     erc721SignerCaller.call(i, options.erc721, 'signerOf', [i]);
   }
 
-  const erc721Signers : Record<string, string> = await erc721SignerCaller.execute();
+  const erc721Signers: Record<string, string> =
+    await erc721SignerCaller.execute();
 
   const erc721SignersArr = Object.entries(erc721Signers);
 
@@ -47,5 +48,5 @@ export async function strategy(
     .map(([, address]) => address)
     .filter((address) => addresses.includes(address));
 
-   return Object.fromEntries(eligibleAddresses.map(value => [value, 1]));
+  return Object.fromEntries(eligibleAddresses.map((value) => [value, 1]));
 }
