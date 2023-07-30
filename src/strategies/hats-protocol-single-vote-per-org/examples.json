@@ -5,7 +5,7 @@
       "name": "hats-protocol-single-vote-per-org",
       "params": {
         "address": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
-        "humanReadableTreeId" : 44
+        "humanReadableTreeId": 44
       }
     },
     "network": "5",
