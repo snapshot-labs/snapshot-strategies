@@ -134,6 +134,8 @@ interface IStreamsByAssetResult {
     contract: {
       id: string;
     };
+    proxied: boolean;
+    proxender: string;
     recipient: string;
     sender: string;
     tokenId: string;
@@ -206,6 +208,8 @@ const SenderStreamsByAsset = ({
     contract: {
       id: true
     },
+    proxied: true,
+    proxender: true,
     recipient: true,
     sender: true,
     tokenId: true,

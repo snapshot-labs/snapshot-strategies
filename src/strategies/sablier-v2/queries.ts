@@ -121,7 +121,9 @@ async function getSenderStreams(
 
     if (list && list.length) {
       list.forEach((item) => {
-        const sender = item.sender.toLowerCase();
+        const sender = item.proxied
+          ? item.proxender.toLowerCase()
+          : item.sender.toLowerCase();
         const entry = {
           id: item.tokenId,
           contract: item.contract.id,
@@ -147,9 +149,9 @@ async function getSenderStreams(
 }
 
 /**
- * Query the blockchain for streamed amounts for every stream and each recipient.
+ * Query the blockchain for streamed amounts for streams of every chosen recipient.
  *
- * @returns Full amounts made up of streamed amounts for each recipient (from all owned streams).
+ * @returns Full amounts made up of streamed assets for each recipient (from all owned streams).
  */
 async function getRecipientStreamedAmounts(
   mapping: IAccountMap,
@@ -164,7 +166,7 @@ async function getRecipientStreamedAmounts(
   const requests: { recipient: string; call: any }[] = [];
   mapping.forEach((streams, recipient) => {
     streams.forEach((stream) => {
-      const method: keyof typeof abi = 'getDepositedAmount';
+      const method: keyof typeof abi = 'streamedAmountOf';
       const call = [stream.contract.toLowerCase(), method, [stream.id]];
       requests.push({ recipient, call });
     });
@@ -200,13 +202,10 @@ async function getRecipientStreamedAmounts(
 }
 
 /**
- * Use the withdrawn amount from the subgraph query (getRecipientAmounts).
- * Use the streamed amount from the blockchain query (getStreamedAmount).
- * Obtain an withdrawable amount from `streamed - withdrawn`.
+ * Query the blockchain for withdrawable amounts for streams of every chosen recipient.
  *
- * @returns Full amounts of withdrawable funds for each recipient (from all owned streams)
+ * @returns Full amounts made up of withdrawable assets for each recipient (from all owned streams).
  */
-
 async function getRecipientWithdrawableAmounts(
   mapping: IAccountMap,
   setup: {
@@ -215,17 +214,41 @@ async function getRecipientWithdrawableAmounts(
     provider: StaticJsonRpcProvider;
   }
 ) {
-  const amounts = await getRecipientStreamedAmounts(mapping, setup);
+  const { block, network, provider } = setup;
 
+  const requests: { recipient: string; call: any }[] = [];
   mapping.forEach((streams, recipient) => {
     streams.forEach((stream) => {
-      const withdrawn = BigNumber.from(stream.withdrawn);
-      if (amounts.has(recipient)) {
-        const streamed = amounts.get(recipient) || BigNumber.from(0);
-        const withdrawable = streamed.sub(withdrawn);
-        amounts.set(recipient, withdrawable);
-      }
+      const method: keyof typeof abi = 'withdrawableAmountOf';
+      const call = [stream.contract.toLowerCase(), method, [stream.id]];
+      requests.push({ recipient, call });
     });
+  });
+
+  const results = await multicall(
+    network,
+    provider,
+    Object.values(abi),
+    requests.map((item) => item.call),
+    { blockTag: block }
+  );
+
+  /** Aggregate results from streams with the same recipient into individual amounts */
+
+  const amounts: Map<string, BigNumber> = new Map();
+  mapping.forEach((_, recipient) => {
+    amounts.set(recipient, BigNumber.from(0));
+  });
+
+  requests.forEach(({ recipient }, index) => {
+    const amount = amounts.get(recipient);
+    const additional = results[index].toString();
+
+    const total = amount
+      ? amount?.add(BigNumber.from(additional))
+      : BigNumber.from(0);
+
+    amounts.set(recipient, total);
   });
 
   return amounts;
