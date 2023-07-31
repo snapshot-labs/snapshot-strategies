@@ -19,13 +19,13 @@ export const version = '0.0.1';
 function validate(network: string, addresses: string[], options: IOptions) {
   if (!Object.hasOwn(deployments, network)) {
     throw new Error(
-      'Invalid parameter. The chosen network has to be supported by Sablier V2.'
+      'Invalid parameter. The provided network is not supported by Sablier V2.'
     );
   }
 
   if (!addresses || addresses?.length === 0) {
     throw new Error(
-      'Invalid parameter. The addresses field must specify at least one account.'
+      'Invalid parameter. The addresses field must contain at least one address.'
     );
   }
 
@@ -54,6 +54,12 @@ export async function strategy(
 
   const balances = await (async () => {
     switch (options.policy) {
+      case 'withdrawable-recipient':
+      default: {
+        const streams = await getRecipientStreams(addresses, options, setup);
+        const balances = await getRecipientWithdrawableAmounts(streams, setup);
+        return balances;
+      }
       case 'deposited-recipient': {
         const streams = await getRecipientStreams(addresses, options, setup);
         const balances = await getRecipientDepositedAmounts(streams);
@@ -67,12 +73,6 @@ export async function strategy(
       case 'streamed-recipient': {
         const streams = await getRecipientStreams(addresses, options, setup);
         const balances = await getRecipientStreamedAmounts(streams, setup);
-        return balances;
-      }
-      case 'withdrawable-recipient':
-      default: {
-        const streams = await getRecipientStreams(addresses, options, setup);
-        const balances = await getRecipientWithdrawableAmounts(streams, setup);
         return balances;
       }
     }

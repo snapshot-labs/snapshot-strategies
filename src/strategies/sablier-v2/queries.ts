@@ -149,7 +149,7 @@ async function getSenderStreams(
 }
 
 /**
- * Query the blockchain for streamed amounts for streams of every chosen recipient.
+ * Query the blockchain for streamed amounts found in the streams owned by every provided recipient.
  *
  * @returns Full amounts made up of streamed assets for each recipient (from all owned streams).
  */
@@ -202,7 +202,7 @@ async function getRecipientStreamedAmounts(
 }
 
 /**
- * Query the blockchain for withdrawable amounts for streams of every chosen recipient.
+ * Query the blockchain for withdrawable amounts found in the streams owned by the provided recipients.
  *
  * @returns Full amounts made up of withdrawable assets for each recipient (from all owned streams).
  */
