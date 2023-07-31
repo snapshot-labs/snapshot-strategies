@@ -12,7 +12,8 @@
         "lpAddress_SNFTS_SFUND": "0xe4399d0c968fBc3f5449525146ea98B0dC7Fc203",
         "farmingAddress_SNFTS_SFUND": "0x19ee35c5B2CcaBaAE367B6f99b2f5747E6a6C0d0",
         "sfundStakingAddresses": [
-          "0x60b9F788F4436f0B5c33785b3499b2ee1D8dbFd4"
+          "0x60b9F788F4436f0B5c33785b3499b2ee1D8dbFd4",
+          "0x89aaaB217272C89dA91825D9Effbe65dEd384859"
         ],
         "legacySfundStakingAddresses": [
           "0xb667c499b88AC66899E54e27Ad830d423d9Fba69"
@@ -21,12 +22,11 @@
     },
     "network": "56",
     "addresses": [
-      "0x63c089DFD1aFf7a677C9a2caCFBd29d8B9E5FA3b",
-      "0x3108fC89729016b3199DD8b5adAc3085E7e002f0",
-      "0x9f2566125e1eA778BACA0fa3b8A826caA2806A62",
-      "0x8B3b9710A1452Abbe6e673cd276eC9515e3BE77A",
-      "0x1bcf2B5262e4147540Fd2F2fE796F03BFfD47337"
+      "0x756ea9Ae4866B962326d588CdF39d558e671dF61",
+      "0x000F06844e849E39E9661cAd08Bf39e1E762f99D",
+      "0xf6320ae5459332C2dCDE9abB8F1708232D7Bed3E",
+      "0x043a0199506E671Ed03e883e64288E5cf003EF93"
     ],
-    "snapshot": 29042360
+    "snapshot": 30042368
   }
 ]

@@ -1,0 +1,24 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "title": "DAO Name",
+          "examples": ["e.g. apecoin, ens, gitcoin"]
+        },
+        "roles": {
+          "type": "array",
+          "title": "Discord Roles",
+          "examples": ["e.g. Assembly, Trader, Moderator"]
+        }
+      },
+      "required": ["name", "roles"],
+      "additionalProperties": false
+    }
+  }
+}
