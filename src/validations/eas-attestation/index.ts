@@ -20,8 +20,10 @@ interface SubgraphResponse {
 }
 
 const EASNetworks = {
-  11155111: 'https://sepolia.easscan.org/graphql',
-  1: 'https://easscan.org/graphql'
+  1: 'https://easscan.org/graphql',
+  10: 'https://optimism.easscan.org/graphql',
+  42161: 'https://arbitrum.easscan.org/graphql',
+  11155111: 'https://sepolia.easscan.org/graphql'
 };
 
 const easScanQuery = `
