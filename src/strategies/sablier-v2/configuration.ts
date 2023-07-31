@@ -48,22 +48,6 @@ const deployments = {
     ],
     subgraph: 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2'
   },
-  [chains.optimism]: {
-    contracts: [
-      '0xb923abdca17aed90eb5ec5e407bd37164f632bfd', // SablierV2LockupLinear
-      '0x6f68516c21e248cddfaf4898e66b2b0adee0e0d6' // SablierV2LockupDynamic
-    ],
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-optimism'
-  },
-  [chains.polygon]: {
-    contracts: [
-      '0x67422c3e36a908d5c3237e9cffeb40bde7060f6e', // SablierV2LockupLinear
-      '0x7313addb53f96a4f710d3b91645c62b434190725' // SablierV2LockupDynamic
-    ],
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-polygon'
-  },
   [chains.goerli]: {
     contracts: [
       '0x6e3678c005815ab34986d8d66a353cd3699103de', // SablierV2LockupLinear
@@ -79,12 +63,28 @@ const deployments = {
     ],
     subgraph:
       'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-gnosis'
+  },
+  [chains.optimism]: {
+    contracts: [
+      '0xb923abdca17aed90eb5ec5e407bd37164f632bfd', // SablierV2LockupLinear
+      '0x6f68516c21e248cddfaf4898e66b2b0adee0e0d6' // SablierV2LockupDynamic
+    ],
+    subgraph:
+      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-optimism'
+  },
+  [chains.polygon]: {
+    contracts: [
+      '0x67422c3e36a908d5c3237e9cffeb40bde7060f6e', // SablierV2LockupLinear
+      '0x7313addb53f96a4f710d3b91645c62b434190725' // SablierV2LockupDynamic
+    ],
+    subgraph:
+      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-polygon'
   }
 };
 
 const abi = {
   getDepositedAmount:
-    'function getDepositedAmount(uint256 streamId) external view returns (uint128 depositedAmount)',
+    'function getDepositedAmount(uint256 streamId) external view returns (uint128 depositAmount)',
   streamedAmountOf:
     'function streamedAmountOf(uint256 streamId) external view returns (uint128 streamedAmount)',
   withdrawableAmountOf:
@@ -95,9 +95,9 @@ const page = 1000;
 
 const policies = {
   'withdrawable-recipient': 'withdrawable-recipient',
-  'streamed-recipient': 'streamed-recipient',
   'deposited-recipient': 'deposited-recipient',
-  'deposited-sender': 'deposited-sender'
+  'deposited-sender': 'deposited-sender',
+  'streamed-recipient': 'streamed-recipient'
 };
 
 type IPolicy = typeof policies[keyof typeof policies];
@@ -113,6 +113,11 @@ interface IOptions {
  * ------------------------------------------------------
  * SABLIER V2 SUBGRAPH QUERIES
  * ------------------------------------------------------
+ */
+
+/*
+ * See the docs for more example queries:
+ * https://docs.sablier.com/api/subgraphs/queries
  */
 
 interface IStreamsByAssetParams {
@@ -145,7 +150,6 @@ interface IStreamsByAssetResult {
 }
 
 /** @returns Streams by recipient and asset/token at the given block */
-
 const RecipientStreamsByAsset = ({
   asset,
   block,
@@ -178,7 +182,6 @@ const RecipientStreamsByAsset = ({
 });
 
 /** @returns Streams by recipient and asset/token at the given block */
-
 const SenderStreamsByAsset = ({
   asset,
   block,

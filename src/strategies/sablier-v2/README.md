@@ -1,8 +1,11 @@
-# sablier-v2
+# Sablier V2 Strategies
 
-This set of strategies returns various amounts related to Sablier V2 streams for any given asset.
+In Sablier V2, a stream creator locks up an amount of ERC-20 tokens in a contract that progressively allocates the funds to the designated
+recipient. The tokens are released by the second, and the recipient can withdraw them at any time.
 
-### Setup
+The strategies in this folder read the various amounts that can be found in Sablier V2 streams.
+
+### Example Setup
 
 ```json
 {
@@ -15,72 +18,77 @@ This set of strategies returns various amounts related to Sablier V2 streams for
 
 #### Other parameters
 
-Aside from this example setup, we use Snapshot's base parameters such as `Network`, `Snapshot`(block) or `Addresses`.
+Aside from this example setup, we use Snapshot's base parameters `Network`, `Snapshot` (block), and `Addresses`.
+
 Based on the chosen strategy, the values filled in the `Addresses` field will represent a list (>= 1) of senders or recipients.
 
 ### Policies
 
-| Policy                 | Methodology                                                                                   |
-| ---------------------- | --------------------------------------------------------------------------------------------- |
-| withdrawable-recipient | Tokens available for withdrawal from the stream.                                              |
-| streamed-recipient     | Tokens that have been streamed until the snapshot.                                            |
-| deposited-recipient    | Tokens that have been deposited in streams the recipient owns at snapshot.                    |
-| deposited-sender       | Tokens that have been deposited in streams started by the sender by the time of the snapshot. |
+| Policy                 | Methodology                                                                           |
+| :--------------------- | :------------------------------------------------------------------------------------ |
+| withdrawable-recipient | Tokens available to be withdrawn by the stream's recipient.                           |
+| deposited-recipient    | Tokens that have been deposited in streams the recipient owned at snapshot time.      |
+| deposited-sender       | Tokens that have been deposited in streams started by the sender before the snapshot. |
+| streamed-recipient     | Tokens that have been streamed to the recipient until the snapshot.                   |
 
 ### Example
 
-```
+```text
 Sablier V2 Stream #000001
 ---
 Deposited: TKN 1000 for 30 days
 Withdrawn: TKN 450 before snapshot
-Snapshot: Day 15 (Half) with a streamed amount of TKN 500
+Snapshot: Day 15 (midway) with a streamed amount of TKN 500
 
 +------------------------+----------+
 | POLICY                 | POWER    |
 +------------------------+----------+
-| withdrawable-recipient | TKN 50   |
+| erc20-balance-of       | TKN 450  |
 +------------------------+----------+
-| streamed-recipient     | TKN 500  |
+| withdrawable-recipient | TKN 50   |
 +------------------------+----------+
 | deposited-recipient    | TKN 1000 |
 +------------------------+----------+
 | deposited-sender       | TKN 1000 |
 +------------------------+----------+
-| erc20-balance-of       | TKN 450  |
+| streamed-recipient     | TKN 500  |
 +------------------------+----------+
 ```
+
+### Recommendation
+
+For the best results, we recommend using the `withdrawable-recipient` policy alongside `erc20-balance-of`. Doing so will count tokens both in the user's wallet, as well as tokens streamed but not withdrawn yet.
 
 ### Details and Caveats
 
 #### `withdrawable-recipient`
 
-The withdrawable amount represents assets that have been streamed but not withdrawn yet by the recipient.
+The withdrawable amount represents tokens that have been streamed but not withdrawn yet by the recipient.
 
-It relies on the `withdrawableAmountOf` contract [method](https://docs.sablier.com/contracts/v2/reference/core/abstracts/abstract.SablierV2Lockup#withdrawableamountof).
-
-We recommend using the `withdrawable-recipient` strategy alongside `erc20-balance-of` for the best results. It counts assets is the user's wallet, as well as assets streamed but not withdrawn yet.
-
-#### `streamed-recipient`
-
-It aggregates historical amounts that have already been streamed to the recipient. This will also include already withdrawn assets.
-
-It relies on the `streamedAmountOf` contract methods ([linear](https://docs.sablier.com/contracts/v2/reference/core/contract.SablierV2LockupLinear#streamedamountof), [dynamic](https://docs.sablier.com/contracts/v2/reference/core/contract.SablierV2LockupDynamic#streamedamountof)).
-
-_Caveat #1:_ Careful when using alongside `erc20-balance-of` as it may double count assets. In the [example](#example): `TNK 500` streamed from which `TKN 450` withdrawn equals a voting power or `TKN 950`.
-
-_Caveat #2:_ If funds are recycled (streamed, withdrawn and streamed again) the voting power may be increased artificially.
+This is provided by the [`withdrawableAmountOf`](https://docs.sablier.com/contracts/v2/reference/core/abstracts/abstract.SablierV2Lockup#withdrawableamountof) contract method.
 
 #### `deposited-recipient`
 
-It aggregates historical deposits up to the moment of the snapshot. Counts streams owned by the recipient.
+It aggregates historical deposits up to the snapshot time, counting only the streams owned by the recipient.
 
-_Caveat #1:_ Streaming, canceling and streaming again will cause assets to be counted multiple times.
+:warning: Caveat: streaming, canceling and streaming again will cause tokens to be counted multiple times.
 
 #### `deposited-sender`
 
-It aggregates historical deposits up to the moment of the snapshot. Counts streams started by the sender.
+It aggregates historical deposits up to the snapshot time, counting only the streams started by the sender.
 
-_Caveat #1:_ Streaming, canceling and streaming again will cause assets to be counted multiple times.
+:warning: Caveats:
 
-_Caveat #2:_ This also takes into account streams created through PRB-Proxy instances configured through the frontend app. Read more about it in the [docs](https://docs.sablier.com/contracts/v2/reference/overview#periphery).
+- Streaming, canceling and streaming again will cause tokens to be counted multiple times.
+- It takes into account streams created through [PRBProxy](https://docs.sablier.com/contracts/v2/reference/overview#periphery) instances configured through the official [Sablier Interface](https://app.sablier.com/).
+
+#### `streamed-recipient`
+
+It aggregates historical amounts that have already been streamed to the recipient. Crucially, it includes already withdrawn tokens.
+
+It relies on the `streamedAmountOf` methods in the [LockupLinear](https://docs.sablier.com/contracts/v2/reference/core/contract.SablierV2LockupLinear#streamedamountof) and [LockupDynamic](https://docs.sablier.com/contracts/v2/reference/core/contract.SablierV2LockupDynamic#streamedamountof) contracts.
+
+:warning: Caveats:
+
+- Using this policy alongside `erc20-balance-of` may double count tokens. In the example above, `TNK 500` was streamed, but the recipient withdrew `TKN 450`, so the total voting power would be `TKN 950`.
+- If funds are recycled (streamed, withdrawn and streamed again) the voting power may be increased artificially.
