@@ -67,7 +67,7 @@ async function isAttested(schemaId: string, address: string, network = 1) {
 
 export default class extends Validation {
   public id = 'eas-attestation';
-  public github = 'karmahq';
+  public github = 'show-karma';
   public version = '0.1.0';
   public title = 'EAS Attestation';
   public description =
