@@ -3,16 +3,16 @@ import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier', // mainnet
-  '3': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-ropsten', // ropsten
-  '4': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-rinkeby', // rinkeby
-  '5': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-goerli', // goerli
-  '10': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-optimism', // optimism
-  '42': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-kovan', // kovan
-  '56': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-bsc', // bsc
-  '137': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-matic', // polygon
-  '42161': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-arbitrum', // arbitrum
-  '43114': 'https://api.thegraph.com/subgraphs/name/sablierhq/sablier-avalanche' // avalanche
+  '1': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier', // mainnet
+  '3': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-ropsten', // ropsten
+  '4': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-rinkeby', // rinkeby
+  '5': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-goerli', // goerli
+  '10': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-optimism', // optimism
+  '42': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-kovan', // kovan
+  '56': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-bsc', // bsc
+  '137': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-matic', // polygon
+  '42161': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-arbitrum', // arbitrum
+  '43114': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-avalanche' // avalanche
 };
 
 export const author = 'dan13ram';
