@@ -63,6 +63,5 @@ export async function strategy(
     votingPower[checksumAddress] = !!userExists ? 1 : 0;
   });
 
-  console.log(votingPower);
   return votingPower;
 }
