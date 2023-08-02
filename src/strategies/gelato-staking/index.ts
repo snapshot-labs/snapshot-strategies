@@ -2,8 +2,8 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'alxdca:feat';
+export const version = '0.1.0';
 
 const abi = [
   'function stakers() external view returns (address[])',
