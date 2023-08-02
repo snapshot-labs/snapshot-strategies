@@ -2,7 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'alxdca:feat';
+export const author = 'alxdca';
 export const version = '0.1.0';
 
 const abi = [
