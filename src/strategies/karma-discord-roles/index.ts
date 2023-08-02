@@ -49,7 +49,6 @@ export async function strategy(
   };
 
   const response = await fetch(`${KARMA_API}?${queryParams}`, requestOptions);
-  console.log(`${KARMA_API}?${queryParams}`);
 
   const parsedResponse = !response.ok ? [] : await response.json();
   const delegates = parsedResponse.data?.delegates || [];
