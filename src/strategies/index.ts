@@ -454,6 +454,7 @@ import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-ho
 import * as stakedMoreKudasai from './staked-morekudasai';
 import * as sablierV2 from './sablier-v2';
 import * as gelatoStaking from './gelato-staking';
+import * as erc4626AssetsOf from './erc4626-assets-of';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -915,7 +916,8 @@ const strategies = {
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
   'sablier-v2': sablierV2,
-  'gelato-staking': gelatoStaking
+  'gelato-staking': gelatoStaking,
+  'erc4626-assets-of': erc4626AssetsOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
