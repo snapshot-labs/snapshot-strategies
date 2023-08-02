@@ -453,6 +453,7 @@ import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
 import * as sablierV2 from './sablier-v2';
+import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 
 const strategies = {
@@ -915,6 +916,7 @@ const strategies = {
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
   'sablier-v2': sablierV2,
+  'gelato-staking': gelatoStaking,
   'erc4626-assets-of': erc4626AssetsOf
 };
 
