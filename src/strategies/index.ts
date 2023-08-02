@@ -453,6 +453,7 @@ import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
 import * as sablierV2 from './sablier-v2';
+import * as gelatoStaking from './gelato-staking';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -913,7 +914,8 @@ const strategies = {
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
-  'sablier-v2': sablierV2
+  'sablier-v2': sablierV2,
+  'gelato-staking': gelatoStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
