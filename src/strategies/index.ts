@@ -618,6 +618,7 @@ const strategies = {
   api,
   'api-post': apiPost,
   'api-v2': apiV2,
+  'api-v2-override': apiV2,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
