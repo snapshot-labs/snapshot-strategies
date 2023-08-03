@@ -10,6 +10,12 @@ type Params = {
   backendUrl: string;
 };
 
+/*
+  This strategy:
+  - returns a score of 0 for addresses that are delegating to other addresses (PS: addresses that returns a score of 0, should not be allowed to vote),
+  - returns a score greater than 0, for addresses that are delegated to (PS: only the amount delegated to the address us returned, this needs to be merged with the scores from other strategies in the space),
+  - returns nothing for addresses that are not delegating to other addresses or delegated to.
+*/
 export async function strategy(
   space: string,
   network: string,
@@ -22,7 +28,6 @@ export async function strategy(
 
   console.log('space', space);
 
-  // 1. get delegated votes (must return 0 for the addresses that has delegated)
   const response = await fetch(
     `${options.backendUrl}/api/${space}/snapshot/${blockTag}/strategy-formatted-vote-weights`,
     {
@@ -34,8 +39,6 @@ export async function strategy(
       body: JSON.stringify(addresses)
     }
   );
-
-  // 2. get the not delegated raw votes
 
   return response.json();
 }
