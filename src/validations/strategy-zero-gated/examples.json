@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Example of a validation",
+    "author": "0xD028d504316FEc029CFa36bdc3A8f053F6E5a6e4",
+    "space": "myDao.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "strategy": {
+        "name": "delegate-registry-v2",
+        "params": {}
+      }
+    }
+  }
+]

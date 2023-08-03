@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Validation",
+  "definitions": {
+    "Validation": {
+      "title": "Strategy Zero Gated",
+      "type": "object",
+      "properties": {
+        "strategy": {
+          "title": "Strategy",
+          "type": "object",
+          "default": {
+            "name": "delegate-registry-v2",
+            "network": "1",
+            "params": {}
+          },
+          "properties": {
+            "name": {
+              "type": "string"
+            },
+            "network": {
+              "type": "string"
+            },
+            "params": {
+              "type": "object"
+            }
+          },
+          "required": ["name", "params"]
+        }
+      }
+    },
+    "required": ["strategy"],
+    "additionalProperties": false
+  }
+}
