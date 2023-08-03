@@ -28,9 +28,9 @@
           "type": "string",
           "title": "Policy",
           "examples": [
-            "withdrawable-recipient, deposited-recipient, deposited-sender, or streamed-recipient"
+            "withdrawable-recipient, reserved-recipient, deposited-recipient, deposited-sender, streamed-recipient or unstreamed-recipient"
           ],
-          "pattern": "^((withdrawable-recipient)|(deposited-recipient)|(deposited-sender)|(streamed-recipient))$"
+          "pattern": "^((withdrawable-recipient)|(reserved-recipient)|(deposited-recipient)|(deposited-sender)|(streamed-recipient)|(unstreamed-recipient))$"
         }
       },
       "required": ["address", "decimals", "policy"],
