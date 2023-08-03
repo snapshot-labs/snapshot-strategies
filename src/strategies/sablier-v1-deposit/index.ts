@@ -15,7 +15,7 @@ const SUBGRAPH_URL = {
   '43114': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-avalanche' // avalanche
 };
 
-export const author = 'dan13ram';
+export const author = 'sablier-labs';
 export const version = '0.1.0';
 
 export async function strategy(
