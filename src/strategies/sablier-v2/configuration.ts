@@ -95,9 +95,11 @@ const page = 1000;
 
 const policies = {
   'withdrawable-recipient': 'withdrawable-recipient',
+  'reserved-recipient': 'reserved-recipient',
   'deposited-recipient': 'deposited-recipient',
   'deposited-sender': 'deposited-sender',
-  'streamed-recipient': 'streamed-recipient'
+  'streamed-recipient': 'streamed-recipient',
+  'unstreamed-recipient': 'unstreamed-recipient'
 };
 
 type IPolicy = typeof policies[keyof typeof policies];
@@ -130,7 +132,13 @@ interface IStreamsByAssetParams {
 
 type IAccountMap = Map<
   string,
-  { id: string; contract: string; deposited: string; withdrawn: string }[]
+  {
+    id: string;
+    canceled: boolean;
+    contract: string;
+    deposited: string;
+    withdrawn: string;
+  }[]
 >;
 
 interface IStreamsByAssetResult {
@@ -139,6 +147,7 @@ interface IStreamsByAssetResult {
     contract: {
       id: string;
     };
+    canceled: boolean;
     proxied: boolean;
     proxender: string;
     recipient: string;
@@ -173,6 +182,7 @@ const RecipientStreamsByAsset = ({
     contract: {
       id: true
     },
+    canceled: true,
     recipient: true,
     sender: true,
     tokenId: true,
@@ -211,6 +221,7 @@ const SenderStreamsByAsset = ({
     contract: {
       id: true
     },
+    canceled: true,
     proxied: true,
     proxender: true,
     recipient: true,

@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. MGN"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "ERC4626 contract address",
+          "examples": ["e.g. 0x44e4c3668552033419520be229cd9df0c35c4417"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["address", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}
