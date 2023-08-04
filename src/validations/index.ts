@@ -4,12 +4,14 @@ import basic from './basic';
 import passportGated from './passport-gated';
 import passportWeighted from './passport-weighted';
 import arbitrum from './arbitrum';
+import aave from './aave';
 
 const validationClasses = {
   basic,
   'passport-gated': passportGated,
   'passport-weighted': passportWeighted,
-  arbitrum: arbitrum
+  arbitrum: arbitrum,
+  aave: aave
 };
 
 const validations = {};

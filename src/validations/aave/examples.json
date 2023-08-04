@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example of Aave validation",
+    "author": "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+    "space": "aave.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "minScore": 1,
+      "whitelist": ["0xeF8305E140ac520225DAf050e2f71d5fBcC543e7"],
+      "strategies": [
+        {
+          "name": "ticket",
+          "params": {}
+        }
+      ]
+    }
+  }
+]
