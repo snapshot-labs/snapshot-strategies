@@ -1,0 +1,40 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Asset Symbol",
+          "examples": ["e.g. DAI"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Asset Address",
+          "examples": ["e.g. 0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Asset Decimals",
+          "examples": ["e.g. 18"]
+        },
+        "policy": {
+          "type": "string",
+          "title": "Policy",
+          "examples": [
+            "withdrawable-recipient, reserved-recipient, deposited-recipient, deposited-sender, streamed-recipient or unstreamed-recipient"
+          ],
+          "pattern": "^((withdrawable-recipient)|(reserved-recipient)|(deposited-recipient)|(deposited-sender)|(streamed-recipient)|(unstreamed-recipient))$"
+        }
+      },
+      "required": ["address", "decimals", "policy"],
+      "additionalProperties": false
+    }
+  }
+}
