@@ -4,12 +4,14 @@ import type { StaticJsonRpcProvider } from '@ethersproject/providers';
 
 import { deployments, policies } from './configuration';
 import {
+  getRecipientDepositedAmounts,
+  getRecipientReservedAmounts,
   getRecipientStreams,
   getRecipientStreamedAmounts,
-  getRecipientDepositedAmounts,
+  getRecipientUnstreamedAmounts,
   getRecipientWithdrawableAmounts,
-  getSenderStreams,
-  getSenderDepositedAmounts
+  getSenderDepositedAmounts,
+  getSenderStreams
 } from './queries';
 import type { IOptions } from './configuration';
 
@@ -57,23 +59,36 @@ export async function strategy(
       case 'withdrawable-recipient':
       default: {
         const streams = await getRecipientStreams(addresses, options, setup);
-        const balances = await getRecipientWithdrawableAmounts(streams, setup);
-        return balances;
+        const { amounts } = await getRecipientWithdrawableAmounts(
+          streams,
+          setup
+        );
+        return amounts;
+      }
+      case 'reserved-recipient': {
+        const streams = await getRecipientStreams(addresses, options, setup);
+        const { amounts } = await getRecipientReservedAmounts(streams, setup);
+        return amounts;
       }
       case 'deposited-recipient': {
         const streams = await getRecipientStreams(addresses, options, setup);
-        const balances = await getRecipientDepositedAmounts(streams);
-        return balances;
+        const { amounts } = await getRecipientDepositedAmounts(streams);
+        return amounts;
       }
       case 'deposited-sender': {
         const streams = await getSenderStreams(addresses, options, setup);
-        const balances = await getSenderDepositedAmounts(streams);
-        return balances;
+        const { amounts } = await getSenderDepositedAmounts(streams);
+        return amounts;
       }
       case 'streamed-recipient': {
         const streams = await getRecipientStreams(addresses, options, setup);
-        const balances = await getRecipientStreamedAmounts(streams, setup);
-        return balances;
+        const { amounts } = await getRecipientStreamedAmounts(streams, setup);
+        return amounts;
+      }
+      case 'unstreamed-recipient': {
+        const streams = await getRecipientStreams(addresses, options, setup);
+        const { amounts } = await getRecipientUnstreamedAmounts(streams, setup);
+        return amounts;
       }
     }
   })();
