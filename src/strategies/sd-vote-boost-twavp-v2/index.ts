@@ -24,6 +24,11 @@ export async function strategy(
         throw new Error('maximum of 5 call');
     }
 
+    // Maximum of 20 whitelisted address
+    if (options.whiteListedAddress.length > 20) {
+        throw new Error('maximum of 20 whitelisted address');
+    }
+
     // --- Create block number list for twavp
     // Obtain last block number
     let lastBlock = await provider.getBlockNumber();
