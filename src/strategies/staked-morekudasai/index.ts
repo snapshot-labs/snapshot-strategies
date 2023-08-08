@@ -63,7 +63,7 @@ export async function strategy(
 
   // aggregate
   const ret = addressWithIndexes
-    .map(([address, _], index) => {
+    .map(([address], index) => {
       return {
         address: address,
         vp: stakingDurations[index][0]
