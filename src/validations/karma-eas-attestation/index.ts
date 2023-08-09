@@ -1,9 +1,6 @@
 import Validation from '../validation';
 import fetch from 'cross-fetch';
 
-export const author = 'show-karma';
-export const version = '0.1.1';
-
 interface Attestation {
   attester: string;
   data: string;
