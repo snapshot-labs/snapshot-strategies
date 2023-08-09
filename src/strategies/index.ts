@@ -455,6 +455,7 @@ import * as stakedMoreKudasai from './staked-morekudasai';
 import * as sablierV2 from './sablier-v2';
 import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
+import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -918,7 +919,8 @@ const strategies = {
   'staked-morekudasai': stakedMoreKudasai,
   'sablier-v2': sablierV2,
   'gelato-staking': gelatoStaking,
-  'erc4626-assets-of': erc4626AssetsOf
+  'erc4626-assets-of': erc4626AssetsOf,
+  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
