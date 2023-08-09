@@ -30,7 +30,10 @@ export async function strategy(
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const multi = new Multicaller(network, provider, abi, { blockTag });
+  const multi = new Multicaller(network, provider, abi, {
+    blockTag,
+    limit: 475
+  });
 
   for (const address of addresses) {
     multi.call(address, options.reliquaryAddress, 'relicPositionsOfOwner', [
@@ -95,7 +98,7 @@ export async function strategy(
 
   const userVotingPower: Record<string, number> = {};
 
-  /*  
+  /*
     if we use the level strategy, we just add the level as a multiplier in relation to the max level.
     So the formula used is: relicAmount * level / maxLevel
   */

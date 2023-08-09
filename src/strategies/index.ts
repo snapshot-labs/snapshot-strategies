@@ -401,7 +401,7 @@ import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
 import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
-import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations'
+import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as posichainStaking from './posichain-staking';
@@ -448,9 +448,14 @@ import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
+import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-org';
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
+import * as sablierV2 from './sablier-v2';
+import * as gelatoStaking from './gelato-staking';
+import * as erc4626AssetsOf from './erc4626-assets-of';
+import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -614,6 +619,7 @@ const strategies = {
   api,
   'api-post': apiPost,
   'api-v2': apiV2,
+  'api-v2-override': apiV2,
   xseen,
   'moloch-all': molochAll,
   'moloch-loot': molochLoot,
@@ -862,7 +868,7 @@ const strategies = {
   'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
-  'nation3-passport-coop-with-delegations':nation3CoopPassportWithDelegations,
+  'nation3-passport-coop-with-delegations': nation3CoopPassportWithDelegations,
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'erc20-tokens-per-uni': erc20TokensPerUni,
@@ -906,10 +912,15 @@ const strategies = {
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
   spaceid,
+  'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg,
   'karma-discord-roles': karmaDiscordRoles,
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
-  'staked-morekudasai': stakedMoreKudasai
+  'staked-morekudasai': stakedMoreKudasai,
+  'sablier-v2': sablierV2,
+  'gelato-staking': gelatoStaking,
+  'erc4626-assets-of': erc4626AssetsOf,
+  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
