@@ -4,12 +4,14 @@ import basic from './basic';
 import passportGated from './passport-gated';
 import passportWeighted from './passport-weighted';
 import arbitrum from './arbitrum';
+import karmaEasAttestation from './karma-eas-attestation';
 
 const validationClasses = {
   basic,
   'passport-gated': passportGated,
   'passport-weighted': passportWeighted,
-  arbitrum: arbitrum
+  arbitrum: arbitrum,
+  'karma-eas-attestation': karmaEasAttestation
 };
 
 const validations = {};
