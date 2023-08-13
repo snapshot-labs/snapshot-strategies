@@ -9,7 +9,9 @@
         "schemaId": {
           "type": "string",
           "title": "Schema Id",
-          "examples": ["e.g. 0xc0f979976278d9e1d4fa97b7270c0cc07835aa5f27dd897a871b3332ec6cff22"]
+          "examples": [
+            "e.g. 0xc0f979976278d9e1d4fa97b7270c0cc07835aa5f27dd897a871b3332ec6cff22"
+          ]
         }
       },
       "required": [],

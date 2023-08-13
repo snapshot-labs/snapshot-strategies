@@ -11,9 +11,7 @@
         "decimals": 18,
         "sampleSize": 10,
         "sampleStep": 5,
-        "whiteListedAddress": [
-          "0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"
-        ]
+        "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"]
       }
     },
     "network": "1",
