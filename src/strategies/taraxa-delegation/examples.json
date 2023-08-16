@@ -3,7 +3,11 @@
     "name": "Example query",
     "strategy": {
       "name": "taraxa-delegation",
-      "params": {}
+      "params": {
+        "address": "0x00000000000000000000000000000000000000fe",
+        "symbol": "TARA",
+        "decimals": 18
+      }
     },
     "network": "841",
     "addresses": [
@@ -15,6 +19,6 @@
       "0x21db400dcb1ef3bc3aee4f3d028ec1939b7fadd6",
       "0x1daaa59a8d4a5c08080cadb65204d2d275838a99"
     ],
-    "snapshot": 1608820
+    "snapshot": 3112430
   }
 ]
