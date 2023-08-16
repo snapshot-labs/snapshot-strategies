@@ -4,33 +4,33 @@
     "strategy": {
       "name": "sablier-v1-deposit",
       "params": {
-        "sender": "0xC9F2D9adfa6C24ce0D5a999F2BA3c6b06E36F75E",
-        "token": "0x7f8F6E42C169B294A384F5667c303fd8Eedb3CF3"
+        "sender": "0xcCe2CbDcD0eee72984c58A84678F0D49a95257ae",
+        "token": "0x97cb342Cf2F6EcF48c1285Fb8668f5a4237BF862"
       }
     },
     "network": "5",
     "addresses": [
-      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
-      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+      "0x06255FA39EBD18796eCCCc17DB8153Ef58DBA0a8",
+      "0xf976aF93B0A5A9F55A7f285a3B5355B8575Eb5bc",
+      "0x5bCAc9fC8827231839c5861b719e0cAE57da3CfB"
     ],
-    "snapshot": 7572600
+    "snapshot": 9515850
   },
   {
     "name": "Example query 1",
     "strategy": {
       "name": "sablier-v1-deposit",
       "params": {
-        "sender": "0xC9F2D9adfa6C24ce0D5a999F2BA3c6b06E36F75E",
-        "token": "0x7f8F6E42C169B294A384F5667c303fd8Eedb3CF3"
+        "sender": "0xcCe2CbDcD0eee72984c58A84678F0D49a95257ae",
+        "token": "0x97cb342Cf2F6EcF48c1285Fb8668f5a4237BF862"
       }
     },
     "network": "5",
     "addresses": [
-      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
-      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
-      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+      "0x06255FA39EBD18796eCCCc17DB8153Ef58DBA0a8",
+      "0xf976aF93B0A5A9F55A7f285a3B5355B8575Eb5bc",
+      "0x5bCAc9fC8827231839c5861b719e0cAE57da3CfB"
     ],
-    "snapshot": 7572688
+    "snapshot": 9515900
   }
 ]
