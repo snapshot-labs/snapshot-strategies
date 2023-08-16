@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc4626-assets-of",
+      "params": {
+        "address": "0x44e4c3668552033419520be229cd9df0c35c4417",
+        "symbol": "MGN",
+        "decimals": 18
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x65877BE34c0c3C3A317d97028FD91bd261410026",
+      "0x86341e73d9Deb4696B1Ae50DBCe8F2D62FA06023",
+      "0xb738Ce8df54A6d1035d651D77816ae20AFff3bE6",
+      "0x0c9a74a6Fe43341e90Ab436439C361452eEb9c6b",
+      "0x72C861B1C98994d54Cc0c6E98B4379203a1905dA"
+    ],
+    "snapshot": 117490161
+  }
+]

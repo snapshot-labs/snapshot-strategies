@@ -2,8 +2,8 @@ import fetch from 'cross-fetch';
 import Validation from '../validation';
 import snapshot from '@snapshot-labs/snapshot.js';
 
-const API_KEY =
-  process.env.PASSPORT_API_KEY || '0cErnp4F.nRDEUU4Z8y5YyxcU32swrggDFNfWtXtI';
+// Create one from https://scorer.gitcoin.co/#/dashboard/api-keys
+const API_KEY = process.env.PASSPORT_API_KEY || '';
 
 const headers = API_KEY
   ? {
