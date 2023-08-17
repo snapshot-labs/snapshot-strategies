@@ -1,0 +1,40 @@
+[
+  {
+    "name": "ERC1155 Weighted by id",
+    "strategy": {
+      "name": "erc1155-weighted-by-id",
+      "params": {
+        "symbol": "COINAGE",
+        "address": "0x4776defcf622c60c6419cccc9ee9e9042fadf3f7",
+        "ids": ["1", "3"],
+        "weight": [25, 1]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2274091DAad5B7bF734f426B9aA8513955075b9E",
+      "0x65A922561638015E394A20356C31E9A6217513B8",
+      "0x1A9deC77516BA05316938D7Fb32F51D646f8d91f"
+    ],
+    "snapshot": 16648731
+  },
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc1155-weighted-by-id",
+      "params": {
+        "symbol": "COINAGE",
+        "address": "0x4776defcf622c60c6419cccc9ee9e9042fadf3f7",
+        "ids": ["2", "1"],
+        "weight": [50, 10]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2274091DAad5B7bF734f426B9aA8513955075b9E",
+      "0x65A922561638015E394A20356C31E9A6217513B8",
+      "0x1A9deC77516BA05316938D7Fb32F51D646f8d91f"
+    ],
+    "snapshot": 16648731
+  }
+]

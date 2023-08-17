@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example voting based on hedgey vesting token with delegation and multiplier",
+    "strategy": {
+      "name": "hedgey-delegate",
+      "params": {
+        "contracts": [
+          "0xce7ac66e78aae01d899eb90b63d1f20be2e9c4b1",
+          "0x24f4BC74C00412422C9D2A7c78033fc8Aea8Da18"
+        ],
+        "token": "0xE13FB676E9bdd7AFda91495eC4e027FC63212FC3",
+        "symbol": "TACO",
+        "decimals": 18,
+        "multiplier": 10
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0xAa9c3a194C9E78085260dfC7EAcFef51653412Bf",
+      "0x92d9802eFcD0485876DDC13c16cEA67e6aD5EB35",
+      "0xF0138A76223d93192C9c903520f1cf95c9094065",
+      "0xDC13Ab880e2AB7b5544a7b927769B5CEc6d62a0b",
+      "0xe31D847B47465cC2745319dAc9E0c6ac711cA10b"
+    ],
+    "snapshot": 8974862
+  }
+]

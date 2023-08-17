@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Ethereum Query",
+    "strategy": {
+      "name": "hashflow-vehft",
+      "params": {
+        "hftVault": "0x15725391A37A5fFeB04F79cf25DA8460A3f068F6",
+        "nftContract": "0xb99E4E9b8Fd99c2C90aD5382dBC6ADfDfE3A33f3"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x602bcC6BF7cfd77048AB7cA4113382ef269362f2",
+      "0x2EE3300306c156948947a9c63959e89d9d60824F",
+      "0xAF8324Ab53229651E4C8Dea252a554AacA6f9577",
+      "0x6D2c2D57d49B015847a4A48ebB143138a5d7A455",
+      "0x41982604fDDce37bf04624A6F4A511f94043DEE0",
+      "0x34E1AE9a9b3F8e6B648A0e8952cf6C553d65fd62"
+    ],
+    "snapshot": 16402454
+  }
+]

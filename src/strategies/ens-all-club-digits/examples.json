@@ -1,0 +1,20 @@
+[
+  {
+    "name": "ENS ALL Club Digits",
+    "strategy": {
+      "name": "ens-all-club-digits",
+      "params": {
+        "address": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+        "symbol": "NUMS",
+        "numberOfDigits": 7
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa2e87bf4e4edc28922736887772c351de5554b77",
+      "0xf8ebe2b23ed74bee2b35da9de63c2380902b7cb5",
+      "0xae099ada728a5abf8b31f2b126cc5bf8e70fbc2c"
+    ],
+    "snapshot": 15818456
+  }
+]

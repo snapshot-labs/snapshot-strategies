@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Single Staking Amount from Autocompounding Vault",
+    "strategy": {
+      "name": "single-staking-autocompound-balanceof",
+      "params": {
+        "stakingPoolAddress": "0xC122d1F67bbC3e40aec198C54B9eC13E1b0990eC",
+        "symbol": "FUZZ",
+        "decimals": 18
+      }
+    },
+    "network": "1666600000",
+    "addresses": [
+      "0x12e49d93588e0056bd25530C3B1E8AAc68F4B70a",
+      "0x8C612B03b3358C1E535706695c635C360034B968",
+      "0x24d19f100ba142543a863fc2294b188e35ab55b9"
+    ],
+    "snapshot": 32877171
+  }
+]

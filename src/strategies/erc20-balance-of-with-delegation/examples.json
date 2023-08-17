@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-with-delegation",
+      "params": {
+        "symbol": "POHD",
+        "address": "0x1dAD862095d40d43c2109370121cf087632874dB",
+        "decimals": 0,
+        "delegationSpace": "poh.eth"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x3c13f2B56AF614aC6381265EcB3B619bA26CC641",
+      "0x048fee7c3279a24af0790b6b002ded42be021d2b",
+      "0x139a9032a46c3afe3456eb5f0a35183b5f189cae"
+    ],
+    "snapshot": 15705816
+  }
+]

@@ -9,7 +9,11 @@
       }
     },
     "network": "137",
-    "addresses": ["0x027Ffd3c119567e85998f4E6B9c3d83D5702660c"],
-    "snapshot": 12089223
+    "addresses": [
+      "0x51195e21BDaE8722B29919db56d95Ef51FaecA6C",
+      "0xDd564df884Fd4e217c9ee6F65B4BA6e5641eAC63",
+      "0xBfe09443556773958bae1699b786d8E9680B5571"
+    ],
+    "snapshot": 39986904
   }
 ]

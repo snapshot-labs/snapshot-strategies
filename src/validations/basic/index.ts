@@ -1,33 +1,35 @@
+import Validation from '../validation';
 import { getProvider, getScoresDirect } from '../../utils';
 
-export default async function validate(
-  author: string,
-  space,
-  proposal,
-  options
-): Promise<boolean> {
-  const strategies = options.strategies || space.strategies;
-  const onlyMembers = options.onlyMembers || space.filters?.onlyMembers;
-  const minScore = options.minScore || space.filters?.minScore;
-  const members = (space.members || []).map((address) => address.toLowerCase());
+export default class extends Validation {
+  public id = 'basic';
+  public github = 'bonustrack';
+  public version = '0.2.0';
+  public title = 'Basic';
+  public description = 'Use any strategy to determine if a user can vote.';
 
-  if (members.includes(author.toLowerCase())) return true;
+  async validate(): Promise<boolean> {
+    if (this.params.strategies?.length > 8)
+      throw new Error(`Max number of strategies exceeded`);
+    const minScore = this.params.minScore;
 
-  if (onlyMembers) return false;
+    if (minScore) {
+      const scores = await getScoresDirect(
+        this.space,
+        this.params.strategies,
+        this.network,
+        getProvider(this.network),
+        [this.author],
+        this.snapshot || 'latest'
+      );
+      const totalScore: any = scores
+        .map((score: any) =>
+          Object.values(score).reduce((a, b: any) => a + b, 0)
+        )
+        .reduce((a, b: any) => a + b, 0);
+      if (totalScore < minScore) return false;
+    }
 
-  if (minScore) {
-    const scores = await getScoresDirect(
-      space.id || space.key,
-      strategies,
-      space.network,
-      getProvider(space.network),
-      [author]
-    );
-    const totalScore: any = scores
-      .map((score: any) => Object.values(score).reduce((a, b: any) => a + b, 0))
-      .reduce((a, b: any) => a + b, 0);
-    if (totalScore < minScore) return false;
+    return true;
   }
-
-  return true;
 }
