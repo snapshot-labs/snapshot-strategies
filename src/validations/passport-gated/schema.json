@@ -1,0 +1,271 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Validation",
+  "definitions": {
+    "Validation": {
+      "title": "Gitcoin passport gated",
+      "type": "object",
+      "properties": {
+        "stamps": {
+          "type": "array",
+          "title": "Stamps",
+          "uniqueItems": true,
+          "minItems": 1,
+          "maxItems": 32,
+          "items": {
+            "type": "string",
+            "anyOf": [
+              {
+                "const": "Google",
+                "title": "Google account"
+              },
+              {
+                "const": "Ens",
+                "title": "ENS owner"
+              },
+              {
+                "const": "Poh",
+                "title": "Proof of humanity"
+              },
+              {
+                "const": "Twitter",
+                "title": "Twitter account"
+              },
+              {
+                "const": "TwitterTweetGT10",
+                "title": "Twitter followers > 10"
+              },
+              {
+                "const": "TwitterFollowerGT100",
+                "title": "Twitter followers > 100"
+              },
+              {
+                "const": "TwitterFollowerGT500",
+                "title": "Twitter followers > 500"
+              },
+              {
+                "const": "TwitterFollowerGTE1000",
+                "title": "Twitter followers > 1000"
+              },
+              {
+                "const": "TwitterFollowerGT5000",
+                "title": "Twitter followers > 5000"
+              },
+              {
+                "const": "POAP",
+                "title": "POAP owner"
+              },
+              {
+                "const": "Facebook",
+                "title": "Facebook account"
+              },
+              {
+                "const": "FacebookFriends",
+                "title": "Facebook friends > 100"
+              },
+              {
+                "const": "FacebookProfilePicture",
+                "title": "Facebook profile picture"
+              },
+              {
+                "const": "Brightid",
+                "title": "Brightid"
+              },
+              {
+                "const": "Github",
+                "title": "Github account"
+              },
+              {
+                "const": "FiveOrMoreGithubRepos",
+                "title": "Github repos at least 5"
+              },
+              {
+                "const": "ForkedGithubRepoProvider",
+                "title": "Github repo forked"
+              },
+              {
+                "const": "StarredGithubRepoProvider",
+                "title": "Github repo starred"
+              },
+              {
+                "const": "TenOrMoreGithubFollowers",
+                "title": "Github followers at least 10"
+              },
+              {
+                "const": "FiftyOrMoreGithubFollowers",
+                "title": "Github followers at least 50"
+              },
+              {
+                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#1",
+                "title": "Grants contributed to at least 1"
+              },
+
+              {
+                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#10",
+                "title": "Grants contributed to at least 10"
+              },
+              {
+                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#25",
+                "title": "Grants contributed to at least 25"
+              },
+              {
+                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#100",
+                "title": "Grants contributed to at least 100"
+              },
+              {
+                "const": "GitcoinContributorStatistics#totalContributionAmountGte#10",
+                "title": "Grant contributions at least $10"
+              },
+              {
+                "const": "GitcoinContributorStatistics#totalContributionAmountGte#100",
+                "title": "Grant contributions at least $100"
+              },
+              {
+                "const": "GitcoinContributorStatistics#totalContributionAmountGte#1000",
+                "title": "Grant contributions at least $1000"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#numOwnedGrants#1",
+                "title": "Grant owner of at least 1 Grant"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#numGrantContributors#10",
+                "title": "Grant contributors at least 10"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#numGrantContributors#25",
+                "title": "Grant contributors at least 25"
+              },
+
+              {
+                "const": "GitcoinGranteeStatistics#numGrantContributors#100",
+                "title": "Grant contributors at least 100"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#totalContributionAmount#100",
+                "title": "Grant have received at least $100"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#totalContributionAmount#1000",
+                "title": "Grant have received at least $1000"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#totalContributionAmount#10000",
+                "title": "Grant have received at least $10000"
+              },
+              {
+                "const": "GitcoinGranteeStatistics#numGrantsInEcoAndCauseRound#1",
+                "title": "Grant owner at least 1 Eco & Cause"
+              },
+              {
+                "const": "Linkedin",
+                "title": "Linkedin account"
+              },
+              {
+                "const": "Discord",
+                "title": "Discord account"
+              },
+              {
+                "const": "SnapshotVotesProvider",
+                "title": "Snapshot voter"
+              },
+              {
+                "const": "SnapshotProposalsProvider",
+                "title": "Snapshot proposer"
+              },
+              {
+                "const": "ethPossessionsGte#1",
+                "title": "ETH at least 1"
+              },
+              {
+                "const": "ethPossessionsGte#10",
+                "title": "ETH at least 10"
+              },
+              {
+                "const": "ethPossessionsGte#32",
+                "title": "ETH at least 32"
+              },
+              {
+                "const": "FirstEthTxnProvider",
+                "title": "First ETH more than 30 days ago"
+              },
+              {
+                "const": "EthGTEOneTxnProvider",
+                "title": "ETH tx at least 1"
+              },
+              {
+                "const": "EthGasProvider",
+                "title": "ETH gas at least 0.5"
+              },
+              {
+                "const": "gtcPossessionsGte#10",
+                "title": "Gitcoin GTC at least 10"
+              },
+              {
+                "const": "gtcPossessionsGte#100",
+                "title": "Gitcoin GTC at least 100"
+              },
+              {
+                "const": "SelfStakingBronze",
+                "title": "GTC staked at least 1"
+              },
+              {
+                "const": "SelfStakingSilver",
+                "title": "GTC staked at least 10"
+              },
+              {
+                "const": "SelfStakingGold",
+                "title": "GTC staked at least 100"
+              },
+              {
+                "const": "CommunityStakingBronze",
+                "title": "Comm GTC staked at least 1"
+              },
+              {
+                "const": "CommunityStakingSilver",
+                "title": "Comm GTC staked at least 10"
+              },
+              {
+                "const": "CommunityStakingGold",
+                "title": "Comm GTC staked at least 100"
+              },
+              {
+                "const": "NFT",
+                "title": "NFT holder"
+              },
+              {
+                "const": "ZkSync",
+                "title": "ZkSync account"
+              },
+              {
+                "const": "Lens",
+                "title": "Lens account"
+              },
+              {
+                "const": "GnosisSafe",
+                "title": "GnosisSafe singer/owner"
+              }
+            ]
+          }
+        },
+        "operator": {
+          "type": "string",
+          "title": "Approval operator",
+          "description": "Control how many or which stamps are required to vote.",
+          "anyOf": [
+            {
+              "const": "AND",
+              "title": "Require all stamps"
+            },
+            {
+              "const": "OR",
+              "title": "Require at least one stamp"
+            }
+          ]
+        }
+      },
+      "required": ["stamps"],
+      "additionalProperties": false
+    }
+  }
+}

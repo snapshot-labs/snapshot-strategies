@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ari10-staking-locked",
+      "params": {
+        "address": "0xBCC1b6477B52212fb62734D21bC0ecAE684B4970",
+        "input": "lockedAmount",
+        "weight": 1
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x6cb10a891e5713d34076bbecd16d898f26b84b33",
+      "0xab59182e57fd3e4a459c36b6473b82b0d91d840f",
+      "0xf58951274cf026db8277f898204f954e8d3e56a3"
+    ],
+    "snapshot": 22879530
+  }
+]

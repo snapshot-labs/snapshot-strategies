@@ -1,0 +1,23 @@
+[
+  {
+    "name": "WINR Staking",
+    "strategy": {
+      "name": "winr-staking",
+      "params": {
+        "address": "0xddAEcf4B02A3e45b96FC2d7339c997E072b0d034"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x954B6dE2E9C58B0ca7B21e9A048fD0A6CEa6f92C",
+      "0x40Db8365d1252bcb06598927698238a99D39228E",
+      "0xd2f5b5fECc86b02F1A77823fb96a7052C62571D1",
+      "0xc0d4499A3E452bEd3CE794c2360916452bFbf6A5",
+      "0x9dC2aEa18955DD9F898d7ef130e4e166B9800354",
+      "0x3EC3486f491f16B7A325F15380090eD1A9Dc79D6",
+      "0x52caB1b95fb1049c76ED0f72c27B37D1B63F4691",
+      "0x6035507146b6B5B96e3Fe5A093c83714f27898ED"
+    ],
+    "snapshot": 95804680
+  }
+]
