@@ -398,7 +398,6 @@ import * as safeVested from './safe-vested';
 import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
-import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations';
@@ -452,6 +451,7 @@ import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-o
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
+import * as sablierV1Deposit from './sablier-v1-deposit';
 import * as sablierV2 from './sablier-v2';
 import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
@@ -865,7 +865,6 @@ const strategies = {
   'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges,
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
-  'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
   'nation3-passport-coop-with-delegations': nation3CoopPassportWithDelegations,
@@ -917,6 +916,7 @@ const strategies = {
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
+  'sablier-v1-deposit': sablierV1Deposit,
   'sablier-v2': sablierV2,
   'gelato-staking': gelatoStaking,
   'erc4626-assets-of': erc4626AssetsOf,

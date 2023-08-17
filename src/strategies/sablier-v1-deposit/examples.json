@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query 0",
+    "strategy": {
+      "name": "sablier-v1-deposit",
+      "params": {
+        "sender": "0xcCe2CbDcD0eee72984c58A84678F0D49a95257ae",
+        "token": "0x97cb342Cf2F6EcF48c1285Fb8668f5a4237BF862"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x06255FA39EBD18796eCCCc17DB8153Ef58DBA0a8",
+      "0xf976aF93B0A5A9F55A7f285a3B5355B8575Eb5bc",
+      "0x5bCAc9fC8827231839c5861b719e0cAE57da3CfB"
+    ],
+    "snapshot": 9515850
+  },
+  {
+    "name": "Example query 1",
+    "strategy": {
+      "name": "sablier-v1-deposit",
+      "params": {
+        "sender": "0xcCe2CbDcD0eee72984c58A84678F0D49a95257ae",
+        "token": "0x97cb342Cf2F6EcF48c1285Fb8668f5a4237BF862"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x06255FA39EBD18796eCCCc17DB8153Ef58DBA0a8",
+      "0xf976aF93B0A5A9F55A7f285a3B5355B8575Eb5bc",
+      "0x5bCAc9fC8827231839c5861b719e0cAE57da3CfB"
+    ],
+    "snapshot": 9515900
+  }
+]
