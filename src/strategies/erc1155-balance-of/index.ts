@@ -16,6 +16,12 @@ export async function strategy(
   options,
   snapshot
 ) {
+  if (!options.tokenId) {
+    throw new Error(
+      'options.tokenId is required for erc-1155-balance-of strategy'
+    );
+  }
+
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const response = await multicall(
     network,
@@ -28,6 +34,7 @@ export async function strategy(
     ]),
     { blockTag }
   );
+
   return Object.fromEntries(
     response.map((value, i) => [
       addresses[i],
