@@ -26,14 +26,14 @@ Based on the chosen strategy, the values filled in the `Addresses` field will re
 
 #### Primary policies
 
-| Policy ⭐️             | Methodology                                                               |
-| :--------------------- | :------------------------------------------------------------------------ |
-| withdrawable-recipient | Tokens available/withdrawable by the stream's recipient.                  |
-| reserved-recipient     | Tokens available/withdrawable aggregated with unstreamed tokens (future). |
+| Policy                 | Methodology                                                       |
+| :--------------------- | :---------------------------------------------------------------- |
+| withdrawable-recipient | Tokens that are available for the stream's recipient to withdraw. |
+| reserved-recipient     | Tokens available for withdraw aggregated with unstreamed tokens.  |
 
 #### Secondary policies
 
-These computation methods are here to aid with special use cases. We still recommend using the primary policies to avoid most caveats.
+These policies are designed to address specific edge cases. We strongly recommend using the primary policies.
 
 | Policy               | Methodology                                                                           |
 | :------------------- | :------------------------------------------------------------------------------------ |
@@ -74,8 +74,11 @@ Snapshot: Day 15 (midway) with a streamed amount of TKN 500
 
 For the best results, we recommend using the primary policies.
 
-1. The first option is to use the `withdrawable-recipient` policy alongside `erc20-balance-of`. Doing so will aggregate tokens streamed but not withdrawn yet, as well as tokens in the user's wallet.
-2. The second best option is using `reserved-recipient` with `erc20-balance-of`. It will aggregate: tokens streamed but not withdrawn yet, unstreamed funds (accessible in the future) and finally, tokens in the user's wallet.
+1. The best option is to combine the `withdrawable-recipient` policy with `erc20-balance-of`. Doing so will aggregate
+   tokens streamed but not withdrawn yet, as well as tokens in the user's wallet.
+2. The second best option is to combine `reserved-recipient` with `erc20-balance-of`. They will aggregate (i) tokens
+   streamed but not withdrawn yet, (ii) unstreamed funds (which will become available in the future), and (iii) the
+   tokens in the user's wallet.
 
 ### Details and Caveats
 
@@ -83,13 +86,18 @@ For the best results, we recommend using the primary policies.
 
 The withdrawable amount counts tokens that have been streamed but not withdrawn yet by the recipient.
 
-This is provided using the [`withdrawableAmountOf`](https://docs.sablier.com/contracts/v2/reference/core/abstracts/abstract.SablierV2Lockup#withdrawableamountof) contract method.
+This is provided using the
+[`withdrawableAmountOf`](/contracts/v2/reference/core/abstracts/abstract.SablierV2Lockup#withdrawableamountof) contract
+method.
 
 Voting power: realized (present).
 
 #### `reserved-recipient` ⭐️
 
-The reserved amount combines tokens that have been streamed but not withdrawn yet (similar to `withdrawable-recipient`) with tokens that haven't been streamed (still locked yet accessible in the future). It can be computed as `reserved = withdrawable + unstreamed === deposited - withdrawn`. Canceled streams will only count the final withdrawable amount, if any.
+The reserved amount combines tokens that have been streamed but not withdrawn yet (similar to `withdrawable-recipient`)
+with tokens that haven't been streamed (which will become available in the future). Can be computed as
+`reserved = withdrawable + unstreamed === deposited - withdrawn`. Canceled streams will only count the final
+withdrawable amount, if any.
 
 Voting power: realized (present) + expected (future).
 
