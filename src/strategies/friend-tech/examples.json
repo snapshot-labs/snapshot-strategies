@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "friend-tech",
+      "params": {
+        "address": "0xe12A2f60B400E6c6971D5602DF454E5dA63eDD78",
+        "symbol": "KEYS"
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0x81a9a7979f5EB27588b5AB9448398ad321Dba90C",
+      "0x3B7576DF0Ef2d6c1656245aE15Ad52DCf34FD04a",
+      "0x7C2FDC7de9F536560E47105257a57C8C8dF79372"
+    ],
+    "snapshot": 2933820
+  }
+]
