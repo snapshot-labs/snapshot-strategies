@@ -57,6 +57,7 @@ import * as uniswap from './uniswap';
 import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
+import * as pancakeProfile from './pancake-profile';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
@@ -192,6 +193,7 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
 import * as poapWithWeightV2 from './poap-with-weight-v2';
@@ -546,6 +548,7 @@ const strategies = {
   'faraland-staking': faralandStaking,
   flashstake,
   pancake,
+  'pancake-profile': pancakeProfile,
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
@@ -663,6 +666,7 @@ const strategies = {
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
+  'taraxa-delegation': taraxaDelegation,
   poap: poap,
   'poap-with-weight': poapWithWeight,
   'poap-with-weight-v2': poapWithWeightV2,
