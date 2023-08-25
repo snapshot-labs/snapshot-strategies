@@ -5,7 +5,7 @@
       "name": "karma-discord-roles",
       "params": {
         "name": "apecoin",
-        "roles": ["Assembly"]
+        "role": "Assembly, admin"
       }
     },
     "network": "1",

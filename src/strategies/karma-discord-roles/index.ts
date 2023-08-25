@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'show-karma';
-export const version = '1.0.1';
+export const version = '1.0.2';
 
 const KARMA_API = 'https://api.karmahq.xyz/api/dao/discord-users';
 
@@ -27,15 +27,17 @@ export async function strategy(
 ): Promise<{
   [k: string]: any;
 }> {
-  const { name, roles } = options;
+  const { name, role } = options;
 
-  if (!name || !roles) return {};
+  const votingPower = {};
+
+  if (!name || !role) return addresses;
 
   const timestamp = await getBlockTimestamp(provider, snapshot);
 
   const queryParams = new URLSearchParams({
     name,
-    roles: roles.join(','),
+    roles: role,
     timestamp,
     addresses: addresses.join(', ')
   });
@@ -52,8 +54,6 @@ export async function strategy(
 
   const parsedResponse = !response.ok ? [] : await response.json();
   const delegates = parsedResponse.data?.delegates || [];
-
-  const votingPower = {};
 
   addresses.forEach((address: string) => {
     const userExists = delegates.find(
