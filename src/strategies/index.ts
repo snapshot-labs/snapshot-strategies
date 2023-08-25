@@ -57,6 +57,7 @@ import * as uniswap from './uniswap';
 import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
+import * as pancakeProfile from './pancake-profile';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
@@ -546,6 +547,7 @@ const strategies = {
   'faraland-staking': faralandStaking,
   flashstake,
   pancake,
+  'pancake-profile': pancakeProfile,
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
