@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { multicall } from '../../utils';
 
 export const author = 'yusnu';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const hasRegisteredAbi = [
   'function hasRegistered(address _userAddress) view returns (bool)'
@@ -59,7 +59,7 @@ export async function strategy(
     );
 
     usersWithProfile.forEach((user: any, i: number) => {
-      users[user] = profiles[i][3] === checkAddress ? 1 : 0;
+      users[user] = profiles[i][3] === checkAddress && profiles[i][5] ? 1 : 0;
     });
   }
 
