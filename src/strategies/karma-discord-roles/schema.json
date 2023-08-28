@@ -14,8 +14,7 @@
         "role": {
           "type": "string",
           "title": "Discord Roles",
-          "examples": ["e.g. Assembly, Trader, Moderator"],
-          "items": {"type": "string"}
+          "examples": ["e.g. Assembly, Trader, Moderator"]
         }
       },
       "required": ["name", "role"],
