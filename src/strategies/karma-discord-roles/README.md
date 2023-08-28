@@ -31,7 +31,7 @@ This will assign voting power of 1 to anyone in Karma's discord server who has "
 json
 {
 "name": "Karma",
-"roles": "Moderator",
+"role": "Moderator",
 "addresses": [
 "0xa768f5F340e89698465Fc7C12F31cB485fAf98B2"
 ]
