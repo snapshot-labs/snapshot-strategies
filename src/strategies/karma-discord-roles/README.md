@@ -22,7 +22,7 @@ json
 json
 {
 "name": "Karma",
-"roles": "Moderator"
+"role": "Moderator"
 }
 
 This will assign voting power of 1 to anyone in Karma's discord server who has "Moderator" role assigned to them. 
