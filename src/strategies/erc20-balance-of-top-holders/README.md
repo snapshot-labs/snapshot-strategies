@@ -1,0 +1,14 @@
+# erc20-balance-of-top-holders
+
+Strategy, that accept votes only from top N token holders
+
+Here is an example of parameters:
+
+```json
+{
+  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+  "symbol": "DAI",
+  "decimals": 18,
+  "topHolders": 50
+}
+```
