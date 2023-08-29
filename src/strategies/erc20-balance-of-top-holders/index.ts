@@ -1,41 +1,48 @@
-import { BigNumber } from '@ethersproject/bignumber';
-import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
-import { subgraphRequest } from '@snapshot-labs/snapshot.js/dist/utils';
+import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
-import { formatUnits } from '@ethersproject/units';
 
 export const author = 'RedDuck-Software';
 export const version = '0.0.1';
 
 async function getTopHoldersBalance(
   url,
-  topHoldersAmount,
+  options,
   snapshot
 ): Promise<Record<string, number>> {
+  const topHoldersAmount = +options.topHolders || 0;
 
   const query = {
-    tokenBalances: {
+    erc20Balances: {
       __args: {
-        orderBy: 'amount',
+        where: { 
+          account_not: null, 
+          contract: options.address
+        },
+        orderBy: 'valueExact',
         orderDirection: 'desc',
         first: topHoldersAmount
       },
+      value: true,
+      contract: true,
+      account: {
+        id: true
+      }
     }
   };
 
   if (snapshot !== 'latest') {
     // @ts-ignore
-    query.users.__args.block = { number: snapshot };
+    query.erc20Balances.__args.block = { number: snapshot };
   }
 
   const topHolders: Record<string, number> = {};
 
   const result = await subgraphRequest(url, query);
 
-  if (result && result.tokenBalances) {
-    result.tokenBalances.forEach((tokenBalance) => {
+  if (result && result.erc20Balances) {
+    result.erc20Balances.forEach((tokenBalance) => {
       const address = getAddress(tokenBalance.account.id);
-      const balance = parseFloat(formatUnits(tokenBalance.amount));
+      const balance = parseFloat(tokenBalance.value);
       topHolders[address] = balance;
     });
   }
@@ -51,29 +58,18 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const topHoldersAmount = +options.topHolders || 0;
-
-  const balanceScores = await getTopHoldersBalance(
+  const topHoldersBalancesScores = await getTopHoldersBalance(
     options.subgraphUrl,
-    topHoldersAmount,
+    options,
     snapshot
   );
 
-  console.log({balanceScores})
-
-  const balanceScoresSortedDesc = Object.fromEntries(
-    Object.entries(balanceScores)
-      .sort(([_, balanceA], [__, balanceB]) => balanceB - balanceA)
-  );
-
-
   return Object.fromEntries(
-    Object.entries(balanceScoresSortedDesc).map(([address, balance], i) => [
+    addresses.map(address => [
       address,
-      topHoldersAmount > 0 &&
-        i >= topHoldersAmount
-        ? 0
-        : balance
+      topHoldersBalancesScores[address] 
+        ? topHoldersBalancesScores[address]
+        : 0
     ])
   );
 }

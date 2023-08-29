@@ -7,7 +7,7 @@
         "address": "0x8494Aee22e0DB34daA1e8D6829d85710357be9F7",
         "symbol": "HANDZ",
         "decimals": 18,
-        "subgraphUrl": "",
+        "subgraphUrl": "https://api.thegraph.com/subgraphs/name/kostyamospan/handz-token",
         "topHolders": 5
       }
     },
