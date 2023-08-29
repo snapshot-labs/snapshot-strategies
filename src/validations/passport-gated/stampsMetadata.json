@@ -1,0 +1,830 @@
+[
+  {
+    "id": "GtcStaking",
+    "icon": "https://passport.gitcoin.co/assets/gtcStakingLogoIcon.svg",
+    "name": "GTC Staking",
+    "description": "Connect to passport to verify your staking amount.",
+    "connectMessage": "Verify amount",
+    "groups": [
+      {
+        "name": "Stakes on Yourself.",
+        "stamps": [
+          {
+            "name": "SelfStakingBronze",
+            "description": "5 GTC (Bronze)",
+            "hash": "0x8a1a9419d0ee9371c7c31f74df3eb853d1f876d345c54c680ada09157aa70cd1"
+          },
+          {
+            "name": "SelfStakingSilver",
+            "description": "20 GTC (Silver)",
+            "hash": "0xde1cec0f6691783047022214e07d5a0f2bc245d8abc795a777e4dff41b3dc8e4"
+          },
+          {
+            "name": "SelfStakingGold",
+            "description": "125 GTC (Gold)",
+            "hash": "0x12b38168f416d8b2ed1e465d2f234ab22e7329dc7d2efa13a39f69f3cda1c678"
+          }
+        ]
+      },
+      {
+        "name": "Stakes from Others.",
+        "stamps": [
+          {
+            "name": "CommunityStakingBronze",
+            "description": "5 GTC (Bronze)",
+            "hash": "0x3012fa3fa74589db9854ec645de58cc7235ec424b666ee689bae384e47133cba"
+          },
+          {
+            "name": "CommunityStakingSilver",
+            "description": "20 GTC (Silver)",
+            "hash": "0x42d32cfd78c1968a0e1f67016610eb9aa3c30619f95f93cb8c357d380100cc1d"
+          },
+          {
+            "name": "CommunityStakingGold",
+            "description": "125 GTC (Gold)",
+            "hash": "0xe8fabdda06242bb1035f87927fde0ce9ef188af1fd8c7f5d5e33e496afe9910c"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Gitcoin",
+    "icon": "https://passport.gitcoin.co/assets/gtcGrantsLightIcon.svg",
+    "name": "Gitcoin",
+    "description": "Connect with Github to verify with your Gitcoin account.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Contributed to...",
+        "stamps": [
+          {
+            "name": "GitcoinContributorStatistics#numGrantsContributeToGte#1",
+            "description": "at least 1 Grant",
+            "hash": "0xf00a3ee94de8826a9a3d0737b2d9e26d9af265952a27fb8cef0836c7793af8f1"
+          },
+          {
+            "name": "GitcoinContributorStatistics#numGrantsContributeToGte#10",
+            "description": "at least 10 Grants",
+            "hash": "0x4c283770cdaf51d8007faaa16e0121b7f97c44cd324cb7d494f85c7e85ad4640"
+          },
+          {
+            "name": "GitcoinContributorStatistics#numGrantsContributeToGte#25",
+            "description": "at least 25 Grants",
+            "hash": "0xf783f98b7fda2c3b7994ba1f0da2a2a5cc640b106490ce463bbe0555f54d7a3b"
+          },
+          {
+            "name": "GitcoinContributorStatistics#numGrantsContributeToGte#100",
+            "description": "at least 100 Grants",
+            "hash": "0xddc23222c6de0a80261979370c61ad9118ceeda22cee6000eef363ddd9ed8ad4"
+          }
+        ]
+      },
+      {
+        "name": "Contributed ($)...",
+        "stamps": [
+          {
+            "name": "GitcoinContributorStatistics#totalContributionAmountGte#10",
+            "description": "at least $10",
+            "hash": "0xdf8b29cdd778290585b1e25c4f3ce8a13717aebe37d9b74c5ef911360c374abd"
+          },
+          {
+            "name": "GitcoinContributorStatistics#totalContributionAmountGte#100",
+            "description": "at least $100",
+            "hash": "0x234c0cee45dbfa611911b478ee676e179c059e5599c6c5dec81b26b2e7f4dcd4"
+          },
+          {
+            "name": "GitcoinContributorStatistics#totalContributionAmountGte#1000",
+            "description": "at least $1000",
+            "hash": "0xd4113e909955bd57da077a3ed40b3e56703334c41e514d09f259d1b301048c90"
+          }
+        ]
+      },
+      {
+        "name": "Contributed in...",
+        "stamps": [
+          {
+            "name": "GitcoinContributorStatistics#numGr14ContributionsGte#1",
+            "description": "GR14",
+            "hash": "0x629493e28cc66eb32390cf4fcf4de1c8098b483c80fa21a8d04717d9ae90175e"
+          },
+          {
+            "name": "GitcoinContributorStatistics#numRoundsContributedToGte#1",
+            "description": "at least 1 Round",
+            "hash": "0x91953495f7ce4d377732b5079f92fab047c3e269fbe078f14eaf5e45769cb8f4"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Twitter",
+    "icon": "https://passport.gitcoin.co/assets/twitterStampIcon.svg",
+    "name": "Twitter",
+    "description": "Connect your existing Twitter account to verify.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Creation",
+        "stamps": [
+          {
+            "name": "twitterAccountAgeGte#180",
+            "description": "Created at least 180 days ago",
+            "hash": "0x1975f9b5a89f5667d88046de8b662857a3d72d62387d446871c936c213d05b5c"
+          },
+          {
+            "name": "twitterAccountAgeGte#365",
+            "description": "Created at least 1 year ago",
+            "hash": "0x560925afd4119f8c00e591d177695f9ea74cd6768d58ceda25eaf6379267f9a5"
+          },
+          {
+            "name": "twitterAccountAgeGte#730",
+            "description": "Created at least 2 years ago",
+            "hash": "0x75c8ff4b789f8fa039e62c3614c922a28d26bf3d9e8ef091f414a9b27cfc7b2b"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Discord",
+    "icon": "https://passport.gitcoin.co/assets/discordStampIcon.svg",
+    "name": "Discord",
+    "description": "Connect your existing Discord account to verify.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Discord",
+            "description": "Encrypted",
+            "hash": "0x47024beb35c119cb9ca37d810b63c51b538c48fc98c7b88a52d78b633e5600df"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Google",
+    "icon": "https://passport.gitcoin.co/assets/googleStampIcon.svg",
+    "name": "Google",
+    "description": "Connect your existing Google Account to verify",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Google",
+            "description": "Google",
+            "hash": "0xf610f88085f5955bccb50431e1315a28335522d87be5000ff334274cc9985741"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Github",
+    "icon": "https://passport.gitcoin.co/assets/githubWhiteStampIcon.svg",
+    "name": "Github",
+    "description": "Connect your existing Github account to verify.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Creation",
+        "stamps": [
+          {
+            "name": "githubAccountCreationGte#90",
+            "description": "Created at least 90 days ago",
+            "hash": "0x7f57b88d2714b69f0d183595d2c894da2cbf5b8afa7add7f32456f2ec81c7e1b"
+          },
+          {
+            "name": "githubAccountCreationGte#180",
+            "description": "Created at least 180 days ago",
+            "hash": "0x86bca597d35530ad8b40bca7d323972bcd418c0ca1bccf8ba3247cc9ae0a7a83"
+          },
+          {
+            "name": "githubAccountCreationGte#365",
+            "description": "Created at least 365 days ago",
+            "hash": "0xd573ecf208f0924d88ff46d4be73ea915aa9ff0bcf79cc2f54788b6bea4f824e"
+          }
+        ]
+      },
+      {
+        "name": "Contribution Activity",
+        "stamps": [
+          {
+            "name": "githubContributionActivityGte#30",
+            "description": "Contributions on at least 30 distinct days",
+            "hash": "0xaabb0990679413b556c716ad2403eac57b3be530b87732041408894d0f495f9f"
+          },
+          {
+            "name": "githubContributionActivityGte#60",
+            "description": "Contributions on at least 60 distinct days",
+            "hash": "0x272b07a5f3a7496932c5d349c2d5377ae5333fb14d5793736f40043b123f15f7"
+          },
+          {
+            "name": "githubContributionActivityGte#120",
+            "description": "Contributions on at least 120 distinct days",
+            "hash": "0x9ee061bf0fc5c6ee4b1197ea5f2dd9eb5e26a84bab40b579d6f87701ef434bff"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Facebook",
+    "icon": "https://passport.gitcoin.co/assets/facebookStampIcon.svg",
+    "name": "Facebook",
+    "description": "Connect your existing account to verify with Facebook.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Facebook",
+            "description": "Encrypted",
+            "hash": "0x6f028453ddea055c2bfd6baeffa906ae6954e0bb90083e4b76c86058e9e2c08a"
+          }
+        ]
+      },
+      {
+        "name": "Profile",
+        "stamps": [
+          {
+            "name": "FacebookProfilePicture",
+            "description": "Profile Picture attached",
+            "hash": "0x60bf1e8210955d6145087c9f57f277f16e8637fcd18c4d16bfd883d81ad0c753"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Linkedin",
+    "icon": "https://passport.gitcoin.co/assets/linkedinStampIcon.svg",
+    "name": "Linkedin",
+    "description": "Connect your existing Linkedin account to verify.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Linkedin",
+            "description": "Encrypted",
+            "hash": "0x837ace622183eccb5f06b05be962fcbeb7a32a8785546c56f13175ee45b7d92b"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Ens",
+    "icon": "https://passport.gitcoin.co/assets/ensStampIcon.svg",
+    "name": "ENS",
+    "description": "Purchase an .eth name to verify/ connect your existing account.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Ens",
+            "description": "Encrypted",
+            "hash": "0xb4448bd57db012361e41665a60f3906dda48b4ffc1e4b8151cb2b6d431861fae"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Brightid",
+    "icon": "https://passport.gitcoin.co/assets/brightidStampIcon.svg",
+    "name": "BrightID",
+    "description": "Connect your BrightID",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Brightid",
+            "description": "Encrypted",
+            "hash": "0xc2e6ff5c52185cfef9d800302d6bf36ddbb693d3c37b81d268f0154a7819e8c0"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Poh",
+    "icon": "https://passport.gitcoin.co/assets/pohStampIcon.svg",
+    "name": "Proof of Humanity",
+    "description": "Connect your wallet to start the process of verifying with Proof of Humanity.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Poh",
+            "description": "Encrypted",
+            "hash": "0x4c3831eefbfc1b22e1b8d83bad19bcf4ed1a5f56666c2129c3f52055009fd10b"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ETH",
+    "icon": "https://passport.gitcoin.co/assets/ethereumStampIcon.svg",
+    "name": "ETH",
+    "description": "ETH possession and transaction verification",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "Possessions",
+        "stamps": [
+          {
+            "name": "ethPossessionsGte#1",
+            "description": "At least 1 ETH",
+            "hash": "0x829a03ea65f255c7d3f444f05a6edb9e9b5a1b1b59c2b7ff329df1e05f68f045"
+          },
+          {
+            "name": "ethPossessionsGte#10",
+            "description": "At least 10 ETH",
+            "hash": "0x372a7f0b2e51cd0ea6a0e6f9491297a6aa97961f09ac7d7455a594f254811280"
+          },
+          {
+            "name": "ethPossessionsGte#32",
+            "description": "At least 32 ETH",
+            "hash": "0x2351f93a7a10097410e3a06ab7e7ae46bb736776c5c40c64de39f091970ff296"
+          }
+        ]
+      },
+      {
+        "name": "Transactions",
+        "stamps": [
+          {
+            "name": "FirstEthTxnProvider",
+            "description": "First ETH transaction occurred more than 30 days ago",
+            "hash": "0xf5d84532cd4145037fb3ccf5895bf01be3151f7b6328e336999f4c474bb2842c"
+          },
+          {
+            "name": "EthGTEOneTxnProvider",
+            "description": "At least 1 ETH transaction",
+            "hash": "0xf83912da72a27a9b4d36beb8e898b766fae3dc174e546d6f737c814b4586ca0d"
+          }
+        ]
+      },
+      {
+        "name": "Gas fees spent",
+        "stamps": [
+          {
+            "name": "EthGasProvider",
+            "description": "At least 0.5 ETH in gas fees spent",
+            "hash": "0xead90b8cb4c9d13e9260d61a08c39d6125c9f2b934dbfcb96ec0e310daf45f38"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Snapshot",
+    "icon": "https://passport.gitcoin.co/assets/snapshotStampIcon.svg",
+    "name": "Snapshot",
+    "description": "Connect your existing account to verify with Snapshot.",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "Snapshot Voter",
+        "stamps": [
+          {
+            "name": "SnapshotVotesProvider",
+            "description": "Voted on 2 or more DAO proposals",
+            "hash": "0x48c72633aa8e5e893b1d4385f04fdc03b8c1cbb5daac8fd44067f404a20be08e"
+          }
+        ]
+      },
+      {
+        "name": "Snapshot Proposal Creator",
+        "stamps": [
+          {
+            "name": "SnapshotProposalsProvider",
+            "description": "Created a DAO proposal that was voted on by at least 1 account",
+            "hash": "0x49f4974bd25815b5deea86c2158bc9e1a18df0059c81ea14468ea8edaf7b8815"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "NFT",
+    "icon": "https://passport.gitcoin.co/assets/nftStampIcon.svg",
+    "name": "NFT Holder",
+    "description": "Connect a wallet and validate the stamp by retrieving an NFT.",
+    "connectMessage": "Connect NFT",
+    "groups": [
+      {
+        "name": "NFT Holder",
+        "stamps": [
+          {
+            "name": "NFT",
+            "description": "Holds at least 1 NFT",
+            "hash": "0x9c4138cd0a1311e4748f70d0fe3dc55f0f5f75e0f20db731225cbc3b8914016a"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "ZkSync",
+    "icon": "https://passport.gitcoin.co/assets/zksyncStampIcon.svg",
+    "name": "ZkSync",
+    "description": "ZkSync Verification",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "zkSync Lite",
+        "stamps": [
+          {
+            "name": "ZkSync",
+            "description": "Transacted on zkSync Lite",
+            "hash": "0x2e760812e6696b561a918e71ad2845639638959ed846b188488dd0d8c0b953ef"
+          }
+        ]
+      },
+      {
+        "name": "zkSync Era",
+        "stamps": [
+          {
+            "name": "ZkSyncEra",
+            "description": "Transacted on zkSync Era",
+            "hash": "0x58350b1934e59355216e23d91bb55f8a4c43adbdeb411fc9dfd6ee6ada375166"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Lens",
+    "icon": "https://passport.gitcoin.co/assets/lensWhiteStampIcon.svg",
+    "name": "Lens",
+    "description": "Lens Profile Verification",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "Lens Handle",
+        "stamps": [
+          {
+            "name": "Lens",
+            "description": "At least 1 Lens Handle",
+            "hash": "0xc419da342463a3de054e208341b27aaef55e74a1660a45ac10cf1dae4d4964d2"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GnosisSafe",
+    "icon": "https://passport.gitcoin.co/assets/gnosisSafeStampIcon.svg",
+    "name": "Gnosis Safe",
+    "description": "Gnosis Safe Signer/Owner Verification",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "GnosisSafe",
+            "description": "Encrypted",
+            "hash": "0x6190ebf51fd5de79822a58c3de8080e9dd8d8465157d8f054218eddd5042f8cc"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Coinbase",
+    "icon": "https://passport.gitcoin.co/assets/coinbaseStampIcon.svg",
+    "name": "Coinbase",
+    "description": "Connect your existing account to verify with Coinbase.",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Coinbase",
+            "description": "Encrypted",
+            "hash": "0x93dc6da870b5c43845c57c5ec7b162b128fd9be0ea503c865e9c1c163df72e4f"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GuildXYZ",
+    "icon": "https://passport.gitcoin.co/assets/guildXYZStampIcon.svg",
+    "name": "Guild Membership and Roles",
+    "description": "Connect your Guild XYZ account to verify your memberships.",
+    "connectMessage": "Verify Guilds",
+    "groups": [
+      {
+        "name": "Guild Member",
+        "stamps": [
+          {
+            "name": "GuildMember",
+            "description": "Member of more than 5 guilds and more than 15 roles*",
+            "hash": "0xabbc040da64c74e20701ef1cc807f2eb893218c1cbf09fe2e0e8d021fc27ac0b"
+          }
+        ]
+      },
+      {
+        "name": "Guild Admin",
+        "stamps": [
+          {
+            "name": "GuildAdmin",
+            "description": "Owner or Administrator of one or more guilds*",
+            "hash": "0xc9c133c0562b97cb13073c80d829afe63678e804b083f7dc5168b454ada25bc1"
+          }
+        ]
+      },
+      {
+        "name": "Guild Passport Member",
+        "stamps": [
+          {
+            "name": "GuildPassportMember",
+            "description": "Member with 1 or more roles in Gitcoin Passport Guild",
+            "hash": "0x9e6e85c3cc8c738ffb999a6e15ddeee80344c28966348d16025c44fb064c6025"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Hypercerts",
+    "icon": "https://passport.gitcoin.co/assets/hypercertsStampIcon.svg",
+    "name": "Hypercerts",
+    "description": "Connect your wallet to verify that you hold Hypercerts",
+    "connectMessage": "Connect Wallet",
+    "groups": [
+      {
+        "name": "Account Name",
+        "stamps": [
+          {
+            "name": "Hypercerts",
+            "description": "Held at least two Hypercerts for more than 15 days",
+            "hash": "0xbd8dfabd37a988e4f6e3bdfc04c105a3863e0fce9e624812bb51bbdab4040748"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "PHI",
+    "icon": "https://passport.gitcoin.co/assets/phiLogoIcon.svg",
+    "name": "PHI",
+    "description": "Connect your wallet to verify your phi activity.",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "PHI Activity",
+        "stamps": [
+          {
+            "name": "PHIActivitySilver",
+            "description": "Active Rank Silver I ~ V (Earn 65,000 EXP ~ on Active Score)",
+            "hash": "0x8df856188c159082e1bee29935f0bed64e5b88b8cf4543496aaf5074e92eb546"
+          },
+          {
+            "name": "PHIActivityGold",
+            "description": "Active Rank Gold I ~ V (Earn 150,000 EXP ~ on Active Score)",
+            "hash": "0x2bc2f17d351619957ff810b3d151105ce92cd0b1b11fcefe535a55ca6ef7f660"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Holonym",
+    "icon": "https://passport.gitcoin.co/assets/holonymStampIcon.svg",
+    "name": "Holonym",
+    "description": "To verify your Holo, mint your Holo at app.holonym.id and then prove uniqueness at app.holonym.id/prove/uniqueness",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Government ID",
+        "stamps": [
+          {
+            "name": "HolonymGovIdProvider",
+            "description": "Proven uniqueness using Holonym with government ID",
+            "hash": "0x78c4c1cc586be667bc3ad2d22d33fbca8b584eebc5d516207740e9258b69e5be"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Idena",
+    "icon": "https://passport.gitcoin.co/assets/idenaStampIcon.svg",
+    "name": "Idena",
+    "description": "Connect your existing Identity to verify.",
+    "connectMessage": "Verify Identity",
+    "groups": [
+      {
+        "name": "Identity State",
+        "stamps": [
+          {
+            "name": "IdenaState#Newbie",
+            "description": "Newbie",
+            "hash": "0xffd81d1ffa3ed2e5b44c82b1cd1c5955f22e79507ba4f4c2ab43fa2e3f214406"
+          },
+          {
+            "name": "IdenaState#Verified",
+            "description": "Verified",
+            "hash": "0xe941ad16ad0698e5e731c8dbdcd3345550ef325e0034f729ad590e6581be8c84"
+          },
+          {
+            "name": "IdenaState#Human",
+            "description": "Human",
+            "hash": "0x8679c35b2667db5fc91100ec573ef6f5e069777e2cee5b715a3b41fad6dd09a1"
+          }
+        ]
+      },
+      {
+        "name": "Identity Stake",
+        "stamps": [
+          {
+            "name": "IdenaStake#1k",
+            "description": "more than 1k iDna",
+            "hash": "0x6db7527c79b36cc4bdb774ba5026c2e3aa046ed60996c0140a543ca3d8c77757"
+          },
+          {
+            "name": "IdenaStake#10k",
+            "description": "more than 10k iDna",
+            "hash": "0xcfcaca117245b7a2a5b6c677aed46e999dfefb2b15907a1d414b0bb3976df4eb"
+          },
+          {
+            "name": "IdenaStake#100k",
+            "description": "more than 100k iDna",
+            "hash": "0xcca730a281d3175c9fb9273f06a54bd13a66da9cd7a6e560107a94e24351dde3"
+          }
+        ]
+      },
+      {
+        "name": "Identity Age",
+        "stamps": [
+          {
+            "name": "IdenaAge#5",
+            "description": "more than 5 epochs",
+            "hash": "0x807b95a92837d5695a39b8e86d21c4f6b5023b96e887c62669caed981beeec78"
+          },
+          {
+            "name": "IdenaAge#10",
+            "description": "more than 10 epochs",
+            "hash": "0xbc06b0eade94d62212da4e7d9d1cadb8a2ea22e8848ccf9c3b22865e59dc85a1"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "Civic",
+    "icon": "https://passport.gitcoin.co/assets/civicStampIcon.svg",
+    "name": "Civic",
+    "description": "Civic Profile Verification",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "CAPTCHA Pass",
+        "stamps": [
+          {
+            "name": "CivicCaptchaPass",
+            "description": "holds a Civic CAPTCHA Pass",
+            "hash": "0x2446ef93a12158854f514d7672cec48cd42ef208d47a823e6666a89e33edcb81"
+          }
+        ]
+      },
+      {
+        "name": "Uniqueness Pass",
+        "stamps": [
+          {
+            "name": "CivicUniquenessPass",
+            "description": "holds a Civic Uniqueness Pass",
+            "hash": "0xa4da5d264e77069abed068700e9ded90c5f97cf7c64cd37fdde7d5ee4db1b10c"
+          }
+        ]
+      },
+      {
+        "name": "Liveness Pass",
+        "stamps": [
+          {
+            "name": "CivicLivenessPass",
+            "description": "holds a Civic Liveness Pass",
+            "hash": "0xa9fa0086eddc2ec9570da457a8202186be34c2edc4a7f4786b18e38628d1ec67"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "CyberConnect",
+    "icon": "https://passport.gitcoin.co/assets/cyberconnectLogoIcon.svg",
+    "name": "CyberConnect",
+    "description": "Connect your wallet to verify your CyberProfile Handle.",
+    "connectMessage": "Verify Account",
+    "groups": [
+      {
+        "name": "CyberProfile Handle",
+        "stamps": [
+          {
+            "name": "CyberProfilePremium",
+            "description": "Premium CyberProfile Handle ( length is between 1 and 6 characters )",
+            "hash": "0xd8bfe75b5f61ca9908892cf1e959f17f90ae8995f43697f22d9cae9a92d9be04"
+          },
+          {
+            "name": "CyberProfilePaid",
+            "description": "Paid CyberProfile Handle ( length is between 7 and 12 characters )",
+            "hash": "0x8739aafbbc0e3b5c99166a7a3141887aad86dbea103eaf706e2885734c142747"
+          },
+          {
+            "name": "CyberProfileOrgMember",
+            "description": "Organization Membership",
+            "hash": "0x6ac2a6233e1204e1f8cc2ed9a5c75c82649d727cfea28109c07c5bdf36f74f26"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "GrantsStack",
+    "icon": "https://passport.gitcoin.co/assets/grantsStackLogo.svg",
+    "name": "GrantsStack",
+    "description": "Connect your existing GrantsStack Account to verify",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Projects Contributed To:",
+        "stamps": [
+          {
+            "name": "GrantsStack3Projects",
+            "description": "Supported 3+ unique projects",
+            "hash": "0x3eba85ce74666f77715afeced5cc11d760115a9092f803239c60eefb5cc83de2"
+          },
+          {
+            "name": "GrantsStack5Projects",
+            "description": "Supported 5+ unique projects",
+            "hash": "0x01d058ed7e60dea954aa3f40c989d74947159dff2c345ebf0190a23f06025f5b"
+          },
+          {
+            "name": "GrantsStack7Projects",
+            "description": "Supported 7+ unique projects",
+            "hash": "0x6cdd2d911e02a94b753b6e652734b7e90d92a271e939fe489fa264b7ba7faabb"
+          }
+        ]
+      },
+      {
+        "name": "Matching Fund Programs Participation:",
+        "stamps": [
+          {
+            "name": "GrantsStack2Programs",
+            "description": "Contributed to 2+ unique programs.",
+            "hash": "0x00d12cf35a48e15ed9a7b3313da0039596df8b8ff57a9de5fbb0b4140cba376f"
+          },
+          {
+            "name": "GrantsStack4Programs",
+            "description": "Contributed to 4+ unique programs.",
+            "hash": "0x9a212c88976c807492fe7ed4d86d981bdb16ea78e408cff9ff1d951250f3d6b9"
+          },
+          {
+            "name": "GrantsStack6Programs",
+            "description": "Contributed to 6+ unique programs.",
+            "hash": "0x0e2b38bda57667aa6dda8a3880a385a66d8c5036abf6f5f1fcf10722134bd641"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "id": "TrustaLabs",
+    "icon": "https://passport.gitcoin.co/assets/trustaLabsStampIcon.svg",
+    "name": "Trusta Labs",
+    "description": "Launch Trusta's TrustScan to verify this account has non-Sybil behavior",
+    "connectMessage": "Connect Account",
+    "groups": [
+      {
+        "name": "Trusta Labs",
+        "stamps": [
+          {
+            "name": "TrustaLabs",
+            "description": "TrustScan Non-Sybil Account",
+            "hash": "0x84ab19b20f9272264f28c39bea4821bcbe5a6d49a125ea01e4b1668f01320b2e"
+          }
+        ]
+      }
+    ]
+  }
+]
