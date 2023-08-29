@@ -14,8 +14,8 @@ async function getTopHoldersBalance(
   const query = {
     erc20Balances: {
       __args: {
-        where: { 
-          account_not: null, 
+        where: {
+          account_not: null,
           contract: options.address
         },
         orderBy: 'valueExact',
@@ -65,11 +65,9 @@ export async function strategy(
   );
 
   return Object.fromEntries(
-    addresses.map(address => [
+    addresses.map((address) => [
       address,
-      topHoldersBalancesScores[address] 
-        ? topHoldersBalancesScores[address]
-        : 0
+      topHoldersBalancesScores[address] ? topHoldersBalancesScores[address] : 0
     ])
   );
 }
