@@ -23,7 +23,7 @@
         "rareStakingRegistryAddress": {
           "type": "string",
           "title": "Contract address",
-          "examples": ["e.g. 0xeDA483A62cE93B7932e3eE473c2EEd3F4a8E745C"],
+          "examples": ["e.g. 0x0c891cBA9A617e6B06c9B6FBBD340d61e4Dd313b"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42

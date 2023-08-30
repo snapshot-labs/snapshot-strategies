@@ -4,13 +4,13 @@
     "strategy": {
       "name": "rareprotocol-staked-balance",
       "params": {
-        "address": "0x3c95F1764a9b72a49d772ba09F1b81B993cF7E48",
+        "address": "0xba5BDe662c17e2aDFF1075610382B9B691296350",
         "symbol": "RARE",
         "decimals": 18,
-        "rareStakingRegistryAddress": "0xeDA483A62cE93B7932e3eE473c2EEd3F4a8E745C"
+        "rareStakingRegistryAddress": "0x0c891cBA9A617e6B06c9B6FBBD340d61e4Dd313b"
       }
     },
-    "network": "5",
+    "network": "1",
     "addresses": [
       "0xec8c1050B45789f9ee4D09dCC7D64aAF9e233338",
       "0x55372173689C288552885D897d32f5F706F79aA6",
@@ -26,6 +26,6 @@
       "0xDcD50efb4CCdc9c409b4a4D8eB919Ed301C86ABe",
       "0x09B14B1c8a92BcA0cc592A80Dc311BF1A3fDe9f5"
     ],
-    "snapshot": 9285790
+    "snapshot": 18027872
   }
 ]
