@@ -356,6 +356,7 @@ import * as ginFinance from './gin-finance';
 import * as positionGovernancePower from './position-governance-power';
 import * as creditLp from './credit-lp';
 import * as helix from './helix';
+import * as moonbase from './moonbase';
 import * as arrakisFinance from './arrakis-finance';
 import * as auraFinance from './aura-vlaura-vebal';
 import * as auraFinanceWithOverrides from './aura-vlaura-vebal-with-overrides';
@@ -824,6 +825,7 @@ const strategies = {
   'position-governance-power': positionGovernancePower,
   'credit-lp': creditLp,
   helix,
+  moonbase,
   'arrakis-finance': arrakisFinance,
   'aura-vlaura-vebal': auraFinance,
   'aura-vlaura-vebal-with-overrides': auraFinanceWithOverrides,

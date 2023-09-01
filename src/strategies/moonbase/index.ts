@@ -39,7 +39,7 @@ export async function strategy(
   addresses.forEach((address: any) => {
     multicall.call(`token.${address}`, options.address, 'balanceOf', [address]);
   });
-  options.helixLPs.forEach((lp: { address: string; pid: number }) => {
+  options.moonbaseLPs.forEach((lp: { address: string; pid: number }) => {
     multicall.call(`lp.${lp.pid}.totalSupply`, lp.address, 'totalSupply');
     multicall.call(`lp.${lp.pid}.balanceOf`, options.address, 'balanceOf', [
       lp.address
@@ -62,7 +62,6 @@ export async function strategy(
 
   addresses.forEach((address: any) => {
     addUserBalance(userBalances, address, result.token[address]);
-    addUserBalance(userBalances, address, result.masterChef[address][0]);
     options.moonbaseLPs.forEach((lp: { address: string; pid: number }) => {
       addUserBalance(
         userBalances,

@@ -13,15 +13,10 @@ Here is an example of parameters:
       "name": "moonbase",
       "params": {
         "address": "0xc97c478Fc35d75b51549C39974053a679A5C67E1",
-        "masterChef": "0x830304d6C669d33738c7E4c1F2310CC1E530Df63",
         "moonbaseLPs": [
           {
-            "address": "0xfbfe53025c54b70b48070904f8765703D2aD749D",
-            "pid": 1
-          },
-          {
-            "address": "0x161962Aec8f3c61D865cd5d53A334780763364e6",
-            "pid": 2
+            "address": "0x230C64C42886A1F6b91eD8C11B59a2D45865d38F",
+            "pid": 7
           }
         ],
         "symbol": "MBG",
@@ -31,8 +26,10 @@ Here is an example of parameters:
     "network": "84531",
     "addresses": [
       "0xe32C26Be24232ba92cd89d116985F81f94Dd26a8",
+      "0x7DC90A11489C384dc72234120B0f84C3932d94Ce",
+      "0xf704872349a62ceBb40F841B635de268b2F7B9Fb"
     ],
-    "snapshot": 10819269
+    "snapshot": 9182354
   }
 ]
 ```
