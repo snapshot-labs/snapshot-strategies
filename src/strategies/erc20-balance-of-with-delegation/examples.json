@@ -7,7 +7,8 @@
         "symbol": "POHD",
         "address": "0x1dAD862095d40d43c2109370121cf087632874dB",
         "decimals": 0,
-        "delegationSpace": "poh.eth"
+        "delegationSpace": "poh.eth",
+        "delegationNetwork": "1"
       }
     },
     "network": "1",

@@ -1,0 +1,58 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": [
+            "e.g. UNI"
+          ],
+          "maxLength": 16
+        },
+        "strategies": {
+          "type": "array",
+          "title": "Strategies",
+          "items": {
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string",
+                "title": "Name"
+              },
+              "params": {
+                "type": "object"
+              },
+              "network": {
+                "type": "string",
+                "title": "Network (optional)"
+              }
+            },
+            "required": [
+              "name",
+              "params"
+            ]
+          },
+          "minItems": 1,
+          "maxItems": 8,
+          "uniqueItems": true
+        },
+        "delegationSpace": {
+          "type": "string",
+          "title": "Delegation space (optional)",
+          "examples": [
+            "e.g. poh.eth"
+          ]
+        }
+      },
+      "required": [
+        "strategies"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

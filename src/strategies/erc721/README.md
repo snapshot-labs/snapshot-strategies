@@ -2,6 +2,8 @@
 
 This strategy return the balances of the voters for a specific ERC721 NFT.
 
+It uses `balanceOf` function of the ERC721 contract to get the balance of the voters.
+
 Here is an example of parameters:
 
 ```json

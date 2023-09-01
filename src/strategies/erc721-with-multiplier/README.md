@@ -2,7 +2,15 @@
 
 This strategy return the balances of the voters for a specific ERC721 NFT with an arbitrary multiplier.
 
-Here is an example of parameters:
+## Params
+
+| Param | Type | Description | Default |
+| --- | --- | --- | --- |
+|`address`|`string`|The address of the ERC721 contract to get the balances from| |
+|`multiplier`|`number`|The multiplier to apply to the balances| 1 |
+|`symbol`|`string`|The symbol of the ERC721 token| |
+
+## Example
 
 ```json
 {

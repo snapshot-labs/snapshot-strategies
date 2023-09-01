@@ -2,6 +2,8 @@
 
 This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
 
+It uses `balanceOf` function of the ERC20 contract to get the balance of the voters.
+
 Here is an example of parameters:
 
 ```json

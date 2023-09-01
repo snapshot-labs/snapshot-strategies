@@ -6,19 +6,21 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "name": {
+        "symbol": {
           "type": "string",
-          "title": "DAO Name",
-          "examples": ["e.g. apecoin, ens, gitcoin"]
+          "title": "Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
         },
-        "roles": {
+        "addresses": {
+          "title": "Addresses",
           "type": "array",
-          "title": "Discord Roles",
-          "examples": ["e.g. Assembly, Trader, Moderator"],
-          "items": { "type": "string" }
+          "items": {
+            "type": "string"
+          }
         }
       },
-      "required": ["name", "roles"],
+      "required": ["addresses"],
       "additionalProperties": false
     }
   }

@@ -2,6 +2,8 @@
 
 Ticket strategy gives one voting power per one address, you can also pass a `value` parameter to give more voting power to the voter.
 
+For better sybil resistance, use this strategy with a voting validation.
+
 ## Params
 
 | param | type | description | default |
