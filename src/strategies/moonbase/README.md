@@ -13,6 +13,7 @@ Here is an example of parameters:
       "name": "moonbase",
       "params": {
         "address": "0xc97c478Fc35d75b51549C39974053a679A5C67E1",
+        "masterChef": "0x830304d6C669d33738c7E4c1F2310CC1E530Df63",
         "moonbaseLPs": [
           {
             "address": "0x230C64C42886A1F6b91eD8C11B59a2D45865d38F",
