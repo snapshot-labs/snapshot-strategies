@@ -4,15 +4,16 @@
     "strategy": {
       "name": "erc20-votes",
       "params": {
-        "address": "0xc00e94cb662c3520282e6f5717214004a7f26888",
-        "symbol": "ENS"
+        "address": "0x0187Ae64E905b4FE7Dd1568a5642fbEf05E96e71",
+        "symbol": "APE"
       }
     },
     "network": "1",
     "addresses": [
+      "0x020cA66C30beC2c4Fe3861a94E4DB4A498A35872",
       "0x2B384212EDc04Ae8bB41738D05BA20E33277bf33",
       "0xAC5720d6EE2d7872b88914C9c5Fa9BF38e72FaF6"
     ],
-    "snapshot": 12050071
+    "snapshot": 17978995
   }
 ]

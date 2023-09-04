@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. POHD"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0x1dAD862095d40d43c2109370121cf087632874dB"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "integer",
+          "title": "Decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 0,
+          "maximum": 18
+        },
+        "delegationSpace": {
+          "type": "string",
+          "title": "Delegation space (optional)",
+          "examples": ["e.g. poh.eth"]
+        },
+        "delegationNetwork": {
+          "type": "string",
+          "title": "Delegation network (optional)",
+          "examples": ["e.g. 1"]
+        }
+      },
+      "required": ["address", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -6,7 +6,7 @@
       "params": {
         "governanceStrategy": "0xb7e383ef9b1e9189fc0f71fb30af8aa14377429e",
         "powerType": "vote",
-        "symbol": "Voting Power",
+        "symbol": "ABC",
         "decimals": 18
       }
     },

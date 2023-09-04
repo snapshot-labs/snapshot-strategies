@@ -226,7 +226,13 @@ describe.each(examples)(
     let schema;
     try {
       schema = require(`../src/strategies/${strategy}/schema.json`);
-    } catch (error) {
+    } catch (error: any) {
+      if (error.code !== 'MODULE_NOT_FOUND') {
+        console.log('Error loading schema', error.message);
+        throw error;
+      } else {
+        console.log('No schema found');
+      }
       schema = null;
     }
     (schema ? it : it.skip)(
