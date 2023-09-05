@@ -30,11 +30,11 @@ Strategy schema & parameters are defined under [schema.json](./schema.json). In 
 
 ## Code Explanation
 
-The main function (validate()) first fetches the following required paramaters:
+The main function (validate()) first fetches the following paramaters:
 
-* `stamps`: a list of Stamps that a passport should own.
-* `operator`: (and/or) whether a Passport should own all or at least one of the required stamps.
-* `scoreThreshold`: [0-100] the threshold a Passport score should surpass in order to be eligible for creating/voting on a proposal.
+* `stamps` (required): a list of Stamps that a passport should own.
+* `operator` (required): (and/or) whether a Passport should own all or at least one of the required stamps.
+* `scoreThreshold` ([0-100]): the threshold a Passport score should surpass in order to be eligible for creating/voting on a proposal. Default value is set to zero to preserve backward compatibility.
 
 Then, it calls the following validation methods:
 
