@@ -117,11 +117,12 @@ async function validatePassportScore(
   const scoreResponse = await fetch(GET_PASSPORT_SCORE_URI + currentAddress, {
     headers
   });
-  const scoreData = await scoreResponse.json();
+  const scoreData = scoreResponse.ok && await scoreResponse.json();
 
   if (!scoreResponse.ok && scoreData.detail !== PASSPORT_NOT_SUBMITTED_ERROR) {
-    console.log('[passport] Scorer Unknown error', scoreData);
-    throw new Error(`Unkown error: ${scoreData.detail}`);
+    const reason = !SCORER_ID ? 'SCORER_ID missing' : scoreData.detail;
+    console.log('[passport] Scorer error', scoreData || reason);
+    throw new Error(`Scorer error: ${reason}`);
   }
 
   // If first time using scorer, address needs to submit passport for scoring
