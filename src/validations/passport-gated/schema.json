@@ -146,10 +146,11 @@
           "title": "Passport Score Threshold",
           "description": "Minimum Passport score threshold (>) to be eligible as a valid Passport",
           "minimum": 0,
-          "maximum": 100
+          "maximum": 100,
+          "default": 0
         }
       },
-      "required": ["stamps", "operator", "scoreThreshold"],
+      "required": ["stamps", "operator"],
       "additionalProperties": false
     }
   }

@@ -7,8 +7,7 @@
     "snapshot": "latest",
     "params": {
       "stamps": ["Ens", "Github", "Snapshot"],
-      "operator": "OR",
-      "scoreThreshold": 20
+      "operator": "OR"
     },
     "valid": false
   },
