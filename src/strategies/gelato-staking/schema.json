@@ -6,29 +6,27 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "sender": {
+        "symbol": {
           "type": "string",
-          "title": "Sender address",
+          "title": "Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Contract address",
           "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         },
-        "token": {
-          "type": "string",
-          "title": "ERC20 token address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
-        },
-        "subGraphURL": {
-          "type": "string",
-          "title": "Optional subgraph url",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"]
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
         }
       },
-      "required": ["sender", "token"],
+      "required": ["address", "decimals"],
       "additionalProperties": false
     }
   }
