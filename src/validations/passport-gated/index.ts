@@ -117,16 +117,28 @@ async function validatePassportScore(
   const scoreResponse = await fetch(GET_PASSPORT_SCORE_URI + currentAddress, {
     headers
   });
-  const scoreData = scoreResponse.ok && await scoreResponse.json();
+  const scoreData = scoreResponse.ok && (await scoreResponse.json());
 
-  if (!scoreResponse.ok && scoreData.detail !== PASSPORT_NOT_SUBMITTED_ERROR) {
-    const reason = !SCORER_ID ? 'SCORER_ID missing' : scoreData.detail;
+  if (
+    !scoreResponse.ok &&
+    scoreData.detail !== PASSPORT_NOT_SUBMITTED_ERROR &&
+    // Workaround: sometimes the API returns a 400 (Bad Request) error
+    // because the passport has never been evaluated by the Scorer before
+    scoreResponse.status !== 400
+  ) {
+    const reason =
+      (!SCORER_ID ? 'SCORER_ID missing' : scoreData.detail) ||
+      scoreResponse.statusText;
     console.log('[passport] Scorer error', scoreData || reason);
     throw new Error(`Scorer error: ${reason}`);
   }
 
   // If first time using scorer, address needs to submit passport for scoring
-  if (!scoreResponse.ok && scoreData.detail === PASSPORT_NOT_SUBMITTED_ERROR) {
+  if (
+    (!scoreResponse.ok && scoreData.detail === PASSPORT_NOT_SUBMITTED_ERROR) ||
+    // Workaround: same as specified above
+    scoreResponse.status === 400
+  ) {
     const submittedPassport = await fetch(POST_SUBMIT_PASSPORT_URI, {
       headers,
       method: 'POST',
