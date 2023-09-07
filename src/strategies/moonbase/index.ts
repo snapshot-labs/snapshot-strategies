@@ -60,7 +60,7 @@ export async function strategy(
       );
     });
   });
-  const [result] = await Promise.all([multicall.execute()]);
+  const result = await multicall.execute();
 
   const userBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {
