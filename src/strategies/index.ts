@@ -31,6 +31,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfWithDelegation from './erc20-balance-of-with-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20BalanceOfTopHolders from './erc20-balance-of-top-holders';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as ethalendBalanceOf from './ethalend-balance-of';
 import * as prepoVesting from './prepo-vesting';
@@ -57,6 +58,7 @@ import * as uniswap from './uniswap';
 import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
+import * as pancakeProfile from './pancake-profile';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
@@ -192,6 +194,7 @@ import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolSameToken from './unipool-same-token';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
 import * as poapWithWeightV2 from './poap-with-weight-v2';
@@ -398,7 +401,6 @@ import * as safeVested from './safe-vested';
 import * as riskharborUnderwriter from './riskharbor-underwriter';
 import * as otterspaceBadges from './otterspace-badges';
 import * as syntheticNounsClaimerOwner from './synthetic-nouns-with-claimer';
-import * as depositInSablierStream from './deposit-in-sablier-stream';
 import * as echelonWalletPrimeAndCachedKey from './echelon-wallet-prime-and-cached-key';
 import * as nation3VotesWIthDelegations from './nation3-votes-with-delegations';
 import * as nation3CoopPassportWithDelegations from './nation3-passport-coop-with-delegations';
@@ -452,10 +454,13 @@ import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-o
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
 import * as stakedMoreKudasai from './staked-morekudasai';
+import * as sablierV1Deposit from './sablier-v1-deposit';
 import * as sablierV2 from './sablier-v2';
 import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
+import * as friendTech from './friend-tech';
+import * as moonbase from './moonbase';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -506,6 +511,7 @@ const strategies = {
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-with-delegation': erc20BalanceOfWithDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-balance-of-top-holders': erc20BalanceOfTopHolders,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'minto-balance-of-all': mintoBalanceAll,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
@@ -545,6 +551,7 @@ const strategies = {
   'faraland-staking': faralandStaking,
   flashstake,
   pancake,
+  'pancake-profile': pancakeProfile,
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
@@ -662,6 +669,7 @@ const strategies = {
   'unipool-same-token': unipoolSameToken,
   'unipool-univ2-lp': unipoolUniv2Lp,
   'unipool-xsushi': unipoolXSushi,
+  'taraxa-delegation': taraxaDelegation,
   poap: poap,
   'poap-with-weight': poapWithWeight,
   'poap-with-weight-v2': poapWithWeightV2,
@@ -865,7 +873,6 @@ const strategies = {
   'riskharbor-underwriter': riskharborUnderwriter,
   'otterspace-badges': otterspaceBadges,
   'synthetic-nouns-with-claimer': syntheticNounsClaimerOwner,
-  'deposit-in-sablier-stream': depositInSablierStream,
   'echelon-wallet-prime-and-cached-key': echelonWalletPrimeAndCachedKey,
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
   'nation3-passport-coop-with-delegations': nation3CoopPassportWithDelegations,
@@ -917,10 +924,13 @@ const strategies = {
   'seedify-cumulative-voting-power-hodl-staking-farming':
     seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
+  'sablier-v1-deposit': sablierV1Deposit,
   'sablier-v2': sablierV2,
   'gelato-staking': gelatoStaking,
   'erc4626-assets-of': erc4626AssetsOf,
-  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2
+  'friend-tech': friendTech,
+  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
+  'moonbase': moonbase
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

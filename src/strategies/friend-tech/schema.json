@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "User address",
+          "examples": ["e.g. 0xe12a2f60b400e6c6971d5602df454e5da63edd78"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. KEYS"],
+          "maxLength": 16
+        }
+      },
+      "required": ["address"],
+      "additionalProperties": false
+    }
+  }
+}

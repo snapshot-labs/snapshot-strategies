@@ -11,6 +11,11 @@ async function callStrategy(space, network, addresses, strategy, snapshot) {
       (snapshot === 'latest' || snapshot > strategy.params?.end))
   )
     return {};
+
+  if (!_strategies.hasOwnProperty(strategy.name)) {
+    throw new Error(`Invalid strategy: ${strategy.name}`);
+  }
+
   const score: any = await _strategies[strategy.name].strategy(
     space,
     network,
