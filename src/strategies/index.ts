@@ -930,7 +930,7 @@ const strategies = {
   'erc4626-assets-of': erc4626AssetsOf,
   'friend-tech': friendTech,
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
-  'moonbase': moonbase
+  moonbase: moonbase
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

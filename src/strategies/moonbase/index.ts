@@ -35,9 +35,10 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-
   if (options.moonbaseLPs.length > MAX_MOONBASE_LPS) {
-      throw new Error(`Too many moonbaseLPs. Maximum allowed is ${MAX_MOONBASE_LPS}.`);
+    throw new Error(
+      `Too many moonbaseLPs. Maximum allowed is ${MAX_MOONBASE_LPS}.`
+    );
   }
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
