@@ -9,7 +9,7 @@
       "stamps": ["Ens", "Github", "Snapshot"],
       "operator": "OR"
     },
-    "valid": false
+    "valid": true
   },
   {
     "name": "Example of a passport gated validation",

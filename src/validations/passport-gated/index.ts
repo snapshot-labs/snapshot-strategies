@@ -172,7 +172,9 @@ async function validatePassportScore(
     );
     await snapshot.utils.sleep(3e3);
   }
-  return false;
+  const reason = 'Failed to fetch Passport Score. Reached PASSPORT_SCORER_MAX_ATTEMPTS';
+  console.log('[passport] Scorer error', reason);
+  throw new Error(`Scorer error: ${reason}`);
 }
 
 export default class extends Validation {
@@ -197,6 +199,11 @@ export default class extends Validation {
       proposalTs,
       requiredStamps
     );
+
+    if (scoreThreshold === 0) {
+      return validStamps;
+    }
+
     const validScore = await validatePassportScore(
       currentAddress,
       scoreThreshold
