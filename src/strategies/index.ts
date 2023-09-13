@@ -31,6 +31,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfWithDelegation from './erc20-balance-of-with-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20BalanceOfTopHolders from './erc20-balance-of-top-holders';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as ethalendBalanceOf from './ethalend-balance-of';
 import * as prepoVesting from './prepo-vesting';
@@ -57,6 +58,7 @@ import * as uniswap from './uniswap';
 import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
+import * as pancakeProfile from './pancake-profile';
 import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as synthetixQuadratic from './synthetix-quadratic';
@@ -458,6 +460,7 @@ import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as friendTech from './friend-tech';
+import * as moonbase from './moonbase';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -508,6 +511,7 @@ const strategies = {
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-with-delegation': erc20BalanceOfWithDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-balance-of-top-holders': erc20BalanceOfTopHolders,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'minto-balance-of-all': mintoBalanceAll,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
@@ -547,6 +551,7 @@ const strategies = {
   'faraland-staking': faralandStaking,
   flashstake,
   pancake,
+  'pancake-profile': pancakeProfile,
   synthetix,
   'aelin-council': aelinCouncil,
   'synthetix-quadratic': synthetixQuadratic,
@@ -924,7 +929,8 @@ const strategies = {
   'gelato-staking': gelatoStaking,
   'erc4626-assets-of': erc4626AssetsOf,
   'friend-tech': friendTech,
-  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2
+  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
+  moonbase: moonbase
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
