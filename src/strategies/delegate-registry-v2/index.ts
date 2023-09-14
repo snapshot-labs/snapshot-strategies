@@ -1,5 +1,6 @@
 import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
+import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
 
 export const author = 'gnosis';
 export const version = '0.0.1';
@@ -8,6 +9,7 @@ const DEFAULT_BACKEND_URL = 'https://delegate-registry-backend.vercel.app';
 
 type Params = {
   backendUrl: string;
+  strategies: Strategy[];
 };
 
 /*
@@ -21,11 +23,10 @@ export async function strategy(
   network: string,
   provider: StaticJsonRpcProvider,
   addresses: string[],
-  options: Params = { backendUrl: DEFAULT_BACKEND_URL },
+  options: Params = { backendUrl: DEFAULT_BACKEND_URL, strategies: [] },
   snapshot: string | number
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
-
 
   const response = await fetch(
     `${options.backendUrl}/api/${space}/snapshot/${blockTag}/strategy-formatted-vote-weights`,
@@ -35,7 +36,10 @@ export async function strategy(
         Accept: 'application/json',
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify(addresses)
+      body: JSON.stringify({
+        addresses: addresses,
+        strategies: options.strategies
+      })
     }
   );
 

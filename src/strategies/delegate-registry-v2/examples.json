@@ -4,7 +4,17 @@
     "strategy": {
       "name": "delegate-registry-v2",
       "params": {
-        "backendUrl": "https://delegate-registry-backend.vercel.app"
+        "backendUrl": "https://delegate-registry-backend.vercel.app",
+        "strategies": [
+          {
+            "name": "gno",
+            "params": {
+              "symbol": "GNO",
+              "decimals": 18,
+              "SUBGRAPH_URL": "https://api.thegraph.com/subgraphs/id/QmduKVUHCPjR5tmNEgooXHBMGKqDJWrUPdp6dEMeJM6Kqa"
+            }
+          }
+        ]
       }
     },
     "network": "1",
