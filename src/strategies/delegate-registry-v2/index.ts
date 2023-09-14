@@ -43,5 +43,10 @@ export async function strategy(
     }
   );
 
+  // TODO:
+  // If an address that is sent is not present in the response, we must get the score for that address by adding its score from all the `options.strategies`.
+  // Addresses returning 0 should return a 0 score.
+  // A positive number returned should be merged with its scores for the options.strategies (the returned score is only what is delegated to the address, not the total score for the address)
+
   return response.json();
 }
