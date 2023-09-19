@@ -1,6 +1,8 @@
 import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
+import { getScoresDirect } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'gnosis';
 export const version = '0.0.1';
@@ -43,10 +45,62 @@ export async function strategy(
     }
   );
 
-  // TODO:
-  // If an address that is sent is not present in the response, we must get the score for that address by adding its score from all the `options.strategies`.
-  // Addresses returning 0 should return a 0 score.
-  // A positive number returned should be merged with its scores for the options.strategies (the returned score is only what is delegated to the address, not the total score for the address)
+  const delegationScores = (await response.json()) as [
+    address: string,
+    voteWeight: string
+  ][];
 
-  return response.json();
+  // gets an array of all addresses that are in the addresses array, but not present in the response
+  const addressesNotDelegatingOrDelegatedTo = addresses.filter(
+    (address) => !delegationScores.find((score) => score[0] === address)
+  );
+
+  const addressesDelegating = delegationScores.filter(
+    (score) => score[1] === '0'
+  );
+
+  const addressesDelegatedTo = delegationScores.filter(
+    (score) => score[1] !== '0'
+  );
+
+  const addressesOwnScore = await getScoresDirect(
+    space,
+    options.strategies,
+    network,
+    provider,
+    [
+      ...addressesNotDelegatingOrDelegatedTo,
+      ...addressesDelegatedTo.map(([address]) => address)
+    ],
+    snapshot
+  );
+
+  const delegationObject = addressesDelegatedTo.reduce(
+    (pre, [address, score]) => {
+      pre[getAddress(address)] = score;
+      return pre;
+    },
+    {}
+  );
+
+  const addressesScores = addressesOwnScore.reduce((pre, address) => {
+    const addressKeys = Object.keys(address);
+    const addressValues = Object.values(address);
+    addressKeys.forEach((key, index) => {
+      if (pre.hasOwnProperty(key)) {
+        pre[getAddress(key)] = pre[getAddress(key)] + addressValues[index];
+      } else {
+        pre[getAddress(key)] = addressValues[index];
+      }
+    });
+    return pre;
+  }, delegationObject);
+
+  // add a 0 score for all addressesDelegating
+  const finalScores = addressesDelegating.reduce((pre, [address]) => {
+    pre[getAddress(address)] = 0;
+    return pre;
+  }, addressesScores);
+
+  return finalScores;
 }
