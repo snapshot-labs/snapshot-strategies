@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Monsta DCE Strategy Example",
+    "strategy": {
+      "name": "monsta-dce",
+      "params": {
+        "erc721Address": "0x371a31Bf669Df23628E9D8858CB4b4620B491D83",
+        "erc20Address": "0x8A5d7FCD4c90421d21d30fCC4435948aC3618B2f",
+        "erc20Decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad"
+      // Add more addresses here for testing if needed
+    ],
+    "snapshot": 11437846
+  }
+]
