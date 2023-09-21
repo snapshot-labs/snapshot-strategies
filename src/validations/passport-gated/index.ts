@@ -21,7 +21,6 @@ const GET_PASSPORT_SCORE_URI = `https://api.scorer.gitcoin.co/registry/score/${S
 const POST_SUBMIT_PASSPORT_URI = `https://api.scorer.gitcoin.co/registry/submit-passport`;
 
 const PASSPORT_SCORER_MAX_ATTEMPTS = 2;
-const PASSPORT_NOT_SUBMITTED_ERROR = 'Unable to get score for provided scorer.';
 
 const stampCredentials = STAMPS.map((stamp) => {
   return {
@@ -114,50 +113,29 @@ async function validatePassportScore(
   currentAddress: string,
   scoreThreshold: number
 ): Promise<boolean> {
-  const scoreResponse = await fetch(GET_PASSPORT_SCORE_URI + currentAddress, {
-    headers
+  // always hit the /submit-passport endpoint to get the latest passport score
+  const submittedPassport = await fetch(POST_SUBMIT_PASSPORT_URI, {
+    headers,
+    method: 'POST',
+    body: JSON.stringify({ address: currentAddress, scorer_id: SCORER_ID })
   });
-  const scoreData = scoreResponse.ok && (await scoreResponse.json());
+  const submissionData =
+    submittedPassport.ok && (await submittedPassport.json());
 
-  if (
-    !scoreResponse.ok &&
-    scoreData.detail !== PASSPORT_NOT_SUBMITTED_ERROR &&
-    // Workaround: sometimes the API returns a 400 (Bad Request) error
-    // because the passport has never been evaluated by the Scorer before
-    scoreResponse.status !== 400
-  ) {
-    const reason =
-      (!SCORER_ID ? 'SCORER_ID missing' : scoreData.detail) ||
-      scoreResponse.statusText;
-    console.log('[passport] Scorer error', scoreData || reason);
+  if (!submittedPassport.ok) {
+    const reason = !SCORER_ID
+      ? 'SCORER_ID missing'
+      : submittedPassport.statusText;
+    console.log('[passport] Scorer error', reason);
     throw new Error(`Scorer error: ${reason}`);
   }
 
-  // If first time using scorer, address needs to submit passport for scoring
-  if (
-    (!scoreResponse.ok && scoreData.detail === PASSPORT_NOT_SUBMITTED_ERROR) ||
-    // Workaround: same as specified above
-    scoreResponse.status === 400
-  ) {
-    const submittedPassport = await fetch(POST_SUBMIT_PASSPORT_URI, {
-      headers,
-      method: 'POST',
-      body: JSON.stringify({ address: currentAddress, scorer_id: SCORER_ID })
-    });
-    const submissionData = await submittedPassport.json();
-
-    // Scorer done calculating passport score during submission
-    if (submittedPassport.ok && submissionData.status === 'DONE') {
-      return evalPassportScore(submissionData, scoreThreshold);
-    }
+  // Scorer done calculating passport score during submission
+  if (submittedPassport.ok && submissionData.status === 'DONE') {
+    return evalPassportScore(submissionData, scoreThreshold);
   }
 
-  // Passport Score was already calculated
-  if (scoreResponse.ok && scoreData.status === 'DONE') {
-    return evalPassportScore(scoreData, scoreThreshold);
-  }
-
-  // Try to fetch Passport Score if still processing (scoreData.status === 'PROCESSING')
+  // Try to fetch Passport Score if still processing (submittedPassport.status === 'PROCESSING')
   for (let i = 0; i < PASSPORT_SCORER_MAX_ATTEMPTS; i++) {
     const scoreResponse = await fetch(GET_PASSPORT_SCORE_URI + currentAddress, {
       headers
@@ -172,7 +150,8 @@ async function validatePassportScore(
     );
     await snapshot.utils.sleep(3e3);
   }
-  const reason = 'Failed to fetch Passport Score. Reached PASSPORT_SCORER_MAX_ATTEMPTS';
+  const reason =
+    'Failed to fetch Passport Score. Reached PASSPORT_SCORER_MAX_ATTEMPTS';
   console.log('[passport] Scorer error', reason);
   throw new Error(`Scorer error: ${reason}`);
 }
