@@ -106,7 +106,7 @@ function evalPassportScore(scoreData: any, minimumThreshold = 0): boolean {
     );
   }
   // scoreData.score -> Returned if using Unique Humanity Score
-  return Number(scoreData.score) > minimumThreshold;
+  return Number(scoreData.score) >= minimumThreshold;
 }
 
 async function validatePassportScore(
