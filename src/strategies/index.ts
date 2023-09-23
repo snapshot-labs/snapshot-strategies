@@ -363,6 +363,7 @@ import * as auraBalanceOfVlauraVebal from './aura-balance-of-vlaura-vebal';
 import * as auraBalanceOfSingleAsset from './aura-vault-balance-of-single-asset';
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as rocketpoolNodeOperatorv2 from './rocketpool-node-operator-v2';
+import * as rocketpoolNodeOperatorv3 from './rocketpool-node-operator-v3';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
@@ -461,6 +462,7 @@ import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as friendTech from './friend-tech';
+import * as moonbase from './moonbase';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -832,6 +834,7 @@ const strategies = {
   'aura-vault-balance-of-single-asset': auraBalanceOfSingleAsset,
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'rocketpool-node-operator-v2': rocketpoolNodeOperatorv2,
+  'rocketpool-node-operator-v3': rocketpoolNodeOperatorv3,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
@@ -930,7 +933,8 @@ const strategies = {
   'gelato-staking': gelatoStaking,
   'erc4626-assets-of': erc4626AssetsOf,
   'friend-tech': friendTech,
-  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2
+  'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
+  moonbase: moonbase
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

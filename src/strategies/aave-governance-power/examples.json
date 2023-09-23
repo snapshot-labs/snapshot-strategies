@@ -11,7 +11,11 @@
       }
     },
     "network": "1",
-    "addresses": ["0x329c54289Ff5D6B7b7daE13592C6B1EDA1543eD4", "0x57ab7ee15cE5ECacB1aB84EE42D5A9d0d8112922", "0x0ab97008cad303a8C90ea630c282760284c19e93"],
+    "addresses": [
+      "0x329c54289Ff5D6B7b7daE13592C6B1EDA1543eD4",
+      "0x57ab7ee15cE5ECacB1aB84EE42D5A9d0d8112922",
+      "0x0ab97008cad303a8C90ea630c282760284c19e93"
+    ],
     "snapshot": 18054498
   }
 ]
