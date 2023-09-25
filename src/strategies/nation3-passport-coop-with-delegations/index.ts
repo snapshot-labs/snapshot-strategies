@@ -1,8 +1,17 @@
-import { BigNumber } from '@ethersproject/bignumber';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
+import { formatUnits } from '@ethersproject/units';
 
 export const author = 'nation3';
 export const version = '0.2.0';
+
+const DECIMALS = 18;
+
+const balanceAbi = [
+  'function balanceOf(address account) external view returns (uint256)'
+];
+
+const ownerAbi = ['function ownerOf(uint256 id) public view returns (address)'];
 
 const signerAbi = [
   'function signerOf(uint256 id) external view  returns (address)'
@@ -23,6 +32,12 @@ export async function strategy(
   const erc721SignerCaller = new Multicaller(network, provider, signerAbi, {
     blockTag
   });
+  const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
+    blockTag
+  });
+  const erc20BalanceCaller = new Multicaller(network, provider, balanceAbi, {
+    blockTag
+  });
   const erc721LastTokenIdCaller = new Multicaller(
     network,
     provider,
@@ -37,16 +52,40 @@ export async function strategy(
 
   for (let i = 0; i < lastTokenId; i++) {
     erc721SignerCaller.call(i, options.erc721, 'signerOf', [i]);
+    erc721OwnerCaller.call(i, options.erc721, 'ownerOf', [i]);
   }
 
-  const erc721Signers: Record<string, string> =
-    await erc721SignerCaller.execute();
+  const [erc721Signers, erc721Owners]: [
+    Record<string, string>,
+    Record<string, string>
+  ] = await Promise.all([
+    erc721SignerCaller.execute(),
+    erc721OwnerCaller.execute()
+  ]);
 
   const erc721SignersArr = Object.entries(erc721Signers);
+  const erc721OwnersArr = Object.entries(erc721Owners);
 
   const eligibleAddresses = erc721SignersArr
-    .map(([, address]) => address)
-    .filter((address) => addresses.includes(address));
+    .filter(([,address]) => addresses.includes(address));
 
-  return Object.fromEntries(eligibleAddresses.map((value) => [value, 1]));
+  //create a combined tuple
+  const eligibleSignerOwner : [string, string, string][] = eligibleAddresses.map(([id, signerAddress]) => {
+    const owner = erc721OwnersArr.find(([ownerId,]) => id === ownerId);
+    return [id, signerAddress, owner ? owner[1] : "0x0"]
+  });
+
+  eligibleSignerOwner.forEach(([, , owner]) => 
+    erc20BalanceCaller.call(owner, options.erc20, 'balanceOf', [owner])
+  );
+
+  const erc20Balances: Record<string, BigNumberish> = await erc20BalanceCaller.execute();
+  
+  //now we have balances, need to check for > 1.5 on all IDs that have voted
+  eligibleSignerOwner.filter(([id, signer, owner]) => {
+    const balance = erc20Balances[owner] || 0;
+    return parseFloat(formatUnits(balance, DECIMALS)) > 1.5;
+  });
+
+  return Object.fromEntries(eligibleSignerOwner.map(([id, signer, owner]) => [signer, 1]));
 }
