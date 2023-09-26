@@ -6,6 +6,9 @@ import { Multicaller } from '../../utils';
 export const author = 'espendk';
 export const version = '1.0.0';
 
+// To avoid future memory issues, we limit the number of vestings supported by the strategy
+const MAX_VESTINGS = 500;
+
 const abi = [
   'function ids() external view returns (uint256)',
   'function usr(uint256 id) external view returns (address)',
@@ -25,6 +28,11 @@ export async function strategy(
   // Get the number of vestings
   const dssVestContract = new Contract(options.address, abi, provider);
   const idCount = await dssVestContract.ids();
+  if (idCount > MAX_VESTINGS) {
+    throw new Error(
+      `Max number (${MAX_VESTINGS}) of vestings exceeded: ${idCount}`
+    );
+  }
 
   // Get the vesting addresses and unpaid amounts
   const multi = new Multicaller(network, provider, abi, { blockTag });
