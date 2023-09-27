@@ -23,6 +23,7 @@ import * as ens10kClub from './ens-10k-club';
 import * as ensAllClubDigits from './ens-all-club-digits';
 import * as governorDelegator from './governor-delegator';
 import * as erc20BalanceOf from './erc20-balance-of';
+import * as eoaBalanceAndStakingPools from './eoa-balance-and-staking-pools';
 import * as erc20BalanceOfAt from './erc20-balance-of-at';
 import * as erc20BalanceOfCoeff from './erc20-balance-of-coeff';
 import * as erc20BalanceOfFixedTotal from './erc20-balance-of-fixed-total';
@@ -465,6 +466,7 @@ import * as moonbase from './moonbase';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
+  'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
   'forta-shares': fortaShares,
