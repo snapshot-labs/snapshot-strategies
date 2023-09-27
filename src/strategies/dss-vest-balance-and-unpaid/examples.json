@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dss-vest-balance-and-unpaid",
+      "params": {
+        "dssVestAddress": "0x370F850180FDDCdc521Ed11900a7a27D08B2d402",
+        "tokenAddress": "0x7777F41A060377B3640F8B5E3bB78e37BD487777",
+        "symbol": "MGV",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfe564B3579bAde0E1f22EADC2a9Be471fDCdc01c",
+      "0xb6d52aA63532A0d1c50B3Bb782e6B511bd973645",
+      "0xAC9ba72fb61aA7c31A95df0A8b6ebA6f41EF875e",
+      "0x3d6Affb8CAfE78F640edFfcCD2d2afe6dF151C5c",
+      "0x112F0732E59E7600768dFc35Ba744b89F2356Cd8",
+      "0x6e0a1dDAD894e6466d405Bb73377F0A257278D74",
+      "0xCD252d6AB26b7363E75d7451029C0f0729783AcE"
+    ],
+    "snapshot": 18036242
+  }
+]
