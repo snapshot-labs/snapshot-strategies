@@ -460,6 +460,7 @@ import * as sablierV2 from './sablier-v2';
 import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
+import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as friendTech from './friend-tech';
 import * as moonbase from './moonbase';
 import * as dssVestUnpaid from './dss-vest-unpaid';
@@ -934,6 +935,7 @@ const strategies = {
   'erc4626-assets-of': erc4626AssetsOf,
   'friend-tech': friendTech,
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
+  'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   moonbase: moonbase,
   'dss-vest-unpaid': dssVestUnpaid,
   'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid
