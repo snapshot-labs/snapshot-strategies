@@ -31,29 +31,22 @@ export async function strategy(
     throw new Error('maximum of 20 whitelisted address');
   }
 
-  const poolsBalances = await multicall(
-    network,
-    provider,
-    abi,
-    options.pools.map((pool) => [options.sdToken, 'balanceOf', [pool]])
-  );
-
-  const sumPoolsBalance = poolsBalances.reduce((acc, balance) => acc.add(balance[0]), BigNumber.from(0));
-
-  const votingPowerLiquidLocker = (await multicall(
-    network,
-    provider,
-    abi,
-    [
-      [options.veToken, 'balanceOf', [options.liquidLocker]]
-    ]
-  ))[0][0];
+  const calls: any[] = [];
+  for(const pool of options.pools) {
+    calls.push([options.sdToken, 'balanceOf', [pool]]);
+  }
+  calls.push([options.veToken, 'balanceOf', [options.liquidLocker]]);
 
   // --- Create block number list for twavp
   // Obtain last block number
-  const lastBlock = await provider.getBlockNumber();
   // Create block tag
-  let blockTag = typeof snapshot === 'number' ? snapshot : lastBlock;
+  let blockTag = 0;
+  if (typeof snapshot === 'number') {
+    blockTag = snapshot;
+  } else {
+    blockTag = await provider.getBlockNumber();
+  }
+  
   // Create block list
   const blockList = getPreviousBlocks(
     blockTag,
@@ -69,49 +62,63 @@ export async function strategy(
   ]);
 
   // Execute multicall `sampleStep` times
-  const response: number[] = [];
+  const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
     // Use good block number
     blockTag = blockList[i];
 
+    const loopCalls: any[] = [];
+
     // Add mutlicall response to array
+    if (i === options.sampleStep - 1) {
+      // End
+      loopCalls.push([options.sdTokenGauge, 'working_supply']);
+      loopCalls.push([options.sdTokenGauge, 'totalSupply']);
+      loopCalls.push(...workingBalanceQuery);
+      loopCalls.push(...calls);
+
+    } else {
+      loopCalls.push(...workingBalanceQuery);
+    }
+
     response.push(
       await multicall(
         network,
         provider,
         abi,
-        [
-          [options.sdTokenGauge, 'working_supply'],
-          [options.sdTokenGauge, 'totalSupply'],
-          ...workingBalanceQuery
-        ],
+        loopCalls,
         { blockTag }
       )
     );
   }
 
   // Get working supply
-  const workingSupply = response[response.length - 1][0][0]; // Last response, latest block
+  const workingSupply = response[response.length - 1].shift()[0]; // Last response, latest block
 
   // Get voting power of liquid locker
-  const sdTokenGaugeTotalSupply = response[response.length - 1][1][0]; // Last response, latest block
+  const sdTokenGaugeTotalSupply = response[response.length - 1].shift()[0]; // Last response, latest block
 
   return Object.fromEntries(
     Array(addresses.length)
       .fill('x')
       .map((_, i) => {
+        // Init array of working balances for user
+        const userWorkingBalances: BigNumber[] = [];
+
+        for (let j = 0; j < options.sampleStep; j++) {
+          // Add working balance to array.
+          userWorkingBalances.push(response[j].shift()[0]);
+        }
+
         if (addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
+          const poolsBalances = options.pools.map(() => response[response.length - 1].shift());
+          const sumPoolsBalance = poolsBalances.reduce((acc, balance) => acc.add(balance[0]), BigNumber.from(0));
+
+          const votingPowerLiquidLocker = response[response.length - 1].shift()[0];
+
           const total = sumPoolsBalance.mul(4).div(10).mul(votingPowerLiquidLocker).div(sdTokenGaugeTotalSupply);
           return [addresses[i], Number(parseFloat(formatUnits(total, options.decimals)))];
         } else {
-          // Init array of working balances for user
-          const userWorkingBalances: BigNumber[] = [];
-
-          for (let j = 0; j < options.sampleStep; j++) {
-            // Add working balance to array.
-            userWorkingBalances.push(response[j][i + 2][0]);
-          }
-
           // Get average working balance.
           const averageWorkingBalance = average(
             userWorkingBalances,
