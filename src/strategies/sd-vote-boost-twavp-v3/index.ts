@@ -30,6 +30,11 @@ export async function strategy(
   if (options.whiteListedAddress.length > 20) {
     throw new Error('maximum of 20 whitelisted address');
   }
+  
+  if (options.pools.length > 500) {
+    throw new Error('maximum of 500 pools');
+  }
+
 
   const calls: any[] = [];
   for(const pool of options.pools) {
