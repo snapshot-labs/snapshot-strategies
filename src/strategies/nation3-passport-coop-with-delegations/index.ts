@@ -82,7 +82,7 @@ export async function strategy(
   const erc20Balances: Record<string, BigNumberish> = await erc20BalanceCaller.execute();
   
   //now we have balances, need to check for > 1.5 on all IDs that have voted
-  const withPower = eligibleSignerOwner.filter(([id, signer, owner]) => {
+  const withPower = eligibleSignerOwner.filter(([, , owner]) => {
     const balance = erc20Balances[owner] || 0;
     return parseFloat(formatUnits(balance, DECIMALS)) > 1.5;
   });
