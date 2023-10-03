@@ -1,0 +1,41 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "dssVestAddress": {
+          "type": "string",
+          "title": "DssVest contract address",
+          "examples": ["e.g. 0x370F850180FDDCdc521Ed11900a7a27D08B2d402"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "tokenAddress": {
+          "type": "string",
+          "title": "ERC20 contract address",
+          "examples": ["e.g. 0x7777F41A060377B3640F8B5E3bB78e37BD487777"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. MGV"],
+          "maxLength": 16
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+}
