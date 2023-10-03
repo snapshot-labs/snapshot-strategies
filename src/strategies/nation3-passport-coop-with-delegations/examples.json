@@ -10,6 +10,7 @@
     },
     "network": "1",
     "addresses": [
+      "0x61c872A66d79d932F9aEE874b397F2D50Ed78326",
       "0xEdd000B7Db3cb8931d4E0cb1D0DBe6B947Ceb09A",
       "0x47d80912400ef8f8224531EBEB1ce8f2ACf4b75a",
       "0x636d65212C815b93B8E5b069f7082169cec851b7",
