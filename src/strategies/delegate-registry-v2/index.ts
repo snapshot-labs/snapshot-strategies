@@ -30,6 +30,9 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  if (options.strategies.length > 8)
+    throw new Error('Maximum 8 strategies allowed');
+
   const response = await fetch(
     `${options.backendUrl}/api/${space}/snapshot/${blockTag}/strategy-formatted-vote-weights`,
     {
