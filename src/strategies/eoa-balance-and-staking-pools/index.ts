@@ -1,11 +1,9 @@
-/* eslint-disable prettier/prettier */
-import { Contract } from '@ethersproject/contracts';
-import { JsonRpcProvider } from '@ethersproject/providers';
 import { formatEther } from '@ethersproject/units';
+import { multicall } from '../../utils';
+import { BigNumber } from '@ethersproject/bignumber';
 
-export const author = 'bonustrack';
-export const version = '0.1.1'; 
-
+export const author = 'DEFI-Foundation';
+export const version = '0.1.1';
 
 const tokenAbi = [
   'function balanceOf(address account) external view returns (uint256)'
@@ -23,60 +21,52 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const blockTag =
+    typeof snapshot === 'number'
+      ? snapshot
+      : await provider.getBlockNumber(snapshot);
 
-    const blockTag = typeof snapshot === 'number' ? snapshot : 18220909;
+  const { stakingPoolMiddlewareAddress, tokenAddress } = options;
 
-    const { stakingPoolMiddlewareAddress, tokenAddress } = options;
+  const tokenResponse: BigNumber[] = await multicall(
+    network,
+    provider,
+    tokenAbi,
+    addresses.map((address: any) => {
+      return [tokenAddress, 'balanceOf', [address.toLowerCase()]];
+    }),
+    { blockTag }
+  );
 
-    const ethProvider = new JsonRpcProvider(
-      "https://rpc.ankr.com/eth",
-      'mainnet'
-    ); 
+  const tokenBalances = Object.fromEntries(
+    Object.entries(tokenResponse).map(([address, balance]) => [
+      address,
+      formatEther(balance.toString())
+    ])
+  );
 
-    const tokenContract = new Contract(
-      tokenAddress,
-      tokenAbi,
-      ethProvider
-    );
+  const poolVotes = await multicall(
+    network,
+    provider,
+    abiStakingPool,
+    addresses.map((address: any) => {
+      return [
+        stakingPoolMiddlewareAddress,
+        'getSmartPoolVotes',
+        [address.toLowerCase(), blockTag]
+      ];
+    }),
+    { blockTag }
+  );
 
-    const stakingPoolMiddlewareContract = new Contract(
-      stakingPoolMiddlewareAddress,
-      abiStakingPool,
-      ethProvider
-    );
-
-    const result = {};
-    const tokenRequests: any = [];
-    const poolRequests: any = [];
-
-    for (let i = 0; i < addresses.length; i++) {
-
-      const address = addresses[i];
-
-      tokenRequests.push(
-        tokenContract.balanceOf(address),
-      );
-
-      poolRequests.push(
-        stakingPoolMiddlewareContract.getSmartPoolVotes(address, blockTag)
-      );
-    }
-
-    const tokenBalances = await Promise.all(tokenRequests);
-    const poolVotes = await Promise.all(poolRequests);
-
-    tokenBalances.forEach((balance, index) => {
-
-      const formattedBalance =  formatEther(balance.toString());
-      const formattedVotes = formatEther(poolVotes[index].toString());
-
-      const sum = (+formattedBalance ?? 0)+ (+formattedVotes ?? 0);
-
-      for (let i = index; i < addresses.length; i++) {
-        const address = addresses[i];
-        result[address] = sum;
-      }
-    });
-
-    return result;
+  return Object.fromEntries(
+    poolVotes.map((value, index) => [
+      addresses[index],
+      parseFloat(
+        formatEther(value.votes.toString()) ??
+          0 + +tokenBalances[addresses[index]] ??
+          0
+      )
+    ])
+  );
 }

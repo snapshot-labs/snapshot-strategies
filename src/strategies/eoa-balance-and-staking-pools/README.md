@@ -17,7 +17,7 @@ This strategy returns the balances of the voters from both staking pools and ERC
         "strategy": {
             "name": "holders-and-staking-pools",
             "params": {
-                "stakingPoolMiddleware": "0x99f0dD3aB8a94b01AD3C00B22f605394bfC03bF8",
+                "stakingPoolMiddlewareAddress": "0x99f0dD3aB8a94b01AD3C00B22f605394bfC03bF8",
                 "tokenAddress": "0x3E5D9D8a63CC8a88748f229999CF59487e90721e",
                 "symbol": "XMT",
                 "decimals": 18
@@ -45,7 +45,7 @@ This strategy returns the balances of the voters from both staking pools and ERC
             "0xb62990101E92C7e5809e48e7343f70d86d7E004C",
             "0x8aaE7dAad73dcaD1Fdf145163941B996c672589A"
         ],
-        "snapshot": ""
+        "snapshot": 18220909
     }
 ]
 ```

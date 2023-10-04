@@ -1,6 +1,6 @@
 [
     {
-        "name": "eoa-balance-and-staking-pools",
+        "name": "EOA token holders and staking pool participants",
         "strategy": {
             "name": "eoa-balance-and-staking-pools",
             "params": {
