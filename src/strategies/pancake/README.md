@@ -1,6 +1,6 @@
 # Contract call strategy
 
-Allows the tokens staked in chef conttracts to be used to calculate voter scores.
+Allows the tokens staked in chef contracts to be used to calculate voter scores.
 
 ## Examples
 
