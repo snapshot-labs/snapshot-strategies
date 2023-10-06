@@ -2,7 +2,7 @@
 
 Voting strategy using a REST API endpoint. Number of votes depends on the return of the API endpoint.
 
-## Cosntructing the API URL
+## Constructing the API URL
 This strategy will create an `api_url` based on the supplied parameters and the Proposal&Space settings. 
 
 `api_url` is constructed as such:
