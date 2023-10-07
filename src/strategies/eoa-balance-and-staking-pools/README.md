@@ -1,0 +1,51 @@
+# Token holders and staking pool partecipants strategy 
+
+This strategy returns the balances of the voters from both staking pools and ERC20 XMT tokens on Ethereum mainnet.
+
+## Accepted options
+
+- **stakingPoolMiddleware:** Staking pool middleware address (automatically fetches current staking pool added to the official MetalSwap DAO).
+
+- **tokenAddress:** ERC20 XMT token address.
+
+## Examples
+
+```JSON
+[
+    {
+        "name": "EOA token holders and staking pool participants",
+        "strategy": {
+            "name": "holders-and-staking-pools",
+            "params": {
+                "stakingPoolMiddlewareAddress": "0x99f0dD3aB8a94b01AD3C00B22f605394bfC03bF8",
+                "tokenAddress": "0x3E5D9D8a63CC8a88748f229999CF59487e90721e",
+                "symbol": "XMT",
+                "decimals": 18
+            }
+        },
+        "network": "1",
+        "addresses": [
+            "0x59e110d2E5353500106AD1D79931054cdd74Ac7C",
+            "0xeFd52DCFACC73c8f96e143DFa7957C644D3466f1",
+            "0x0EBe1447634d9ACCF94F020535De4674d61aaf81",
+            "0x583CAf74d967dD0cc0F82968263A9b541014492A",
+            "0x75daeC947e200864D5bB20aFe5B60E084b5Bd155",
+            "0x1e75C0eEE13678260bfdD156272BBA9a1123d088",
+            "0x494d9a664D2be7e6824118d4a494a740df1dcC17",
+            "0xA6904f85cbf670eD8F834F2AfDcb9D9cB29173B6",
+            "0xD132D1a418d350a938C733EC8f1fcD22Edd3f448",
+            "0xE2A8fbEe6D1d0315bF7a06a8483233e2d619AC75",
+            "0xAF58ac3C1141b178DFa11cFA85DB4C0FD5646A90",
+            "0xd94a0e2aB6C08e1884D3187FAc0E83116c644c60",
+            "0xbF35741a0C151fbDc37Dad5C6b8a14cD21277CF4",
+            "0x54c9eb4D8B1df9D7A23ca30f3B9B03F9F4c9CA27",
+            "0xa893522dc7874746664126dC330fdfC7b7749b05",
+            "0x05c2974d048D90EC5Bfa124B6369396727B900fd",
+            "0xd11D7D2cb0aFF72A61Df37fD016EE1bd9F180633",
+            "0xb62990101E92C7e5809e48e7343f70d86d7E004C",
+            "0x8aaE7dAad73dcaD1Fdf145163941B996c672589A"
+        ],
+        "snapshot": 18220909
+    }
+]
+```

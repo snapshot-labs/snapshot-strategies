@@ -1,10 +1,10 @@
 # Contract call strategy
 
-Allows for calculating the voting weight of cToken holders. This strategy allows for invalidating borrowers from voting and incorperating a waiting period between minting (or receiving) cTokens and votes becoming availible. 
+Allows for calculating the voting weight of cToken holders. This strategy allows for invalidating borrowers from voting and incorporating a waiting period between minting (or receiving) cTokens and votes becoming available. 
 
 ## Params
 
-- `offsetCheck` - Offset (or waiting period) between minting and voting becoming availible
+- `offsetCheck` - Offset (or waiting period) between minting and voting becoming available
 - `borrowingRestricted` - If true, borrowers will have a 0 voting weight
 
 ## Examples

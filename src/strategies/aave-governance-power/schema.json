@@ -26,7 +26,7 @@
           "enum": ["vote", "proposition"]
         },
         "decimals": {
-          "type": "integer",
+          "type": "number",
           "title": "Decimals",
           "examples": ["e.g. 18"],
           "minimum": 0,
