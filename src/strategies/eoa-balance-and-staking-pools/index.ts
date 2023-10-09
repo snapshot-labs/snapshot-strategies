@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { formatEther } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
@@ -60,13 +61,16 @@ export async function strategy(
   );
 
   return Object.fromEntries(
-    poolVotes.map((value, index) => [
-      addresses[index],
-      parseFloat(
-        formatEther(value.votes.toString()) ??
-          0 + +tokenBalances[addresses[index]] ??
-          0
-      )
-    ])
+    poolVotes.map((value, index) => {
+
+      const formattedVote = +(formatEther(value.votes.toString())) ?? 0;
+      const formattedBalance = +(tokenBalances[index]) ?? 0;
+      const sum = formattedBalance + formattedVote;
+
+      return [
+        addresses[index],
+        sum
+      ]
+    })
   );
 }
