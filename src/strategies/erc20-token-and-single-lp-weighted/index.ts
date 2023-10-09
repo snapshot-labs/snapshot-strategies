@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller, multicall } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'skyrock';
+export const author = 'skyrocktech';
 export const version = '0.1.0';
 
 const abi = [
