@@ -1,4 +1,3 @@
-/* eslint-disable prettier/prettier */
 import { formatEther } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
