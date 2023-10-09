@@ -61,15 +61,11 @@ export async function strategy(
 
   return Object.fromEntries(
     poolVotes.map((value, index) => {
-
-      const formattedVote = +(formatEther(value.votes.toString())) ?? 0;
-      const formattedBalance = +(tokenBalances[index]) ?? 0;
+      const formattedVote = +(formatEther(value.votes.toString()) ?? 0);
+      const formattedBalance = +(tokenBalances[index] ?? 0);
       const sum = formattedBalance + formattedVote;
 
-      return [
-        addresses[index],
-        sum
-      ]
+      return [addresses[index], sum];
     })
   );
 }
