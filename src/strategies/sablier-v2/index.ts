@@ -48,9 +48,9 @@ export async function strategy(
   options: IOptions,
   snapshot: number
 ): Promise<Record<string, number>> {
-  const snap = typeof snapshot === 'number' ? snapshot : undefined;
-  const block = snap || (await provider.getBlockNumber()) - 1;
-  const setup = { block, network, provider };
+  const blockTag: number | 'latest' =
+    typeof snapshot === 'number' ? snapshot : 'latest';
+  const setup = { blockTag, network, provider };
 
   await validate(network, addresses, options);
 

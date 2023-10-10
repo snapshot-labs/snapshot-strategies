@@ -125,7 +125,6 @@ interface IOptions {
 interface IStreamsByAssetParams {
   accounts: string[];
   asset: string;
-  block: number;
   first?: number;
   skip?: number;
 }
@@ -161,14 +160,12 @@ interface IStreamsByAssetResult {
 /** @returns Streams by recipient and asset/token at the given block */
 const RecipientStreamsByAsset = ({
   asset,
-  block,
   first = page,
   accounts,
   skip = 0
 }: IStreamsByAssetParams) => ({
   streams: {
     __args: {
-      block: { number: block },
       first,
       orderBy: 'timestamp',
       orderDirection: 'desc',
@@ -194,14 +191,12 @@ const RecipientStreamsByAsset = ({
 /** @returns Streams by recipient and asset/token at the given block */
 const SenderStreamsByAsset = ({
   asset,
-  block,
   first = page,
   accounts,
   skip = 0
 }: IStreamsByAssetParams) => ({
   streams: {
     __args: {
-      block: { number: block },
       first,
       orderBy: 'timestamp',
       orderDirection: 'desc',

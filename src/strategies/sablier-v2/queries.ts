@@ -19,11 +19,11 @@ async function getRecipientStreams(
   recipients: string[],
   options: IOptions,
   setup: {
-    block: number;
+    blockTag: number | 'latest';
     network: string;
   }
 ) {
-  const { block, network } = setup;
+  const { network } = setup;
   const endpoint = deployments[network].subgraph;
 
   /** Mapping recipients to the streams they own */
@@ -38,7 +38,6 @@ async function getRecipientStreams(
   while (true) {
     const params: IStreamsByAssetParams = {
       accounts: recipients.map((item) => item.toLowerCase()),
-      block,
       asset: options.address.toLowerCase(),
       first: page,
       skip: skip * page
@@ -88,11 +87,11 @@ async function getSenderStreams(
   senders: string[],
   options: IOptions,
   setup: {
-    block: number;
+    blockTag: number | 'latest';
     network: string;
   }
 ) {
-  const { block, network } = setup;
+  const { network } = setup;
   const endpoint = deployments[network].subgraph;
 
   /** Mapping senders to the streams they own */
@@ -107,7 +106,6 @@ async function getSenderStreams(
   while (true) {
     const params: IStreamsByAssetParams = {
       accounts: senders.map((item) => item.toLowerCase()),
-      block,
       asset: options.address.toLowerCase(),
       first: page,
       skip: skip * page
@@ -158,12 +156,12 @@ async function getSenderStreams(
 async function getRecipientStreamedAmounts(
   mapping: IAccountMap,
   setup: {
-    block: number;
+    blockTag: number | 'latest';
     network: string;
     provider: StaticJsonRpcProvider;
   }
 ) {
-  const { block, network, provider } = setup;
+  const { blockTag, network, provider } = setup;
 
   const requests: { recipient: string; call: any }[] = [];
   mapping.forEach((streams, recipient) => {
@@ -179,7 +177,7 @@ async function getRecipientStreamedAmounts(
     provider,
     Object.values(abi),
     requests.map((item) => item.call),
-    { blockTag: block }
+    { blockTag }
   );
 
   /** Aggregate results from streams with the same recipient into individual streamed amounts */
@@ -208,12 +206,12 @@ async function getRecipientStreamedAmounts(
 async function getRecipientWithdrawableAmounts(
   mapping: IAccountMap,
   setup: {
-    block: number;
+    blockTag: number | 'latest';
     network: string;
     provider: StaticJsonRpcProvider;
   }
 ) {
-  const { block, network, provider } = setup;
+  const { blockTag, network, provider } = setup;
 
   const requests: { recipient: string; call: any }[] = [];
   mapping.forEach((streams, recipient) => {
@@ -229,7 +227,7 @@ async function getRecipientWithdrawableAmounts(
     provider,
     Object.values(abi),
     requests.map((item) => item.call),
-    { blockTag: block }
+    { blockTag }
   );
 
   /** Aggregate results from streams with the same recipient into individual withdrawable amounts */
@@ -309,12 +307,12 @@ async function getSenderDepositedAmounts(mapping: IAccountMap) {
 async function getRecipientUnstreamedAmounts(
   mapping: IAccountMap,
   setup: {
-    block: number;
+    blockTag: number | 'latest';
     network: string;
     provider: StaticJsonRpcProvider;
   }
 ) {
-  const { block, network, provider } = setup;
+  const { blockTag, network, provider } = setup;
 
   const requests: { recipient: string; deposited: string; call: any }[] = [];
   mapping.forEach((streams, recipient) => {
@@ -333,7 +331,7 @@ async function getRecipientUnstreamedAmounts(
     provider,
     Object.values(abi),
     requests.map((item) => item.call),
-    { blockTag: block }
+    { blockTag }
   );
 
   /** Aggregate results from streams with the same recipient into individual unstreamed amounts */
@@ -369,7 +367,7 @@ async function getRecipientUnstreamedAmounts(
 async function getRecipientReservedAmounts(
   mapping: IAccountMap,
   setup: {
-    block: number;
+    blockTag: number | 'latest';
     network: string;
     provider: StaticJsonRpcProvider;
   }
