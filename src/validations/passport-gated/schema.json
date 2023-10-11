@@ -9,8 +9,9 @@
         "stamps": {
           "type": "array",
           "title": "Stamps",
+          "description": "List of Eligible Passport Stamps (Optional).",
           "uniqueItems": true,
-          "minItems": 1,
+          "minItems": 0,
           "maxItems": 27,
           "items": {
             "type": "string",
@@ -129,7 +130,7 @@
         "operator": {
           "type": "string",
           "title": "Approval operator",
-          "description": "Control how many or which stamps are required to vote.",
+          "description": "Control how many stamps are required to become eligible.",
           "anyOf": [
             {
               "const": "AND",
@@ -138,19 +139,23 @@
             {
               "const": "OR",
               "title": "Require at least one stamp"
+            },
+            {
+              "const": "",
+              "title": "Any (Stamps MUST be empty)"
             }
           ]
         },
         "scoreThreshold": {
           "type": "number",
           "title": "Passport Score Threshold",
-          "description": "Minimum Passport score threshold (>) to be eligible as a valid Passport",
+          "description": "Minimum Passport score threshold (>=) to be eligible as a valid Passport",
           "minimum": 0,
           "maximum": 100,
           "default": 0
         }
       },
-      "required": ["stamps", "operator"],
+      "required": ["scoreThreshold"],
       "additionalProperties": false
     }
   }

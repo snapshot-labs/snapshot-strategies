@@ -167,8 +167,10 @@ export default class extends Validation {
   async validate(currentAddress = this.author): Promise<boolean> {
     const requiredStamps = this.params.stamps || [];
     const operator = this.params.operator;
-    const scoreThreshold = this.params.scoreThreshold || 0;
-    if (!operator) throw new Error('Operator is required');
+    const scoreThreshold = this.params.scoreThreshold;
+
+    if (scoreThreshold === undefined) throw new Error('Score threshold is required');
+    if (requiredStamps.length > 0 && !operator) throw new Error('Operator is required');
 
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
