@@ -103,6 +103,11 @@ export async function strategy(
   // Get voting power of liquid locker
   const sdTokenGaugeTotalSupply = response[response.length - 1].shift()[0]; // Last response, latest block
 
+  const votingPowerLiquidLocker = response[response.length - 1].pop()[0];
+  const poolsBalances = options.pools.map(() => response[response.length - 1].pop());
+  const sumPoolsBalance = poolsBalances.reduce((acc, balance) => acc.add(balance[0]), BigNumber.from(0));
+  const total = sumPoolsBalance.mul(4).div(10).mul(votingPowerLiquidLocker).div(sdTokenGaugeTotalSupply);
+
   return Object.fromEntries(
     Array(addresses.length)
       .fill('x')
@@ -116,12 +121,6 @@ export async function strategy(
         }
 
         if (addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
-          const poolsBalances = options.pools.map(() => response[response.length - 1].shift());
-          const sumPoolsBalance = poolsBalances.reduce((acc, balance) => acc.add(balance[0]), BigNumber.from(0));
-
-          const votingPowerLiquidLocker = response[response.length - 1].shift()[0];
-
-          const total = sumPoolsBalance.mul(4).div(10).mul(votingPowerLiquidLocker).div(sdTokenGaugeTotalSupply);
           return [addresses[i], Number(parseFloat(formatUnits(total, options.decimals)))];
         } else {
           // Get average working balance.
@@ -140,7 +139,7 @@ export async function strategy(
             workingSupply != 0
               ? averageWorkingBalanceF * sdTokenGaugeTotalSupplyF / workingSupplyF
               : 0;
-
+          
           // Return address and voting power
           return [addresses[i], Number(votingPower)];
         }
