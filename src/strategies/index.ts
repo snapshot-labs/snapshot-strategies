@@ -468,6 +468,7 @@ import * as moonbase from './moonbase';
 import * as dssVestUnpaid from './dss-vest-unpaid';
 import * as dssVestBalanceAndUnpaid from './dss-vest-balance-and-unpaid';
 import * as eoaBalanceAndStakingPools from './eoa-balance-and-staking-pools';
+import * as stationScoreIfBadge from './station-score-if-badge';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -944,7 +945,8 @@ const strategies = {
   moonbase: moonbase,
   'dss-vest-unpaid': dssVestUnpaid,
   'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid,
-  'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools
+  'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools,
+  'station-score-if-badge': stationScoreIfBadge
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
