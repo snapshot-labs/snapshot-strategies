@@ -30,14 +30,14 @@ export async function strategy(
   if (options.whiteListedAddress.length > 20) {
     throw new Error('maximum of 20 whitelisted address');
   }
-
+  
   // Maximum of 500 pools address
   if (options.pools.length > 500) {
     throw new Error('maximum of 500 pools');
   }
 
   const calls: any[] = [];
-  for (const pool of options.pools) {
+  for(const pool of options.pools) {
     calls.push([options.sdToken, 'balanceOf', [pool]]);
   }
   calls.push([options.veToken, 'balanceOf', [options.liquidLocker]]);
@@ -51,7 +51,7 @@ export async function strategy(
   } else {
     blockTag = await provider.getBlockNumber();
   }
-
+  
   // Create block list
   const blockList = getPreviousBlocks(
     blockTag,
@@ -81,12 +81,19 @@ export async function strategy(
       loopCalls.push([options.sdTokenGauge, 'totalSupply']);
       loopCalls.push(...workingBalanceQuery);
       loopCalls.push(...calls);
+
     } else {
       loopCalls.push(...workingBalanceQuery);
     }
 
     response.push(
-      await multicall(network, provider, abi, loopCalls, { blockTag })
+      await multicall(
+        network,
+        provider,
+        abi,
+        loopCalls,
+        { blockTag }
+      )
     );
   }
 
@@ -95,6 +102,11 @@ export async function strategy(
 
   // Get voting power of liquid locker
   const sdTokenGaugeTotalSupply = response[response.length - 1].shift()[0]; // Last response, latest block
+
+  const votingPowerLiquidLocker = response[response.length - 1].pop()[0];
+  const poolsBalances = options.pools.map(() => response[response.length - 1].pop());
+  const sumPoolsBalance = poolsBalances.reduce((acc, balance) => acc.add(balance[0]), BigNumber.from(0));
+  const total = sumPoolsBalance.mul(4).div(10).mul(votingPowerLiquidLocker).div(sdTokenGaugeTotalSupply);
 
   return Object.fromEntries(
     Array(addresses.length)
@@ -109,26 +121,7 @@ export async function strategy(
         }
 
         if (addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
-          const poolsBalances = options.pools.map(() =>
-            response[response.length - 1].shift()
-          );
-          const sumPoolsBalance = poolsBalances.reduce(
-            (acc, balance) => acc.add(balance[0]),
-            BigNumber.from(0)
-          );
-
-          const votingPowerLiquidLocker =
-            response[response.length - 1].shift()[0];
-
-          const total = sumPoolsBalance
-            .mul(4)
-            .div(10)
-            .mul(votingPowerLiquidLocker)
-            .div(sdTokenGaugeTotalSupply);
-          return [
-            addresses[i],
-            Number(parseFloat(formatUnits(total, options.decimals)))
-          ];
+          return [addresses[i], Number(parseFloat(formatUnits(total, options.decimals)))];
         } else {
           // Get average working balance.
           const averageWorkingBalance = average(
@@ -137,24 +130,20 @@ export async function strategy(
             options.whiteListedAddress
           );
 
-          const averageWorkingBalanceF = parseFloat(
-            formatUnits(averageWorkingBalance, 18)
-          );
-          const sdTokenGaugeTotalSupplyF = parseFloat(
-            formatUnits(sdTokenGaugeTotalSupply, 18)
-          );
+          const averageWorkingBalanceF = parseFloat(formatUnits(averageWorkingBalance, 18));
+          const sdTokenGaugeTotalSupplyF = parseFloat(formatUnits(sdTokenGaugeTotalSupply, 18));
           const workingSupplyF = parseFloat(formatUnits(workingSupply, 18));
 
           // Calculate voting power.
           const votingPower =
             workingSupply != 0
-              ? (averageWorkingBalanceF * sdTokenGaugeTotalSupplyF) /
-                workingSupplyF
+              ? averageWorkingBalanceF * sdTokenGaugeTotalSupplyF / workingSupplyF
               : 0;
-
+          
           // Return address and voting power
           return [addresses[i], Number(votingPower)];
         }
+
       })
   );
 }
