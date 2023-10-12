@@ -4,7 +4,7 @@ import { Contract } from '@ethersproject/contracts';
 import { Multicaller } from '../../utils';
 
 export const author = 'espendk';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 // To avoid future memory issues, we limit the number of vestings supported by the strategy
 const MAX_VESTINGS = 500;
@@ -27,7 +27,7 @@ export async function strategy(
 
   // Get the number of vestings
   const dssVestContract = new Contract(options.address, abi, provider);
-  const idCount = await dssVestContract.ids();
+  const idCount = await dssVestContract.ids({ blockTag });
   if (idCount > MAX_VESTINGS) {
     throw new Error(
       `Max number (${MAX_VESTINGS}) of vestings exceeded: ${idCount}`
