@@ -469,6 +469,7 @@ import * as dssVestUnpaid from './dss-vest-unpaid';
 import * as dssVestBalanceAndUnpaid from './dss-vest-balance-and-unpaid';
 import * as eoaBalanceAndStakingPools from './eoa-balance-and-staking-pools';
 import * as stationScoreIfBadge from './station-score-if-badge';
+import * as stationConstantIfBadge from './station-constant-if-badge';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -946,7 +947,8 @@ const strategies = {
   'dss-vest-unpaid': dssVestUnpaid,
   'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid,
   'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools,
-  'station-score-if-badge': stationScoreIfBadge
+  'station-score-if-badge': stationScoreIfBadge,
+  'station-constant-if-badge': stationConstantIfBadge
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
