@@ -20,7 +20,9 @@
     "prepublishOnly": "npm run build",
     "postinstall": "npm run build",
     "postbuild": "copyfiles -u 1 \"src/**/*.md\" dist/ && copyfiles -u 1 \"src/**/*.json\" dist/",
-    "lint": "eslint src/ test/ --ext .ts,.json --fix"
+    "typecheck": "tsc --noEmit",
+    "lint": "eslint src/ test/ --ext .ts,.json",
+    "lint:fix": "yarn lint --fix"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.6.4",
