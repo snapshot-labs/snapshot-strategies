@@ -470,6 +470,7 @@ import * as dssVestBalanceAndUnpaid from './dss-vest-balance-and-unpaid';
 import * as eoaBalanceAndStakingPools from './eoa-balance-and-staking-pools';
 import * as stationScoreIfBadge from './station-score-if-badge';
 import * as stationConstantIfBadge from './station-constant-if-badge';
+import * as mangroveStationQVScaledToMGV from './mangrove-station-qv-scaled-to-mgv';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -948,7 +949,8 @@ const strategies = {
   'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid,
   'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools,
   'station-score-if-badge': stationScoreIfBadge,
-  'station-constant-if-badge': stationConstantIfBadge
+  'station-constant-if-badge': stationConstantIfBadge,
+  'mangrove-station-qv-scaled-to-mgv': mangroveStationQVScaledToMGV
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
