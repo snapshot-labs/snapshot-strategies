@@ -1,6 +1,6 @@
 # sd-vote-boost-twavp-v2
 
-This strategy is used by Stake DAO to vote with sdToken using Time Weigthed Averaged Voting Power (TWAVP) system and adapted for veSDT boost delegation with possibility to whiteliste address to by pass TWAVP.
+This strategy is used by Stake DAO to vote with sdToken using Time Weighted Averaged Voting Power (TWAVP) system and adapted for veSDT boost delegation with possibility to whiteliste address to by pass TWAVP.
 
 ```
 VotingPower(user) = veToken.balanceOf(liquidLocker) * (average.sdTokenGauge.working_balances(user) / sdTokenGauge.working_supply)
