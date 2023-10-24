@@ -1,6 +1,6 @@
 # sd-boost-twavp
 
-This strategy is used by StakeDAO to vote with sdToken with Time Weigthed Averaged Voting Power system and veSDT voting boost.
+This strategy is used by StakeDAO to vote with sdToken with Time Weighted Averaged Voting Power system and veSDT voting boost.
 _sampleSize is in days_
 _sampleStep is the number of block for TWAVP_
 _avgBlockTime is in seconds_

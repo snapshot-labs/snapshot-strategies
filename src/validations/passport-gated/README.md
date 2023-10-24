@@ -30,7 +30,7 @@ Strategy schema & parameters are defined under [schema.json](./schema.json). In 
 
 ## Code Explanation
 
-The main function (validate()) first fetches the following paramaters:
+The main function (validate()) first fetches the following parameters:
 
 * `stamps` (required): a list of Stamps that a passport should own.
 * `operator` (required): (and/or) whether a Passport should own all or at least one of the required stamps.
@@ -38,8 +38,8 @@ The main function (validate()) first fetches the following paramaters:
 
 Then, it calls the following validation methods:
 
-* `validateStamps`: it uses the API to fetch the current user's Passport stamps and verifies that each has valid issuance and isn't expired. Then, depending on the `operator`, it will iterate through the requred `stamps` and check that the user holds at least one verifiable credential that makes the passport eligible for that stamp. Finally, a Passport will be set as valid if it meets the criteria.
-* `validatePassportScore`: if `scoreThreshold` is set to zero this function will be ommited. Otherwise when called, it uses the Scorer API to submit the passport for scoring and get the latest score. If the API response returns a payload with `status === 'DONE'` it will return the result of evaluating the scoring threshold criteria, otherwise the implementation will make periodic requests (up to `PASSPORT_SCORER_MAX_ATTEMPTS`) to the Scorer API until getting a `DONE` status.
+* `validateStamps`: it uses the API to fetch the current user's Passport stamps and verifies that each has valid issuance and isn't expired. Then, depending on the `operator`, it will iterate through the required `stamps` and check that the user holds at least one verifiable credential that makes the passport eligible for that stamp. Finally, a Passport will be set as valid if it meets the criteria.
+* `validatePassportScore`: if `scoreThreshold` is set to zero this function will be omitted. Otherwise when called, it uses the Scorer API to submit the passport for scoring and get the latest score. If the API response returns a payload with `status === 'DONE'` it will return the result of evaluating the scoring threshold criteria, otherwise the implementation will make periodic requests (up to `PASSPORT_SCORER_MAX_ATTEMPTS`) to the Scorer API until getting a `DONE` status.
 
 Finally, it checks the results of both eval functions and returns a boolean value indicating whether the user has a valid Passport.
 
