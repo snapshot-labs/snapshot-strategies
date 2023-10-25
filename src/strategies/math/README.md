@@ -18,6 +18,7 @@ Currently supported operations are:
 | `a-if-gt-b`   | 3             | (x, a, b) = x > b ? a : x                  |
 | `a-if-gte-b`  | 3             | (x, a, b) = x >= b ? a : x                 |
 | `minus`       | 2             | x - a                                      |
+| `divide`      | 2             | x / a                                      |
 
 ## Examples
 

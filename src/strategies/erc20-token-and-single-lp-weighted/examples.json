@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-token-and-single-lp-weighted",
+      "params": {
+        "tokenAddress": "0x06791B2117ed179dB6af1fdc8B2aA86dE76700A6",
+        "symbol": "WSLS",
+        "lpTokenAddress": "0x370165b24D97BAc5c07246976b80568985C0048B"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x0504c6e9563d8756cb823fcbbf342301ddbc8066",
+      "0xFe0B729221f846b46B6be642425Db8326A4761FB",
+      "0x5e990768b0ece79f0516663a23207d4a7fd6e8f9",
+      "0xee7f963391afb7d1f1ec872dbe2f80ea025d0add",
+      "0x869191325254a82fBc858aB3cad9Bf91703Da353",
+      "0x011f57BD13D1cbeC630dF313B66F0339AeFE627e",
+      "0x2B0f0ef985b16f2C06961e409637aa7C579395eD",
+      "0x0AC6F108002496Ab9Ca11DCDf36c207704F29Bfa"
+    ],
+    "snapshot": 32339616
+  }
+]

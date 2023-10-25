@@ -1,0 +1,37 @@
+# Moonbase
+
+This is the strategy, it returns the balances of the voters for MBG token balances
+in Moonbase project(pools, farms, vaults, token).
+
+Here is an example of parameters:
+
+```json
+[
+  {
+    "name": "Example query Moonbase",
+    "strategy": {
+      "name": "moonbase",
+      "params": {
+        "address": "0xc97c478Fc35d75b51549C39974053a679A5C67E1",
+        "masterChef": "0x830304d6C669d33738c7E4c1F2310CC1E530Df63",
+        "moonbaseLPs": [
+          {
+            "address": "0x230C64C42886A1F6b91eD8C11B59a2D45865d38F",
+            "pid": 7
+          }
+        ],
+        "symbol": "MBG",
+        "decimals": 18
+      }
+    },
+    "network": "84531",
+    "addresses": [
+      "0xe32C26Be24232ba92cd89d116985F81f94Dd26a8",
+      "0x7DC90A11489C384dc72234120B0f84C3932d94Ce",
+      "0xf704872349a62ceBb40F841B635de268b2F7B9Fb"
+    ],
+    "snapshot": 9182354
+  }
+]
+```
+Note: A maximum of 1,000,000,000 moonbaseLPs are allowed in the strategy to avoid memory issues.

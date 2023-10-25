@@ -1,0 +1,21 @@
+[
+  {
+    "name": "One Person One Vote (only for ERC721 Holders or Delegates) ",
+    "strategy": {
+      "name": "nation3-passport-coop-with-delegations",
+      "params": {
+        "erc721": "0x3337dac9f251d4e403d6030e18e3cfb6a2cb1333"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xEdd000B7Db3cb8931d4E0cb1D0DBe6B947Ceb09A",
+      "0x47d80912400ef8f8224531EBEB1ce8f2ACf4b75a",
+      "0x636d65212C815b93B8E5b069f7082169cec851b7",
+      "0x460AF11e497dc273fC163414943C6fd95d17B1fd",
+      "0xfafda3727fe0406e50230bf6092be5ded68cd9e9",
+      "0x79438224Bc21b0E6B45ECF9F8caADfBdB874DedD"
+    ],
+    "snapshot": 17683972
+  }
+]

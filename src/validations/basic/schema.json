@@ -9,7 +9,7 @@
         "minScore": {
           "title": "Minimum score",
           "type": "number",
-          "minimum": 1
+          "exclusiveMinimum": 0
         },
         "strategies": {
           "title": "Strategies",

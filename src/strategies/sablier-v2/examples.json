@@ -1,0 +1,116 @@
+[
+  {
+    "name": "Example query with policy: withdrawable-recipient (recommended)",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "withdrawable-recipient"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+    ],
+    "snapshot": 9455671
+  },
+  {
+    "name": "Example query with policy: deposited-recipient",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "deposited-recipient"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+    ],
+    "snapshot": 9455671
+  },
+  {
+    "name": "Example query with policy: deposited-sender",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "deposited-sender"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+    ],
+    "snapshot": 9455671
+  },
+  {
+    "name": "Example query with policy: streamed-recipient",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "streamed-recipient"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+    ],
+    "snapshot": 9455671
+  },
+  {
+    "name": "Example query with policy: unstreamed-recipient",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "unstreamed-recipient"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+    ],
+    "snapshot": 9455671
+  },
+  {
+    "name": "Example query with policy: reserved-recipient",
+    "strategy": {
+      "name": "sablier-v2",
+      "params": {
+        "address": "0x97cb342cf2f6ecf48c1285fb8668f5a4237bf862",
+        "decimals": 18,
+        "symbol": "DAI",
+        "policy": "reserved-recipient"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x9ad7cad4f10d0c3f875b8a2fd292590490c9f491",
+      "0xd8dA6BF26964aF9D7eEd9e03E53415D37aA96045",
+      "0x506C56B2541eFeCf7A510E9A0c0382cB2FC69051"
+    ],
+    "snapshot": 9455671
+  }
+]

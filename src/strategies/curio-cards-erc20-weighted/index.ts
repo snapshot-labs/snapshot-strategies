@@ -153,12 +153,12 @@ export async function strategy(
 
       cardBalances.forEach((cb) => {
         const cbWeighted = applyWeightForCard(cb.context, cb.rv);
-        console.debug(
-          'Weighting for card ' +
-            cb.context +
-            ':\n' +
-            JSON.stringify(cbWeighted, null, 2)
-        );
+        // console.debug(
+        //   'Weighting for card ' +
+        //     cb.context +
+        //     ':\n' +
+        //     JSON.stringify(cbWeighted, null, 2)
+        // );
         cardBalancesWeighted.push(cbWeighted);
       });
 
