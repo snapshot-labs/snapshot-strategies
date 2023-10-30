@@ -471,6 +471,7 @@ import * as eoaBalanceAndStakingPools from './eoa-balance-and-staking-pools';
 import * as stationScoreIfBadge from './station-score-if-badge';
 import * as stationConstantIfBadge from './station-constant-if-badge';
 import * as mangroveStationQVScaledToMGV from './mangrove-station-qv-scaled-to-mgv';
+import * as floki from './floki';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -950,7 +951,8 @@ const strategies = {
   'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools,
   'station-score-if-badge': stationScoreIfBadge,
   'station-constant-if-badge': stationConstantIfBadge,
-  'mangrove-station-qv-scaled-to-mgv': mangroveStationQVScaledToMGV
+  'mangrove-station-qv-scaled-to-mgv': mangroveStationQVScaledToMGV,
+  floki
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
