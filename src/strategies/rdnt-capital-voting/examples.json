@@ -36,5 +36,25 @@
       "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84"
     ],
     "snapshot": 26920121
+  },
+  {
+    "name": "RDNT in dLP - Mainnet",
+    "strategy": {
+      "name": "rdnt-capital-voting",
+      "params": {
+        "rdnt": "0x137dDB47Ee24EaA998a535Ab00378d6BFa84F893",
+        "lpToken": "0xcF7b51ce5755513d4bE016b0e28D6EDEffa1d52a",
+        "lockingContract": "0x28E395a54a64284DBA39652921Cd99924f4e3797",
+        "balancerPoolId": "0xcf7b51ce5755513d4be016b0e28d6edeffa1d52a000200000000000000000617",
+        "balancerVault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84",
+      "0x8EDdC30B12A5Cc60d046fc1B1b887eb2c1353a87",
+      "0x4011091Dbe57bd4521F598616fe4BB3978ea3005"
+    ],
+    "snapshot": 18483999
   }
 ]
