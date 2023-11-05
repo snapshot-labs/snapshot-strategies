@@ -42,7 +42,12 @@
           "examples": ["e.g. 9"]
         }
       },
-      "required": ["tokenAddress", "stakingPoolAddress", "stakingPoolMultiplierAddress", "decimals"],
+      "required": [
+        "tokenAddress",
+        "stakingPoolAddress",
+        "stakingPoolMultiplierAddress",
+        "decimals"
+      ],
       "additionalProperties": false
     }
   }
