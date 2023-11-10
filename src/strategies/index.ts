@@ -472,8 +472,8 @@ import * as stationScoreIfBadge from './station-score-if-badge';
 import * as stationConstantIfBadge from './station-constant-if-badge';
 import * as mangroveStationQVScaledToMGV from './mangrove-station-qv-scaled-to-mgv';
 import * as floki from './floki';
-import * as hatsProtocolHatId from "./hats-protocol-hat-id";
-import * as hatsProtocolHatIds from "./hats-protocol-hat-ids";
+import * as hatsProtocolHatId from './hats-protocol-hat-id';
+import * as hatsProtocolHatIds from './hats-protocol-hat-ids';
 
 const strategies = {
   'cap-voting-power': capVotingPower,

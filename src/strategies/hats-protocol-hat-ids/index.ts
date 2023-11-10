@@ -11,8 +11,7 @@ const abi = [
 ];
 
 async function subgraphRequestHats({ url, snapshot, treeIp }) {
-
-  let treeHex = treeIdDecimalToHex(treeIp);
+  const treeHex = treeIdDecimalToHex(treeIp);
 
   const params = {
     tree: {
@@ -49,33 +48,32 @@ export async function strategy(
 
   //This strategy currently enforces that all hatIds passed in are from the same tree.
   for (let i = 0; i < options.hatIds.length; i++) {
-    let lhs = treeIpFromIp(options.hatIds[i]);
+    const lhs = treeIpFromIp(options.hatIds[i]);
 
     for (let j = 0; j < options.hatIds.length; j++) {
-      let rhs = treeIpFromIp(options.hatIds[j]);
+      const rhs = treeIpFromIp(options.hatIds[j]);
       if (lhs !== rhs) {
-        throw Error("You can only use hats from the same tree!");
+        throw Error('You can only use hats from the same tree!');
       }
     }
   }
 
   //all hatIds are assumed to be from the same tree, set selectedTree to any, and continue.
-  let selectedTree = treeIpFromIp(options.hatIds[0]);
+  const selectedTree = treeIpFromIp(options.hatIds[0]);
 
   const request = {
     url: getActiveNetworkSubgraphURL(network),
     snapshot,
     treeIp: selectedTree
-  }
+  };
 
   const result = await subgraphRequestHats(request);
 
-  let validHats: any[] = [];
+  const validHats: any[] = [];
 
   for (let j = 0; j < options.hatIds.length; j++) {
     for (let i = 0; i < result.tree.hats.length; i++) {
-
-      let hatIpHex = HatIpToHex(options.hatIds[j]);
+      const hatIpHex = HatIpToHex(options.hatIds[j]);
 
       if (hatIpHex === result.tree.hats[i].id) {
         validHats.push(result.tree.hats[i]);
@@ -118,27 +116,32 @@ export async function strategy(
 }
 
 function getActiveNetworkSubgraphURL(network) {
-
   let url;
 
   switch (network) {
     case '1':
-      url = 'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-ethereum';
+      url =
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-ethereum';
       break;
     case '10':
-      url = 'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism';
+      url =
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism';
       break;
     case '5':
-      url = 'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-goerli';
+      url =
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-goerli';
       break;
     case '137':
-      url = 'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-polygon';
+      url =
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-polygon';
       break;
     case '100':
-      url = 'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-gnosis-chain';
+      url =
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-gnosis-chain';
       break;
     case '42161':
-      url = 'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-arbitrum';
+      url =
+        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-arbitrum';
       break;
   }
 
@@ -162,51 +165,51 @@ function checkIfExists(address, hats) {
 }
 
 function treeIdDecimalToHex(treeId: number): string {
-  return "0x" + treeId.toString(16).padStart(8, "0");
+  return '0x' + treeId.toString(16).padStart(8, '0');
 }
 
 function HatIpToHex(hatIp) {
   let observedChunk = hatIp;
 
-  const sections: Number[] = [];
+  const sections: number[] = [];
 
   while (true) {
-    if (observedChunk.indexOf(".") === -1) {
-      let section = observedChunk.substring(0, observedChunk.length);
+    if (observedChunk.indexOf('.') === -1) {
+      const section = observedChunk.substring(0, observedChunk.length);
       sections.push(Number(section));
       break;
     }
 
-    let section = observedChunk.substring(0, observedChunk.indexOf("."));
-    observedChunk = observedChunk.substring(observedChunk.indexOf(".") + 1, observedChunk.length);
+    const section = observedChunk.substring(0, observedChunk.indexOf('.'));
+    observedChunk = observedChunk.substring(
+      observedChunk.indexOf('.') + 1,
+      observedChunk.length
+    );
 
     sections.push(Number(section));
   }
 
-  let constructedResult = "0x";
+  let constructedResult = '0x';
 
   for (let i = 0; i < sections.length; i++) {
-    let hex = sections[i].toString(16);
+    const hex = sections[i].toString(16);
 
     if (i === 0) {
-      constructedResult += hex.padStart(10 - hex.length, "0");
+      constructedResult += hex.padStart(10 - hex.length, '0');
     } else {
-      constructedResult += hex.padStart(5 - hex.length, "0");
+      constructedResult += hex.padStart(5 - hex.length, '0');
     }
-
   }
 
-  constructedResult = constructedResult.padEnd(66, "0");
+  constructedResult = constructedResult.padEnd(66, '0');
   return constructedResult;
 }
 
 function treeIpFromIp(hatIp) {
   let treeIp;
 
-  if (hatIp.indexOf(".") === -1)
-    treeIp = hatIp;
-  else
-    treeIp = hatIp.substring(0, hatIp.indexOf("."));
+  if (hatIp.indexOf('.') === -1) treeIp = hatIp;
+  else treeIp = hatIp.substring(0, hatIp.indexOf('.'));
 
   return Number(treeIp);
 }

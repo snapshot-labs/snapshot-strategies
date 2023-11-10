@@ -5,8 +5,7 @@ export const author = 'hotmanics';
 export const version = '1.0.0';
 
 async function subgraphRequestHats(url, snapshot, hatIp) {
-
-  let hatHex = HatIpToHex(hatIp);
+  const hatHex = HatIpToHex(hatIp);
 
   const params = {
     hat: {
@@ -16,9 +15,9 @@ async function subgraphRequestHats(url, snapshot, hatIp) {
       id: true,
       wearers: {
         id: true
-      },
+      }
     }
-  }
+  };
 
   if (snapshot !== 'latest') {
     // @ts-ignore
@@ -94,7 +93,7 @@ export async function strategy(
         break;
       }
     }
-  })
+  });
 
   return myObj;
 }
@@ -102,34 +101,36 @@ export async function strategy(
 function HatIpToHex(hatIp) {
   let observedChunk = hatIp;
 
-  const sections: Number[] = [];
+  const sections: number[] = [];
 
   while (true) {
-    if (observedChunk.indexOf(".") === -1) {
-      let section = observedChunk.substring(0, observedChunk.length);
+    if (observedChunk.indexOf('.') === -1) {
+      const section = observedChunk.substring(0, observedChunk.length);
       sections.push(Number(section));
       break;
     }
 
-    let section = observedChunk.substring(0, observedChunk.indexOf("."));
-    observedChunk = observedChunk.substring(observedChunk.indexOf(".") + 1, observedChunk.length);
+    const section = observedChunk.substring(0, observedChunk.indexOf('.'));
+    observedChunk = observedChunk.substring(
+      observedChunk.indexOf('.') + 1,
+      observedChunk.length
+    );
 
     sections.push(Number(section));
   }
 
-  let constructedResult = "0x";
+  let constructedResult = '0x';
 
   for (let i = 0; i < sections.length; i++) {
-    let hex = sections[i].toString(16);
+    const hex = sections[i].toString(16);
 
     if (i === 0) {
-      constructedResult += hex.padStart(10 - hex.length, "0");
+      constructedResult += hex.padStart(10 - hex.length, '0');
     } else {
-      constructedResult += hex.padStart(5 - hex.length, "0");
+      constructedResult += hex.padStart(5 - hex.length, '0');
     }
-
   }
 
-  constructedResult = constructedResult.padEnd(66, "0");
+  constructedResult = constructedResult.padEnd(66, '0');
   return constructedResult;
 }
