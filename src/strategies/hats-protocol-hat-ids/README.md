@@ -1,4 +1,4 @@
-# hats-protocol-hat-id
+# hats-protocol-hat-ids
 
 Grants voting power based on if voter has a set of specified hat (IP based).
 
