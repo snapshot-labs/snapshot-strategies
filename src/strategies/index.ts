@@ -473,6 +473,7 @@ import * as stationConstantIfBadge from './station-constant-if-badge';
 import * as mangroveStationQVScaledToMGV from './mangrove-station-qv-scaled-to-mgv';
 import * as floki from './floki';
 import * as hatsProtocolHatId from "./hats-protocol-hat-id";
+import * as hatsProtocolHatIds from "./hats-protocol-hat-ids";
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -954,8 +955,8 @@ const strategies = {
   'station-constant-if-badge': stationConstantIfBadge,
   'mangrove-station-qv-scaled-to-mgv': mangroveStationQVScaledToMGV,
   floki,
-  'hats-protocol-hat-id': hatsProtocolHatId
-
+  'hats-protocol-hat-id': hatsProtocolHatId,
+  'hats-protocol-hat-ids': hatsProtocolHatIds
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
