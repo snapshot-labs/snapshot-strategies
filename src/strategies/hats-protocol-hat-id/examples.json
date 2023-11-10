@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "hats-protocol-hat-id",
+      "params": {
+        "address": "0x3bc1A0Ad72417f2d411118085256fC53CBdDd137",
+        "hatId": "68.1.1.1"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0xc4f6578c24c599F195c0758aD3D4861758d703A3",
+      "0xa6aF0566EF4eF7E8f38913f69d4e55c06F00A5aC",
+      "0x00e7332F9Cd4C05a0645AC959Fb1Be60ec24F94f",
+      "0xf39Fd6e51aad88F6F4ce6aB8827279cffFb92266",
+      "0x4D6Ed22Ed0850384622EF129932aE29D27a89eD3"
+    ],
+    "snapshot": 10015682
+  }
+]
