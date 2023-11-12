@@ -4,6 +4,7 @@ import type { StaticJsonRpcProvider } from '@ethersproject/providers';
 
 import { deployments, policies } from './configuration';
 import {
+  getLatestBlock,
   getRecipientDepositedAmounts,
   getRecipientReservedAmounts,
   getRecipientStreams,
@@ -48,8 +49,7 @@ export async function strategy(
   options: IOptions,
   snapshot: number
 ): Promise<Record<string, number>> {
-  const snap = typeof snapshot === 'number' ? snapshot : undefined;
-  const block = snap || (await provider.getBlockNumber()) - 1;
+  const block = await getLatestBlock(network, provider, snapshot);
   const setup = { block, network, provider };
 
   await validate(network, addresses, options);

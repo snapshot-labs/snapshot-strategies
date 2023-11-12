@@ -18,6 +18,13 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2.3.4
+
+    - name: Create env file
+      run: |
+        touch .env
+        echo PASSPORT_API_KEY=${{ secrets.PASSPORT_API_KEY }}  >> .env
+        echo PASSPORT_SCORER_ID=${{ secrets.PASSPORT_SCORER_ID }}  >> .env
+
     - name: yarn install and test validation
       run: |
         yarn install --frozen-lockfile

@@ -1,0 +1,45 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "delegate-registry-v2",
+      "params": {
+        "backendUrl": "https://delegate-registry-backend.vercel.app",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "gno",
+            "params": {
+              "symbol": "GNO",
+              "decimals": 18,
+              "SUBGRAPH_URL": "https://api.thegraph.com/subgraphs/id/QmduKVUHCPjR5tmNEgooXHBMGKqDJWrUPdp6dEMeJM6Kqa"
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x000e37ed92d86a7667f520c53b73b01ff5c206eb",
+      "0x000dbf2733da51135c1b21c8ef71a3d474383f0d",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad"
+    ],
+    "snapshot": 17463998
+  }
+]

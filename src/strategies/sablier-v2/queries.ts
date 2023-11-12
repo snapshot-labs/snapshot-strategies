@@ -9,6 +9,7 @@ import type {
 
 import { abi, deployments, queries, page } from './configuration';
 import { multicall, subgraphRequest } from '../../utils';
+import fetch from 'cross-fetch';
 
 /**
  * Query the subgraph for all the streams owned by all recipients.
@@ -438,7 +439,49 @@ async function getRecipientReservedAmounts(
   return { amounts };
 }
 
+async function getLatestBlock(
+  network: string,
+  provider: StaticJsonRpcProvider,
+  snapshot: number | 'latest'
+): Promise<number> {
+  try {
+    /** For clear numeric snapshots, assume the user picked the number on purpose */
+    if (typeof snapshot === 'number') {
+      return snapshot;
+    }
+
+    if (snapshot === 'latest') {
+      const endpoint = deployments[network].subgraph;
+      const name = endpoint.split('/subgraphs/name/')[1];
+      const url = new URL('https://api.thegraph.com/index-node/graphql');
+
+      const query = `{indexingStatusForCurrentVersion(subgraphName: \"${name}\"){ chains { latestBlock { number }}}}`;
+
+      const response = await fetch(url, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ query }),
+        credentials: 'omit'
+      });
+
+      const { data } = await response.json();
+      const block = data.indexingStatusForCurrentVersion.chains[0].latestBlock;
+      const result = Number(block.number);
+
+      console.log('=== SABLIER V2 ===');
+      console.log(`Fetched latest subgraph indexed block at {${result}}`);
+
+      return result;
+    }
+  } catch (error) {
+    console.error(error);
+  }
+
+  return await provider.getBlockNumber();
+}
+
 export {
+  getLatestBlock,
   getRecipientDepositedAmounts,
   getRecipientReservedAmounts,
   getRecipientStreams,
