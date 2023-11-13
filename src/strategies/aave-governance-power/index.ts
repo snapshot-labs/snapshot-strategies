@@ -27,16 +27,15 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const blockTag =
-    typeof snapshot === 'number'
-      ? snapshot
-      : await provider.getBlockNumber(snapshot);
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // Early return 0 voting power if governanceStrategy or powerType is not correctly set
   if (!options.governanceStrategy || !powerTypesToMethod[options.powerType]) {
     return Object.fromEntries(addresses.map((address) => [address, '0']));
   }
 
+  const blockNumber =
+    blockTag === 'latest' ? await provider.getBlockNumber(network) : blockTag;
   const response: BigNumber[] = await multicall(
     network,
     provider,
@@ -44,7 +43,7 @@ export async function strategy(
     addresses.map((address: any) => [
       options.governanceStrategy,
       powerTypesToMethod[options.powerType],
-      [address.toLowerCase(), blockTag]
+      [address.toLowerCase(), blockNumber]
     ]),
     { blockTag }
   );

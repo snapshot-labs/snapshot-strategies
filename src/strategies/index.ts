@@ -213,6 +213,7 @@ import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
 import * as erc20TokenAndLpWeighted from './erc20-token-and-lp-weighted';
+import * as erc20TokenAndSingleLpWeighted from './erc20-token-and-single-lp-weighted';
 import * as crucibleERC20TokenAndLpWeighted from './crucible-erc20-token-and-lp-weighted';
 import * as hasrock from './has-rock';
 import * as flexaCapacityStaking from './flexa-capacity-staking';
@@ -451,6 +452,7 @@ import * as erc721CollateralHeld from './erc721-collateral-held';
 import * as starlayVeBalanceOfLockerId from './starlay-ve-balance-of-locker-id';
 import * as winrStaking from './winr-staking';
 import * as spaceid from './spaceid';
+import * as delegateRegistryV2 from './delegate-registry-v2';
 import * as hatsProtocolSingleVotePerOrg from './hats-protocol-single-vote-per-org';
 import * as karmaDiscordRoles from './karma-discord-roles';
 import * as seedifyHoldStakingFarming from './seedify-cumulative-voting-power-hodl-staking-farming';
@@ -460,8 +462,18 @@ import * as sablierV2 from './sablier-v2';
 import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
+import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as friendTech from './friend-tech';
 import * as moonbase from './moonbase';
+import * as dssVestUnpaid from './dss-vest-unpaid';
+import * as dssVestBalanceAndUnpaid from './dss-vest-balance-and-unpaid';
+import * as eoaBalanceAndStakingPools from './eoa-balance-and-staking-pools';
+import * as stationScoreIfBadge from './station-score-if-badge';
+import * as stationConstantIfBadge from './station-constant-if-badge';
+import * as mangroveStationQVScaledToMGV from './mangrove-station-qv-scaled-to-mgv';
+import * as floki from './floki';
+import * as hatsProtocolHatId from './hats-protocol-hat-id';
+import * as hatsProtocolHatIds from './hats-protocol-hat-ids';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -687,6 +699,7 @@ const strategies = {
   meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
   'erc20-token-and-lp-weighted': erc20TokenAndLpWeighted,
+  'erc20-token-and-single-lp-weighted': erc20TokenAndSingleLpWeighted,
   'crucible-erc20-token-and-lp-weighted': crucibleERC20TokenAndLpWeighted,
   'has-rock': hasrock,
   'flexa-capacity-staking': flexaCapacityStaking,
@@ -921,6 +934,7 @@ const strategies = {
   'starlay-ve-balance-of-locker-id': starlayVeBalanceOfLockerId,
   'winr-staking': winrStaking,
   spaceid,
+  'delegate-registry-v2': delegateRegistryV2,
   'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg,
   'karma-discord-roles': karmaDiscordRoles,
   'seedify-cumulative-voting-power-hodl-staking-farming':
@@ -932,7 +946,17 @@ const strategies = {
   'erc4626-assets-of': erc4626AssetsOf,
   'friend-tech': friendTech,
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
-  moonbase: moonbase
+  'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
+  moonbase: moonbase,
+  'dss-vest-unpaid': dssVestUnpaid,
+  'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid,
+  'eoa-balance-and-staking-pools': eoaBalanceAndStakingPools,
+  'station-score-if-badge': stationScoreIfBadge,
+  'station-constant-if-badge': stationConstantIfBadge,
+  'mangrove-station-qv-scaled-to-mgv': mangroveStationQVScaledToMGV,
+  floki,
+  'hats-protocol-hat-id': hatsProtocolHatId,
+  'hats-protocol-hat-ids': hatsProtocolHatIds
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
