@@ -23,7 +23,7 @@
           "maxLength": 42
         }
       },
-      "required": ["erc20","erc721"],
+      "required": ["erc20", "erc721"],
       "additionalProperties": false
     }
   }

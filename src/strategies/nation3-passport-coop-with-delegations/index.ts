@@ -66,26 +66,30 @@ export async function strategy(
   const erc721SignersArr = Object.entries(erc721Signers);
   const erc721OwnersArr = Object.entries(erc721Owners);
 
-  const eligibleAddresses = erc721SignersArr
-    .filter(([,address]) => addresses.includes(address));
+  const eligibleAddresses = erc721SignersArr.filter(([, address]) =>
+    addresses.includes(address)
+  );
 
   //create a combined tuple
-  const eligibleSignerOwner : [string, string, string][] = eligibleAddresses.map(([id, signerAddress]) => {
-    const owner = erc721OwnersArr.find(([ownerId,]) => id === ownerId);
-    return [id, signerAddress, owner ? owner[1] : "0x0"]
-  });
+  const eligibleSignerOwner: [string, string, string][] = eligibleAddresses.map(
+    ([id, signerAddress]) => {
+      const owner = erc721OwnersArr.find(([ownerId]) => id === ownerId);
+      return [id, signerAddress, owner ? owner[1] : '0x0'];
+    }
+  );
 
-  eligibleSignerOwner.forEach(([, , owner]) => 
+  eligibleSignerOwner.forEach(([, , owner]) =>
     erc20BalanceCaller.call(owner, options.erc20, 'balanceOf', [owner])
   );
 
-  const erc20Balances: Record<string, BigNumberish> = await erc20BalanceCaller.execute();
-  
+  const erc20Balances: Record<string, BigNumberish> =
+    await erc20BalanceCaller.execute();
+
   //now we have balances, need to check for > 1.5 on all IDs that have voted
   const withPower = eligibleSignerOwner.filter(([, , owner]) => {
     const balance = erc20Balances[owner] || 0;
     return parseFloat(formatUnits(balance, DECIMALS)) > 1.5;
   });
 
-  return Object.fromEntries(withPower.map(([, signer,]) => [signer, 1]));
+  return Object.fromEntries(withPower.map(([, signer]) => [signer, 1]));
 }
