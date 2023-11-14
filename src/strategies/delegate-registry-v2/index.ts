@@ -12,6 +12,7 @@ const DEFAULT_BACKEND_URL = 'https://delegate-registry-backend.vercel.app';
 type Params = {
   backendUrl: string;
   strategies: Strategy[];
+  delegationV1VChainIds?: number[]; // add this to include v1 delegations
 };
 
 /*
@@ -42,8 +43,11 @@ export async function strategy(
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        addresses: addresses,
-        strategies: options.strategies
+        spaceParams: {
+          ...options,
+          mainChainId: Number(network)
+        },
+        addresses
       })
     }
   );
