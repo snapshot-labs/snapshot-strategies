@@ -30,7 +30,7 @@
             {
               "const": "OR",
               "title": "Require at least one stamp"
-            },
+            }
           ]
         },
         "stamps": {
