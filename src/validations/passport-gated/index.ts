@@ -169,8 +169,10 @@ export default class extends Validation {
     const operator = this.params.operator;
     const scoreThreshold = this.params.scoreThreshold;
 
-    if (scoreThreshold === undefined) throw new Error('Score threshold is required');
-    if (requiredStamps.length > 0 && !operator) throw new Error('Operator is required when selecting required stamps');
+    if (scoreThreshold === undefined)
+      throw new Error('Score threshold is required');
+    if (requiredStamps.length > 0 && (!operator || operator === 'NONE'))
+      throw new Error('Operator is required when selecting required stamps');
 
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
