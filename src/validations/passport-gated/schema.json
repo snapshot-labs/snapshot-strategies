@@ -20,6 +20,10 @@
           "description": "Control how many stamps are required to become eligible.",
           "anyOf": [
             {
+              "const": "NONE",
+              "title": "No operator"
+            },
+            {
               "const": "AND",
               "title": "Require all stamps"
             },
@@ -27,10 +31,6 @@
               "const": "OR",
               "title": "Require at least one stamp"
             },
-            {
-              "const": "ANY",
-              "title": "Any"
-            }
           ]
         },
         "stamps": {
