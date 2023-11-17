@@ -5,6 +5,8 @@ import snapshot from '../src';
 import snapshotjs from '@snapshot-labs/snapshot.js';
 import addresses from './addresses.json';
 
+jest.useFakeTimers({ advanceTimers: true });
+
 const strategyArg =
   process.env['npm_config_strategy'] ||
   (
@@ -61,6 +63,7 @@ describe.each(examples)(
 
     it('Must use a snapshot block number in the past', async () => {
       expect(typeof example.snapshot).toBe('number');
+
       const provider = snapshot.utils.getProvider(example.network);
       const blockNumber = await snapshot.utils.getBlockNumber(provider);
       expect(example.snapshot).toBeLessThanOrEqual(blockNumber);
@@ -233,6 +236,23 @@ describe.each(examples)(
         expect(
           snapshotjs.utils.validateSchema(schema, example.strategy.params)
         ).toBe(true);
+      }
+    );
+    (schema ? it : it.skip)(
+      'Check schema (if available) all arrays in all levels should contain `items` property',
+      async () => {
+        const strategyParamsSchema = schema.definitions.Strategy.properties;
+        function checkArrayItems(schema: any) {
+          Object.keys(schema).forEach((key) => {
+            if (typeof schema[key] === 'object') {
+              checkArrayItems(schema[key]);
+            } else if (schema.type === 'array') {
+              expect(schema.items).toBeTruthy();
+            }
+          });
+        }
+
+        checkArrayItems(strategyParamsSchema);
       }
     );
     (schema ? it : it.skip)(

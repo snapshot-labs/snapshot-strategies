@@ -4,21 +4,21 @@
     "strategy": {
       "name": "vesper",
       "params": {
-        "token": "0x1b40183efb4dd766f11bda7a7c3ad8982e998421",
+        "token": "0x1b40183EFB4Dd766f11bDa7A7c3AD8982e998421",
         "symbol": "VSP",
-        "votingPower": "0xEbedFD259c9FB1F5c0ab9A9f24E79F8d80E29B23",
+        "votingPower": "0xD744320abd3bD4445Dc3C90C889391bD454D5B30",
         "decimals": 18,
         "blocksPerPeriod": 40320,
-        "minBlock": 13545210
+        "minBlock": 18569909
       }
     },
     "network": "1",
     "addresses": [
-      "0xb92792552e590339a7dbf1e0d6114fbc7395c86b",
-      "0xf4087b7ab24bde9c445ddd0bc4df257f81277214",
-      "0x8b01d375e274213c860ef6ac013dbdd5286cd816",
-      "0xdbc13e67f678cc00591920cece4dca6322a79ac7"
+      "0xb92792552e590339A7DbF1E0D6114fbc7395c86b",
+      "0xf4087b7AB24Bde9c445ddD0bc4DF257F81277214",
+      "0x8b01d375e274213c860eF6ac013DBDd5286CD816",
+      "0xDBC13E67F678Cc00591920ceCe4dCa6322a79AC7"
     ],
-    "snapshot": 13545210
+    "snapshot": 18569909
   }
 ]

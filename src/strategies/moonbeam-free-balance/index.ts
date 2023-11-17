@@ -11,13 +11,40 @@ export function readLittleEndianBigInt(hex: string) {
   return BigInt(`0x${hex.match(/../g)?.reverse().join('')}`);
 }
 
+function processPayload(payload: {
+  id: number;
+  error?: { code?: number; data?: any; message?: string };
+  result: any;
+}) {
+  if (payload.error) {
+    const error: any = new Error(payload.error.message);
+    error.code = payload.error.code;
+    error.data = payload.error.data;
+    throw error;
+  }
+  return payload;
+}
+
 export async function strategy(
   space: string,
   network: string,
   provider: JsonRpcProvider,
   addresses: string[],
-  options: { decimals }
+  options: { decimals },
+  snapshot: string | number | undefined
 ) {
+  // Retrieve the blockhash for the snapshot
+  const { result: blockHash }: { result: string } = await fetchJson(
+    provider.connection,
+    JSON.stringify({
+      method: 'chain_getBlockHash',
+      params: typeof snapshot === 'number' ? [snapshot] : [],
+      id: 0,
+      jsonrpc: '2.0'
+    }),
+    processPayload
+  );
+
   // Pre-encoded key prefix for "system.account" storage
   const accountPrefix = `0x26aa394eea5630e07c48ae0c9558cef7b99d880ec681799c0cf30e8886371da9`;
   const { decimals } = options;
@@ -53,7 +80,7 @@ export async function strategy(
     // Build batch request for all the storage keys of the batch.
     const reqs = keys.map((key, index) => ({
       method: 'state_getStorage',
-      params: [key],
+      params: [key, blockHash],
       id: batchIndex * batchSize + index + 1,
       jsonrpc: '2.0'
     }));
@@ -62,18 +89,7 @@ export async function strategy(
     const payloads: { id: number; result: string }[] = await fetchJson(
       provider.connection,
       JSON.stringify(reqs),
-      (payload: {
-        error?: { code?: number; data?: any; message?: string };
-        result?: any;
-      }) => {
-        if (payload.error) {
-          const error: any = new Error(payload.error.message);
-          error.code = payload.error.code;
-          error.data = payload.error.data;
-          throw error;
-        }
-        return payload;
-      }
+      processPayload
     );
 
     for (const payload of payloads) {

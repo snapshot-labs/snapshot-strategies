@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "humanReadableTreeId": {
+          "type": "number",
+          "title": "Human Readable Tree Id",
+          "examples": ["e.g. 2, 221"]
+        }
+      },
+      "required": ["address", "humanReadableTreeId"],
+      "additionalProperties": false
+    }
+  }
+}

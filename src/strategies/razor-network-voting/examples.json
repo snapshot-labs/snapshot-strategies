@@ -7,16 +7,18 @@
         "symbol": "RAZOR"
       }
     },
-    "network": "80001",
-    "snapshot": 665995,
+    "network": "278611351",
+    "snapshot": 434071,
     "addresses": [
-      "0xE79772bC4798fE17dABD3f033af63cc9f887B50F",
-      "0x6ee26af75a47e15ab040af73cbdc077740f4825c",
-      "0xfbf427e3c5456b8f3b2e0b98145fa13c16747369",
-      "0xe0add3053b836e1e1006540b4de959f2b4472a24",
-      "0xfBf3140A02C1E8fe08a39b86b97c50175B698111",
-      "0x26A98513240401567733253C6CdD16F006fcd9b1",
-      "0xA74b60E368c7C870EeB581dc899cFA8158058bb8"
+      "0xf5ad93418e727607bfea3adf5c056e056d0236a7",
+      "0x7ee4e7a1403db07c6908ef29c00f20270a28fd2d",
+      "0x5faf079b1CD8e3Cd526FDbbf3d4e4179ddE476AC",
+      "0x24566839d381e2f5a5d8f5bf880354f0851cbb76",
+      "0x7af34d14524104ec65b882b7e31b022eebc88936",
+      "0x66851befbec4f6acf4bfd2371dab3dfe45f2b920",
+      "0x35ed54562ddaddd7dd699cdf92128c1d9c1a1529",
+      "0x13E5f89515B0C781B7118b5dAEEde7Da4BCf9d7b",
+      "0x13E5f89515B0C781B7118b5dAEEde7Da4BCf9d7b"
     ]
   }
 ]

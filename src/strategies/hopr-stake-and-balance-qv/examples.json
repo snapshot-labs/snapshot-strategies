@@ -1,0 +1,48 @@
+[
+  {
+    "name": "Calculate score based on HOPR stake season x and token balances across chains",
+    "strategy": {
+      "name": "hopr-stake-and-balance-qv",
+      "params": {
+        "tokenAddress": "0xf5581dfefd8fb0e4aec526be659cfab1f8c781da",
+        "symbol": "HOPR",
+        "season": 7,
+        "fallbackGnosisBlock": 27852687,
+        "subgraphStudioProdQueryApiKey": null,
+        "subgraphStudioDevAccountId": null,
+        "subgraphHostedAccountName": "hoprnet",
+        "useStake": true,
+        "useHoprOnGnosis": true,
+        "useHoprOnMainnet": true,
+        "subgraphStudioProdAllSeasonQueryId": "DrkbaCvNGVcNH1RghepLRy6NSHFi8Dmwp4T2LN3LqcjY",
+        "subgraphStudioDevAllSeasonVersion": "v0.0.9",
+        "subgraphStudioDevAllSeasonSubgraphName": "hopr-stake-all-seasons",
+        "subgraphHostedAllSeasonSubgraphName": "hopr-stake-all-seasons",
+        "subgraphStudioProdHoprOnGnosisQueryId": "njToE7kpetd3P9sJdYQPSq6yQjBs7w9DahQpBj6WAoD",
+        "subgraphStudioDevHoprOnGnosisSubgraphName": "hopr-on-gnosis",
+        "subgraphStudioDevHoprOnGnosisVersion": "v0.0.2",
+        "subgraphHostedHoprOnGnosisSubgraphName": "hopr-on-xdai"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x04BBB7eA18EA570aE47d4489991645E4E49bBf37",
+      "0x2aF80738aC01e7883d11c912dFe8322C129ae5C5",
+      "0x0bb43EFc1a613658177D8f67CcF9CFFD8B25b906",
+      "0x53e85186ebF5A7d4BD06324F7b9D8B3623EF0307",
+      "0x2DCDB99930E279f1e9Ad11F491163051432542A0",
+      "0x4326990033eCd87A5444383Cf8c715E696301910",
+      "0xEd6a59A7C1D5a88b7cb5eb877A7A6078A7e801C7",
+      "0xeFC05B0D0C8bE8D4Cb3a220ef582E9f7E6FBCd00",
+      "0xC7B169b108c5e75991C520AEA97140534291C81D",
+      "0x04Be52434EB64aDdF373137310551ac42013677c",
+      "0xBE8C93a8C18AF63aAB449994AFAc13E71240ccC4",
+      "0xf813773eBDD4759c1B780d745081f046A5B776fB",
+      "0x7F26C34Ed10bF66602009231bBFF24f2f84e9270",
+      "0x4abd7276C53279b3aBFFF2B5D8A47c0AFc84833B",
+      "0x3e1A12a6019ee26418F22B656926fE38F5e58C5f",
+      "0x7A27A4D91231aCB3282b410Cc784517B417FA0DA"
+    ],
+    "snapshot": 17220270
+  }
+]

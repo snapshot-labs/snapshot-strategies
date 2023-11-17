@@ -1,0 +1,20 @@
+[
+  {
+    "name": "DPS NFTs query Nova",
+    "strategy": {
+      "name": "dps-nft-strategy-nova",
+      "params": {
+        "symbol": "DPS"
+      }
+    },
+    "network": "42170",
+    "addresses": [
+      "0x926ce67776a621f64cce3bfdd8d7dcc627b5134e",
+      "0x5114e0a7a2fc85685bc114477d7c3035d47daf8b",
+      "0x73b0d4b2507f867c3ecf567128a2265b084d918c",
+      "0x8c6fdbca2070590d7f2ce5b2c1ed1c305d968e5d",
+      "0x899831d937937d011305e73ee782cce0455df15a"
+    ],
+    "snapshot": 8703862
+  }
+]

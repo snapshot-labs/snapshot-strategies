@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Gelato Staking",
+    "strategy": {
+      "name": "gelato-staking",
+      "params": {
+        "address": "0xc2a813699bF2353380c625e3D6b544dC42963941",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x417B4Adc279743FC49F047C323FC668db9E600D8",
+      "0x3D529c760F3EC4c89Bdd6549DDabE9097C1da6e9",
+      "0x59eD948390F079F2534C052acc3419d34975E026",
+      "0xda81a723E748C782284Bbb06AB74e3D0A9dBBC77",
+      "0x2CAd75e380Ddb12329231DF6793A0343917BE8B3",
+      "0xeD5cF41b0fD6A3C564c17eE34d9D26Eafc30619b"
+    ],
+    "snapshot": 17821000
+  }
+]

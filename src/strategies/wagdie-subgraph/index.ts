@@ -63,7 +63,6 @@ export async function strategy(
 
     const characters = result && result.characters ? result.characters : [];
     const latest = characters[characters.length - 1];
-    console.log(options.location);
 
     for (const character of characters) {
       const userAddress = getAddress(character.owner.id);

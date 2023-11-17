@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "starlay-ve-balance-of-locker-id",
+      "params": {
+        "address": "0xDf32D28c1BdF25c457E82797316d623C2fcB29C8",
+        "symbol": "veLAY",
+        "decimals": 18
+      }
+    },
+    "network": "592",
+    "addresses": [
+      "0x3Ff1aD046Cf6B5F5fC035b909e0E4482186b8354",
+      "0x50414Ac6431279824df9968855181474c919a94B",
+      "0x00aa74a272603c502503b1F470F81F4D441A6413",
+      "0xa9Fc75f34c338f658bC0BeAA57f14D675301185f",
+      "0xCdfc500F7f0FCe1278aECb0340b523cD55b3EBbb",
+      "0x8114c31Cd93141DD6229553F622b85b06624957e",
+      "0xCB163C7A7D299c54F71144D02870eC0c9A82AB29",
+      "0x61709f32808EBCD44b0D7c9271a4A16D167A7AC4",
+      "0x145a89758F3f9e26ffb96a4eD853d4fEDfa3a87B",
+      "0x1b40f4f72618530cA1e560b201F0a608C736E43e",
+      "0x02E7b714fae84e4BA80f3CDa5508553e7CF5042A",
+      "0xb3ff54b7F24950945bA8f1778F52835a7aD30A7F",
+      "0x0Ba1Aa8e98257EFb07cCa9bDCC410a38056897d1",
+      "0x244C76c039Cc412826F9e4427Ce600DcFC013a6c",
+      "0x332d9CDf9fDA07C32622B9C7eDE52Eb1a851eC53",
+      "0x7457667ee63BCa3c134f246af687091e7E259Bc2",
+      "0xab4382aAdae5bF4b37B90b9dc07FC72D52e2a28A",
+      "0x94c74DFA070500E317DddE4d64007FE26ae8aB9A"
+    ],
+    "snapshot": 3642724
+  }
+]

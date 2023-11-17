@@ -15,6 +15,7 @@ export default class extends Validation {
   public title = 'Arbitrum DAO Percentage of Votable Supply';
   public description =
     'Use with erc20-votes to validate by percentage of votable supply.';
+  public proposalValidationOnly = true;
 
   async validate(): Promise<boolean> {
     if (this.params.strategies?.length > 8)

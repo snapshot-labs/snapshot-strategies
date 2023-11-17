@@ -4,12 +4,16 @@
     "strategy": {
       "name": "uniswap",
       "params": {
-        "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+        "address": "0xde30da39c46104798bb5aa3fe8b9e0e1f348163f",
         "symbol": "DAI"
       }
     },
     "network": "1",
-    "addresses": ["0x79317fc0fb17bc0ce213a2b50f343e4d4c277704"],
+    "addresses": [
+      "0x0DE92626498717585F06E5bF5B85A7A88872F5B3",
+      "0x76F780c336dAc20a4A5e73677f98B6B3a78FBd86",
+      "0xe0d0527fFC6D7D64A03c9509911323D4D15E5966"
+    ],
     "snapshot": 1111000
   }
 ]

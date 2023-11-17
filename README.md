@@ -14,7 +14,7 @@ yarn
 yarn build
 ```
 
-### Test strategy with predefined tests
+### Test strategy with predefined tests (params from examples.json file)
 
 > Note: If you're writing a new strategy, make sure to add it to strategies/index.ts before testing*
 
@@ -26,6 +26,12 @@ yarn test --strategy=erc20-received
 yarn test --strategy=eth-balance
 # Test with more addresses from addresses.json
 yarn test --strategy=eth-balance --more=200
+```
+
+### Test validation with predefined tests (params from examples.json file)
+
+```
+yarn test:validation --validation=basic
 ```
 
 ### Test strategy with different parameters
@@ -48,11 +54,12 @@ Here is a simple checklist to look at when reviewing a PR for a new strategy:
 
 #### Code
 
+- Strategies should always use a `snapshot` to calculate user's voting power. As a result the voting power should not change throughout the proposal duration.
 - There should be a maximum of 5 requests, a request can use "fetch" a "subgraphRequest" or "multicall".
 - The strategy should not send a request for each voters, this doesn't scale.
 - The strategy PR should not add any new dependency.
-- The score returned by the strategy should use the same casing for address than on the input, or should return checksum addresses.
-- Make sure voting power of one address does not depend on other addresses.
+- The score returned by the strategy should use the same casing for address as on the input, or should return checksum addresses.
+- Make sure that voting power of one address does not depend on other addresses.
 
 #### Example
 

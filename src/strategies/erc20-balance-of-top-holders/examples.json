@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-balance-of-top-holders",
+      "params": {
+        "address": "0x8494Aee22e0DB34daA1e8D6829d85710357be9F7",
+        "symbol": "HANDZ",
+        "decimals": 18,
+        "subgraphUrl": "https://api.thegraph.com/subgraphs/name/kostyamospan/handz-token",
+        "topHolders": 5
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xD87dec8eE5d941234d85a9d2636D077fE03B0660",
+      "0x54B9ca09248C49e9ed0968bfD0AA0bd13E85992A",
+      "0x254c8A6225CE32903D2657D0945701ACD6e42188",
+      "0xF59Dd6525529F77cF90Ec9A8205d52874af7a425",
+      "0x0a0A1669A7E3f16b3010dD78F53D3E22Dcf4b739",
+      "0x5b941eA7387190Ba6a0bF4B766c1F3eB0Ab30A25",
+      "0xc0D57b31F33Ce4f6627d353Ac51461fB7cDC1519",
+      "0xF5De2507726A312aD6f806A9972Ed438344022b2",
+      "0x33b5752C03495014A130f8f4A235f6280C58f266",
+      "0x6323b71f37a07642F8055E9847B58Ffc9FA44243",
+      "0xf5F730146D177Cf7Dd28AA39F81359DaE51D4379"
+    ],
+    "snapshot": 18020926
+  }
+]

@@ -1,0 +1,1 @@
+This is SPACEID strategy, it returns the voting power of the voters.

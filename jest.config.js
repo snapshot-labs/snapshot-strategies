@@ -4,5 +4,8 @@ module.exports = {
   transform: {
     '^.+\\.tsx?$': 'ts-jest'
   },
-  testRegex: '/test(/(integration|unit))?/.*\\.test\\.ts$'
+  testRegex: '/test(/(integration|unit))?/.*\\.test\\.ts$',
+  fakeTimers: {
+    enableGlobally: true
+  }
 };

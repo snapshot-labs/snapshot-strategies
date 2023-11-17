@@ -5,9 +5,7 @@
       "name": "skale-delegation-weighted",
       "params": {
         "addressSKL": "0x00c83aeCC790e8a4453e5dD3B0B4b3680501a7A7",
-        "addressAllocator": "0xB575c158399227b6ef4Dcfb05AA3bCa30E12a7ba",
-        "symbol": "SKL",
-        "decimals": 18
+        "addressAllocator": "0xB575c158399227b6ef4Dcfb05AA3bCa30E12a7ba"
       }
     },
     "network": "1",
@@ -21,11 +19,14 @@
       "0x2B3C7D1eF5FDfC0557934019c531d3E70D6200AE",
       "0x80F41289795F122C82b83D8C3A760E01FDBF5C76",
       "0x0BC34C33880a45d7Aa3bfDafE37Fd157E1Dca9bb",
+      "0x34F3833b540947b24A7F6f482a9FF62cD11a47CF",
       "0x864521f4A31f1C893f8414697dFb6D3A2d949AC5",
       "0xFdD2245Fa2B7881AB78C171Cc84F088e520450E2",
       "0xd753854eA19B204E6Ee9b5544239Fcc7d40f932A",
-      "0xfFd22b84fB1d46ef74Ed6530b2635BE61340f347"
+      "0xfFd22b84fB1d46ef74Ed6530b2635BE61340f347",
+      "0x7e32a321A9a0c8B06058CA0230a3E4D11d2a9411",
+      "0x2E11D2bd07583bAE4B8337e5982384dF16BcB4e1"
     ],
-    "snapshot": 16048934
+    "snapshot": 17487103
   }
 ]
