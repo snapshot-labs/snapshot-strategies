@@ -6,6 +6,33 @@
       "title": "Gitcoin passport gated",
       "type": "object",
       "properties": {
+        "scoreThreshold": {
+          "type": "number",
+          "title": "Passport Score Threshold",
+          "description": "Minimum Passport score threshold (>=) to be eligible as a valid Passport",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
+        },
+        "operator": {
+          "type": "string",
+          "title": "Approval operator",
+          "description": "Control how many stamps are required to become eligible.",
+          "anyOf": [
+            {
+              "const": "NONE",
+              "title": "No operator"
+            },
+            {
+              "const": "AND",
+              "title": "Require all stamps"
+            },
+            {
+              "const": "OR",
+              "title": "Require at least one stamp"
+            }
+          ]
+        },
         "stamps": {
           "type": "array",
           "title": "Stamps",
@@ -126,33 +153,6 @@
               }
             ]
           }
-        },
-        "operator": {
-          "type": "string",
-          "title": "Approval operator",
-          "description": "Control how many stamps are required to become eligible.",
-          "anyOf": [
-            {
-              "const": "AND",
-              "title": "Require all stamps"
-            },
-            {
-              "const": "OR",
-              "title": "Require at least one stamp"
-            },
-            {
-              "const": "",
-              "title": "Any (Stamps MUST be empty)"
-            }
-          ]
-        },
-        "scoreThreshold": {
-          "type": "number",
-          "title": "Passport Score Threshold",
-          "description": "Minimum Passport score threshold (>=) to be eligible as a valid Passport",
-          "minimum": 0,
-          "maximum": 100,
-          "default": 0
         }
       },
       "required": ["scoreThreshold"],
