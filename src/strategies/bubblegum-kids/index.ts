@@ -60,7 +60,7 @@ export async function strategy(
       [address]
     );
 
-    // get staking deposits (returns two arrays,
+    // get staking deposits (returns and array of two arrays:
     // a list of Kids ids and a list of Puppies ids)
     multi.call(
       `${address}.staking`,
