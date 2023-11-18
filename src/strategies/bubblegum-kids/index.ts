@@ -6,6 +6,7 @@ import { Multicaller } from '../../utils';
 export const author = 'flaflafla';
 export const version = '0.1.1';
 
+// contracts available on Ethereum mainnet and Goerli testnet
 const kidsAddressByNetwork = {
   1: '0xa5ae87B40076745895BB7387011ca8DE5fde37E0',
   5: '0x66B04973b83ea796960D6f8ea22856714e01765f'
@@ -22,10 +23,17 @@ const stakingAddressByNetwork = {
 };
 
 const abi = [
+  // Kids and Puppies contracts
   'function balanceOf(address owner) external view returns (uint256)',
+  // staking contract
   'function depositsOf(address account) external view returns (uint256[][2])'
 ];
 
+/**
+ * Voting power is calculated as the sum of a user's Bubblegum Kids
+ * and Bubblegum Puppies holdings, with each NFT counting as 1. Kids
+ * and Puppies deposited to the staking contract also count as 1.
+ */
 export async function strategy(
   _space,
   network,
@@ -39,10 +47,12 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
   addresses.forEach((address) => {
+    // get Kids balance
     multi.call(`${address}.kids`, kidsAddressByNetwork[network], 'balanceOf', [
       address
     ]);
 
+    // get Puppies balance
     multi.call(
       `${address}.puppies`,
       puppiesAddressByNetwork[network],
@@ -50,6 +60,8 @@ export async function strategy(
       [address]
     );
 
+    // get staking deposits (returns two arrays,
+    // a list of Kids ids and a list of Puppies ids)
     multi.call(
       `${address}.staking`,
       stakingAddressByNetwork[network],
@@ -76,10 +88,11 @@ export async function strategy(
       const puppiesCount = parseFloat(formatUnits(puppies, 0));
       const stakedPuppiesCount = stakedPuppies.length;
 
-      const holdingsCount =
+      // calculate total voting power
+      const votingPower =
         kidsCount + stakedKidsCount + puppiesCount + stakedPuppiesCount;
 
-      return [getAddress(address), holdingsCount];
+      return [getAddress(address), votingPower];
     })
   );
 }

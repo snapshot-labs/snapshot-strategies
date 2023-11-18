@@ -9,8 +9,3 @@ Here is an example of parameters:
   "address": "0xfec4465b6aeac9c90e552ae7766bdc0ee0d8dbc9"
 }
 ```
-
-TODO:
-- add more example addresses
-- verify that each address' result is correct
-- repeat on goerli
