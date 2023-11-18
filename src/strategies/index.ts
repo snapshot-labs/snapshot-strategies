@@ -474,6 +474,7 @@ import * as mangroveStationQVScaledToMGV from './mangrove-station-qv-scaled-to-m
 import * as floki from './floki';
 import * as hatsProtocolHatId from './hats-protocol-hat-id';
 import * as hatsProtocolHatIds from './hats-protocol-hat-ids';
+import * as bubblegumKids from './bubblegum-kids';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -956,7 +957,8 @@ const strategies = {
   'mangrove-station-qv-scaled-to-mgv': mangroveStationQVScaledToMGV,
   floki,
   'hats-protocol-hat-id': hatsProtocolHatId,
-  'hats-protocol-hat-ids': hatsProtocolHatIds
+  'hats-protocol-hat-ids': hatsProtocolHatIds,
+  'bubblegum-kids': bubblegumKids,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
