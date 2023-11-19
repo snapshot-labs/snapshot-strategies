@@ -5,6 +5,7 @@
       "name": "delegate-registry-v2",
       "params": {
         "backendUrl": "https://delegate-registry-backend.vercel.app",
+        "delegationV1VChainIds": [1, 100],
         "strategies": [
           {
             "name": "erc20-balance-of",
