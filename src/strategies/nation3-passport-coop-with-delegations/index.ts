@@ -50,7 +50,7 @@ export async function strategy(
   const lastIndex = await erc721LastTokenIdCaller.execute();
   const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
 
-  for (let i = 0; i < lastTokenId; i++) {
+  for (let i = 1; i < lastTokenId; i++) {
     erc721SignerCaller.call(i, options.erc721, 'signerOf', [i]);
     erc721OwnerCaller.call(i, options.erc721, 'ownerOf', [i]);
   }
@@ -91,5 +91,5 @@ export async function strategy(
     return parseFloat(formatUnits(balance, DECIMALS)) > 1.5;
   });
 
-  return Object.fromEntries(withPower.map(([, signer]) => [signer, 1]));
+  return Object.fromEntries(withPower.map(([, signer]) => [signer, 1])) || [];
 }
