@@ -958,7 +958,7 @@ const strategies = {
   floki,
   'hats-protocol-hat-id': hatsProtocolHatId,
   'hats-protocol-hat-ids': hatsProtocolHatIds,
-  'bubblegum-kids': bubblegumKids,
+  'bubblegum-kids': bubblegumKids
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
