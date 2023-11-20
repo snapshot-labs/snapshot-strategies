@@ -5,7 +5,7 @@ import { getScoresDirect } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'gnosis';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const DEFAULT_BACKEND_URL = 'https://delegate-registry-backend.vercel.app';
 
@@ -79,7 +79,7 @@ export async function strategy(
       ...addressesNotDelegatingOrDelegatedTo,
       ...addressesDelegatedTo.map(([address]) => address)
     ],
-    snapshot
+    blockTag
   );
 
   const delegationObject = addressesDelegatedTo.reduce(
