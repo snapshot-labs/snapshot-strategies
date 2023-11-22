@@ -8,25 +8,9 @@ export const author = 'cryptotrades20';
 export const version = '0.1.0';
 
 //read vesail balance
-const vesailBalanceOfABI = {
-  name: 'balanceOf',
-  type: 'function',
-  inputs: [
-    {
-      name: 'account',
-      type: 'address',
-      internalType: 'address',
-    },
-  ],
-  outputs: [
-    {
-      name: '',
-      type: 'uint256',
-      internalType: 'uint256',
-    },
-  ],
-  stateMutability: 'view',
-};
+const vesailBalanceOfABI = [
+  'function balanceOf(address account) view returns (uint256)'
+];
 
 //vesail to sail conversion
 const toSAILABI = {
