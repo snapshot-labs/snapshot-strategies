@@ -40,7 +40,7 @@ async function readToSail(network, provider, snapshot, addresses, vesailBalances
   const response = await multicall(
     network,
     provider,
-    [toSAILABI],
+    toSAILABI,
     addresses.map((address, index) => [vesailTokenAddress, 'toSAIL', [vesailBalances[index]]]),
     { blockTag }
   );
