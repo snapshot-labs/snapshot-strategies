@@ -27,7 +27,7 @@ async function getVesailBalance(network, provider, snapshot, addresses) {
   const response = await multicall(
     network,
     provider,
-    [vesailBalanceOfABI],
+    vesailBalanceOfABI,
     addresses.map((address) => [vesailTokenAddress, 'balanceOf', [address]]),
     { blockTag }
   );
