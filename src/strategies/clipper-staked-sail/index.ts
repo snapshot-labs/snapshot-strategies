@@ -13,25 +13,9 @@ const vesailBalanceOfABI = [
 ];
 
 //vesail to sail conversion
-const toSAILABI = {
-  name: 'toSAIL',
-  type: 'function',
-  inputs: [
-    {
-      name: 'sailAmount',
-      type: 'uint256',
-      internalType: 'uint256',
-    },
-  ],
-  outputs: [
-    {
-      name: '',
-      type: 'uint256',
-      internalType: 'uint256',
-    },
-  ],
-  stateMutability: 'view',
-};
+const toSAILABI = [
+  'function toSAIL(uint256 sailAmount) view returns (uint256)'
+];
 
 
 /**
