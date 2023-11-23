@@ -6,101 +6,15 @@ export const author = 'plearnclub';
 export const version = '0.0.1';
 
 const lockedPoolabi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(address) view returns (uint256 amount)'
 ];
 
 const foundingInvestorPoolabi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '',
-        type: 'address'
-      }
-    ],
-    name: 'userInfo',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'initialAmount',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'amount',
-        type: 'uint256'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function userInfo(address) view returns (uint256 initialAmount, uint256 amount)'
 ];
 
 const pendingWithdrawalabi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'user',
-        type: 'address'
-      }
-    ],
-    name: 'lockedBalances',
-    outputs: [
-      {
-        internalType: 'uint256',
-        name: 'total',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'unlockable',
-        type: 'uint256'
-      },
-      {
-        internalType: 'uint256',
-        name: 'locked',
-        type: 'uint256'
-      },
-      {
-        components: [
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'unlockTime',
-            type: 'uint256'
-          }
-        ],
-        internalType: 'struct PendingWithdrawal.LockedBalance[]',
-        name: 'lockData',
-        type: 'tuple[]'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function lockedBalances(address user) view returns (uint256 total, uint256 unlockable, uint256 locked, tuple(uint256 amount, uint256 unlockTime)[] lockData)'
 ];
 
 export async function strategy(
