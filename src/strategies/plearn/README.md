@@ -14,37 +14,38 @@ Here is an example of parameters:
       "params": {
         "lockedPoolAddresses": [
           {
-            "address": "0x7FE94Ec726cd61519956e76b0AC922Da341f739a",
+            "address": "0xc38d542326545470a12B06Bf8e315DE55B0B6B46",
             "decimals": 18
           },
           {
-            "address": "0xC4c792FB3319A68E09Ca64fc0e66B32d1Ab8538A",
+            "address": "0x9b45a8eeD3eF6DA3bE222147533Da542aa384006",
             "decimals": 18
           }
         ],
         "foundingInvestorPoolAddresses": [],
         "pendingWithdrawalAddresses": [
           {
-            "address": "0xAa366c12F056A4B71E8e0490C58801a7cA213d23",
+            "address": "0x7E4e06C81B41284198C0693cd98eb357257Fc3d9",
             "decimals": 18
           },
           {
-            "address": "0x68FAA04ec06febB8BCAbB2b039706266D7A5e525",
+            "address": "0xC26a3E07D8CCF34195e943C0bb705f206Dd57030",
             "decimals": 18
           }
         ],
         "symbol": "PLN",
-        "address": "0x8471Ee8b8a31eb231953Ab1c47350f43Dd874B7B",
+        "address": "0xBe0D3526fc797583Dada3F30BC390013062A048B",
         "decimals": 18
       }
     },
-    "network": "80001",
+    "network": "56",
     "addresses": [
-      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
-      "0x8508356dfA6d00BdEc6D63499009022d55FD0951",
-      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C"
+      "0xE0d54117600e592E7a78C985996d11b8Fb1B69C3",
+      "0x3C97c372B45cC96Fe73814721ebbE6db02C9D88E",
+      "0xB6605F98A5562b1AC821Bc5f2B75934239e8c6D6",
+      "0x8900cCBdC60fD97E3B7c8529A9987F8c0f8A1125"
     ],
-    "snapshot": 42701832
+    "snapshot": 33739024
   }
 ]
 ```
