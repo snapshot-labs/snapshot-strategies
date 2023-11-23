@@ -476,6 +476,7 @@ import * as hatsProtocolHatId from './hats-protocol-hat-id';
 import * as hatsProtocolHatIds from './hats-protocol-hat-ids';
 import * as bubblegumKids from './bubblegum-kids';
 import * as clipperStakedSail from './clipper-staked-sail';
+import * as snote from './snote';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -960,7 +961,8 @@ const strategies = {
   'hats-protocol-hat-id': hatsProtocolHatId,
   'hats-protocol-hat-ids': hatsProtocolHatIds,
   'bubblegum-kids': bubblegumKids,
-  'clipper-staked-sail' : clipperStakedSail
+  'clipper-staked-sail' : clipperStakedSail,
+  snote
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
