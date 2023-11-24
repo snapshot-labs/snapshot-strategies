@@ -35,65 +35,80 @@ export async function strategy(
     snapshot
   );
 
-  const maxAddresses = 5;
-  const selectedLockedPoolAddresses = options.lockedPoolAddresses.slice(
-    0,
-    maxAddresses
-  );
-  const selectedFoundingInvestorPoolAddresses =
-    options.foundingInvestorPoolAddresses.slice(0, maxAddresses);
-  const selectedPendingWithdrawalAddresses =
-    options.pendingWithdrawalAddresses.slice(0, maxAddresses);
-
-  const lockedPoolBalances = await Promise.all(
-    selectedLockedPoolAddresses.map((item) =>
-      multicall(
-        network,
-        provider,
-        lockedPoolabi,
-        addresses.map((address: any) => [
-          item.address,
-          'userInfo',
-          [address],
-          { blockTag }
-        ]),
-        { blockTag }
-      )
-    )
+  const lockedPoolCalls = options.lockedPoolAddresses.flatMap((item) =>
+    addresses.map((address) => [
+      item.address,
+      'userInfo',
+      [address],
+      { blockTag }
+    ])
   );
 
-  const foundingInvestorPoolBalances = await Promise.all(
-    selectedFoundingInvestorPoolAddresses.map((item) =>
-      multicall(
-        network,
-        provider,
-        foundingInvestorPoolabi,
-        addresses.map((address: any) => [
-          item.address,
-          'userInfo',
-          [address],
-          { blockTag }
-        ]),
-        { blockTag }
-      )
-    )
+  const lockedPoolBalancesRes = await multicall(
+    network,
+    provider,
+    lockedPoolabi,
+    lockedPoolCalls,
+    { blockTag }
   );
 
-  const pendingWithdrawalBalances = await Promise.all(
-    selectedPendingWithdrawalAddresses.map((item) =>
-      multicall(
-        network,
-        provider,
-        pendingWithdrawalabi,
-        addresses.map((address: any) => [
-          item.address,
-          'lockedBalances',
-          [address],
-          { blockTag }
-        ]),
+  const lockedPoolBalances = options.lockedPoolAddresses.map((_, poolIndex) =>
+    addresses.map((_, addressIndex) => {
+      const callIndex = poolIndex * addresses.length + addressIndex;
+      return lockedPoolBalancesRes[callIndex];
+    })
+  );
+
+  const foundingInvestorPoolCalls =
+    options.foundingInvestorPoolAddresses.flatMap((item) =>
+      addresses.map((address) => [
+        item.address,
+        'userInfo',
+        [address],
         { blockTag }
-      )
-    )
+      ])
+    );
+
+  const foundingInvestorPoolBalancesRes = await multicall(
+    network,
+    provider,
+    foundingInvestorPoolabi,
+    foundingInvestorPoolCalls,
+    { blockTag }
+  );
+
+  const foundingInvestorPoolBalances =
+    options.foundingInvestorPoolAddresses.map((_, poolIndex) =>
+      addresses.map((_, addressIndex) => {
+        const callIndex = poolIndex * addresses.length + addressIndex;
+        return foundingInvestorPoolBalancesRes[callIndex];
+      })
+    );
+
+  const pendingWithdrawalCalls = options.pendingWithdrawalAddresses.flatMap(
+    (item) =>
+      addresses.map((address) => [
+        item.address,
+        'lockedBalances',
+        [address],
+        { blockTag }
+      ])
+  );
+
+  const pendingWithdrawalBalancesRes = await multicall(
+    network,
+    provider,
+    pendingWithdrawalabi,
+    pendingWithdrawalCalls,
+    { blockTag }
+  );
+
+  const pendingWithdrawalBalances = options.pendingWithdrawalAddresses.map(
+    (_, poolIndex) =>
+      addresses.map((_, addressIndex) => {
+        const callIndex = poolIndex * addresses.length + addressIndex;
+        return pendingWithdrawalBalancesRes[callIndex];
+      })
   );
 
   return Object.fromEntries(
