@@ -11,7 +11,8 @@ const abi = [
   'function delegates(address account) external view returns (address)'
 ];
 
-const STAKED_NOTE_CONTRACT_ADDRESS = '0x38de42f4ba8a35056b33a746a6b45be9b1c3b9d2';
+const STAKED_NOTE_CONTRACT_ADDRESS =
+  '0x38de42f4ba8a35056b33a746a6b45be9b1c3b9d2';
 
 interface VotingInfo {
   [address: string]: BigNumberish;
@@ -38,28 +39,31 @@ export async function strategy(
 
   // Fetch delegate votes, non-delegated votes, and delegation information
   const delegatedVotes: VotingInfo = await fetchMulticallData('getVotes');
-  const nonDelegatedVotes: VotingInfo = await fetchMulticallData('votingPowerWithoutDelegation');
-  const delegationInfo: Record<string, boolean> = await fetchMulticallData('delegates')
-    .then((result2: Record<string, string>) =>
-      Object.fromEntries(
-        Object.entries(result2).map(([address, delegate]) => [
-          address,
-          delegate.toLowerCase() === '0x0000000000000000000000000000000000000000',
-        ])
-      )
-    );
+  const nonDelegatedVotes: VotingInfo = await fetchMulticallData(
+    'votingPowerWithoutDelegation'
+  );
+  const delegationInfo: Record<string, boolean> = await fetchMulticallData(
+    'delegates'
+  ).then((result2: Record<string, string>) =>
+    Object.fromEntries(
+      Object.entries(result2).map(([address, delegate]) => [
+        address,
+        delegate.toLowerCase() === '0x0000000000000000000000000000000000000000'
+      ])
+    )
+  );
 
   // Process and filter the data
   const delegateVotingPowers = Object.fromEntries(
     Object.entries(delegatedVotes).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, 8)),
+      parseFloat(formatUnits(balance, 8))
     ])
   );
   const votingPowers = Object.fromEntries(
     Object.entries(nonDelegatedVotes).map(([address, balance]) => [
       address,
-      parseFloat(formatUnits(balance, 8)),
+      parseFloat(formatUnits(balance, 8))
     ])
   );
 

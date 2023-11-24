@@ -961,7 +961,7 @@ const strategies = {
   'hats-protocol-hat-id': hatsProtocolHatId,
   'hats-protocol-hat-ids': hatsProtocolHatIds,
   'bubblegum-kids': bubblegumKids,
-  'clipper-staked-sail' : clipperStakedSail,
+  'clipper-staked-sail': clipperStakedSail,
   snote
 };
 

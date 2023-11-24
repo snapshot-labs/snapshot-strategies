@@ -1,8 +1,8 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
 exports[` getDelegations 1`] = `
-Object {
-  "in": Array [
+{
+  "in": [
     "0x073aBA73177668Ba1c6661A4CCddbF77dfC8809a",
     "0x0D996171E7883A286eF720030935f72D0Bac8219",
     "0x186E20ae3530520C9F3E6C46F2f5d1062b784761",

@@ -3,7 +3,7 @@
     "name": "Example query",
     "strategy": {
       "name": "snote",
-      "params": {"symbol": "sNOTE"}
+      "params": { "symbol": "sNOTE" }
     },
     "network": "1",
     "addresses": [
