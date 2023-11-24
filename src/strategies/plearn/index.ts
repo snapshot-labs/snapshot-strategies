@@ -35,8 +35,18 @@ export async function strategy(
     snapshot
   );
 
+  const maxAddresses = 5;
+  const selectedLockedPoolAddresses = options.lockedPoolAddresses.slice(
+    0,
+    maxAddresses
+  );
+  const selectedFoundingInvestorPoolAddresses =
+    options.foundingInvestorPoolAddresses.slice(0, maxAddresses);
+  const selectedPendingWithdrawalAddresses =
+    options.pendingWithdrawalAddresses.slice(0, maxAddresses);
+
   const lockedPoolBalances = await Promise.all(
-    options.lockedPoolAddresses.map((item) =>
+    selectedLockedPoolAddresses.map((item) =>
       multicall(
         network,
         provider,
@@ -53,7 +63,7 @@ export async function strategy(
   );
 
   const foundingInvestorPoolBalances = await Promise.all(
-    options.foundingInvestorPoolAddresses.map((item) =>
+    selectedFoundingInvestorPoolAddresses.map((item) =>
       multicall(
         network,
         provider,
@@ -70,7 +80,7 @@ export async function strategy(
   );
 
   const pendingWithdrawalBalances = await Promise.all(
-    options.pendingWithdrawalAddresses.map((item) =>
+    selectedPendingWithdrawalAddresses.map((item) =>
       multicall(
         network,
         provider,
