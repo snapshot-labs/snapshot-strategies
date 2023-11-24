@@ -91,8 +91,8 @@ export async function strategy(
               : 0
           ).toFixed(0)
         : classIdWeight[classId]
-          ? classIdWeight[classId].weight
-          : 0
+        ? classIdWeight[classId].weight
+        : 0
     );
   }
   return Object.fromEntries(
