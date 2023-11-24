@@ -168,6 +168,7 @@ import * as biswap from './biswap';
 import * as honeyswap from './honeyswap';
 import * as eglVote from './egl-vote';
 import * as mcnFarm from './mcn-farm';
+import * as meebitsdao from './meebitsdao';
 import * as membership from './membership';
 import * as holdsTokens from './holds-tokens';
 import * as crucibleERC20BalanceOf from './crucible-erc20-balance-of';
@@ -551,6 +552,7 @@ const strategies = {
   honeyswap,
   'egl-vote': eglVote,
   'mcn-farm': mcnFarm,
+  meebitsdao,
   'crucible-erc20-balance-of': crucibleERC20BalanceOf,
   'erc20-token-and-lp-weighted': erc20TokenAndLpWeighted,
   'erc20-token-and-single-lp-weighted': erc20TokenAndSingleLpWeighted,
