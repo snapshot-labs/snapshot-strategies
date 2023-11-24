@@ -102,7 +102,7 @@ const policies = {
   'unstreamed-recipient': 'unstreamed-recipient'
 };
 
-type IPolicy = typeof policies[keyof typeof policies];
+type IPolicy = (typeof policies)[keyof typeof policies];
 
 interface IOptions {
   address: string;

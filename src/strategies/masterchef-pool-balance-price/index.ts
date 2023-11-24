@@ -314,8 +314,8 @@ function applyAntiWhaleMeasures(result) {
     _options.antiWhale.exponent == null || _options.antiWhale.exponent <= 0
       ? 0.5
       : _options.antiWhale.exponent > 1
-      ? 1
-      : _options.antiWhale.exponent;
+        ? 1
+        : _options.antiWhale.exponent;
 
   log.push(`inflectionPoint = ${inflectionPoint}`);
   log.push(`exponent = ${exponent}`);

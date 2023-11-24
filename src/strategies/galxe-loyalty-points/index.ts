@@ -41,8 +41,8 @@ export async function strategy(
         snapshotId: options.snapshot_id
           ? options.snapshot_id
           : typeof snapshot === 'number'
-          ? snapshot
-          : ''
+            ? snapshot
+            : ''
       }
     })
   };

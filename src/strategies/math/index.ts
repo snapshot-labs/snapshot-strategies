@@ -31,9 +31,8 @@ export async function strategy(
     strategyOptions.operands.map((item) =>
       resolveOperand(item, addresses, space, network, provider, snapshot)
     );
-  const resolvedOperands: Record<string, number>[] = await Promise.all(
-    operandPromises
-  );
+  const resolvedOperands: Record<string, number>[] =
+    await Promise.all(operandPromises);
 
   const finalResult: Record<string, number> = resolveOperation(
     strategyOptions.operation,

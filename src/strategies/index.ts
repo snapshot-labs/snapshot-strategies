@@ -435,7 +435,8 @@ const strategies = {
   'erc721-with-multiplier': erc721WithMultiplier,
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
-  'erc721-with-tokenid-range-weights-simple': erc721WithTokenIdRangeWeightsSimple,
+  'erc721-with-tokenid-range-weights-simple':
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -606,7 +607,8 @@ const strategies = {
   'snet-farmers': snetFarmers,
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
-  'unstackedtoadz-and-stackedtoadz-stakers': unstackedToadzAndStackedToadzStakers,
+  'unstackedtoadz-and-stackedtoadz-stakers':
+    unstackedToadzAndStackedToadzStakers,
   'ocean-dao-brightid': oceanDAOBrightID,
   membership: membership,
   'lydia-gov-vault': lydiaGovVault,
@@ -699,7 +701,8 @@ const strategies = {
   'nation3-votes-with-delegations': nation3VotesWIthDelegations,
   'nation3-passport-coop-with-delegations': nation3CoopPassportWithDelegations,
   'erc20-tokens-per-uni': erc20TokensPerUni,
-  'bancor-standard-rewards-underlying-balance': bancorStandardRewardsUnderlyingBalance,
+  'bancor-standard-rewards-underlying-balance':
+    bancorStandardRewardsUnderlyingBalance,
   'sd-vote-boost': sdVoteBoost,
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   spreadsheet,
@@ -731,7 +734,8 @@ const strategies = {
   'delegate-registry-v2': delegateRegistryV2,
   'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg,
   'karma-discord-roles': karmaDiscordRoles,
-  'seedify-cumulative-voting-power-hodl-staking-farming': seedifyHoldStakingFarming,
+  'seedify-cumulative-voting-power-hodl-staking-farming':
+    seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
   'sablier-v1-deposit': sablierV1Deposit,
   'sablier-v2': sablierV2,

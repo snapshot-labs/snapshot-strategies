@@ -27,8 +27,8 @@ export async function strategy(
           mints(where: {collectionAddresses: "${
             options.address
           }", minterAddresses: ${JSON.stringify(
-        addresses
-      )}}, pagination: {limit: 500}) {
+            addresses
+          )}}, pagination: {limit: 500}) {
             nodes {
               mint {
                 tokenId,
