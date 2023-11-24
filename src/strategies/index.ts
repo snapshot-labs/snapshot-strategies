@@ -55,11 +55,13 @@ import * as faralandStaking from './faraland-staking';
 import * as flashstake from './flashstake';
 import * as pancake from './pancake';
 import * as pancakeProfile from './pancake-profile';
+import * as synthetix from './synthetix';
 import * as aelinCouncil from './aelin-council';
 import * as ctoken from './ctoken';
 import * as stakedUniswap from './staked-uniswap';
 import * as erc20Received from './erc20-received';
 import * as xDaiEasyStaking from './xdai-easy-staking';
+import * as xDaiPOSDAOStaking from './xdai-posdao-staking';
 import * as xDaiStakeHolders from './xdai-stake-holders';
 import * as xDaiStakeDelegation from './xdai-stake-delegation';
 import * as defidollar from './defidollar';
@@ -196,6 +198,7 @@ import * as mutantCatsStakersAndHolders from './mutant-cats-stakers-and-holders'
 import * as razorVoting from './razor-network-voting';
 import * as mcbBalanceFromGraph from './mcb-balance-from-graph';
 import * as colonyReputation from './colony-reputation';
+import * as digitalaxMonaQuickswap from './digitalax-mona-quickswap';
 import * as digitalaxGenesisContribution from './digitalax-genesis-contribution';
 import * as digitalaxLPStakers from './digitalax-lp-stakers';
 import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
@@ -453,10 +456,12 @@ const strategies = {
   flashstake,
   pancake,
   'pancake-profile': pancakeProfile,
+  synthetix,
   'aelin-council': aelinCouncil,
   ctoken,
   'staked-uniswap': stakedUniswap,
   'xdai-easy-staking': xDaiEasyStaking,
+  'xdai-posdao-staking': xDaiPOSDAOStaking,
   'xdai-stake-holders': xDaiStakeHolders,
   'xdai-stake-delegation': xDaiStakeDelegation,
   defidollar,
@@ -582,6 +587,7 @@ const strategies = {
   'digitalax-mona-stakers-matic': digitalaxMonaStakersMatic,
   'digitalax-lp-stakers-matic': digitalaxLPStakersMatic,
   'colony-reputation': colonyReputation,
+  'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'galaxy-nft-with-score': galaxyNftWithScore,
   'galxe-loyalty-points': galxeLoyaltyPoints,
   'gatenet-total-staked': gatenetTotalStaked,
