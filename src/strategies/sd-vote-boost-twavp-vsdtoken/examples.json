@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Stake DAO vote boost using TWAVP for vsdTkn holders",
+    "strategy": {
+      "name": "sd-vote-boost-twavp-vsdtoken",
+      "params": {
+        "vsdTokenContract": "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2",
+        "symbol": "sdToken",
+        "decimals": 18,
+        "sampleSize": 10,
+        "sampleStep": 5,
+        "botAddress": "",
+        "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x26a5994176d34D128C5e6ab80Fa0882A7df4fF00",
+      "0xDdB50FfDbA4D89354E1088e4EA402de895562173",
+      "0xE1F7eaD40d33eeF30dCf15eB5efC45409001aAB8",
+      "0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"
+    ],
+    "snapshot": 17835000
+  }
+]
