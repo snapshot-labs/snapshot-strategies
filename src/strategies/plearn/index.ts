@@ -107,31 +107,11 @@ export async function strategy(
     })
   ]);
 
-  const lockedPoolScore = transformResults(
-    lockedPoolBalancesRes,
-    addresses,
-    (result) => {
-      return parseFloat(
-        formatUnits(result.amount.toString(), options.decimals)
-      );
-    }
-  );
-  const foundingInvestorPoolScore = transformResults(
-    foundingInvestorPoolBalancesRes,
-    addresses,
-    (result) => {
-      return parseFloat(
-        formatUnits(result.amount.toString(), options.decimals)
-      );
-    }
-  );
-  const pendingWithdrawalScore = transformResults(
-    pendingWithdrawalBalancesRes,
-    addresses,
-    (result) => {
-      return parseFloat(formatUnits(result.total.toString(), options.decimals));
-    }
-  );
+  let pf = (s: string) => parseFloat(formatUnits(s, options.decimals));
+
+  const lockedPoolScore = transformResults(lockedPoolBalancesRes, addresses, r => pf(r.amount));
+  const foundingInvestorPoolScore = transformResults(foundingInvestorPoolBalancesRes, addresses, r => pf(r.amount));
+  const pendingWithdrawalScore = transformResults(pendingWithdrawalBalancesRes, addresses, r => pf(r.total));
 
   const finalScore = Object.keys(score).reduce(
     (acc: { [address: string]: number }, address) => {
