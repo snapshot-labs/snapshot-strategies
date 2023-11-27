@@ -21,8 +21,7 @@ const pendingWithdrawalabi = [
 function transformResults(
   res: any[],
   addresses: string[],
-  balanceKey: string,
-  decimals: number
+  balanceTransformer: (result: any) => number
 ): { [address: string]: number } {
   return res.reduce((acc: { [address: string]: number }, result, index) => {
     const address = addresses[index % addresses.length];
@@ -30,13 +29,7 @@ function transformResults(
       acc[address] = 0;
     }
 
-    if (result[balanceKey] === undefined || result[balanceKey] === null) {
-      return acc;
-    }
-
-    const amount = parseFloat(
-      formatUnits(result[balanceKey].toString(), decimals)
-    );
+    const amount = balanceTransformer(result);
     acc[address] += amount;
     return acc;
   }, {});
@@ -117,20 +110,36 @@ export async function strategy(
   const lockedPoolScore = transformResults(
     lockedPoolBalancesRes,
     addresses,
-    'amount',
-    options.decimals
+    (result) => {
+      if (result.amount === null || result.amount === undefined) {
+        return 0;
+      }
+      return parseFloat(
+        formatUnits(result.amount.toString(), options.decimals)
+      );
+    }
   );
   const foundingInvestorPoolScore = transformResults(
     foundingInvestorPoolBalancesRes,
     addresses,
-    'amount',
-    options.decimals
+    (result) => {
+      if (result.amount === null || result.amount === undefined) {
+        return 0;
+      }
+      return parseFloat(
+        formatUnits(result.amount.toString(), options.decimals)
+      );
+    }
   );
   const pendingWithdrawalScore = transformResults(
     pendingWithdrawalBalancesRes,
     addresses,
-    'total',
-    options.decimals
+    (result) => {
+      if (result.total === null || result.total === undefined) {
+        return 0;
+      }
+      return parseFloat(formatUnits(result.total.toString(), options.decimals));
+    }
   );
 
   const finalScore = Object.keys(score).reduce(
