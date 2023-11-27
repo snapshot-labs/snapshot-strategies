@@ -44,7 +44,7 @@ export async function strategy(
   }
 
   // Query users voting power
-  const workingBalanceQuery = addresses.map((address: any) => [
+  const votingPowerQuery = addresses.map((address: any) => [
     options.vsdTokenContract,
     'working_balances', // TODO
     [address]
@@ -60,24 +60,24 @@ export async function strategy(
   const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
     blockTag = blockList[i];
-    response.push(await multicall(network, provider, abi, workingBalanceQuery, { blockTag }));
+    response.push(await multicall(network, provider, abi, votingPowerQuery, { blockTag }));
   }
 
   return Object.fromEntries(
     Array(addresses.length)
       .fill('x')
       .map((_, i) => {
-        // Init array of working balances for user
-        const userWorkingBalances: BigNumber[] = [];
+        // Init array of voting power for user
+        const userVotingPowerBalances: BigNumber[] = [];
 
         for (let j = 0; j < options.sampleStep; j++) {
-          // Add working balance to array.
-          userWorkingBalances.push(response[j].shift()[0]);
+          // Add voting power to array.
+          userVotingPowerBalances.push(response[j].shift()[0]);
         }
 
         // Get average working balance.
         const averageVotingPower = average(
-          userWorkingBalances,
+          userVotingPowerBalances,
           addresses[i],
           options.whiteListedAddress
         );
