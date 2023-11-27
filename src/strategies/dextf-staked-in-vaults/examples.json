@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dextf-staked-in-vaults",
+      "params": {
+        "name": "DEXTF Vaults",
+        "contractAddresses": ["0x42a05787584ec09dDDe46f8CE6a715c93049ee88"],
+        "symbol": "DEXTF",
+        "scoreMultiplier": 1,
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "balanceOf",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "1",
+    "addresses": ["0x75527f00EC786dCCd6CEa82C9B90C81781C42E92"],
+    "snapshot": 13230652
+  }
+]

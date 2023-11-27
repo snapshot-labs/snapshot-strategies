@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "agave",
+      "params": {
+        "lpToken": "0xf7a28097fDf8c323Da826A9D98617a266A73c0Ef",
+        "underlyingToken": "0xb7D311E2Eb55F2f68a9440da38e7989210b9A05e",
+        "symbol": "STAKE"
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0xF82ce7B9692a32C27FE5477b6C85F163f2920eEA",
+      "0x79EB604CCe423dD1CbA290EC946646649F4e70ec",
+      "0x65e714b00f2a8f660bBAc9Ad866EeD7b153cB09D"
+    ],
+    "snapshot": 19235916
+  }
+]
