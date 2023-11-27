@@ -58,7 +58,8 @@ export async function strategy(
   );
 
   const response: any[] = [];
-  for(const blockTag of blockList) {
+  for (let i = 0; i < options.sampleStep; i++) {
+    blockTag = blockList[i];
     response.push(await multicall(network, provider, abi, workingBalanceQuery, { blockTag }));
   }
 
