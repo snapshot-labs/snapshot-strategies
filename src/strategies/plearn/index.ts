@@ -1,4 +1,6 @@
+import { Provider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
+import { BigNumber } from '@ethersproject/bignumber';
 import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
@@ -17,14 +19,38 @@ const pendingWithdrawalabi = [
   'function lockedBalances(address user) view returns (uint256 total, uint256 unlockable, uint256 locked, tuple(uint256 amount, uint256 unlockTime)[] lockData)'
 ];
 
+function transformResults(
+  res: any[],
+  addresses: string[],
+  balanceTransformer: (result: any) => number
+): { [address: string]: number } {
+  return res.reduce((acc: { [address: string]: number }, result, index) => {
+    const address = addresses[index % addresses.length];
+    if (!acc[address]) {
+      acc[address] = 0;
+    }
+
+    const amount = balanceTransformer(result);
+    acc[address] += amount;
+    return acc;
+  }, {});
+}
+
 export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
+  space: string,
+  network: string,
+  provider: Provider,
+  addresses: string[],
+  options: {
+    lockedPoolAddresses: { address: string }[];
+    foundingInvestorPoolAddresses: { address: string }[];
+    pendingWithdrawalAddresses: { address: string }[];
+    symbol: string;
+    address: string;
+    decimals: number;
+  },
+  snapshot: number | string
+): Promise<{ [address: string]: number }> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const score = await erc20BalanceOfStrategy(
     space,
@@ -35,104 +61,84 @@ export async function strategy(
     snapshot
   );
 
-  const maxAddresses = 5;
-  const selectedLockedPoolAddresses = options.lockedPoolAddresses.slice(
-    0,
-    maxAddresses
-  );
-  const selectedFoundingInvestorPoolAddresses =
-    options.foundingInvestorPoolAddresses.slice(0, maxAddresses);
-  const selectedPendingWithdrawalAddresses =
-    options.pendingWithdrawalAddresses.slice(0, maxAddresses);
-
-  const lockedPoolBalances = await Promise.all(
-    selectedLockedPoolAddresses.map((item) =>
-      multicall(
-        network,
-        provider,
-        lockedPoolabi,
-        addresses.map((address: any) => [
-          item.address,
-          'userInfo',
-          [address],
-          { blockTag }
-        ]),
-        { blockTag }
-      )
-    )
-  );
-
-  const foundingInvestorPoolBalances = await Promise.all(
-    selectedFoundingInvestorPoolAddresses.map((item) =>
-      multicall(
-        network,
-        provider,
-        foundingInvestorPoolabi,
-        addresses.map((address: any) => [
-          item.address,
-          'userInfo',
-          [address],
-          { blockTag }
-        ]),
-        { blockTag }
-      )
-    )
-  );
-
-  const pendingWithdrawalBalances = await Promise.all(
-    selectedPendingWithdrawalAddresses.map((item) =>
-      multicall(
-        network,
-        provider,
-        pendingWithdrawalabi,
-        addresses.map((address: any) => [
-          item.address,
-          'lockedBalances',
-          [address],
-          { blockTag }
-        ]),
-        { blockTag }
-      )
-    )
-  );
-
-  return Object.fromEntries(
-    Object.entries(score).map((address, index) => [
-      address[0],
-      address[1] +
-        lockedPoolBalances.reduce(
-          (prev: number, cur: any, idx: number) =>
-            prev +
-            parseFloat(
-              formatUnits(
-                cur[index].amount.toString(),
-                options.lockedPoolAddresses[idx].decimals
-              )
-            ),
-          0
-        ) +
-        foundingInvestorPoolBalances.reduce(
-          (prev: number, cur: any, idx: number) =>
-            prev +
-            parseFloat(
-              formatUnits(
-                cur[index].amount.toString(),
-                options.foundingInvestorPoolAddresses[idx].decimals
-              )
-            ),
-          0
-        ) +
-        pendingWithdrawalBalances.reduce(
-          (prev: number, cur: any, idx: number) =>
-            prev +
-            parseFloat(
-              formatUnits(
-                cur[index].total.toString(),
-                options.pendingWithdrawalAddresses[idx].decimals
-              )
-            ),
-          0
-        )
+  const lockedPoolCalls = options.lockedPoolAddresses.flatMap((item) =>
+    addresses.map((address) => [
+      item.address,
+      'userInfo',
+      [address],
+      { blockTag }
     ])
   );
+
+  const foundingInvestorPoolCalls =
+    options.foundingInvestorPoolAddresses.flatMap((item) =>
+      addresses.map((address) => [
+        item.address,
+        'userInfo',
+        [address],
+        { blockTag }
+      ])
+    );
+
+  const pendingWithdrawalCalls = options.pendingWithdrawalAddresses.flatMap(
+    (item) =>
+      addresses.map((address) => [
+        item.address,
+        'lockedBalances',
+        [address],
+        { blockTag }
+      ])
+  );
+
+  const [
+    lockedPoolBalancesRes,
+    foundingInvestorPoolBalancesRes,
+    pendingWithdrawalBalancesRes
+  ] = await Promise.all([
+    multicall(network, provider, lockedPoolabi, lockedPoolCalls, { blockTag }),
+    multicall(
+      network,
+      provider,
+      foundingInvestorPoolabi,
+      foundingInvestorPoolCalls,
+      { blockTag }
+    ),
+    multicall(network, provider, pendingWithdrawalabi, pendingWithdrawalCalls, {
+      blockTag
+    })
+  ]);
+
+  const pf = (amount: BigNumber) =>
+    parseFloat(formatUnits(amount, options.decimals));
+
+  const lockedPoolScore = transformResults(
+    lockedPoolBalancesRes,
+    addresses,
+    (r) => pf(r.amount)
+  );
+  const foundingInvestorPoolScore = transformResults(
+    foundingInvestorPoolBalancesRes,
+    addresses,
+    (r) => pf(r.amount)
+  );
+  const pendingWithdrawalScore = transformResults(
+    pendingWithdrawalBalancesRes,
+    addresses,
+    (r) => pf(r.total)
+  );
+
+  const finalScore = Object.keys(score).reduce(
+    (acc: { [address: string]: number }, address) => {
+      acc[address] = Math.trunc(
+        score[address] +
+          (lockedPoolScore[address] || 0) +
+          (foundingInvestorPoolScore[address] || 0) +
+          (pendingWithdrawalScore[address] || 0)
+      );
+      return acc;
+    },
+    {}
+  );
+
+  return finalScore;
 }
