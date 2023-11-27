@@ -5,13 +5,14 @@ import { getScoresDirect } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'gnosis';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const DEFAULT_BACKEND_URL = 'https://delegate-registry-backend.vercel.app';
 
 type Params = {
   backendUrl: string;
   strategies: Strategy[];
+  delegationV1VChainIds?: number[]; // add this to include v1 delegations
 };
 
 /*
@@ -42,8 +43,11 @@ export async function strategy(
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        addresses: addresses,
-        strategies: options.strategies
+        spaceParams: {
+          ...options,
+          mainChainId: Number(network)
+        },
+        addresses
       })
     }
   );
@@ -75,7 +79,7 @@ export async function strategy(
       ...addressesNotDelegatingOrDelegatedTo,
       ...addressesDelegatedTo.map(([address]) => address)
     ],
-    snapshot
+    blockTag
   );
 
   const delegationObject = addressesDelegatedTo.reduce(
