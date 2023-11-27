@@ -14,23 +14,19 @@ Here is an example of parameters:
       "params": {
         "lockedPoolAddresses": [
           {
-            "address": "0xc38d542326545470a12B06Bf8e315DE55B0B6B46",
-            "decimals": 18
+            "address": "0xc38d542326545470a12B06Bf8e315DE55B0B6B46"
           },
           {
-            "address": "0x9b45a8eeD3eF6DA3bE222147533Da542aa384006",
-            "decimals": 18
+            "address": "0x9b45a8eeD3eF6DA3bE222147533Da542aa384006"
           }
         ],
         "foundingInvestorPoolAddresses": [],
         "pendingWithdrawalAddresses": [
           {
-            "address": "0x7E4e06C81B41284198C0693cd98eb357257Fc3d9",
-            "decimals": 18
+            "address": "0x7E4e06C81B41284198C0693cd98eb357257Fc3d9"
           },
           {
-            "address": "0xC26a3E07D8CCF34195e943C0bb705f206Dd57030",
-            "decimals": 18
+            "address": "0xC26a3E07D8CCF34195e943C0bb705f206Dd57030"
           }
         ],
         "symbol": "PLN",

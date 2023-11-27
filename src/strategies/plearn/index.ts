@@ -18,40 +18,22 @@ const pendingWithdrawalabi = [
   'function lockedBalances(address user) view returns (uint256 total, uint256 unlockable, uint256 locked, tuple(uint256 amount, uint256 unlockTime)[] lockData)'
 ];
 
-function calculateScore(
-  resultsDict: { [address: string]: any[] },
-  poolAddresses: { address: string; decimals: number }[],
-  balanceKey: string,
-  decimals: number[]
-): { [address: string]: number } {
-  return Object.keys(resultsDict).reduce((acc, address) => {
-    acc[address] = poolAddresses.reduce((poolAcc, pool, poolIndex) => {
-      const result = resultsDict[address][poolIndex];
-      if (result && result[balanceKey]) {
-        return (
-          poolAcc +
-          parseFloat(
-            formatUnits(result[balanceKey].toString(), decimals[poolIndex])
-          )
-        );
-      } else {
-        return poolAcc;
-      }
-    }, 0);
-    return acc;
-  }, {});
-}
-
 function transformResults(
   res: any[],
-  addresses: string[]
-): { [address: string]: any[] } {
-  return res.reduce((acc, result, index) => {
+  addresses: string[],
+  balanceKey: string,
+  decimals: number
+): { [address: string]: number } {
+  return res.reduce((acc: { [address: string]: number }, result, index) => {
     const address = addresses[index % addresses.length];
     if (!acc[address]) {
-      acc[address] = [];
+      acc[address] = 0;
     }
-    acc[address].push(result);
+
+    const amount = parseFloat(
+      formatUnits(result[balanceKey].toString(), decimals)
+    );
+    acc[address] += amount;
     return acc;
   }, {});
 }
@@ -62,9 +44,9 @@ export async function strategy(
   provider: Provider,
   addresses: string[],
   options: {
-    lockedPoolAddresses: { address: string; decimals: number }[];
-    foundingInvestorPoolAddresses: { address: string; decimals: number }[];
-    pendingWithdrawalAddresses: { address: string; decimals: number }[];
+    lockedPoolAddresses: { address: string }[];
+    foundingInvestorPoolAddresses: { address: string }[];
+    pendingWithdrawalAddresses: { address: string }[];
     symbol: string;
     address: string;
     decimals: number;
@@ -128,43 +110,37 @@ export async function strategy(
     })
   ]);
 
-  const lockedPoolResults = transformResults(lockedPoolBalancesRes, addresses);
-  const foundingInvestorPoolResults = transformResults(
+  const lockedPoolScore = transformResults(
+    lockedPoolBalancesRes,
+    addresses,
+    'amount',
+    options.decimals
+  );
+  const foundingInvestorPoolScore = transformResults(
     foundingInvestorPoolBalancesRes,
-    addresses
+    addresses,
+    'amount',
+    options.decimals
   );
-  const pendingWithdrawalResults = transformResults(
+  const pendingWithdrawalScore = transformResults(
     pendingWithdrawalBalancesRes,
-    addresses
-  );
-
-  const lockedPoolScore = calculateScore(
-    lockedPoolResults,
-    options.lockedPoolAddresses,
-    'amount',
-    options.lockedPoolAddresses.map((item) => item.decimals)
-  );
-  const foundingInvestorPoolScore = calculateScore(
-    foundingInvestorPoolResults,
-    options.foundingInvestorPoolAddresses,
-    'amount',
-    options.foundingInvestorPoolAddresses.map((item) => item.decimals)
-  );
-  const pendingWithdrawalScore = calculateScore(
-    pendingWithdrawalResults,
-    options.pendingWithdrawalAddresses,
+    addresses,
     'total',
-    options.pendingWithdrawalAddresses.map((item) => item.decimals)
+    options.decimals
   );
 
-  const finalScore = Object.keys(score).reduce((acc, address) => {
-    acc[address] =
-      score[address] +
-      (lockedPoolScore[address] || 0) +
-      (foundingInvestorPoolScore[address] || 0) +
-      (pendingWithdrawalScore[address] || 0);
-    return acc;
-  }, {});
+  const finalScore = Object.keys(score).reduce(
+    (acc: { [address: string]: number }, address) => {
+      acc[address] = Math.trunc(
+        score[address] +
+          (lockedPoolScore[address] || 0) +
+          (foundingInvestorPoolScore[address] || 0) +
+          (pendingWithdrawalScore[address] || 0)
+      );
+      return acc;
+    },
+    {}
+  );
 
   return finalScore;
 }
