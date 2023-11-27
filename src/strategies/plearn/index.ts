@@ -107,7 +107,7 @@ export async function strategy(
     })
   ]);
 
-  let pf = (s: string) => parseFloat(formatUnits(s, options.decimals));
+  let pf = (amount: BigNumber) => parseFloat(formatUnits(amount, options.decimals));
 
   const lockedPoolScore = transformResults(lockedPoolBalancesRes, addresses, r => pf(r.amount));
   const foundingInvestorPoolScore = transformResults(foundingInvestorPoolBalancesRes, addresses, r => pf(r.amount));
