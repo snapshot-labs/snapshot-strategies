@@ -30,6 +30,10 @@ function transformResults(
       acc[address] = 0;
     }
 
+    if (result[balanceKey] === undefined || result[balanceKey] === null) {
+      return acc;
+    }
+
     const amount = parseFloat(
       formatUnits(result[balanceKey].toString(), decimals)
     );
