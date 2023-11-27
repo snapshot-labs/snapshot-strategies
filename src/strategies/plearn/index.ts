@@ -111,9 +111,6 @@ export async function strategy(
     lockedPoolBalancesRes,
     addresses,
     (result) => {
-      if (result.amount === null || result.amount === undefined) {
-        return 0;
-      }
       return parseFloat(
         formatUnits(result.amount.toString(), options.decimals)
       );
@@ -123,9 +120,6 @@ export async function strategy(
     foundingInvestorPoolBalancesRes,
     addresses,
     (result) => {
-      if (result.amount === null || result.amount === undefined) {
-        return 0;
-      }
       return parseFloat(
         formatUnits(result.amount.toString(), options.decimals)
       );
@@ -135,9 +129,6 @@ export async function strategy(
     pendingWithdrawalBalancesRes,
     addresses,
     (result) => {
-      if (result.total === null || result.total === undefined) {
-        return 0;
-      }
       return parseFloat(formatUnits(result.total.toString(), options.decimals));
     }
   );
