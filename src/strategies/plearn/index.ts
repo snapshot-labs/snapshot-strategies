@@ -1,5 +1,6 @@
 import { Provider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
+import { BigNumber } from '@ethersproject/bignumber';
 import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
@@ -107,30 +108,23 @@ export async function strategy(
     })
   ]);
 
+  const pf = (amount: BigNumber) =>
+    parseFloat(formatUnits(amount, options.decimals));
+
   const lockedPoolScore = transformResults(
     lockedPoolBalancesRes,
     addresses,
-    (result) => {
-      return parseFloat(
-        formatUnits(result.amount.toString(), options.decimals)
-      );
-    }
+    (r) => pf(r.amount)
   );
   const foundingInvestorPoolScore = transformResults(
     foundingInvestorPoolBalancesRes,
     addresses,
-    (result) => {
-      return parseFloat(
-        formatUnits(result.amount.toString(), options.decimals)
-      );
-    }
+    (r) => pf(r.amount)
   );
   const pendingWithdrawalScore = transformResults(
     pendingWithdrawalBalancesRes,
     addresses,
-    (result) => {
-      return parseFloat(formatUnits(result.total.toString(), options.decimals));
-    }
+    (r) => pf(r.total)
   );
 
   const finalScore = Object.keys(score).reduce(
