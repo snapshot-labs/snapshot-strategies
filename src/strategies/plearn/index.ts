@@ -1,3 +1,4 @@
+import { Provider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
@@ -17,12 +18,12 @@ const pendingWithdrawalabi = [
   'function lockedBalances(address user) view returns (uint256 total, uint256 unlockable, uint256 locked, tuple(uint256 amount, uint256 unlockTime)[] lockData)'
 ];
 
-export function calculateScore(
-  resultsDict,
-  poolAddresses,
-  balanceKey = 'amount',
-  decimals
-) {
+function calculateScore(
+  resultsDict: { [address: string]: any[] },
+  poolAddresses: { address: string; decimals: number }[],
+  balanceKey: string,
+  decimals: number[]
+): { [address: string]: number } {
   return Object.keys(resultsDict).reduce((acc, address) => {
     acc[address] = poolAddresses.reduce((poolAcc, pool, poolIndex) => {
       const result = resultsDict[address][poolIndex];
@@ -41,14 +42,35 @@ export function calculateScore(
   }, {});
 }
 
+function transformResults(
+  res: any[],
+  addresses: string[]
+): { [address: string]: any[] } {
+  return res.reduce((acc, result, index) => {
+    const address = addresses[index % addresses.length];
+    if (!acc[address]) {
+      acc[address] = [];
+    }
+    acc[address].push(result);
+    return acc;
+  }, {});
+}
+
 export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
+  space: string,
+  network: string,
+  provider: Provider,
+  addresses: string[],
+  options: {
+    lockedPoolAddresses: { address: string; decimals: number }[];
+    foundingInvestorPoolAddresses: { address: string; decimals: number }[];
+    pendingWithdrawalAddresses: { address: string; decimals: number }[];
+    symbol: string;
+    address: string;
+    decimals: number;
+  },
+  snapshot: number | string
+): Promise<{ [address: string]: number }> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const score = await erc20BalanceOfStrategy(
     space,
@@ -105,17 +127,6 @@ export async function strategy(
       blockTag
     })
   ]);
-
-  const transformResults = (res, addresses) => {
-    return res.reduce((acc, result, index) => {
-      const address = addresses[index % addresses.length];
-      if (!acc[address]) {
-        acc[address] = [];
-      }
-      acc[address].push(result);
-      return acc;
-    }, {});
-  };
 
   const lockedPoolResults = transformResults(lockedPoolBalancesRes, addresses);
   const foundingInvestorPoolResults = transformResults(
