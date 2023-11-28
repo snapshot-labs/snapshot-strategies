@@ -5,6 +5,8 @@
       "name": "sd-vote-boost-twavp-vsdtoken",
       "params": {
         "vsdTokenContract": "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2",
+        "sdTokenGauge": "0x7f50786A0b15723D741727882ee99a0BF34e3466",
+        "booster": "0x1B3a4E4D44E53f4a90Ef26e980A3d45f4662D2f1",
         "symbol": "sdToken",
         "decimals": 18,
         "sampleSize": 10,
@@ -20,6 +22,6 @@
       "0xE1F7eaD40d33eeF30dCf15eB5efC45409001aAB8",
       "0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"
     ],
-    "snapshot": 17835000
+    "snapshot": 18671863
   }
 ]

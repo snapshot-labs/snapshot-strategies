@@ -362,6 +362,7 @@ import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
+import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
 import * as friendTech from './friend-tech';
 import * as moonbase from './moonbase';
 import * as dssVestUnpaid from './dss-vest-unpaid';
@@ -776,6 +777,7 @@ const strategies = {
   'friend-tech': friendTech,
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
+  'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   moonbase: moonbase,
   'dss-vest-unpaid': dssVestUnpaid,
   'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid,

@@ -7,6 +7,9 @@ export const version = '0.0.1';
 
 // Used ABI
 const abi = [
+  'function balanceOf(address account) external view returns (uint256)',
+  'function working_supply() external view returns (uint256)',
+  'function totalSupply() external view returns (uint256)',
   'function working_balances(address account) external view returns (uint256)'
 ];
 
@@ -28,11 +31,6 @@ export async function strategy(
     throw new Error('maximum of 20 whitelisted address');
   }
 
-  // Maximum of 500 pools address
-  if (options.pools.length > 500) {
-    throw new Error('maximum of 500 pools');
-  }
-
   // --- Create block number list for twavp
   // Obtain last block number
   // Create block tag
@@ -43,13 +41,6 @@ export async function strategy(
     blockTag = await provider.getBlockNumber();
   }
 
-  // Query users voting power
-  const votingPowerQuery = addresses.map((address: any) => [
-    options.vsdTokenContract,
-    'working_balances', // TODO
-    [address]
-  ]);
-
   // Create block list
   const blockList = getPreviousBlocks(
     blockTag,
@@ -57,33 +48,85 @@ export async function strategy(
     options.sampleSize
   );
 
+  const balanceOfQueries: any[] = [];
+  for(const address of addresses) {
+    balanceOfQueries.push([
+      options.vsdTokenContract,
+      'balanceOf',
+      [address]
+    ]);
+    balanceOfQueries.push([
+      options.vsdTokenContract,
+      'totalSupply',
+      []
+    ]);
+  }
+
+  // Execute multicall `sampleStep` times
   const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
+    // Use good block number
     blockTag = blockList[i];
-    response.push(await multicall(network, provider, abi, votingPowerQuery, { blockTag }));
+
+    const loopCalls: any[] = [];
+
+    // Add mutlicall response to array
+    if (i === options.sampleStep - 1) {
+      // End
+      loopCalls.push([options.sdTokenGauge, 'working_supply']);
+      loopCalls.push([options.sdTokenGauge, 'working_balances', [options.booster]]);
+      loopCalls.push(...balanceOfQueries);
+    } else {
+      loopCalls.push(...balanceOfQueries);
+    }
+
+    response.push(
+      await multicall(network, provider, abi, loopCalls, { blockTag })
+    );
   }
+
+  const workingSupply = response[response.length - 1].shift()[0]; // Last response, latest block
+  const sdTokenGaugeTotalSupply = response[response.length - 1].shift()[0]; // Last response, latest block
 
   return Object.fromEntries(
     Array(addresses.length)
       .fill('x')
       .map((_, i) => {
-        // Init array of voting power for user
-        const userVotingPowerBalances: BigNumber[] = [];
+        // Init array of working balances for user
+        const userWorkingBalances: BigNumber[] = [];
 
         for (let j = 0; j < options.sampleStep; j++) {
-          // Add voting power to array.
-          userVotingPowerBalances.push(response[j].shift()[0]);
+          const balanceOf = BigNumber.from(response[j].shift()[0]);
+          const totalSupply = BigNumber.from(response[j].shift()[0]);
+          
+          // Add working balance to array.
+          userWorkingBalances.push(balanceOf.div(totalSupply));
         }
 
         // Get average working balance.
-        const averageVotingPower = average(
-          userVotingPowerBalances,
+        const averageWorkingBalance = average(
+          userWorkingBalances,
           addresses[i],
           options.whiteListedAddress
         );
 
+        const averageWorkingBalanceF = parseFloat(
+          formatUnits(averageWorkingBalance, 18)
+        );
+        const sdTokenGaugeTotalSupplyF = parseFloat(
+          formatUnits(sdTokenGaugeTotalSupply, 18)
+        );
+        const workingSupplyF = parseFloat(formatUnits(workingSupply, 18));
+
+        // Calculate voting power.
+        const votingPower =
+          workingSupply != 0
+            ? (averageWorkingBalanceF * sdTokenGaugeTotalSupplyF) /
+              workingSupplyF
+            : 0;
+
         // Return address and voting power
-        return [addresses[i], Number(parseFloat(formatUnits(averageVotingPower, 18)))];
+        return [addresses[i], Number(votingPower)];
       })
   );
 }
