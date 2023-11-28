@@ -1,0 +1,47 @@
+# Plearn
+
+This is the most common strategy, it returns the balances of the voters for a balances PLN token
+in Plearn project(pools, token).
+
+Here is an example of parameters:
+
+```json
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "plearn",
+      "params": {
+        "lockedPoolAddresses": [
+          {
+            "address": "0xc38d542326545470a12B06Bf8e315DE55B0B6B46"
+          },
+          {
+            "address": "0x9b45a8eeD3eF6DA3bE222147533Da542aa384006"
+          }
+        ],
+        "foundingInvestorPoolAddresses": [],
+        "pendingWithdrawalAddresses": [
+          {
+            "address": "0x7E4e06C81B41284198C0693cd98eb357257Fc3d9"
+          },
+          {
+            "address": "0xC26a3E07D8CCF34195e943C0bb705f206Dd57030"
+          }
+        ],
+        "symbol": "PLN",
+        "address": "0xBe0D3526fc797583Dada3F30BC390013062A048B",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xE0d54117600e592E7a78C985996d11b8Fb1B69C3",
+      "0x3C97c372B45cC96Fe73814721ebbE6db02C9D88E",
+      "0xB6605F98A5562b1AC821Bc5f2B75934239e8c6D6",
+      "0x8900cCBdC60fD97E3B7c8529A9987F8c0f8A1125"
+    ],
+    "snapshot": 33739024
+  }
+]
+```
