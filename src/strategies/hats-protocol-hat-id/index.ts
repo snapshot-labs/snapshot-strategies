@@ -1,31 +1,22 @@
-import { subgraphRequest } from '../../utils';
+import { BigNumberish, BigNumber } from '@ethersproject/bignumber';
 import { getAddress } from '@ethersproject/address';
+import { Multicaller } from '../../utils';
 
 export const author = 'hotmanics';
 export const version = '1.0.0';
 
-async function subgraphRequestHats(url, snapshot, hatIp) {
-  const hatHex = HatIpToHex(hatIp);
-
-  const params = {
-    hat: {
-      __args: {
-        id: hatHex
-      },
-      id: true,
-      wearers: {
-        id: true
-      }
-    }
-  };
-
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    params.hat.__args.block = { number: snapshot };
+const abi = [
+  {
+    inputs: [
+      { internalType: 'address', name: '_user', type: 'address' },
+      { internalType: 'uint256', name: '_hatId', type: 'uint256' }
+    ],
+    name: 'isWearerOfHat',
+    outputs: [{ internalType: 'bool', name: 'isWearer', type: 'bool' }],
+    stateMutability: 'view',
+    type: 'function'
   }
-  const result = await subgraphRequest(url, params);
-  return result;
-}
+];
 
 export async function strategy(
   space,
@@ -35,67 +26,24 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  let result;
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  switch (network) {
-    case '1':
-      result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-ethereum',
-        snapshot,
-        options.hatId
-      );
-      break;
-    case '10':
-      result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism',
-        snapshot,
-        options.hatId
-      );
-      break;
-    case '5':
-      result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-goerli',
-        snapshot,
-        options.hatId
-      );
-      break;
-    case '137':
-      result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-polygon',
-        snapshot,
-        options.hatId
-      );
-      break;
-    case '100':
-      result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-gnosis-chain',
-        snapshot,
-        options.hatId
-      );
-      break;
-    case '42161':
-      result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-arbitrum',
-        snapshot,
-        options.hatId
-      );
-      break;
-  }
+  const hatId = BigNumber.from(HatIpToHex(options.hatId));
 
-  const myObj = {};
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+  addresses.forEach((address) =>
+    multi.call(address, options.address, 'isWearerOfHat', [address, hatId])
+  );
+  const result: Record<string, BigNumberish> = await multi.execute();
 
-  addresses.forEach((address) => {
-    myObj[address] = 0;
+  const res = Object.fromEntries(
+    Object.entries(result).map(([address, isWearer]) => [
+      getAddress(address),
+      isWearer ? 1 : 0
+    ])
+  );
 
-    for (let i = 0; i < result.hat.wearers.length; i++) {
-      if (address === getAddress(result.hat.wearers[i].id)) {
-        myObj[address] = 1;
-        break;
-      }
-    }
-  });
-
-  return myObj;
+  return res;
 }
 
 function HatIpToHex(hatIp) {
@@ -125,12 +73,13 @@ function HatIpToHex(hatIp) {
     const hex = sections[i].toString(16);
 
     if (i === 0) {
-      constructedResult += hex.padStart(10 - hex.length, '0');
+      constructedResult += hex.padStart(8, '0');
     } else {
-      constructedResult += hex.padStart(5 - hex.length, '0');
+      constructedResult += hex.padStart(4, '0');
     }
   }
 
   constructedResult = constructedResult.padEnd(66, '0');
+
   return constructedResult;
 }
