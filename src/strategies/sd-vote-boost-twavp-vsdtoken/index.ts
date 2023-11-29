@@ -61,8 +61,7 @@ export async function strategy(
       []
     ]);
   }
-
-  // Execute multicall `sampleStep` times
+  
   const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
     // Use good block number
@@ -73,6 +72,7 @@ export async function strategy(
     // Add mutlicall response to array
     if (i === options.sampleStep - 1) {
       // End
+      loopCalls.push([options.veAddress, 'balanceOf', [options.locker]]);
       loopCalls.push([options.sdTokenGauge, 'working_supply']);
       loopCalls.push([options.sdTokenGauge, 'working_balances', [options.booster]]);
       loopCalls.push(...balanceOfQueries);
@@ -85,22 +85,23 @@ export async function strategy(
     );
   }
 
+  const lockerVeBalance = response[response.length - 1].shift()[0]; // Last response, latest block
   const workingSupply = response[response.length - 1].shift()[0]; // Last response, latest block
-  const sdTokenGaugeTotalSupply = response[response.length - 1].shift()[0]; // Last response, latest block
+  const workingBalances = response[response.length - 1].shift()[0]; // Last response, latest block
 
   return Object.fromEntries(
     Array(addresses.length)
       .fill('x')
       .map((_, i) => {
         // Init array of working balances for user
-        const userWorkingBalances: BigNumber[] = [];
+        const userWorkingBalances: number[] = [];
 
         for (let j = 0; j < options.sampleStep; j++) {
           const balanceOf = BigNumber.from(response[j].shift()[0]);
           const totalSupply = BigNumber.from(response[j].shift()[0]);
-          
+
           // Add working balance to array.
-          userWorkingBalances.push(balanceOf.div(totalSupply));
+          userWorkingBalances.push(balanceOf.div(totalSupply).toNumber());
         }
 
         // Get average working balance.
@@ -110,19 +111,13 @@ export async function strategy(
           options.whiteListedAddress
         );
 
-        const averageWorkingBalanceF = parseFloat(
-          formatUnits(averageWorkingBalance, 18)
-        );
-        const sdTokenGaugeTotalSupplyF = parseFloat(
-          formatUnits(sdTokenGaugeTotalSupply, 18)
-        );
-        const workingSupplyF = parseFloat(formatUnits(workingSupply, 18));
-
         // Calculate voting power.
         const votingPower =
           workingSupply != 0
-            ? (averageWorkingBalanceF * sdTokenGaugeTotalSupplyF) /
-              workingSupplyF
+            ? averageWorkingBalance
+              * parseFloat(formatUnits(workingBalances, 18))
+              / parseFloat(formatUnits(workingSupply, 18))
+              * parseFloat(formatUnits(lockerVeBalance, 18))
             : 0;
 
         // Return address and voting power
@@ -130,6 +125,30 @@ export async function strategy(
       })
   );
 }
+
+
+function average(
+  numbers: number[],
+  address: string,
+  whiteListedAddress: string[]
+): number {
+  // If no numbers, return 0 to avoid division by 0.
+  if (numbers.length === 0) return 0;
+
+  // If address is whitelisted, return most recent working balance. i.e. no twavp applied.
+  if (whiteListedAddress.includes(address)) return numbers[numbers.length - 1];
+
+  // Init sum
+  let sum = 0;
+  // Loop through all elements and add them to sum
+  for (let i = 0; i < numbers.length; i++) {
+    sum += numbers[i];
+  }
+
+  // Return sum divided by array length to get mean
+  return sum / numbers.length;
+}
+
 
 function getPreviousBlocks(
   currentBlockNumber: number,
@@ -156,26 +175,4 @@ function getPreviousBlocks(
 
   // Return array of block numbers
   return blockNumbers;
-}
-
-function average(
-  numbers: BigNumber[],
-  address: string,
-  whiteListedAddress: string[]
-): BigNumber {
-  // If no numbers, return 0 to avoid division by 0.
-  if (numbers.length === 0) return BigNumber.from(0);
-
-  // If address is whitelisted, return most recent working balance. i.e. no twavp applied.
-  if (whiteListedAddress.includes(address)) return numbers[numbers.length - 1];
-
-  // Init sum
-  let sum = BigNumber.from(0);
-  // Loop through all elements and add them to sum
-  for (let i = 0; i < numbers.length; i++) {
-    sum = sum.add(numbers[i]);
-  }
-
-  // Return sum divided by array length to get mean
-  return sum.div(numbers.length);
 }
