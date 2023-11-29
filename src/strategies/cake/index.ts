@@ -146,7 +146,7 @@ async function getSmartChefStakedCakeAmount(
 
 async function veCakeStrategy(addresses, network, provider, blockTag, options) {
   let callData = addresses.map((address: any) => [
-    '0x69e0d66BAaBeA9351c8bBb078D18654e39D1503d',
+    onChainVotingPower.v1.address,
     'getVotingPowerWithoutPool',
     [address.toLowerCase()]
   ]);
