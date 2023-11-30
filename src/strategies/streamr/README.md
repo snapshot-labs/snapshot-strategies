@@ -10,12 +10,9 @@ This is why part of the Operators' DATA tokens are staked in Sponsorships (throu
 
 ## Parameters
 
-TODO
-
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
-  "decimals": 18
+  "tokenAddress": "0x3a9A81d576d83FF21f26f325066054540720fC34",
+  "operatorFactoryAddress": "0x935734e66729b69260543Cf6e5EfeB42AC962183"
 }
 ```
