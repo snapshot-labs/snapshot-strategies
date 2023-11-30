@@ -376,6 +376,7 @@ import * as bubblegumKids from './bubblegum-kids';
 import * as clipperStakedSail from './clipper-staked-sail';
 import * as plearn from './plearn';
 import * as snote from './snote';
+import * as streamr from './streamr';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -758,7 +759,8 @@ const strategies = {
   'bubblegum-kids': bubblegumKids,
   'clipper-staked-sail': clipperStakedSail,
   plearn,
-  snote
+  snote,
+  streamr
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
