@@ -377,6 +377,34 @@ import * as clipperStakedSail from './clipper-staked-sail';
 import * as plearn from './plearn';
 import * as snote from './snote';
 import * as streamr from './streamr';
+import * as aavegotchiAgip17 from './aavegotchi-agip-17';
+import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
+import * as agave from './agave';
+import * as arrakisFinance from './arrakis-finance';
+import * as ctsiStakingPool from './ctsi-staking-pool';
+import * as cyberkongzV2 from './cyberkongz-v2';
+import * as dextfStakedInVaults from './dextf-staked-in-vaults';
+import * as genomesdao from './genomesdao';
+import * as goldfinchMembership from './goldfinch-membership';
+import * as goldfinchVotingPower from './goldfinch-voting-power';
+import * as h2o from './h2o';
+import * as hoprStakingBySeason from './hopr-staking-by-season';
+import * as hoprStakingS2 from './hopr-staking-s2';
+import * as ilv from './ilv';
+import * as meebitsdaoDelegation from './meebitsdao-delegation';
+import * as modefiStaking from './modefi-staking';
+import * as orbsNetworkDelegation from './orbs-network-delegation';
+import * as planetFinanceV2 from './planet-finance-v2';
+import * as rariFuse from './rari-fuse';
+import * as synthetixNonQuadratic_1 from './synthetix-non-quadratic_1';
+import * as synthetixQuadratic from './synthetix-quadratic';
+import * as synthetixQuadratic_1 from './synthetix-quadratic_1';
+import * as synthetix_1 from './synthetix_1';
+import * as totalAxionShares from './total-axion-shares';
+import * as unipoolSameToken from './unipool-same-token';
+import * as voltVotingPower from './volt-voting-power';
+import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -760,7 +788,35 @@ const strategies = {
   'clipper-staked-sail': clipperStakedSail,
   plearn,
   snote,
-  streamr
+  streamr,
+  'aavegotchi-agip-17': aavegotchiAgip17,
+  'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
+  'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
+  agave,
+  'arrakis-finance': arrakisFinance,
+  'ctsi-staking-pool': ctsiStakingPool,
+  'cyberkongz-v2': cyberkongzV2,
+  'dextf-staked-in-vaults': dextfStakedInVaults,
+  genomesdao,
+  'goldfinch-membership': goldfinchMembership,
+  'goldfinch-voting-power': goldfinchVotingPower,
+  h2o,
+  'hopr-staking-by-season': hoprStakingBySeason,
+  'hopr-staking-s2': hoprStakingS2,
+  ilv,
+  'meebitsdao-delegation': meebitsdaoDelegation,
+  'modefi-staking': modefiStaking,
+  'orbs-network-delegation': orbsNetworkDelegation,
+  'planet-finance-v2': planetFinanceV2,
+  'rari-fuse': rariFuse,
+  'synthetix-non-quadratic_1': synthetixNonQuadratic_1,
+  'synthetix-quadratic': synthetixQuadratic,
+  'synthetix-quadratic_1': synthetixQuadratic_1,
+  synthetix_1,
+  'total-axion-shares': totalAxionShares,
+  'unipool-same-token': unipoolSameToken,
+  'volt-voting-power': voltVotingPower,
+  'xdai-stakers-and-holders': xdaiStakersAndHolders
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
