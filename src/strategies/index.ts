@@ -376,6 +376,7 @@ import * as bubblegumKids from './bubblegum-kids';
 import * as clipperStakedSail from './clipper-staked-sail';
 import * as plearn from './plearn';
 import * as snote from './snote';
+import * as streamr from './streamr';
 import * as aavegotchiAgip17 from './aavegotchi-agip-17';
 import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
@@ -787,6 +788,7 @@ const strategies = {
   'clipper-staked-sail': clipperStakedSail,
   plearn,
   snote,
+  streamr,
   'aavegotchi-agip-17': aavegotchiAgip17,
   'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
   'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
