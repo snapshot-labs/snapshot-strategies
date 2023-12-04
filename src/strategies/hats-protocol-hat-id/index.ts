@@ -6,16 +6,7 @@ export const author = 'hotmanics';
 export const version = '1.0.0';
 
 const abi = [
-  {
-    inputs: [
-      { internalType: 'address', name: '_user', type: 'address' },
-      { internalType: 'uint256', name: '_hatId', type: 'uint256' }
-    ],
-    name: 'isWearerOfHat',
-    outputs: [{ internalType: 'bool', name: 'isWearer', type: 'bool' }],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function isWearerOfHat(address _user, uint256 _hatId) view returns (bool isWearer)'
 ];
 
 export async function strategy(
