@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "bubblegum-kids"
+    },
+    "network": "1",
+    "addresses": [
+      "0xfec4465b6aeac9c90e552ae7766bdc0ee0d8dbc9",
+      "0x146860d31ab0f6dc858106f1a5d7a52bd6c86d1d",
+      "0x8edc7272a444057d1556df2a1173e6799c3c5ae0",
+      "0x8af2bd409ea0290029c14aac5d1be77d5c9a114f",
+      "0x41636ddf4abb1aa78863101626acdc861d4e8a0b",
+      "0xd341108b067cd308cf8cc7e13fb9982b0cba2f4e",
+      "0xdf05770b388ee62362917bea9dc96f0dee3b246e",
+      "0xf98e849c4b0de9750630f1c23c1bea9e79b4edb3",
+      "0xf68b74b89093315c5bf018348886c9fdd8308d7f",
+      "0x95222290dd7278aa3ddd389cc1e1d165cc4bafe5"
+    ],
+    "snapshot": 18589032
+  }
+]

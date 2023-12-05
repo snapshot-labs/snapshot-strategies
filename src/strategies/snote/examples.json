@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "snote",
+      "params": { "symbol": "sNOTE" }
+    },
+    "network": "1",
+    "addresses": [
+      "0xCece1920D4dBb96BAf88705ce0A6Eb3203ed2eB1",
+      "0x4E8014fF5bacE498DAB1a9E2B5c3f4240bC059B6",
+      "0x741AA7CFB2c7bF2A1E7D4dA2e3Df6a56cA4131F3"
+    ],
+    "snapshot": 18629000
+  }
+]

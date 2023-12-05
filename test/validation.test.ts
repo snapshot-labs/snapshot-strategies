@@ -20,18 +20,31 @@ const examples = require(`../src/validations/${id}/examples.json`).map(
   (example, index) => ({ index, example })
 );
 
-const [{ example }] = examples;
-
 describe('Validation', () => {
   it(`validate: ${id}`, async () => {
-    const validation = new snapshot.validations[id].validation(
-      example.author,
-      example.space,
-      example.network,
-      example.snapshot,
-      example.params
+    await Promise.all(
+      examples.map(async ({ example }) => {
+        const validation = new snapshot.validations[id].validation(
+          example.author,
+          example.space,
+          example.network,
+          example.snapshot,
+          example.params
+        );
+
+        // edge-case when using setTimeout to wait for the Passport API to process a job request
+        if (id === 'passport-gated') jest.useRealTimers();
+
+        const exampleValidation = await validation.validate();
+        const expectedValue =
+          example.valid !== undefined ? example.valid : true;
+        console.log(
+          `Example ${example.author} -> Expected: ${example.valid} Actual: ${exampleValidation}`
+        );
+
+        expect(exampleValidation).toBe(expectedValue);
+      })
     );
-    expect(await validation.validate()).toBe(true);
   }, 30e3);
 
   // Check schema is valid with examples.json
@@ -45,9 +58,11 @@ describe('Validation', () => {
     'Check schema (if available) is valid with examples.json',
     async () => {
       expect(typeof schema).toBe('object');
-      expect(snapshotjs.utils.validateSchema(schema, example.params)).toBe(
-        true
-      );
+      for (const { example } of examples) {
+        expect(snapshotjs.utils.validateSchema(schema, example.params)).toBe(
+          true
+        );
+      }
     }
   );
 });

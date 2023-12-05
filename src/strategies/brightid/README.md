@@ -7,8 +7,8 @@ This strategy returns a score of 1 for voters verified in a BrightID user regist
 
 Public registries are maintained by BrightID and can be used if a DAO has no interest on setting one up themselves.
 
-Here is an example of parameters for using an public registry contract:
-Note that when using an public registry, the network is always set to IDChain(74).
+Here is an example of parameters for using a public registry contract:
+Note that when using a public registry, the network is always set to IDChain(74).
 
 ```json
 {

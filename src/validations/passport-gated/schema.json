@@ -6,253 +6,23 @@
       "title": "Gitcoin passport gated",
       "type": "object",
       "properties": {
-        "stamps": {
-          "type": "array",
-          "title": "Stamps",
-          "uniqueItems": true,
-          "minItems": 1,
-          "maxItems": 32,
-          "items": {
-            "type": "string",
-            "anyOf": [
-              {
-                "const": "Google",
-                "title": "Google account"
-              },
-              {
-                "const": "Ens",
-                "title": "ENS owner"
-              },
-              {
-                "const": "Poh",
-                "title": "Proof of humanity"
-              },
-              {
-                "const": "Twitter",
-                "title": "Twitter account"
-              },
-              {
-                "const": "TwitterTweetGT10",
-                "title": "Twitter followers > 10"
-              },
-              {
-                "const": "TwitterFollowerGT100",
-                "title": "Twitter followers > 100"
-              },
-              {
-                "const": "TwitterFollowerGT500",
-                "title": "Twitter followers > 500"
-              },
-              {
-                "const": "TwitterFollowerGTE1000",
-                "title": "Twitter followers > 1000"
-              },
-              {
-                "const": "TwitterFollowerGT5000",
-                "title": "Twitter followers > 5000"
-              },
-              {
-                "const": "POAP",
-                "title": "POAP owner"
-              },
-              {
-                "const": "Facebook",
-                "title": "Facebook account"
-              },
-              {
-                "const": "FacebookFriends",
-                "title": "Facebook friends > 100"
-              },
-              {
-                "const": "FacebookProfilePicture",
-                "title": "Facebook profile picture"
-              },
-              {
-                "const": "Brightid",
-                "title": "Brightid"
-              },
-              {
-                "const": "Github",
-                "title": "Github account"
-              },
-              {
-                "const": "FiveOrMoreGithubRepos",
-                "title": "Github repos at least 5"
-              },
-              {
-                "const": "ForkedGithubRepoProvider",
-                "title": "Github repo forked"
-              },
-              {
-                "const": "StarredGithubRepoProvider",
-                "title": "Github repo starred"
-              },
-              {
-                "const": "TenOrMoreGithubFollowers",
-                "title": "Github followers at least 10"
-              },
-              {
-                "const": "FiftyOrMoreGithubFollowers",
-                "title": "Github followers at least 50"
-              },
-              {
-                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#1",
-                "title": "Grants contributed to at least 1"
-              },
-
-              {
-                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#10",
-                "title": "Grants contributed to at least 10"
-              },
-              {
-                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#25",
-                "title": "Grants contributed to at least 25"
-              },
-              {
-                "const": "GitcoinContributorStatistics#numGrantsContributeToGte#100",
-                "title": "Grants contributed to at least 100"
-              },
-              {
-                "const": "GitcoinContributorStatistics#totalContributionAmountGte#10",
-                "title": "Grant contributions at least $10"
-              },
-              {
-                "const": "GitcoinContributorStatistics#totalContributionAmountGte#100",
-                "title": "Grant contributions at least $100"
-              },
-              {
-                "const": "GitcoinContributorStatistics#totalContributionAmountGte#1000",
-                "title": "Grant contributions at least $1000"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#numOwnedGrants#1",
-                "title": "Grant owner of at least 1 Grant"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#numGrantContributors#10",
-                "title": "Grant contributors at least 10"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#numGrantContributors#25",
-                "title": "Grant contributors at least 25"
-              },
-
-              {
-                "const": "GitcoinGranteeStatistics#numGrantContributors#100",
-                "title": "Grant contributors at least 100"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#totalContributionAmount#100",
-                "title": "Grant have received at least $100"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#totalContributionAmount#1000",
-                "title": "Grant have received at least $1000"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#totalContributionAmount#10000",
-                "title": "Grant have received at least $10000"
-              },
-              {
-                "const": "GitcoinGranteeStatistics#numGrantsInEcoAndCauseRound#1",
-                "title": "Grant owner at least 1 Eco & Cause"
-              },
-              {
-                "const": "Linkedin",
-                "title": "Linkedin account"
-              },
-              {
-                "const": "Discord",
-                "title": "Discord account"
-              },
-              {
-                "const": "SnapshotVotesProvider",
-                "title": "Snapshot voter"
-              },
-              {
-                "const": "SnapshotProposalsProvider",
-                "title": "Snapshot proposer"
-              },
-              {
-                "const": "ethPossessionsGte#1",
-                "title": "ETH at least 1"
-              },
-              {
-                "const": "ethPossessionsGte#10",
-                "title": "ETH at least 10"
-              },
-              {
-                "const": "ethPossessionsGte#32",
-                "title": "ETH at least 32"
-              },
-              {
-                "const": "FirstEthTxnProvider",
-                "title": "First ETH more than 30 days ago"
-              },
-              {
-                "const": "EthGTEOneTxnProvider",
-                "title": "ETH tx at least 1"
-              },
-              {
-                "const": "EthGasProvider",
-                "title": "ETH gas at least 0.5"
-              },
-              {
-                "const": "gtcPossessionsGte#10",
-                "title": "Gitcoin GTC at least 10"
-              },
-              {
-                "const": "gtcPossessionsGte#100",
-                "title": "Gitcoin GTC at least 100"
-              },
-              {
-                "const": "SelfStakingBronze",
-                "title": "GTC staked at least 1"
-              },
-              {
-                "const": "SelfStakingSilver",
-                "title": "GTC staked at least 10"
-              },
-              {
-                "const": "SelfStakingGold",
-                "title": "GTC staked at least 100"
-              },
-              {
-                "const": "CommunityStakingBronze",
-                "title": "Comm GTC staked at least 1"
-              },
-              {
-                "const": "CommunityStakingSilver",
-                "title": "Comm GTC staked at least 10"
-              },
-              {
-                "const": "CommunityStakingGold",
-                "title": "Comm GTC staked at least 100"
-              },
-              {
-                "const": "NFT",
-                "title": "NFT holder"
-              },
-              {
-                "const": "ZkSync",
-                "title": "ZkSync account"
-              },
-              {
-                "const": "Lens",
-                "title": "Lens account"
-              },
-              {
-                "const": "GnosisSafe",
-                "title": "GnosisSafe singer/owner"
-              }
-            ]
-          }
+        "scoreThreshold": {
+          "type": "number",
+          "title": "Passport Score Threshold",
+          "description": "Minimum Passport score threshold (>=) to be eligible as a valid Passport",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
         },
         "operator": {
           "type": "string",
           "title": "Approval operator",
-          "description": "Control how many or which stamps are required to vote.",
+          "description": "Control how many stamps are required to become eligible.",
           "anyOf": [
+            {
+              "const": "NONE",
+              "title": "No operator"
+            },
             {
               "const": "AND",
               "title": "Require all stamps"
@@ -262,9 +32,130 @@
               "title": "Require at least one stamp"
             }
           ]
+        },
+        "stamps": {
+          "type": "array",
+          "title": "Stamps",
+          "description": "List of Eligible Passport Stamps (Optional).",
+          "uniqueItems": true,
+          "minItems": 0,
+          "maxItems": 27,
+          "items": {
+            "type": "string",
+            "anyOf": [
+              {
+                "const": "GtcStaking",
+                "title": "GTC Staking"
+              },
+              {
+                "const": "Gitcoin",
+                "title": "Gitcoin"
+              },
+              {
+                "const": "Twitter",
+                "title": "Twitter"
+              },
+              {
+                "const": "Discord",
+                "title": "Discord"
+              },
+              {
+                "const": "Google",
+                "title": "Google"
+              },
+              {
+                "const": "Github",
+                "title": "Github"
+              },
+              {
+                "const": "Facebook",
+                "title": "Facebook"
+              },
+              {
+                "const": "Linkedin",
+                "title": "Linkedin"
+              },
+              {
+                "const": "Ens",
+                "title": "ENS"
+              },
+              {
+                "const": "Brightid",
+                "title": "BrightID"
+              },
+              {
+                "const": "Poh",
+                "title": "Proof of Humanity"
+              },
+              {
+                "const": "ETH",
+                "title": "ETH"
+              },
+              {
+                "const": "Snapshot",
+                "title": "Snapshot"
+              },
+              {
+                "const": "NFT",
+                "title": "NFT Holder"
+              },
+              {
+                "const": "ZkSync",
+                "title": "ZkSync"
+              },
+              {
+                "const": "Lens",
+                "title": "Lens"
+              },
+              {
+                "const": "GnosisSafe",
+                "title": "Gnosis Safe"
+              },
+              {
+                "const": "Coinbase",
+                "title": "Coinbase"
+              },
+              {
+                "const": "GuildXYZ",
+                "title": "Guild Membership and Roles"
+              },
+              {
+                "const": "Hypercerts",
+                "title": "Hypercerts"
+              },
+              {
+                "const": "PHI",
+                "title": "PHI"
+              },
+              {
+                "const": "Holonym",
+                "title": "Holonym"
+              },
+              {
+                "const": "Idena",
+                "title": "Idena"
+              },
+              {
+                "const": "Civic",
+                "title": "Civic"
+              },
+              {
+                "const": "CyberConnect",
+                "title": "CyberConnect"
+              },
+              {
+                "const": "GrantsStack",
+                "title": "GrantsStack"
+              },
+              {
+                "const": "TrustaLabs",
+                "title": "Trusta Labs"
+              }
+            ]
+          }
         }
       },
-      "required": ["stamps"],
+      "required": ["scoreThreshold"],
       "additionalProperties": false
     }
   }

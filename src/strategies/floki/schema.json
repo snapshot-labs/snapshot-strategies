@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. FLOKI"],
+          "maxLength": 16
+        },
+        "tokenAddress": {
+          "type": "string",
+          "title": "Token address",
+          "examples": ["e.g. 0xcf0C122c6b73ff809C693DB761e7BaeBe62b6a2E"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "stakingPoolAddress": {
+          "type": "string",
+          "title": "Staking Pool address",
+          "examples": ["e.g. 0xb8D2471E35eE033Db509e0456c8eFc4135f4EE43"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "stakingPoolMultiplierAddress": {
+          "type": "string",
+          "title": "Staking Pool Multiplier address",
+          "examples": ["e.g. 0xB254CC6c1D178C2dE8182CEDE6113A986bB90721"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 9"]
+        }
+      },
+      "required": [
+        "tokenAddress",
+        "stakingPoolAddress",
+        "stakingPoolMultiplierAddress",
+        "decimals"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

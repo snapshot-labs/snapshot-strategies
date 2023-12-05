@@ -7,8 +7,6 @@ import { Multicaller } from '../../utils';
 export const author = 'Taraxa-project';
 export const version = '0.1.0';
 
-const MIN_SCORE_AMOUNT = BigNumber.from(10).mul(BigNumber.from(10).pow(18));
-
 const abi = [
   'function getTotalDelegation(address delegator) external view returns (uint256 total_delegation)',
   'function getEthBalance(address account) public view returns (uint256 balance)'
@@ -44,13 +42,9 @@ export async function strategy(
       BigNumber.from(resultDelegations[address] || 0)
     );
 
-    if (score.lt(MIN_SCORE_AMOUNT)) {
-      scores[getAddress(address)] = 0;
-    } else {
-      scores[getAddress(address)] = parseFloat(
-        formatUnits(score, options.decimals)
-      );
-    }
+    scores[getAddress(address)] = parseFloat(
+      formatUnits(score, options.decimals)
+    );
   }
 
   return scores;
