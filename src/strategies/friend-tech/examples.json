@@ -2,7 +2,7 @@
   {
     "name": "Example query",
     "strategy": {
-      "name": "friend-tech",
+      "name": "alpaca-finance",
       "params": {
         "address": "0xe12A2f60B400E6c6971D5602DF454E5dA63eDD78",
         "symbol": "KEYS"

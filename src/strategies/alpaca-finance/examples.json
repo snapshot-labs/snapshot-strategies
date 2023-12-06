@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "alpaca-finance",
+      "params": {
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xd5612dD045399350F27eeF4A198Ee26d15CA7Ac9",
+      "0xB577713BFff0AAEc98AEEc7fBE6B45dDccB70801",
+      "0xC41600873B2b08A98AB41f65FF566068CB69a1Bd"
+    ],
+    "snapshot": 34104427
+  }
+]
