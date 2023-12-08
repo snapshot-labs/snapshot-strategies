@@ -77,6 +77,7 @@ import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
 import * as delegation from './delegation';
+import * as delegationWithCap from './delegation-with-cap';
 import * as delegationWithOverrides from './delegation-with-overrides';
 import * as withDelegation from './with-delegation';
 import * as ticket from './ticket';
@@ -506,6 +507,7 @@ const strategies = {
   'balancer-unipool': balancerUnipool,
   typhoon,
   delegation,
+  'delegation-with-cap': delegationWithCap,
   'delegation-with-overrides': delegationWithOverrides,
   'with-delegation': withDelegation,
   ticket,
