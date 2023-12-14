@@ -36,7 +36,7 @@ const onChainVotingPower = {
   }
 };
 
-const veCakeBlockNumber = 33903950;
+const veCakeBlockNumber = 34337773;
 
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
@@ -151,7 +151,7 @@ async function veCakeStrategy(addresses, network, provider, blockTag, options) {
     [address.toLowerCase()]
   ]);
 
-  callData = [...chunk(callData, options.max || 300)];
+  callData = [...chunk(callData, options.max || 400)];
 
   const response: any[] = [];
   for (const call of callData) {

@@ -14,10 +14,10 @@
       "0x5224F9c440589b2D96F74ac9BA65C648260A4480",
       "0xcD8efe4072A489DAB0f662FbA328ECc755E7A66f"
     ],
-    "snapshot": 33903950
+    "snapshot": 34337773
   },
   {
-    "name": "Example query - before 33903950 snapshot",
+    "name": "Example query - before 34337773 snapshot",
     "strategy": {
       "name": "cake",
       "params": {
