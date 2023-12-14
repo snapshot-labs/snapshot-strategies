@@ -1,5 +1,5 @@
 import { getDelegations } from '../../utils/delegation';
-import { getScoresDirect } from '../../utils';
+import { call, getScoresDirect } from '../../utils';
 
 export const author = '0xButterfield';
 export const version = '0.1.0';
@@ -57,8 +57,13 @@ export async function strategy(
     })
   );
 
-  const totalScore = Object.values(addressScores).reduce((a, b) => a + b, 0);
-  const maxScore = (options.capPercentage * totalScore) / 100;
+  const totalSupply = await call(
+    provider,
+    ['function totalSupply() public view returns (uint256)'],
+    [options.address, 'totalSupply']
+  ).then((res) => Number(res.toString()) / 10 ** options.decimals);
+
+  const maxScore = (options.capPercentage * totalSupply) / 100;
 
   return Object.fromEntries(
     Object.entries(addressScores).map(([address, addressScore]) => [
