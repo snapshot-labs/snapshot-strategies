@@ -59,10 +59,12 @@
           "maxLength": 42
         },
         "erc6551Salt": {
-          "type": "number",
+          "type": "string",
           "title": "ERC6551 salt",
-          "examples": ["e.g. 0"],
-          "minimum": 0
+          "examples": ["e.g. 0x0000000000000000000000000000000000000000000000000000000000000000"],
+          "pattern": "^0x[a-fA-F0-9]{64}$",
+          "minLength": 66,
+          "maxLength": 66
         }
       },
       "required": [],

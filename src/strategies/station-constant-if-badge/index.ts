@@ -5,7 +5,7 @@ import {
 } from '../station-score-if-badge';
 
 export const author = 'espendk';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 export async function strategy(
   space,
