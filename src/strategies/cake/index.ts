@@ -36,7 +36,7 @@ const onChainVotingPower = {
   }
 };
 
-const veCakeBlockNumber = 34337773;
+const veCakeBlockNumber = 34371669;
 
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
