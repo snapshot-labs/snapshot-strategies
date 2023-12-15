@@ -406,6 +406,7 @@ import * as totalAxionShares from './total-axion-shares';
 import * as unipoolSameToken from './unipool-same-token';
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
+import * as derpdexxDERPYieldBooster from './derpdex-xderp-yield-booster';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -818,7 +819,8 @@ const strategies = {
   'total-axion-shares': totalAxionShares,
   'unipool-same-token': unipoolSameToken,
   'volt-voting-power': voltVotingPower,
-  'xdai-stakers-and-holders': xdaiStakersAndHolders
+  'xdai-stakers-and-holders': xdaiStakersAndHolders,
+  'derpdex-xderp-yield-booster': derpdexxDERPYieldBooster,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
