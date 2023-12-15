@@ -36,6 +36,8 @@ const onChainVotingPower = {
   }
 };
 
+const veCakeBlockNumber = 34371669;
+
 const abi = [
   'function getVotingPowerWithoutPool(address _user) view returns (uint256)'
 ];
@@ -142,6 +144,31 @@ async function getSmartChefStakedCakeAmount(
   }, {});
 }
 
+async function veCakeStrategy(addresses, network, provider, blockTag, options) {
+  let callData = addresses.map((address: any) => [
+    onChainVotingPower.v1.address,
+    'getVotingPowerWithoutPool',
+    [address.toLowerCase()]
+  ]);
+
+  callData = [...chunk(callData, options.max || 400)];
+
+  const response: any[] = [];
+  for (const call of callData) {
+    const multiRes = await multicall(network, provider, abi, call, {
+      blockTag
+    });
+    response.push(...multiRes);
+  }
+
+  return Object.fromEntries(
+    response.map((value, i) => [
+      addresses[i],
+      parseFloat(formatEther(value.toString()))
+    ])
+  );
+}
+
 export async function strategy(
   space,
   network,
@@ -150,6 +177,15 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  if (
+    blockTag === 'latest' ||
+    (typeof blockTag === 'number' && blockTag >= veCakeBlockNumber)
+  ) {
+    return veCakeStrategy(addresses, network, provider, blockTag, options);
+  }
+
   const pools = await getPools(provider, snapshot);
 
   const userPoolBalance = await getSmartChefStakedCakeAmount(
@@ -158,11 +194,9 @@ export async function strategy(
     addresses
   );
 
-  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   if (
-    blockTag === 'latest' ||
-    (typeof blockTag === 'number' &&
-      blockTag >= onChainVotingPower.v0.blockNumber)
+    typeof blockTag === 'number' &&
+    blockTag >= onChainVotingPower.v0.blockNumber
   ) {
     let callData = addresses.map((address: any) => [
       typeof blockTag === 'number' &&
