@@ -9,7 +9,7 @@ import { multicall, subgraphRequest } from '../../utils';
  * - Gnosis chain. HOPR token staked into the most recent stake season, read from subgraph.
  */
 export const author = 'QYuQianchen';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const XDAI_BLOCK_HOSTED_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks';
