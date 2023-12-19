@@ -76,6 +76,16 @@ export async function strategy(
         options.acceleratingDistributorAddress,
         'getOutstandingRewards',
         [options.daiLpTokenAddress, address]
+      ]),
+      ...addresses.map((address) => [
+        options.acceleratingDistributorAddress,
+        'getOutstandingRewards',
+        [options.usdtLpTokenAddress, address]
+      ]),
+      ...addresses.map((address) => [
+        options.acceleratingDistributorAddress,
+        'getOutstandingRewards',
+        [options.wstethAcxBlpTokenAddress, address]
       ])
     ],
     { blockTag }
@@ -103,6 +113,14 @@ export async function strategy(
   const outstandingDaiLpRewards = response.slice(
     2 + addresses.length * 5,
     2 + addresses.length * 6
+  );
+  const outstandingUsdtLpRewards = response.slice(
+    2 + addresses.length * 6,
+    2 + addresses.length * 7
+  );
+  const outstandingWstethAcxBlpRewards = response.slice(
+    2 + addresses.length * 7,
+    2 + addresses.length * 8
   );
 
   // This is the latest exchange rate as of the last HubPool._sync call.
@@ -135,6 +153,8 @@ export async function strategy(
             .add(outstandingUsdcLpRewards[i][0])
             .add(outstandingWbtcLpRewards[i][0])
             .add(outstandingDaiLpRewards[i][0])
+            .add(outstandingUsdtLpRewards[i][0])
+            .add(outstandingWstethAcxBlpRewards[i][0])
             .toString(),
           acxLpTokensDecimals
         )
