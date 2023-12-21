@@ -67,8 +67,6 @@ import * as xDaiStakeDelegation from './xdai-stake-delegation';
 import * as defidollar from './defidollar';
 import * as aavegotchi from './aavegotchi';
 import * as aavegotchiAgip from './aavegotchi-agip';
-import * as aavegotchiAgip17 from './aavegotchi-agip-17';
-import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as aavegotchiAgip37Gltr from './aavegotchi-agip-37-gltr-staked-lp';
 import * as mithcash from './mithcash';
 import * as dittomoney from './dittomoney';
@@ -382,7 +380,7 @@ import * as plearn from './plearn';
 import * as snote from './snote';
 import * as streamr from './streamr';
 import * as aavegotchiAgip17 from './aavegotchi-agip-17';
-import * as aavegotchiAgip37GltrStakedLp from './aavegotchi-agip-37-gltr-staked-lp';
+
 import * as aavegotchiAgip37WapGhst from './aavegotchi-agip-37-wap-ghst';
 import * as agave from './agave';
 import * as arrakisFinance from './arrakis-finance';
@@ -797,9 +795,6 @@ const strategies = {
   plearn,
   snote,
   streamr,
-  'aavegotchi-agip-17': aavegotchiAgip17,
-  'aavegotchi-agip-37-gltr-staked-lp': aavegotchiAgip37GltrStakedLp,
-  'aavegotchi-agip-37-wap-ghst': aavegotchiAgip37WapGhst,
   agave,
   'arrakis-finance': arrakisFinance,
   'ctsi-staking-pool': ctsiStakingPool,
