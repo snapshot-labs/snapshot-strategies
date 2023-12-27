@@ -13,6 +13,8 @@ const abi = [
   'function working_balances(address account) external view returns (uint256)'
 ];
 
+const MIN_BLOCK = 18835548;
+
 export async function strategy(
   space,
   network,
@@ -51,12 +53,12 @@ export async function strategy(
   const balanceOfQueries: any[] = [];
   for(const address of addresses) {
     balanceOfQueries.push([
-      options.vsdTokenContract,
+      options.vsdToken,
       'balanceOf',
       [address]
     ]);
     balanceOfQueries.push([
-      options.vsdTokenContract,
+      options.vsdToken,
       'totalSupply',
       []
     ]);
@@ -89,6 +91,10 @@ export async function strategy(
   const workingSupply = response[response.length - 1].shift()[0]; // Last response, latest block
   const workingBalances = response[response.length - 1].shift()[0]; // Last response, latest block
 
+  const totalVP = parseFloat(formatUnits(workingBalances, 18))
+    / parseFloat(formatUnits(workingSupply, 18))
+    * parseFloat(formatUnits(lockerVeBalance, 18));
+
   return Object.fromEntries(
     Array(addresses.length)
       .fill('x')
@@ -101,7 +107,11 @@ export async function strategy(
           const totalSupply = BigNumber.from(response[j].shift()[0]);
 
           // Add working balance to array.
-          userWorkingBalances.push(balanceOf.div(totalSupply).toNumber());
+          if(totalSupply.eq(0)) {
+            userWorkingBalances.push(0);
+          } else {
+            userWorkingBalances.push(balanceOf.div(totalSupply).toNumber());
+          }
         }
 
         // Get average working balance.
@@ -113,11 +123,8 @@ export async function strategy(
 
         // Calculate voting power.
         const votingPower =
-          workingSupply != 0
-            ? averageWorkingBalance
-              * parseFloat(formatUnits(workingBalances, 18))
-              / parseFloat(formatUnits(workingSupply, 18))
-              * parseFloat(formatUnits(lockerVeBalance, 18))
+          totalVP != 0
+            ? averageWorkingBalance * totalVP
             : 0;
 
         // Return address and voting power
@@ -167,8 +174,11 @@ function getPreviousBlocks(
 
   for (let i = 0; i < numberOfBlocks; i++) {
     // Calculate block number
-    const blockNumber =
+    let blockNumber =
       currentBlockNumber - totalBlocksInterval + blockInterval * i;
+    if (blockNumber < MIN_BLOCK) {
+      blockNumber = MIN_BLOCK;
+    }
     // Add block number to array
     blockNumbers.push(Math.round(blockNumber));
   }
