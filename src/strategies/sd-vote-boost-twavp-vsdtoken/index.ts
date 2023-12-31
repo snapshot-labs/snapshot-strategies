@@ -51,19 +51,11 @@ export async function strategy(
   );
 
   const balanceOfQueries: any[] = [];
-  for(const address of addresses) {
-    balanceOfQueries.push([
-      options.vsdToken,
-      'balanceOf',
-      [address]
-    ]);
-    balanceOfQueries.push([
-      options.vsdToken,
-      'totalSupply',
-      []
-    ]);
+  for (const address of addresses) {
+    balanceOfQueries.push([options.vsdToken, 'balanceOf', [address]]);
+    balanceOfQueries.push([options.vsdToken, 'totalSupply', []]);
   }
-  
+
   const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
     // Use good block number
@@ -76,7 +68,11 @@ export async function strategy(
       // End
       loopCalls.push([options.veAddress, 'balanceOf', [options.locker]]);
       loopCalls.push([options.sdTokenGauge, 'working_supply']);
-      loopCalls.push([options.sdTokenGauge, 'working_balances', [options.booster]]);
+      loopCalls.push([
+        options.sdTokenGauge,
+        'working_balances',
+        [options.booster]
+      ]);
       loopCalls.push(...balanceOfQueries);
     } else {
       loopCalls.push(...balanceOfQueries);
@@ -91,9 +87,10 @@ export async function strategy(
   const workingSupply = response[response.length - 1].shift()[0]; // Last response, latest block
   const workingBalances = response[response.length - 1].shift()[0]; // Last response, latest block
 
-  const totalVP = parseFloat(formatUnits(workingBalances, 18))
-    / parseFloat(formatUnits(workingSupply, 18))
-    * parseFloat(formatUnits(lockerVeBalance, 18));
+  const totalVP =
+    (parseFloat(formatUnits(workingBalances, 18)) /
+      parseFloat(formatUnits(workingSupply, 18))) *
+    parseFloat(formatUnits(lockerVeBalance, 18));
 
   return Object.fromEntries(
     Array(addresses.length)
@@ -107,7 +104,7 @@ export async function strategy(
           const totalSupply = BigNumber.from(response[j].shift()[0]);
 
           // Add working balance to array.
-          if(totalSupply.eq(0)) {
+          if (totalSupply.eq(0)) {
             userWorkingBalances.push(0);
           } else {
             userWorkingBalances.push(balanceOf.div(totalSupply).toNumber());
@@ -122,17 +119,13 @@ export async function strategy(
         );
 
         // Calculate voting power.
-        const votingPower =
-          totalVP != 0
-            ? averageWorkingBalance * totalVP
-            : 0;
+        const votingPower = totalVP != 0 ? averageWorkingBalance * totalVP : 0;
 
         // Return address and voting power
         return [addresses[i], Number(votingPower)];
       })
   );
 }
-
 
 function average(
   numbers: number[],
@@ -155,7 +148,6 @@ function average(
   // Return sum divided by array length to get mean
   return sum / numbers.length;
 }
-
 
 function getPreviousBlocks(
   currentBlockNumber: number,
