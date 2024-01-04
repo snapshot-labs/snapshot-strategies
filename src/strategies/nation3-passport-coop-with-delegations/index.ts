@@ -1,5 +1,4 @@
-import { getAddress } from '@ethersproject/address';
-import { BigNumberish } from '@ethersproject/bignumber';
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
@@ -7,11 +6,21 @@ import { subgraphRequest } from '../../utils';
 export const author = 'nation3';
 export const version = '0.3.0';
 
+type Query = {[key: string]: any}
+
 const DECIMALS = 18;
 
 const balanceAbi = [
   'function balanceOf(address account) external view returns (uint256)'
 ];
+
+const ownerAbi = ['function ownerOf(uint256 id) public view returns (address)'];
+
+const signerAbi = [
+  'function signerOf(uint256 id) external view  returns (address)'
+];
+
+const lastTokenIdAbi = ['function getNextId() external view returns (uint256)'];
 
 export async function strategy(
   space,
@@ -27,59 +36,84 @@ export async function strategy(
     blockTag
   });
 
-  const erc721BalanceCaller = new Multicaller(network, provider, balanceAbi, {
+  const erc721LastTokenIdCaller = new Multicaller(
+    network,
+    provider,
+    lastTokenIdAbi,
+    { blockTag }
+  );
+
+  const erc721SignerCaller = new Multicaller(network, provider, signerAbi, {
+    blockTag
+  });
+  const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
     blockTag
   });
 
-  const passportIssuanceSubgrgraph = "https://api.thegraph.com/subgraphs/name/nation3/passportissuance"
+  const passportIssuanceSubgrgraph = "https://api.thegraph.com/subgraphs/name/nation3/passportissuance";
 
-  const revokedUsersResponse = await subgraphRequest(passportIssuanceSubgrgraph, {
+  const revokedQuery: Query = {
     revokes: {
-      __args: {
-        where: { _to_in: addresses }
-      },
       id: true,
-      _to: true
+      _to: true,
+      _tokenId: true,
     }
-  });
+  }
 
-  const revokedUsers: string[] = revokedUsersResponse.revokes.map(revokeObject => {
-    return getAddress(revokeObject._to);
-  });
+  const revokedUsersResponse = await subgraphRequest(passportIssuanceSubgrgraph, revokedQuery);
 
-
-  const eligibleAddresses: string[] = addresses.filter((address) => {
-    return !revokedUsers.includes(getAddress(address));
+  const revokedPassports: number[] = revokedUsersResponse.revokes.map(revokeObject => {
+    return BigNumber.from(revokeObject._tokenId).toNumber();
   });
 
 
-  eligibleAddresses.forEach((owner) =>
+  erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
+
+  const lastIndex = await erc721LastTokenIdCaller.execute();
+  const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
+
+  for (let i = 1; i < lastTokenId; i++) {
+    if (revokedPassports.includes(i)) continue;
+
+    erc721SignerCaller.call(i, options.erc721, 'signerOf', [i]);
+    erc721OwnerCaller.call(i, options.erc721, 'ownerOf', [i]);
+  }
+
+  const [erc721Signers, erc721Owners]: [
+    Record<string, string>,
+    Record<string, string>
+  ] = await Promise.all([
+    erc721SignerCaller.execute(),
+    erc721OwnerCaller.execute()
+  ]);
+
+  const erc721SignersArr = Object.entries(erc721Signers);
+  const erc721OwnersArr = Object.entries(erc721Owners);
+
+  const eligibleAddresses = erc721SignersArr.filter(([, address]) =>
+    addresses.includes(address)
+  );
+
+  //create a combined tuple
+  const eligibleSignerOwner: [string, string, string][] = eligibleAddresses.map(
+    ([id, signerAddress]) => {
+      const owner = erc721OwnersArr.find(([ownerId]) => id === ownerId);
+      return [id, signerAddress, owner ? owner[1] : '0x0'];
+    }
+  );
+
+  eligibleSignerOwner.forEach(([, , owner]) =>
     erc20BalanceCaller.call(owner, options.erc20, 'balanceOf', [owner])
   );
 
   const erc20Balances: Record<string, BigNumberish> =
     await erc20BalanceCaller.execute();
 
-
-  eligibleAddresses.forEach((owner) =>
-    erc721BalanceCaller.call(owner, options.erc721, 'balanceOf', [owner])
-  );
-
-  const erc721Balances: Record<string, BigNumberish> =
-    await erc721BalanceCaller.execute();
-
-
-  const eligibleAddressesWithPassports = eligibleAddresses.filter((owner) => {
-    const passportBalance = erc721Balances[owner] || 0;
-    return parseFloat(formatUnits(passportBalance, DECIMALS)) > 0;
-  });
-
   //now we have balances, need to check for > 1.5 on all IDs that have voted
-  const withPower = eligibleAddressesWithPassports.filter((owner) => {
-    const veNationBalance = erc20Balances[owner] || 0;
-
-    return parseFloat(formatUnits(veNationBalance, DECIMALS)) > 1.5;
+  const withPower = eligibleSignerOwner.filter(([, , owner]) => {
+    const balance = erc20Balances[owner] || 0;
+    return parseFloat(formatUnits(balance, DECIMALS)) > 1.5;
   });
 
-  return Object.fromEntries(withPower.map(([, signer]) => [signer, 1]));
+  return Object.fromEntries(withPower.map(([, signer]) => [signer, 1])) || [];
 }
