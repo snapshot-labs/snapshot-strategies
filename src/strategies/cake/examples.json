@@ -9,15 +9,15 @@
     },
     "network": "56",
     "addresses": [
-      "0x8b017905DC96B38f817473dc885F84D4C76bC113",
-      "0x21fF20E7e1B820020415707298b92299CF0951fE",
-      "0xa7A01B93B889ff0639d5ec02914A77529924a46F",
-      "0x68e0c606036CAcb83D1755ca31f79630468F044e"
+      "0x4385c3ca394021a9411B925C94b23a89a3814Ed5",
+      "0x5B7A2dd16767dD598BA6a432c5c93D167477fB99",
+      "0x5224F9c440589b2D96F74ac9BA65C648260A4480",
+      "0xcD8efe4072A489DAB0f662FbA328ECc755E7A66f"
     ],
-    "snapshot": 16308675
+    "snapshot": 34337773
   },
   {
-    "name": "Example query - before 16300686 snapshot",
+    "name": "Example query - before 34337773 snapshot",
     "strategy": {
       "name": "cake",
       "params": {
@@ -28,8 +28,9 @@
     "addresses": [
       "0x8b017905DC96B38f817473dc885F84D4C76bC113",
       "0x21fF20E7e1B820020415707298b92299CF0951fE",
+      "0xa7A01B93B889ff0639d5ec02914A77529924a46F",
       "0x68e0c606036CAcb83D1755ca31f79630468F044e"
     ],
-    "snapshot": 15204010
+    "snapshot": 16308675
   }
 ]
