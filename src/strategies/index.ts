@@ -11,6 +11,7 @@ import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
 import * as contractCall from './contract-call';
+import * as contractCallView from './contract-call-view';
 import * as dfynFarms from './dfyn-staked-in-farms';
 import * as dfynVaults from './dfyn-staked-in-vaults';
 import * as vDfynVault from './balance-in-vdfyn-vault';
@@ -428,6 +429,7 @@ const strategies = {
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,
   'contract-call': contractCall,
+  'contract-call-view': contractCallView,
   defiplaza: defiplaza,
   'dfyn-staked-in-farms': dfynFarms,
   'dfyn-staked-in-vaults': dfynVaults,

@@ -1,0 +1,123 @@
+[
+  {
+    "name": "Example call to view function on staking contract",
+    "strategy": {
+      "name": "contract-call-view",
+      "params": {
+        "address": "0x5cA0F33f1ebD140def87721291FF313A9141F79e",
+        "decimals": 18,
+        "outputIndexToReturn": "1",
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "userInfo",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "lastStakeTime",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "amount",
+              "type": "uint256"
+            },
+            {
+              "internalType": "uint256",
+              "name": "waitingRewards",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xf790b80B562EaB0c17181c637a4738a17e339255",
+      "0x0AC635d504c6795F508106f528D608d917A69022",
+      "0xc84622c0257Ec795D42407a913E6F4EbA7794550"
+    ],
+    "snapshot": 166777036
+  },
+  {
+    "name": "Example call to view function on lockup contract",
+    "strategy": {
+      "name": "contract-call-view",
+      "params": {
+        "address": "0xe8eb2675C7f44eE9395f58AeDd89f75834AB0dac",
+        "decimals": 18,
+        "outputIndexToReturn": "0",
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "stakedBalances",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x7343bC5Be4ca81199EA4CBf987Bd520f83aC1fFf",
+      "0x87c5A7AAA44Db939A728cF05E31b8411A14b2579",
+      "0xa33A46408c871c0C4D172E8036DfCDCB19e6f226"
+    ],
+    "snapshot": 166777036
+  },
+  {
+    "name": "Example call to view function on vesting contract",
+    "strategy": {
+      "name": "contract-call-view",
+      "params": {
+        "address": "0xEd992b95d54Cbcc1bD416B95a4050468Ef5eb68F",
+        "decimals": 18,
+        "outputIndexToReturn": "0",
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "",
+              "type": "address"
+            }
+          ],
+          "name": "userTotal",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xA192092036526d84D7c3BFb51a3a3a68E160EFE3",
+      "0xcC6eA51321b9525F9eB1b29011F6621A5E5633BD",
+      "0xa15d3C3A330C9a3884202Ed49d49f26ED7d9f6eC"
+    ],
+    "snapshot": 166777036
+  }
+]
