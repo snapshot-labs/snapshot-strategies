@@ -5,6 +5,8 @@
       "name": "delegation-with-cap",
       "params": {
         "symbol": "veBAL (delegated)",
+        "address": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+        "decimals": 18,
         "strategies": [
           {
             "name": "erc20-balance-of",
@@ -16,7 +18,7 @@
           }
         ],
         "delegationSpace": "balancer.eth",
-        "capPercentage": 30
+        "capPercentage": 10
       }
     },
     "network": "1",
