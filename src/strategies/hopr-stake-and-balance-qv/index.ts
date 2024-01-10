@@ -35,7 +35,7 @@ const XDAI_BLOCK_HOSTED_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks'; // convert mainnet block to its corresponding block on Gnosis chain
 const tokenAbi = ['function balanceOf(address) view returns (uint256)']; // get mainnet HOPR token balance
 const DEFAULT_HOPR_HOSTED_ACCOUNT_NAME = 'hoprnet';
-const DEFAULT_FACTOR = 0.5; // Quadratic-voting-like factor
+const DEFAULT_FACTOR = 0.75; // Quadratic-voting-like factor
 
 /*
  ********************************************
@@ -48,7 +48,7 @@ const DEFAULT_FACTOR = 0.5; // Quadratic-voting-like factor
  * @param mainnetBalance HOPR token balance of the voting account, if the mainnet token balance should be taken into account. Otherwise, zero
  * @param gnosisBalance xHOPR and wxHOPR token balance of the voting account, if the gnosis token balance should be taken into account. Otherwise, zero
  * @param safeStakingBalance Voting account's summed share of all its owned safes, on the xHOPR/wxHOPR token balance and all the stakes in channels by their managed nodes.
- * @param exponent QV-like exponent value. E.g., for quadratic-voting, the exponent is 0.5
+ * @param exponent QV-like exponent value. E.g., for quadratic-voting, the exponent is 0.5. This value can be set by the community to any value between 0 and 1, inclusive. Currently it is set at 0.75.
  * @returns calculated score
  */
 function calculateScore(
