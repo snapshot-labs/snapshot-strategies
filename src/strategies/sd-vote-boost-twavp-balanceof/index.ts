@@ -79,11 +79,7 @@ export async function strategy(
         // Get average balance
         const averageBalanceOf = parseFloat(
           formatUnits(
-            average(
-              userBalances,
-              addresses[i],
-              options.whiteListedAddress
-            ),
+            average(userBalances, addresses[i], options.whiteListedAddress),
             options.decimals
           )
         );
@@ -98,9 +94,8 @@ function getPreviousBlocks(
   currentBlockNumber: number,
   numberOfBlocks: number,
   daysInterval: number,
-  blockPerSec: number,
+  blockPerSec: number
 ): number[] {
-  
   const blocksPerDay = 86400 / blockPerSec;
 
   // Calculate total blocks interval
