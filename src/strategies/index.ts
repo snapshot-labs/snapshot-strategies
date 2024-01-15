@@ -406,6 +406,7 @@ import * as synthetixQuadratic_1 from './synthetix-quadratic_1';
 import * as synthetix_1 from './synthetix_1';
 import * as totalAxionShares from './total-axion-shares';
 import * as unipoolSameToken from './unipool-same-token';
+import * as vendorV2BorrowerCollateralBalanceOf from './vendor-v2-borrower-collateral-balance-of';
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 
@@ -821,6 +822,8 @@ const strategies = {
   synthetix_1,
   'total-axion-shares': totalAxionShares,
   'unipool-same-token': unipoolSameToken,
+  'vendor-v2-borrower-collateral-balance-of':
+    vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders
 };
