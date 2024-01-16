@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "vendor-v2-borrower-collateral-balance-of",
+      "params": {
+        "address": "0xA4B49b1A717E9e002104E2B4517A8B7086DF479b",
+        "collateralDecimals": 9,
+        "weight": 5
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xeFAD4c712CBa7F7a136C6B3C6f861fb787a348a0",
+      "0xc12DE812ae612B6d514b52d529F97f6Acb524c8E",
+      "0x18252F28234C010Cf3353A82f3cBe71DB1B74773",
+      "0x82aF49447D8a07e3bd95BD0d56f35241523fBab1"
+    ],
+    "snapshot": 170740021
+  }
+]
