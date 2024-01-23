@@ -363,6 +363,7 @@ import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
+import * as sdVoteBoostTWAVPBalanceof from './sd-vote-boost-twavp-balanceof';
 import * as friendTech from './friend-tech';
 import * as moonbase from './moonbase';
 import * as dssVestUnpaid from './dss-vest-unpaid';
@@ -405,6 +406,7 @@ import * as synthetixQuadratic_1 from './synthetix-quadratic_1';
 import * as synthetix_1 from './synthetix_1';
 import * as totalAxionShares from './total-axion-shares';
 import * as unipoolSameToken from './unipool-same-token';
+import * as vendorV2BorrowerCollateralBalanceOf from './vendor-v2-borrower-collateral-balance-of';
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 
@@ -778,6 +780,7 @@ const strategies = {
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
+  'sd-vote-boost-twavp-balanceof': sdVoteBoostTWAVPBalanceof,
   moonbase: moonbase,
   'dss-vest-unpaid': dssVestUnpaid,
   'dss-vest-balance-and-unpaid': dssVestBalanceAndUnpaid,
@@ -819,6 +822,8 @@ const strategies = {
   synthetix_1,
   'total-axion-shares': totalAxionShares,
   'unipool-same-token': unipoolSameToken,
+  'vendor-v2-borrower-collateral-balance-of':
+    vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders
 };
