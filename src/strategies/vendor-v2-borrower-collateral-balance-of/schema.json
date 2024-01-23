@@ -9,33 +9,23 @@
         "address": {
           "type": "string",
           "title": "Contract address",
-          "examples": [
-            "e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"
-          ],
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
         },
         "collateralDecimals": {
           "type": "number",
-          "examples": [
-            18
-          ],
+          "examples": [18],
           "title": "Decimals"
         },
         "weight": {
           "type": "number",
           "title": "Weight",
-          "examples": [
-            0.5,
-            2
-          ]
+          "examples": [0.5, 2]
         }
       },
-      "required": [
-        "address",
-        "collateralDecimals"
-      ],
+      "required": ["address", "collateralDecimals"],
       "additionalProperties": false
     }
   }
