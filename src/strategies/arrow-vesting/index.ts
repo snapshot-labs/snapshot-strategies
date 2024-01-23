@@ -14,7 +14,10 @@ const vestingContractAbi = [
   'function recipient() public view returns (address)',
   'function total_locked() public view returns (uint256)',
   'function start_time() public view returns (uint256)',
-  'function end_time() public view returns (uint256)'
+  'function unclaimed() public view returns (uint256)'
+  // don't need to check initialized?
+  // don't need to check admin?
+  // don't need to check future_admin?
 ];
 
 export async function strategy(
@@ -82,9 +85,9 @@ export async function strategy(
       []
     );
     vestingContractMulti.call(
-      `${vestingContractAddress}.end_time`,
+      `${vestingContractAddress}.unclaimed`,
       vestingContractAddress,
-      'end_time',
+      'unclaimed',
       []
     );
   });
@@ -106,15 +109,12 @@ export async function strategy(
     const start = params['start_time'];
 
     if (recipient in addressBalances && time > start) {
-      const locked = parseFloat(
-        formatUnits(params['total_locked'], options.decimals)
+      const unclaimedTokens = parseFloat(
+        formatUnits(params['unclaimed'], options.decimals)
       );
-      const end = params['end_time'];
 
-      addressBalances[recipient] += Math.min(
-        (locked * (time - start)) / (end - start),
-        locked
-      );
+      // Vested arrow that can be claimed is all that is counted in this strategy
+      addressBalances[recipient] += unclaimedTokens;
     }
   });
 
