@@ -2,7 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'icepoint';
+export const author = 'SpaceFinance';
 export const version = '0.1.0';
 
 const abi = [
