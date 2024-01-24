@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'icepoint';
-export const version = '0.1.1';
+export const version = '0.1.0';
 
 const abi = [
   'function userInfo(address account) external view returns (uint256,uint256,uint256)'
