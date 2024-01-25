@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Stake DAO vote boost using TWAVP balanceOf",
+    "strategy": {
+      "name": "sd-vote-boost-twavp-balanceof",
+      "params": {
+        "sdTokenGauge": "0xE2496134149e6CD3f3A577C2B08A6f54fC23e6e4",
+        "symbol": "sdToken-gauge",
+        "decimals": 18,
+        "sampleSize": 10,
+        "sampleStep": 5,
+        "blockPerSec": 3,
+        "whiteListedAddress": []
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xb734Ec7A75d65406fde5bcf9156cAB673ba1e1C5",
+      "0xee439Ee079AC05D9d33a6926A16e0c820fB2713A",
+      "0xc1133c83D409724727fF6699F14F040746e5AD01"
+    ],
+    "snapshot": 35181258
+  }
+]
