@@ -11,7 +11,7 @@ Here is an example of parameters:
     "strategy": {
       "name": "spacefi-blp",
       "params": {
-        "address": "0x67B6c6E67F8f2CD1948ECD02221D141CBa3A4984",
+        "blpAddress": "0x67B6c6E67F8f2CD1948ECD02221D141CBa3A4984",
         "symbol": "blp",
         "decimals": 18
       }
