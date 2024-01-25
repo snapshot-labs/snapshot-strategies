@@ -827,7 +827,7 @@ const strategies = {
     vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
-  'plutusdao-plsarb-staking-balance': plutusdaoPlsarbStakingBalance,
+  'plutusdao-plsarb-staking-balance': plutusdaoPlsarbStakingBalance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

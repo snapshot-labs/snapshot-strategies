@@ -1,6 +1,6 @@
-import {BigNumberish} from '@ethersproject/bignumber';
-import {formatUnits} from '@ethersproject/units';
-import {Multicaller} from '../../utils';
+import { BigNumberish } from '@ethersproject/bignumber';
+import { formatUnits } from '@ethersproject/units';
+import { Multicaller } from '../../utils';
 
 export const author = '0x-logic';
 export const version = '0.0.1';
