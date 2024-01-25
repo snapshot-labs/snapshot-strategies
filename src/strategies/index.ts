@@ -243,6 +243,7 @@ import * as erc1155weighted from './erc1155-weighted-by-id';
 import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
+import * as spacefiBlp from './spacefi-blp';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as veRibbon from './ve-ribbon';
@@ -663,6 +664,7 @@ const strategies = {
   'stakers-and-holders': stakersAndHolders,
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
+  'spacefi-blp': spacefiBlp,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
   've-ribbon': veRibbon,
