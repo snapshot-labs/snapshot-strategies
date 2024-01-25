@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "plutusdao-plsarb-staking-balance",
+      "params": {
+        "address": "0x4B9347Ff1039BBb41BfaC4F1159c356e12DEcf7F"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x8425176e0b0E1d2CB0220a7EB7702F215440eDf3",
+      "0x6953d10D0715139cA9B5E27B0B967c9A461b3ffE",
+      "0x989c4FB381b38fd031862F96a8519ac438552EA3",
+      "0x8D3a67337c180D66448C314816036723047B38f8",
+      "0x86fF945E6DC2470317ca082A01dE7D24188671Ac",
+      "0x01e09581B0DEE63Bcc16e8DC823cb93DBD5E6F29"
+    ],
+    "snapshot": 173837132
+  }
+]

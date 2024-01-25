@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Staking contract address",
+          "examples": ["e.g. 0x4B9347Ff1039BBb41BfaC4F1159c356e12DEcf7F"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["address"],
+      "additionalProperties": false
+    }
+  }
+}
