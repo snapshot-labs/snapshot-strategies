@@ -243,6 +243,7 @@ import * as erc1155weighted from './erc1155-weighted-by-id';
 import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
+import * as spacefiBlp from './spacefi-blp';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as veRibbon from './ve-ribbon';
@@ -406,6 +407,7 @@ import * as synthetixQuadratic_1 from './synthetix-quadratic_1';
 import * as synthetix_1 from './synthetix_1';
 import * as totalAxionShares from './total-axion-shares';
 import * as unipoolSameToken from './unipool-same-token';
+import * as vendorV2BorrowerCollateralBalanceOf from './vendor-v2-borrower-collateral-balance-of';
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 
@@ -662,6 +664,7 @@ const strategies = {
   'stakers-and-holders': stakersAndHolders,
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
+  'spacefi-blp': spacefiBlp,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
   've-ribbon': veRibbon,
@@ -821,6 +824,8 @@ const strategies = {
   synthetix_1,
   'total-axion-shares': totalAxionShares,
   'unipool-same-token': unipoolSameToken,
+  'vendor-v2-borrower-collateral-balance-of':
+    vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders
 };
