@@ -244,6 +244,7 @@ import * as stakersAndHolders from './stakers-and-holders';
 import * as banksyDao from './banksy-dao';
 import * as spacey2025 from './spacey2025';
 import * as spacefiBlp from './spacefi-blp';
+import * as spacefiBlpNft from './spacefi-blp-nft';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
 import * as veRibbon from './ve-ribbon';
@@ -665,6 +666,7 @@ const strategies = {
   'banksy-dao': banksyDao,
   spacey2025: spacey2025,
   'spacefi-blp': spacefiBlp,
+  'spacefi-blp-nft': spacefiBlpNft,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
   've-ribbon': veRibbon,
