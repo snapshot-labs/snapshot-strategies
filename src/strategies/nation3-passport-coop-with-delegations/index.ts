@@ -6,7 +6,7 @@ import { subgraphRequest } from '../../utils';
 export const author = 'nation3';
 export const version = '0.3.0';
 
-type Query = {[key: string]: any}
+type Query = { [key: string]: any };
 
 const DECIMALS = 18;
 
@@ -50,22 +50,27 @@ export async function strategy(
     blockTag
   });
 
-  const passportIssuanceSubgrgraph = "https://api.thegraph.com/subgraphs/name/nation3/passportissuance";
+  const passportIssuanceSubgrgraph =
+    'https://api.thegraph.com/subgraphs/name/nation3/passportissuance';
 
   const revokedQuery: Query = {
     revokes: {
       id: true,
       _to: true,
-      _tokenId: true,
+      _tokenId: true
     }
-  }
+  };
 
-  const revokedUsersResponse = await subgraphRequest(passportIssuanceSubgrgraph, revokedQuery);
+  const revokedUsersResponse = await subgraphRequest(
+    passportIssuanceSubgrgraph,
+    revokedQuery
+  );
 
-  const revokedPassports: number[] = revokedUsersResponse.revokes.map(revokeObject => {
-    return BigNumber.from(revokeObject._tokenId).toNumber();
-  });
-
+  const revokedPassports: number[] = revokedUsersResponse.revokes.map(
+    (revokeObject) => {
+      return BigNumber.from(revokeObject._tokenId).toNumber();
+    }
+  );
 
   erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
 
