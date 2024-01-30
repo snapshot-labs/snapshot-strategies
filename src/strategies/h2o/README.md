@@ -12,6 +12,6 @@ Here is an example of parameters:
 ```json
 {
   "symbol": "OCEAN",
-  "collateralTypeId": "OCEAN-A",
+  "collateralTypeId": "OCEAN-A"
 }
 ```

@@ -2,7 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller, multicall, call } from '../../utils';
 
-export const author = 'JDoy99';
+export const author = 'JD0x2e';
 export const version = '0.1.0';
 
 const erc20Abi = [
@@ -84,7 +84,7 @@ export async function strategy(
 
   // Get RDNT per LP token (LP provider dependent)
   let rdntPerLp;
-  if (network === '42161') {
+  if (network === '42161' || network === '1') {
     rdntPerLp = await rdntPerBalancerLpToken(
       network,
       provider,

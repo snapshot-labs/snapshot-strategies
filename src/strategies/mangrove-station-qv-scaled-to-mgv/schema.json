@@ -1,0 +1,89 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "membershipERC721": {
+          "type": "string",
+          "title": "Membership ERC721 contract address",
+          "examples": ["e.g. 0x651bf9C1A1dEC27b49061F2356482F7c6F3D18fb"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "badgesERC1155": {
+          "type": "string",
+          "title": "Badges ERC1155 contract address",
+          "examples": ["e.g. 0xd775e55e314164cce7f71f9f70fc905c907fc65e"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "activeBadgeId": {
+          "type": "number",
+          "title": "ERC115 token ID for the Active Badge that indicate current members",
+          "examples": ["e.g. 1"],
+          "minimum": 0
+        },
+        "activityScoreERC20": {
+          "type": "string",
+          "title": "Member score ERC20 contract address",
+          "examples": ["e.g. 0x30D602cBfe96FC2C83fF31Bdf79d48De65f80733"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "activityScoreDecimals": {
+          "type": "number",
+          "title": "Member score decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 0
+        },
+        "erc6551Registry": {
+          "type": "string",
+          "title": "ERC6551 registry address",
+          "examples": ["e.g. 0x02101dfB77FDE026414827Fdc604ddAF224F0921"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc6551Implementation": {
+          "type": "string",
+          "title": "ERC6551 implementation address",
+          "examples": ["e.g. 0x2d25602551487c3f3354dd80d76d54383a243358"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc6551Salt": {
+          "type": "string",
+          "title": "ERC6551 salt",
+          "examples": [
+            "e.g. 0x0000000000000000000000000000000000000000000000000000000000000000"
+          ],
+          "pattern": "^0x[a-fA-F0-9]{64}$",
+          "minLength": 66,
+          "maxLength": 66
+        },
+        "dssVestAddress": {
+          "type": "string",
+          "title": "DssVest contract address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "dssVestDecimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+}
