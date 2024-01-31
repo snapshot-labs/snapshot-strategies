@@ -24,22 +24,27 @@ const MED_PRECISE_UNIT = 1e18;
 const SCALING_FACTOR = 1e5;
 
 function returnGraphParams(snapshot: number | string, addresses: string[]) {
-  return {
+  const params = {
     snxholders: {
       __args: {
         where: {
           id_in: addresses.map((address: string) => address.toLowerCase())
         },
-        first: 1000,
-        block: {
-          number: snapshot
-        }
+        first: 1000
       },
       id: true,
       initialDebtOwnership: true,
       debtEntryAtIndex: true
     }
   };
+
+  if (snapshot !== 'latest') {
+    (params.snxholders.__args as any).block = {
+      number: snapshot
+    };
+  }
+
+  return params;
 }
 
 const loadLastDebtLedgerEntry = async (
