@@ -1,9 +1,12 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
+import { subgraphRequest } from '../../utils';
 
 export const author = 'nation3';
 export const version = '0.3.0';
+
+type Query = { [key: string]: any };
 
 const DECIMALS = 18;
 
@@ -29,20 +32,44 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  const erc20BalanceCaller = new Multicaller(network, provider, balanceAbi, {
+    blockTag
+  });
+
+  const erc721LastTokenIdCaller = new Multicaller(
+    network,
+    provider,
+    lastTokenIdAbi,
+    { blockTag }
+  );
+
   const erc721SignerCaller = new Multicaller(network, provider, signerAbi, {
     blockTag
   });
   const erc721OwnerCaller = new Multicaller(network, provider, ownerAbi, {
     blockTag
   });
-  const erc20BalanceCaller = new Multicaller(network, provider, balanceAbi, {
-    blockTag
-  });
-  const erc721LastTokenIdCaller = new Multicaller(
-    network,
-    provider,
-    lastTokenIdAbi,
-    { blockTag }
+
+  const passportIssuanceSubgrgraph =
+    'https://api.thegraph.com/subgraphs/name/nation3/passportissuance';
+
+  const revokedQuery: Query = {
+    revokes: {
+      id: true,
+      _to: true,
+      _tokenId: true
+    }
+  };
+
+  const revokedUsersResponse = await subgraphRequest(
+    passportIssuanceSubgrgraph,
+    revokedQuery
+  );
+
+  const revokedPassports: number[] = revokedUsersResponse.revokes.map(
+    (revokeObject) => {
+      return BigNumber.from(revokeObject._tokenId).toNumber();
+    }
   );
 
   erc721LastTokenIdCaller.call('lastTokenId', options.erc721, 'getNextId');
@@ -51,6 +78,8 @@ export async function strategy(
   const lastTokenId = BigNumber.from(lastIndex.lastTokenId).toNumber();
 
   for (let i = 1; i < lastTokenId; i++) {
+    if (revokedPassports.includes(i)) continue;
+
     erc721SignerCaller.call(i, options.erc721, 'signerOf', [i]);
     erc721OwnerCaller.call(i, options.erc721, 'ownerOf', [i]);
   }
