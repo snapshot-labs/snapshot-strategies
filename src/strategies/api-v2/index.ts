@@ -56,9 +56,10 @@ export async function strategy(
     responseData = JSON.parse(responseData);
   } catch (e) {
     throw new Error(
-      `[api-v2] Errors found in API: URL: ${url}, Status: ${
-        response.status
-      }, Response: ${responseData.substring(0, 512)}`
+      `[api-v2] Errors found in API: URL: ${url}, Status: ${response.status}` +
+      response.ok
+        ? `, Response: ${responseData.substring(0, 512)}`
+        : ''
     );
   }
 
