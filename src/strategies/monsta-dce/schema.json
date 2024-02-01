@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Monsta DCE Strategy",
+      "type": "object",
+      "properties": {
+        "erc721Address": {
+          "type": "string",
+          "title": "ERC721 Contract Address",
+          "examples": ["e.g. 0x371a31Bf669Df23628E9D8858CB4b4620B491D83"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc20Address": {
+          "type": "string",
+          "title": "ERC20 Contract Address",
+          "examples": ["e.g. 0x8A5d7FCD4c90421d21d30fCC4435948aC3618B2f"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "erc20Decimals": {
+          "type": "number",
+          "title": "ERC20 Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["erc721Address", "erc20Address", "erc20Decimals"],
+      "additionalProperties": false
+    }
+  }
+}
