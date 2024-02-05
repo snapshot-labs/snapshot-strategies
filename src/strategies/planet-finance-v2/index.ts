@@ -23,20 +23,15 @@ const aquaInfinityAbi = [
   'function getUserGtokenBal(address) view returns (uint256)'
 ];
 
-// abi for aqua lending
-const aquaLendingAbi = [
-  'function getAccountSnapshot(address) view returns (uint256,uint256,uint256,uint256)'
-];
-
 //addresses
 const aquaAddress = '0x72B7D61E8fC8cF971960DD9cfA59B8C829D91991'; //aqua token address
 const aquaBnbLpTokenAddress = '0x03028D2F8B275695A1c6AFB69A4765e3666e36d9'; //v2 aqua-bnb lp token address
-const aquaLendingAddress = '0x2f5d7A9D8D32c16e41aF811744DB9f15d853E0A5'; //aqua lending address
 const aquaInfinityAddress = '0xddd0626BB795BdF9CfA925da5102eFA5E7008114'; //v2 aqua infinity pool address
 const v3FarmAddress = '0x405960AEAad7Ec8B419DEdb511dfe9D112dFc22d'; //v3 farm address
 const aquaBtcbLpTokenAddress = '0x70B606c23D6E786BE7accAf31C8fEcEaf846AdF3'; // v3 aqua-btcb lp token address
 
 const increase_in_voting = 5; //increase weight 5 times while voting
+const gAquaExchangeRate = "200000000416761667681474308"; //exchange rate of gAqua to aqua
 
 export async function strategy(
   space,
@@ -101,33 +96,19 @@ export async function strategy(
     { blockTag }
   );
 
-  //users aqua balance in aqua lending
-  let usersAquaInLending: any = multicall(
-    network,
-    provider,
-    aquaLendingAbi,
-    addresses.map((address: any) => [
-      aquaLendingAddress,
-      'getAccountSnapshot',
-      [address]
-    ]),
-    { blockTag }
-  );
-
   // get all results
   const result = await Promise.all([
     score,
     usergAquaBalInAquaInfinityVault,
-    usersAquaInLending,
     usersNewAquaBtcbVaultBalances,
     usersNewAquaPoolBalances
   ]);
 
   score = result[0]; //aqua balance of user's wallet address
   usergAquaBalInAquaInfinityVault = result[1]; //aqua balance of infinitiy vault
-  usersAquaInLending = result[2]; // aqua balance in aqua lending
-  usersNewAquaBtcbVaultBalances = result[3]; //shares in v3 aqua-btcb pool
-  usersNewAquaPoolBalances = result[4]; // shares in v3 aqua pool
+  usersNewAquaBtcbVaultBalances = result[2]; //shares in v3 aqua-btcb pool
+  usersNewAquaPoolBalances = result[3]; // shares in v3 aqua pool
+
 
   //AQUA-BNB
   // total supply of v2 aqua bnb lp token
@@ -167,10 +148,8 @@ export async function strategy(
           parseFloat(
             formatUnits(usergAquaBalInAquaInfinityVault[index].toString(), 18)
           ) *
-            parseFloat(formatUnits(usersAquaInLending[index]['3'], 18)) *
+            parseFloat(formatUnits(gAquaExchangeRate, 18)) *
             increase_in_voting +
-          parseFloat(formatUnits(usersAquaInLending[index]['1'], 18)) *
-            parseFloat(formatUnits(usersAquaInLending[index]['3'], 18)) +
           increase_in_voting *
             parseFloat(
               formatUnits(usersNewAquaPoolBalances[index]['2'].toString(), 18)
