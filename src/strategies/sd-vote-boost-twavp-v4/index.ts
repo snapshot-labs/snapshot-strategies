@@ -11,7 +11,7 @@ const abi = [
   'function working_supply() external view returns (uint256)',
   'function totalSupply() external view returns (uint256)',
   'function working_balances(address account) external view returns (uint256)',
-  'function balances(uint256 i) external view returns (uint256)',
+  'function balances(uint256 i) external view returns (uint256)'
 ];
 
 const MIN_BOOST = 0.4;
@@ -94,18 +94,32 @@ export async function strategy(
     );
   }
 
-  const workingSupply = parseFloat(formatUnits(response[response.length - 1].shift()[0], 18));
-  const lockerVotingPower = parseFloat(formatUnits(response[response.length - 1].pop()[0], 18));
+  const workingSupply = parseFloat(
+    formatUnits(response[response.length - 1].shift()[0], 18)
+  );
+  const lockerVotingPower = parseFloat(
+    formatUnits(response[response.length - 1].pop()[0], 18)
+  );
 
-  const poolsBalances = options.pools.map(() => response[response.length - 1].pop()[0]);
-  const sumPoolsBalance = parseFloat(formatUnits(poolsBalances.reduce((acc, balance) => acc.add(balance), BigNumber.from(0)), 18));
+  const poolsBalances = options.pools.map(
+    () => response[response.length - 1].pop()[0]
+  );
+  const sumPoolsBalance = parseFloat(
+    formatUnits(
+      poolsBalances.reduce(
+        (acc, balance) => acc.add(balance),
+        BigNumber.from(0)
+      ),
+      18
+    )
+  );
 
-  const sdTknSupply = parseFloat(formatUnits(response[response.length - 1].pop()[0], 18));
+  const sdTknSupply = parseFloat(
+    formatUnits(response[response.length - 1].pop()[0], 18)
+  );
 
-  const liquidityVoteFee = MIN_BOOST
-    * sumPoolsBalance
-    * lockerVotingPower
-    / sdTknSupply;
+  const liquidityVoteFee =
+    (MIN_BOOST * sumPoolsBalance * lockerVotingPower) / sdTknSupply;
 
   const totalUserVotes = lockerVotingPower - liquidityVoteFee;
 
@@ -122,23 +136,24 @@ export async function strategy(
         }
 
         if (addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
-          return [
-            addresses[i],
-            Number(liquidityVoteFee)
-          ];
+          return [addresses[i], Number(liquidityVoteFee)];
         } else {
           // Get average working balance.
           const averageWorkingBalance = parseFloat(
-            formatUnits(average(
-              userWorkingBalances,
-              addresses[i],
-              options.whiteListedAddress
-            ), 18));
+            formatUnits(
+              average(
+                userWorkingBalances,
+                addresses[i],
+                options.whiteListedAddress
+              ),
+              18
+            )
+          );
 
           // Calculate voting power.
           const userVote =
             workingSupply != 0
-              ? (averageWorkingBalance / workingSupply * totalUserVotes)
+              ? (averageWorkingBalance / workingSupply) * totalUserVotes
               : 0;
 
           // Return address and voting power
