@@ -20,6 +20,7 @@ export async function strategy(
     provider,
     options.strategies.map((s) => s.network || network)
   );
+  // this gets the current circulating supply from Github
   const response = await fetch(options.supplyApi, {
     method: 'GET',
     headers: {
@@ -38,7 +39,7 @@ export async function strategy(
     ) {
       continue;
     }
-
+    // this pushed the strategy results to the promises array
     promises.push(
       strategies[strategy.name].strategy(
         space,
@@ -58,9 +59,11 @@ export async function strategy(
       if (!finalResults[address]) {
         finalResults[address] = 0;
       }
-      const percentOfSupply =
+      // apply the sum of all tokens in strategies against the tokens circulating supply
+      // then apply the weight of the strategy to the result and save this as the final result
+      const weightedPercentOfSupply =
         ((value as number) / circulatingSupply) * options.weight;
-      finalResults[address] += percentOfSupply;
+      finalResults[address] += weightedPercentOfSupply;
     }
     return finalResults;
   }, {});
