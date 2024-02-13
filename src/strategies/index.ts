@@ -76,6 +76,7 @@ import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
+import * as multichainSupplyWeighted from './multichain-supply-weighted';
 import * as delegation from './delegation';
 import * as delegationWithCap from './delegation-with-cap';
 import * as delegationWithOverrides from './delegation-with-overrides';
@@ -413,6 +414,7 @@ import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 
 const strategies = {
+  'multichain-supply-weighted': multichainSupplyWeighted,
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
