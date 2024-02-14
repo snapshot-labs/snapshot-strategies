@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "derpdex-xderp-yield-booster",
+      "params": {
+        "address": "0xd377088F3026536682Bf58Cc74448a5B31490C46",
+        "symbol": "xDERP",
+        "decimals": 18
+      }
+    },
+    "network": "324",
+    "addresses": [
+      "0x440097Cebd3b8C20ec43bA4A9395e252BF41dcCc",
+      "0x945bB7BD5AD143279647825544Ab94395D435d15",
+      "0x01043868e5079cE26ba2694638B2282Ccae7BA53"
+    ],
+    "snapshot": 21537650
+  }
+]

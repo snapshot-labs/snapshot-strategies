@@ -411,6 +411,7 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as vendorV2BorrowerCollateralBalanceOf from './vendor-v2-borrower-collateral-balance-of';
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
+import * as derpdexxDERPYieldBooster from './derpdex-xderp-yield-booster';
 
 const strategies = {
   'cap-voting-power': capVotingPower,
@@ -829,7 +830,8 @@ const strategies = {
   'vendor-v2-borrower-collateral-balance-of':
     vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
-  'xdai-stakers-and-holders': xdaiStakersAndHolders
+  'xdai-stakers-and-holders': xdaiStakersAndHolders,
+  'derpdex-xderp-yield-booster': derpdexxDERPYieldBooster,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
