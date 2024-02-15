@@ -1,10 +1,19 @@
-# multichain
+# multichain-supply-weighted
 
-If you want to calculate the balance from various chains like Ethereum, Binance smart chain, polygon etc. and use them for voting using various strategies, you can do it by using a strategy called “multichain strategy”. This allows cross chain voting in which multiple chains can be used together to calculate the voting power.
+This is a fork of the multichain strategy by kesar. 
 
-In multichain strategy, the params should define sub strategies which would use different networks mentioned in the field to combine the voting power.
+This strategy will calculate the balance of a multichain-token from various chains like Ethereum, Binance smart chain, polygon etc.
+
+Exactly like the multichain strategy, the strategies array should define sub strategies which would use different networks mentioned in the field to combine the voting power.
 
 In order to provide multichain functionality, this strategy provides a way to calculate which block number should be used on additional chains: If a snapshot was created on block 125 on mainnet, it will find the timestamp for that block and go find which block number corresponds to that same timestamp on every other wanted chain. This way it can accurately represent an address' voting power at a given point in time.
+
+## Further more...
+
+This strategy calls an external API to get the tokens total circulating/active supply. It also allows a weight to be defined as well. The supplyApi is where the GET request should be made to a REST API. you can use the supplyField to specify the field in the response data that contains the supply number you're looking for.
+
+Using this information it will calculate the balance of a given token across all chains, divide it against the circulating supply to find the percentage of the circulating supply held by the address and then multiply it by the weight to get the final voting power.
+
 
 Here is an example of parameters:
 
@@ -12,41 +21,36 @@ In the below example, the tokens on the three networks namely ethereum, polygon 
 
 ```json
 {
-  "symbol": "MULTI",
-  "strategies": [
-    {
-      "name": "erc20-balance-of",
-      "network": "1",
-      "params": {
-        "address": "0x579cea1889991f68acc35ff5c3dd0621ff29b0c9",
-        "decimals": 18
-      }
-    },
-    {
-      "name": "erc20-balance-of",
-      "network": "137",
-      "params": {
-        "address": "0xB9638272aD6998708de56BBC0A290a1dE534a578",
-        "decimals": 18
-      }
-    },
-    {
-      "name": "erc20-balance-of",
-      "network": "56",
-      "params": {
-        "address": "0x0e37d70b51ffa2b98b4d34a5712c5291115464e3",
-        "decimals": 18
-      }
-    },
-    {
-      "name": "erc20-balance-of",
-      "network": 137,
-      "params": {
-        "address": "0xfC0fA725E8fB4D87c38EcE56e8852258219C64Ee",
-        "decimals": 18
-      }
-    }
-  ]
+   "symbol": " MULTI",
+        "supplyApi" : "https://circulating.giveth.io/token-supply",
+        "supplyField" : "circulating",
+        "weight" : 0.5,
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "network": "100",
+            "params": {
+              "address": "0x4f4F9b8D5B4d0Dc10506e5551B0513B61fD59e75",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc20-balance-of",
+            "network": "100",
+            "params": {
+              "address": "0xfFBAbEb49be77E5254333d5fdfF72920B989425f",
+              "decimals": 18
+            }
+          },
+      {
+            "name": "erc20-balance-of",
+            "network": "10",
+            "params": {
+              "address": "0x528CDc92eAB044E1E39FE43B9514bfdAB4412B98",
+              "decimals": 18
+            }
+          }
+        ]
 }
 
 ```

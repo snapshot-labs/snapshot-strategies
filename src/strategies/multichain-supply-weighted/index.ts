@@ -2,8 +2,8 @@ import { getProvider, getSnapshots } from '../../utils';
 import strategies from '..';
 import fetch from 'cross-fetch';
 
-export const author = 'kesar';
-export const version = '1.1.0';
+export const author = 'divine-comedian';
+export const version = '1.2.0';
 
 export async function strategy(
   space,
@@ -30,7 +30,6 @@ export async function strategy(
   });
   const data = await response.json();
   const circulatingSupply = data[options.supplyField];
-  console.log('Circulating Supply:', circulatingSupply);
   for (const strategy of options.strategies) {
     // If snapshot is taken before a network is activated then ignore its strategies
     if (
