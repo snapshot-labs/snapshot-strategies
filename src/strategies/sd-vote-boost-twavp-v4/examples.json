@@ -8,7 +8,10 @@
         "liquidLocker": "0x52f541764E6e90eeBc5c21Ff570De0e2D63766B6",
         "sdTokenGauge": "0x7f50786A0b15723D741727882ee99a0BF34e3466",
         "sdToken": "0xD1b5651E55D4CeeD36251c61c50C889B36F6abB5",
-        "pools": ["0xf7b55c3732ad8b2c2da7c24f30a69f55c54fb717","0xca0253a98d16e9c1e3614cafda19318ee69772d0"],
+        "pools": [
+          "0xf7b55c3732ad8b2c2da7c24f30a69f55c54fb717",
+          "0xca0253a98d16e9c1e3614cafda19318ee69772d0"
+        ],
         "symbol": "sdToken",
         "decimals": 18,
         "sampleSize": 10,
