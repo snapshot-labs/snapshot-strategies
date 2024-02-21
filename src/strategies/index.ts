@@ -412,8 +412,10 @@ import * as unipoolSameToken from './unipool-same-token';
 import * as vendorV2BorrowerCollateralBalanceOf from './vendor-v2-borrower-collateral-balance-of';
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
+import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 
 const strategies = {
+  'minime-balance-vs-supply-weighted': minimeBalanceVsSupplyWeighted,
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
