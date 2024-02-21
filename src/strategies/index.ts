@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as urbitGalaxies from './urbit-galaxies/index';
 import * as ecoVotingPower from './eco-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
@@ -829,7 +830,8 @@ const strategies = {
   'vendor-v2-borrower-collateral-balance-of':
     vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
-  'xdai-stakers-and-holders': xdaiStakersAndHolders
+  'xdai-stakers-and-holders': xdaiStakersAndHolders,
+  'urbit-galaxies': urbitGalaxies
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
