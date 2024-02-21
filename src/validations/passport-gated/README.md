@@ -20,7 +20,7 @@ Before using this code, you need to create an API Key and Scorer ID to interact 
 
 ## Stamps Metadata
 
-The Stamps currently supported by Gitcoin Passport are stored in [stampsMetadata.json](./stampsMetadata.json). The Passport API has an [endpoint](https://docs.passport.gitcoin.co/building-with-passport/scorer-api/endpoint-definition#get-stamps-metadata-beta) where you can fetch all this information, but we don't do this programmatically in order to minimize the number of requests made by the validation strategy and meet the requirements listed in the main [README](../../../README.md). 
+The Stamps currently supported by Gitcoin Passport are stored in [stampsMetadata.json](./stampsMetadata.json). The Passport API has an [endpoint](https://docs.passport.gitcoin.co/building-with-passport/scorer-api/endpoint-definition#get-stamps-metadata-beta) where you can fetch all this information, but we don't do this programmatically in order to minimize the number of requests made by the validation strategy and meet the requirements listed in the main [README](../../../README.md).
 
 **NOTICE**: this file might need to be updated from time to time when Passport updates their supported Stamps and VCs.
 
@@ -38,7 +38,7 @@ The main function (validate()) first fetches the following parameters:
 
 Then, it calls the following validation methods:
 
-* `validateStamps`: it uses the API to fetch the current user's Passport stamps and verifies that each has valid issuance and isn't expired. Then, depending on the `operator`, it will iterate through the required `stamps` and check that the user holds at least one verifiable credential that makes the passport eligible for that stamp. Finally, a Passport will be set as valid if it meets the criteria.
+* `validateStamps`: it uses the API to fetch the current user's Passport stamps and verifies that each has valid issuance and isn't expired (if checkExpired param is set to true). Then, depending on the `operator`, it will iterate through the required `stamps` and check that the user holds at least one verifiable credential that makes the passport eligible for that stamp. Finally, a Passport will be set as valid if it meets the criteria.
 * `validatePassportScore`: if `scoreThreshold` is set to zero this function will be omitted. Otherwise when called, it uses the Scorer API to submit the passport for scoring and get the latest score. If the API response returns a payload with `status === 'DONE'` it will return the result of evaluating the scoring threshold criteria, otherwise the implementation will make periodic requests (up to `PASSPORT_SCORER_MAX_ATTEMPTS`) to the Scorer API until getting a `DONE` status.
 
 Finally, it checks the results of both eval functions and returns a boolean value indicating whether the user has a valid Passport.
