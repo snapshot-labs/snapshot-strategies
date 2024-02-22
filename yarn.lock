@@ -1184,10 +1184,10 @@
   dependencies:
     "@sinonjs/commons" "^2.0.0"
 
-"@snapshot-labs/snapshot.js@^0.11.0":
-  version "0.11.0"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.11.0.tgz#148a7eed01c128689bab28c033abd87cfe41a54c"
-  integrity sha512-HSvsty6tNiaq7JngzGBMOayA3qEmwjLMhvnapY6TL1FgQcKwx7u4Xwruw9vZu34MU8MdmBcQanxyaz6XP3t+oA==
+"@snapshot-labs/snapshot.js@^0.11.1":
+  version "0.11.1"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.11.1.tgz#dfbbb3daafa225212f19bb3c94bdfc4c13519ba7"
+  integrity sha512-Z6TWJpSi6Q22Jfb2/z5QWbPAElSXQyieWr/N/miL3KOTpfDCAt5oOWbXUHk8sUa1C4ik8hIXeLmvTxTWxp1h7Q==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.6.4"
@@ -1199,6 +1199,7 @@
     "@ethersproject/units" "^5.7.0"
     "@ethersproject/wallet" "^5.6.2"
     ajv "^8.11.0"
+    ajv-errors "^3.0.0"
     ajv-formats "^2.1.1"
     cross-fetch "^3.1.6"
     json-to-graphql-query "^2.2.4"
@@ -1486,6 +1487,11 @@ aes-js@3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/aes-js/-/aes-js-3.0.0.tgz#e21df10ad6c2053295bcbb8dab40b09dbea87e4d"
   integrity sha1-4h3xCtbCBTKVvLuNq0Cwnb6ofk0=
+
+ajv-errors@^3.0.0:
+  version "3.0.0"
+  resolved "https://registry.yarnpkg.com/ajv-errors/-/ajv-errors-3.0.0.tgz#e54f299f3a3d30fe144161e5f0d8d51196c527bc"
+  integrity sha512-V3wD15YHfHz6y0KdhYFjyy9vWtEVALT9UrxfN3zqlI6dMioHnJrqOYfyPKol3oqrnCM9uwkcdCwkJ0WUcbLMTQ==
 
 ajv-formats@^2.1.1:
   version "2.1.1"
