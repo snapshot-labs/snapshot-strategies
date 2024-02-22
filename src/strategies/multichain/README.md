@@ -1,3 +1,4 @@
+# [DEPRECATED]
 # multichain
 
 If you want to calculate the balance from various chains like Ethereum, Binance smart chain, polygon etc. and use them for voting using various strategies, you can do it by using a strategy called “multichain strategy”. This allows cross chain voting in which multiple chains can be used together to calculate the voting power.
