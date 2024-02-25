@@ -31,7 +31,7 @@ const v3FarmAddress = '0x405960AEAad7Ec8B419DEdb511dfe9D112dFc22d'; //v3 farm ad
 const aquaBtcbLpTokenAddress = '0x70B606c23D6E786BE7accAf31C8fEcEaf846AdF3'; // v3 aqua-btcb lp token address
 
 const increase_in_voting = 5; //increase weight 5 times while voting
-const gAquaExchangeRate = "200000000416761667681474308"; //exchange rate of gAqua to aqua
+const gAquaExchangeRate = '200000000416761667681474308'; //exchange rate of gAqua to aqua
 
 export async function strategy(
   space,
@@ -109,7 +109,6 @@ export async function strategy(
   usersNewAquaBtcbVaultBalances = result[2]; //shares in v3 aqua-btcb pool
   usersNewAquaPoolBalances = result[3]; // shares in v3 aqua pool
 
-
   //AQUA-BNB
   // total supply of v2 aqua bnb lp token
   erc20Multi.call('aquaBnbTotalSupply', aquaBnbLpTokenAddress, 'totalSupply');
@@ -168,8 +167,7 @@ export async function strategy(
                 )
               ) /
                 parseFloat(formatUnits(totalSupplyAquabtcb, 18))) *
-              parseFloat(formatUnits(contractAquaBtcbBalance, 18)) 
-              )
+              parseFloat(formatUnits(contractAquaBtcbBalance, 18)))
       ];
     })
   );
