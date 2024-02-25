@@ -32,7 +32,7 @@ export async function strategy(
 
   type MulticallParam = [string, string, any[]];
   const ownerCalls: MulticallParam[] = [];
-  const proxyCalls : MulticallParam[] = [];
+  const proxyCalls: MulticallParam[] = [];
   for (let tokenId = 0; tokenId <= 255; tokenId++) {
     ownerCalls.push([options.erc721Address, 'ownerOf', [tokenId]]);
     proxyCalls.push([options.votingProxyAddress, 'getVotingProxy', [tokenId]]);
@@ -48,12 +48,15 @@ export async function strategy(
     const proxyAddress = proxyResponses[index][0];
 
     // Determine the effective voter (proxy or owner)
-    const effectiveVoter = proxyAddress !== '0x0000000000000000000000000000000000000000' ? proxyAddress : ownerAddress;
+    const effectiveVoter =
+      proxyAddress !== '0x0000000000000000000000000000000000000000'
+        ? proxyAddress
+        : ownerAddress;
 
     if (addresses.includes(effectiveVoter)) {
-        score[effectiveVoter] = (score[effectiveVoter] || 0) + 1;
-      }
-    });
+      score[effectiveVoter] = (score[effectiveVoter] || 0) + 1;
+    }
+  });
 
   return score;
 }
