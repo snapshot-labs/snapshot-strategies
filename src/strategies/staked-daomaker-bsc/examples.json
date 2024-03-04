@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "staked-daomaker-bsc",
+      "params": {
+        "address": "0x598CA79eee092A084B5f168c4196EdB80EA22781",
+        "symbol": "DAO",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xa93065e0Ef01908c9bD016c1D78c0C2F7Fa7D523",
+      "0x8a146531630850fE1d158c922bDA620BDDF12766",
+      "0x3fF8CAc8ce2449ACe1C47FeBd8F3687D043f0C12",
+      "0x70E828Ba093C5fad8202d7b1870809b40077C2Fd",
+      "0xBd2d3ef0146B6b949DcA131576D3b6D33e2bD6cD"
+    ],
+    "snapshot": 36679354
+  }
+]
