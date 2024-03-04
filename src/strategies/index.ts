@@ -413,6 +413,7 @@ import * as vendorV2BorrowerCollateralBalanceOf from './vendor-v2-borrower-colla
 import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
+import * as vestingBalanceOf from './vesting-balance-of';
 
 const strategies = {
   'minime-balance-vs-supply-weighted': minimeBalanceVsSupplyWeighted,
@@ -833,7 +834,8 @@ const strategies = {
     vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
-  'urbit-galaxies': urbitGalaxies
+  'urbit-galaxies': urbitGalaxies,
+  'vesting-balance-of': vestingBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
