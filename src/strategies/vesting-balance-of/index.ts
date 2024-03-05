@@ -2,8 +2,8 @@ import {BigNumber, BigNumberish} from '@ethersproject/bignumber';
 import {formatUnits} from '@ethersproject/units';
 import {Multicaller} from '../../utils';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'propchain-development';
+export const version = '0.1.0';
 
 
 const vestingABI = [
