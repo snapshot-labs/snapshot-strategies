@@ -4,7 +4,7 @@ import { multicall } from '../../utils';
 
 //0.1.0 was authered by mujtaba1747
 
-export const author = 'aeyshubh';
+export const author = 'ethereum-push-notification-service';
 export const version = '0.2.0';
 
 const tokenBNtoNumber = (tokenBn) => {
