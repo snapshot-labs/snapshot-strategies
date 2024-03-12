@@ -414,6 +414,7 @@ import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 import * as vestingBalanceOf from './vesting-balance-of';
+import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
 
 const strategies = {
   'minime-balance-vs-supply-weighted': minimeBalanceVsSupplyWeighted,
@@ -835,7 +836,8 @@ const strategies = {
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
-  'vesting-balance-of': vestingBalanceOf
+  'vesting-balance-of': vestingBalanceOf,
+  'stake-mine-liquid-helios' : stakeMineLiquidHelios,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
