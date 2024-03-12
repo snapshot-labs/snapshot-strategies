@@ -1,0 +1,64 @@
+[
+  {
+    "name": "Multichain Voting",
+    "strategy": {
+      "name": "multichain",
+      "params": {
+        "symbol": "MULTI",
+        "api" : "https://circulating.giveth.io/token-supply",
+        "tokenPools": [
+          {
+            "weight": 0.5,
+            "strategies": [
+              {
+                "name": "erc20-balance-of",
+                "network": "100",
+                "params": {
+                  "address": "0x4f4F9b8D5B4d0Dc10506e5551B0513B61fD59e75",
+                  "decimals": 18
+                }
+              },
+              {
+                "name": "erc20-balance-of",
+                "network": "100",
+                "params": {
+                  "address": "0xfFBAbEb49be77E5254333d5fdfF72920B989425f",
+                  "decimals": 18
+                }
+              },
+          {
+                "name": "erc20-balance-of",
+                "network": "10",
+                "params": {
+                  "address": "0x528CDc92eAB044E1E39FE43B9514bfdAB4412B98",
+                  "decimals": 18
+                }
+              }
+            ]
+          },
+          {
+            "weight": 0.5,
+            "strategies": [
+              {
+                "name": "erc20-balance-of",
+                "network": "10",
+                "params": {
+                  "address": "0x16ef294ed9aeca7541183f19e4a5d01cebab88fb",
+                  "decimals": 18
+                }
+              }
+            ]
+          }
+        ]
+        
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5",
+      "0x9feab70f3c4a944b97b7565bac4991df5b7a69ff",
+      "0xaca39b187352d9805deced6e73a3d72abf86e7a0"
+    ],
+    "snapshot": 13035566
+  }
+]
