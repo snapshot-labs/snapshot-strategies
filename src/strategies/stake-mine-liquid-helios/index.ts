@@ -3,8 +3,8 @@ import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 import { BigNumberish } from '@ethersproject/bignumber';
 
-export const author = 'bonustrack';
-export const version = '0.1.1';
+export const author = 'asim07';
+export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
@@ -13,10 +13,9 @@ const abi = [
 ];
 
 enum MintStatus {
-  // Add your status values here, for example:
-  Active,
-  Matured
-  // etc.
+  ACTIVE,
+  CLAIMED,
+  BURNED
 }
 
 interface UserMintInfo {
@@ -87,7 +86,7 @@ export async function strategy(
           mints.reduce((sum, mint) => {
             // Extract mintableHlx, ensure mint[3] is defined and mint[3][2] is not undefined
             const mintableHlx =
-              mint[3] && mint[3][2] !== undefined
+              mint[3] && mint[3][2] !== undefined && parseInt(mint[3][11]) === 0
                 ? parseFloat(formatUnits(mint[3][2], decimals))
                 : 0;
             return sum + mintableHlx; // Sum mintableHlx for this mint to the total for the current user's mints
