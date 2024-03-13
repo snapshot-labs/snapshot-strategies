@@ -2,7 +2,7 @@ import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'mateodaza';
+export const author = 'divine-comedian';
 export const version = '0.1.0';
 
 const GIVETH_SUBGRAPH_API =
