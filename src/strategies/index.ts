@@ -415,6 +415,7 @@ import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 import * as vestingBalanceOf from './vesting-balance-of';
 import * as givethGnosisBalanceSupplyWeightedV3 from './giveth-gnosis-balance-supply-weighted-v3';
+import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
 
 const strategies = {
   'giveth-gnosis-balance-supply-weighted-v3':
@@ -838,7 +839,8 @@ const strategies = {
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
-  'vesting-balance-of': vestingBalanceOf
+  'vesting-balance-of': vestingBalanceOf,
+  'stake-mine-liquid-helios' : stakeMineLiquidHelios,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
