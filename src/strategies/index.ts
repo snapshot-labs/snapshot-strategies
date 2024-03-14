@@ -184,7 +184,7 @@ import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
 import * as singleStakingAutoCompoundBalanceOf from './single-staking-autocompound-balanceof';
-import * as singleStakingLongTermStakingBalanceOf from './ssingle-staking-longtermstaking-balanceof';
+import * as singleStakingLongTermStakingBalanceOf from './single-staking-longtermstaking-balanceof';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
