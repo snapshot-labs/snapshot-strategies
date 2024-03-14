@@ -414,8 +414,10 @@ import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 import * as vestingBalanceOf from './vesting-balance-of';
+import * as givethBalancesSupplyWeighted from './giveth-balances-supply-weighted';
 
 const strategies = {
+  'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'minime-balance-vs-supply-weighted': minimeBalanceVsSupplyWeighted,
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
