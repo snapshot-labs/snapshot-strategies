@@ -102,7 +102,7 @@ function calculateSumHousesPoints(PDAScores: PDAScores): SumHousesPoints {
         }
 
         if (gatewayHouse && gatewayHouse.point > 0) {
-          result.gateway_points += gatewayHouse.point;
+          result.gateway_points += Math.sqrt(gatewayHouse.point);
         }
       }
     }
@@ -147,7 +147,7 @@ function calculateHousesPower(
 
           if (gatewayHouse && gatewayHouse.point > 0) {
             powers[walletAddr] +=
-              (gatewayHouse.point / sumHousesPoints.gateway_points) *
+              (Math.sqrt(gatewayHouse.point) / sumHousesPoints.gateway_points) *
               STAKER_HOUSE_SHARES.gateway *
               HOUSE_SHARES.staker;
           }
