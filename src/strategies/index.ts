@@ -616,7 +616,7 @@ const strategies = {
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
-  'single-staking-longterm-staking-balanceof': singleStakingLongTermStakingBalanceOf,
+  'single-staking-longtermstaking-balanceof': singleStakingLongTermStakingBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-stake-and-balance-qv': hoprStakeAndBalanceQV,
   'hopr-bridged-balance': hoprBridgedBalance,
