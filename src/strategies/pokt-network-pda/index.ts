@@ -1,5 +1,4 @@
 import fetch from 'cross-fetch';
-import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 import { EnumType } from 'json-to-graphql-query';
 
@@ -219,7 +218,7 @@ export async function strategy(
   }
 
   return Object.keys(powers).reduce((current, key) => {
-    current[key] = parseFloat(formatUnits(powers[key], options.decimals));
+    current[key] = parseFloat(powers[key].toFixed(options.decimals));
     return current;
   }, {});
 }
