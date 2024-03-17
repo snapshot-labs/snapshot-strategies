@@ -12,9 +12,9 @@
         "symbol": "GIV",
         "decimals": 18,
         "methodABI": {
-          "method" : "function depositTokenBalance(address) public view returns (uint256)",
+          "method": "function depositTokenBalance(address) public view returns (uint256)",
           "name": "depositTokenBalance"
-      }
+        }
       }
     },
     "network": "10",

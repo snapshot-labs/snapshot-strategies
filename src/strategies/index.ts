@@ -842,7 +842,7 @@ const strategies = {
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
   'vesting-balance-of': vestingBalanceOf,
-  'stake-mine-liquid-helios' : stakeMineLiquidHelios,
+  'stake-mine-liquid-helios': stakeMineLiquidHelios
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
