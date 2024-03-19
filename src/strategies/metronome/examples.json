@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Metronome",
+    "strategy": {
+      "name": "metronome",
+      "params": {
+        "token": "0xA28D70795a61Dc925D4c220762A4344803876bb8",
+        "symbol": "esMET",
+        "votingPower": "0xfDcbf444E601319ebbBF9b5731ECE81908947de6",
+        "decimals": 18,
+        "blocksPerPeriod": 40320,
+        "minBlock": 19470461
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xc0DdBAAeed6fC3E2f4f4Efa5778383B0E356621E",
+      "0x80F2D2b2d778Fdcb3f231a9Ed403B6963676C869",
+      "0x29D5cE94785f8D063f2dE28a70Dc4a82E40e662D",
+      "0x3C76A3fEE9831309c8d2f66ac723EaaB740B1eE0"
+    ],
+    "snapshot": 19470461
+  }
+]

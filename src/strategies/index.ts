@@ -418,6 +418,7 @@ import * as vestingBalanceOf from './vesting-balance-of';
 import * as givethBalancesSupplyWeighted from './giveth-balances-supply-weighted';
 import * as givethGnosisBalanceSupplyWeightedV3 from './giveth-gnosis-balance-supply-weighted-v3';
 import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
+import * as metronome from './metronome';
 
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -616,7 +617,8 @@ const strategies = {
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
-  'single-staking-longtermstaking-balanceof': singleStakingLongTermStakingBalanceOf,
+  'single-staking-longtermstaking-balanceof':
+    singleStakingLongTermStakingBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-stake-and-balance-qv': hoprStakeAndBalanceQV,
   'hopr-bridged-balance': hoprBridgedBalance,
@@ -844,7 +846,8 @@ const strategies = {
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
   'vesting-balance-of': vestingBalanceOf,
-  'stake-mine-liquid-helios': stakeMineLiquidHelios
+  'stake-mine-liquid-helios': stakeMineLiquidHelios,
+  metronome
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
