@@ -84,7 +84,7 @@ export async function strategy(
     { blockTag }
   );
 
-   const responseStakedV2 = await multicall(
+  const responseStakedV2 = await multicall(
     network,
     provider,
     sharedABI,
@@ -94,7 +94,8 @@ export async function strategy(
         options.pushStakingInfoCoreV2,
         'userFeesInfo',
         [address.toLowerCase()]
-      ]).concat(
+      ])
+      .concat(
         addresses.map((address: any) => [
           options.pushUniStakingV2,
           'balanceOf',
@@ -102,15 +103,15 @@ export async function strategy(
         ])
       ),
     { blockTag }
-  ); 
+  );
 
   const responseStakedPUSH = responseStaked.slice(0, addresses.length);
   let responseStakedPUSHV2 = responseStakedV2.slice(0, addresses.length);
-  responseStakedPUSHV2 = responseStakedPUSHV2.map((value, i) => {return value[0].toString()}); 
-const responseStakedLP = responseStaked.slice(addresses.length);
+  responseStakedPUSHV2 = responseStakedPUSHV2.map((value, i) => {
+    return value[0].toString();
+  });
+  const responseStakedLP = responseStaked.slice(addresses.length);
   const responseStakedLPV2 = responseStakedV2.slice(addresses.length);
-
-  
 
   const responseWETH = await multicall(
     network,
@@ -156,15 +157,14 @@ const responseStakedLP = responseStaked.slice(addresses.length);
     { blockTag }
   );
 
-
   // Calculating price of EPNS-LP Tokens in terms of EPNS Tokens
   const uniLpTotalSupply = tokenBNtoNumber(responseEPNSLPToken[0][0]);
   const uniLpPrice =
     (pushAmountReserve * pushPrice + wethAmountReserve * wethPrice) /
     uniLpTotalSupply;
-const lpToPushRatio = uniLpPrice / pushPrice;
+  const lpToPushRatio = uniLpPrice / pushPrice;
 
-// console.log(uniLpTotalSupply)
+  // console.log(uniLpTotalSupply)
   return Object.fromEntries(
     responseDelegatedPUSH.map((value, i) => [
       addresses[i],
@@ -174,12 +174,11 @@ const lpToPushRatio = uniLpPrice / pushPrice;
         parseFloat(
           formatUnits(responseStakedPUSH[i].toString(), options.decimals)
         ) +
-        parseFloat(formatUnits(responseStakedPUSHV2[i], options.decimals))+ 
+        parseFloat(formatUnits(responseStakedPUSHV2[i], options.decimals)) +
         parseFloat(
           formatUnits(responseStakedLPV2[i].toString(), options.decimals)
         ) *
-          lpToPushRatio
-        +
+          lpToPushRatio +
         parseFloat(
           formatUnits(responseStakedLP[i].toString(), options.decimals)
         ) *
