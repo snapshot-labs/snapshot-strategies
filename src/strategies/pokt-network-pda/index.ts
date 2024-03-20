@@ -81,28 +81,31 @@ function calculateSumHousesPoints(PDAScores: PDAScores): SumHousesPoints {
       const scoreBlock = PDAScores[walletAddr];
       const builderHouse = scoreBlock.builder;
       const stakerHouse = scoreBlock.staker;
+      const citizenHouse = scoreBlock.citizen;
 
-      if (builderHouse && builderHouse.point > 0) {
-        result.builder_points += 1;
-      }
-
-      if (stakerHouse) {
-        const validatorHouse = stakerHouse.validator;
-        const gatewayHouse = stakerHouse.gateway;
-        const liquidityProviderHouse = stakerHouse['liquidity provider'];
-
-        if (validatorHouse || liquidityProviderHouse) {
-          const validatorHousePoint = validatorHouse?.point || 0;
-          const liquidityProviderHousePoint =
-            liquidityProviderHouse?.point || 0;
-
-          result.validator_and_liquidity_provider_points += Math.sqrt(
-            validatorHousePoint + liquidityProviderHousePoint
-          );
+      if (citizenHouse && citizenHouse.point > 0) {
+        if (builderHouse && builderHouse.point > 0) {
+          result.builder_points += 1;
         }
 
-        if (gatewayHouse && gatewayHouse.point > 0) {
-          result.gateway_points += Math.sqrt(gatewayHouse.point);
+        if (stakerHouse) {
+          const validatorHouse = stakerHouse.validator;
+          const gatewayHouse = stakerHouse.gateway;
+          const liquidityProviderHouse = stakerHouse['liquidity provider'];
+
+          if (validatorHouse || liquidityProviderHouse) {
+            const validatorHousePoint = validatorHouse?.point || 0;
+            const liquidityProviderHousePoint =
+              liquidityProviderHouse?.point || 0;
+
+            result.validator_and_liquidity_provider_points += Math.sqrt(
+              validatorHousePoint + liquidityProviderHousePoint
+            );
+          }
+
+          if (gatewayHouse && gatewayHouse.point > 0) {
+            result.gateway_points += Math.sqrt(gatewayHouse.point);
+          }
         }
       }
     }
@@ -122,34 +125,38 @@ function calculateHousesPower(
         const scoreBlock = PDAScores[walletAddr];
         const builderHouse = scoreBlock.builder;
         const stakerHouse = scoreBlock.staker;
+        const citizenHouse = scoreBlock.citizen;
 
-        if (builderHouse && builderHouse.point > 0) {
-          powers[walletAddr] +=
-            (1 / sumHousesPoints.builder_points) * HOUSE_SHARES.builder;
-        }
-
-        if (stakerHouse) {
-          const validatorHouse = stakerHouse.validator;
-          const gatewayHouse = stakerHouse.gateway;
-          const liquidityProviderHouse = stakerHouse['liquidity provider'];
-
-          if (validatorHouse || liquidityProviderHouse) {
-            const validatorHousePoint = validatorHouse?.point || 0;
-            const liquidityProviderHousePoint =
-              liquidityProviderHouse?.point || 0;
-
+        if (citizenHouse && citizenHouse.point > 0) {
+          if (builderHouse && builderHouse.point > 0) {
             powers[walletAddr] +=
-              (Math.sqrt(validatorHousePoint + liquidityProviderHousePoint) /
-                sumHousesPoints.validator_and_liquidity_provider_points) *
-              STAKER_HOUSE_SHARES.validator_and_liquidity_provider *
-              HOUSE_SHARES.staker;
+              (1 / sumHousesPoints.builder_points) * HOUSE_SHARES.builder;
           }
 
-          if (gatewayHouse && gatewayHouse.point > 0) {
-            powers[walletAddr] +=
-              (Math.sqrt(gatewayHouse.point) / sumHousesPoints.gateway_points) *
-              STAKER_HOUSE_SHARES.gateway *
-              HOUSE_SHARES.staker;
+          if (stakerHouse) {
+            const validatorHouse = stakerHouse.validator;
+            const gatewayHouse = stakerHouse.gateway;
+            const liquidityProviderHouse = stakerHouse['liquidity provider'];
+
+            if (validatorHouse || liquidityProviderHouse) {
+              const validatorHousePoint = validatorHouse?.point || 0;
+              const liquidityProviderHousePoint =
+                liquidityProviderHouse?.point || 0;
+
+              powers[walletAddr] +=
+                (Math.sqrt(validatorHousePoint + liquidityProviderHousePoint) /
+                  sumHousesPoints.validator_and_liquidity_provider_points) *
+                STAKER_HOUSE_SHARES.validator_and_liquidity_provider *
+                HOUSE_SHARES.staker;
+            }
+
+            if (gatewayHouse && gatewayHouse.point > 0) {
+              powers[walletAddr] +=
+                (Math.sqrt(gatewayHouse.point) /
+                  sumHousesPoints.gateway_points) *
+                STAKER_HOUSE_SHARES.gateway *
+                HOUSE_SHARES.staker;
+            }
           }
         }
       }
