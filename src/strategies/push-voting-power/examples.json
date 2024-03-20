@@ -13,7 +13,7 @@
         "WETHAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
         "USDTAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
 
-        "pushUniStakingV2":"0x9D2513F5b539DC774C66b28ACEc94e4bD00105C2",
+        "pushUniStakingV2": "0x9D2513F5b539DC774C66b28ACEc94e4bD00105C2",
         "pushStakingInfoCoreV2": "0x66329Fdd4042928BfCAB60b179e1538D56eeeeeE",
         "decimals": 18
       }

@@ -184,6 +184,7 @@ import * as flexaCapacityStaking from './flexa-capacity-staking';
 import * as sunriseGamingUniv2Lp from './sunrisegaming-univ2-lp';
 import * as sunriseGamingStaking from './sunrisegaming-staking';
 import * as singleStakingAutoCompoundBalanceOf from './single-staking-autocompound-balanceof';
+import * as singleStakingLongTermStakingBalanceOf from './single-staking-longtermstaking-balanceof';
 import * as singleStakingPoolsBalanceOf from './single-staking-pools-balanceof';
 import * as occStakeOf from './occ-stake-of';
 import * as hoprBridgedBalance from './hopr-bridged-balance';
@@ -415,8 +416,14 @@ import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 import * as vestingBalanceOf from './vesting-balance-of';
 import * as poktNetworkPDA from './pokt-network-pda';
+import * as givethBalancesSupplyWeighted from './giveth-balances-supply-weighted';
+import * as givethGnosisBalanceSupplyWeightedV3 from './giveth-gnosis-balance-supply-weighted-v3';
+import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
 
 const strategies = {
+  'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
+  'giveth-gnosis-balance-supply-weighted-v3':
+    givethGnosisBalanceSupplyWeightedV3,
   'minime-balance-vs-supply-weighted': minimeBalanceVsSupplyWeighted,
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
@@ -610,6 +617,7 @@ const strategies = {
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
+  'single-staking-longtermstaking-balanceof': singleStakingLongTermStakingBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-stake-and-balance-qv': hoprStakeAndBalanceQV,
   'hopr-bridged-balance': hoprBridgedBalance,
@@ -837,7 +845,8 @@ const strategies = {
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
   'vesting-balance-of': vestingBalanceOf,
-  'pokt-network-pda': poktNetworkPDA
+  'stake-mine-liquid-helios': stakeMineLiquidHelios,
+  'pokt-network-pda': poktNetworkPDA,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
