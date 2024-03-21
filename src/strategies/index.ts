@@ -617,7 +617,8 @@ const strategies = {
   'sunrisegaming-univ2-lp': sunriseGamingUniv2Lp,
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
-  'single-staking-longtermstaking-balanceof': singleStakingLongTermStakingBalanceOf,
+  'single-staking-longtermstaking-balanceof':
+    singleStakingLongTermStakingBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-stake-and-balance-qv': hoprStakeAndBalanceQV,
   'hopr-bridged-balance': hoprBridgedBalance,
@@ -846,7 +847,7 @@ const strategies = {
   'urbit-galaxies': urbitGalaxies,
   'vesting-balance-of': vestingBalanceOf,
   'stake-mine-liquid-helios': stakeMineLiquidHelios,
-  'pokt-network-pda': poktNetworkPDA,
+  'pokt-network-pda': poktNetworkPDA
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
