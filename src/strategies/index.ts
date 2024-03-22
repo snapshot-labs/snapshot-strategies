@@ -415,6 +415,7 @@ import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 import * as vestingBalanceOf from './vesting-balance-of';
+import * as poktNetworkPDA from './pokt-network-pda';
 import * as givethBalancesSupplyWeighted from './giveth-balances-supply-weighted';
 import * as givethGnosisBalanceSupplyWeightedV3 from './giveth-gnosis-balance-supply-weighted-v3';
 import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
@@ -844,7 +845,8 @@ const strategies = {
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
   'vesting-balance-of': vestingBalanceOf,
-  'stake-mine-liquid-helios': stakeMineLiquidHelios
+  'stake-mine-liquid-helios': stakeMineLiquidHelios,
+  'pokt-network-pda': poktNetworkPDA
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
