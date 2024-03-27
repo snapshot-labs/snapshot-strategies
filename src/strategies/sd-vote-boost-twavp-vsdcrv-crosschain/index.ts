@@ -1,4 +1,5 @@
-import { multicall } from '../../utils';
+import { getAddress } from '@ethersproject/address';
+import { getProvider, multicall, subgraphRequest } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 
@@ -14,6 +15,25 @@ const abi = [
 ];
 
 const MIN_BLOCK = 18835548;
+
+async function getIDChainBlock(snapshot, provider, chainId) {
+  const ts = (await provider.getBlock(snapshot)).timestamp;
+  const query = {
+    blocks: {
+      __args: {
+        where: {
+          ts: ts,
+          network_in: [chainId]
+        }
+      },
+      number: true
+    }
+  };
+  const url = 'https://blockfinder.snapshot.org';
+  const data = await subgraphRequest(url, query);
+  return data.blocks[0].number;
+}
+
 
 export async function strategy(
   space,
@@ -43,49 +63,42 @@ export async function strategy(
     blockTag = await provider.getBlockNumber();
   }
 
+  const destinationChainProvider = getProvider(options.targetChainId);
+  // Get corresponding block number on the destination chain side
+  const destinationChainBlockTag = await getIDChainBlock(blockTag, provider, options.targetChainId);
+
   // Create block list
   const blockList = getPreviousBlocks(
-    blockTag,
+    destinationChainBlockTag,
     options.sampleStep,
-    options.sampleSize
+    options.sampleSize,
+    options.blocksPerDay
   );
 
   const balanceOfQueries: any[] = [];
   for (const address of addresses) {
-    balanceOfQueries.push([options.vsdToken, 'balanceOf', [address]]);
-    balanceOfQueries.push([options.vsdToken, 'totalSupply', []]);
+    balanceOfQueries.push([options.targetVsdcrv, 'balanceOf', [address]]);
   }
 
+  // Max 4 calls on destination chain because we need one call for mainnet one
   const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
-    // Use good block number
-    blockTag = blockList[i];
-
-    const loopCalls: any[] = [];
-
-    // Add mutlicall response to array
-    if (i === options.sampleStep - 1) {
-      // End
-      loopCalls.push([options.veAddress, 'balanceOf', [options.locker]]);
-      loopCalls.push([options.sdTokenGauge, 'working_supply']);
-      loopCalls.push([
-        options.sdTokenGauge,
-        'working_balances',
-        [options.booster]
-      ]);
-      loopCalls.push(...balanceOfQueries);
-    } else {
-      loopCalls.push(...balanceOfQueries);
-    }
-
     response.push(
-      await multicall(network, provider, abi, loopCalls, { blockTag })
+      await multicall(options.targetChainId, destinationChainProvider, abi, balanceOfQueries, { blockTag: blockList[i] })
     );
   }
 
-  const lockerVeBalance = response[response.length - 1].shift()[0]; // Last response, latest block
-  const workingSupply = response[response.length - 1].shift()[0]; // Last response, latest block
-  const workingBalances = response[response.length - 1].shift()[0]; // Last response, latest block
+  const mainChainResponses = await multicall(network, provider, abi, [
+    [options.veAddress, 'balanceOf', [options.locker]],
+    [options.sdTokenGauge, 'working_supply'],
+    [options.sdTokenGauge, 'working_balances', [options.booster]],
+    [options.vsdToken, 'totalSupply', []]
+  ], { blockTag })
+
+  const lockerVeBalance = mainChainResponses.shift()[0]; // Last response, latest block
+  const workingSupply = mainChainResponses.shift()[0]; // Last response, latest block
+  const workingBalances = mainChainResponses.shift()[0]; // Last response, latest block
+  const vsdCRVTotalSupply = parseFloat(formatUnits(BigNumber.from(mainChainResponses.shift()[0]), 18)); // Last response, latest block
 
   const totalVP =
     (parseFloat(formatUnits(workingBalances, 18)) /
@@ -101,13 +114,12 @@ export async function strategy(
 
         for (let j = 0; j < options.sampleStep; j++) {
           const balanceOf = parseFloat(formatUnits(BigNumber.from(response[j].shift()[0]), 18));
-          const totalSupply = parseFloat(formatUnits(BigNumber.from(response[j].shift()[0]), 18));
 
           // Add working balance to array.
-          if (totalSupply === 0) {
+          if (vsdCRVTotalSupply === 0) {
             userWorkingBalances.push(0);
           } else {
-            userWorkingBalances.push(balanceOf / totalSupply);
+            userWorkingBalances.push(balanceOf / vsdCRVTotalSupply);
           }
         }
 
@@ -122,7 +134,7 @@ export async function strategy(
         const votingPower = totalVP != 0 ? averageWorkingBalance * totalVP : 0;
 
         // Return address and voting power
-        return [addresses[i], Number(votingPower)];
+        return [getAddress(addresses[i]), Number(votingPower)];
       })
   );
 }
@@ -152,10 +164,9 @@ function average(
 function getPreviousBlocks(
   currentBlockNumber: number,
   numberOfBlocks: number,
-  daysInterval: number
+  daysInterval: number,
+  blocksPerDay: number,
 ): number[] {
-  // Estimate number of blocks per day
-  const blocksPerDay = 86400 / 12;
   // Calculate total blocks interval
   const totalBlocksInterval = blocksPerDay * daysInterval;
   // Calculate block interval
