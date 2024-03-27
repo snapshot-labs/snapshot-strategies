@@ -48,7 +48,7 @@ interface SumHousesPoints {
 }
 
 // Major constants
-export const author = 'pokt-network';
+export const author = 'Microflow-xyz';
 export const version = '0.1.0';
 // Constants
 const IRYS_NETWORK_GRAPHQL_URL = {
