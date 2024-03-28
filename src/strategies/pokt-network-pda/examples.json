@@ -6,7 +6,8 @@
       "params": {
         "arweave_network": "DEVNET",
         "owner_address": "0x857d9c5696fb6be080ce0d8cd10719a64a116bc4",
-        "decimals": 8
+        "decimals": 8,
+        "multiply": 2
       }
     },
     "network": "1",
