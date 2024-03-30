@@ -63,7 +63,7 @@ export async function strategy(
   }
 
   const rawData = await subgraphRequest(
-    UNISWAP_V3_SUBGRAPH_URL[network],
+    options.subgraph || UNISWAP_V3_SUBGRAPH_URL[network],
     params
   );
 
