@@ -419,6 +419,7 @@ import * as poktNetworkPDA from './pokt-network-pda';
 import * as givethBalancesSupplyWeighted from './giveth-balances-supply-weighted';
 import * as givethGnosisBalanceSupplyWeightedV3 from './giveth-gnosis-balance-supply-weighted-v3';
 import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
+import * as farStakingBalanceOf from './far-staking-balance-of';
 
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -847,7 +848,8 @@ const strategies = {
   'urbit-galaxies': urbitGalaxies,
   'vesting-balance-of': vestingBalanceOf,
   'stake-mine-liquid-helios': stakeMineLiquidHelios,
-  'pokt-network-pda': poktNetworkPDA
+  'pokt-network-pda': poktNetworkPDA,
+  'far-staking-balance-of': farStakingBalanceOf
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
