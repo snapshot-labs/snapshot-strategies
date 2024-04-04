@@ -7,6 +7,7 @@ interface PoktNetworkOptions {
   arweave_network: 'MAINNET' | 'DEVNET';
   owner_address: string;
   decimals: number;
+  multiply: number;
 }
 
 interface ArweaveBlockResponse {
@@ -225,7 +226,10 @@ export async function strategy(
   }
 
   return Object.keys(powers).reduce((current, key) => {
-    current[key] = parseFloat(powers[key].toFixed(options.decimals));
+    current[key] = parseFloat(
+      (powers[key] * 10 ** options.multiply).toFixed(options.decimals)
+    );
+
     return current;
   }, {});
 }
