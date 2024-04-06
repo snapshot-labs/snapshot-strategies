@@ -2,7 +2,7 @@
   {
     "name": "Stake DAO vote boost using TWAVP for vsdTkn holders",
     "strategy": {
-      "name": "sd-vote-boost-twavp-vsdtoken",
+      "name": "sd-vote-boost-twavp-vsdcrv-crosschain",
       "params": {
         "vsdToken": "0xE079ac07463ff375Ce48E8A9D76211C10696F3B8",
         "sdTokenGauge": "0x7f50786A0b15723D741727882ee99a0BF34e3466",
@@ -12,17 +12,20 @@
         "symbol": "sdToken",
         "decimals": 18,
         "sampleSize": 10,
-        "sampleStep": 5,
-        "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"]
+        "sampleStep": 4,
+        "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"],
+        "targetChainId": "42161",
+        "targetVsdcrv": "0x62d5a59e0d67c0381aad53b201b4a1b8dcd2c833",
+        "blocksPerDay": 288000
       }
     },
     "network": "1",
     "addresses": [
-      "0x1c953fd17bE2812AB08bbbE221BB7d2687fc884B",
-      "0xDdB50FfDbA4D89354E1088e4EA402de895562173",
-      "0xE1F7eaD40d33eeF30dCf15eB5efC45409001aAB8",
-      "0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"
+      "0xfdb1157ac847d334b8912df1cd24a93ee22ff3d0",
+      "0xb85246768cfea42b0c935265db798c9ae457646f",
+      "0xd4f94d0aaa640bbb72b5eec2d85f6d114d81a88e",
+      "0xb0e83c2d71a991017e0116d58c5765abc57384af"
     ],
-    "snapshot": 19526583
+    "snapshot": 19526425
   }
 ]

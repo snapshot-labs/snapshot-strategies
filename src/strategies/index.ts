@@ -367,6 +367,7 @@ import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
+import * as sdVoteBoostTWAVPVCrossChain from './sd-vote-boost-twavp-vsdcrv-crosschain';
 import * as sdVoteBoostTWAVPBalanceof from './sd-vote-boost-twavp-balanceof';
 import * as friendTech from './friend-tech';
 import * as moonbase from './moonbase';
@@ -798,6 +799,7 @@ const strategies = {
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
+  'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
   'sd-vote-boost-twavp-balanceof': sdVoteBoostTWAVPBalanceof,
   moonbase: moonbase,
   'dss-vest-unpaid': dssVestUnpaid,
