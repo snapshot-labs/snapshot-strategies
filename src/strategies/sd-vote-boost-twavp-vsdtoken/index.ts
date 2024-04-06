@@ -100,8 +100,12 @@ export async function strategy(
         const userWorkingBalances: number[] = [];
 
         for (let j = 0; j < options.sampleStep; j++) {
-          const balanceOf = parseFloat(formatUnits(BigNumber.from(response[j].shift()[0]), 18));
-          const totalSupply = parseFloat(formatUnits(BigNumber.from(response[j].shift()[0]), 18));
+          const balanceOf = parseFloat(
+            formatUnits(BigNumber.from(response[j].shift()[0]), 18)
+          );
+          const totalSupply = parseFloat(
+            formatUnits(BigNumber.from(response[j].shift()[0]), 18)
+          );
 
           // Add working balance to array.
           if (totalSupply === 0) {
