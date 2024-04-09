@@ -63,6 +63,21 @@ export async function strategy(
     blockTag = await provider.getBlockNumber();
   }
 
+  const poolAddressesToAdd: string[] = [];
+
+  if (options.pools) {
+    for (const poolAddress of options.pools) {
+      const exists = addresses.find((address: string) => address.toLowerCase() === poolAddress.toLowerCase());
+      if (!exists) {
+        poolAddressesToAdd.push(poolAddress);
+      }
+    }
+
+    if (poolAddressesToAdd.length > 0) {
+      addresses = addresses.concat(poolAddressesToAdd);
+    }
+  }
+
   const destinationChainProvider = getProvider(options.targetChainId);
   // Get corresponding block number on the destination chain side
   const destinationChainBlockTag = await getIDChainBlock(blockTag, provider, options.targetChainId);
@@ -105,7 +120,7 @@ export async function strategy(
       parseFloat(formatUnits(workingSupply, 18))) *
     parseFloat(formatUnits(lockerVeBalance, 18));
 
-  return Object.fromEntries(
+  const votingPowers = Object.fromEntries(
     Array(addresses.length)
       .fill('x')
       .map((_, i) => {
@@ -137,6 +152,36 @@ export async function strategy(
         return [getAddress(addresses[i]), Number(votingPower)];
       })
   );
+
+  // Assign 0 to pools and vp to bot address
+  const userAddresses = Object.keys(votingPowers);
+
+  if (options.pools) {
+    const haveBotAddress = addresses.find((user: string) => user.toLowerCase() === options.botAddress.toLowerCase());
+    if (haveBotAddress) {
+      let botVotingPower = 0;
+      for (const user of userAddresses) {
+        const isPool = options.pools.find((poolAddress: string) => poolAddress.toLowerCase() === user.toLowerCase());
+        if (isPool) {
+          botVotingPower += votingPowers[user];
+          votingPowers[user] = 0;
+        }
+      }
+
+      votingPowers[getAddress(options.botAddress)] = Number(botVotingPower);
+    }
+  }
+
+  // Remove pool addresses added previously
+  const vps = {};
+  for(const user of userAddresses) {
+    const isAdded = poolAddressesToAdd.find((poolAddress: string) => poolAddress.toLowerCase() === user.toLowerCase());
+    if(!isAdded) {
+      vps[user] = votingPowers[user];
+    }
+  }
+
+  return vps;
 }
 
 function average(
