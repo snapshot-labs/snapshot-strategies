@@ -34,7 +34,6 @@ async function getIDChainBlock(snapshot, provider, chainId) {
   return data.blocks[0].number;
 }
 
-
 export async function strategy(
   space,
   network,
@@ -67,7 +66,9 @@ export async function strategy(
 
   if (options.pools) {
     for (const poolAddress of options.pools) {
-      const exists = addresses.find((address: string) => address.toLowerCase() === poolAddress.toLowerCase());
+      const exists = addresses.find(
+        (address: string) => address.toLowerCase() === poolAddress.toLowerCase()
+      );
       if (!exists) {
         poolAddressesToAdd.push(poolAddress);
       }
@@ -80,7 +81,11 @@ export async function strategy(
 
   const destinationChainProvider = getProvider(options.targetChainId);
   // Get corresponding block number on the destination chain side
-  const destinationChainBlockTag = await getIDChainBlock(blockTag, provider, options.targetChainId);
+  const destinationChainBlockTag = await getIDChainBlock(
+    blockTag,
+    provider,
+    options.targetChainId
+  );
 
   // Create block list
   const blockList = getPreviousBlocks(
@@ -99,21 +104,35 @@ export async function strategy(
   const response: any[] = [];
   for (let i = 0; i < options.sampleStep; i++) {
     response.push(
-      await multicall(options.targetChainId, destinationChainProvider, abi, balanceOfQueries, { blockTag: blockList[i] })
+      await multicall(
+        options.targetChainId,
+        destinationChainProvider,
+        abi,
+        balanceOfQueries,
+        { blockTag: blockList[i] }
+      )
     );
   }
 
-  const mainChainResponses = await multicall(network, provider, abi, [
-    [options.veAddress, 'balanceOf', [options.locker]],
-    [options.sdTokenGauge, 'working_supply'],
-    [options.sdTokenGauge, 'working_balances', [options.booster]],
-    [options.vsdToken, 'totalSupply', []]
-  ], { blockTag })
+  const mainChainResponses = await multicall(
+    network,
+    provider,
+    abi,
+    [
+      [options.veAddress, 'balanceOf', [options.locker]],
+      [options.sdTokenGauge, 'working_supply'],
+      [options.sdTokenGauge, 'working_balances', [options.booster]],
+      [options.vsdToken, 'totalSupply', []]
+    ],
+    { blockTag }
+  );
 
   const lockerVeBalance = mainChainResponses.shift()[0]; // Last response, latest block
   const workingSupply = mainChainResponses.shift()[0]; // Last response, latest block
   const workingBalances = mainChainResponses.shift()[0]; // Last response, latest block
-  const vsdCRVTotalSupply = parseFloat(formatUnits(BigNumber.from(mainChainResponses.shift()[0]), 18)); // Last response, latest block
+  const vsdCRVTotalSupply = parseFloat(
+    formatUnits(BigNumber.from(mainChainResponses.shift()[0]), 18)
+  ); // Last response, latest block
 
   const totalVP =
     (parseFloat(formatUnits(workingBalances, 18)) /
@@ -128,7 +147,9 @@ export async function strategy(
         const userWorkingBalances: number[] = [];
 
         for (let j = 0; j < options.sampleStep; j++) {
-          const balanceOf = parseFloat(formatUnits(BigNumber.from(response[j].shift()[0]), 18));
+          const balanceOf = parseFloat(
+            formatUnits(BigNumber.from(response[j].shift()[0]), 18)
+          );
 
           // Add working balance to array.
           if (vsdCRVTotalSupply === 0) {
@@ -157,11 +178,16 @@ export async function strategy(
   const userAddresses = Object.keys(votingPowers);
 
   if (options.pools) {
-    const haveBotAddress = addresses.find((user: string) => user.toLowerCase() === options.botAddress.toLowerCase());
+    const haveBotAddress = addresses.find(
+      (user: string) => user.toLowerCase() === options.botAddress.toLowerCase()
+    );
     if (haveBotAddress) {
       let botVotingPower = 0;
       for (const user of userAddresses) {
-        const isPool = options.pools.find((poolAddress: string) => poolAddress.toLowerCase() === user.toLowerCase());
+        const isPool = options.pools.find(
+          (poolAddress: string) =>
+            poolAddress.toLowerCase() === user.toLowerCase()
+        );
         if (isPool) {
           botVotingPower += votingPowers[user];
           votingPowers[user] = 0;
@@ -174,9 +200,11 @@ export async function strategy(
 
   // Remove pool addresses added previously
   const vps = {};
-  for(const user of userAddresses) {
-    const isAdded = poolAddressesToAdd.find((poolAddress: string) => poolAddress.toLowerCase() === user.toLowerCase());
-    if(!isAdded) {
+  for (const user of userAddresses) {
+    const isAdded = poolAddressesToAdd.find(
+      (poolAddress: string) => poolAddress.toLowerCase() === user.toLowerCase()
+    );
+    if (!isAdded) {
       vps[user] = votingPowers[user];
     }
   }
@@ -210,7 +238,7 @@ function getPreviousBlocks(
   currentBlockNumber: number,
   numberOfBlocks: number,
   daysInterval: number,
-  blocksPerDay: number,
+  blocksPerDay: number
 ): number[] {
   // Calculate total blocks interval
   const totalBlocksInterval = blocksPerDay * daysInterval;
