@@ -17,9 +17,7 @@
         "targetChainId": "42161",
         "targetVsdcrv": "0x62d5a59e0d67c0381aad53b201b4a1b8dcd2c833",
         "blocksPerDay": 288000,
-        "pools": [
-          "0xb85246768cfea42b0c935265db798c9ae457646f"
-        ],
+        "pools": ["0xb85246768cfea42b0c935265db798c9ae457646f"],
         "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a"
       }
     },
