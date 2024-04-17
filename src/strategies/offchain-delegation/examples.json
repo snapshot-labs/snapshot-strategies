@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "offchain-delegation",
+      "params": {
+        "symbol": "DAI (delegated)",
+        "sheetId": "2PACX-1vTAo2yFq6GyBZcB3BOnIw_Rzub7KEEzqhhgFY5CD6eCW-Rfx9d4NaMJP8IP67G9YnV3PNPHKvgJeSNY",
+        "gid": "1557274211",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "address": "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+              "decimals": 18
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4C7909d6F029b3a5798143C843F4f8e5341a3473",
+      "0x47D5592606622D807F3B37E5e5C8268355E30925",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0xdD36Aa96D9BD4b49DA6E6734fF18Cc69F90F9435",
+      "0x77EC061aC11df6b42Af3784BCE835A5feAF247Dd",
+      "0x3BAe6eb858837a9855CE7747feC3FC99a87A86e0"
+    ],
+    "snapshot": 15820600
+  }
+]

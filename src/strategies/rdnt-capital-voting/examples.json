@@ -1,0 +1,60 @@
+[
+  {
+    "name": "RDNT in dLP - Arbitrum",
+    "strategy": {
+      "name": "rdnt-capital-voting",
+      "params": {
+        "rdnt": "0x3082cc23568ea640225c2467653db90e9250aaa0",
+        "lpToken": "0x32DF62DC3AED2CD6224193052CE665DC18165841",
+        "lockingContract": "0x76ba3eC5f5adBf1C58c91e86502232317EeA72dE",
+        "balancerPoolId": "0x32df62dc3aed2cd6224193052ce665dc181658410002000000000000000003bd",
+        "balancerVault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e"
+    ],
+    "snapshot": 75307012
+  },
+  {
+    "name": "RDNT in dLP - BSC",
+    "strategy": {
+      "name": "rdnt-capital-voting",
+      "params": {
+        "rdnt": "0xf7DE7E8A6bd59ED41a4b5fe50278b3B7f31384dF",
+        "lpToken": "0x346575fc7f07e6994d76199e41d13dc1575322e1",
+        "lockingContract": "0x4FD9F7C5ca0829A656561486baDA018505dfcB5E"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x2b4516253e984b30804356cB5be476ccfB45fa49",
+      "0x31d64d45dE2c5b0742635da913FCD587BBCd4C5A",
+      "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84"
+    ],
+    "snapshot": 26920121
+  },
+  {
+    "name": "RDNT in dLP - Mainnet",
+    "strategy": {
+      "name": "rdnt-capital-voting",
+      "params": {
+        "rdnt": "0x137dDB47Ee24EaA998a535Ab00378d6BFa84F893",
+        "lpToken": "0xcF7b51ce5755513d4bE016b0e28D6EDEffa1d52a",
+        "lockingContract": "0x28E395a54a64284DBA39652921Cd99924f4e3797",
+        "balancerPoolId": "0xcf7b51ce5755513d4be016b0e28d6edeffa1d52a000200000000000000000617",
+        "balancerVault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84",
+      "0x8EDdC30B12A5Cc60d046fc1B1b887eb2c1353a87",
+      "0x4011091Dbe57bd4521F598616fe4BB3978ea3005"
+    ],
+    "snapshot": 18483999
+  }
+]

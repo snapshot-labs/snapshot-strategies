@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "stake-mine-liquid-helios",
+      "params": {
+        "address": "0x2614f29C39dE46468A921Fd0b41fdd99A01f2EDf",
+        "symbol": "HLX",
+        "decimals": 18,
+        "tokenWeight": 1,
+        "sharesWeight": 420,
+        "mintableWeight": 0.1
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x362aC45CfcB7970876eBE9C40358448C16DBCAfC",
+      "0xb778d98a2C966873D6B0Bc75aC8744e90bCf93d5",
+      "0x86B63808E1361e1F3e526838b2340501E6fd990A",
+      "0x22E91b096E3732C9Dc343e39d78c03A21b41EC34",
+      "0xFB89446dA803185dAf457a1CBA9f4F61c288B59a",
+      "0x999C89A2C5E7EF834C99D3F1c68059580bf29AdD",
+      "0x13C44b1FCEE99f396fA1CD77E6A5272bDD6cC559",
+      "0xBe474903F17C769fcFfB81c1Aeb830AE67142D91",
+      "0x79841213Ec3343cB63769b34f97e77108fC4232D",
+      "0x15E5B9B9Adf208cC7CA3aE1e6a49506eB5f397Dd",
+      "0xb0d1A98b4669eC986DB27f925b85A951A390Ca42",
+      "0x8764633f85F18dB033Ae7EA4A9C9812E4020CE4F",
+      "0x35E900026018aE6Da90d9f7d7122d05aD9de57c4",
+      "0x1A70d7CB0D232f50aCaC5C45F94310BAe993ee6D",
+      "0x8cdE74df83bf46c5d410f0938bc51ba54554b61F",
+      "0xD50C50D2c8Fa127c1fa36B6a628af5A82d6bB0d3",
+      "0xdE7Da75ac2D367379DE565C928D447dC5e385f2C",
+      "0x3E82555Af4f5908487969E40cCAF9081B74e23c9"
+    ],
+    "snapshot": 19381155
+  }
+]

@@ -1,0 +1,39 @@
+[
+  {
+    "name": "AGIP-37: This snapshot strategy enables voting power for staked and unstaked wapGHST",
+    "strategy": {
+      "name": "aavegotchi-agip-37-wap-ghst",
+      "params": {
+        "ghstAddress": "0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7",
+        "gltrStakingAddress": "0x1fE64677Ab1397e20A1211AFae2758570fEa1B8c",
+        "amGhstAddress": "0x080b5BF8f360F624628E0fb961F4e67c9e3c7CF1",
+        "wapGhstAddress": "0x73958d46B7aA2bc94926d8a215Fa560A5CdCA3eA",
+        "wapGhstPoolId": 0,
+        "ghstFudAddress": "0xfec232cc6f0f3aeb2f81b2787a9bc9f6fc72ea5c",
+        "ghstFudPoolId": 1,
+        "ghstFomoAddress": "0x641ca8d96b01db1e14a5fba16bc1e5e508a45f2b",
+        "ghstFomoPoolId": 2,
+        "ghstAlphaAddress": "0xc765eca0ad3fd27779d36d18e32552bd7e26fd7b",
+        "ghstAlphaPoolId": 3,
+        "ghstKekAddress": "0xbfad162775ebfb9988db3f24ef28ca6bc2fb92f0",
+        "ghstKekPoolId": 4,
+        "ghstUsdcAddress": "0x096c5ccb33cfc5732bcd1f3195c13dbefc4c82f4",
+        "ghstUsdcPoolId": 5,
+        "ghstWmaticAddress": "0xf69e93771F11AECd8E554aA165C3Fe7fd811530c",
+        "ghstWmaticPoolId": 6,
+        "ghstGltrAddress": "0xb0E35478a389dD20050D66a67FB761678af99678",
+        "ghstGltrPoolId": 7,
+        "symbol": "GHST",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x26cf02F892B04aF4Cf350539CE2C77FCF79Ec172",
+      "0x027Ffd3c119567e85998f4E6B9c3d83D5702660c",
+      "0xDEA88c9FE09106b58cA7c026c82383c56eE1E041",
+      "0x3a564B24EffA1Cb7Dc836AD094BaD28e69FCa371"
+    ],
+    "snapshot": 34185374
+  }
+]

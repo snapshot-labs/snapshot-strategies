@@ -1,0 +1,21 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Validation",
+  "definitions": {
+    "Validation": {
+      "title": "Eas attestation",
+      "type": "object",
+      "properties": {
+        "schemaId": {
+          "type": "string",
+          "title": "Schema Id",
+          "examples": [
+            "e.g. 0xc0f979976278d9e1d4fa97b7270c0cc07835aa5f27dd897a871b3332ec6cff22"
+          ]
+        }
+      },
+      "required": [],
+      "additionalProperties": false
+    }
+  }
+}

@@ -14,8 +14,13 @@
         },
         "address": {
           "type": "string",
-          "title": "Contract address",
+          "title": "Governance contract address",
           "examples": ["e.g. 0x2F57430a6ceDA85a67121757785877b4a71b8E6D"]
+        },
+        "stableplaza": {
+          "type": "string",
+          "title": "StablePlaza contract address",
+          "examples": ["e.g. 0x3A2b8cC91aF8bf45F3Ec61E779ee1c2ba6b7E694"]
         },
         "decimals": {
           "type": "number",

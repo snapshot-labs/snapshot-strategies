@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-token-and-lp-weighted",
+      "params": {
+        "tokenAddress": "0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB",
+        "symbol": "MIST",
+        "lpTokenAddress": "0xcd6bcca48069f8588780dfa274960f15685aee0e"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa7396dbd79c26f923faf144b7c77c9eb1ae0b634",
+      "0x9eedca1b19aa0d438fcf890524e6af056d95dd58",
+      "0xf7b4ddd4805455e108f0be5b417434c0aac88ddf",
+      "0xf4b1b77f3f56b58555634b64fb7ed31c60413754",
+      "0x1cd5698dc7cbe5b80c8b60791a8e2fb857a53a58",
+      "0xcf576f74ba3b01cdc04e04305055446d1649bd07",
+      "0x6f1234e31830097b04a8f9b3eeedf9eb8008837a",
+      "0xc5690c1f0f0642e76c956580b748b64cc5b3dc73",
+      "0x0504c6e9563d8756cb823fcbbf342301ddbc8066",
+      "0xee7f963391afb7d1f1ec872dbe2f80ea025d0add"
+    ],
+    "snapshot": 15206855
+  }
+]

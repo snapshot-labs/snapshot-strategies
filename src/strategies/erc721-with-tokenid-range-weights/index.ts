@@ -28,10 +28,8 @@ export async function strategy(
       walletAddress
     ]);
   }
-  const walletToBalanceOf: Record<
-    string,
-    BigNumber
-  > = await callWalletToBalanceOf.execute();
+  const walletToBalanceOf: Record<string, BigNumber> =
+    await callWalletToBalanceOf.execute();
 
   // Second, get the tokenId's for each token
   const callWalletToAddresses = new Multicaller(network, provider, abi, {
@@ -47,10 +45,8 @@ export async function strategy(
       );
     }
   }
-  const walletIDToAddresses: Record<
-    string,
-    BigNumber
-  > = await callWalletToAddresses.execute();
+  const walletIDToAddresses: Record<string, BigNumber> =
+    await callWalletToAddresses.execute();
 
   // Third, sum the weights for each tokenId by finding it's range
   const walletToLpBalance = {} as Record<string, BigNumber>;

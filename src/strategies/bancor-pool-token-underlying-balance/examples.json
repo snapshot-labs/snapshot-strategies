@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "bancor-pool-token-underlying-balance",
+      "params": {
+        "symbol": "bnROOK",
+        "decimals": 18,
+        "underlyingTokenAddress": "0xfA5047c9c78B8877af97BDcb85Db743fD7313d4a",
+        "bancorNetworkInfoAddress": "0x8E303D296851B320e6a697bAcB979d13c9D6E760"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x66e81feea36764103b755144b161c70e75906535",
+      "0x857eb0eb2572f7092c417cd386ba82e45eba9b8a",
+      "0x98625957c6b96eeecd040e5bd26bd42100d124b2"
+    ],
+    "snapshot": 15191222
+  }
+]

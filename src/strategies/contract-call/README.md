@@ -79,3 +79,13 @@ You can call methods with multiple inputs in any contract:
   ]
 }
 ```
+
+### Params
+
+| Param | Type | Default | Description |
+| --- | --- | --- | --- |
+| address | `string` |  | Contract address |
+| decimals | `number` | 18 | Decimals of the output |
+| symbol | `string` | optional | Symbol of the output |
+| methodABI | `object` |  | ABI of the method to call |
+| output | `string` | optional  | Output type of the method to call |

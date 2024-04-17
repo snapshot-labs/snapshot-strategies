@@ -5,9 +5,7 @@
       "name": "api",
       "params": {
         "api": "https://gateway.pinata.cloud/ipfs",
-        "symbol": "LIFE",
-        "decimals": 0,
-        "strategy": "QmQnW3TtpN8WS2YMXtWB1p7DFcVjetfZmMfJvXm5yAZ6QN"
+        "strategy": "QmbmhTivxYuLE5uhNEALoBmvP7Yg9acA2Lkw9V9PqaEmw6"
       }
     },
     "network": "1",

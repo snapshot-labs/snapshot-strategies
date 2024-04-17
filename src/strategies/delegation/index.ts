@@ -3,6 +3,7 @@ import { getScoresDirect } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,
@@ -12,6 +13,16 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const invalidStrategies = [
+    '{"name":"erc20-balance-of","params":{"symbol":"HOP","address":"0xed8Bdb5895B8B7f9Fdb3C087628FD8410E853D48","decimals":18}}' //https://snapshot.org/#/hop.eth/proposal/0x603f0f6e54c7be8d5db7e16ae7145e6df4b439b8aac49654cdfd6b0c03eb6492
+  ];
+
+  if (
+    options.strategies.some((s) =>
+      invalidStrategies.includes(JSON.stringify(s))
+    )
+  )
+    return {};
   const delegationSpace = options.delegationSpace || space;
   const delegations = await getDelegations(
     delegationSpace,

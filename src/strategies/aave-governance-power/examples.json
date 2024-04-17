@@ -4,14 +4,18 @@
     "strategy": {
       "name": "aave-governance-power",
       "params": {
-        "governanceStrategy": "0xb7e383ef9b1e9189fc0f71fb30af8aa14377429e",
+        "symbol": "AAVE+stkAAVE",
+        "decimals": 18,
         "powerType": "vote",
-        "symbol": "Voting Power",
-        "decimals": 18
+        "governanceStrategy": "0xb7e383ef9b1e9189fc0f71fb30af8aa14377429e"
       }
     },
     "network": "1",
-    "addresses": ["0x5BC928BF0DAb1e4A2ddd9e347b0F22e88026D76c"],
-    "snapshot": 12657715
+    "addresses": [
+      "0x329c54289Ff5D6B7b7daE13592C6B1EDA1543eD4",
+      "0x57ab7ee15cE5ECacB1aB84EE42D5A9d0d8112922",
+      "0x0ab97008cad303a8C90ea630c282760284c19e93"
+    ],
+    "snapshot": 18054498
   }
 ]

@@ -3,10 +3,8 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Provider } from '@ethersproject/providers';
 
 export const GRAPH_NETWORK_SUBGRAPH_URL = {
-  '1':
-    'https://api.thegraph.com/subgraphs/name/graphprotocol/graph-network-mainnet',
-  '4':
-    'https://api.thegraph.com/subgraphs/name/graphprotocol/graph-network-testnet'
+  '1': 'https://api.thegraph.com/subgraphs/name/graphprotocol/graph-network-mainnet',
+  '4': 'https://api.thegraph.com/subgraphs/name/graphprotocol/graph-network-testnet'
 };
 export const bnWEI = BigNumber.from('1000000000000000000');
 

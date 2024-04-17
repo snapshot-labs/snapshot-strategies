@@ -1,0 +1,101 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "seedify-cumulative-voting-power-hodl-staking-farming",
+      "type": "object",
+      "properties": {
+        "sfundAddress": {
+          "type": "string",
+          "title": "SFUND address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
+        },
+        "lpAddress_SFUND_BNB": {
+          "type": "string",
+          "title": "LP address of SFUND-BNB pool",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "farmingAddress_SFUND_BNB": {
+          "type": "string",
+          "title": "Farming address of SFUND-BNB LP token",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "legacyfarmingAddress_SFUND_BNB": {
+          "type": "string",
+          "title": "Farming address of SFUND-BNB LP token (legacy)",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "lpAddress_SNFTS_SFUND": {
+          "type": "string",
+          "title": "LP address of SNFTS-SFUND pool",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "farmingAddress_SNFTS_SFUND": {
+          "type": "string",
+          "title": "Farming address of SNFTS-SFUND LP token",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "sfundStakingAddresses": {
+          "type": "array",
+          "title": "SFUND staking addresses",
+          "items": {
+            "type": "string",
+            "title": "SFUND staking address",
+            "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "minLength": 42,
+            "maxLength": 42
+          }
+        },
+        "sfundStakingAddressesLegacy": {
+          "type": "array",
+          "title": "SFUND staking addresses (legacy)",
+          "items": {
+            "type": "string",
+            "title": "SFUND staking address (legacy)",
+            "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "minLength": 42,
+            "maxLength": 42
+          }
+        }
+      },
+      "required": [
+        "sfundAddress",
+        "decimals",
+        "lpAddress_SFUND_BNB",
+        "farmingAddress_SFUND_BNB",
+        "lpAddress_SNFTS_SFUND",
+        "farmingAddress_SNFTS_SFUND",
+        "sfundStakingAddresses",
+        "legacySfundStakingAddresses"
+      ],
+      "additionalProperties": true
+    }
+  }
+}

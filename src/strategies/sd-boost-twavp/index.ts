@@ -29,7 +29,7 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   // Maximum of 5 multicall
   if (options.sampleStep > 5) {
-    throw new Error("maximum of 5 call");
+    throw new Error('maximum of 5 call');
   }
 
   // About the blockList
@@ -39,7 +39,7 @@ export async function strategy(
   const nbrsEmittedBlock = Math.floor(
     (options.sampleSize * 60 * 60 * 24) / av_blockEmission
   );
-  let blockTagList: number[] = [];
+  const blockTagList: number[] = [];
   for (let i = 1; i < options.sampleStep + 1; i++) {
     blockTagList.push(
       blockTag -
@@ -77,7 +77,7 @@ export async function strategy(
       blockTag
     }
   );
-  let responseOtherBlock: number[] = [];
+  const responseOtherBlock: number[] = [];
   for (let i = options.sampleStep - 1; i > 0; i--) {
     blockTag = blockTagList[i - 1];
     responseOtherBlock.push(

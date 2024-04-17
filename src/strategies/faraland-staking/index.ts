@@ -2,13 +2,11 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const FLASHSTAKE_SUBGRAPH_URL = {
-  '1':
-    'https://queries-graphnode.faraland.io/subgraphs/name/edwardevans094/farastore-v12',
-  '56':
-    'https://queries-graphnode.faraland.io/subgraphs/name/edwardevans094/farastore-v12'
+  '1': 'https://queries-graphnode-x.faraland.io/subgraphs/name/edwardevans094/staking-v1',
+  '56': 'https://queries-graphnode-x.faraland.io/subgraphs/name/edwardevans094/staking-v1'
 };
 
-export const author = 'edwardEvans094';
+export const author = 'toniqhz';
 export const version = '0.1.0';
 
 export async function strategy(

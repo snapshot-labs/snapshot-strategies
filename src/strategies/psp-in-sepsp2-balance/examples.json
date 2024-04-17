@@ -1,0 +1,47 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "psp-in-sepsp2-balance",
+      "params": {
+        "address": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",
+        "symbol": "PSP",
+        "decimals": 18,
+        "sePSP2": {
+          "address": "0x593F39A4Ba26A9c8ed2128ac95D109E8e403C485",
+          "decimals": 18
+        },
+        "balancer": {
+          "poolId": "0xcb0e14e96f2cefa8550ad8e4aea344f211e5061d00020000000000000000011a",
+          "BalancerHelpers": "0x5aDDCCa35b7A0D07C74063c48700C8590E87864E",
+          "Vault": "0xBA12222222228d8Ba445958a75a0704d566BF2C8"
+        },
+        "multiplier": 2.5
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x05182E579FDfCf69E4390c3411D8FeA1fb6467cf",
+      "0x0DDC793680FF4f5793849c8c6992be1695CbE72A",
+      "0x0edefa91e99da1eddd1372c1743a63b1595fc413",
+      "0xd37f7b32a541d9e423f759dff1dd63181651bd04",
+      "0xf9aa0da6e2fa01a17e2f69e878e45bb26c1b34b7",
+      "0xc570429a39a93fd267d1047b2363cfba07198ff7",
+      "0x4e8ffddb1403cf5306c6c7b31dc72ef5f44bc4f5",
+      "0x0ddc793680ff4f5793849c8c6992be1695cbe72a",
+      "0xd880507d359af862a5f8f318c8e934ab478ca818",
+      "0x510a7cd4ba40f7b6643f566a5d45ea55f5cd8d0e",
+      "0x1ff3c4bfa745b72f942c5cf2b769b3d8a6610a5e",
+      "0x5577933afc0522c5ee71115df61512f49da0543e",
+      "0x6eb8d6bccceb84832725dcf792468dd8ba088449",
+      "0xe768FF81990E7Ac73C18a2eCbf038815023599Dc",
+      "0xB9E11C28617D46866c1D7d95EaebAC3AC12CDAD3",
+      "0xB5714084eeF0f02eFDD145DFB3Fe2e3290591D7b",
+      "0xCC6B30531DE603787a4D0305FC7eD404374Cf771",
+      "0xcb492647CB51E243Fb2582C0300C4c7573acdEBf",
+      "0xB8f6f3cc7b162d7E5b9196140Fb1878cdA316ba0",
+      "0x584BaA4b71b0A3fA522658128f36a6A4AbeAC2ae"
+    ],
+    "snapshot": 16492220
+  }
+]

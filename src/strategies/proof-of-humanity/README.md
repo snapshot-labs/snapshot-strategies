@@ -2,7 +2,7 @@
 
 It checks if an address is registered with Proof of Humanity.
 
-It takes the address of the Proof of Humanity contract as a paramter:
+It takes the address of the Proof of Humanity contract as a parameter:
 
 ```json
 {

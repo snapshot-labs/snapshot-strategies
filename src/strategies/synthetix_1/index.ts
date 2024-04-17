@@ -85,10 +85,8 @@ export async function strategy(
     ]);
   }
 
-  const L1SDSBalances: Record<
-    string,
-    BigNumber
-  > = await callL1SDSBalance.execute();
+  const L1SDSBalances: Record<string, BigNumber> =
+    await callL1SDSBalance.execute();
 
   Object.entries(L1SDSBalances).forEach(([address, balance]) => {
     score[getAddress(address)] = Number(formatEther(balance)) * L1SDSValue;
@@ -104,10 +102,8 @@ export async function strategy(
     ]);
   }
 
-  const L2SDSBalances: Record<
-    string,
-    BigNumber
-  > = await callL2SDSBalance.execute();
+  const L2SDSBalances: Record<string, BigNumber> =
+    await callL2SDSBalance.execute();
 
   Object.entries(L2SDSBalances).forEach(([address, balance]) => {
     score[getAddress(address)] += Number(formatEther(balance)) * L2SDSValue;

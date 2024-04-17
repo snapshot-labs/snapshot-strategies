@@ -4,7 +4,7 @@ export const author = 'candoizo';
 export const version = '0.1.2';
 
 const AAVEGOTCHI_SUBGRAPH_URL = {
-  137: 'https://api.thegraph.com/subgraphs/name/aavegotchi/aavegotchi-core-matic'
+  137: 'https://subgraph.satsuma-prod.com/tWYl5n5y04oz/aavegotchi/aavegotchi-core-matic/api'
 };
 
 const maxResponsePerQuery = 1000;
@@ -84,12 +84,12 @@ export async function strategy(
       let realmVotingPowerValue = 0;
       const res = userToInfo[addr.toLowerCase()];
       if (res) {
-        const parcelsOwned = (Object.entries(res)
+        const parcelsOwned = Object.entries(res)
           .map(([key, val]) => {
             if (key.startsWith('parcelsOwned')) return val;
             else return [];
           })
-          .flat(1) as unknown) as { size: number }[];
+          .flat(1) as unknown as { size: number }[];
         if (parcelsOwned.length > 0) {
           parcelsOwned.map((r: { size: number }) => {
             let votePower = realmSizeVotePower[r.size];

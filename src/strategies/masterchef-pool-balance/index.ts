@@ -155,9 +155,8 @@ export async function strategy(
   );
   return Object.fromEntries(
     // chunk to response so that we can process values for each address
-    arrayChunk(
-      response,
-      options.uniPairAddress == null ? 1 : 3
-    ).map((value, i) => [addresses[i], processValues(value, options)])
+    arrayChunk(response, options.uniPairAddress == null ? 1 : 3).map(
+      (value, i) => [addresses[i], processValues(value, options)]
+    )
   );
 }

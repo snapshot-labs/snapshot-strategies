@@ -28,8 +28,7 @@ const DebtCacheContractAddress = '0xe92B4c7428152052B0930c81F4c687a5F1A12292';
 
 const defaultGraphs = {
   '1': 'https://api.thegraph.com/subgraphs/name/killerbyte/synthetix',
-  '10':
-    'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-issuance'
+  '10': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-issuance'
 };
 
 // @TODO: update with the latest ovm snapshot
@@ -133,7 +132,7 @@ export async function strategy(
   )) as SNXHoldersResult;
 
   // @notice fallback for when subgraph is down
-  /* 
+  /*
     const OVMSnapshot = await ipfsGet('gateway.pinata.cloud', ovmSnapshotJSON);
     const array = Object.assign(
       {},

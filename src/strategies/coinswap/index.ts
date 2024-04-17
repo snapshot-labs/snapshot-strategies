@@ -64,10 +64,8 @@ export async function strategy(
   addresses.forEach((address) =>
     multiMasterCSS.call(address, options.masterCSS, 'userInfo', ['0', address])
   );
-  const resultMasterCSS: Record<
-    string,
-    BigNumberish
-  > = await multiMasterCSS.execute();
+  const resultMasterCSS: Record<string, BigNumberish> =
+    await multiMasterCSS.execute();
 
   /*
     Balance in Launch pools
@@ -91,10 +89,8 @@ export async function strategy(
       )
     );
   });
-  const communityStakeCSS: Record<
-    string,
-    BigNumberish
-  > = await multiCommunityStake.execute();
+  const communityStakeCSS: Record<string, BigNumberish> =
+    await multiCommunityStake.execute();
 
   /*
     Staked LPs in CSS farms
@@ -116,10 +112,8 @@ export async function strategy(
       )
     );
   });
-  const resultCssLPs: Record<
-    string,
-    BigNumberish
-  > = await multiCssLPs.execute();
+  const resultCssLPs: Record<string, BigNumberish> =
+    await multiCssLPs.execute();
 
   const userBalances: any = [];
   for (let i = 0; i < addresses.length - 1; i++) {

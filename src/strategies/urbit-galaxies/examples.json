@@ -1,0 +1,29 @@
+[
+  {
+    "name": "ERC-721 with TokenID Urbit Galaxies with Proxy",
+    "strategy": {
+      "name": "urbit-galaxies",
+      "params": {
+        "erc721Address": "0x33eecbf908478c10614626a9d304bfe18b78dd73",
+        "votingProxyAddress": "0x223c067F8CF28ae173EE5CafEa60cA44C335fecB",
+        "symbol": "URBITGALAXY"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xb73532B04FB598F5d719Ec40be68DB02F798bCf3",
+      "0x0e49ab776681630f34d0f0c57D261fD5918f51C8",
+      "0xCAEDf5af5D421EBEff1e7a497b5Af1Aba1795b94",
+      "0xD5e69E7C2EAf78a544b8d1B5cE261A0a698ac3E7",
+      "0x24BfBd0bF3Be1a211E699324294C8F30E73b66eC",
+      "0x82B185E172Dfd340DC23E553Ef26258609C3cE2e",
+      "0x61c97a1E7C9ddaE1f11e313e84a3ad921E2CE4e6",
+      "0xD977B146acCacf8701A56A97d2C98955F28909e2",
+      "0x274d8716845D9eb95E29c0E2836B9c5aB2A76D40",
+      "0xFb7eA0EFfBFB887E822531DA3BEE747B89926eEB",
+      "0x48353A9aF7F835Aa7EA878FE56984F20eed8230C",
+      "0xC4E588Eb3ef88Fd8Bbbae554968bC82101b637e6"
+    ],
+    "snapshot": 19179657
+  }
+]

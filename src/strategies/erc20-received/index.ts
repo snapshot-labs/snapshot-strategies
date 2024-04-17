@@ -56,7 +56,7 @@ export async function strategy(
     },
     body: JSON.stringify({
       query: /* GraphQL */ `
-        query(
+        query (
           $query: String!
           $sort: SORT
           $low: Int64

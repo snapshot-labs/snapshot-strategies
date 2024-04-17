@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "balance-of-with-linear-vesting-power",
+      "params": {
+        "ERC20Address": "0x9994E35Db50125E0DF82e4c2dde62496CE330999",
+        "DSSVestAddress": "0x6017dd61f4d0C8123f160F99058Adc5671dF6447",
+        "decimals": 18,
+        "vestingNetwork": 1,
+        "vestingDuration": 94608000,
+        "startVesting": 1656078603
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xd9286ab8Ac06a428Bbb45Bfd785f9A22FD0ef0Bd",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x38C0039247A31F3939baE65e953612125cB88268"
+    ],
+    "snapshot": 15076584
+  }
+]

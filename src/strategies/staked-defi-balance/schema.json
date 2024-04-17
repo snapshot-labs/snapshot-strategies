@@ -1,0 +1,52 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Staked Defi Balance",
+  "type": "object",
+  "properties": {
+    "minStakedBalance": {
+      "type": "string"
+    },
+    "contracts": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "properties": {
+          "tokenContractAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "symbol": {
+            "type": "string"
+          },
+          "decimals": {
+            "type": "integer"
+          },
+          "stakingPoolContractAddress": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$"
+          },
+          "stakingType": {
+            "oneOf": [
+              {
+                "type": "string",
+                "enum": ["standard"]
+              },
+              {
+                "type": "string",
+                "enum": ["open"]
+              }
+            ]
+          }
+        },
+        "required": [
+          "tokenContractAddress",
+          "symbol",
+          "decimals",
+          "stakingPoolContractAddress",
+          "stakingType"
+        ]
+      }
+    }
+  },
+  "required": ["minStakedBalance", "contracts"]
+}

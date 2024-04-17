@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "station-constant-if-badge",
+      "params": {
+        "membershipERC721": "0x33dbde2e093b7cf8446d9ac0de79220d42423501",
+        "badgesERC1155": "0xd1502a7659eaad60278ae3ef27edea849504f4da",
+        "badgeId": 1,
+        "constant": 1337,
+        "erc6551Registry": "0x000000006551c19487814612e58FE06813775758",
+        "erc6551Implementation": "0x509b531c8e979c85375370c0ba92ac44173c2d12",
+        "erc6551Salt": "0x0000000000000000000000000000000000000000000000000000000000000000"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x5A8CA059a7e185ad01695136dbe5A721D4e053D6",
+      "0x1ba671ce4718d76D42609affbB567Bf1E71E0852",
+      "0x008B1FFe244bF31896C833bFf4Ad9009E7A0f4Eb",
+      "0x1b515D521dd0CBA174Bee666ED8f42449C8cA8bb"
+    ],
+    "snapshot": 18779365
+  }
+]

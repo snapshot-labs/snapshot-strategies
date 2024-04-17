@@ -1,0 +1,92 @@
+[
+  {
+    "name": "Example",
+    "strategy": {
+      "name": "marsecosystem",
+      "params": {
+        "token": "0x7859B01BbF675d67Da8cD128a50D155cd881B576",
+        "miningMasters": [
+          { "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a", "pid": 0 },
+          { "address": "0x48C42579D98Aa768cde893F8214371ed607CABE3", "pid": 0 }
+        ],
+        "upMiningMasters": [
+          { "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0", "pid": 0 },
+          { "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0", "pid": 1 },
+          { "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0", "pid": 2 },
+          { "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0", "pid": 3 }
+        ],
+        "lps": [
+          {
+            "lpToken": "0x40B605d8BeED09568E702Deadce90fb23cfd74d8",
+            "multi": 1500,
+            "miningMasters": [
+              {
+                "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a",
+                "pid": 1
+              },
+              {
+                "address": "0x48C42579D98Aa768cde893F8214371ed607CABE3",
+                "pid": 1
+              }
+            ],
+            "upMiningMasters": [
+              {
+                "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0",
+                "pid": 4
+              },
+              {
+                "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0",
+                "pid": 5
+              }
+            ]
+          },
+          {
+            "lpToken": "0xe47cCE810174Ac2aCEaB936e6FF93690888bcF24",
+            "multi": 2000,
+            "miningMasters": [
+              {
+                "address": "0xc7B8285a9E099e8c21CA5516D23348D8dBADdE4a",
+                "pid": 7
+              },
+              {
+                "address": "0x22D8d50454203bd5a41B49ef515891f1aD9f3e53",
+                "pid": 3
+              }
+            ],
+            "upMiningMasters": [
+              {
+                "address": "0x38823CB52d152e0fFe637D63F97f6F771a071Ea0",
+                "pid": 6
+              }
+            ]
+          }
+        ],
+        "symbol": "XMS",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x3139f8eb391f8bfb478b9c155e009c59a689d7e0",
+      "0xc03f7c895ae99bd63b2b9569d8465c1cb8f48807",
+      "0x74e3a06361b0c67d736020c3b09196aa84019bff",
+      "0xae2113de1cd10c5d626e902760638a4f5ae53d7a",
+      "0xa3abadcddf9c7194b7a9059ea76b5cfb6aa31c6f",
+      "0x1b983e23b541785e44fe1dae6e0d67d7d1ac4912",
+      "0xbc8da18ef4cfc2282487c0fba2daa8fa7623045f",
+      "0xbda6ba3ad624582495c55451a1840e563fc16389",
+      "0xdab35f3e690b005b6cec2ed692def81b9702186a",
+      "0x9a85032ce857d536784a6493273ba32e8562c6e2",
+      "0xbfb7746a642e4ac4549da3f203da3d110f0c4a4d",
+      "0xe1b7b6216cc1b73a35e651674d43a4aad495ac6c",
+      "0x1265a989b92bdcb9a5cb86d86f3701fca5514cb7",
+      "0xea013d2a1eaaf64808d6e1d2227564ec69d977fd",
+      "0xeaac9ebbdd62c7a7f3d881763dbb23770deb353b",
+      "0x1d9155f814a832af287bf6965bd66fbf12c69d4f",
+      "0x711cae85542082daf93a14403d148bb91299c6fb",
+      "0x75f9a46a78757d0ea1557abf6cb04499960ef951",
+      "0xbf329b00b533485987c957182bfb02bcee9c3994"
+    ],
+    "snapshot": 22704707
+  }
+]

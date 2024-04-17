@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "crucible-erc20-token-and-lp-weighted",
+      "params": {
+        "symbol": "MIST",
+        "crucibleFactory": "0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56",
+        "tokenAddress": "0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB",
+        "lpTokenAddress": "0xcd6bcca48069f8588780dfa274960f15685aee0e"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4d4902BD7E080159964f46B10feeb6482d148E5a",
+      "0xbD7B1a13149Da69059e4591F040D7D7dAda740c5",
+      "0x7F8aE988796890454A1007a6dD15eaedC549ad1e",
+      "0xfca399b892f4e8306fc31b312a3399f422976886",
+      "0x97a6c796FE543cABC2cA7aE026206e8B260C4dA0",
+      "0x5E91d547A6f279E6d59086E30e25C964EFE4b463",
+      "0xB59212Bd19aE722F1cc97A3A93542D573534cf70",
+      "0x777B0884f97Fd361c55e472530272Be61cEb87c8",
+      "0x63060f713b377AF8D7D50669ec0fDcE1D31E3f28",
+      "0xA5109D7E4790143a91D673Ba545405Bf396806CF"
+    ],
+    "snapshot": 13062462
+  }
+]

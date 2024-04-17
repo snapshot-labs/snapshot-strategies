@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "izumi-veizi",
+      "params": {
+        "address": "0xB56A454d8DaC2AD4cB82337887717a2a427Fcd00",
+        "symbol": "veiZi",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x6534069842F1aFCbb5b6e27eA2bAc2243f85FFF8",
+      "0x423F9B19Db22337D249c1d85eE045700846953B3",
+      "0x9558ab3bd4429B1D5658D9ea6C5E8F2b8B4B7431",
+      "0x9997d7120862CEda99aB4a1c43698e0941F87b20",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x381F298A34D286CBe36b1C17097aE36350B66DC8",
+      "0x760484042a7856E62B627318796Ebb609C8131a1",
+      "0x72956796334bA8EB7c10a474e97F6F8773E40cFf",
+      "0x5b54a9439c0b2B88E35DB66f93882479fEd4FDfb",
+      "0x5096905F6CFC0F7BBEE09D72Bd97DAE4a95Bc3d6",
+      "0xbCe0AF8E8e47C6f3E727cD95c4118f14a34A0DFE",
+      "0xDaB558F089dc6CBD96eae358bB12Cb4aD6043647",
+      "0x8E79c736De9c10c4b9909077560DcD2F78b0B969",
+      "0x7C28A20A66d687107dfA810566f237fb3810CBf4"
+    ],
+    "snapshot": 16619300
+  }
+]

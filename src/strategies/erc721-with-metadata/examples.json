@@ -4,17 +4,17 @@
     "strategy": {
       "name": "erc721-with-metadata",
       "params": {
-        "address": "0xedCbF9D4CC3BA9aAA896adADeac1b6DF6326f7D8",
-        "symbol": "KAP-NFT",
+        "address": "0x986010627A96200C287Cff73007b7b5797C32846",
+        "symbol": "NFT",
         "metadataSrc": "https://6242dbddb6734894c157cfc0.mockapi.io/api/votingWeights"
       }
     },
-    "network": "4",
+    "network": "1",
     "addresses": [
-      "0xa976C336B790CA8BA18c112aa9D8C4308De09632",
-      "0xb0b085dd0fe6c9632058f9ef088375c16f3aff12",
-      "0x7f16D5c969380E3420E17B4c3456A3844745A578"
+      "0x50dd57F50A17d57304e7A4F262Da30bEB31C2E87",
+      "0x1fbF1E602530fB2e849Ae46B34A29493BCd75EC9",
+      "0xD130470E8b4B73d74FB723d5cb8A9DfD83462a1f"
     ],
-    "snapshot": 10415558
+    "snapshot": 16521706
   }
 ]

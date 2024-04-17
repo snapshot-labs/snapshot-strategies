@@ -2,6 +2,12 @@ import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
+import { getVp, getDelegations as getCoreDelegations } from './utils/vp';
+import { createHash } from 'crypto';
+
+export function sha256(str) {
+  return createHash('sha256').update(str).digest('hex');
+}
 
 async function callStrategy(space, network, addresses, strategy, snapshot) {
   if (
@@ -10,6 +16,11 @@ async function callStrategy(space, network, addresses, strategy, snapshot) {
       (snapshot === 'latest' || snapshot > strategy.params?.end))
   )
     return {};
+
+  if (!_strategies.hasOwnProperty(strategy.name)) {
+    throw new Error(`Invalid strategy: ${strategy.name}`);
+  }
+
   const score: any = await _strategies[strategy.name].strategy(
     space,
     network,
@@ -90,5 +101,7 @@ export default {
   getProvider,
   getDelegations,
   getSnapshots,
-  SNAPSHOT_SUBGRAPH_URL
+  SNAPSHOT_SUBGRAPH_URL,
+  getVp,
+  getCoreDelegations
 };

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Lqty proxy stakers",
+    "strategy": {
+      "name": "lqty-proxy-stakers",
+      "params": {
+        "proxyRegistryAddr": "0x4678f0a6958e4D2Bc4F1BAF7Bc52E8F3564f3fE4",
+        "lqtyStakingAddr": "0x4f9Fbb3f1E99B56e0Fe2892e623Ed36A76Fc605d"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x352c7DCcA6dD89A75efCBebc77BCF8Efb2128248",
+      "0x554Fe9292Cd2E2b9469E19e814842C060312FF00",
+      "0x39e99d18634E63Df7867287E3059F39b6C6f428d"
+    ],
+    "snapshot": 16718874
+  }
+]

@@ -50,10 +50,8 @@ export async function strategy(
   );
   liquidityPoolMulticaller.call('lpReserves', options.lp_token, 'getReserves');
 
-  const {
-    lpTotalSupply,
-    lpReserves
-  } = await liquidityPoolMulticaller.execute();
+  const { lpTotalSupply, lpReserves } =
+    await liquidityPoolMulticaller.execute();
 
   const liquidityPoolTokenRatio =
     parseFloat(formatUnits(lpReserves[0], options.decimals)) /

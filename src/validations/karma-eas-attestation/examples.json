@@ -1,0 +1,12 @@
+[
+  {
+    "name": "Example of a Karma's EAS Attestation",
+    "author": "0xd7d1DB401EA825b0325141Cd5e6cd7C2d01825f2",
+    "space": "0xmury.eth",
+    "network": "11155111",
+    "snapshot": "latest",
+    "params": {
+      "schemaId": "0xc0f979976278d9e1d4fa97b7270c0cc07835aa5f27dd897a871b3332ec6cff22"
+    }
+  }
+]

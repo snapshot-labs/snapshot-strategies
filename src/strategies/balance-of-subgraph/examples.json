@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "balance-of-subgraph",
+      "params": {
+        "subGraphURL": "https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-mainnet"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xe4ef29545db14e252AeC1c660A004e2408Dc62d2",
+      "0xa3c1c91403f0026b9dd086882adbc8cdbc3b3cfb"
+    ],
+    "snapshot": 14716396
+  }
+]

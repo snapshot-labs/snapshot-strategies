@@ -133,7 +133,8 @@ class VoteScorer {
     string,
     VotingScheme
   >();
-  private dexReserveData: Array<DexReserveSupply> = new Array<DexReserveSupply>();
+  private dexReserveData: Array<DexReserveSupply> =
+    new Array<DexReserveSupply>();
 
   constructor(dexReserveData: Array<DexReserveSupply>) {
     this.dexReserveData = dexReserveData;

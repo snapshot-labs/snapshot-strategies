@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
+        },
+        "sheetId": {
+          "type": "string",
+          "title": "Spreadsheet id",
+          "examples": ["e.g. 2PACX-1vTmam7vShzrscND..."]
+        },
+        "gid": {
+          "type": "string",
+          "title": "gid",
+          "examples": ["0"]
+        }
+      },
+      "required": ["sheetId"],
+      "additionalProperties": false
+    }
+  }
+}

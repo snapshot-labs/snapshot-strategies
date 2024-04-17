@@ -2,9 +2,13 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 
 export const author = 'drgorillamd';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
-const JBTicketBooth = '0xee2eBCcB7CDb34a8A822b589F9E8427C24351bfc';
+const JBTokenStore = {
+  1: '0xee2eBCcB7CDb34a8A822b589F9E8427C24351bfc',
+  2: '0xCBB8e16d998161AdB20465830107ca298995f371',
+  3: '0x6FA996581D7edaABE62C15eaE19fEeD4F1DdDfE7'
+};
 const abi = ['function balanceOf(address, uint256) view returns (uint256)'];
 
 export async function strategy(
@@ -22,7 +26,9 @@ export async function strategy(
     provider,
     abi,
     addresses.map((address: any) => [
-      JBTicketBooth,
+      options.protocolVersion
+        ? JBTokenStore[options.protocolVersion]
+        : JBTokenStore['3'],
       'balanceOf',
       [address, options.projectId]
     ]),

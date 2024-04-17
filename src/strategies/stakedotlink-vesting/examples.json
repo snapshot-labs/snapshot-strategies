@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "stakedotlink-vesting",
+      "params": {
+        "address": "0xAEF186611EC96427d161107fFE14bba8aA1C2284",
+        "symbol": "stSDL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x427a9957d3a131EE969a3BB5537070C6aEf03Ea4",
+      "0xF2aD781cFf42E1f506b78553DA89090C65b1A847",
+      "0xc316276f87019e5adbc3185A03e23ABF948A732D",
+      "0xE2b7cBA5E48445f9bD17193A29D7fDEb4Effb078"
+    ],
+    "snapshot": 16478298
+  }
+]

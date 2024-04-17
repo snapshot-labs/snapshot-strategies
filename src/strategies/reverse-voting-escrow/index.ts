@@ -43,10 +43,8 @@ export async function strategy(
       walletAddress
     ]);
   }
-  const walletToClubBalance: Record<
-    string,
-    BigNumber
-  > = await callWalletToClubBalance.execute();
+  const walletToClubBalance: Record<string, BigNumber> =
+    await callWalletToClubBalance.execute();
 
   for (const [walletID, balance] of Object.entries(walletToClubBalance)) {
     const address = walletID.split('-')[0];
@@ -114,10 +112,8 @@ export async function strategy(
     // ** Execute the vested multicall ** //
     try {
       // This should return a mapping of wallet addresses to vested amounts
-      const tempWalletVestedAmounts: Record<
-        string,
-        BigNumber
-      > = await getWalletToVestedAmount.execute();
+      const tempWalletVestedAmounts: Record<string, BigNumber> =
+        await getWalletToVestedAmount.execute();
       walletToVestedAmount = Object.assign(
         walletToVestedAmount,
         tempWalletVestedAmounts
@@ -128,10 +124,8 @@ export async function strategy(
   }
 
   // ** Execute the claimed multicall ** //
-  const walletToClaimedAmount: Record<
-    string,
-    BigNumber
-  > = await getWalletToClaimedAmount.execute();
+  const walletToClaimedAmount: Record<string, BigNumber> =
+    await getWalletToClaimedAmount.execute();
 
   // ** Map address to its full amount of claimable tokens ** //
   const listOfFullAmounts = Object.entries(allDataJSON)

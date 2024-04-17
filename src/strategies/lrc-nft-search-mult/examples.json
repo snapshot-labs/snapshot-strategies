@@ -1,0 +1,26 @@
+[
+  {
+    "name": "lrcNFTmult",
+    "strategy": {
+      "name": "lrc-nft-search-mult",
+      "params": {
+        "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
+        "minter_account_id": "157510",
+        "tokens": ["0xb6d91e38e4ac53c9f8952c6c6b1c7aee66c8b6f0"],
+        "nft_ids": [
+          "0x1e31297dd163ca44a5fad74de4ffbebf1ba11d46e1b448b0e105449d827fb264"
+        ],
+        "blacklisted_account_ids": [""],
+        "blacklisted_nft_ids": [""],
+        "multiplier": "1"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xeE253D3fCC30787a1E58570E355010d0b9C33B60",
+      "0xddCCE06088517c56FA938bD99cD0820094010F8e",
+      "0x9Fd19B8ca6E49eD92142339F54026497cE913492"
+    ],
+    "snapshot": 15677787
+  }
+]

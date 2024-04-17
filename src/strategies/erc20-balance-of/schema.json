@@ -23,7 +23,8 @@
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": ["e.g. 18"]
+          "examples": ["e.g. 18"],
+          "minimum": 0
         }
       },
       "required": ["address", "decimals"],

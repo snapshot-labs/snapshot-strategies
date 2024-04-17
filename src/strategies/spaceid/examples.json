@@ -1,0 +1,16 @@
+[
+  {
+    "name": "spaceid query on ethers",
+    "strategy": {
+      "name": "spaceid",
+      "params": {}
+    },
+    "network": "56",
+    "addresses": [
+      "0xad3d542ACD90A3492B41AF49399BAeb755A11e59",
+      "0xb2C2325B93b1a3C882fe47C453622f1D75801D72",
+      "0x5d8CeEDdf7881f962a9354Ab5c187655fC3dec3F"
+    ],
+    "snapshot": 28831785
+  }
+]

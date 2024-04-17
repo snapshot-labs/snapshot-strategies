@@ -1,6 +1,6 @@
 # ogn
 
-A strategy for Origin Protocol governance.
+A strategy for Origin Story governance.
 
 The score is based on the amount of OGN held in the wallet and the OGN staking contract.
 An average balance is calculated at the specified block number and 30 days prior to that.

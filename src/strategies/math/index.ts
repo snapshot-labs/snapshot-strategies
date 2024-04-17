@@ -13,7 +13,7 @@ import {
 } from './options';
 
 export const author = 'xJonathanLEI';
-export const version = '0.2.1';
+export const version = '0.2.2';
 
 export async function strategy(
   space,
@@ -27,11 +27,10 @@ export async function strategy(
   const strategyOptions: Options = validateOptions(rawOptions);
 
   // Recursively resolve operands
-  const operandPromises: Promise<
-    Record<string, number>
-  >[] = strategyOptions.operands.map((item) =>
-    resolveOperand(item, addresses, space, network, provider, snapshot)
-  );
+  const operandPromises: Promise<Record<string, number>>[] =
+    strategyOptions.operands.map((item) =>
+      resolveOperand(item, addresses, space, network, provider, snapshot)
+    );
   const resolvedOperands: Record<string, number>[] = await Promise.all(
     operandPromises
   );
@@ -44,6 +43,10 @@ export async function strategy(
   return finalResult;
 }
 
+function throwDivZero() {
+  throw Error('Cannot divide by zero!');
+}
+
 function resolveOperation(
   operation: Operation,
   resolvedOperands: Record<string, number>[]
@@ -51,101 +54,117 @@ function resolveOperation(
   switch (operation) {
     case Operation.SquareRoot: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          Math.sqrt(score)
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [address, Math.sqrt(score)]
+        )
       );
     }
     case Operation.CubeRoot: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          Math.cbrt(score)
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [address, Math.cbrt(score)]
+        )
       );
     }
     case Operation.Min: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          Math.min(score, resolvedOperands[1][address])
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            Math.min(score, resolvedOperands[1][address])
+          ]
+        )
       );
     }
     case Operation.Max: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          Math.max(score, resolvedOperands[1][address])
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            Math.max(score, resolvedOperands[1][address])
+          ]
+        )
       );
     }
     case Operation.AIfLtB: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          score < resolvedOperands[2][address]
-            ? resolvedOperands[1][address]
-            : score
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score < resolvedOperands[2][address]
+              ? resolvedOperands[1][address]
+              : score
+          ]
+        )
       );
     }
     case Operation.AIfLteB: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          score <= resolvedOperands[2][address]
-            ? resolvedOperands[1][address]
-            : score
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score <= resolvedOperands[2][address]
+              ? resolvedOperands[1][address]
+              : score
+          ]
+        )
       );
     }
     case Operation.AIfGtB: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          score > resolvedOperands[2][address]
-            ? resolvedOperands[1][address]
-            : score
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score > resolvedOperands[2][address]
+              ? resolvedOperands[1][address]
+              : score
+          ]
+        )
       );
     }
     case Operation.AIfGteB: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          score >= resolvedOperands[2][address]
-            ? resolvedOperands[1][address]
-            : score
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score >= resolvedOperands[2][address]
+              ? resolvedOperands[1][address]
+              : score
+          ]
+        )
       );
     }
     case Operation.Multiply: {
       return Object.fromEntries(
-        Object.entries(
-          resolvedOperands[0]
-        ).map(([address, score]: [string, number]) => [
-          address,
-          score * resolvedOperands[1][address]
-        ])
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score * resolvedOperands[1][address]
+          ]
+        )
       );
+    }
+    case Operation.MINUS: {
+      const arr = Object.entries(resolvedOperands[0]).map(
+        ([address, score]: [string, number]) => [
+          address,
+          score > resolvedOperands[1][address]
+            ? score - resolvedOperands[1][address]
+            : 0
+        ]
+      );
+      return Object.fromEntries(arr);
+    }
+    case Operation.Divide: {
+      const arr = Object.entries(resolvedOperands[0]).map(
+        ([address, score]: [string, number]) => [
+          address,
+          resolvedOperands[1][address] != 0
+            ? score / resolvedOperands[1][address]
+            : throwDivZero()
+        ]
+      );
+      return Object.fromEntries(arr);
     }
   }
 }
@@ -166,7 +185,7 @@ async function resolveOperand(
         strategyOperand.strategy.name
       ].strategy(
         space,
-        network,
+        strategyOperand.strategy.network ?? network,
         provider,
         addresses,
         strategyOperand.strategy.params,

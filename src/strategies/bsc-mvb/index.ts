@@ -117,8 +117,8 @@ export async function strategy(
     addresses.map((addr) => [addr.toLowerCase(), {}])
   );
   const ownerToScore: OwnerToScore = {};
-  const ownersWithNfts: OwnerWithNfts[] = graphqlData.data.allNFTsByOwnersCoresAndChain.reduce(
-    (map, item) => {
+  const ownersWithNfts: OwnerWithNfts[] =
+    graphqlData.data.allNFTsByOwnersCoresAndChain.reduce((map, item) => {
       map[item.owner.toLowerCase()] = item.nfts.reduce((m, i) => {
         if (!options.params.blacklistNFTID?.includes(i.id)) {
           m[
@@ -130,9 +130,7 @@ export async function strategy(
         return m;
       }, {});
       return map;
-    },
-    {}
-  );
+    }, {});
   const subgraphOwnersWithNfts: OwnerWithNfts[] = subgraphData.accounts.reduce(
     (map, item) => {
       map[item.id] = item.balances.reduce((m, i) => {
