@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "a51-farming",
+      "params": {
+        "farmingVaultAddress": "0x5ea84bb07f399fbf58c504929864b5fcbdc8300b",
+        "isToken0": false,
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x0895fcb879d7b0d36f23b3f68b6192c532ffad01",
+      "0x072fb32a9d71482d970090daef0e90cd8c665113",
+      "0x75f2BbF3A10B67134A780fB7D6da5808265111F7"
+    ],
+    "snapshot": 55932446
+  }
+]
