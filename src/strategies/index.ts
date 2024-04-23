@@ -423,6 +423,7 @@ import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
 import * as a51Farming from './a51-farming';
 import * as a51VaultBalance from './a51-vault-balance';
 
+
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
