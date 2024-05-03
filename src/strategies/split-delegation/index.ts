@@ -47,7 +47,6 @@ export async function strategy(
       })
     }
   );
-  console.log('RESPONSE', response);
   const votingPowerByAddress = (await response.json()) as {
     [k: string]: number;
   };
