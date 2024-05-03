@@ -423,6 +423,7 @@ import * as stakeMineLiquidHelios from './stake-mine-liquid-helios';
 import * as a51Farming from './a51-farming';
 import * as a51VaultBalance from './a51-vault-balance';
 import * as quickswapv3 from './quickswap-v3';
+import * as balanceOfWithBazaarBatchAuctionLinearVestingPower from './balance-of-with-bazaar-batch-auction-linear-vesting-power';
 
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -855,7 +856,9 @@ const strategies = {
   'pokt-network-pda': poktNetworkPDA,
   'a51-farming': a51Farming,
   'a51-vault-balance': a51VaultBalance,
-  'quickswap-v3': quickswapv3
+  'quickswap-v3': quickswapv3,
+  'balance-of-with-bazaar-batch-auction-linear-vesting-power':
+    balanceOfWithBazaarBatchAuctionLinearVestingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
