@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
 
 export const author = 'gnosisguild';
@@ -9,15 +10,18 @@ const DEFAULT_BACKEND_URL = 'https://delegate-api.gnosisguild.org';
 type Params = {
   backendUrl: string;
   strategies: Strategy[];
+  totalSupply: string | number;
 };
 
 export async function strategy(
   space: string,
   network: string,
+  _provider: StaticJsonRpcProvider,
   addresses: string[],
   options: Params = {
     backendUrl: DEFAULT_BACKEND_URL,
-    strategies: []
+    strategies: [],
+    totalSupply: 0
   },
   snapshot: string | number
 ): Promise<Record<string, number>> {
