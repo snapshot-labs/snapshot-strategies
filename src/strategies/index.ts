@@ -424,8 +424,10 @@ import * as a51Farming from './a51-farming';
 import * as a51VaultBalance from './a51-vault-balance';
 import * as quickswapv3 from './quickswap-v3';
 import * as balanceOfWithBazaarBatchAuctionLinearVestingPower from './balance-of-with-bazaar-batch-auction-linear-vesting-power';
+import * as pingustakehold from './pingustakehold';
 
 const strategies = {
+	'pingustakehold':pingustakehold,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
     givethGnosisBalanceSupplyWeightedV3,
