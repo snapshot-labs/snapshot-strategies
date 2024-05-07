@@ -6,7 +6,7 @@ Here is an example of parameters:
 
 ```json
 {
-  "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
+  "graph": "https://api.thegraph.com/subgraphs/name/loopring/loopring",
   "minter_account_id": "74447",
   "tokens": ["token (Collection) id's to include"],
   "blacklisted_account_ids": ["38482"],
