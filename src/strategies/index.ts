@@ -208,6 +208,7 @@ import * as digitalaxMonaStakersMatic from './digitalax-mona-stakers-matic';
 import * as digitalaxLPStakersMatic from './digitalax-lp-stakers-matic';
 import * as galaxyNftWithScore from './galaxy-nft-with-score';
 import * as galxeLoyaltyPoints from './galxe-loyalty-points';
+import * as galxeStaking from './galxe-staking';
 import * as gatenetTotalStaked from './gatenet-total-staked';
 import * as vesper from './vesper';
 import * as thales from './thales';
@@ -648,6 +649,7 @@ const strategies = {
   'digitalax-mona-quickswap': digitalaxMonaQuickswap,
   'galaxy-nft-with-score': galaxyNftWithScore,
   'galxe-loyalty-points': galxeLoyaltyPoints,
+  'galxe-staking': galxeStaking,
   'gatenet-total-staked': gatenetTotalStaked,
   vesper,
   thales,
