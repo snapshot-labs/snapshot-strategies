@@ -12,7 +12,7 @@ Here is an example of parameters:
 
 ```json
 {
-  "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
+  "graph": "https://api.thegraph.com/subgraphs/name/loopring/loopring",
   "minter_account_id": "74447",
   "tokens": ["token (Collection contract address) to include"],
   "nft_ids": ["nftIDs, unique to every nft, even those under the same token contract"],
