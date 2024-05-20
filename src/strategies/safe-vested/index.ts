@@ -51,6 +51,7 @@ export async function strategy(
     }
   });
   const allocationsList: [[AllocationDetails]] = await response.json();
+  const allocationMap = createAllocationMap(allocationsList);
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, {
@@ -60,9 +61,7 @@ export async function strategy(
 
   // Get current vesting state from smart contract using the vestingId
   addresses.forEach((address) => {
-    const addressAllocations = allocationsList.find(
-      (allocations: AllocationDetails[]) => allocations[0].account === address
-    );
+    const addressAllocations = allocationMap[address];
 
     if (addressAllocations) {
       addressAllocations.forEach(({ contract, vestingId }) => {
@@ -73,12 +72,10 @@ export async function strategy(
 
   const vestings = await multi.execute();
 
-  const flatAllocationsList = allocationsList.flat();
   // Check vesting state, consider only unclaimed amounts and group allocations to the same account
   return Object.keys(vestings).reduce((acc, key) => {
-    const { account, amount } = flatAllocationsList.find(
-      ({ vestingId }) => vestingId === key
-    ) as AllocationDetails;
+    // get it from the map by vestingId. A entry is guaranteed to exist
+    const [{ account, amount }] = allocationMap[key]!;
 
     const hasAlreadyClaimed = vestings[key].account === account;
     let currentVestingAmount;
