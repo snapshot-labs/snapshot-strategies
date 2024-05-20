@@ -73,7 +73,7 @@ export async function strategy(
   const vestings = await multi.execute();
 
   // Check vesting state, consider only unclaimed amounts and group allocations to the same account
-  return Object.keys(vestings).reduce((acc, key) => {
+  return Object.keys(vestings).reduce((result, key) => {
     // get it from the map by vestingId. A entry is guaranteed to exist
     const [{ account, amount }] = allocationMap[key]!;
 
@@ -92,18 +92,17 @@ export async function strategy(
         : '0';
     }
 
-    const previousAmount = acc[account];
+    const previousAmount = result[account];
     // If account received multiple allocations sum them
     // Else we just return the currentAmount
     const pendingVestedAmount = previousAmount
       ? parseUnits(previousAmount.toString()).add(currentVestingAmount)
       : currentVestingAmount;
 
-    return {
-      ...acc,
+    return Object.assign(result, {
       [account]: parseFloat(formatUnits(pendingVestedAmount))
-    };
-  }, {});
+    });
+  }, {} as Record<string, number>);
 }
 
 function createAllocationMap(allocations: AllocationDetails[][]) {
