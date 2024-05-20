@@ -1,4 +1,5 @@
 import fetch from 'cross-fetch';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'thierbig';
 export const version = '0.1.0';
@@ -28,13 +29,14 @@ export async function strategy(space, network, provider, addresses, options) {
   }
 
   const whitelist = Object.fromEntries(
-    Object.entries(responseData).map(([addr, weight]) => [
+    Object.entries(responseData.addresses).map(([addr, weight]) => [
       addr.toLowerCase(),
       weight
     ])
   );
 
-  return Object.fromEntries(
-    addresses.map((address) => [address, whitelist[address.toLowerCase()] || 0])
+  const results=Object.fromEntries(
+    addresses.map((address) => [getAddress(address), whitelist[address.toLowerCase()] || 0])
   );
+  return results;
 }
