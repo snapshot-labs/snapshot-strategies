@@ -108,3 +108,23 @@ export async function strategy(
     };
   }, {});
 }
+
+function createAllocationMap(allocations: AllocationDetails[][]) {
+  const result: Record<string, AllocationDetails[]> = {};
+
+  for (const allocation of allocations.flat()) {
+    const { account, vestingId } = allocation;
+
+    if (!result[account]) {
+      result[account] = [];
+    }
+
+    if (!result[vestingId]) {
+      result[vestingId] = [];
+    }
+    result[account].push(allocation);
+    result[vestingId].push(allocation);
+  }
+
+  return result;
+}
