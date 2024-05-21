@@ -92,6 +92,7 @@ import * as theGraphDelegation from './the-graph-delegation';
 import * as theGraphIndexing from './the-graph-indexing';
 import * as whitelist from './whitelist';
 import * as whitelistWeighted from './whitelist-weighted';
+import * as whitelistWeightedJson from './whitelist-weighted-json';
 import * as tokenlon from './tokenlon';
 import * as pobHash from './pob-hash';
 import * as erc1155BalanceOf from './erc1155-balance-of';
@@ -545,6 +546,7 @@ const strategies = {
   'the-graph-indexing': theGraphIndexing,
   whitelist,
   'whitelist-weighted': whitelistWeighted,
+  'whitelist-weighted-json': whitelistWeightedJson,
   tokenlon,
   'pob-hash': pobHash,
   'comp-like-votes': compLikeVotes,
