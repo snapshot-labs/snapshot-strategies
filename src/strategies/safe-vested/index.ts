@@ -51,6 +51,7 @@ export async function strategy(
     }
   });
   const allocationsList: [[AllocationDetails]] = await response.json();
+  const allocationMap = createAllocationMap(allocationsList);
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, {
@@ -60,9 +61,7 @@ export async function strategy(
 
   // Get current vesting state from smart contract using the vestingId
   addresses.forEach((address) => {
-    const addressAllocations = allocationsList.find(
-      (allocations: AllocationDetails[]) => allocations[0].account === address
-    );
+    const addressAllocations = allocationMap[address];
 
     if (addressAllocations) {
       addressAllocations.forEach(({ contract, vestingId }) => {
@@ -73,12 +72,10 @@ export async function strategy(
 
   const vestings = await multi.execute();
 
-  const flatAllocationsList = allocationsList.flat();
   // Check vesting state, consider only unclaimed amounts and group allocations to the same account
-  return Object.keys(vestings).reduce((acc, key) => {
-    const { account, amount } = flatAllocationsList.find(
-      ({ vestingId }) => vestingId === key
-    ) as AllocationDetails;
+  return Object.keys(vestings).reduce((result, key) => {
+    // get it from the map by vestingId. A entry is guaranteed to exist
+    const [{ account, amount }] = allocationMap[key]!;
 
     const hasAlreadyClaimed = vestings[key].account === account;
     let currentVestingAmount;
@@ -95,16 +92,35 @@ export async function strategy(
         : '0';
     }
 
-    const previousAmount = acc[account];
+    const previousAmount = result[account];
     // If account received multiple allocations sum them
     // Else we just return the currentAmount
     const pendingVestedAmount = previousAmount
       ? parseUnits(previousAmount.toString()).add(currentVestingAmount)
       : currentVestingAmount;
 
-    return {
-      ...acc,
+    return Object.assign(result, {
       [account]: parseFloat(formatUnits(pendingVestedAmount))
-    };
-  }, {});
+    });
+  }, {} as Record<string, number>);
+}
+
+function createAllocationMap(allocations: AllocationDetails[][]) {
+  const result: Record<string, AllocationDetails[]> = {};
+
+  for (const allocation of allocations.flat()) {
+    const { account, vestingId } = allocation;
+
+    if (!result[account]) {
+      result[account] = [];
+    }
+
+    if (!result[vestingId]) {
+      result[vestingId] = [];
+    }
+    result[account].push(allocation);
+    result[vestingId].push(allocation);
+  }
+
+  return result;
 }
