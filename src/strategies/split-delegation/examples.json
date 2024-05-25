@@ -6,6 +6,7 @@
       "params": {
         "backendUrl": "https://delegate-api.gnosisguild.org",
         "totalSupply": 1000000000,
+        "delegationOverride": false,
         "strategies": [
           {
             "name": "erc20-balance-of",
