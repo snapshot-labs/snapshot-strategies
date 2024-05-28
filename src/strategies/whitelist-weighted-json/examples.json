@@ -4,7 +4,7 @@
     "strategy": {
       "name": "whitelist-weighted-json",
       "params": {
-        "url": "https://proposals.kenglernitas.wtf/batel_combined_weighted_voting_power.json"        
+        "url": "https://proposals.kenglernitas.wtf/batel_combined_weighted_voting_power.json"
       }
     },
     "network": "8453",

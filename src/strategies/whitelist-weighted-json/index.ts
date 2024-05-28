@@ -22,7 +22,7 @@ export async function strategy(space, network, provider, addresses, options) {
   } catch (e) {
     throw new Error(
       `[whitelist-weighted-json] Errors found in API: URL: ${url}, Status: ${response.status}` +
-        response.ok
+      response.ok
         ? `, Response: ${responseData.substring(0, 512)}`
         : ''
     );
@@ -35,8 +35,11 @@ export async function strategy(space, network, provider, addresses, options) {
     ])
   );
 
-  const results=Object.fromEntries(
-    addresses.map((address) => [getAddress(address), whitelist[address.toLowerCase()] || 0])
+  const results = Object.fromEntries(
+    addresses.map((address) => [
+      getAddress(address),
+      whitelist[address.toLowerCase()] || 0
+    ])
   );
   return results;
 }
