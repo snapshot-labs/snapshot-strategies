@@ -1,5 +1,7 @@
 import fetch from 'cross-fetch';
 import { formatUnits, parseUnits } from '@ethersproject/units';
+import { isAddress } from '@ethersproject/address';
+import { isHexString } from '@ethersproject/bytes';
 
 import { Multicaller } from '../../utils';
 
@@ -11,7 +13,7 @@ const abi = [
   'function vestings(bytes32) view returns (address account, uint8 curveType, bool managed, uint16 durationWeeks, uint64 startDate, uint128 amount, uint128 amountClaimed, uint64 pausingDate, bool cancelled)'
 ];
 
-type AllocationDetails = {
+type Allocation = {
   account: string;
   contract: string;
   vestingId: string;
@@ -35,6 +37,25 @@ const canStillClaim = (claimDateLimit: string | undefined): boolean => {
   return true;
 };
 
+let _allocationMap: Record<string, Allocation[]> | null = null;
+
+async function loadAllocationMap(
+  options: Options
+): Promise<Record<string, Allocation[]>> {
+  if (!_allocationMap) {
+    const response = await fetch(options.allocationsSource, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+    _allocationMap = createAllocationMap(await response.json());
+  }
+
+  return _allocationMap;
+}
+
 export async function strategy(
   space: string,
   network: string,
@@ -43,15 +64,7 @@ export async function strategy(
   options: Options,
   snapshot: number | string = 'latest'
 ) {
-  const response = await fetch(options.allocationsSource, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
-  const allocationsList: [[AllocationDetails]] = await response.json();
-  const allocationMap = createAllocationMap(allocationsList);
+  const allocationMap = await loadAllocationMap(options);
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, {
@@ -105,11 +118,22 @@ export async function strategy(
   }, {} as Record<string, number>);
 }
 
-function createAllocationMap(allocations: AllocationDetails[][]) {
-  const result: Record<string, AllocationDetails[]> = {};
+function createAllocationMap(
+  rawAllocations: any[][]
+): Record<string, Allocation[]> {
+  const result: Record<string, Allocation[]> = {};
 
-  for (const allocation of allocations.flat()) {
-    const { account, vestingId } = allocation;
+  for (const rawAllocation of rawAllocations.flat()) {
+    const { account, contract, vestingId, amount } = rawAllocation;
+
+    if (
+      !isAddress(account) ||
+      !isAddress(contract) ||
+      (!isHexString(vestingId) && vestingId.length == 66) ||
+      String(BigInt(amount)) != amount
+    ) {
+      throw new Error(`Invalid Allocation Entry: ${rawAllocation}`);
+    }
 
     if (!result[account]) {
       result[account] = [];
@@ -118,6 +142,10 @@ function createAllocationMap(allocations: AllocationDetails[][]) {
     if (!result[vestingId]) {
       result[vestingId] = [];
     }
+
+    // trimmed down allocation
+    const allocation = { account, contract, vestingId, amount };
+
     result[account].push(allocation);
     result[vestingId].push(allocation);
   }
