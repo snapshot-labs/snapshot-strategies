@@ -11,6 +11,7 @@ type Params = {
   backendUrl: string;
   strategies: Strategy[];
   totalSupply: string | number;
+  delegationOverride?: boolean;
 };
 
 export async function strategy(
@@ -21,7 +22,8 @@ export async function strategy(
   options: Params = {
     backendUrl: DEFAULT_BACKEND_URL,
     strategies: [],
-    totalSupply: 0
+    totalSupply: 0,
+    delegationOverride: false
   },
   snapshot: string | number
 ): Promise<Record<string, number>> {
@@ -39,9 +41,14 @@ export async function strategy(
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        options: {
-          strategies: options.strategies,
-          network: Number(network)
+        strategy: {
+          name: 'split-delegation',
+          network: Number(network),
+          params: {
+            totalSupply: options.totalSupply,
+            delegationOverride: options.delegationOverride,
+            strategies: options.strategies
+          }
         },
         addresses
       })
