@@ -428,6 +428,7 @@ import * as a51Farming from './a51-farming';
 import * as a51VaultBalance from './a51-vault-balance';
 import * as quickswapv3 from './quickswap-v3';
 import * as balanceOfWithBazaarBatchAuctionLinearVestingPower from './balance-of-with-bazaar-batch-auction-linear-vesting-power';
+import * as stakingBalanceOfV1 from './staking-balance-of-v1';
 
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -866,6 +867,7 @@ const strategies = {
   'quickswap-v3': quickswapv3,
   'balance-of-with-bazaar-batch-auction-linear-vesting-power':
     balanceOfWithBazaarBatchAuctionLinearVestingPower,
+  'staking-balance-of-v1': stakingBalanceOfV1,
   'staking-balance-of-v2': stakingBalanceOfV2,
 };
 
