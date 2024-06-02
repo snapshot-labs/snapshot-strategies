@@ -868,7 +868,7 @@ const strategies = {
   'balance-of-with-bazaar-batch-auction-linear-vesting-power':
     balanceOfWithBazaarBatchAuctionLinearVestingPower,
   'staking-balance-of-v1': stakingBalanceOfV1,
-  'staking-balance-of-v2': stakingBalanceOfV2
+  'staking-balance-of-v2': stakingBalanceOfV2,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
