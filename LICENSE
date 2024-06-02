@@ -19,3 +19,5 @@ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
 OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
+
+uint256 startTime, address rewardsToken, address penaltyWallet, uint256 apyPercent, uint256 totalStaked, bool    active, uint256 claimTimeLimit, uint256 minStakeAmount, uint256 penaltyFee, uint256 penaltyTimeLimit, bool isVIPPool
