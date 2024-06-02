@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "decimals": {
+          "type": "number",
+          "title": "Decimals on all staking contracts",
+          "examples": ["e.g. 18"]
+        },
+        "staking_contract": {
+          "type": "string",
+          "title": "Staking contract addresses",
+          "examples": ["e.g. 0x59Ca57ca0f03c6E383a2d8dfE4c73c21174e7c8A"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "pid_1": {
+          "type": "string",
+          "title": "Pool ID on vesting contract",
+          "examples": ["e.g. 1"],
+          "pattern": "^[0-9]+$",
+          "minLength": 1,
+          "maxLength": 5
+        },
+        "pid_2": {
+          "type": "string",
+          "title": "Pool ID on vesting contract",
+          "examples": ["e.g. 2"],
+          "pattern": "^[0-9]+$",
+          "minLength": 1,
+          "maxLength": 5
+        },
+        "pid_3": {
+          "type": "string",
+          "title": "Pool ID on vesting contract",
+          "examples": ["e.g. 3"],
+          "pattern": "^[0-9]+$",
+          "minLength": 1,
+          "maxLength": 5
+        },
+        "maxTimeInPool": {
+          "type": "string",
+          "title": "Maximum staking time per stake event. In seconds.",
+          "examples": ["e.g. 63072000"],
+          "pattern": "^[0-9]+$",
+          "minLength": 1,
+          "maxLength": 10
+        }
+      },
+      "required": ["staking_contract", "decimals", "maxTimeInPool", "pid_1"],
+      "additionalProperties": false
+    }
+  }
+}
