@@ -419,6 +419,7 @@ import * as voltVotingPower from './volt-voting-power';
 import * as xdaiStakersAndHolders from './xdai-stakers-and-holders';
 import * as minimeBalanceVsSupplyWeighted from './minime-balance-vs-supply-weighted';
 import * as vestingBalanceOf from './vesting-balance-of';
+import * as stakingBalanceOfV2 from './staking-balance-of-v2';
 import * as poktNetworkPDA from './pokt-network-pda';
 import * as givethBalancesSupplyWeighted from './giveth-balances-supply-weighted';
 import * as givethGnosisBalanceSupplyWeightedV3 from './giveth-gnosis-balance-supply-weighted-v3';
@@ -864,7 +865,8 @@ const strategies = {
   'a51-vault-balance': a51VaultBalance,
   'quickswap-v3': quickswapv3,
   'balance-of-with-bazaar-batch-auction-linear-vesting-power':
-    balanceOfWithBazaarBatchAuctionLinearVestingPower
+    balanceOfWithBazaarBatchAuctionLinearVestingPower,
+  'staking-balance-of-v2': stakingBalanceOfV2,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
