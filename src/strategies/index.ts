@@ -429,6 +429,7 @@ import * as a51VaultBalance from './a51-vault-balance';
 import * as quickswapv3 from './quickswap-v3';
 import * as balanceOfWithBazaarBatchAuctionLinearVestingPower from './balance-of-with-bazaar-batch-auction-linear-vesting-power';
 import * as stakingBalanceOfV1 from './staking-balance-of-v1';
+import * as gardenStakes from './garden-stakes';
 
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -869,6 +870,7 @@ const strategies = {
     balanceOfWithBazaarBatchAuctionLinearVestingPower,
   'staking-balance-of-v1': stakingBalanceOfV1,
   'staking-balance-of-v2': stakingBalanceOfV2,
+  'garden-stakes': gardenStakes
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
