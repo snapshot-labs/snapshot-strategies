@@ -1,6 +1,6 @@
 import { keccak256 } from '@ethersproject/keccak256';
 import { pack } from '@ethersproject/solidity';
-import { Multicaller, call } from '../../utils';
+import { Multicaller } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'gardenfi';
@@ -26,13 +26,16 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
+
   for (const address of addresses) {
-    const nonce = await getNonce(
-      provider,
-      address,
-      options.gardenStakerAddress
-    );
-    for (let i = 0; i < nonce; i++) {
+    multi.call(address, options.gardenStakerAddress, 'delegateNonce', [
+      address
+    ]);
+  }
+  const nonces = await multi.execute();
+
+  for (const address of addresses) {
+    for (let i = 0; i < nonces[address]; i++) {
       const stakeId = keccak256(pack(['address', 'uint256'], [address, i]));
       // Append i to address to avoid collisions from multiple stakes
       multi.call(address + i, options.gardenStakerAddress, 'stakes', [stakeId]);
@@ -52,21 +55,15 @@ export async function strategy(
     );
   }
 
+  for (const address of addresses) {
+    if (!usersToVotes[address]) {
+      usersToVotes[address] = 0;
+    }
+  }
+
   return usersToVotes;
 }
 
-async function getNonce(
-  provider: any,
-  address: string,
-  contractAddress: string
-) {
-  const nonceBn = await call(provider, abi, [
-    contractAddress,
-    'delegateNonce',
-    [address]
-  ]);
-  return BigNumber.from(nonceBn._hex).toNumber();
-}
 /**
  * Calculate the total votes for a user given their stake and existing votes
  */
