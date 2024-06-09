@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import {BigNumber, BigNumberish} from "@ethersproject/bignumber";
+import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 
 export const author = 'propchain-development';
 export const version = '0.1.0';
@@ -21,22 +21,22 @@ interface Options {
 
 interface PoolInfo {
   startTime: BigNumberish;
-  rewardsToken: string
-  penaltyWallet: string,
-  apyPercent: BigNumberish,
-  totalStaked: BigNumberish,
-  active: boolean,
-  claimTimeLimit: BigNumberish,
-  penaltyFee: BigNumberish,
-  penaltyTimeLimit: BigNumberish
-  isVIPPool: boolean
+  rewardsToken: string;
+  penaltyWallet: string;
+  apyPercent: BigNumberish;
+  totalStaked: BigNumberish;
+  active: boolean;
+  claimTimeLimit: BigNumberish;
+  penaltyFee: BigNumberish;
+  penaltyTimeLimit: BigNumberish;
+  isVIPPool: boolean;
 }
 
 interface UserProperties {
-  amount: BigNumberish,
-  totalRedeemed: BigNumberish,
-  lastClaimTimestamp: BigNumberish,
-  depositTimestamp: BigNumberish
+  amount: BigNumberish;
+  totalRedeemed: BigNumberish;
+  lastClaimTimestamp: BigNumberish;
+  depositTimestamp: BigNumberish;
 }
 
 export async function strategy(
@@ -51,24 +51,19 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, vestingABI, { blockTag });
 
-  multi.call(options.pid_1, options.staking_contract, 'getPoolInfo', [options.pid_1]);
+  multi.call(options.pid_1, options.staking_contract, 'getPoolInfo', [
+    options.pid_1
+  ]);
   if (options.pid_2)
-    multi.call(
-      options.pid_2,
-      options.staking_contract,
-      'getPoolInfo',
-      [options.pid_2]
-    );
+    multi.call(options.pid_2, options.staking_contract, 'getPoolInfo', [
+      options.pid_2
+    ]);
   if (options.pid_3)
-    multi.call(
-      options.pid_3,
-      options.staking_contract,
-      'getPoolInfo',
-      [options.pid_3]
-    );
+    multi.call(options.pid_3, options.staking_contract, 'getPoolInfo', [
+      options.pid_3
+    ]);
 
-
-  const poolRecords : Record<string, PoolInfo> = await multi.execute();
+  const poolRecords: Record<string, PoolInfo> = await multi.execute();
 
   addresses.forEach((address: string) => {
     if (poolRecords[options.pid_1].active) {
@@ -103,15 +98,16 @@ export async function strategy(
 
     if (!filteredRecords[addr]) filteredRecords[addr] = 0;
 
-    if(!poolInfo.active) return;
+    if (!poolInfo.active) return;
     if (parseInt(pid) === 0) return;
 
-    const weight = BigNumber.from(poolInfo.penaltyTimeLimit).toNumber() / BigNumber.from(options.maxTimeInPool).toNumber();
-    const votingPower = parseFloat(
-      formatUnits(user.amount, options.decimals)
-    ) * weight;
+    const weight =
+      BigNumber.from(poolInfo.penaltyTimeLimit).toNumber() /
+      BigNumber.from(options.maxTimeInPool).toNumber();
+    const votingPower =
+      parseFloat(formatUnits(user.amount, options.decimals)) * weight;
 
-    filteredRecords[addr] += votingPower
+    filteredRecords[addr] += votingPower;
   });
 
   return filteredRecords;
