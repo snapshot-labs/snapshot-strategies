@@ -153,7 +153,6 @@ import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
 import * as impossibleFinance from './impossible-finance';
-import * as immutableX from './immutable-x';
 import * as ogn from './ogn';
 import * as oolongswap from './oolongswap';
 import * as zrxVotingPower from './zrx-voting-power';
@@ -601,7 +600,6 @@ const strategies = {
   ogn,
   oolongswap,
   'impossible-finance': impossibleFinance,
-  'immutable-x': immutableX,
   'zrx-voting-power': zrxVotingPower,
   'tomb-finance': tombFinance,
   'tranche-staking-slice': trancheStakingSLICE,
