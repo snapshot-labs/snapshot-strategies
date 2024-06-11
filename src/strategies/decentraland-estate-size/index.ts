@@ -6,7 +6,7 @@ export const version = '0.1.0';
 
 const SUBGRAPH_QUERY_ADDRESSES_LIMIT = 2000;
 const DECENTRALAND_MARKETPLACE_SUBGRAPH_URL = {
-  '1': 'https://subgraph.decentraland.org/marketplace',
+  '1': 'https://subgraph.decentraland.org/marketplace'
 };
 
 function chunk(_array: string[], pageSize: number): string[][] {
