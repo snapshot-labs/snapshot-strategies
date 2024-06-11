@@ -11,8 +11,8 @@ The following example params are for obtaining the VP users have after sending t
 ```json
 {
   "subgraphs": {
-    "rentals": "https://api.thegraph.com/subgraphs/name/decentraland/rentals-ethereum-goerli",
-    "marketplace": "https://api.thegraph.com/subgraphs/name/decentraland/marketplace-goerli"
+    "rentals": "https://api.studio.thegraph.com/query/49472/rentals-ethereum-sepolia/version/latest",
+    "marketplace": "https://api.studio.thegraph.com/query/49472/marketplace-sepolia/version/latest"
   },
   "addresses": {
     "estate": "0xc9a46712e6913c24d15b46ff12221a79c4e251dc",

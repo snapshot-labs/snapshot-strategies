@@ -5,8 +5,8 @@
       "name": "decentraland-rental-lessors",
       "params": {
         "subgraphs": {
-          "rentals": "https://api.thegraph.com/subgraphs/name/decentraland/rentals-ethereum-goerli",
-          "marketplace": "https://api.thegraph.com/subgraphs/name/decentraland/marketplace-goerli"
+          "rentals": "https://api.studio.thegraph.com/query/49472/rentals-ethereum-sepolia/version/latest",
+          "marketplace": "https://api.studio.thegraph.com/query/49472/marketplace-sepolia/version/latest"
         },
         "addresses": {
           "estate": "0xc9a46712e6913c24d15b46ff12221a79c4e251dc",
@@ -18,7 +18,7 @@
         }
       }
     },
-    "network": "5",
+    "network": "11155111",
     "addresses": [
       "0x747c6f502272129bf1ba872a1903045b837ee86c",
       "0xbad79d832671d91b4bba85f600932faec0e5fd7c",
