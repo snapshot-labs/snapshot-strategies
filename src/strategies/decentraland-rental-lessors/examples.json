@@ -18,7 +18,7 @@
         }
       }
     },
-    "network": "5",
+    "network": "11155111",
     "addresses": [
       "0x747c6f502272129bf1ba872a1903045b837ee86c",
       "0xbad79d832671d91b4bba85f600932faec0e5fd7c",
