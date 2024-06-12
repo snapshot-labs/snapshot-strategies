@@ -17,7 +17,7 @@ The space config will look like this:
 ```JSON
 {
   // subgraphURL for the request
-  "subGraphURL": "https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-mainnet",
+  "subGraphURL": "https://subgrapher.snapshot.org/subgraph/arbitrum/4RGbQCKV1NNoEJcK3shwgTvn65zsHaFdqG9RPvv28qJU",
   // scoreMultiplier can be used to increase users' scores by a certain magnitude
   "scoreMultiplier": 1,
 }

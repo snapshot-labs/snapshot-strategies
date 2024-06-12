@@ -4,7 +4,7 @@ import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
 const DGENESIS_SUBGRAPH_URL = {
-  '42161': 'https://api.thegraph.com/subgraphs/name/callikai/dgenesisarbitrum'
+  '42161': 'https://subgrapher.snapshot.org/subgraph/arbitrum/5muLDbVvE371id5FfiS4Zn3DjuZvA2n5M1cvskN3ARGV'
 };
 
 export const author = 'callikai';

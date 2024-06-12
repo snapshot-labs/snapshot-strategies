@@ -4,7 +4,7 @@ import { subgraphRequest } from '../../utils';
 import { getAllReserves, getStakeInfo, UNISWAP_V3_STAKER } from './helper';
 
 const UNISWAP_V3_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v3'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/5zvR82QoaXYFyDEKLZ9t6v9adgnptxYpKpSbxtgVENFV'
 };
 
 export const author = 'ribbon-finance';

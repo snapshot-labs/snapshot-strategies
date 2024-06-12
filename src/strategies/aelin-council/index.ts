@@ -9,7 +9,7 @@ export const version = '1.0.0';
 
 const GRAPH_API_URL = {
   uniswap: {
-    mainnet: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+    mainnet: 'https://subgrapher.snapshot.org/subgraph/arbitrum/EYCKATKGBKLWvSfwvBjzfCBmGwYNdVkduYXVivCsLRFu'
   },
   aelin: {
     mainnet: 'https://api.thegraph.com/subgraphs/name/0xcdb/aelin-governance',

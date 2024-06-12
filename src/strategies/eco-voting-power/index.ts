@@ -10,8 +10,8 @@ export const author = 'carlosfebres';
 export const version = '1.0.1';
 
 const ECO_SUBGRAPH_BY_CHAIN_ID = {
-  '1': 'https://api.thegraph.com/subgraphs/name/ecographs/the-eco-currency-subgraphs',
-  '5': 'https://api.thegraph.com/subgraphs/name/ecographs/staging-subgraphs'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/6Ff7vyzHA1vaiTE5jnHcdUuwpWrxrbr1KwJs9yKKEEzc',
+  '5': 'https://subgrapher.snapshot.org/subgraph/arbitrum/H3xZUx4ZRoThHeDGbaqMRxuS2HK8FeeDqzYsDo9yjbTr'
 };
 
 const TOKEN_DELEGATEES_FIELDS = {

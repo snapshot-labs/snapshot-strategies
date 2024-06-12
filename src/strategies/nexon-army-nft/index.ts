@@ -7,7 +7,7 @@ export const version = '0.1.0';
 const LIMIT = 1000;
 
 export const SUBGRAPH_URL = {
-  '137': 'https://api.thegraph.com/subgraphs/name/nexon-finance/nexon-army-nft'
+  '137': 'https://subgrapher.snapshot.org/subgraph/arbitrum/3Z8NRcpP7t2p4Lsi5iKBKgNqTrzf5ivthCEUCKAhH8NV'
 };
 
 export async function strategy(

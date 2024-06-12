@@ -10,7 +10,7 @@ export const version = '0.1.0';
  */
 
 const RENVM_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/renproject/renvm',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HnW1Q9iWqojVLqHpyB5wBSSngmo9L9Smu3BQd2tGcEAs',
   '42': 'https://api.thegraph.com/subgraphs/name/renproject/renvm-testnet'
 };
 

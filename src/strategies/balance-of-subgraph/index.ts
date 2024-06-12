@@ -2,9 +2,9 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-mainnet',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/4RGbQCKV1NNoEJcK3shwgTvn65zsHaFdqG9RPvv28qJU',
   '137':
-    'https://api.thegraph.com/subgraphs/name/dinngodev/furucombo-tokenomics-polygon'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/HHNWub5axWTGR1no6yrqVurT8Ak9skEFAwnw3YcqkD8G'
 };
 
 export const author = 'weizard';
