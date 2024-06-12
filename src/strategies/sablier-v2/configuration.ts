@@ -6,50 +6,57 @@
 
 const chains = {
   arbitrum: '42161',
+  arbitrumSepolia: '421614',
   avalanche: '43114',
   base: '8453',
+  blast: '81457',
   bsc: '56',
   ethereum: '1',
-  goerli: '5',
   gnosis: '100',
   optimism: '10',
   optimismSepolia: '11155420',
   polygon: '137',
   scroll: '534352',
-  sepolia: '11155111'
+  sepolia: '11155111',
+  zkSync: '324'
 };
 
 const deployments = {
+  [chains.ethereum]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/EuZZnhFtdCGqN2Zt7EMGYDqQKNrVuhJL63KAfwvF35bL'
+  },
+  [chains.arbitrumSepolia]: {
+    subgraph:
+      'https://api.studio.thegraph.com/query/57079/sablier-v2-arbitrum-sepolia/version/latest'
+  },
   [chains.arbitrum]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-arbitrum'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/AR77w8PwmkAG7c9DJSsfW6yTrC5UdvdQ1Hz5ZTCuaUWz'
   },
   [chains.avalanche]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-avalanche'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/FdVwZuMV43yCb1nPmjnLQwmzS58wvKuLMPzcZ4UWgWAc'
   },
   [chains.base]: {
     subgraph:
-      'https://api.studio.thegraph.com/query/57079/sablier-v2-base/version/latest'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/3pxjsW9rbDjmZpoQWzc5CAo4vzcyYE9YQyTghntmnb1K'
+  },
+  [chains.blast]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/BXoC2ToMZXnTmCjWftQRPh9zMyM7ysijMN54Nxzb2CEY'
   },
   [chains.bsc]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-bsc'
-  },
-  [chains.ethereum]: {
-    subgraph: 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2'
-  },
-  [chains.goerli]: {
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-goerli'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/BVyi15zcH5eUg5PPKfRDDesezMezh6cAkn8LPvh7MVAF'
   },
   [chains.gnosis]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-gnosis'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/EXhNLbhCbsewJPx4jx5tutNXpxwdgng2kmX1J7w1bFyu'
   },
   [chains.optimism]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-optimism'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/6e6Dvs1yDpsWDDREZRqxGi54SVdvTNzUdKpKJxniKVrp'
   },
   [chains.optimismSepolia]: {
     subgraph:
@@ -57,7 +64,7 @@ const deployments = {
   },
   [chains.polygon]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-polygon'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/CsDNYv9XPUMP8vufuwDVKQrVhsxhzzRHezjLFFKZZbrx'
   },
   [chains.scroll]: {
     subgraph:
@@ -65,7 +72,11 @@ const deployments = {
   },
   [chains.sepolia]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-sepolia'
+      'https://api.studio.thegraph.com/query/57079/sablier-v2-sepolia/version/latest'
+  },
+  [chains.zkSync]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/GY2fGozmfZiZ3xF2MfevohLR4YGnyxGxAyxzi9zmU5bY'
   }
 };
 

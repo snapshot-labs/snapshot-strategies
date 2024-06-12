@@ -8,7 +8,7 @@ export const author = 'maikir';
 export const version = '0.2.0';
 
 const MEEBITSDAO_DELEGATION_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/maikir/meebitsdao-delegation';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/6ZRqJohQ1nJ9a3mESbFudJSmnuCmo3n1LCz4BbRqzNRt';
 
 export async function strategy(
   space,

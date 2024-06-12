@@ -6,7 +6,7 @@ export const version = '0.1.0';
 
 const A51_STAKING_SUBGRAPH_URL = {
   '137':
-    'https://api.thegraph.com/subgraphs/name/hamzabhatti125/farming-polygon'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/mr29ZjZSuNs6iNhD8YmNnEg3JB17muNbGp1PCYxusr7'
 };
 
 const vaultABI = {

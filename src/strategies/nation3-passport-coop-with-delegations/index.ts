@@ -51,7 +51,7 @@ export async function strategy(
   });
 
   const passportIssuanceSubgrgraph =
-    'https://api.thegraph.com/subgraphs/name/nation3/passportissuance';
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/5N2XQNjiSJEBQzEp5XAZQY7M7tNqXnd87HCysHC1rdQ7';
 
   const revokedQuery: Query = {
     revokes: {

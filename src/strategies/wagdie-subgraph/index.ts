@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/wagdie/wagdieworld-mainnet'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/CiuchCqNbcNs88KkbQqs7PwuaD2DrPqHqxuDVKrJ5ESM'
 };
 
 export const author = 'IcculusHerEmissary';

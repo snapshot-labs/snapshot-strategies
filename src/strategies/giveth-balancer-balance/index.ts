@@ -7,10 +7,10 @@ export const author = 'pkretzschmar';
 export const version = '0.1.0';
 
 const GIVETH_SUBGRAPH_API =
-  'https://api.thegraph.com/subgraphs/name/giveth/giveth-economy-mainnet';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/D1nWhEyZsWmsuqUJTzZZXfpxDXht5WKte7nDdDV6Ah7Y';
 
 const BALANCER_SUBGRAPH_API =
-  'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer-v2';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/93yusydMYauh7cfe9jEfoGABmwnX4GffHd7in8KJi1XB-v2';
 
 const poolParams = {
   pool: {

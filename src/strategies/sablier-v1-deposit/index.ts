@@ -3,18 +3,15 @@ import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier', // mainnet
-  '3': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-ropsten', // ropsten
-  '4': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-rinkeby', // rinkeby
-  '5': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-goerli', // goerli
-  '10': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-optimism', // optimism
-  '42': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-kovan', // kovan
-  '56': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-bsc', // bsc
-  '137': 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-matic', // polygon
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/DkSXWkgJD5qVqfsrfzkLC5WELVX3Dbj3ByWcYjDJieCh', // mainnet
+  '10': 'https://subgrapher.snapshot.org/subgraph/arbitrum/BEnQbvBdXnohC1DpM9rSb47C1FbowK39HfPNCEHjgrBt', // optimism
+  '56': 'https://subgrapher.snapshot.org/subgraph/arbitrum/3Gyy7of99oBRqHcCMGJXpHw2xxxZgXxVmFPFR1vL6YhT', // bsc
+  '137':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/6UMNQfMeh3pV5Qmn2NDX2UKNeUk9kh4oZhzzzn5e8rSz', // polygon
   '42161':
-    'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-arbitrum', // arbitrum
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/94SP9QVcxmGV9e2fxuTxUGcZfcv4tjpPCGyyPVyMfLP', // arbitrum
   '43114':
-    'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-avalanche' // avalanche
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/DK2gHCprwVaytwzwb5fUrkFS9xy7wh66NX6AFcDzMyF9' // avalanche
 };
 
 export const author = 'sablier-labs';

@@ -107,7 +107,7 @@ export async function strategy(
 
   const responseStakedPUSH = responseStaked.slice(0, addresses.length);
   let responseStakedPUSHV2 = responseStakedV2.slice(0, addresses.length);
-  responseStakedPUSHV2 = responseStakedPUSHV2.map((value, i) => {
+  responseStakedPUSHV2 = responseStakedPUSHV2.map((value) => {
     return value[0].toString();
   });
   const responseStakedLP = responseStaked.slice(addresses.length);

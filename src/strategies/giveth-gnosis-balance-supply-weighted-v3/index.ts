@@ -6,9 +6,9 @@ export const author = 'divine-comedian';
 export const version = '0.1.0';
 
 const GIVETH_SUBGRAPH_API =
-  'https://api.thegraph.com/subgraphs/name/giveth/giveth-economy-second-xdai';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/7UFA1vv3cXNKzzaSVWt6Fe4EhU8B71G97XwWWkN4kxAW';
 const XDAI_BLOCKS_API =
-  'https://api.thegraph.com/subgraphs/name/elkfinance/xdai-blocks';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/HTGgWawRHBKr6tDe6umPoVNkYDoUpBEsJSGtX6A7N8MG';
 
 const CIRUCLATING_SUPPLY_API = 'https://circulating.giveth.io/token-supply';
 // "supplyField" : "circulating",

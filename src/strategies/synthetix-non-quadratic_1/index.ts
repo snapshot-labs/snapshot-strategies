@@ -25,7 +25,7 @@ const DebtCacheContractAddress = '0x9D5551Cd3425Dd4585c3E7Eb7E4B98902222521E';
 
 const defaultGraphs = {
   '1': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/synthetix',
-  '10': 'https://api.thegraph.com/subgraphs/name/synthetixio-team/optimism-main'
+  '10': 'https://subgrapher.snapshot.org/subgraph/arbitrum/39nXvA89wrgSz7vRAq6uxmvYn2CTNDuSfXJue3m7PVKA'
 };
 
 const loadLastDebtLedgerEntry = async (

@@ -10,9 +10,9 @@ const tokenAbi = ['function balanceOf(address) view returns (uint256)'];
 const XDAI_BLOCK_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks';
 const MAINNET_BLOCK_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/9A6bkprqEG2XsZUYJ5B2XXp6ymz9fNcn4tVPxMWDztYC';
 const HOPR_XDAI_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/hoprnet/hopr-on-xdai';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/9EEKrJnzerBVeNfqDCziQx1hCLdrcPnnehu8rKME25g9';
 const HOPR_MAINNET_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/hoprnet/hopr-on-mainnet';
 const LIMIT = 1000; // 1000 addresses per query in Subgraph

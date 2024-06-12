@@ -14,7 +14,7 @@ const abi = [
 ];
 
 const GRAPH_BLOCK_API_URL =
-  'https://api.thegraph.com/subgraphs/name/blocklytics/ethereum-blocks';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/9A6bkprqEG2XsZUYJ5B2XXp6ymz9fNcn4tVPxMWDztYC';
 
 async function getNearestBlockNumberBeforeTimestamp(timestamp: number) {
   const rawData = await subgraphRequest(GRAPH_BLOCK_API_URL, {
