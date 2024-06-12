@@ -9,7 +9,8 @@ export const version = '1.2.0';
 const EVENT_IDS_LIMIT = 500;
 const POAP_API_ENDPOINT_URL = {
   '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s',
-  '100': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s-xdai'
+  '100':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s-xdai'
 };
 // subgraph query in filter has max length of 500
 const MAX_ACCOUNTS_IN_QUERY = 500;

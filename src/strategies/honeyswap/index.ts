@@ -7,7 +7,8 @@ export const version = '0.2.0';
 
 const HONEYSWAP_SUBGRAPH_URL = {
   '100': {
-    exchange: 'https://subgrapher.snapshot.org/subgraph/arbitrum/F5u74NSaLF92s1qUSacQU4fmWizmK9yqDhXAq6RPtgky',
+    exchange:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/F5u74NSaLF92s1qUSacQU4fmWizmK9yqDhXAq6RPtgky',
     farm: 'https://api.thegraph.com/subgraphs/name/1hive/honeyfarm-xdai'
   }
 };
