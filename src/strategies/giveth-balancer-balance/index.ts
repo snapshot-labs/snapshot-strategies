@@ -10,7 +10,7 @@ const GIVETH_SUBGRAPH_API =
   'https://subgrapher.snapshot.org/subgraph/arbitrum/D1nWhEyZsWmsuqUJTzZZXfpxDXht5WKte7nDdDV6Ah7Y';
 
 const BALANCER_SUBGRAPH_API =
-  'https://subgrapher.snapshot.org/subgraph/arbitrum/93yusydMYauh7cfe9jEfoGABmwnX4GffHd7in8KJi1XB-v2';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/C4ayEZP2yTXRAB8vSaTrgN4m9anTe9Mdm2ViyiAuV9TV';
 
 const poolParams = {
   pool: {
