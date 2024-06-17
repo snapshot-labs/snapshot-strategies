@@ -8,8 +8,7 @@ export const examples = examplesFile;
 
 const POAP_API_ENDPOINT_URL = {
   '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s',
-  '100':
-    'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s-xdai'
+  '100': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai'
 };
 
 const getTokenSupply = {
