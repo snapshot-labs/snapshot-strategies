@@ -9,13 +9,13 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. UNI"],
+          "examples": ["e.g. pcAPE"],
           "maxLength": 16
         },
         "address": {
           "type": "string",
           "title": "Contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "examples": ["e.g. 0x8383B691ffE89BA6915d2458648BDD515DE7202D"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
