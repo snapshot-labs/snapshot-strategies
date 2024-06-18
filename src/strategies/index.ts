@@ -37,6 +37,7 @@ import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
 import * as revest from './revest';
 import * as erc20Price from './erc20-price';
 import * as balanceOfWithMin from './balance-of-with-min';
+import * as balanceOfWithMax from './balance-of-with-max';
 import * as balanceOfWithThresholds from './balance-of-with-thresholds';
 import * as balanceOfWithLinearVestingPower from './balance-of-with-linear-vesting-power';
 import * as linearVestingPower from './linear-vesting-power';
@@ -482,6 +483,7 @@ const strategies = {
   'erc20-price': erc20Price,
   'ethalend-balance-of': ethalendBalanceOf,
   'balance-of-with-min': balanceOfWithMin,
+  'balance-of-with-max': balanceOfWithMax,
   'balance-of-with-thresholds': balanceOfWithThresholds,
   thresholds,
   'eth-balance': ethBalance,
