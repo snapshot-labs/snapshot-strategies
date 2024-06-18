@@ -2,7 +2,7 @@ import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 const ENS_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/ensdomains/ens',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH',
   '3': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensropsten',
   '4': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensrinkeby',
   '5': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensgoerli'

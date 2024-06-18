@@ -4,7 +4,7 @@ export const author = 'dave4506';
 export const version = '0.1.1';
 
 export const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/proofofbeauty/hash'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/N1nKhGBh1yB48pBBDmZAmPWg7pDBSy9EhirZn4yg9pB'
 };
 
 export async function strategy(

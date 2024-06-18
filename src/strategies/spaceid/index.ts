@@ -8,7 +8,7 @@ export const author = 'SID-Marcus';
 export const version = '0.0.1';
 
 const pancakeV3Subgraph =
-  'https://api.thegraph.com/subgraphs/name/messari/pancakeswap-v3-bsc';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/78EUqzJmEVJsAKvWghn7qotf9LVGqcTQxJhT5z84ZmgJ';
 
 const UNISWAP_ID_USDC_PAIR = '0x6ac6b053a2858bea8ad758db680198c16e523184';
 const PANCAKE_ID_USDT_PAIR = '0x4e1f9aDf96dBA6Dc09c973228c286568F1315ea8';

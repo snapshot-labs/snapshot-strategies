@@ -6,7 +6,7 @@ export const version = '0.1.0';
 
 const A51_VAULT_SUBGRAPH_URL = {
   '137':
-    'https://api.thegraph.com/subgraphs/name/hamzabhatti125/unipilot-quickswap-stats'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/GXc2d1wMCbyKq2F2qRo8zcCad6tXsmXubEA5F8jGKBTG'
 };
 
 const vaultABI = {

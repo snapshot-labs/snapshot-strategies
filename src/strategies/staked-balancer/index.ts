@@ -11,7 +11,7 @@ const erc20ABI = [
 ];
 
 const BALANCER_SUBGRAPH_URL_ROOT =
-  'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/93yusydMYauh7cfe9jEfoGABmwnX4GffHd7in8KJi1XB';
 
 const NETWORK_KEY = {
   '1': '',

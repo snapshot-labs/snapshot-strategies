@@ -12,7 +12,7 @@ const abi = [
 ];
 
 const GRAPH_API_URL =
-  'https://api.thegraph.com/subgraphs/name/ministry-of-decentralization/skale-manager-subgraph';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/3o81KDCm8mHXDB69KvmGsh4sdVCcxhQwQdwE74bTHi4r';
 
 function returnGraphParamsValidatorPower(
   snapshot: number | string,
