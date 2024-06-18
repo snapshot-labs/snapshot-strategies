@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'thomasscovell';
@@ -21,8 +22,8 @@ export async function strategy(
   );
 
   Object.keys(score).forEach((key) => {
-    if (score[key] <= (options.maxBalance || 0)) score[key] = score[key];
-    else score[key] = options.maxBalance;
+    if (score[key] <= (options.maxBalance || 0)) score[getAddress(key)] = score[key];
+    else score[getAddress(key)] = options.maxBalance;
   });
 
   return score;
