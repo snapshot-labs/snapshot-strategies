@@ -22,9 +22,14 @@ export async function strategy(
   );
 
   Object.keys(score).forEach((key) => {
-    if (score[key] <= (options.maxBalance || 0)) score[getAddress(key)] = score[key];
-    else score[getAddress(key)] = options.maxBalance;
+    if (score[key] <= (options.maxBalance || 0)) score[key] = score[key];
+    else score[key] = options.maxBalance;
   });
 
-  return score;
+  return Object.fromEntries(
+    Object.entries(score).map(([address, balance]) => [
+      getAddress(address),
+      balance
+    ])
+  );
 }
