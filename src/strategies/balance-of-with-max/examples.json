@@ -7,7 +7,8 @@
         "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
         "symbol": "DAI",
         "decimals": 18,
-        "maxBalance": 200000
+        "maxBalance": 200000,
+        "weight": 1
       }
     },
     "network": "1",
