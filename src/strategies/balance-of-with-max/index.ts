@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'thomasscovell';
-export const version = '0.1.0';
+export const version = '0.1.1';
 
 export async function strategy(
   space,
@@ -22,7 +22,7 @@ export async function strategy(
   );
 
   Object.keys(score).forEach((key) => {
-    if (score[key] <= (options.maxBalance || 0)) score[key] = score[key];
+    if ((score[key]* options.weight) <= (options.maxBalance || 0)) score[key] = (score[key]* options.weight);
     else score[key] = options.maxBalance;
   });
 
