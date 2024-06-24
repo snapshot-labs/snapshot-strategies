@@ -22,7 +22,8 @@ export async function strategy(
   );
 
   Object.keys(score).forEach((key) => {
-    if ((score[key]* options.weight) <= (options.maxBalance || 0)) score[key] = (score[key]* options.weight);
+    if (score[key] * options.weight <= (options.maxBalance || 0))
+      score[key] = score[key] * options.weight;
     else score[key] = options.maxBalance;
   });
 
