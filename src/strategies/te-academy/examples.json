@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "te-academy",
+      "params": {
+        "addresses": [
+          "0xe936e8faf4a5655469182a49a505055b71c17604",
+          "0xea846a3b474d32621ef40d3cb47d0c9d91628ff1"
+        ]
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0xe936e8faf4a5655469182a49a505055b71c17604",
+      "0xea846a3b474d32621ef40d3cb47d0c9d91628ff1",
+      "0xeaa24cde31a65ac72dff0ea673735d70625cf78a"
+    ],
+    "snapshot": 121800167
+  }
+]
