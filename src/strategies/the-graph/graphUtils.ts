@@ -3,8 +3,9 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Provider } from '@ethersproject/providers';
 
 export const GRAPH_NETWORK_SUBGRAPH_URL = {
-  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/GgwLf9BTFBJi6Z5iYHssMAGEE4w5dR3Jox2dMLrBxnCT',
-  '4': 'https://api.thegraph.com/subgraphs/name/graphprotocol/graph-network-testnet'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/9Co7EQe5PgW3ugCUJrJgRv4u9zdEuDJf8NvMWftNsBH8',
+  '42161':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/DZz4kDTdmzWLWsV373w2bSmoar3umKKH9y82SUKr5qmp'
 };
 export const bnWEI = BigNumber.from('1000000000000000000');
 
