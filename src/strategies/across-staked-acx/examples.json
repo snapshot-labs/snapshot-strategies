@@ -8,6 +8,8 @@
         "acxLpTokenAddress": "0xb0C8fEf534223B891D4A430e49537143829c4817",
         "wethLpTokenAddress": "0x28F77208728B0A45cAb24c4868334581Fe86F95B",
         "usdcLpTokenAddress": "0xC9b09405959f63F72725828b5d449488b02be1cA",
+        "usdtLpTokenAddress": "0xC2faB88f215f62244d2E32c8a65E8F58DA8415a5",
+        "wstethAcxBlpTokenAddress": "0x36Be1E97eA98AB43b4dEBf92742517266F5731a3",
         "wbtcLpTokenAddress": "0x59C1427c658E97a7d568541DaC780b2E5c8affb4",
         "daiLpTokenAddress": "0x4fabacac8c41466117d6a38f46d08ddd4948a0cb",
         "hubPoolAddress": "0xc186fa914353c44b2e33ebe05f21846f1048beda",
@@ -19,8 +21,11 @@
       "0x9A8f92a830A5cB89a3816e3D267CB7791c16b04D",
       "0x718648C8c531F91b528A7757dD2bE813c3940608",
       "0x996267d7d1B7f5046543feDe2c2Db473Ed4f65e9",
-      "0xbfb496ACb99299e9eCE84B3FD1B3fDd0f6CDDf49"
+      "0xbfb496ACb99299e9eCE84B3FD1B3fDd0f6CDDf49",
+      "0x8C702A9a6e0cd14a53251C630743c4F5327eddE8",
+      "0xf824cC545F02DBf299FD7eab3bEF1288E911F033" 
     ],
-    "snapshot": 16171362
+    "snapshot": 18822000
+
   }
 ]
