@@ -1,7 +1,8 @@
 # CSV
 
-The CSV strategy allows you to fetch token balances from a CSV external file. Here is an example of parameters for the strategy:
+The CSV strategy allows you to fetch token balances from a CSV external file. 
 
+Here is an example of parameters for the strategy:
 ```csv
 ```json
 {
@@ -10,3 +11,6 @@ The CSV strategy allows you to fetch token balances from a CSV external file. He
   "decimals": 0
 }
 ```
+
+Here is an example of CSV file:
+https://gateway.pinata.cloud/ipfs/bafkreig3xgt2j7mtcukqy5jglmxwlyy7unrqi2ncplgfnpq32aqomzbo4m

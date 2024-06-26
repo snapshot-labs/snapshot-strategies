@@ -9,7 +9,9 @@
         "csv": {
           "type": "string",
           "title": "CSV file",
-          "examples": ["e.g. ipfs://bafkreig3xgt2j7mtcukqy5jglmxwlyy7unrqi2ncplgfnpq32aqomzbo4m"]
+          "examples": [
+            "e.g. ipfs://bafkreig3xgt2j7mtcukqy5jglmxwlyy7unrqi2ncplgfnpq32aqomzbo4m"
+          ]
         },
         "symbol": {
           "type": "string",
