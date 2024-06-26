@@ -293,6 +293,7 @@ import * as auraBalanceOfSingleAsset from './aura-vault-balance-of-single-asset'
 import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as rocketpoolNodeOperatorv2 from './rocketpool-node-operator-v2';
 import * as rocketpoolNodeOperatorv3 from './rocketpool-node-operator-v3';
+import * as rocketpoolNodeOperatorv4 from './rocketpool-node-operator-v4';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
@@ -736,6 +737,7 @@ const strategies = {
   'rocketpool-node-operator': rocketpoolNodeOperator,
   'rocketpool-node-operator-v2': rocketpoolNodeOperatorv2,
   'rocketpool-node-operator-v3': rocketpoolNodeOperatorv3,
+  'rocketpool-node-operator-v4': rocketpoolNodeOperatorv4,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
