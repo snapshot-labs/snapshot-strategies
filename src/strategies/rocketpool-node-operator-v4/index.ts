@@ -10,7 +10,6 @@ const rocketNetworkVotingAbi = [
   'function getVotingPower(address _nodeAddress, uint32 _block) external view returns (uint256)'
 ];
 
-
 export async function strategy(
   space,
   network,
@@ -19,8 +18,8 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-
-  const blockTag = typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
+  const blockTag =
+    typeof snapshot === 'number' ? snapshot : await provider.getBlockNumber();
 
   const nodeVotingPower = new Multicaller(
     network,
@@ -43,7 +42,7 @@ export async function strategy(
     const votePower = nodeVotingPowerResponse[address];
     return {
       address: address,
-      votePower: votePower,
+      votePower: votePower
     };
   });
 

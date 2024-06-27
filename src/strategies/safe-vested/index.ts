@@ -88,6 +88,7 @@ export async function strategy(
   // Check vesting state, consider only unclaimed amounts and group allocations to the same account
   return Object.keys(vestings).reduce((result, key) => {
     // get it from the map by vestingId. A entry is guaranteed to exist
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
     const [{ account, amount }] = allocationMap[key]!;
 
     const hasAlreadyClaimed = vestings[key].account === account;

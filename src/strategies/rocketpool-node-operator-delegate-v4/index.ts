@@ -12,7 +12,6 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   console.log(blockTag);
@@ -23,7 +22,7 @@ export async function strategy(
   const resp = await req.json();
 
   const reduced: Record<string, number> = resp.reduce((acc, obj) => {
-    const address = getAddress(obj.address)
+    const address = getAddress(obj.address);
     if (addresses.includes(address)) {
       if (obj.delegators.length > 0) {
         acc[address] = obj.votingPower;
