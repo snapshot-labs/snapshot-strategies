@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "rocketpool-node-operator-delegate-v6",
+      "params": {
+        "address": "0xD33526068D116cE69F19A9ee46F0bd304F21A51f",
+        "symbol": "RPL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x6212Ee7822265cE44B56C943bFd4bCcc03AeC42A",
+      "0x291BFc5E578aEdFBE4b4A86d6188E99391BC30Fa",
+      "0x27108a00Aa686c79fB15c79Fca4B312030cEFb24",
+      "0xB0De8cB8Dcc8c5382c4b7F3E978b491140B2bC55",
+      "0x439B5eEa6dD4745d575ADa1ED7d682c723829b7D",
+      "0x9ec255F1AF4D3e4a813AadAB8ff0497398037d56",
+      "0x9Be85faBd144bCa1aCdF2b5E074cFbFBEB2855a3",
+      "0x166C58AC1907e2c4b24717DD52683A88E7123AbA"
+    ],
+    "snapshot": 20210904
+  }
+]
