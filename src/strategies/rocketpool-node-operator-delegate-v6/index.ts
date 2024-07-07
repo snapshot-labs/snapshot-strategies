@@ -5,7 +5,8 @@ import { Multicaller } from '../../utils';
 export const author = 'rocket-pool';
 export const version = '0.1.4';
 
-const signerRegistryContractAddress = '0xc1062617d10Ae99E09D941b60746182A87eAB38F';
+const signerRegistryContractAddress =
+  '0xc1062617d10Ae99E09D941b60746182A87eAB38F';
 const signerRegistryAbi = [
   'function signerToNode(address) external view returns (address)'
 ];
@@ -25,15 +26,17 @@ export async function strategy(
   );
   const resp = await req.json();
 
-  const signerRegistry = new Multicaller(
-    network,
-    provider,
-    signerRegistryAbi,
-    { blockTag }
-  );
+  const signerRegistry = new Multicaller(network, provider, signerRegistryAbi, {
+    blockTag
+  });
 
   addresses.forEach((address) => {
-    signerRegistry.call(address, signerRegistryContractAddress, 'signerToNode', [address]);
+    signerRegistry.call(
+      address,
+      signerRegistryContractAddress,
+      'signerToNode',
+      [address]
+    );
   });
 
   const signerRegistryResponse: Record<string, string> =
@@ -41,7 +44,9 @@ export async function strategy(
 
   const nodeData = addresses.map((address) => {
     const nodeAddress = getAddress(signerRegistryResponse[address]);
-    const node = resp.find((obj) => getAddress(obj.address) === getAddress(nodeAddress));
+    const node = resp.find(
+      (obj) => getAddress(obj.address) === getAddress(nodeAddress)
+    );
     return {
       address: address,
       votingPower: node ? node.votingPower : 0
