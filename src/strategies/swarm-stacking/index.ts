@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'swarm';
+export const author = 'SwarmMarkets';
 export const version = '1.0.0';
 
 // 137 - Polygon network number
