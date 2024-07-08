@@ -66,7 +66,7 @@ export async function strategy(
     new Map()
   );
 
-  const makersAmount: Map<string, number> = new Map();
+  const makersTokenAmount: Map<string, number> = new Map();
   stakesByMaker.forEach((stakes, maker) => {
     const bigTotalAmount: BigNumber = stakes.reduce(
       (acc, stake) => acc.add(BigNumber.from(stake.stakedAmount)),
@@ -75,13 +75,13 @@ export async function strategy(
     const totalAmount = parseFloat(
       formatUnits(bigTotalAmount, SMT_TOKEN_DECIMALS)
     );
-    makersAmount.set(maker, totalAmount);
+    makersTokenAmount.set(maker, totalAmount);
   });
 
-  const formattedResponse = Object.fromEntries(
-    [...makersAmount.entries()].map(([maker, amount]) => {
-      return [getAddress(maker), amount]; // checksum address
+  const results = Object.fromEntries(
+    [...makersTokenAmount.entries()].map(([maker, amount]) => {
+      return [getAddress(maker), amount]; // checksum all addresses
     })
   );
-  return formattedResponse;
+  return results;
 }
