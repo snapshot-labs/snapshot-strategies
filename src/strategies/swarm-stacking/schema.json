@@ -5,8 +5,7 @@
     "Strategy": {
       "title": "Strategy",
       "type": "object",
-      "properties": {
-      },
+      "properties": {},
       "required": [],
       "additionalProperties": false
     }

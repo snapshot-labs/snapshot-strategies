@@ -3,8 +3,7 @@
     "name": "Swarm Stacking",
     "strategy": {
       "name": "swarm-stacking",
-      "params": {
-      }
+      "params": {}
     },
     "network": "137",
     "addresses": [
@@ -15,7 +14,6 @@
       "0xb6a2efec3ac82531355dc0256a53f0d2c183e01f",
       "0xc98cc732a8ad9735cfdbf594f50207b92c694466",
       "0x720b587e8759f9310d973faee853af5b34ab01e6",
-
       "0x993627ca9fd5a926c08414e1a24ee81910ec4e6c",
       "0x993627ca9fd5a926c08414e1a24ee81910ec4e6c"
     ],
