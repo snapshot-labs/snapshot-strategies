@@ -28,7 +28,7 @@ async function getSwarmStakes(
       __args: {
         first: 1000,
         where: {
-          maker_in: addresses.map((address) => address),
+          maker_in: addresses,
           unstaked: false
         },
         // target specific snapshot of the network
