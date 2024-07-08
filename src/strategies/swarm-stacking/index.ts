@@ -26,6 +26,7 @@ async function getSwarmStakes(
   const query = {
     swarmStakes: {
       __args: {
+        first: 1000,
         where: {
           maker_in: addresses.map((address) => address),
           unstaked: false
