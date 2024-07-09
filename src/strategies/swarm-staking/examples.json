@@ -1,8 +1,8 @@
 [
   {
-    "name": "Swarm Stacking",
+    "name": "Swarm Staking",
     "strategy": {
-      "name": "swarm-stacking",
+      "name": "swarm-staking",
       "params": {}
     },
     "network": "137",
