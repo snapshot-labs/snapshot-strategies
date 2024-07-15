@@ -2,7 +2,7 @@ import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'monish-nagre';
-export const version = '0.1.0'; 
+export const version = '0.1.0';
 
 const abi = [
   'function balanceOf(address owner) public view returns (uint256)',
@@ -95,3 +95,4 @@ export async function strategy(
     return {};
   }
 }
+
