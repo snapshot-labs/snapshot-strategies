@@ -28,7 +28,7 @@ export async function strategy(
 ): Promise<{ [address: string]: number }> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  try {
+
     // Step 1: Get the balance of each address
     const balanceCalls = addresses.map((address: string) => [options.address, 'balanceOf', [address]]);
     const balanceResponse = await multicall(network, provider, abi, balanceCalls, { blockTag });
@@ -64,7 +64,6 @@ export async function strategy(
 
     // Parse token response
     const tokenIds = tokenResponse.map((response: any) => BigNumber.from(response[0]).toString());
-    console.log('Token response:', tokenIds);
 
     // Step 3: Get land type for each token ID
     const landDataCalls: [string, string, [BigNumber]][] = tokenIds.map((tokenId: string) => [options.address, 'landData', [BigNumber.from(tokenId)]]);
@@ -87,12 +86,6 @@ export async function strategy(
         tokenIndex++;
       }
     });
-
-    console.log('Voting power:', votingPower);
-
     return votingPower;
-  } catch (error) {
-    return {};
-  }
-}
+  } 
 
