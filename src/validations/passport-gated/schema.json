@@ -6,11 +6,39 @@
       "title": "Gitcoin passport gated",
       "type": "object",
       "properties": {
+        "scoreThreshold": {
+          "type": "number",
+          "title": "Passport Score Threshold",
+          "description": "Minimum Passport score threshold (>=) to be eligible as a valid Passport",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
+        },
+        "operator": {
+          "type": "string",
+          "title": "Approval operator",
+          "description": "Control how many stamps are required to become eligible.",
+          "anyOf": [
+            {
+              "const": "NONE",
+              "title": "No operator"
+            },
+            {
+              "const": "AND",
+              "title": "Require all stamps"
+            },
+            {
+              "const": "OR",
+              "title": "Require at least one stamp"
+            }
+          ]
+        },
         "stamps": {
           "type": "array",
           "title": "Stamps",
+          "description": "List of Eligible Passport Stamps (Optional).",
           "uniqueItems": true,
-          "minItems": 1,
+          "minItems": 0,
           "maxItems": 27,
           "items": {
             "type": "string",
@@ -125,32 +153,9 @@
               }
             ]
           }
-        },
-        "operator": {
-          "type": "string",
-          "title": "Approval operator",
-          "description": "Control how many or which stamps are required to vote.",
-          "anyOf": [
-            {
-              "const": "AND",
-              "title": "Require all stamps"
-            },
-            {
-              "const": "OR",
-              "title": "Require at least one stamp"
-            }
-          ]
-        },
-        "scoreThreshold": {
-          "type": "number",
-          "title": "Passport Score Threshold",
-          "description": "Minimum Passport score threshold (>) to be eligible as a valid Passport",
-          "minimum": 0,
-          "maximum": 100,
-          "default": 0
         }
       },
-      "required": ["stamps", "operator"],
+      "required": ["scoreThreshold"],
       "additionalProperties": false
     }
   }

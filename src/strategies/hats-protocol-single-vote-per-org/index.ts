@@ -71,14 +71,14 @@ export async function strategy(
   switch (network) {
     case '1':
       result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-ethereum',
+        'https://subgrapher.snapshot.org/subgraph/arbitrum/D1kbQSGSt165189Vh1CoQWjk33mSYyi5aLc3Dvb92gX7',
         snapshot,
         options.humanReadableTreeId
       );
       break;
     case '10':
       result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-optimism',
+        'https://subgrapher.snapshot.org/subgraph/arbitrum/8iG8KCsAjgogxp6GvxXWLYwSgKXZsLRCeg9y4ysm5AkK',
         snapshot,
         options.humanReadableTreeId
       );
@@ -92,21 +92,21 @@ export async function strategy(
       break;
     case '137':
       result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-polygon',
+        'https://subgrapher.snapshot.org/subgraph/arbitrum/4rNc2eosDbwiXPEY74NY7Nvdr1svikoSS7cLF5cCB5Dd',
         snapshot,
         options.humanReadableTreeId
       );
       break;
     case '100':
       result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-gnosis-chain',
+        'https://subgrapher.snapshot.org/subgraph/arbitrum/7XiPq3eW6qnxZ6pKGyq9ubE5Lb9XRqg5dZrhY7DGkBhd',
         snapshot,
         options.humanReadableTreeId
       );
       break;
     case '42161':
       result = await subgraphRequestHats(
-        'https://api.thegraph.com/subgraphs/name/hats-protocol/hats-v1-arbitrum',
+        'https://subgrapher.snapshot.org/subgraph/arbitrum/EtmBkCiM4fVeRXrNukUhtNWxBL4w582ifWMgAurtdQeQ',
         snapshot,
         options.humanReadableTreeId
       );

@@ -239,6 +239,23 @@ describe.each(examples)(
       }
     );
     (schema ? it : it.skip)(
+      'Check schema (if available) all arrays in all levels should contain `items` property',
+      async () => {
+        const strategyParamsSchema = schema.definitions.Strategy.properties;
+        function checkArrayItems(schema: any) {
+          Object.keys(schema).forEach((key) => {
+            if (typeof schema[key] === 'object') {
+              checkArrayItems(schema[key]);
+            } else if (schema.type === 'array') {
+              expect(schema.items).toBeTruthy();
+            }
+          });
+        }
+
+        checkArrayItems(strategyParamsSchema);
+      }
+    );
+    (schema ? it : it.skip)(
       'Strategy should work even when strategy symbol is null',
       async () => {
         delete example.strategy.params.symbol;

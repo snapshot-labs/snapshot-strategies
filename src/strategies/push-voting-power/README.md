@@ -2,8 +2,8 @@
 
 This strategy weighs the vote using:
 - Amount of `$PUSH` delegated to user
-- Amount of `$PUSH` staked in Push staking pool
-- Amount of `$PUSH-LP` staked in LP staking pool
+- Amount of `$PUSH` staked in Push V1 and V2 staking pool
+- Amount of `$PUSH-LP` staked in LP staking pool V1 and V2
 
 The voting power is calculated in terms of `$PUSH`, so `$PUSH-LP` tokens are converted to `$PUSH` using on chain data from Uniswap-V2 Router, WETH and USDT token contracts.
 
@@ -18,7 +18,9 @@ The voting power is calculated in terms of `$PUSH`, so `$PUSH-LP` tokens are con
     "uniswapV2Router02": "0x7a250d5630B4cF539739dF2C5dAcb4c659F2488D",
     "WETHAddress": "0xc02aaa39b223fe8d0a0e5c4f27ead9083c756cc2",
     "USDTAddress": "0xdac17f958d2ee523a2206206994597c13d831ec7",
-          
+    
+    "pushUniStakingV2":"0x9D2513F5b539DC774C66b28ACEc94e4bD00105C2",
+    "pushStakingInfoCoreV2": "0x66329Fdd4042928BfCAB60b179e1538D56eeeeeE",
     "decimals": 18
 }
 ```

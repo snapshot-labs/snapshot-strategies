@@ -32,7 +32,7 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, {
     blockTag,
-    limit: 475
+    limit: 150
   });
 
   for (const address of addresses) {

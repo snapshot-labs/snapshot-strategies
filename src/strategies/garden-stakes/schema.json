@@ -1,0 +1,22 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "gardenStakerAddress": {
+          "type": "string",
+          "title": "Garden's staking address",
+          "examples": ["e.g. 0xe2239938Ce088148b3Ab398b2b77Eedfcd9d1AfC"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["gardenStakerAddress"],
+      "additionalProperties": false
+    }
+  }
+}

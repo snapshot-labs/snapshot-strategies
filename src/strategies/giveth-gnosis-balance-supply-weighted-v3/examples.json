@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "giveth-gnosis-balance-supply-weighted-v3",
+      "params": {
+        "symbol": "GIV",
+        "decimals": 18,
+        "weight": 0.5
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x839395e20bbb182fa440d08f850e6c7a8f6f0780",
+      "0x960a16c9070a9bbbb03e1bfd418982636d56d77d",
+      "0x826976d7C600d45FB8287CA1d7c76FC8eb732030"
+    ],
+    "snapshot": 32900726
+  }
+]

@@ -71,7 +71,7 @@ const tokenAndPoolAbi = [
 const XDAI_BLOCK_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks';
 const HOPR_XDAI_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/hoprnet/hopr-on-xdai';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/9EEKrJnzerBVeNfqDCziQx1hCLdrcPnnehu8rKME25g9';
 const LIMIT = 1000; // 1000 addresses per query in Subgraph
 
 async function getXdaiBlockNumber(timestamp: number): Promise<number> {

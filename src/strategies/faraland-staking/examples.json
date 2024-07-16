@@ -9,7 +9,11 @@
       }
     },
     "network": "56",
-    "addresses": ["0x3f105F78359ad80562B4c34296a87b8e66c584C5"],
+    "addresses": [
+      "0x5ce2e064ca2207f110a69b2bcf1e90e6c3ccec0e",
+      "0x7b2fc00d4f60c42098862c5a5e9f9e6f5f7762d4",
+      "0x843ef28f7eb99727d21a015955172b767fbcb84d"
+    ],
     "snapshot": 10913859
   }
 ]

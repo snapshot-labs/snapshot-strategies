@@ -4,7 +4,7 @@ import { Contract } from '@ethersproject/contracts';
 import { Multicaller } from '../../utils';
 
 export const author = 'espendk';
-export const version = '1.0.0';
+export const version = '1.0.1';
 
 // To avoid future memory issues, we limit the number of members supported by the strategy
 export const MAX_MEMBERS = 500;
@@ -15,7 +15,7 @@ export const erc721_abi = [
 ];
 
 export const erc6551_registry_abi = [
-  'function account(address implementation, uint256 chainId, address tokenContract, uint256 tokenId, uint256 salt) external view returns (address)'
+  'function account(address implementation, bytes32 salt, uint256 chainId, address tokenContract, uint256 tokenId) external view returns (address)'
 ];
 
 export const erc1155_abi = [
@@ -51,7 +51,7 @@ export async function getAllMembers(
   membershipERC721: string,
   erc6551Registry: string,
   erc6551Implementation: string,
-  erc6551Salt: number
+  erc6551Salt: string
 ): Promise<Map<string, Member>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
@@ -86,10 +86,10 @@ export async function getAllMembers(
     membershipERC721Multicaller.call(id, membershipERC721, 'ownerOf', [id]);
     erc6551RegistryMulticaller.call(id, erc6551Registry, 'account', [
       erc6551Implementation,
+      erc6551Salt,
       network,
       membershipERC721,
-      id,
-      erc6551Salt
+      id
     ]);
   }
 
