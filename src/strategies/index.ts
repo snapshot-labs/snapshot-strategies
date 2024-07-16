@@ -294,6 +294,7 @@ import * as rocketpoolNodeOperator from './rocketpool-node-operator';
 import * as rocketpoolNodeOperatorv2 from './rocketpool-node-operator-v2';
 import * as rocketpoolNodeOperatorv3 from './rocketpool-node-operator-v3';
 import * as rocketpoolNodeOperatorv4 from './rocketpool-node-operator-v4';
+import * as rocketpoolNodeOperatorv7 from './rocketpool-node-operator-v7';
 import * as rocketpoolNodeOperatorDelegatev4 from './rocketpool-node-operator-delegate-v4';
 import * as rocketpoolNodeOperatorDelegatev5 from './rocketpool-node-operator-delegate-v5';
 import * as rocketpoolNodeOperatorDelegatev6 from './rocketpool-node-operator-delegate-v6';
@@ -742,6 +743,7 @@ const strategies = {
   'rocketpool-node-operator-v2': rocketpoolNodeOperatorv2,
   'rocketpool-node-operator-v3': rocketpoolNodeOperatorv3,
   'rocketpool-node-operator-v4': rocketpoolNodeOperatorv4,
+  'rocketpool-node-operator-v7': rocketpoolNodeOperatorv7,
   'rocketpool-node-operator-delegate-v4': rocketpoolNodeOperatorDelegatev4,
   'rocketpool-node-operator-delegate-v5': rocketpoolNodeOperatorDelegatev5,
   'rocketpool-node-operator-delegate-v6': rocketpoolNodeOperatorDelegatev6,
