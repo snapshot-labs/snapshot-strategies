@@ -43,11 +43,11 @@ export async function strategy(
   const signerRegistryResponse: Record<string, string> =
     await signerRegistry.execute();
 
+  const addressMap: Map<any, any> = new Map(resp.map(obj => [getAddress(obj.address), obj]));
+
   const nodeData = addresses.map((address) => {
     const nodeAddress = getAddress(signerRegistryResponse[address]);
-    const node = resp.find(
-      (obj) => getAddress(obj.address) === getAddress(nodeAddress)
-    );
+    const node = addressMap.get(nodeAddress);
     return {
       signallingAddress: address,
       nodeAddress: nodeAddress,
