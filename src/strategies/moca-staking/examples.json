@@ -6,7 +6,7 @@
       "params": {
         "address": "0x9a98e6b60784634ae273f2fb84519c7f1885aed2",
         "symbol": "MOCA",
-        "decimals": 18,
+        "decimals": 18
       }
     },
     "network": "1",
