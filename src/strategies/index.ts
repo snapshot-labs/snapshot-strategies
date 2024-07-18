@@ -438,6 +438,7 @@ import * as stakingBalanceOfV1 from './staking-balance-of-v1';
 import * as gardenStakes from './garden-stakes';
 import * as csv from './csv';
 import * as swarmStaking from './swarm-staking';
+import * as mocaStaking from './moca-staking';
 
 const strategies = {
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -886,7 +887,8 @@ const strategies = {
   'staking-balance-of-v2': stakingBalanceOfV2,
   'garden-stakes': gardenStakes,
   csv,
-  'swarm-staking': swarmStaking
+  'swarm-staking': swarmStaking,
+  'moca-staking': mocaStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
