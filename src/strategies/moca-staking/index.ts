@@ -5,42 +5,7 @@ export const author = 'mocaverse';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'user',
-        type: 'address'
-      }
-    ],
-    name: 'getUser',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'cumulativeWeight',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'lastUpdateTimestamp',
-            type: 'uint256'
-          }
-        ],
-        internalType: 'struct SimpleStaking.Data',
-        name: '',
-        type: 'tuple'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getUser(address user) view returns (tuple(uint256 amount, uint256 cumulativeWeight, uint256 lastUpdateTimestamp))'
 ];
 
 function getArgs(options, address: string) {
