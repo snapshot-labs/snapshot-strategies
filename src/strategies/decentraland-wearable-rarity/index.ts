@@ -8,8 +8,6 @@ const SUBGRAPH_QUERY_ADDRESSES_LIMIT = 2000;
 const REQUEST_DELAY_MS = 1000 / 10; // 10 requests per second
 const DECENTRALAND_COLLECTIONS_SUBGRAPH_URL = {
   '1': 'https://subgraph.decentraland.org/collections-ethereum-mainnet',
-  '11155111':
-    'https://api.studio.thegraph.com/query/49472/marketplace-sepolia/version/latest',
   '137': 'https://subgraph.decentraland.org/collections-matic-mainnet',
   '80002': 'https://subgraph.decentraland.org/collections-matic-amoy'
 };
