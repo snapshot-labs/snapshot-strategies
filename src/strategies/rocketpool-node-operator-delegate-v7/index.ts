@@ -43,7 +43,9 @@ export async function strategy(
   const signerRegistryResponse: Record<string, string> =
     await signerRegistry.execute();
 
-  const addressMap: Map<any, any> = new Map(resp.map(obj => [getAddress(obj.address), obj]));
+  const addressMap: Map<any, any> = new Map(
+    resp.map((obj) => [getAddress(obj.address), obj])
+  );
 
   const nodeData = addresses.map((address) => {
     const nodeAddress = getAddress(signerRegistryResponse[address]);
@@ -51,8 +53,11 @@ export async function strategy(
     return {
       signallingAddress: address,
       nodeAddress: nodeAddress,
-      delegators: node && node.delegators.length > 0 ? node.delegators.map((d) => getAddress(d.address)) : [nodeAddress],
-    }
+      delegators:
+        node && node.delegators.length > 0
+          ? node.delegators.map((d) => getAddress(d.address))
+          : [nodeAddress]
+    };
   });
 
   const delegations: Record<string, string[]> = Object.fromEntries(
@@ -74,8 +79,12 @@ export async function strategy(
 
   return Object.fromEntries(
     addresses.map((address) => {
-      const addressData = nodeData.find((node) => node.signallingAddress === address);
-      if (addressData.nodeAddress === "0x0000000000000000000000000000000000000000") {
+      const addressData = nodeData.find(
+        (node) => node.signallingAddress === address
+      );
+      if (
+        addressData.nodeAddress === '0x0000000000000000000000000000000000000000'
+      ) {
         return [address, 0];
       }
       const delegators = addressData.delegators;
