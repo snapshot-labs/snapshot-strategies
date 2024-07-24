@@ -299,6 +299,7 @@ import * as rocketpoolNodeOperatorDelegatev4 from './rocketpool-node-operator-de
 import * as rocketpoolNodeOperatorDelegatev5 from './rocketpool-node-operator-delegate-v5';
 import * as rocketpoolNodeOperatorDelegatev6 from './rocketpool-node-operator-delegate-v6';
 import * as rocketpoolNodeOperatorDelegatev7 from './rocketpool-node-operator-delegate-v7';
+import * as rocketpoolNodeOperatorDelegatev8 from './rocketpool-node-operator-delegate-v8';
 import * as earthfundChildDaoStakingBalance from './earthfund-child-dao-staking-balance';
 import * as unipilotVaultPilotBalance from './unipilot-vault-pilot-balance';
 import * as sdBoostTWAVP from './sd-boost-twavp';
@@ -750,6 +751,7 @@ const strategies = {
   'rocketpool-node-operator-delegate-v5': rocketpoolNodeOperatorDelegatev5,
   'rocketpool-node-operator-delegate-v6': rocketpoolNodeOperatorDelegatev6,
   'rocketpool-node-operator-delegate-v7': rocketpoolNodeOperatorDelegatev7,
+  'rocketpool-node-operator-delegate-v8': rocketpoolNodeOperatorDelegatev8,
   'earthfund-child-dao-staking-balance': earthfundChildDaoStakingBalance,
   'sd-boost-twavp': sdBoostTWAVP,
   'unipilot-vault-pilot-balance': unipilotVaultPilotBalance,
