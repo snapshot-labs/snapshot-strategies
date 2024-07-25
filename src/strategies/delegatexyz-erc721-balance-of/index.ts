@@ -14,8 +14,6 @@ import {
 export const author = 'apesplus';
 export const version = '0.1.0';
 
-// TODO: Add README
-
 export async function strategy(
   space,
   network,
