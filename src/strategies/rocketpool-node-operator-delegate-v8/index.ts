@@ -23,6 +23,16 @@ export async function strategy(
   const blockTag =
     typeof snapshot === 'number' ? snapshot : 'latest';
 
+  const validPrefix = 'rocketpool-node-operator-v';
+  if (
+    !options.strategies.some((s) => {
+      const parsedStrategy = JSON.parse(JSON.stringify(s));
+      return parsedStrategy.name.startsWith(validPrefix);
+    })
+  ) {
+    return {};
+  }
+
   const req = await fetch(
     'https://api.rocketpool.net/mainnet/delegates/block/' + blockTag
   );
