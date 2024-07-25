@@ -1,0 +1,19 @@
+[
+    {
+      "name": "Example query",
+      "strategy": {
+        "name": "erc721-with-landtype-multiplier",
+        "params": {
+          "address": "0xdBd34637BC7793DDC2A02A89b3E6592249a45a12",
+          "symbol": "LAND"
+        }
+      },
+      "network": "137", 
+      "addresses": [
+        "0xf3597bc963b657203177e59184d5a3b93d465c94",
+        "0xa2fe5ff21c1e634723f5847cc61033a929e1dcfc",
+        "0x9069fdde8df22aab332b326d34c7c376c62d0076"
+      ],
+      "snapshot": 12453212
+    }
+  ]
