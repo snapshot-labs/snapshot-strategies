@@ -20,8 +20,7 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const blockTag =
-    typeof snapshot === 'number' ? snapshot : 'latest';
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   const validPrefix = 'rocketpool-node-operator-v';
   if (
@@ -62,8 +61,12 @@ export async function strategy(
     const nodeAddress = getAddress(signerRegistryResponse[address]);
     const node = nodeAddressMap.get(nodeAddress);
     const signallingAddress = address;
-    const delegatesTo = node && node.delegatesTo ? getAddress(node.delegatesTo) : '';
-    const delegators = node && node.delegators.length > 0 ? node.delegators.map((d) => getAddress(d.address)) : [nodeAddress];
+    const delegatesTo =
+      node && node.delegatesTo ? getAddress(node.delegatesTo) : '';
+    const delegators =
+      node && node.delegators.length > 0
+        ? node.delegators.map((d) => getAddress(d.address))
+        : [nodeAddress];
     return {
       signallingAddress: signallingAddress,
       nodeAddress: nodeAddress,
@@ -76,24 +79,30 @@ export async function strategy(
     nodeData.map((obj) => [getAddress(obj.nodeAddress), obj])
   );
 
-  const overrides = nodeData.map((node) => {
-    if (node.delegatesTo !== node.nodeAddress) {
-      return {
-        nodeAddress: node.nodeAddress,
-        delegatesTo: node.delegatesTo
-      };
-    }
-    return {};
-  }).filter((override) => Object.keys(override).length !== 0);
+  const overrides = nodeData
+    .map((node) => {
+      if (node.delegatesTo !== node.nodeAddress) {
+        return {
+          nodeAddress: node.nodeAddress,
+          delegatesTo: node.delegatesTo
+        };
+      }
+      return {};
+    })
+    .filter((override) => Object.keys(override).length !== 0);
 
   if (Object.keys(overrides).length !== 0) {
     overrides.map((override) => {
       const delegate = nodeDataMap.get(override.delegatesTo);
       if (!delegate) return;
-      const delegators = delegate ? delegate.delegators.filter((d) => d !== override.nodeAddress) : [];
+      const delegators = delegate
+        ? delegate.delegators.filter((d) => d !== override.nodeAddress)
+        : [];
       delegate.delegators = delegators;
       nodeDataMap.set(override.delegatesTo, delegate);
-      const nodeToUpdate = nodeData.find((node) => node.nodeAddress === delegate.nodeAddress);
+      const nodeToUpdate = nodeData.find(
+        (node) => node.nodeAddress === delegate.nodeAddress
+      );
       nodeToUpdate.delegators = delegators;
     });
   }
