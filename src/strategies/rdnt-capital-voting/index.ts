@@ -31,7 +31,10 @@ const toJsNum = (bn: BigNumberish) => {
 };
 
 const rdntPerUniV3LpToken = async (network, provider, options, blockTag) => {
-  const [tokenBalances, token0, totalSupplyBN] = await multicall(network, provider, uniV3TokenizedLpAbi,
+  const [tokenBalances, token0, totalSupplyBN] = await multicall(
+    network,
+    provider,
+    uniV3TokenizedLpAbi,
     [
       [options.lpToken, 'getTotalAmounts'],
       [options.lpToken, 'token0'],
@@ -41,9 +44,12 @@ const rdntPerUniV3LpToken = async (network, provider, options, blockTag) => {
   );
   const [total0, total1] = tokenBalances;
   const totalSupply = toJsNum(totalSupplyBN[0]);
-  const rdntInLp = token0.toLowerCase() === options.rdnt.toLowerCase() ? toJsNum(total0) : toJsNum(total1);
+  const rdntInLp =
+    token0.toLowerCase() === options.rdnt.toLowerCase()
+      ? toJsNum(total0)
+      : toJsNum(total1);
   return rdntInLp / totalSupply;
-};  
+};
 
 const rdntPerBalancerLpToken = async (network, provider, options, blockTag) => {
   const rdntInVault = await call(provider, balancerVaultAbi, [
