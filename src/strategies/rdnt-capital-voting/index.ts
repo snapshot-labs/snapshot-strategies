@@ -21,7 +21,7 @@ const balancerVaultAbi = [
 ];
 
 const uniV3TokenizedLpAbi = [
-  'function unction getTotalAmounts() view returns (uint256 total0, uint256 total1)',
+  'function getTotalAmounts() view returns (uint256, uint256)',
   'function token0() view returns (address)',
   'function totalSupply() view returns (uint256)'
 ];
@@ -31,23 +31,28 @@ const toJsNum = (bn: BigNumberish) => {
 };
 
 const rdntPerUniV3LpToken = async (network, provider, options, blockTag) => {
-  const [tokenBalances, token0, totalSupplyBN] = await multicall(
+  const [token0Bal, token1Bal] = await call(provider, uniV3TokenizedLpAbi, [
+    options.lpToken,
+    'getTotalAmounts',
+    [],
+    { blockTag }
+  ]);
+
+  const [token0, totalSupplyBN] = await multicall(
     network,
     provider,
     uniV3TokenizedLpAbi,
     [
-      [options.lpToken, 'getTotalAmounts'],
       [options.lpToken, 'token0'],
       [options.lpToken, 'totalSupply']
     ],
     { blockTag }
   );
-  const [total0, total1] = tokenBalances;
   const totalSupply = toJsNum(totalSupplyBN[0]);
   const rdntInLp =
-    token0.toLowerCase() === options.rdnt.toLowerCase()
-      ? toJsNum(total0)
-      : toJsNum(total1);
+    Number(token0) == Number(options.rdnt)
+      ? toJsNum(token0Bal)
+      : toJsNum(token1Bal);
   return rdntInLp / totalSupply;
 };
 
