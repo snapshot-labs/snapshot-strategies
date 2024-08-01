@@ -63,7 +63,8 @@
       "name": "rdnt-capital-voting",
       "params": {
         "rdnt": "0xd722E55C1d9D9fA0021A5215Cbb904b92B3dC5d4",
-        "lpToken": "0x8A76639FE8e390Ed16eA88f87BEB46d6A5328254"
+        "lpToken": "0x8A76639FE8e390Ed16eA88f87BEB46d6A5328254",
+        "lockingContract": "0xD87F8a52a91680c993ece968B281bf92505A3741"
       }
     },
     "network": "8453",
