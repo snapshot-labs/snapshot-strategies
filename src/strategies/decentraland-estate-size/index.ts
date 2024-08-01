@@ -5,6 +5,7 @@ export const author = '2fd';
 export const version = '0.1.0';
 
 const SUBGRAPH_QUERY_ADDRESSES_LIMIT = 2000;
+const REQUEST_DELAY_MS = 1000 / 10; // 10 requests per second
 const DECENTRALAND_MARKETPLACE_SUBGRAPH_URL = {
   '1': 'https://subgraph.decentraland.org/marketplace'
 };
@@ -15,6 +16,10 @@ function chunk(_array: string[], pageSize: number): string[][] {
     chunks.push(_array.slice(i, i + pageSize));
   }
   return chunks;
+}
+
+async function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function strategy(
@@ -65,6 +70,8 @@ export async function strategy(
 
     let hasNext = true;
     while (hasNext) {
+      await delay(REQUEST_DELAY_MS);
+
       const result = await subgraphRequest(
         DECENTRALAND_MARKETPLACE_SUBGRAPH_URL[network],
         params
