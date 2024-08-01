@@ -56,5 +56,22 @@
       "0x4011091Dbe57bd4521F598616fe4BB3978ea3005"
     ],
     "snapshot": 18483999
-  }
+  },
+  {
+    "name": "RDNT in dLP - Base",
+    "strategy": {
+      "name": "rdnt-capital-voting",
+      "params": {
+        "rdnt": "0xd722E55C1d9D9fA0021A5215Cbb904b92B3dC5d4",
+        "lpToken": "0x8A76639FE8e390Ed16eA88f87BEB46d6A5328254"
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e"
+    ],
+    "snapshot": 16402917
+  },
 ]
