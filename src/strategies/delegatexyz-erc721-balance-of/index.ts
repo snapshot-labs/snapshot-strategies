@@ -12,11 +12,7 @@ import {
 } from './types';
 
 export const author = 'apesplus';
-<<<<<<< HEAD
 export const version = '0.1.1';
-=======
-export const version = '0.1.0';
->>>>>>> e199f87 (cleanup)
 
 export async function strategy(
   space,
