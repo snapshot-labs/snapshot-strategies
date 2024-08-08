@@ -441,6 +441,7 @@ import * as gardenStakes from './garden-stakes';
 import * as csv from './csv';
 import * as swarmStaking from './swarm-staking';
 import * as mocaStaking from './moca-staking';
+import * as hatsStrategy from './hats-strategy';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -892,7 +893,8 @@ const strategies = {
   'garden-stakes': gardenStakes,
   csv,
   'swarm-staking': swarmStaking,
-  'moca-staking': mocaStaking
+  'moca-staking': mocaStaking,
+  'hats-strategy': hatsStrategy
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

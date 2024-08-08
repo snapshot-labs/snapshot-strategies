@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "hats-strategy",
+      "params": {
+        "address": "0x4D22e37Eb4d71D1acc5f4889a65936D2a44A2f15",
+        "decimals": 18,
+        "vaultAddress": "0x1025B2248cB6AEAF93c7E4d10B19F90f5B4ea090",
+        "vaultMultiplier": 3
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x307392EDc15A34B3418A0caf27A1e0b057c82EA6",
+      "0x00B5ADe4ac1fE9cCc08Addc2C10070642335117F",
+      "0xfaB068e04F887b672AC021340C890E3b3F1e4eB1",
+      "0x4fdc370Db5f81fb1237F189e036DF937Aaa31092",
+      "0x410f82a8617dDBa669e9431BD8Bf897b009095C8",
+      "0xfFB5f28D949B64D05A61826104b25E3a14A5caC5",
+      "0xB2B1f686833717068d6c8111CE2E0104d4686699"
+    ],
+    "snapshot": 240742719
+  }
+]
