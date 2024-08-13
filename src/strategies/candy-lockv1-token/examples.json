@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "candy-lockv1-token",
+      "params": {
+        "address": "0x7CeA583ea310b3A8a72Ed42B3364aff16d24B3A2"
+      }
+    },
+    "network": "25",
+    "addresses": [
+      "0x46B94710620d3E5626c5192aA80d2b362781997a",
+      "0x0f55730B5E34167aAf418050c0A1e52556041E55",
+      "0xc0Ee01A64d0466b2f500F6CAB92c553f913Db10A",
+      "0x5Abbf6aB860577E89C0483cF141e300bF8B74250",
+      "0x1d448201d3B781d8fFb00E1F9Ee99e0db212F3aC",
+      "0x88788e2c2d5f3362A8aB63E6a2e00a742fA946a2",
+      "0x34cfa46732692Ab062F0453036cd5a4f5B771473"
+    ],
+    "snapshot": 15303354
+  }
+]
