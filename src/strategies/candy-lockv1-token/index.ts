@@ -3,7 +3,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'dramacrypto';
-export const version = '0.1.1';
+export const version = '0.1.0';
 
 const abi = [
   'function lockCount(address account_) external view returns (uint256)',
