@@ -1,5 +1,4 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
 export const author = 'dramacrypto';
@@ -46,24 +45,12 @@ async function v1_scores(
 ): Promise<[string, number][]> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const lockCountMulti = new Multicaller(network, provider, v1Abi, {
-    blockTag
-  });
-  addresses.forEach((address) =>
-    lockCountMulti.call(address, contract_address, 'lockCount', [address])
-  );
-  const lockCountsResult: Record<string, BigNumber> =
-    await lockCountMulti.execute();
-  const lockCounts = Object.entries(lockCountsResult).map(
-    ([address, lockCount]) => [address, parseFloat(formatUnits(lockCount, 0))]
-  );
-
   const lockDataMulti = new Multicaller(network, provider, v1Abi, { blockTag });
-  lockCounts.forEach(([address, lockCount]) =>
+  addresses.forEach((address) =>
     lockDataMulti.call(address, contract_address, 'viewLocks', [
       address,
       0,
-      lockCount
+      1000
     ])
   );
   const lockDatasMulti: Record<string, any> = await lockDataMulti.execute();
@@ -86,26 +73,12 @@ async function v2_3_scores(
 ): Promise<[string, number][]> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const lockCountMulti = new Multicaller(network, provider, v2Abi, {
-    blockTag
-  });
-  addresses.forEach((address) =>
-    lockCountMulti.call(address, contract_address, 'userAllLockCount', [
-      address
-    ])
-  );
-  const lockCountsResult: Record<string, BigNumber> =
-    await lockCountMulti.execute();
-  const lockCounts = Object.entries(lockCountsResult).map(
-    ([address, lockCount]) => [address, parseFloat(formatUnits(lockCount, 0))]
-  );
-
   const lockDataMulti = new Multicaller(network, provider, v2Abi, { blockTag });
-  lockCounts.forEach(([address, lockCount]) =>
+  addresses.forEach((address) =>
     lockDataMulti.call(address, contract_address, 'userAllLocks', [
       address,
       0,
-      lockCount
+      1000
     ])
   );
   const lockDatasMulti: Record<string, any> = await lockDataMulti.execute();
