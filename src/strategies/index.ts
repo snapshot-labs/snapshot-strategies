@@ -442,6 +442,7 @@ import * as csv from './csv';
 import * as swarmStaking from './swarm-staking';
 import * as mocaStaking from './moca-staking';
 import * as candyLockV1Token from './candy-lockv1-token';
+import * as candyLockToken from './candy-lock-token';
 import * as candyAutoVault from './candy-auto-vault';
 
 const strategies = {
@@ -896,6 +897,7 @@ const strategies = {
   'swarm-staking': swarmStaking,
   'moca-staking': mocaStaking,
   'candy-lockv1-token': candyLockV1Token,
+  'candy-lock-token': candyLockToken,
   'candy-auto-vault': candyAutoVault
 };
 
