@@ -445,6 +445,7 @@ import * as candyLockV1Token from './candy-lockv1-token';
 import * as candyLockToken from './candy-lock-token';
 import * as candyAutoVault from './candy-auto-vault';
 import * as candyLockNft from './candy-lock-nft';
+import * as candyNftStaking from './candy-nft-staking';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -900,7 +901,8 @@ const strategies = {
   'candy-lockv1-token': candyLockV1Token,
   'candy-lock-token': candyLockToken,
   'candy-auto-vault': candyAutoVault,
-  'candy-lock-nft': candyLockNft
+  'candy-lock-nft': candyLockNft,
+  'candy-nft-staking': candyNftStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
