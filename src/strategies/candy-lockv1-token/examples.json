@@ -4,7 +4,8 @@
     "strategy": {
       "name": "candy-lockv1-token",
       "params": {
-        "address": "0x7CeA583ea310b3A8a72Ed42B3364aff16d24B3A2"
+        "address": "0x7CeA583ea310b3A8a72Ed42B3364aff16d24B3A2",
+        "decimals": 18
       }
     },
     "network": "25",
