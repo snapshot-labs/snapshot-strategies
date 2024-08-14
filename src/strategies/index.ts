@@ -442,6 +442,7 @@ import * as csv from './csv';
 import * as swarmStaking from './swarm-staking';
 import * as mocaStaking from './moca-staking';
 import * as candyLockV1Token from './candy-lockv1-token';
+import * as candyLockToken from './candy-lock-token';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -894,7 +895,8 @@ const strategies = {
   csv,
   'swarm-staking': swarmStaking,
   'moca-staking': mocaStaking,
-  'candy-lockv1-token': candyLockV1Token
+  'candy-lockv1-token': candyLockV1Token,
+  'candy-lock-token': candyLockToken
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
