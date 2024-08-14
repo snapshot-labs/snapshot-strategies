@@ -4,6 +4,8 @@ This enables Delegate.xyz users to vote from their delegate wallet while using E
 
 Delegate.xyz (V2) Full wallet and smart contract level delegation are both supported.
 
+If a user has delegated access to multiple wallets, the most recent delegation will be calculated.
+
 This strategy uses the same parameters as erc721-balance-of, but the signing wallet is now the delegate wallet.
 
 -- Made with Love by ApesPlus
