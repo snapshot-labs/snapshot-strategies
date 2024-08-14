@@ -49,7 +49,7 @@ export async function strategy(
     Object.entries(fixedStakingResults).map(([address, fixedStakedNfts]) => {
       const stakedNftCount =
         fixedStakedNfts.length + sharedStakingResults[address].length;
-      return [address, stakedNftCount];
+      return [address, stakedNftCount * 2500];
     })
   );
 }
