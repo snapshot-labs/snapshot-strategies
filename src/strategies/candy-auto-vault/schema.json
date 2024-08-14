@@ -6,26 +6,10 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "v1_address": {
+        "address": {
           "type": "string",
-          "title": "CandyLock v1 contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
-        },
-        "v2_address": {
-          "type": "string",
-          "title": "CandyLock v2 contract address",
-          "examples": ["e.g. 0x094EcA6E834Fbe726f8b7670267244dC3983be73"],
-          "pattern": "^0x[a-fA-F0-9]{40}$",
-          "minLength": 42,
-          "maxLength": 42
-        },
-        "v3_address": {
-          "type": "string",
-          "title": "CandyLock v3 contract address",
-          "examples": ["e.g. 0xbAEe5f69927B995478b05c400E15755217804118"],
+          "title": "Candy auto-comound vault contract address",
+          "examples": ["e.g. 0x8FEf43b1f3046F8f58A76c64aD01Bc8d82ff0ad1"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -37,7 +21,7 @@
           "minimum": 0
         }
       },
-      "required": ["v1_address", "v2_address", "v3_address", "decimals"],
+      "required": ["address", "decimals"],
       "additionalProperties": false
     }
   }

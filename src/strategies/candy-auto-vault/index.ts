@@ -30,9 +30,9 @@ function convertSharesToCandy(
   decimals = 18,
   fee?: BigNumber
 ): number {
-  const sharePriceNumber = formatUnits(pricePerFullShare, decimals);
   const amountCandyBigNumber = shares
-    .mul(sharePriceNumber)
+    .mul(pricePerFullShare)
+    .div(BigNumber.from(10).pow(decimals))
     .sub(fee || BigNumber.from(0));
   const amountCandyAsNumber = parseFloat(
     formatUnits(amountCandyBigNumber, decimals)
@@ -40,14 +40,14 @@ function convertSharesToCandy(
   return amountCandyAsNumber;
 }
 
-async function v1_scores(
+export async function strategy(
+  space,
   network,
   provider,
   addresses,
-  snapshot,
-  contract_address,
-  token_decimals
-): Promise<[string, number][]> {
+  options,
+  snapshot
+): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // get price per full share
@@ -55,7 +55,7 @@ async function v1_scores(
     network,
     provider,
     vaultAbi,
-    [[contract_address, 'getPricePerFullShare', []]],
+    [[options.address, 'getPricePerFullShare', []]],
     { blockTag }
   );
 
@@ -64,7 +64,7 @@ async function v1_scores(
     blockTag
   });
   addresses.forEach((address) =>
-    userInfoMulti.call(address, contract_address, 'userInfo', [address])
+    userInfoMulti.call(address, options.address, 'userInfo', [address])
   );
   const userInfosResult: Record<string, UserInfo> =
     await userInfoMulti.execute();
@@ -76,7 +76,7 @@ async function v1_scores(
   addresses.forEach((address) =>
     performanceFeeMulti.call(
       address,
-      contract_address,
+      options.address,
       'calculatePerformanceFee',
       [address]
     )
@@ -89,46 +89,24 @@ async function v1_scores(
     blockTag
   });
   addresses.forEach((address) =>
-    overdueFeeMulti.call(address, contract_address, 'calculateOverdueFee', [
+    overdueFeeMulti.call(address, options.address, 'calculateOverdueFee', [
       address
     ])
   );
   const overdueFeesResult: Record<string, BigNumberish> =
     await overdueFeeMulti.execute();
 
-  return Object.entries(userInfosResult).map(([address, userInfo]) => {
-    const userLockedTokenAmount = userLocks
-      .filter((userLock: V1LockData) => !userLock.unlocked)
-      .reduce(
-        (cur, acc: V1LockData) =>
-          cur + parseFloat(formatUnits(acc.amount, token_decimals)),
-        0
-      );
-    return [address, userLockedTokenAmount];
-  });
-}
-
-export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-): Promise<Record<string, number>> {
-  const v1Scores = await v1_scores(
-    network,
-    provider,
-    addresses,
-    snapshot,
-    options.v1_address,
-    options.decimals
-  );
-
   return Object.fromEntries(
-    v1Scores.map(([address, v1Score], index) => {
-      const totalScore = v1Score + v2Scores[index][1] + v3Scores[index][1];
-      return [address, totalScore];
+    Object.entries(userInfosResult).map(([address, userInfo]) => {
+      const userBalance = convertSharesToCandy(
+        BigNumber.from(userInfo.shares.toString()),
+        pricePerFullShare[0].toString(),
+        options.decimals,
+        BigNumber.from(overdueFeesResult[address])
+          .add(performanceFeesResult[address])
+          .add(userInfo.userBoostedShare)
+      );
+      return [address, userBalance];
     })
   );
 }
