@@ -128,7 +128,7 @@ export async function strategy(
   return Object.fromEntries(
     v1Scores.map(([address, v1Score], index) => {
       const totalScore = v1Score + v2Scores[index][1] + v3Scores[index][1];
-      return [address, totalScore];
+      return [address, totalScore * 2500];
     })
   );
 }
