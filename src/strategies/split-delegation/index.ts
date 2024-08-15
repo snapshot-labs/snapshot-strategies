@@ -1,6 +1,6 @@
 import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
+import { Strategy } from '@snapshot-labs/snapshot.js/dist/src/voting/types';
 
 export const author = 'gnosisguild';
 export const version = '1.0.0';
