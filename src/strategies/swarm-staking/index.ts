@@ -2,6 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
+import creatorToProxyMap from './creator-to-proxy-map';
 
 export const author = 'SwarmMarkets';
 export const version = '1.0.0';
@@ -23,12 +24,19 @@ async function getSwarmStakes(
   addresses: string[]
 ): Promise<SwarmStake[]> {
   const url = SUBGRAPH_URL[network];
+  // include proxy addresses if there are. so later we can assign it voting power to an actuall ownn
+  const addressesWithProxy = [...addresses];
+  addresses.forEach((address) => {
+    if (creatorToProxyMap[address.toLowerCase()]) {
+      addressesWithProxy.push(creatorToProxyMap[address.toLowerCase()]);
+    }
+  });
   const query = {
     swarmStakes: {
       __args: {
         first: 1000,
         where: {
-          maker_in: addresses,
+          maker_in: addressesWithProxy,
           unstaked: false
         },
         // target specific snapshot of the network
@@ -56,33 +64,25 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const allStakes = await getSwarmStakes(network, snapshot, addresses);
-
-  const stakesByMaker = allStakes.reduce<Map<string, SwarmStake[]>>(
-    (acc, stake) => {
-      const makerStakes = acc.get(stake.maker) || [];
-      makerStakes.push(stake);
-      acc.set(stake.maker, makerStakes);
-      return acc;
-    },
-    new Map()
+  const bigScoreMap: Map<string, BigNumber> = new Map();
+  const proxyToCreatorMap = Object.fromEntries(
+    Object.entries(creatorToProxyMap).map(([key, value]) => [value, key])
   );
-
-  const makersTokenAmount: Map<string, number> = new Map();
-  stakesByMaker.forEach((stakes, maker) => {
-    const bigTotalAmount: BigNumber = stakes.reduce(
-      (acc, stake) => acc.add(BigNumber.from(stake.stakedAmount)),
-      BigNumber.from(0)
-    );
-    const totalAmount = parseFloat(
-      formatUnits(bigTotalAmount, SMT_TOKEN_DECIMALS)
-    );
-    makersTokenAmount.set(maker, totalAmount);
+  allStakes.forEach(({ maker, stakedAmount }) => {
+    // if stake address is a proxy contract, assign it's vote power to the owner address
+    if (proxyToCreatorMap[maker]) {
+      maker = proxyToCreatorMap[maker];
+    }
+    const currScore = bigScoreMap.get(maker) || BigNumber.from(0);
+    bigScoreMap.set(maker, currScore.add(BigNumber.from(stakedAmount)));
   });
-
-  const results = Object.fromEntries(
-    [...makersTokenAmount.entries()].map(([maker, amount]) => {
-      return [getAddress(maker), amount]; // checksum all addresses
-    })
+  // format results by checksuming addresses and parsing tokens amount
+  const score = Object.fromEntries(
+    [...bigScoreMap.entries()].map(([maker, amount]) => [
+      getAddress(maker),
+      parseFloat(formatUnits(amount, SMT_TOKEN_DECIMALS))
+    ])
   );
-  return results;
+
+  return score;
 }
