@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
 import { multicall } from '../../utils';
 
-const BIG18 = BigNumber.from('1000000000000000000');
+// const BIG18 = BigNumber.from('1000000000000000000');
 
 export const author = 'FraxFinance';
 export const version = '0.0.1';
