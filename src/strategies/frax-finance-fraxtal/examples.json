@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "frax-finance-fraxtal",
+      "params": {
+        "symbol": "veFXS",
+        "decimals": 18,
+        "FXS": "0xfc00000000000000000000000000000000000002",
+        "VEFXS_AGGREGATOR": "0x176A4e081653EbB8a2246BAfbfCf663782426531"
+      }
+    },
+    "network": "252",
+    "addresses": [
+      "0x36A87d1E3200225f881488E4AEedF25303FebcAe",
+      "0x234D953a9404Bf9DbC3b526271d440cD2870bCd2",
+      "0x6B175474E89094C44Da98b954EedeAC495271d0F",
+      "0x22511ffA88433aB56495947b559dfB62B3d47633",
+      "0x5180db0237291A6449DdA9ed33aD90a38787621c"
+    ],
+    "snapshot": 8944368
+  }
+]
