@@ -3,7 +3,7 @@
 Voting strategy using a REST API endpoint. Number of votes depends on the return of the API endpoint.
 (Unlike the `api` strategy, this strategy does not depend on voting power of other addresses)
 
-> Note: Use this strategy only if you are not using any override strategies (example: `delegation` strategy).
+> Note: Use this strategy only if you are not using any override strategies (For example using `delegation` strategy).
 
 ## Parameters
 
