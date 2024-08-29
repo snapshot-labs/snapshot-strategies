@@ -11,7 +11,7 @@ export const version = '0.0.1';
 
 const DECIMALS = 18;
 
-const abi = [ 'function balanceOf(address account) view returns (uint256)' ]
+const abi = ['function balanceOf(address account) view returns (uint256)'];
 
 const chunk = (arr, size) =>
   Array.from({ length: Math.ceil(arr.length / size) }, (v, i) =>
@@ -46,10 +46,7 @@ export async function strategy(
     network,
     provider,
     abi,
-    [
-      ...fxsQuery,
-      ...vefxsQuery,
-    ],
+    [...fxsQuery, ...vefxsQuery],
     { blockTag }
   );
 
@@ -72,14 +69,7 @@ export async function strategy(
 
         return [
           addresses[i],
-          parseFloat(
-            formatUnits(
-              free_fxs
-                .add(vefxs)
-                .toString(),
-              DECIMALS
-            )
-          )
+          parseFloat(formatUnits(free_fxs.add(vefxs).toString(), DECIMALS))
         ];
       })
   );
