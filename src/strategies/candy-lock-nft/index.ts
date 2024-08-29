@@ -40,8 +40,7 @@ async function v1_scores(
   provider,
   addresses,
   snapshot,
-  contract_address,
-  token_decimals
+  contract_address
 ): Promise<[string, number][]> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
@@ -68,8 +67,7 @@ async function v2_3_scores(
   provider,
   addresses,
   snapshot,
-  contract_address,
-  token_decimals
+  contract_address
 ): Promise<[string, number][]> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
@@ -105,24 +103,21 @@ export async function strategy(
     provider,
     addresses,
     snapshot,
-    options.v1_address,
-    options.decimals
+    options.v1_address
   );
   const v2Scores = await v2_3_scores(
     network,
     provider,
     addresses,
     snapshot,
-    options.v2_address,
-    options.decimals
+    options.v2_address
   );
   const v3Scores = await v2_3_scores(
     network,
     provider,
     addresses,
     snapshot,
-    options.v3_address,
-    options.decimals
+    options.v3_address
   );
 
   return Object.fromEntries(

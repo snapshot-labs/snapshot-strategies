@@ -5,8 +5,8 @@ import { formatUnits } from '@ethersproject/units';
 export const author = 'pierremarsotlyon1';
 export const version = '0.0.1';
 
-const VE_SDT = "0x0C30476f66034E11782938DF8e4384970B6c9e8a";
-const VE_PROXY_BOOST_SDT = "0xD67bdBefF01Fc492f1864E61756E5FBB3f173506";
+const VE_SDT = '0x0C30476f66034E11782938DF8e4384970B6c9e8a';
+const VE_PROXY_BOOST_SDT = '0xD67bdBefF01Fc492f1864E61756E5FBB3f173506';
 const TOKENLESS_PRODUCTION = 40;
 
 // Used ABI
@@ -37,9 +37,7 @@ export async function strategy(
     throw new Error('maximum of 20 whitelisted address');
   }
 
-  const mainnetCalls: any[] = [
-    [VE_SDT, 'totalSupply']
-  ];
+  const mainnetCalls: any[] = [[VE_SDT, 'totalSupply']];
 
   const destinationChainCalls: any[] = [
     [options.sdTokenGaugeDestinationChain, 'totalSupply']
@@ -80,19 +78,17 @@ export async function strategy(
   );
 
   // Queries
-  const ajustedBalancesMainnet = addresses.map((address: any) =>
-    [
-      VE_PROXY_BOOST_SDT,
-      'adjusted_balance_of',
-      [address]
-    ]);
+  const ajustedBalancesMainnet = addresses.map((address: any) => [
+    VE_PROXY_BOOST_SDT,
+    'adjusted_balance_of',
+    [address]
+  ]);
 
-  const sdTknGaugeBalanceDestinationChain = addresses.map((address: any) =>
-    [
-      options.sdTokenGaugeDestinationChain,
-      'balanceOf',
-      [address]
-    ]);
+  const sdTknGaugeBalanceDestinationChain = addresses.map((address: any) => [
+    options.sdTokenGaugeDestinationChain,
+    'balanceOf',
+    [address]
+  ]);
 
   const responsesMainnet: any[] = [];
   const responsesDestinationChain: any[] = [];
@@ -109,12 +105,9 @@ export async function strategy(
       calls.push(...mainnetCalls);
     }
 
-    let callResp: any[] = await multicall(
-      network,
-      provider,
-      abi,
-      calls,
-      { blockTag: blockListMainnet[i] });
+    let callResp: any[] = await multicall(network, provider, abi, calls, {
+      blockTag: blockListMainnet[i]
+    });
 
     if (isEnd) {
       veSDTTotalSupply = parseFloat(formatUnits(callResp.pop()[0], 18));
@@ -133,10 +126,13 @@ export async function strategy(
       destinationChainProvider,
       abi,
       calls,
-      { blockTag: blockListDesitnationChain[i] });
+      { blockTag: blockListDesitnationChain[i] }
+    );
 
     if (isEnd) {
-      sdTokenGaugeTotalSupplyDestinationChain = parseFloat(formatUnits(callResp.pop()[0], 18));
+      sdTokenGaugeTotalSupplyDestinationChain = parseFloat(
+        formatUnits(callResp.pop()[0], 18)
+      );
     }
 
     responsesDestinationChain.push(callResp);
@@ -150,12 +146,23 @@ export async function strategy(
         const userWorkingBalances: number[] = [];
 
         for (let j = 0; j < options.twavpNumberOfBlocks; j++) {
-          const voting_balance = parseFloat(formatUnits(BigNumber.from(responsesMainnet[j].shift()[0]), 18));
-          const l = parseFloat(formatUnits(BigNumber.from(responsesDestinationChain[j].shift()[0]), 18));
+          const voting_balance = parseFloat(
+            formatUnits(BigNumber.from(responsesMainnet[j].shift()[0]), 18)
+          );
+          const l = parseFloat(
+            formatUnits(
+              BigNumber.from(responsesDestinationChain[j].shift()[0]),
+              18
+            )
+          );
 
-          let lim = l * TOKENLESS_PRODUCTION / 100
+          let lim = (l * TOKENLESS_PRODUCTION) / 100;
           if (veSDTTotalSupply > 0) {
-            lim += sdTokenGaugeTotalSupplyDestinationChain * voting_balance / veSDTTotalSupply * (100 - TOKENLESS_PRODUCTION) / 100
+            lim +=
+              (((sdTokenGaugeTotalSupplyDestinationChain * voting_balance) /
+                veSDTTotalSupply) *
+                (100 - TOKENLESS_PRODUCTION)) /
+              100;
           }
 
           userWorkingBalances.push(Math.min(l, lim));
@@ -190,7 +197,7 @@ function getPreviousBlocks(
 
   for (let i = 0; i < numberOfBlocks; i++) {
     // Calculate block number
-    let blockNumber =
+    const blockNumber =
       currentBlockNumber - totalBlocksInterval + blockInterval * i;
 
     // Add block number to array
