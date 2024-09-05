@@ -904,7 +904,7 @@ const strategies = {
   csv,
   'swarm-staking': swarmStaking,
   'moca-staking': mocaStaking,
-  'hats-strategy': hatsStrategy
+  'hats-strategy': hatsStrategy,
   'candy-lockv1-token': candyLockV1Token,
   'candy-lock-token': candyLockToken,
   'candy-auto-vault': candyAutoVault,
