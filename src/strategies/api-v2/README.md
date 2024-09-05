@@ -3,7 +3,7 @@
 Voting strategy using a REST API endpoint. Number of votes depends on the return of the API endpoint.
 (Unlike the `api` strategy, this strategy does not depend on voting power of other addresses)
 
-> Note: Better to use this strategy only if you are not using any override strategies (example: delegation strategy).
+> Note: Use this strategy only if you are not using any override strategies (For example using `delegation` strategy).
 
 ## Parameters
 
@@ -46,5 +46,22 @@ If you are passing a API url with POST method use following format:
 {
   "url": "https://...",
   "type": "api-post"
+}
+```
+
+### Example response from API
+
+```JSON
+{
+  "score": [
+    {
+      "address": "0x1234567890abcdef1234567890abcdef12345678",
+      "score": "100"
+    },
+    {
+      "address": "0xabcdefabcdefabcdefabcdefabcdefabcdefabcd",
+      "score": "200"
+    }
+  ]
 }
 ```

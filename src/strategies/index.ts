@@ -52,6 +52,7 @@ import * as makerDsChief from './maker-ds-chief';
 import * as uni from './uni';
 import * as yearnVault from './yearn-vault';
 import * as fraxFinance from './frax-finance';
+import * as fraxFinanceFraxtal from './frax-finance-fraxtal';
 import * as moloch from './moloch';
 import * as uniswap from './uniswap';
 import * as faralandStaking from './faraland-staking';
@@ -377,6 +378,7 @@ import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
+import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
 import * as sdVoteBoostTWAVPVCrossChain from './sd-vote-boost-twavp-vsdcrv-crosschain';
 import * as sdVoteBoostTWAVPBalanceof from './sd-vote-boost-twavp-balanceof';
@@ -442,6 +444,12 @@ import * as csv from './csv';
 import * as swarmStaking from './swarm-staking';
 import * as mocaStaking from './moca-staking';
 import * as hatsStrategy from './hats-strategy';
+import * as candyLockV1Token from './candy-lockv1-token';
+import * as candyLockToken from './candy-lock-token';
+import * as candyAutoVault from './candy-auto-vault';
+import * as candyLockNft from './candy-lock-nft';
+import * as candyNftStaking from './candy-nft-staking';
+import * as pom from './pom';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -521,6 +529,7 @@ const strategies = {
   'gooddollar-multichain': gooddollarMultichain,
   uni,
   'frax-finance': fraxFinance,
+  'frax-finance-fraxtal': fraxFinanceFraxtal,
   'yearn-vault': yearnVault,
   moloch,
   masterchef,
@@ -831,6 +840,7 @@ const strategies = {
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
+  'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
   'sd-vote-boost-twavp-balanceof': sdVoteBoostTWAVPBalanceof,
@@ -895,6 +905,12 @@ const strategies = {
   'swarm-staking': swarmStaking,
   'moca-staking': mocaStaking,
   'hats-strategy': hatsStrategy
+  'candy-lockv1-token': candyLockV1Token,
+  'candy-lock-token': candyLockToken,
+  'candy-auto-vault': candyAutoVault,
+  'candy-lock-nft': candyLockNft,
+  'candy-nft-staking': candyNftStaking,
+  pom
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

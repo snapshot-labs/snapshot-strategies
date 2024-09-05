@@ -71,7 +71,7 @@ export async function strategy(
       parseFloat(
         formatUnits(
           responseData.score
-            .find((s) => s.address === address)
+            .find((s) => s.address?.toLowerCase() === address.toLowerCase())
             ?.score?.toString() || '0',
           options.hasOwnProperty('decimals') ? options.decimals : 0
         )
