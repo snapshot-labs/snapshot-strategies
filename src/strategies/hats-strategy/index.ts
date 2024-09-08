@@ -38,13 +38,16 @@ export async function strategy(
     const delegate = response.delegates[address];
     const balance = BigNumber.from(response.balances[address] || 0);
     tokenBalances[address] = balance;
-    if (delegate !== '0x0000000000000000000000000000000000000000' && delegate !== address) {
+    if (
+      delegate !== '0x0000000000000000000000000000000000000000' &&
+      delegate !== address
+    ) {
       delegates[address] = delegate;
     }
   }
 
   // If ERC4626 vault is provided, calculate the balances and apply multiplier
-  let vaultBalances: Record<string, BigNumber> = {};
+  const vaultBalances: Record<string, BigNumber> = {};
   if (options.vaultAddress) {
     const rawVaultBalances = await erc4626BalanceOfStrategy(
       space,
@@ -57,7 +60,9 @@ export async function strategy(
 
     // Apply multiplier to vault balances
     for (const [address, balance] of Object.entries(rawVaultBalances)) {
-      vaultBalances[address] = BigNumber.from(parseUnits(balance.toString(), options.decimals)).mul(options.vaultMultiplier || 3);
+      vaultBalances[address] = BigNumber.from(
+        parseUnits(balance.toString(), options.decimals)
+      ).mul(options.vaultMultiplier || 3);
     }
   }
 
@@ -70,18 +75,25 @@ export async function strategy(
 
     const delegate = delegates[address];
     if (delegate) {
-      adjustedBalances[delegate] = (adjustedBalances[delegate] || BigNumber.from(0)).add(totalBalance);
+      adjustedBalances[delegate] = (
+        adjustedBalances[delegate] || BigNumber.from(0)
+      ).add(totalBalance);
       adjustedBalances[address] = BigNumber.from(0); // Zero out original balance to avoid double-counting
     } else {
       adjustedBalances[address] = totalBalance;
     }
   }
 
-   const finalBalances: Record<string, number> = {};
-   
-   Object.keys(adjustedBalances).forEach((address) => {
-     finalBalances[address] = parseFloat(formatUnits(adjustedBalances[address] || BigNumber.from(0), options.decimals));
-   });
+  const finalBalances: Record<string, number> = {};
+
+  Object.keys(adjustedBalances).forEach((address) => {
+    finalBalances[address] = parseFloat(
+      formatUnits(
+        adjustedBalances[address] || BigNumber.from(0),
+        options.decimals
+      )
+    );
+  });
 
   return finalBalances;
 }

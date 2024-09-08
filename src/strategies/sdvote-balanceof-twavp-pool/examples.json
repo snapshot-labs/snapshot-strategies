@@ -11,9 +11,7 @@
         "twavpNumberOfBlocks": 5,
         "blockPerSec": 3,
         "whiteListedAddress": [],
-        "pools": [
-          "0xb8204D31379A9B317CD61C833406C972F58ecCbC"
-        ],
+        "pools": ["0xb8204D31379A9B317CD61C833406C972F58ecCbC"],
         "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
         "indexSdTokenInPool": 1
       }
