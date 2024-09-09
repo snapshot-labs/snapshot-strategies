@@ -54,7 +54,11 @@ export async function strategy(
     [address]
   ]);
 
-  const poolsCalls: any[] = options.pools.map((pool: string) => [pool, 'balances', [options.indexSdTokenInPool]]);
+  const poolsCalls: any[] = options.pools.map((pool: string) => [
+    pool,
+    'balances',
+    [options.indexSdTokenInPool]
+  ]);
 
   // Execute multicall `sampleStep` times
   const response: any[] = [];
@@ -62,9 +66,7 @@ export async function strategy(
     // Use good block number
     blockTag = blockList[i];
 
-    const queries = [
-      ...balanceOfQueries
-    ];
+    const queries = [...balanceOfQueries];
 
     if (i === options.twavpNumberOfBlocks - 1) {
       queries.push(...poolsCalls);
@@ -77,7 +79,10 @@ export async function strategy(
 
   let liquidityVoteFee = 0;
   if (options.pools.length > 0) {
-    liquidityVoteFee = options.pools.map(() => parseFloat(formatUnits(response[response.length - 1].pop()[0], 18)))
+    liquidityVoteFee = options.pools
+      .map(() =>
+        parseFloat(formatUnits(response[response.length - 1].pop()[0], 18))
+      )
       .reduce((acc: number, balance: number) => acc + balance, 0);
   }
 
