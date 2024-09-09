@@ -37,6 +37,12 @@ export async function strategy(
     throw new Error('maximum of 20 whitelisted address');
   }
 
+  const veSDTUserAddresses = options.veSDTUserAddresses || {};
+  const veSDTUserAddressesMap = {};
+  for (const address of Object.keys(veSDTUserAddresses)) {
+    veSDTUserAddressesMap[address.toLowerCase()] = veSDTUserAddresses[address].toLowerCase();
+  }
+
   const mainnetCalls: any[] = [[VE_SDT, 'totalSupply']];
 
   const destinationChainCalls: any[] = [
@@ -81,7 +87,7 @@ export async function strategy(
   const ajustedBalancesMainnet = addresses.map((address: any) => [
     VE_PROXY_BOOST_SDT,
     'adjusted_balance_of',
-    [address]
+    [veSDTUserAddressesMap[address.toLowerCase()] || address]
   ]);
 
   const sdTknGaugeBalanceDestinationChain = addresses.map((address: any) => [
