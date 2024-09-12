@@ -4,8 +4,8 @@
     "strategy": {
       "name": "superboring",
       "params": {
-        "tokenAddress": "0x6c210f071c7246c452cac7f8baa6da53907bbae1",
-        "superBoringAddress": "0xC6A3c5FFA67E718f3C5d949Bab952f5Cc6eE9043"
+        "tokenAddress": "0x6C210F071c7246C452CAC7F8BaA6dA53907BbaE1",
+        "superBoringAddress": "0xAcA744453C178F3D651e06A3459E2F242aa01789"
       }
     },
     "network": "42220",
@@ -17,6 +17,6 @@
       "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
       "0x4ee5D45eB79aEa04C02961a2e543bbAf5cec81B3"
     ],
-    "snapshot": 26073266
+    "snapshot": 27695930
   }
 ]
