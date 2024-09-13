@@ -1,3 +1,4 @@
+import { getAddress } from '@ethersproject/address';
 import { getProvider, multicall, subgraphRequest } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
@@ -19,6 +20,11 @@ const abi = [
   'function adjusted_balance_of(address user) external view returns (uint256)'
 ];
 
+interface IDelegation {
+  source: string;
+  destination: string;
+}
+
 export async function strategy(
   space,
   network,
@@ -35,6 +41,25 @@ export async function strategy(
   // Maximum of 20 whitelisted address
   if (options.whiteListedAddress.length > 20) {
     throw new Error('maximum of 20 whitelisted address');
+  }
+
+  // Addresses in tlc
+  addresses = addresses.map((addr) => addr.toLowerCase());
+
+  const delegations: IDelegation[] = [];
+  if (options.delegation) {
+    for (const addSource of Object.keys(options.delegation)) {
+      const addrSource = addSource.toLowerCase();
+      delegations.push({
+        source: addrSource,
+        destination: options.delegation[addSource].toLowerCase()
+      });
+
+      // Add the delegation to addresses list
+      if (!addresses.find((addr) => addr === addrSource)) {
+        addresses.push(addrSource);
+      }
+    }
   }
 
   const veSDTUserAddresses = options.veSDTUserAddresses || {};
@@ -181,8 +206,12 @@ export async function strategy(
           options.whiteListedAddress
         );
 
+        // Check if we have a delegation, if yes, use the delegated address instead of the current address
+        const delegation = delegations.find((d) => d.source === addresses[i].toLowerCase());
+        const address = delegation ? delegation.destination : addresses[i];
+
         // Return address and voting power
-        return [addresses[i], Number(averageWorkingBalance)];
+        return [getAddress(address), Number(averageWorkingBalance)];
       })
   );
 }
