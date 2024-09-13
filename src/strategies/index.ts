@@ -451,6 +451,7 @@ import * as candyAutoVault from './candy-auto-vault';
 import * as candyLockNft from './candy-lock-nft';
 import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
+import * as superboring from './superboring';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -912,7 +913,8 @@ const strategies = {
   'candy-auto-vault': candyAutoVault,
   'candy-lock-nft': candyLockNft,
   'candy-nft-staking': candyNftStaking,
-  pom
+  pom,
+  superboring
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

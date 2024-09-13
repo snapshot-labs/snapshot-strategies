@@ -7,6 +7,7 @@ export const author = 'hats-finance';
 export const version = '0.1.0';
 
 const abi = [
+  'function getVotes(address account) view returns (uint256)',
   'function delegates(address account) view returns (address)',
   'function balanceOf(address account) view returns (uint256)'
 ];
@@ -23,31 +24,31 @@ export async function strategy(
 
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
-  // Get the delegate addresses and original balances
+  // Get the voting power, delegate addresses, and original balances
   addresses.forEach((address) => {
+    multi.call(`votes.${address}`, options.address, 'getVotes', [address]);
     multi.call(`delegates.${address}`, options.address, 'delegates', [address]);
     multi.call(`balances.${address}`, options.address, 'balanceOf', [address]);
   });
 
   const response = await multi.execute();
 
-  const delegates: Record<string, string> = {};
-  const tokenBalances: Record<string, BigNumber> = {};
+  const adjustedBalances: Record<string, BigNumber> = {};
 
   for (const address of addresses) {
+    const votes = BigNumber.from(response.votes[address] || 0);
     const delegate = response.delegates[address];
     const balance = BigNumber.from(response.balances[address] || 0);
-    tokenBalances[address] = balance;
-    if (
-      delegate !== '0x0000000000000000000000000000000000000000' &&
-      delegate !== address
-    ) {
-      delegates[address] = delegate;
+
+    if (delegate === '0x0000000000000000000000000000000000000000') {
+      adjustedBalances[address] = votes.add(balance);
+    } else {
+      adjustedBalances[address] = votes;
     }
   }
 
   // If ERC4626 vault is provided, calculate the balances and apply multiplier
-  const vaultBalances: Record<string, BigNumber> = {};
+  let vaultBalances: Record<string, BigNumber> = {};
   if (options.vaultAddress) {
     const rawVaultBalances = await erc4626BalanceOfStrategy(
       space,
@@ -60,39 +61,20 @@ export async function strategy(
 
     // Apply multiplier to vault balances
     for (const [address, balance] of Object.entries(rawVaultBalances)) {
-      vaultBalances[address] = BigNumber.from(
-        parseUnits(balance.toString(), options.decimals)
-      ).mul(options.vaultMultiplier || 3);
+      vaultBalances[address] = BigNumber.from(parseUnits(balance.toString(), options.decimals)).mul(options.vaultMultiplier || 3);
     }
   }
 
-  // Handle delegation: add both token and vault balances to the delegate if delegation exists
-  const adjustedBalances: Record<string, BigNumber> = {};
+  // Add vault balances to adjusted balances
   for (const address of addresses) {
-    const tokenBalance = tokenBalances[address] || BigNumber.from(0);
     const vaultBalance = vaultBalances[address] || BigNumber.from(0);
-    const totalBalance = tokenBalance.add(vaultBalance);
-
-    const delegate = delegates[address];
-    if (delegate) {
-      adjustedBalances[delegate] = (
-        adjustedBalances[delegate] || BigNumber.from(0)
-      ).add(totalBalance);
-      adjustedBalances[address] = BigNumber.from(0); // Zero out original balance to avoid double-counting
-    } else {
-      adjustedBalances[address] = totalBalance;
-    }
+    adjustedBalances[address] = (adjustedBalances[address] || BigNumber.from(0)).add(vaultBalance);
   }
 
   const finalBalances: Record<string, number> = {};
-
+   
   Object.keys(adjustedBalances).forEach((address) => {
-    finalBalances[address] = parseFloat(
-      formatUnits(
-        adjustedBalances[address] || BigNumber.from(0),
-        options.decimals
-      )
-    );
+    finalBalances[address] = parseFloat(formatUnits(adjustedBalances[address] || BigNumber.from(0), options.decimals));
   });
 
   return finalBalances;
