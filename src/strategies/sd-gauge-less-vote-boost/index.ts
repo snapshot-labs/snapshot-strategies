@@ -43,7 +43,6 @@ export async function strategy(
     throw new Error('maximum of 20 whitelisted address');
   }
 
-<<<<<<< master
   // Addresses in tlc
   addresses = addresses.map((addr) => addr.toLowerCase());
 
@@ -63,8 +62,6 @@ export async function strategy(
     }
   }
 
-=======
->>>>>>> master
   const veSDTUserAddresses = options.veSDTUserAddresses || {};
   const veSDTUserAddressesMap = {};
   for (const address of Object.keys(veSDTUserAddresses)) {
