@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Erable Governance Example",
+    "strategy": {
+      "name": "erable-governance-v1",
+      "params": {
+        "address": "0xA8bF0B92BE0338794d2e3b180b9643A1f0eB2914",
+        "stakingAddress": "0xA88729cD1482F4B9A2cF6A9E72E8CD0a26EC3122",
+        "symbol": "ERA",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x00Ce97947676F228513dF085F7d678053D482882",
+      "0x1a52462A47B2BfB51E3912Cd41942ec057BEE228",
+      "0x8c77e668b3BCbda6E0dA0c83f06D9c80675f85cB",
+      "0x13B4263dA02e7CE27Efe2cd8170c5DF13C137f88"
+    ],
+    "snapshot": 61703618
+  }
+]
