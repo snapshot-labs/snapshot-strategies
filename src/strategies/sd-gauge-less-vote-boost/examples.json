@@ -12,12 +12,9 @@
         "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
         "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"],
         "veSDTUserAddresses": {},
-<<<<<<< master
         "delegation": {
           "0xBf911AF95bC5FE348F468b6D6928df7E7fC278e3": "0xE056F9184590F28795db4eb61484d70301A1A5C9"
         },
-=======
->>>>>>> master
         "targetChainId": "252",
         "blocksPerDay": 43200
       }
@@ -33,10 +30,7 @@
       "0xC6625129C9df3314a4dd604845488f4bA62F9dB8",
       "0x10c16c7B8b1DDCFE65990ec822DE4379dd8a86dE",
       "0x034f978581617FcABB75bfBe697d2230a3285437",
-<<<<<<< master
       "0xE056F9184590F28795db4eb61484d70301A1A5C9",
-=======
->>>>>>> master
       "0xBf911AF95bC5FE348F468b6D6928df7E7fC278e3"
     ],
     "snapshot": 20712893
