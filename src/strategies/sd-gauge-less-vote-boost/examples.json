@@ -13,7 +13,7 @@
         "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"],
         "veSDTUserAddresses": {},
         "delegation": {
-          "0xBf911AF95bC5FE348F468b6D6928df7E7fC278e3": "0xE056F9184590F28795db4eb61484d70301A1A5C9"
+          "0xBf911AF95bC5FE348F468b6D6928df7E7fC278e3": "0xF930EBBd05eF8b25B1797b9b2109DDC9B0d43063"
         },
         "targetChainId": "252",
         "blocksPerDay": 43200
