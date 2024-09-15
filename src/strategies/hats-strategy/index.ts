@@ -48,7 +48,7 @@ export async function strategy(
   }
 
   // If ERC4626 vault is provided, calculate the balances and apply multiplier
-  let vaultBalances: Record<string, BigNumber> = {};
+  const vaultBalances: Record<string, BigNumber> = {};
   if (options.vaultAddress) {
     const rawVaultBalances = await erc4626BalanceOfStrategy(
       space,
@@ -61,20 +61,29 @@ export async function strategy(
 
     // Apply multiplier to vault balances
     for (const [address, balance] of Object.entries(rawVaultBalances)) {
-      vaultBalances[address] = BigNumber.from(parseUnits(balance.toString(), options.decimals)).mul(options.vaultMultiplier || 3);
+      vaultBalances[address] = BigNumber.from(
+        parseUnits(balance.toString(), options.decimals)
+      ).mul(options.vaultMultiplier || 3);
     }
   }
 
   // Add vault balances to adjusted balances
   for (const address of addresses) {
     const vaultBalance = vaultBalances[address] || BigNumber.from(0);
-    adjustedBalances[address] = (adjustedBalances[address] || BigNumber.from(0)).add(vaultBalance);
+    adjustedBalances[address] = (
+      adjustedBalances[address] || BigNumber.from(0)
+    ).add(vaultBalance);
   }
 
   const finalBalances: Record<string, number> = {};
-   
+
   Object.keys(adjustedBalances).forEach((address) => {
-    finalBalances[address] = parseFloat(formatUnits(adjustedBalances[address] || BigNumber.from(0), options.decimals));
+    finalBalances[address] = parseFloat(
+      formatUnits(
+        adjustedBalances[address] || BigNumber.from(0),
+        options.decimals
+      )
+    );
   });
 
   return finalBalances;

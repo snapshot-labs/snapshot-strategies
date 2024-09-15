@@ -65,7 +65,8 @@ export async function strategy(
   const veSDTUserAddresses = options.veSDTUserAddresses || {};
   const veSDTUserAddressesMap = {};
   for (const address of Object.keys(veSDTUserAddresses)) {
-    veSDTUserAddressesMap[address.toLowerCase()] = veSDTUserAddresses[address].toLowerCase();
+    veSDTUserAddressesMap[address.toLowerCase()] =
+      veSDTUserAddresses[address].toLowerCase();
   }
 
   const mainnetCalls: any[] = [[VE_SDT, 'totalSupply']];
@@ -207,7 +208,9 @@ export async function strategy(
         );
 
         // Check if we have a delegation, if yes, use the delegated address instead of the current address
-        const delegation = delegations.find((d) => d.source === addresses[i].toLowerCase());
+        const delegation = delegations.find(
+          (d) => d.source === addresses[i].toLowerCase()
+        );
         const address = delegation ? delegation.destination : addresses[i];
 
         // Return address and voting power
