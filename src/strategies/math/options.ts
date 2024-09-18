@@ -31,6 +31,7 @@ export enum Operation {
   AIfGteB = 'a-if-gte-b',
   Multiply = 'multiply',
   MINUS = 'minus',
+  PLUS = 'plus',
   Divide = 'divide'
 }
 
@@ -66,6 +67,7 @@ const operandCountByOperation: Record<Operation, number> = {
   [Operation.AIfGtB]: 3,
   [Operation.AIfGteB]: 3,
   [Operation.MINUS]: 2,
+  [Operation.PLUS]: 2,
   [Operation.Divide]: 2
 };
 
@@ -87,6 +89,7 @@ export function validateOptions(rawOptions: OptionalOptions): Options {
     rawOptions.operation !== Operation.AIfGteB &&
     rawOptions.operation !== Operation.Multiply &&
     rawOptions.operation !== Operation.MINUS &&
+    rawOptions.operation !== Operation.PLUS &&
     rawOptions.operation !== Operation.Divide
   ) {
     throw new Error('Invalid `operation`');
