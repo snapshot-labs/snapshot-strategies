@@ -40,48 +40,30 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const block = await provider.getBlock(blockTag);
 
-  const subgraphData: { members: Member[] } = await subgraphRequest(
+  const members = await subgraphRequestWithPagination(
     options.subgraphUrl,
-    {
-      members: {
-        __args: {
-          block: { number: block.number }
-        },
-        id: true,
-        address: true,
-        delegators: {
-          __args: {
-            where: {
-              context: space,
-              expirationTimestamp_gte: block.timestamp
-            }
-          },
-          delegator: {
-            address: true
-          },
-          ratio: true
-        },
-        delegatees: {
-          __args: {
-            where: {
-              context: space,
-              expirationTimestamp_gte: block.timestamp
-            }
-          },
-          delegatee: {
-            address: true
-          },
-          ratio: true
-        }
-      }
-    }
+    addresses,
+    space,
+    block
   );
 
   addresses = addresses.map(getAddress);
 
-  const allAddresses = subgraphData.members
-    .map((member) => member.address)
-    .concat(addresses);
+  const allAddresses = new Set(addresses);
+
+  members.forEach((member) => {
+    allAddresses.add(member.address);
+    member.delegators?.forEach((delegation) =>
+      delegation.delegator
+        ? allAddresses.add(delegation.delegator.address)
+        : null
+    );
+    member.delegatees?.forEach((delegation) =>
+      delegation.delegatee
+        ? allAddresses.add(delegation.delegatee.address)
+        : null
+    );
+  });
 
   const scores: { [k: string]: unknown }[] = (
     await getScoresDirect(
@@ -89,14 +71,14 @@ export async function strategy(
       options.strategies,
       network,
       provider,
-      allAddresses,
+      [...allAddresses],
       snapshot
     )
   ).filter((score) => Object.keys(score).length !== 0);
 
   return Object.fromEntries(
     addresses.map((address) => {
-      const member = subgraphData.members.find(
+      const member = members.find(
         (member) => member.address.toLowerCase() === address.toLowerCase()
       );
       return [
@@ -130,3 +112,63 @@ const getVp = (member: Member, scores: { [k: string]: any }[]): any => {
 
   return addressScore + receivedVp - delegatedVp;
 };
+
+async function subgraphRequestWithPagination(
+  subgraphURL,
+  addresses,
+  space,
+  block
+): Promise<Member[]> {
+  const chunkSize = 500;
+  const chunks: string[][] = [];
+  for (let i = 0; i < addresses.length; i += chunkSize) {
+    chunks.push(addresses.slice(i, i + chunkSize));
+  }
+
+  const results: Member[] = [];
+  for (const chunk of chunks) {
+    const params = {
+      members: {
+        __args: {
+          block: { number: block.number },
+          where: {
+            address_in: chunk.map((address) => address.toLowerCase())
+          }
+        },
+        id: true,
+        address: true,
+        delegators: {
+          __args: {
+            where: {
+              context: space,
+              expirationTimestamp_gte: block.timestamp
+            }
+          },
+          delegator: {
+            address: true
+          },
+          ratio: true
+        },
+        delegatees: {
+          __args: {
+            where: {
+              context: space,
+              expirationTimestamp_gte: block.timestamp
+            }
+          },
+          delegatee: {
+            address: true
+          },
+          ratio: true
+        }
+      }
+    };
+    const result: { members: Member[] } = await subgraphRequest(
+      subgraphURL,
+      params
+    );
+    results.push(...result.members);
+  }
+
+  return results;
+}
