@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as polygonSelfStaked from './polygon-self-staked-pol';
 import * as delegatexyzErc721BalanceOf from './delegatexyz-erc721-balance-of';
 import * as urbitGalaxies from './urbit-galaxies/index';
 import * as ecoVotingPower from './eco-voting-power';
@@ -830,6 +831,7 @@ const strategies = {
   spaceid,
   'delegate-registry-v2': delegateRegistryV2,
   'split-delegation': splitDelegation,
+  'polygon-self-staked-pol': polygonSelfStaked,
   'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg,
   'karma-discord-roles': karmaDiscordRoles,
   'seedify-cumulative-voting-power-hodl-staking-farming':
