@@ -20,9 +20,10 @@ Here is an example of parameters:
   "subgraphUrl": "https://api.studio.thegraph.com/query/87073/split-delegation/v0.0.5",
   "strategies": [
     {
-      "name": "polygon-self-staked-pol",
+      "name": "erc20-balance-of",
       "params": {
-        "stakeManagerAddress": "0x4AE8f648B1Ec892B6cc68C89cc088583964d08bE",
+        "address": "0xD01Db8Fb3CE7AeeBfB24317E12a0A854c256E99b",
+        "symbol": "EPT",
         "decimals": 18
       }
     }
