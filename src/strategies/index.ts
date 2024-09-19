@@ -453,6 +453,7 @@ import * as candyLockNft from './candy-lock-nft';
 import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
+import * as erableGovernanceV1 from './erable-governance-v1';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -916,7 +917,8 @@ const strategies = {
   'candy-lock-nft': candyLockNft,
   'candy-nft-staking': candyNftStaking,
   pom,
-  superboring
+  superboring,
+  'erable-governance-v1': erableGovernanceV1
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
