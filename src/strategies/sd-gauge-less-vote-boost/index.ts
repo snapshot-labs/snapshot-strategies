@@ -65,7 +65,8 @@ export async function strategy(
   const veSDTUserAddresses = options.veSDTUserAddresses || {};
   const veSDTUserAddressesMap = {};
   for (const address of Object.keys(veSDTUserAddresses)) {
-    veSDTUserAddressesMap[address.toLowerCase()] = veSDTUserAddresses[address].toLowerCase();
+    veSDTUserAddressesMap[address.toLowerCase()] =
+      veSDTUserAddresses[address].toLowerCase();
   }
 
   const mainnetCalls: any[] = [[VE_SDT, 'totalSupply']];
@@ -212,12 +213,12 @@ export async function strategy(
   );
 
   // Manage delegation
-  for(const addr of Object.keys(vp)) {
-    for(const delegation of delegations) {
-      if(addr.toLowerCase() === delegation.destination.toLowerCase()) {
+  for (const addr of Object.keys(vp)) {
+    for (const delegation of delegations) {
+      if (addr.toLowerCase() === delegation.destination.toLowerCase()) {
         let vpToAdd = 0;
-        for(const addrTmp of Object.keys(vp)) {
-          if(addrTmp.toLowerCase() === delegation.source.toLowerCase()) {
+        for (const addrTmp of Object.keys(vp)) {
+          if (addrTmp.toLowerCase() === delegation.source.toLowerCase()) {
             vpToAdd = vp[addrTmp] || 0;
             break;
           }
@@ -231,7 +232,7 @@ export async function strategy(
   return Object.keys(vp).reduce((acc, addr) => {
     acc[getAddress(addr)] = vp[addr];
     return acc;
-  } , {});
+  }, {});
 }
 
 function getPreviousBlocks(
