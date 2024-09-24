@@ -9,25 +9,12 @@
       }
     },
     "network": "1",
-    "addresses": ["0x06658Fd70023f527BFAc1A6d9141C56d99c65129"],
-    "snapshot": 14597922
-  },
-  {
-    "name": "Example query",
-    "strategy": {
-      "name": "erc1155-all-balances-of",
-      "params": {
-        "address": "0x2939b94BDc377e66A377cfc15028DF3Bd6aC6C28",
-        "symbol": "CORGI"
-      }
-    },
-    "network": "137",
     "addresses": [
-      "0xb165014c736c50da0638283eac2e19c88eab74f3",
-      "0x28adbf7bd37c08965746669471a1dcef6dc91009",
-      "0xe6fecee69a9e3726324498830bb0e898a866eccc",
-      "0x715c624ff8a8ebae3a2030c0b0868a5b447c956f"
+      "0x06658Fd70023f527BFAc1A6d9141C56d99c65129",
+      "0xa745067637CFea3fef6861135fAd57Ad38dF3Bfe",
+      "0xe616A809F70f0B947331759303286C28Cc304693",
+      "0xb104371D5a2680fB0d47eA9A3aA2348392454186"
     ],
-    "snapshot": 27088229
+    "snapshot": 14597922
   }
 ]
