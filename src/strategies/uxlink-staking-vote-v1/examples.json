@@ -1,0 +1,21 @@
+[
+  {
+    "name": "UXLink Staking",
+    "strategy": {
+      "name": "uxlink-staking-vote-v1",
+      "params": {
+        "address": "0xBd334838F0B381718f74A40414b57ECDCbAFDAcE",
+        "symbol": "UXLINK",
+        "decimals": 18
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xE9a637271E9ADbE355CdA9c5a55852C0587942Df",
+      "0x3ce615dE3fC3a7eADF5b15752F5a8ef88AEF5A7a",
+      "0xe3C8596e9FA4631b0dFc5EF14747fF28E5b3049F",
+      "0xbDf320510e570869e074e520E99bA4006474ef36"
+    ],
+    "snapshot": 256763308
+  }
+]

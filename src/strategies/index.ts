@@ -454,6 +454,7 @@ import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
+import * as uxlinkStakingVoteV1 from './uxlink-staking-vote-v1';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -918,7 +919,8 @@ const strategies = {
   'candy-nft-staking': candyNftStaking,
   pom,
   superboring,
-  'erable-governance-v1': erableGovernanceV1
+  'erable-governance-v1': erableGovernanceV1,
+  'uxlink-staking-vote-v1': uxlinkStakingVoteV1
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
