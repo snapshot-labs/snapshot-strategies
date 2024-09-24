@@ -7,7 +7,6 @@ import { BigNumberish } from '@ethersproject/bignumber';
 export const author = 'lessthanno';
 export const version = '0.1.0';
 
-// ABI 定义，包含要调用的合约函数
 const abi = [
   'function getUserStakeInfo(address user) external view returns (uint256, uint256, uint256, uint256)'
 ];
