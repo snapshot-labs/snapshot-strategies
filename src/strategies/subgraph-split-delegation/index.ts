@@ -40,7 +40,7 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const block = await provider.getBlock(blockTag);
 
-  const members = await subgraphRequestWithPagination(
+  const members = await getDelegations(
     options.subgraphUrl,
     addresses,
     space,
@@ -113,13 +113,15 @@ const getVp = (member: Member, scores: { [k: string]: any }[]): any => {
   return addressScore + receivedVp - delegatedVp;
 };
 
-async function subgraphRequestWithPagination(
-  subgraphURL,
-  addresses,
-  space,
-  block
+async function getDelegations(
+  subgraphURL: string,
+  addresses: string[],
+  space: string,
+  block: any
 ): Promise<Member[]> {
-  const chunkSize = 500;
+  const chunkSize = 25;
+  const pageSize = 20; // chunkSize * pageSize * 2 <= 1000 (max elements per query)
+
   const chunks: string[][] = [];
   for (let i = 0; i < addresses.length; i += chunkSize) {
     chunks.push(addresses.slice(i, i + chunkSize));
@@ -127,47 +129,81 @@ async function subgraphRequestWithPagination(
 
   const results: Member[] = [];
   for (const chunk of chunks) {
-    const params = {
-      members: {
-        __args: {
-          block: { number: block.number },
-          where: {
-            address_in: chunk.map((address) => address.toLowerCase())
+    let page = 0;
+    let reqAddresses = chunk.map((address) => address.toLowerCase());
+    while (reqAddresses.length) {
+      const params = {
+        members: {
+          __args: {
+            block: { number: block.number },
+            where: {
+              address_in: reqAddresses
+            }
+          },
+          id: true,
+          address: true,
+          delegators: {
+            __args: {
+              where: {
+                context: space,
+                expirationTimestamp_gte: block.timestamp
+              },
+              first: pageSize,
+              skip: page * pageSize
+            },
+            delegator: {
+              address: true
+            },
+            ratio: true
+          },
+          delegatees: {
+            __args: {
+              where: {
+                context: space,
+                expirationTimestamp_gte: block.timestamp
+              },
+              first: pageSize,
+              skip: page * pageSize
+            },
+            delegatee: {
+              address: true
+            },
+            ratio: true
           }
-        },
-        id: true,
-        address: true,
-        delegators: {
-          __args: {
-            where: {
-              context: space,
-              expirationTimestamp_gte: block.timestamp
-            }
-          },
-          delegator: {
-            address: true
-          },
-          ratio: true
-        },
-        delegatees: {
-          __args: {
-            where: {
-              context: space,
-              expirationTimestamp_gte: block.timestamp
-            }
-          },
-          delegatee: {
-            address: true
-          },
-          ratio: true
         }
-      }
-    };
-    const result: { members: Member[] } = await subgraphRequest(
-      subgraphURL,
-      params
-    );
-    results.push(...result.members);
+      };
+      const result: { members: Member[] } = await subgraphRequest(
+        subgraphURL,
+        params
+      );
+      result.members.forEach((newMember) => {
+        const existingMemberIndex = results.findIndex(
+          (member) =>
+            member.address.toLowerCase() === newMember.address.toLowerCase()
+        );
+        if (existingMemberIndex !== -1) {
+          const existingMember = results[existingMemberIndex];
+          existingMember.delegatees = [
+            ...(existingMember.delegatees || []),
+            ...(newMember.delegatees || [])
+          ];
+          existingMember.delegators = [
+            ...(existingMember.delegators || []),
+            ...(newMember.delegators || [])
+          ];
+        } else {
+          results.push(newMember);
+        }
+      });
+      reqAddresses = result.members
+        .filter(
+          (member) =>
+            member.delegatees?.length === pageSize ||
+            member.delegators?.length === pageSize
+        )
+        .map((member) => member.address);
+      page++;
+    }
   }
 
   return results;
