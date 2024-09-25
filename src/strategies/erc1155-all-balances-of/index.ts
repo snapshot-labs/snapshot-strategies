@@ -5,11 +5,11 @@ export const author = 'snapshot-labs';
 export const version = '0.2.0';
 
 const SUBGRAPH_URL = {
-  '1': 'https://gateway.thegraph.com/api/94c3f5dd3947e2f62fc6e0e757549ee7/subgraphs/id/GCQVLurkeZrdMf4t5v5NyeWJY8pHhfE9sinjFMjLYd9C'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/8cDX3UAptW4mvQDpTDyVDvW7cbYC6bgT3yeYrid7FFPA'
 };
 
 const HOSTED_SUBGRAPH_URL = {
-  '137': 'https://api.thegraph.com/subgraphs/name/tranchien2002/eip1155-matic'
+  // '137': 'https://api.thegraph.com/subgraphs/name/tranchien2002/eip1155-matic' // subgraph doesn't exist anymore
 };
 
 export async function strategy(

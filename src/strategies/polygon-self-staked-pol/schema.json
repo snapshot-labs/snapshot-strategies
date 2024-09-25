@@ -16,15 +16,10 @@
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": [
-            18
-          ]
+          "examples": [18]
         }
       },
-      "required": [
-        "stakeManagerAddress",
-        "decimals"
-      ],
+      "required": ["stakeManagerAddress", "decimals"],
       "additionalProperties": false
     }
   }
