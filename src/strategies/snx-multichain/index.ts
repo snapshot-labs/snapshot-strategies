@@ -1,8 +1,50 @@
 import { getProvider, getSnapshots } from '../../utils';
 import strategies from '..';
+import { Contract } from 'ethers';
 
 export const author = 'barrasso';
 export const version = '1.0.0';
+
+const CONTRACT_ADDRESSES = {
+  '1': {
+    accountProxy: '0x0E429603D3Cb1DFae4E6F52Add5fE82d96d77Dac',
+    coreProxy: '0xffffffaEff0B96Ea8e4f94b2253f31abdD875847'
+  },
+  '8453': {
+    accountProxy: '0x63f4Dd0434BEB5baeCD27F3778a909278d8cf5b8',
+    coreProxy: '0x32C222A9A159782aFD7529c87FA34b96CA72C696'
+  }
+};
+
+const accountProxyABI = [
+  {
+    name: 'tokenOfOwnerByIndex',
+    type: 'function',
+    inputs: [
+      { name: 'owner', type: 'address' },
+      { name: 'index', type: 'uint256' }
+    ],
+    outputs: [{ name: '', type: 'uint256' }],
+    stateMutability: 'view'
+  }
+];
+
+const coreProxyABI = [
+  {
+    name: 'getAccountCollateral',
+    type: 'function',
+    inputs: [
+      { name: 'accountId', type: 'uint128' },
+      { name: 'collateralType', type: 'address' }
+    ],
+    outputs: [
+      { name: 'totalDeposited', type: 'uint256' },
+      { name: 'totalAssigned', type: 'uint256' },
+      { name: 'totalLocked', type: 'uint256' }
+    ],
+    stateMutability: 'view'
+  }
+];
 
 export async function strategy(
   space,
@@ -14,7 +56,7 @@ export async function strategy(
 ) {
   const promises: any = [];
   const validStrategies = options.strategies.filter(
-    (s) => s.network === '1' || s.network === '10'
+    (s) => s.network === '1' || s.network === '10' || s.network === '8453'
   );
   const blocks = await getSnapshots(
     network,
@@ -24,7 +66,6 @@ export async function strategy(
   );
 
   for (const strategy of validStrategies) {
-    // If snapshot is taken before a network is activated, ignore its strategies
     if (
       options.startBlocks &&
       blocks[strategy.network] < options.startBlocks[strategy.network]
@@ -44,16 +85,74 @@ export async function strategy(
     );
   }
 
+  // Fetch v3 collateral values
+  const v3CollateralPromises = addresses.map(async (address) => {
+    const networkAddresses = CONTRACT_ADDRESSES[network];
+    if (!networkAddresses) return { [address]: 0 };
+
+    const accountProxy = new Contract(
+      networkAddresses.accountProxy,
+      accountProxyABI,
+      provider
+    );
+    const coreProxy = new Contract(
+      networkAddresses.coreProxy,
+      coreProxyABI,
+      provider
+    );
+
+    let totalCollateral = 0;
+    let index = 0;
+
+    try {
+      // Enumerate all account IDs owned by the address
+      while (true) {
+        const accountId = await accountProxy.tokenOfOwnerByIndex(
+          address,
+          index
+        );
+        index++;
+
+        // Fetch collateral details for the account ID
+        const { totalDeposited, totalAssigned, totalLocked } =
+          await coreProxy.getAccountCollateral(
+            accountId,
+            options.collateralType
+          );
+
+        // Sum the collateral values
+        totalCollateral += totalDeposited + totalAssigned + totalLocked;
+      }
+    } catch (err) {
+      // Exit the loop when all tokens are enumerated
+    }
+
+    return { [address]: totalCollateral };
+  });
+
+  const v3Results = await Promise.all(v3CollateralPromises);
   const results = await Promise.all(promises);
 
-  // Sum the collateral values from both networks for each address
-  return results.reduce((finalResults: any, strategyResult: any) => {
+  // Sum collateral values from v2 and v3 systems for each address
+  const finalResults = results.reduce((acc, strategyResult) => {
     for (const [address, value] of Object.entries(strategyResult)) {
+      if (!acc[address]) {
+        acc[address] = 0;
+      }
+      acc[address] += value as number;
+    }
+    return acc;
+  }, {});
+
+  // Add v3 collateral values to the final results
+  v3Results.forEach((v3Result) => {
+    for (const [address, value] of Object.entries(v3Result)) {
       if (!finalResults[address]) {
         finalResults[address] = 0;
       }
       finalResults[address] += value as number;
     }
-    return finalResults;
-  }, {});
+  });
+
+  return finalResults;
 }
