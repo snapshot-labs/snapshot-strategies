@@ -17,16 +17,7 @@ const CONTRACT_ADDRESSES = {
 };
 
 const accountProxyABI = [
-  {
-    name: 'tokenOfOwnerByIndex',
-    type: 'function',
-    inputs: [
-      { name: 'owner', type: 'address' },
-      { name: 'index', type: 'uint256' }
-    ],
-    outputs: [{ name: '', type: 'uint256' }],
-    stateMutability: 'view'
-  }
+  'function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)'
 ];
 
 const coreProxyABI = [
