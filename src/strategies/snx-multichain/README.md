@@ -1,6 +1,6 @@
 # snx-multichain
 
-This strategy calculates the voting power of addresses based on their collateral values on both Ethereum and Optimism Mainnet. It queries the `collateral` values from the Synthetix contracts on both networks and sums the results to determine the total voting power for each address.
+This strategy calculates the voting power of addresses based on their collateral values across all Synthetix deployments. It queries the collateral values from the Synthetix v2x system as well as the v3 system on each network, and sums the results to determine the total voting power for each address.
 
 Here is an example of the parameters used:
 
