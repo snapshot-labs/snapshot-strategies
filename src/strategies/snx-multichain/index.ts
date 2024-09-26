@@ -21,20 +21,7 @@ const accountProxyABI = [
 ];
 
 const coreProxyABI = [
-  {
-    name: 'getAccountCollateral',
-    type: 'function',
-    inputs: [
-      { name: 'accountId', type: 'uint128' },
-      { name: 'collateralType', type: 'address' }
-    ],
-    outputs: [
-      { name: 'totalDeposited', type: 'uint256' },
-      { name: 'totalAssigned', type: 'uint256' },
-      { name: 'totalLocked', type: 'uint256' }
-    ],
-    stateMutability: 'view'
-  }
+  'function getAccountCollateral(uint128 accountId, address collateralType) view returns (uint256 totalDeposited, uint256 totalAssigned, uint256 totalLocked)'
 ];
 
 export async function strategy(
