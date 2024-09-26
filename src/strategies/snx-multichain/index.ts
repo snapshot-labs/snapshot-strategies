@@ -1,6 +1,6 @@
 import { getProvider, getSnapshots } from '../../utils';
 import strategies from '..';
-import { Contract } from 'ethers';
+import { Contract } from '@ethersproject/contracts';
 
 export const author = 'barrasso';
 export const version = '1.0.0';
