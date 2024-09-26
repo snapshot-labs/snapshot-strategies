@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "subgraphUrl": {
+          "type": "string",
+          "title": "Subgraph endpoint"
+        },
+        "strategies": {
+          "title": "Strategies",
+          "type": "array",
+          "items": {
+            "title": "Strategy",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object"
+              }
+            },
+            "required": [
+              "name",
+              "params"
+            ]
+          }
+        }
+      },
+      "required": [
+        "subgraphUrl",
+        "strategies"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
