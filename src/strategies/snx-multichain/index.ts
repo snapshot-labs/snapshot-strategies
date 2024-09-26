@@ -10,10 +10,20 @@ const CONTRACT_ADDRESSES = {
     accountProxy: '0x0E429603D3Cb1DFae4E6F52Add5fE82d96d77Dac',
     coreProxy: '0xffffffaEff0B96Ea8e4f94b2253f31abdD875847'
   },
+  '10': {
+    accountProxy: '0x0E429603D3Cb1DFae4E6F52Add5fE82d96d77Dac',
+    coreProxy: '0xffffffaEff0B96Ea8e4f94b2253f31abdD875847'
+  },
   '8453': {
     accountProxy: '0x63f4Dd0434BEB5baeCD27F3778a909278d8cf5b8',
     coreProxy: '0x32C222A9A159782aFD7529c87FA34b96CA72C696'
   }
+};
+
+const COLLATERAL_TYPES = {
+  '1': '0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F',
+  '10': '0x8700dAec35aF8Ff88c16BdF0418774CB3D7599B4',
+  '8453': '0x22e6966b799c4d5b13be962e1d117b56327fda66'
 };
 
 const accountProxyABI = [
@@ -36,6 +46,11 @@ export async function strategy(
   const validStrategies = options.strategies.filter(
     (s) => s.network === '1' || s.network === '10' || s.network === '8453'
   );
+
+  if (validStrategies.length > 4) {
+    throw new Error('Exceeded the maximum limit of 4 valid strategies.');
+  }
+
   const blocks = await getSnapshots(
     network,
     snapshot,
@@ -73,6 +88,7 @@ export async function strategy(
       accountProxyABI,
       provider
     );
+
     const coreProxy = new Contract(
       networkAddresses.coreProxy,
       coreProxyABI,
@@ -80,29 +96,24 @@ export async function strategy(
     );
 
     let totalCollateral = 0;
-    let index = 0;
 
     try {
-      // Enumerate all account IDs owned by the address
-      while (true) {
-        const accountId = await accountProxy.tokenOfOwnerByIndex(
-          address,
-          index
-        );
-        index++;
+      // Use only the first account (index 0)
+      const accountId = await accountProxy.tokenOfOwnerByIndex(address, 0);
 
-        // Fetch collateral details for the account ID
-        const { totalDeposited, totalAssigned, totalLocked } =
-          await coreProxy.getAccountCollateral(
-            accountId,
-            options.collateralType
-          );
+      // Select the appropriate collateralType based on the network
+      const collateralType = COLLATERAL_TYPES[network];
 
-        // Sum the collateral values
-        totalCollateral += totalDeposited + totalAssigned + totalLocked;
-      }
+      // Fetch only the totalDeposited value for the account ID
+      const { totalDeposited } = await coreProxy.getAccountCollateral(
+        accountId,
+        collateralType
+      );
+
+      totalCollateral = totalDeposited;
     } catch (err) {
-      // Exit the loop when all tokens are enumerated
+      // Assume the account doesn't exist and continue.
+      console.log(`Error fetching v3 collateral for address ${address}:`, err);
     }
 
     return { [address]: totalCollateral };

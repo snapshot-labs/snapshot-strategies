@@ -61,7 +61,11 @@
             }
           }
         ],
-        "collateralType": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F"
+        "collateralType": {
+          "1": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
+          "10": "0x8700dAec35aF8Ff88c16BdF0418774CB3D7599B4",
+          "8453": "0x22e6966b799c4d5b13be962e1d117b56327fda66"
+        }
       }
     },
     "network": "1",
