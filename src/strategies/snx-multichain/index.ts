@@ -119,7 +119,7 @@ export async function strategy(
       totalCollateral = totalDeposited;
     } catch (err) {
       // Assume the account doesn't exist and continue.
-      console.log(`Error fetching v3 collateral for address ${address}:`, err);
+      // console.log(`Error fetching v3 collateral for address ${address}:`, err);
     }
 
     return { [address]: totalCollateral };
