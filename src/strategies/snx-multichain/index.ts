@@ -27,6 +27,7 @@ const COLLATERAL_TYPES = {
 };
 
 const accountProxyABI = [
+  'function balanceOf(address account) view returns (uint256)',
   'function tokenOfOwnerByIndex(address owner, uint256 index) view returns (uint256)'
 ];
 
@@ -98,7 +99,7 @@ export async function strategy(
     let totalCollateral = 0;
 
     try {
-      // Check the number of tokens owned by the address
+      // Check if the user has a v3 account
       const balance = await accountProxy.balanceOf(address);
       if (balance.eq(0)) {
         return { [address]: 0 };
@@ -116,10 +117,12 @@ export async function strategy(
         collateralType
       );
 
-      totalCollateral = totalDeposited;
+      totalCollateral = Number(totalDeposited) / 1e18;
     } catch (err) {
-      // Assume the account doesn't exist and continue.
-      // console.log(`Error fetching v3 collateral for address ${address}:`, err);
+      console.error(
+        `Error fetching v3 collateral for address ${address}:`,
+        err
+      );
     }
 
     return { [address]: totalCollateral };
