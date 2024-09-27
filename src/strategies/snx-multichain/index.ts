@@ -98,6 +98,13 @@ export async function strategy(
     let totalCollateral = 0;
 
     try {
+      // Check the number of tokens owned by the address
+      const balance = await accountProxy.balanceOf(address);
+      if (balance.eq(0)) {
+        console.log(`Address ${address} has no tokens.`);
+        return { [address]: 0 };
+      }
+
       // Use only the first account (index 0)
       const accountId = await accountProxy.tokenOfOwnerByIndex(address, 0);
 
