@@ -96,6 +96,9 @@ export async function strategy(
       provider
     );
 
+    // Select the appropriate collateralType based on the network
+    const collateralType = COLLATERAL_TYPES[network];
+
     let totalCollateral = 0;
 
     try {
@@ -105,19 +108,19 @@ export async function strategy(
         return { [address]: 0 };
       }
 
-      // Use only the first account (index 0)
-      const accountId = await accountProxy.tokenOfOwnerByIndex(address, 0);
+      // Iterate over all accounts based on their token balance
+      for (let i = 0; i < balance.toNumber(); i++) {
+        // Fetch the accountId at each index
+        const accountId = await accountProxy.tokenOfOwnerByIndex(address, i);
 
-      // Select the appropriate collateralType based on the network
-      const collateralType = COLLATERAL_TYPES[network];
+        // Fetch only the totalDeposited value for the account ID
+        const { totalDeposited } = await coreProxy.getAccountCollateral(
+          accountId,
+          collateralType
+        );
 
-      // Fetch only the totalDeposited value for the account ID
-      const { totalDeposited } = await coreProxy.getAccountCollateral(
-        accountId,
-        collateralType
-      );
-
-      totalCollateral = Number(totalDeposited) / 1e18;
+        totalCollateral += Number(totalDeposited) / 1e18;
+      }
     } catch (err) {
       console.error(
         `Error fetching v3 collateral for address ${address}:`,
