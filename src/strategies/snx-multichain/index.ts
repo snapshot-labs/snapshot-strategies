@@ -101,7 +101,6 @@ export async function strategy(
       // Check the number of tokens owned by the address
       const balance = await accountProxy.balanceOf(address);
       if (balance.eq(0)) {
-        console.log(`Address ${address} has no tokens.`);
         return { [address]: 0 };
       }
 
