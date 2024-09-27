@@ -122,10 +122,7 @@ export async function strategy(
         totalCollateral += Number(totalDeposited) / 1e18;
       }
     } catch (err) {
-      console.error(
-        `Error fetching v3 collateral for address ${address}:`,
-        err
-      );
+      throw new Error(`Error fetching v3 collateral for ${address}: ${err}`);
     }
 
     return { [address]: totalCollateral };
