@@ -5,13 +5,10 @@ export const author = 'otterspace-xyz';
 export const version = '1.0.1';
 
 const OTTERSPACE_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
-  '1': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-mainnet',
-  '5': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-goerli',
-  '10': 'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-alpha',
-  '420':
-    'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-optimism-goerli',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/6ihhxkTaxozNgrvyKbyTc7BDvwA9mByhDXXTJzW3E6gw',
+  '10': 'https://subgrapher.snapshot.org/subgraph/arbitrum/DvWYwk9KfxGRE8AH9bNgtSxwGvjgTYXYnHyajQpNWLQB',
   '137':
-    'https://api.thegraph.com/subgraphs/name/otterspace-xyz/badges-polygon',
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/8fxbcfCYxZutSysQto4TxPYGzGUuiZCsaVc6SXkDRuS1',
   '11155111':
     'https://api.studio.thegraph.com/query/44988/badges-sepolia/version/latest'
 };

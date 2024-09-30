@@ -3,7 +3,7 @@ import { subgraphRequest } from '../../utils';
 import { verifyResults } from './graphUtils';
 
 export const TOKEN_DISTRIBUTION_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/graphprotocol/token-distribution',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/ChfAJn6jQEBjVqtdUiThfG6sWy2Sr5XQPNucE9DkgXSN',
   '4': 'https://api.thegraph.com/subgraphs/name/davekaj/token-distribution-rinkeby'
 };
 interface TokenLockWallets {

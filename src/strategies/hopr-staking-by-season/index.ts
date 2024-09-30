@@ -10,7 +10,7 @@ const XDAI_BLOCK_SUBGRAPH_URL =
 const HOPR_STAKING_SUBGRAPH_ROOT =
   'https://api.thegraph.com/subgraphs/name/hoprnet/';
 const DEFAULT_HOPR_STAKING_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/hoprnet/staking-season3';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/GboRvnV9xikDA488gyRTmtTzHg1kEpXQiqFKGkJMEK8u';
 const LIMIT = 1000; // 1000 addresses per query in Subgraph
 
 function buildHoprStakeSubgraphUrl(variant: string, seasonNumber: number) {

@@ -4,7 +4,7 @@
     "strategy": {
       "name": "lrc-nft-search-mult",
       "params": {
-        "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
+        "graph": "https://subgrapher.snapshot.org/subgraph/arbitrum/8Z15oyPLRCYzVdNbjKSU2iD8BE6Sj8PZRV4KddDuvuk2",
         "minter_account_id": "157510",
         "tokens": ["0xb6d91e38e4ac53c9f8952c6c6b1c7aee66c8b6f0"],
         "nft_ids": [

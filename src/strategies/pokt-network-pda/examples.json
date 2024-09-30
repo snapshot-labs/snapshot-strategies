@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "pokt-network-pda",
+      "params": {
+        "arweave_network": "DEVNET",
+        "owner_address": "0x857d9c5696fb6be080ce0d8cd10719a64a116bc4",
+        "decimals": 8,
+        "multiply": 2
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4ba90A88649E707F28Ec0f9Ca1f2008729aEf3B1",
+      "0x8424B45e4EA18522A4eAD068da80773b5A62F19a",
+      "0x098a699E7faE9f4FaB9F79683fe0fAdf283E1D00",
+      "0xBF722B58DBA78204213Aa04CC0706190C6054B6A",
+      "0xac10A4BbCFeC8ada8C2FAb9A66F40d27e6395E82",
+      "0x0eaa99C8119F7adA3633E1ad1381c5E9199A2BfD",
+      "0xaBdd13102A86E502eb5A1e4b171471eB4d90420f",
+      "0x73f87225EE3aF28d8Db4dBaedFC7a75be45e25bb",
+      "0x3470504CdE4c2a7c23D56c69F3C7A02E7912603C",
+      "0xf34c63ad647E9805D02415ce458600306D71017B",
+      "0x7f5B8015AB71BfCAF3457d1AEc9C284f489852b4",
+      "0x9181a3b3ad8Ba29B6ff755183717392a1cf49375",
+      "0x959836EAec8fF42B708b7D5F8071B6e206ED8D64",
+      "0x7923232a8E880CAB98123f30DE49F7b4305b67f9",
+      "0x906AE094dD28Aa02cFBfAe776B800d4a7903e2F2"
+    ],
+    "snapshot": 19483363
+  }
+]

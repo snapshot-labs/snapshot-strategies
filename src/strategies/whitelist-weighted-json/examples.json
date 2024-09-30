@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Whitelist weighted address strategy via hosted json file",
+    "strategy": {
+      "name": "whitelist-weighted-json",
+      "params": {
+        "url": "https://proposals.kenglernitas.wtf/batel_combined_weighted_voting_power.json"
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0xc4e9e087a811be812f85e49f2a41603d9a0991a9",
+      "0x542a0eaf1358480ec0703f07bc3120a6503ebbc1",
+      "0x9f31068a18d8511755de024e8eccf073dfd01d8f"
+    ],
+    "snapshot": 14694443
+  }
+]

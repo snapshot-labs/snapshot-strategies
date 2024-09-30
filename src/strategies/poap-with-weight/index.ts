@@ -7,7 +7,7 @@ export const version = '1.1.0';
 export const examples = examplesFile;
 
 const POAP_API_ENDPOINT_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s',
   '100': 'https://api.thegraph.com/subgraphs/name/poap-xyz/poap-xdai'
 };
 

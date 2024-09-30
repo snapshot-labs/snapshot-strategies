@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Stake DAO vote using TWAVP balanceOf and attribute pools voting power to a bot",
+    "strategy": {
+      "name": "sdvote-balanceof-twavp-pool",
+      "params": {
+        "sdTokenGauge": "0xE2496134149e6CD3f3A577C2B08A6f54fC23e6e4",
+        "symbol": "sdToken-gauge",
+        "decimals": 18,
+        "twavpDaysInterval": 10,
+        "twavpNumberOfBlocks": 5,
+        "blockPerSec": 3,
+        "whiteListedAddress": [],
+        "pools": ["0xb8204D31379A9B317CD61C833406C972F58ecCbC"],
+        "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+        "indexSdTokenInPool": 1
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xb734Ec7A75d65406fde5bcf9156cAB673ba1e1C5",
+      "0xee439Ee079AC05D9d33a6926A16e0c820fB2713A",
+      "0xc1133c83D409724727fF6699F14F040746e5AD01",
+      "0xb4542526AfeE2FdA1D584213D1521272a398B42a"
+    ],
+    "snapshot": 41988561
+  }
+]

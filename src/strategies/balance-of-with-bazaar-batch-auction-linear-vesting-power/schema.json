@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "ERC20 Token address",
+          "examples": ["e.g. 0x32fb7d6e0cbeb9433772689aa4647828cc7cbba8"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "symbol": {
+          "type": "string",
+          "title": "ERC20 Token symbol",
+          "examples": ["e.g. COVE"]
+        },
+        "decimals": {
+          "type": "number",
+          "title": "ERC20 Token decimals",
+          "examples": ["e.g. 18"]
+        },
+        "auctionAddress": {
+          "type": "string",
+          "title": "Bazaar Batch Auction address",
+          "examples": ["e.g. 0x2f3715F710076Cfdb5AA872Bc8a4b965a07c3A08"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vestingDuration": {
+          "type": "number",
+          "title": "Vesting duration in seconds",
+          "examples": ["e.g. 31536000"]
+        }
+      },
+      "required": ["address", "decimals", "auctionAddress", "vestingDuration"],
+      "additionalProperties": false
+    }
+  }
+}

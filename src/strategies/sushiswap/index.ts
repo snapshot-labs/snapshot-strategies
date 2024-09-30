@@ -5,36 +5,36 @@ import { subgraphRequest } from '../../utils';
 // Minichef: https://github.com/sushiswap/sushiswap-interface/blob/master/src/services/graph/fetchers/masterchef.ts
 // Exchange: https://github.com/sushiswap/sushiswap-interface/blob/master/src/services/graph/fetchers/exchange.ts
 
-const theGraph_baseUrl = 'https://api.thegraph.com/subgraphs/name/';
+const theGraph_baseUrl = 'https://subgrapher.snapshot.org/subgraph/arbitrum/';
 const SUSHISWAP_SUBGRAPH_URL = {
   exchange: {
-    '1': 'sushiswap/exchange',
-    '100': 'sushiswap/xdai-exchange',
-    '137': 'sushiswap/matic-exchange',
-    '250': 'sushiswap/fantom-exchange',
-    '42161': 'sushiswap/arbitrum-exchange',
-    '1285': 'sushiswap/moonriver-exchange',
-    '42220': 'jiro-ono/sushitestsubgraph',
-    '122': 'sushiswap/fuse-exchange',
-    '1666600000': 'sushiswap/harmony-exchange',
-    '56': 'sushiswap/bsc-exchange',
-    '43114': 'sushiswap/avalanche-exchange',
-    '66': 'okex-exchange/oec',
-    '128': 'heco-exchange/heco'
+    '1': '6NUtT5mGjZ1tSshKLf5Q3uEEJtjBZJo1TpL5MXsUBqrT',
+    '100': '4a8hcsttqsmycmmeFcpffGMZhBDU4NhHfyHH6YNcnu7b',
+    '137': '8NiXkxLRT3R22vpwLB4DXttpEf3X1LrKhe4T1tQ3jjbP',
+    '250': '3nozHyFKUhxnEvekFg5G57bxPC5V63eiWbwmgA35N5VK',
+    '42161': '8nFDCAhdnJQEhQF3ZRnfWkJ6FkRsfAiiVabVn4eGoAZH',
+    '1285': '5skUrJzgVm6vXAmdKN7gw4CjYx3pgLDeUeUqVzqLXkWT',
+    // '42220': 'jiro-ono/sushitestsubgraph', no upgraded subgraph
+    '122': 'BumyXJR9Cnzoy7nj4tbCsDwVe59e7ktXR1ELNjhEvimp',
+    '1666600000': 'FrcJBCCKCYGTLLXJmhppXfPKsNoyod4zqNLjHfXj1KHg',
+    '56': 'GPRigpbNuPkxkwpSbDuYXbikodNJfurc1LCENLzboWer',
+    '43114': '6VAhbtW5u2sPYkJKAcMsxgqTBu4a1rqmbiVQWgtNjrvT'
+    // '66': 'okex-exchange/oec', No subgraph
+    // '128': 'heco-exchange/heco' No subgraph
   },
   masterChef: {
-    '1': 'sushiswap/master-chef',
-    '100': 'matthewlilley/xdai-minichef', // Could be replaced by 'sushiswap/xdai-minichef'
-    '137': 'sushiswap/matic-minichef',
-    '250': 'sushiswap/fantom-minichef',
-    '42161': 'matthewlilley/arbitrum-minichef',
-    '1285': 'sushiswap/moonriver-minichef',
-    '42220': 'sushiswap/celo-minichef-v2',
-    '122': 'sushiswap/fuse-minichef',
-    '1666600000': 'sushiswap/harmony-minichef'
+    '1': 'AkCK7BgZJHVwjDdxbnaER1e2XPpywnXVkVZV4p7QGnua',
+    // '100': 'matthewlilley/xdai-minichef', // Could be replaced by 'sushiswap/xdai-minichef' No upgraded subgraph
+    // '137': 'sushiswap/matic-minichef', No upgraded subgraph
+    '250': 'GJXdaT5S7BHvGNxJSLJsMH36tB4w3Z7eES6jSDJuqddg',
+    // '42161': 'matthewlilley/arbitrum-minichef', No upgraded subgraph
+    '1285': 'ExyevfNrFJ7EhTK74MDJ823h6oKkqUpwnVP1h3EuN8oa',
+    '42220': 'Aodb24RhU4p1p6p4ooq1Rwu5aVXhULAvXEGg8QEaPBvg',
+    '122': 'GdVirDDQ2fg43pjt2cZiH9Uar7bhGfySvm4jiQ9fVD4u'
+    // '1666600000': 'sushiswap/harmony-minichef' No Subgraph
   },
   masterChefV2: {
-    '1': 'sushiswap/master-chefv2'
+    '1': 'FAa1YU79pPDUKj8vtkUPZGzCcPVS6Edg1md5LsRHSKWb'
   }
 };
 

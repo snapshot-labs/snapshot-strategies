@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "csv": {
+          "type": "string",
+          "title": "CSV file",
+          "examples": [
+            "e.g. ipfs://bafkreig3xgt2j7mtcukqy5jglmxwlyy7unrqi2ncplgfnpq32aqomzbo4m"
+          ]
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. UNI"],
+          "maxLength": 16
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 0
+        }
+      },
+      "required": ["csv", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Subgraph split delegation",
+    "strategy": {
+      "name": "subgraph-split-delegation",
+      "params": {
+        "subgraphUrl": "https://api.studio.thegraph.com/query/87073/split-delegation/v0.0.5",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "address": "0xD01Db8Fb3CE7AeeBfB24317E12a0A854c256E99b",
+              "symbol": "EPT",
+              "decimals": 18
+            }
+          }
+        ]
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0xb347106e4a026dd86c4bbe8df7274ba9ee7442cc",
+      "0x048fee7c3279a24af0790b6b002ded42be021d2b",
+      "0x139a9032a46c3afe3456eb5f0a35183b5f189cae",
+      "0xc1d60f584879f024299da0f19cdb47b931e35b53",
+      "0x376c649111543c46ce15fd3a9386b4f202a6e06c",
+      "0x0dcbc5d2bda11c4247d088f1ac5209e30f47b595",
+      "0x35911cc89aabe7af6726046823d5b678b6a1498d",
+      "0x6cdebe940bc0f26850285caca097c11c33103e47",
+      "0xa76c5788be9a2e1416de639c50c60b184d0ceccd",
+      "0xffb026f67da0869eb3abb090cb7f015ce0925cdf"
+    ],
+    "snapshot": 6716841
+  }
+]

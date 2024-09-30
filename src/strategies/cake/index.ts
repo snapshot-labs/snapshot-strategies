@@ -48,7 +48,7 @@ const vaultAbi = [
 ];
 
 const smartChefUrl =
-  'https://api.thegraph.com/subgraphs/name/pancakeswap/smartchef';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/Gr629imGYJckFywitY1bndE4LhVaLF7pFJPEtHMw6EBr';
 
 async function getPools(provider, snapshot: any) {
   let blockNumber = snapshot;

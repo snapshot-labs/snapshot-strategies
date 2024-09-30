@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "candy-nft-staking",
+      "params": {
+        "fixed_staking_address": "0xA46C4a3428a5E9B5C84A4457215D98BC8DC17AbB",
+        "shared_staking_address": "0xCa207941946218126BD7BBe44C5d457753490b4A"
+      }
+    },
+    "network": "25",
+    "addresses": [
+      "0xB45C6BFB18BD516Af6ceB3db34c1CE24852E75b3",
+      "0xC1B329FC60aB809191566129175d79B979067F21",
+      "0x229279f27352129B8FeFC4e751D8cB6972482B93",
+      "0x5Abbf6aB860577E89C0483cF141e300bF8B74250",
+      "0x0Cf17da8daFaa4925b142dfD6eD46E56FA04DF0A",
+      "0x88788e2c2d5f3362A8aB63E6a2e00a742fA946a2",
+      "0x81d9a4A193095f626F9bA3a1185C35377039B138",
+      "0xB6f737AF7159d7C4711db5564F5238ea7e56908f",
+      "0x97570Aba03745134f74E2F2c8c302061A20dc480",
+      "0xe1a7FC20a848eE97D2218a6e9c1ecF11194E017E",
+      "0xF0F821115D9F3e9A1A579249980a0Ac0FCd7bD0d",
+      "0x4239E9044CBB5301eb51F3B7dA58e8496B86fdcd",
+      "0x132EB9222dAE73A24D703e3702608916E5577814"
+    ],
+    "snapshot": 15303354
+  }
+]

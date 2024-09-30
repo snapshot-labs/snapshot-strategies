@@ -7,7 +7,7 @@ export const author = 'ayush-jibrel';
 export const version = '0.1.0';
 
 const UNISWAP_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/EYCKATKGBKLWvSfwvBjzfCBmGwYNdVkduYXVivCsLRFu'
 };
 
 const abi = [
