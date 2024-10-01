@@ -15,7 +15,7 @@ enum GotchiRarityPrices {
   None = 0,
   Common = 5,
   Uncommon = 10,
-  Rare = 10,
+  Rare = 100,
   Legendary = 300,
   Mythical = 2000,
   Godlike = 10000
