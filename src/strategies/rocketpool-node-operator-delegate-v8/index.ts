@@ -28,12 +28,14 @@ export async function strategy(
 
   const validPrefix = 'rocketpool-node-operator-v';
   if (
+    !options.strategies.length ||
+    options.strategies.length > 1 ||
     !options.strategies.some((s) => {
       const parsedStrategy = JSON.parse(JSON.stringify(s));
       return parsedStrategy.name.startsWith(validPrefix);
     })
   ) {
-    return {};
+    throw new Error('Invalid strategies passed');
   }
 
   const req = await fetch(
