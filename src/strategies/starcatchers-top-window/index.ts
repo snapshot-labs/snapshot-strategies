@@ -4,7 +4,7 @@ export const author = 'sunshinekitty';
 export const version = '0.0.1';
 
 const SC_GRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/sunshinekitty/starcatchers-ia1';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/AdLbReMZHHHhoKH1s2EcBQ4QrHPTaKqYyriKFJxSxwKm';
 
 export async function strategy(
   space,

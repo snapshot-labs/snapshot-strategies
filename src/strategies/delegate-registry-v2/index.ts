@@ -1,7 +1,7 @@
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
-import { getAddress } from '@ethersproject/address';
+import { Strategy } from '@snapshot-labs/snapshot.js/dist/src/voting/types';
 import { getScoresDirect, customFetch } from '../../utils';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'gnosis';
 export const version = '0.0.2';

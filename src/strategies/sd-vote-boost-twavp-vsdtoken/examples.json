@@ -18,11 +18,11 @@
     },
     "network": "1",
     "addresses": [
-      "0xc59910E5E2dd8225623B663491aa754F7013F067",
+      "0x1c953fd17bE2812AB08bbbE221BB7d2687fc884B",
       "0xDdB50FfDbA4D89354E1088e4EA402de895562173",
       "0xE1F7eaD40d33eeF30dCf15eB5efC45409001aAB8",
       "0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"
     ],
-    "snapshot": 18870156
+    "snapshot": 19526583
   }
 ]

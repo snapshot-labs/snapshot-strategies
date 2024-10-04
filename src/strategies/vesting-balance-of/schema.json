@@ -1,0 +1,59 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "decimals": {
+          "type": "number",
+          "title": "Decimals on all vesting contracts",
+          "examples": ["e.g. 18"]
+        },
+        "vesting_1": {
+          "type": "string",
+          "title": "Vesting contract addresses",
+          "examples": ["e.g. 0xE14885C5d632Abff9c04AEEf8e5fb88C0F6872DA"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vesting_2": {
+          "type": "string",
+          "title": "Vesting contract addresses",
+          "examples": ["e.g. 0xE14885C5d632Abff9c04AEEf8e5fb88C0F6872DA"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vesting_3": {
+          "type": "string",
+          "title": "Vesting contract addresses",
+          "examples": ["e.g. 0xE14885C5d632Abff9c04AEEf8e5fb88C0F6872DA"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vesting_4": {
+          "type": "string",
+          "title": "Vesting contract addresses",
+          "examples": ["e.g. 0xE14885C5d632Abff9c04AEEf8e5fb88C0F6872DA"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vesting_5": {
+          "type": "string",
+          "title": "Vesting contract addresses",
+          "examples": ["e.g. 0xE14885C5d632Abff9c04AEEf8e5fb88C0F6872DA"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["vesting_1", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

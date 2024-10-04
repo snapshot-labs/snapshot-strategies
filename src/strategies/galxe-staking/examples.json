@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Galxe Staking",
+    "strategy": {
+      "name": "galxe-staking",
+      "params": {
+        "address": "0x7bBE09E066077b3888432EedEC958F64B2E47239",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x93Cb1a4A9Bdea09162548243fD298F57cFc27F70",
+      "0xb85b3D61439a3d70D3DF7913a3A764F352b32C55",
+      "0x0Eb7570db974F2f57145eA9224A61e280A2E7457"
+    ],
+    "snapshot": 38145814
+  }
+]

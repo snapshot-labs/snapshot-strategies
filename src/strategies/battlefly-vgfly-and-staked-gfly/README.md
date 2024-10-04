@@ -12,7 +12,7 @@ Additionally, the gFLY, magic vgFLY and LP token addresses are required for some
 
 ```json
 {
-  "graphUrl": "https://api.thegraph.com/subgraphs/name/battlefly-game/gfly-main",
+  "graphUrl": "https://subgrapher.snapshot.org/subgraph/arbitrum/EaWD4rchSZT7qMtRd4z5J89xMMHLdhPRhskYKQvPznMS",
   "gFLYAddress": "0x872bAD41CFc8BA731f811fEa8B2d0b9fd6369585",
   "magicAddress": "0x539bdE0d7Dbd336b79148AA742883198BBF60342",
   "lpAddress": "0x088F2Bd3667F385427d9289C28725D43d4b74AB4",

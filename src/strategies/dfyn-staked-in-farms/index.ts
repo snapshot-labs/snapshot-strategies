@@ -6,7 +6,7 @@ export const author = 'vatsalgupta13';
 export const version = '0.1.0';
 
 const DFYN_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/FuxKHMLaziLFcQi5c4y3p1JY1ZGLA81rFqBfZfbQZDpo';
 
 const getAllLP = async (skip, stakedLP, snapshot) => {
   const params = {

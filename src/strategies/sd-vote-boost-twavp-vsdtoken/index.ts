@@ -100,14 +100,18 @@ export async function strategy(
         const userWorkingBalances: number[] = [];
 
         for (let j = 0; j < options.sampleStep; j++) {
-          const balanceOf = BigNumber.from(response[j].shift()[0]);
-          const totalSupply = BigNumber.from(response[j].shift()[0]);
+          const balanceOf = parseFloat(
+            formatUnits(BigNumber.from(response[j].shift()[0]), 18)
+          );
+          const totalSupply = parseFloat(
+            formatUnits(BigNumber.from(response[j].shift()[0]), 18)
+          );
 
           // Add working balance to array.
-          if (totalSupply.eq(0)) {
+          if (totalSupply === 0) {
             userWorkingBalances.push(0);
           } else {
-            userWorkingBalances.push(balanceOf.div(totalSupply).toNumber());
+            userWorkingBalances.push(balanceOf / totalSupply);
           }
         }
 

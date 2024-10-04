@@ -4,6 +4,7 @@
     "strategy": {
       "name": "streamr",
       "params": {
+        "symbol": "DATA (operator)",
         "tokenAddress": "0x3a9A81d576d83FF21f26f325066054540720fC34",
         "operatorFactoryAddress": "0x935734e66729b69260543Cf6e5EfeB42AC962183"
       }

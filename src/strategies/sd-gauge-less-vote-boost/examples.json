@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Stake DAO vote boost using working balance",
+    "strategy": {
+      "name": "sd-gauge-less-vote-boost",
+      "params": {
+        "sdTokenGaugeDestinationChain": "0x12992595328E52267c95e45B1a97014D6Ddf8683",
+        "symbol": "sdToken",
+        "decimals": 18,
+        "twavpDaysInterval": 10,
+        "twavpNumberOfBlocks": 2,
+        "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+        "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"],
+        "veSDTUserAddresses": {},
+        "delegation": {
+          "0xBf911AF95bC5FE348F468b6D6928df7E7fC278e3": "0x20aCB38B9268F694657EbefcD2aC9bCb8A103D2e"
+        },
+        "targetChainId": "252",
+        "blocksPerDay": 43200
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x26a5994176d34D128C5e6ab80Fa0882A7df4fF00",
+      "0xDdB50FfDbA4D89354E1088e4EA402de895562173",
+      "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+      "0xE1F7eaD40d33eeF30dCf15eB5efC45409001aAB8",
+      "0xb0e83C2D71A991017e0116d58c5765Abc57384af",
+      "0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09",
+      "0xC6625129C9df3314a4dd604845488f4bA62F9dB8",
+      "0x10c16c7B8b1DDCFE65990ec822DE4379dd8a86dE",
+      "0x034f978581617FcABB75bfBe697d2230a3285437",
+      "0xF930EBBd05eF8b25B1797b9b2109DDC9B0d43063",
+      "0x20aCB38B9268F694657EbefcD2aC9bCb8A103D2e"
+    ],
+    "snapshot": 20712893
+  }
+]

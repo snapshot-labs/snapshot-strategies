@@ -4,7 +4,7 @@
     "strategy": {
       "name": "lrc-l2-nft-balance-of",
       "params": {
-        "graph": "https://api.thegraph.com/subgraphs/name/juanmardefago/loopring36",
+        "graph": "https://subgrapher.snapshot.org/subgraph/arbitrum/8Z15oyPLRCYzVdNbjKSU2iD8BE6Sj8PZRV4KddDuvuk2",
         "minter_account_id": "74447",
         "tokens": ["0xc76eca2937b006606ebe717621409e4c2df906f1"],
         "blacklisted_account_ids": ["38482"],
