@@ -27,17 +27,11 @@
                 "type": "object"
               }
             },
-            "required": [
-              "name",
-              "params"
-            ]
+            "required": ["name", "params"]
           }
         }
       },
-      "required": [
-        "subgraphUrl",
-        "strategies"
-      ],
+      "required": ["subgraphUrl", "strategies"],
       "additionalProperties": false
     }
   }
