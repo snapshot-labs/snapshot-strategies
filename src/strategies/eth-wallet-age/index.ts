@@ -1,12 +1,12 @@
 import { EnumType } from 'json-to-graphql-query';
-import fetch from 'cross-fetch';
-import { subgraphRequest } from '../../utils';
+
+import { subgraphRequest, customFetch } from '../../utils';
 
 export const author = 'ChaituVR';
 export const version = '0.1.0';
 
 const getJWT = async (dfuseApiKey) => {
-  const rawResponse = await fetch('https://auth.dfuse.io/v1/auth/issue', {
+  const rawResponse = await customFetch('https://auth.dfuse.io/v1/auth/issue', {
     method: 'POST',
     headers: {
       Accept: 'application/json',

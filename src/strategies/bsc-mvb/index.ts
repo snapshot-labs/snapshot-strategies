@@ -1,5 +1,4 @@
-import fetch from 'cross-fetch';
-import { subgraphRequest } from '../../utils';
+import { subgraphRequest, customFetch } from '../../utils';
 
 export const author = 'alberthaotan';
 export const version = '0.1.0';
@@ -105,7 +104,7 @@ export async function strategy(
     })
   };
 
-  const graphqlPromise = fetch(Endpoint.graphql, graphqlParams);
+  const graphqlPromise = customFetch(Endpoint.graphql, graphqlParams);
   const subgraphPromise = subgraphRequest(Endpoint.subgraph, subgraphParams);
   const promisesRes = await Promise.all([graphqlPromise, subgraphPromise]);
   const graphqlData = await promisesRes[0].json();

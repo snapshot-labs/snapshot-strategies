@@ -1,7 +1,7 @@
-import fetch from 'cross-fetch';
 import { Web3Provider } from '@ethersproject/providers';
 import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
+import { customFetch } from '../../utils';
 
 export const author = 'mccallofthewild';
 export const version = '0.1.0';
@@ -32,7 +32,7 @@ export async function strategy(
   } = options;
 
   const loadJWT = async (dfuseApiKey: string): Promise<string> =>
-    fetch('https://auth.dfuse.io/v1/auth/issue', {
+    customFetch('https://auth.dfuse.io/v1/auth/issue', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -47,7 +47,7 @@ export async function strategy(
     data: {
       searchTransactions: { edges }
     }
-  } = await fetch('https://mainnet.eth.dfuse.io/graphql', {
+  } = await customFetch('https://mainnet.eth.dfuse.io/graphql', {
     method: 'POST',
     headers: {
       Accept: 'application/json',

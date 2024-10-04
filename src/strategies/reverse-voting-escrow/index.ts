@@ -1,6 +1,6 @@
 import { BigNumber } from '@ethersproject/bignumber';
-import { Multicaller } from '../../utils';
-import fetch from 'cross-fetch';
+
+import { Multicaller, customFetch } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'nascentxyz';
@@ -62,7 +62,7 @@ export async function strategy(
   // [GET] all-claim-data/:account: returns the claim data for a specific account from all the cohorts it is in
   // [GET] all-data: returns all claim data
 
-  const allData = await fetch(`https://club.agora.space/api/all-data`);
+  const allData = await customFetch(`https://club.agora.space/api/all-data`);
   const allDataJSON = await allData.json();
 
   // ** Claimed $CLUB tokens ** //

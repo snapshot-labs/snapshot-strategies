@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch';
 import snapshot from '@snapshot-labs/snapshot.js';
+import { customFetch } from '../../utils';
 
 import STAMPS from './stampsMetadata.json';
 import Validation from '../validation';
@@ -68,9 +68,12 @@ async function validateStamps(
 ): Promise<boolean> {
   if (requiredStamps.length === 0) return true;
 
-  const stampsResponse = await fetch(GET_PASSPORT_STAMPS_URI + currentAddress, {
-    headers
-  });
+  const stampsResponse = await customFetch(
+    GET_PASSPORT_STAMPS_URI + currentAddress,
+    {
+      headers
+    }
+  );
   const stampsData = await stampsResponse.json();
 
   if (!stampsData?.items) {
@@ -114,7 +117,7 @@ async function validatePassportScore(
   scoreThreshold: number
 ): Promise<boolean> {
   // always hit the /submit-passport endpoint to get the latest passport score
-  const submittedPassport = await fetch(POST_SUBMIT_PASSPORT_URI, {
+  const submittedPassport = await customFetch(POST_SUBMIT_PASSPORT_URI, {
     headers,
     method: 'POST',
     body: JSON.stringify({ address: currentAddress, scorer_id: SCORER_ID })
@@ -137,9 +140,12 @@ async function validatePassportScore(
 
   // Try to fetch Passport Score if still processing (submittedPassport.status === 'PROCESSING')
   for (let i = 0; i < PASSPORT_SCORER_MAX_ATTEMPTS; i++) {
-    const scoreResponse = await fetch(GET_PASSPORT_SCORE_URI + currentAddress, {
-      headers
-    });
+    const scoreResponse = await customFetch(
+      GET_PASSPORT_SCORE_URI + currentAddress,
+      {
+        headers
+      }
+    );
     const scoreData = await scoreResponse.json();
 
     if (scoreResponse.ok && scoreData.status === 'DONE') {

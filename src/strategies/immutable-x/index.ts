@@ -1,9 +1,9 @@
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
 import { strategy as getL1Balances } from '../erc20-balance-of';
+import { customFetch } from '../../utils';
 
 export const author = 'immutable';
 export const version = '1.0.0';
@@ -74,7 +74,7 @@ async function getL2Balances(
     const apiUrl = buildURL(network, options, block, cursor);
 
     // Send request
-    const response = await fetch(apiUrl, {
+    const response = await customFetch(apiUrl, {
       method: 'POST',
       body: JSON.stringify({
         ether_keys: addresses.slice(receivedLen, receivedLen + options.pageSize)

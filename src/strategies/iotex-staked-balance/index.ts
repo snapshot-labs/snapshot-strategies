@@ -1,4 +1,5 @@
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
+
 interface ApiReturn {
   voteWeight: string[];
 }
@@ -23,17 +24,20 @@ export async function strategy(
 ) {
   const height = typeof snapshot === 'number' ? snapshot : 10000000000;
   const apiUrl = getUrl(network);
-  const response = await fetch(`${apiUrl}/api.StakingService.VoteByHeight`, {
-    method: 'POST',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      address: addresses,
-      height
-    })
-  });
+  const response = await customFetch(
+    `${apiUrl}/api.StakingService.VoteByHeight`,
+    {
+      method: 'POST',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        address: addresses,
+        height
+      })
+    }
+  );
 
   const ret: ApiReturn = await response.json();
   return Object.fromEntries(

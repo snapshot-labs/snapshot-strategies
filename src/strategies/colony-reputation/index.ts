@@ -1,6 +1,5 @@
-import { call } from '../../utils';
+import { call, customFetch } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
-import fetch from 'cross-fetch';
 
 export const author = 'colony';
 export const version = '0.1';
@@ -56,7 +55,7 @@ export async function strategy(
 
   const url = `https://xdai.colony.io/reputation/xdai/${rootHashAtBlock}/${options.colonyAddress}/${domain[0]}`;
 
-  const res = await fetch(url, {
+  const res = await customFetch(url, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

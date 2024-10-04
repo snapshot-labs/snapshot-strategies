@@ -1,7 +1,6 @@
-import fetch from 'cross-fetch';
 import { formatUnits, parseUnits } from '@ethersproject/units';
 
-import { Multicaller } from '../../utils';
+import { Multicaller, customFetch } from '../../utils';
 
 export const author = 'dasanra';
 export const version = '0.2.0';
@@ -43,7 +42,7 @@ export async function strategy(
   options: Options,
   snapshot: number | string = 'latest'
 ) {
-  const response = await fetch(options.allocationsSource, {
+  const response = await customFetch(options.allocationsSource, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
