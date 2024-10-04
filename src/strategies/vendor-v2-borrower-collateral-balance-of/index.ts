@@ -80,7 +80,7 @@ export async function strategy(
   const multiplier = hasExpired ? 0 : options.weight || 1;
 
   return Object.fromEntries(
-    Object.entries(result).map(([address, [_debt, collAmount]]) => [
+    Object.entries(result).map(([address, [, collAmount]]) => [
       address,
       parseFloat(formatUnits(collAmount, options.collateralDecimals)) *
         multiplier
