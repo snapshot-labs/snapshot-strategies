@@ -13,9 +13,7 @@ const signerRegistryAbi = [
 ];
 
 const snapshotSecretHeader = sha256(
-  `${`https://api.rocketpool.net/mainnet/delegates/block/`}${
-    process.env.SNAPSHOT_API_STRATEGY_SALT
-  }`
+  `https://api.rocketpool.net/mainnet/delegates/block/${process.env.SNAPSHOT_API_STRATEGY_SALT}`
 );
 
 export async function strategy(
