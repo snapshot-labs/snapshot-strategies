@@ -12,6 +12,12 @@ const signerRegistryAbi = [
   'function signerToNode(address) external view returns (address)'
 ];
 
+const snapshotSecretHeader = sha256(
+  `${`https://api.rocketpool.net/mainnet/delegates/block/`}${
+    process.env.SNAPSHOT_API_STRATEGY_SALT
+  }`
+);
+
 export async function strategy(
   space,
   network,
@@ -31,12 +37,6 @@ export async function strategy(
   ) {
     return {};
   }
-
-  const snapshotSecretHeader = sha256(
-    `${`https://api.rocketpool.net/mainnet/delegates/block/`}${
-      process.env.SNAPSHOT_API_STRATEGY_SALT
-    }`
-  );
 
   const req = await fetch(
     'https://api.rocketpool.net/mainnet/delegates/block/' + blockTag,
