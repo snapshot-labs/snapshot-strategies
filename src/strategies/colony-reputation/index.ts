@@ -1,5 +1,5 @@
-import { call, customFetch } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
+import { call, customFetch } from '../../utils';
 
 export const author = 'colony';
 export const version = '0.1';
