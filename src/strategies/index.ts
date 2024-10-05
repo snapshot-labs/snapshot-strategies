@@ -456,6 +456,7 @@ import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
 import * as snxMultichain from './snx-multichain';
+import * as moxie from './moxie'
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -922,7 +923,8 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
-  'snx-multichain': snxMultichain
+  'snx-multichain': snxMultichain,
+  'moxie': moxie
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
