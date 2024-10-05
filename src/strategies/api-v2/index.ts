@@ -1,7 +1,6 @@
 import { getAddress } from '@ethersproject/address';
-import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
-import { sha256 } from '../../utils';
+import { sha256, customFetch } from '../../utils';
 
 export const author = 'snapshot-labs';
 export const version = '0.1.0';
@@ -42,7 +41,7 @@ export async function strategy(
     `${url}${process.env.SNAPSHOT_API_STRATEGY_SALT}`
   );
 
-  const response = await fetch(url, {
+  const response = await customFetch(url, {
     method,
     headers: {
       Accept: 'application/json',

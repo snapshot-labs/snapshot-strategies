@@ -67,7 +67,11 @@ export async function getScoresDirect(
   }
 }
 
-export function customFetch(url, options, timeout = 20000): Promise<any> {
+export function customFetch(
+  url: RequestInfo | URL,
+  options: RequestInit = {},
+  timeout = 20000
+): Promise<any> {
   return Promise.race([
     fetch(url, options),
     new Promise((_, reject) =>

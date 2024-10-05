@@ -1,6 +1,6 @@
 import { getAddress } from '@ethersproject/address';
-import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
+import { customFetch } from '../../utils';
 
 export const author = 'ganzai-san';
 export const version = '0.1.2';
@@ -38,7 +38,7 @@ export async function strategy(
   }
   if (additionalParameters) api_url += '&' + additionalParameters;
 
-  const response = await fetch(api_url, {
+  const response = await customFetch(api_url, {
     method: 'GET',
     headers: {
       Accept: 'application/json',

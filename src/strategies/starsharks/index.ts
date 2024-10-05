@@ -1,6 +1,6 @@
-import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
 const { getAddress } = require('@ethersproject/address');
+import { customFetch } from '../../utils';
 
 export const author = 'starsharks';
 export const version = '0.1.0';
@@ -29,7 +29,7 @@ async function getAddressesDespoits({
   block_id,
   network
 }: DepositListRequest): Promise<DepositListResponse> {
-  const res = await fetch(API_URLS[network], {
+  const res = await customFetch(API_URLS[network], {
     method: 'POST',
     headers: { Accept: 'application/json', 'Content-Type': 'application/json' },
     body: JSON.stringify({

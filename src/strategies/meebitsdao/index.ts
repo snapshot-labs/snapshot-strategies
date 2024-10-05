@@ -1,5 +1,4 @@
-import { multicall } from '../../utils';
-import fetch from 'cross-fetch';
+import { multicall, customFetch } from '../../utils';
 
 export const author = 'peters-josh';
 export const version = '0.1.0';
@@ -33,7 +32,7 @@ export async function strategy(
     blockTag
   });
 
-  const resp = await fetch(options.apiUrl);
+  const resp = await customFetch(options.apiUrl);
   const tokenStatus = await resp.json();
 
   function checkActivated(address: any) {

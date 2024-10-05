@@ -1,6 +1,6 @@
-import { Multicaller } from '../../utils';
-import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
+import { Multicaller, customFetch } from '../../utils';
+
 export const author = 'stephancill';
 export const version = '0.1.0';
 
@@ -19,7 +19,7 @@ export async function strategy(
   const checksummedAddresses = addresses.map((address) => getAddress(address));
 
   // Get the minter from zora api
-  const mints = await fetch('https://api.zora.co/graphql', {
+  const mints = await customFetch('https://api.zora.co/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

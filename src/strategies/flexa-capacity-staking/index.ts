@@ -1,7 +1,7 @@
-import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
+import { customFetch } from '../../utils';
 
 export const author = 'amptoken';
 export const version = '0.1.0';
@@ -18,7 +18,7 @@ export async function strategy(
     ','
   )}&snapshot=${snapshot}`;
 
-  const response = await fetch(apiUrl, {
+  const response = await customFetch(apiUrl, {
     method: 'GET',
     headers: {
       Accept: 'application/vnd.flexa.capacity.v1+json'
