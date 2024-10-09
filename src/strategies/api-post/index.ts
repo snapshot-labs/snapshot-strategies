@@ -1,6 +1,6 @@
 import { getAddress } from '@ethersproject/address';
-import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
+import { customFetch } from '../../utils';
 
 export const author = 'miertschink';
 export const version = '0.1.1';
@@ -20,7 +20,7 @@ export async function strategy(
     addresses
   };
 
-  const response = await fetch(options.api, {
+  const response = await customFetch(options.api, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

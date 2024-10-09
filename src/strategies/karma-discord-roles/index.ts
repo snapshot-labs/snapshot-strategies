@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
+import { customFetch } from '../../utils';
 
 export const author = 'show-karma';
 export const version = '1.0.1';
@@ -48,7 +48,10 @@ export async function strategy(
     }
   };
 
-  const response = await fetch(`${KARMA_API}?${queryParams}`, requestOptions);
+  const response = await customFetch(
+    `${KARMA_API}?${queryParams}`,
+    requestOptions
+  );
 
   const parsedResponse = !response.ok ? [] : await response.json();
   const delegates = parsedResponse.data?.delegates || [];

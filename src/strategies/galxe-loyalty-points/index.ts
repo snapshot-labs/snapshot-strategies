@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch';
 import { error } from 'console';
+import { customFetch } from '../../utils';
 
 export const author = 'HaynarCool';
 export const version = '0.1.0';
@@ -46,7 +46,7 @@ export async function strategy(
       }
     })
   };
-  const graphqlData = await fetch(graphqlUrl, graphqlParams)
+  const graphqlData = await customFetch(graphqlUrl, graphqlParams)
     .then((r) => r.json())
     .catch((e) => {
       console.error('query galxe user loyalty points failed');

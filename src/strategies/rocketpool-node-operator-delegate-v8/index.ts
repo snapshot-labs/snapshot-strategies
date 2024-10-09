@@ -1,5 +1,5 @@
 import fetch from 'cross-fetch';
-import { getScoresDirect, Multicaller } from '../../utils';
+import { getScoresDirect, Multicaller, sha256 } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 export const author = 'rocket-pool';
@@ -11,6 +11,10 @@ const signerRegistryContractAddress =
 const signerRegistryAbi = [
   'function signerToNode(address) external view returns (address)'
 ];
+
+const snapshotSecretHeader = sha256(
+  `https://api.rocketpool.net/mainnet/delegates/block/${process.env.SNAPSHOT_API_STRATEGY_SALT}`
+);
 
 export async function strategy(
   space,
@@ -24,16 +28,23 @@ export async function strategy(
 
   const validPrefix = 'rocketpool-node-operator-v';
   if (
+    !options.strategies.length ||
+    options.strategies.length > 1 ||
     !options.strategies.some((s) => {
       const parsedStrategy = JSON.parse(JSON.stringify(s));
       return parsedStrategy.name.startsWith(validPrefix);
     })
   ) {
-    return {};
+    throw new Error('Invalid strategies passed');
   }
 
   const req = await fetch(
-    'https://api.rocketpool.net/mainnet/delegates/block/' + blockTag
+    'https://api.rocketpool.net/mainnet/delegates/block/' + blockTag,
+    {
+      headers: {
+        'X-Snapshot-API-Secret': snapshotSecretHeader
+      }
+    }
   );
   const resp = await req.json();
 

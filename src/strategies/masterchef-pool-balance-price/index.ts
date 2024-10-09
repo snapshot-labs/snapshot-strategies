@@ -1,7 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
-import fetch from 'cross-fetch';
+import { multicall, customFetch } from '../../utils';
 
 export const author = 'joaomajesus';
 export const version = '0.2.0';
@@ -453,7 +452,7 @@ async function getPrice(network, provider, address, blockTag) {
   log.push(`to = ${from}`);
   log.push(`coingeckoApiURL = ${coingeckoApiURL}`);
 
-  const coingeckoData = await fetch(coingeckoApiURL)
+  const coingeckoData = await customFetch(coingeckoApiURL)
     .then(async (r) => {
       log.push(`coingeco response = ${JSON.stringify(r, undefined, 2)}`);
 

@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
 
 export const author = 'tempest-sol';
 export const version = '0.1.1';
@@ -15,7 +15,7 @@ export async function strategy(
   addresses
 ): Promise<Record<string, number>> {
   const count: Record<string, number> = {};
-  const res = await fetch('https://open-api.etherorcs.com/api/graphql', {
+  const res = await customFetch('https://open-api.etherorcs.com/api/graphql', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({
