@@ -19,6 +19,8 @@ const STAKED_FAN_TOKEN_MULTIPLIER = 3;
 const MOXIE_LIQUIDITY_MULTIPLIER = 2;
 const MOXIE_CONTRACT_ADDRESS = "0x8C9037D1Ef5c6D1f6816278C7AAF5491d24CD527";
 const MOXIE_DECIMALS = 18;
+const PORTFOLIO_SUBGRAPH_PAGE_LIMIT = 2;
+const LIQUIDITY_POOL_SUBGRAPH_PAGE_LIMIT = 1;
 
 //Strategy to Compute Voting Power for MoxieDAO
 export async function strategy(
@@ -125,9 +127,9 @@ export async function strategy(
     liquidityPoolSubgraphQuery.userPools.__args['block'] = { number: snapshot };
   }
 
-  const fetchSubgraphData = async (subgraphUrl, query, processFunction, key) => {
+  const fetchSubgraphData = async (subgraphUrl, query, processFunction, key, pageLimit) => {
     let next_page = 0;
-    while (true) {
+    while (next_page < pageLimit) {
       query[key].__args.skip = next_page * QUERY_LIMIT;
       const response = await subgraphRequest(subgraphUrl, query);
       const data = response[Object.keys(response)[0]];
@@ -171,8 +173,8 @@ export async function strategy(
 
   // Fetch data from both subgraphs in parallel
   await Promise.all([
-    fetchSubgraphData(MOXIE_PROTOCOL_SUBGRAPH_URL, protocolSubgraphQuery, processProtocolData, "portfolios"),
-    fetchSubgraphData(MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL, liquidityPoolSubgraphQuery, processLiquidityPoolData, "userPools"),
+    fetchSubgraphData(MOXIE_PROTOCOL_SUBGRAPH_URL, protocolSubgraphQuery, processProtocolData, "portfolios", PORTFOLIO_SUBGRAPH_PAGE_LIMIT),
+    fetchSubgraphData(MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL, liquidityPoolSubgraphQuery, processLiquidityPoolData, "userPools", LIQUIDITY_POOL_SUBGRAPH_PAGE_LIMIT),
     fetchBalances(),
   ]);
 
