@@ -456,6 +456,8 @@ import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
 import * as snxMultichain from './snx-multichain';
+import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
+import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -922,7 +924,9 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
-  'snx-multichain': snxMultichain
+  'snx-multichain': snxMultichain,
+  'staking-amount-duration-linear': stakingAmountDurationLinear,
+  'staking-amount-duration-exponential': stakingAmountDurationExponential
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
