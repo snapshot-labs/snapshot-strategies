@@ -10,9 +10,6 @@ const abi = [
   'function balanceOf(address account) external view returns (uint256)'
 ];
 
-const MOXIE_VESTING_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-vesting/version/latest";
-const MOXIE_PROTOCOL_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-protocol/version/latest";
-const MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-liquidity/version/latest";
 const QUERY_LIMIT = 1000;
 const UNSTAKED_FAN_TOKEN_MULTIPLIER = 2;
 const STAKED_FAN_TOKEN_MULTIPLIER = 3;
@@ -31,6 +28,10 @@ export async function strategy(
   options,
   snapshot
 ) {
+  const MOXIE_PROTOCOL_SUBGRAPH_URL = options?.protocolSubgraphUrl || "https://api.studio.thegraph.com/query/88457/moxie-protocol/version/latest";
+  const MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = options?.liquidityPoolSubgraphUrl || "https://api.studio.thegraph.com/query/88457/moxie-liquidity/version/latest";
+  const MOXIE_VESTING_SUBGRAPH_URL = options?.vestingSubgraphUrl || "https://api.studio.thegraph.com/query/88457/moxie-vesting/version/latest";
+  
   //Check if the snapshot is for a specific block number or it's latest
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const addressesMap = addresses.reduce((map, address) => {
