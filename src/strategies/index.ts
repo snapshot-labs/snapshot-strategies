@@ -455,6 +455,7 @@ import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
+import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
 
 const strategies = {
@@ -922,6 +923,7 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
+  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
   'snx-multichain': snxMultichain
 };
 
