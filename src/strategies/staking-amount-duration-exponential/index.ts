@@ -1,7 +1,7 @@
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'defactor';
+export const author = 'JanBajecDev';
 export const version = '0.1.1';
 
 const abi = [
