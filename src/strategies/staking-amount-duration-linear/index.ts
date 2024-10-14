@@ -5,52 +5,7 @@ export const author = 'JanBajecDev';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      {
-        internalType: 'address',
-        name: 'user',
-        type: 'address'
-      }
-    ],
-    name: 'getUserStakes',
-    outputs: [
-      {
-        components: [
-          {
-            internalType: 'uint256',
-            name: 'amount',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint256',
-            name: 'claimed',
-            type: 'uint256'
-          },
-          {
-            internalType: 'uint48',
-            name: 'stakeTime',
-            type: 'uint48'
-          },
-          {
-            internalType: 'uint8',
-            name: 'planId',
-            type: 'uint8'
-          },
-          {
-            internalType: 'bool',
-            name: 'unstaked',
-            type: 'bool'
-          }
-        ],
-        internalType: 'struct IStaking.Stake[]',
-        name: '',
-        type: 'tuple[]'
-      }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function getUserStakes(address user) view returns (tuple(uint256 amount, uint256 claimed, uint48 stakeTime, uint8 planId, bool unstaked)[])'
 ];
 const secondsInAMonth = 30.44 * 24 * 60 * 60;
 
