@@ -455,6 +455,7 @@ import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
+import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
 import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
 import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
@@ -926,7 +927,8 @@ const strategies = {
   'erable-governance-v1': erableGovernanceV1,
   'snx-multichain': snxMultichain,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
-  'staking-amount-duration-exponential': stakingAmountDurationExponential
+  'staking-amount-duration-exponential': stakingAmountDurationExponential,
+  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
