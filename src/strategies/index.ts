@@ -455,6 +455,7 @@ import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
+import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
 import * as moxie from './moxie'
 
@@ -924,7 +925,9 @@ const strategies = {
   superboring,
   'erable-governance-v1': erableGovernanceV1,
   'snx-multichain': snxMultichain,
-  'moxie': moxie
+  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
+  'snx-multichain': snxMultichain,
+   'moxie': moxie
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
