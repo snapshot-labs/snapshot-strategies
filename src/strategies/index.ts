@@ -925,10 +925,10 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
+  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
   'snx-multichain': snxMultichain,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
-  'staking-amount-duration-exponential': stakingAmountDurationExponential,
-  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial
+  'staking-amount-duration-exponential': stakingAmountDurationExponential
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
