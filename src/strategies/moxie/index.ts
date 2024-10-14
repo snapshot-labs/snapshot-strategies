@@ -28,9 +28,25 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const MOXIE_PROTOCOL_SUBGRAPH_URL = options?.protocolSubgraphUrl || "https://api.studio.thegraph.com/query/88457/moxie-protocol/version/latest";
-  const MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = options?.liquidityPoolSubgraphUrl || "https://api.studio.thegraph.com/query/88457/moxie-liquidity/version/latest";
-  const MOXIE_VESTING_SUBGRAPH_URL = options?.vestingSubgraphUrl || "https://api.studio.thegraph.com/query/88457/moxie-vesting/version/latest";
+  const MOXIE_API_KEY = process.env.MOXIE_API_KEY || "";
+  const MOXIE_PROTOCOL_ID = process.env.MOXIE_PROTOCOL_ID || "";
+  const MOXIE_VESTING_ID = process.env.MOXIE_VESTING_ID || "";
+  const MOXIE_LIQUIDITY_ID = process.env.MOXIE_LIQUIDITY_ID || "";
+
+  //SETTING DEFAULT SUBGRAPH URLS
+  let MOXIE_PROTOCOL_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-protocol/version/latest";
+  let MOXIE_VESTING_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-vesting/version/latest";
+  let MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-liquidity/version/latest";
+
+  if (MOXIE_API_KEY !== "" && MOXIE_PROTOCOL_ID !== "") {
+    MOXIE_PROTOCOL_SUBGRAPH_URL = `https://gateway.thegraph.com/api/${MOXIE_API_KEY}/subgraphs/id/${MOXIE_PROTOCOL_ID}`;
+  }
+  if (MOXIE_API_KEY !== "" && MOXIE_LIQUIDITY_ID !== "") {
+    MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = `https://gateway.thegraph.com/api/${MOXIE_API_KEY}/subgraphs/id/${MOXIE_LIQUIDITY_ID}`;
+  }
+  if (MOXIE_API_KEY !== "" && MOXIE_VESTING_ID !== "") {
+    MOXIE_VESTING_SUBGRAPH_URL = `https://gateway.thegraph.com/api/${MOXIE_API_KEY}/subgraphs/id/${MOXIE_VESTING_ID}`;
+  }
   
   //Check if the snapshot is for a specific block number or it's latest
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
