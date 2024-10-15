@@ -456,7 +456,11 @@ import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
+import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
+import * as moxie from './moxie'
+import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
+import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -924,7 +928,11 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
-  'snx-multichain': snxMultichain
+  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
+  'snx-multichain': snxMultichain,
+  'moxie': moxie,
+  'staking-amount-duration-linear': stakingAmountDurationLinear,
+  'staking-amount-duration-exponential': stakingAmountDurationExponential
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
