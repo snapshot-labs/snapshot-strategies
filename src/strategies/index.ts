@@ -928,7 +928,7 @@ const strategies = {
   'erable-governance-v1': erableGovernanceV1,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
   'snx-multichain': snxMultichain,
-  'moxie': moxie
+  'moxie': moxie,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
   'staking-amount-duration-exponential': stakingAmountDurationExponential
 };
