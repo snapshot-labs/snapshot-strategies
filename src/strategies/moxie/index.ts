@@ -28,6 +28,10 @@ export async function strategy(
   options,
   snapshot
 ) {
+  //Check if the addresses array has length not equal to 1
+  if(addresses.length != 1) {
+    throw new Error("This strategy expects a single address");
+  };
   const MOXIE_API_KEY = process.env.MOXIE_API_KEY || "";
   const MOXIE_PROTOCOL_ID = process.env.MOXIE_PROTOCOL_ID || "";
   const MOXIE_VESTING_ID = process.env.MOXIE_VESTING_ID || "";
