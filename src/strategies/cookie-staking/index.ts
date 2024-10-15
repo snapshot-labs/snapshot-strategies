@@ -6,7 +6,7 @@ export const author = 'spaceh3ad';
 export const version = '0.1.0';
 
 const abi = [
-  'function users(uint256,address) view returns (uint256,uint256,uint256,uint256)'
+  'function users(uint256,address) view returns (uint256 shares, uint256 lastDepositedTime, uint256 totalInvested, uint256 totalClaimed)'
 ];
 
 interface UserData {
@@ -33,7 +33,7 @@ export async function strategy(
   // Prepare multicall
   addresses.forEach((address) => {
     for (let poolId = 0; poolId < poolIds; poolId++) {
-      multi.call(`${address}.${poolId}`, options.address, 'users', [
+      multi.call(`${address}-${poolId}`, options.address, 'users', [
         poolId,
         address
       ]);
@@ -48,18 +48,20 @@ export async function strategy(
 
   // Process the result
   for (const [key, userData] of Object.entries(result)) {
-    const address = key.split('.')[0];
+    const address = key.split('-')[0];
 
-    const totalInvested = userData.totalInvested || BigNumber.from('0');
+    const totalInvested = BigNumber.from(userData.totalInvested);
+    const totalClaimed = BigNumber.from(userData.totalClaimed);
 
     if (!userTotals[address]) {
       userTotals[address] = BigNumber.from(0);
     }
 
-    userTotals[address] = userTotals[address].add(totalInvested);
+    const amount = totalInvested.sub(totalClaimed);
+
+    userTotals[address] = userTotals[address].add(amount);
   }
 
-  // Convert BigNumbers to formatted numbers
   const formattedResult = Object.fromEntries(
     addresses.map((address) => [
       address,
@@ -71,8 +73,6 @@ export async function strategy(
       )
     ])
   );
-
-  console.log(formattedResult);
 
   return formattedResult;
 }
