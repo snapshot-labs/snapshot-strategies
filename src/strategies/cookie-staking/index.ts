@@ -1,27 +1,20 @@
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
-import { BigNumber } from '@ethersproject/bignumber'; // Added import
+import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'spaceh3ad';
 export const version = '0.1.0';
 
 const abi = [
-  {
-    inputs: [
-      { internalType: 'uint256', name: '', type: 'uint256' },
-      { internalType: 'address', name: '', type: 'address' }
-    ],
-    name: 'users',
-    outputs: [
-      { internalType: 'uint256', name: 'shares', type: 'uint256' },
-      { internalType: 'uint256', name: 'lastDepositedTime', type: 'uint256' },
-      { internalType: 'uint256', name: 'totalInvested', type: 'uint256' },
-      { internalType: 'uint256', name: 'totalClaimed', type: 'uint256' }
-    ],
-    stateMutability: 'view',
-    type: 'function'
-  }
+  'function users(uint256,address) view returns (uint256,uint256,uint256,uint256)'
 ];
+
+interface UserData {
+  shares: BigNumber;
+  lastDepositedTime: BigNumber;
+  totalInvested: BigNumber;
+  totalClaimed: BigNumber;
+}
 
 export async function strategy(
   space,
@@ -47,17 +40,17 @@ export async function strategy(
     }
   });
 
-  const result = await multi.execute();
+  // Typecast result to Record<string, UserData>
+  const result = (await multi.execute()) as Record<string, UserData>;
 
   // Initialize a mapping for user totals
   const userTotals: { [address: string]: BigNumber } = {};
 
   // Process the result
-  for (const [key, value] of Object.entries(result)) {
-    const [address /*, poolId */] = key.split('.'); // 'poolId' is unused
-    const userData = value as BigNumber[]; // Explicitly define the type
+  for (const [key, userData] of Object.entries(result)) {
+    const address = key.split('.')[0];
 
-    const totalInvested = userData[2]; // Index 2 corresponds to totalInvested
+    const totalInvested = userData.totalInvested || BigNumber.from('0');
 
     if (!userTotals[address]) {
       userTotals[address] = BigNumber.from(0);
@@ -78,6 +71,8 @@ export async function strategy(
       )
     ])
   );
+
+  console.log(formattedResult);
 
   return formattedResult;
 }

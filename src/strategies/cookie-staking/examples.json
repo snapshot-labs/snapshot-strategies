@@ -5,7 +5,7 @@
       "name": "cookie-staking",
       "params": {
         "address": "0x036b6BA384656151471f348fccf5c2818b9223aE",
-        "decimals": "18"
+        "decimals": 18
       }
     },
     "network": "56",
@@ -14,6 +14,6 @@
       "0xd0825555aA656c56e687A6412d40534ba7f0E096",
       "0x7018b9aB744cd438De14e9186De43698A29A7aAA"
     ],
-    "snapshot": 39570185
+    "snapshot": 43137800
   }
 ]
