@@ -33,22 +33,18 @@ export async function strategy(
     throw new Error("This strategy expects a single address");
   };
   const MOXIE_API_KEY = process.env.MOXIE_API_KEY || "";
-  const MOXIE_PROTOCOL_ID = process.env.MOXIE_PROTOCOL_ID || "";
-  const MOXIE_VESTING_ID = process.env.MOXIE_VESTING_ID || "";
-  const MOXIE_LIQUIDITY_ID = process.env.MOXIE_LIQUIDITY_ID || "";
+  const MOXIE_PROTOCOL_ID = "7zS29h4BDSujQq8R3TFF37JfpjtPQsRUpoC9p4vo4scx";
+  const MOXIE_VESTING_ID = "BuR6zAj2GSVZz6smGbJZkgQx8S6GUS881R493ZYZKSk3";
+  const MOXIE_LIQUIDITY_ID = "2rv5XN3LDQiuc9BXFzUri7ZLnS6K1ZqNJzp8Zj8TqMhy";
 
   //SETTING DEFAULT SUBGRAPH URLS
   let MOXIE_PROTOCOL_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-protocol/version/latest";
   let MOXIE_VESTING_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-vesting/version/latest";
   let MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = "https://api.studio.thegraph.com/query/88457/moxie-liquidity/version/latest";
 
-  if (MOXIE_API_KEY !== "" && MOXIE_PROTOCOL_ID !== "") {
+  if (MOXIE_API_KEY !== "" ) {
     MOXIE_PROTOCOL_SUBGRAPH_URL = `https://gateway.thegraph.com/api/${MOXIE_API_KEY}/subgraphs/id/${MOXIE_PROTOCOL_ID}`;
-  }
-  if (MOXIE_API_KEY !== "" && MOXIE_LIQUIDITY_ID !== "") {
     MOXIE_LIQUIDITY_POOL_SUBGRAPH_URL = `https://gateway.thegraph.com/api/${MOXIE_API_KEY}/subgraphs/id/${MOXIE_LIQUIDITY_ID}`;
-  }
-  if (MOXIE_API_KEY !== "" && MOXIE_VESTING_ID !== "") {
     MOXIE_VESTING_SUBGRAPH_URL = `https://gateway.thegraph.com/api/${MOXIE_API_KEY}/subgraphs/id/${MOXIE_VESTING_ID}`;
   }
   
