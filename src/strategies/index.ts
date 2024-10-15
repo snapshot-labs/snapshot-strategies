@@ -344,6 +344,7 @@ import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
 import * as ari10StakingLocked from './ari10-staking-locked';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
+import * as cookieStaking from './cookie-staking';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as lodestarVesting from './lodestar-vesting';
@@ -813,6 +814,7 @@ const strategies = {
   'ari10-staking-locked': ari10StakingLocked,
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
+  'cookie-staking': cookieStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   'lodestar-vesting': lodestarVesting,
   'lodestar-staked-lp': lodestarStakedLp,

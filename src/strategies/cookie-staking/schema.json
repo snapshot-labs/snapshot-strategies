@@ -1,0 +1,13 @@
+{
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": "string",
+      "pattern": "^0x[a-fA-F0-9]{40}$",
+      "minLength": 42,
+      "maxLength": 42
+    }
+  },
+  "required": ["address"],
+  "additionalProperties": false
+}
