@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Get total deposited tokens from address with tier",
+    "strategy": {
+      "name": "dcb-call-tiers",
+      "params": {
+        "address": "0x8befB4b534e711A844AA9a10C3E7D00cbbAeBc66",
+        "decimals": 18,
+        "methodABI": {
+          "inputs": [
+            { "internalType": "address", "name": "addr", "type": "address" }
+          ],
+          "name": "getTotalDeposit",
+          "outputs": [
+            { "internalType": "uint256", "name": "amount", "type": "uint256" }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
+      }
+    },
+    "network": "56",
+    "addresses": ["0x0dbDB9e3503D1323f9e0CB95ef61244ebEAE04fA","0x000000000000E4761cB1bDd2A2e059d3896df95e","0x13552b0C93c5fCFa3a1264e56Bf9bda0223AF5Df","0x3A051B2A13c98D5d900F3D83ADa3BaEb4Bd8ACBB","0x90c5F633EC9315a7D4570Ae350f6a095D3F013ab","0x3B74D817a7A224948748d9444fABecA4aA4f24fB"],
+    "snapshot": 25683577
+  }
+]
