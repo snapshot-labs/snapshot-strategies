@@ -155,6 +155,16 @@ function resolveOperation(
       );
       return Object.fromEntries(arr);
     }
+    case Operation.PLUS: {
+      return Object.fromEntries(
+        Object.entries(resolvedOperands[0]).map(
+          ([address, score]: [string, number]) => [
+            address,
+            score + resolvedOperands[1][address]
+          ]
+        )
+      );
+    }
     case Operation.Divide: {
       const arr = Object.entries(resolvedOperands[0]).map(
         ([address, score]: [string, number]) => [
