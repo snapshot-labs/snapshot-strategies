@@ -30,8 +30,26 @@
             {
               "const": "OR",
               "title": "Require at least one stamp"
+            },
+            {
+              "const": "MIN",
+              "title": "Require at least N stamps (specified via minStamps param)"
             }
           ]
+        },
+        "minStamps": {
+          "type": "number",
+          "title": "Minimum matching stamps for MIN operator",
+          "description": "Minimum number of matching stamps for MIN operator - ignored for other operators",
+          "minimum": 1,
+          "maximum": 1000000,
+          "default": null
+        },
+        "checkExpired": {
+          "type": "boolean",
+          "title": "Check stamp expiration",
+          "description": "Whether or not to check for expired stamps - if false, expired stamps count as valid",
+          "default": true
         },
         "stamps": {
           "type": "array",
