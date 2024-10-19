@@ -1,0 +1,33 @@
+{
+    "$schema": "http://json-schema.org/draft-07/schema#",
+    "$ref": "#/definitions/Strategy",
+    "definitions": {
+      "Strategy": {
+        "title": "ERC20 Staked At",
+        "type": "object",
+        "properties": {
+          "symbol": {
+            "type": "string",
+            "title": "Symbol",
+            "examples": ["e.g. PAAL"],
+            "maxLength": 16
+          },
+          "address": {
+            "type": "string",
+            "title": "Contract address",
+            "examples": ["e.g. 0x85e253162c7e97275b703980f6b6fa8c0469d624"],
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "minLength": 42,
+            "maxLength": 42
+          },
+          "decimals": {
+            "type": "number",
+            "title": "Decimals",
+            "examples": ["e.g. 9"]
+          }
+        },
+        "required": ["symbol", "address", "decimals"],
+        "additionalProperties": false
+      }
+    }
+  }

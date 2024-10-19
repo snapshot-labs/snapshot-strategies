@@ -1,0 +1,21 @@
+[
+    {
+      "name": "Get staked tokens at",
+      "strategy": {
+        "name": "erc20-staked-at",
+        "params": {
+          "address": "0x85e253162c7e97275b703980f6b6fa8c0469d624",
+          "symbol": "PAAL",
+          "decimals": 9
+        }
+      },
+      "network": "1",
+      "addresses": [
+        "0x1029898f7D7f8cEf3a347A6D7342Cdf42f11532e",
+        "0xa57FAe92A541B19Cbc03A8c5fe67FBDdBB53D79e",
+        "0x29dE41D2a9270241629e94dE3B72985e577D91A9"
+      ],
+      "snapshot": 20995910
+    }
+  ]
+  
