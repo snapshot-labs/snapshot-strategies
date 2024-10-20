@@ -458,7 +458,7 @@ import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
 import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
-import * as moxie from './moxie'
+import * as moxie from './moxie';
 import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
 import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
 
@@ -930,7 +930,7 @@ const strategies = {
   'erable-governance-v1': erableGovernanceV1,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
   'snx-multichain': snxMultichain,
-  'moxie': moxie,
+  moxie: moxie,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
   'staking-amount-duration-exponential': stakingAmountDurationExponential
 };
