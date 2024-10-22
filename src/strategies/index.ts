@@ -461,6 +461,7 @@ import * as snxMultichain from './snx-multichain';
 import * as moxie from './moxie';
 import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
 import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
+import * as sacraSubgraph from './sacra-subgraph';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -932,7 +933,8 @@ const strategies = {
   'snx-multichain': snxMultichain,
   moxie: moxie,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
-  'staking-amount-duration-exponential': stakingAmountDurationExponential
+  'staking-amount-duration-exponential': stakingAmountDurationExponential,
+  'sacra-subgraph': sacraSubgraph
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
