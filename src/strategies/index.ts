@@ -344,6 +344,7 @@ import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
 import * as ari10StakingLocked from './ari10-staking-locked';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
+import * as cookieStaking from './cookie-staking';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as lodestarVesting from './lodestar-vesting';
@@ -457,9 +458,10 @@ import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
 import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
-import * as moxie from './moxie'
+import * as moxie from './moxie';
 import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
 import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
+import * as sacraSubgraph from './sacra-subgraph';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -817,6 +819,7 @@ const strategies = {
   'ari10-staking-locked': ari10StakingLocked,
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
+  'cookie-staking': cookieStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   'lodestar-vesting': lodestarVesting,
   'lodestar-staked-lp': lodestarStakedLp,
@@ -928,9 +931,10 @@ const strategies = {
   'erable-governance-v1': erableGovernanceV1,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
   'snx-multichain': snxMultichain,
-  'moxie': moxie,
+  moxie: moxie,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
-  'staking-amount-duration-exponential': stakingAmountDurationExponential
+  'staking-amount-duration-exponential': stakingAmountDurationExponential,
+  'sacra-subgraph': sacraSubgraph
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
