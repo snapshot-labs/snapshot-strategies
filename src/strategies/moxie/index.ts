@@ -6,12 +6,6 @@ export const version = '0.0.2';
 const MOXIE_ENDPOINT = 'https://api.moxie.xyz/protocol/address-votes';
 const MOXIE_API_KEY = process.env.MOXIE_API_KEY || '';
 
-const buildURL = (addresses, snapshot) => {
-  const addressesParam = addresses.join(',');
-  const snapshotParam = snapshot ? `&block=${snapshot}` : '&block=latest';
-  return `${MOXIE_ENDPOINT}?addresses=${addressesParam}${snapshotParam}`;
-};
-
 //Strategy to Compute Voting Power for MoxieDAO
 export async function strategy(
   space,
@@ -21,8 +15,12 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const response = await customFetch(buildURL(addresses, snapshot), {
-    method: 'GET',
+  const response = await customFetch(MOXIE_ENDPOINT, {
+    method: 'POST',
+    body: JSON.stringify({
+      block: snapshot,
+      addresses
+    }),
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
