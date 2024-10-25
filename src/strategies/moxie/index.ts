@@ -15,18 +15,22 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const response = await customFetch(MOXIE_ENDPOINT, {
-    method: 'POST',
-    body: JSON.stringify({
-      block: snapshot,
-      addresses
-    }),
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      'x-airstack-protocol': MOXIE_API_KEY
-    }
-  });
+  const response = await customFetch(
+    MOXIE_ENDPOINT,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        block: snapshot,
+        addresses
+      }),
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+        'x-airstack-protocol': MOXIE_API_KEY
+      }
+    },
+    60000
+  );
 
   const votes = await response.json();
 
