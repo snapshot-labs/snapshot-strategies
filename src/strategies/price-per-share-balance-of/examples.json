@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "price-per-share-balance-of",
+      "params": {
+        "address": "0x358d94b5b2F147D741088803d932Acb566acB7B6",
+        "symbol": "rSWELL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xDB997927831718f3addA8BADe4f58E7D237902D6",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
+      "0x38C0039247A31F3939baE65e953612125cB88268"
+    ],
+    "snapshot": 21072457
+  }
+]

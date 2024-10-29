@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as pricePerShareBalanceOf from './price-per-share-balance-of';
 import * as subgraphSplitDelegation from './subgraph-split-delegation';
 import * as polygonSelfStaked from './polygon-self-staked-pol';
 import * as delegatexyzErc721BalanceOf from './delegatexyz-erc721-balance-of';
@@ -934,10 +935,11 @@ const strategies = {
   moxie: moxie,
   'staking-amount-duration-linear': stakingAmountDurationLinear,
   'staking-amount-duration-exponential': stakingAmountDurationExponential,
-  'sacra-subgraph': sacraSubgraph
+  'sacra-subgraph': sacraSubgraph,
+  'price-per-share-balance-of': pricePerShareBalanceOf,
 };
 
-Object.keys(strategies).forEach(function (strategyName) {
+Object.keys(strategies).forEach(function(strategyName) {
   let examples = null;
   let schema = null;
   let about = '';
