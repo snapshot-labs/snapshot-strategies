@@ -1,13 +1,13 @@
-# erc20-balance-of
+# price-per-share-balance-of
 
-This is the most common strategy, it returns the balances of the voters for a specific ERC20 token.
+Fork of balance-of strategy, this code will adapt the balance-of, based on the pricePerShare function in that same token.
 
 Here is an example of parameters:
 
 ```json
 {
-  "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
-  "symbol": "DAI",
+  "address": "0x358d94b5b2F147D741088803d932Acb566acB7B6",
+  "symbol": "rSWELL",
   "decimals": 18
 }
 ```
