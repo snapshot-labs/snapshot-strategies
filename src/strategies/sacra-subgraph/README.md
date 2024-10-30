@@ -45,22 +45,4 @@ Calculates users power by hero score from Sacra subgraph.
       id
     }
   }
-  
-  pawnshopPositionEntities(
-    where:{
-      borrower: $address
-      open: true
-      collateralItem_not: null
-    }
-    orderBy: collateralItem__score
-    orderDirection: desc
-    first: 1000
-  ) {
-    collateralItem {
-      score
-    }
-    borrower {
-      id
-    }
-  }
 ```

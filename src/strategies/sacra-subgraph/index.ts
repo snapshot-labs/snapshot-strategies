@@ -72,27 +72,6 @@ export async function strategy(
     }
   };
 
-  const queryTwo = {
-    pawnshopPositionEntities: {
-      __args: {
-        where: {
-          borrower_in: addresses.map((address) => address.toLowerCase()),
-          open: true,
-          collateralItem_not: null
-        },
-        orderBy: 'collateralItem__score',
-        orderDirection: 'desc',
-        first: 1000
-      },
-      collateralItem: {
-        score: true
-      },
-      borrower: {
-        id: true
-      }
-    }
-  };
-
   if (snapshot !== 'latest') {
     // @ts-ignore
     queryOne.heroEntities.__args.block = { number: snapshot };
@@ -127,18 +106,6 @@ export async function strategy(
     for (const pawnshopHeroEntity of pawnshopHeroEntities) {
       const userAddress = getAddress(pawnshopHeroEntity.borrower.id);
       const score = pawnshopHeroEntity.collateralHero.score;
-      scores[userAddress] = (scores[userAddress] ?? 0) + score;
-    }
-  }
-
-  const queryResultTwo = await subgraphRequest(SUBGRAPH_URL[network], queryTwo);
-  if (queryResultTwo) {
-    const pawnshopItemEntities = queryResultTwo.pawnshopPositionEntities
-      ? queryResultTwo.pawnshopPositionEntities
-      : [];
-    for (const pawnshopItemEntity of pawnshopItemEntities) {
-      const userAddress = getAddress(pawnshopItemEntity.borrower.id);
-      const score = pawnshopItemEntity.collateralItem.score;
       scores[userAddress] = (scores[userAddress] ?? 0) + score;
     }
   }
