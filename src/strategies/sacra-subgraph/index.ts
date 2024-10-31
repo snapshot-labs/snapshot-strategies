@@ -51,24 +51,6 @@ export async function strategy(
       user: {
         id: true
       }
-    },
-    pawnshopPositionEntities: {
-      __args: {
-        where: {
-          borrower_in: addresses.map((address) => address.toLowerCase()),
-          open: true,
-          collateralHero_not: null
-        },
-        orderBy: 'collateralHero__score',
-        orderDirection: 'desc',
-        first: 1000
-      },
-      collateralHero: {
-        score: true
-      },
-      borrower: {
-        id: true
-      }
     }
   };
 
@@ -77,8 +59,6 @@ export async function strategy(
     queryOne.heroEntities.__args.block = { number: snapshot };
     // @ts-ignore
     queryOne.itemEntities.__args.block = { number: snapshot };
-    // @ts-ignore
-    queryOne.pawnshopPositionEntities.__args.block = { number: snapshot };
   }
 
   const queryResultOne = await subgraphRequest(SUBGRAPH_URL[network], queryOne);
@@ -98,14 +78,6 @@ export async function strategy(
     for (const itemEntity of itemEntities) {
       const userAddress = getAddress(itemEntity.user.id);
       const score = itemEntity.score;
-      scores[userAddress] = (scores[userAddress] ?? 0) + score;
-    }
-    const pawnshopHeroEntities = queryResultOne.pawnshopPositionEntities
-      ? queryResultOne.pawnshopPositionEntities
-      : [];
-    for (const pawnshopHeroEntity of pawnshopHeroEntities) {
-      const userAddress = getAddress(pawnshopHeroEntity.borrower.id);
-      const score = pawnshopHeroEntity.collateralHero.score;
       scores[userAddress] = (scores[userAddress] ?? 0) + score;
     }
   }
