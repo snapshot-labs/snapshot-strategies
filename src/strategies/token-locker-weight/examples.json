@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "token-locker-weight",
+      "params": {
+        "address": "0xF119B5Aa93a7755b09952B3a88D04cdAf5329034",
+        "symbol": "veASF",
+        "decimals": 1
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x288adAe4E3639DD1f4a558E8636BD15F998Ae2C1",
+      "0x4f9ccE86D68Ee24275B9A2EDfC4eF52bd5e5b87c",
+      "0x318d0059efE546b5687FA6744aF4339391153981"
+    ],
+    "snapshot": 21112712
+  }
+]
