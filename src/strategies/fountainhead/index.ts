@@ -8,8 +8,7 @@ export const version = '0.1.0';
 // signatures of the methods we need
 const abi = [
   // LockerFactory
-  'function getLockerAddress(address user) external view returns (address)',
-  'function isLockerCreated(address locker) external view returns (bool isCreated)',
+  'function getUserLocker(address user) external view returns (bool isCreated, address lockerAddress)',
   // Locker
   'function getAvailableBalance() external view returns(uint256)',
   'function getStakedBalance() external view returns(uint256)',
@@ -30,26 +29,27 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
+  // get unlocked amounts held by address itself
+  const mCall0 = new Multicaller(network, provider, abi, { blockTag });
+  addresses.forEach((address) =>
+    mCall0.call(address, options.tokenAddress, 'balanceOf', [address])
+  );
+  const mc0Result: Record<string, string> = await mCall0.execute();
+
   const mCall1 = new Multicaller(network, provider, abi, { blockTag });
 
-  // lockerFactory.getLockerAddress(). Returns the deterministic address.
-  // TODO: here it would be good to also get a bool "exists"
+  // lockerFactory.getUserLocker(). Returns the deterministic address and a bool "exists".
   addresses.forEach((address) =>
-    mCall1.call(address, options.lockerFactoryAddress, 'getLockerAddress', [address])
+    mCall1.call(address, options.lockerFactoryAddress, 'getUserLocker', [address])
   );
-  const mc1Result: Record<string, string> = await mCall1.execute();
+  const mc1Result: Record<string, any> = await mCall1.execute();
 
-  const lockerAddresses = Object.values(mc1Result);
+  // Filter out addresses of existing lockers
+  const existingLockers = Object.values(mc1Result)
+    .filter(result => result.isCreated === true)
+    .map(result => result.lockerAddress);
 
-  // check if they exist (can't yet do that in a single call)
-  const mCall2 = new Multicaller(network, provider, abi, { blockTag });
-  lockerAddresses.forEach((lockerAddress) =>
-    mCall2.call(lockerAddress, options.lockerFactoryAddress, 'isLockerCreated', [lockerAddress])
-  );
-  const mc2Result: Record<string, boolean> = await mCall2.execute();
-  const existingLockers = Object.keys(mc2Result).filter(key => mc2Result[key] === true);
-
-  // Now we have all locker adresses and can get the amounts for each user
+  // Now we have all locker adresses and can get the staked and unstaked amounts for each address
   const mCall3 = new Multicaller(network, provider, abi, { blockTag });
   existingLockers.forEach((lockerAddress) =>
     mCall3.call(`available-${lockerAddress}`, lockerAddress, 'getAvailableBalance', [])
@@ -59,14 +59,15 @@ export async function strategy(
   );
   const mc3Result: Record<string, BigNumberish> = await mCall3.execute();
 
-  // Create a map for each address to the sum of available and staked balance
+  // Create a map for each address to the cumulated balance
   const balanceMap = Object.fromEntries(
     addresses.map(address => {
       const lockerAddress = mc1Result[address];
       if (lockerAddress) {
-        const availableBalance = mc3Result[`available-${lockerAddress}`] || BigNumber.from(0);
-        const stakedBalance = mc3Result[`staked-${lockerAddress}`] || BigNumber.from(0);
-        const totalBalance = BigNumber.from(availableBalance).add(BigNumber.from(stakedBalance));
+        const unlockedBalance = BigNumber.from(mc0Result[address]);
+        const availableBalance = BigNumber.from(mc3Result[`available-${lockerAddress}`] || 0);
+        const stakedBalance = BigNumber.from(mc3Result[`staked-${lockerAddress}`] || 0);
+        const totalBalance = unlockedBalance.add(availableBalance).add(stakedBalance);
         return [address, totalBalance];
       } else {
         return [address, BigNumber.from(0)];
