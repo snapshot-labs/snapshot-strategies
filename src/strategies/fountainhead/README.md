@@ -6,6 +6,10 @@ The _Locker__ is a contract holding tokens on behalf of users. Each account can 
 
 In order to calculate the amount of staked tokens, the strategy first checks if the account has a locker, using `ILockerFactory.getLockerAddress()`.
 Then the amount is calculated using `ILocker.getStakedBalance()` and `ILocker.getAvailableBalance()`.
+Then the addresses of all fontaines created by the Locker are fetched, and their token balances.
+
+Note: the Locker contract puts no limit on the number of fontaines (other than the data type of its counter).
+In practice we don't expect a high number of fontaines per locker. But in order to avoid a DoS vector, the strategy anyway limits the number of fontaines iterated. It does so by going from most recently created backwards in order to minimize the probability of missing active lockers.
 
 Here is an example of parameters for Base Sepolia:
 
@@ -36,5 +40,15 @@ cast call --rpc-url $RPC <LOCKER_ADDRESS> "lockerOwner()"
 
 get the locker address for an account (zero if not exists):
 ```
-cast call --rpc-url $RPC $LOCKER_FACTOR "getLockerAddress(address)" <ACCOUNT_ADDRESS>
+cast call --rpc-url $RPC $LOCKER_FACTORY "getLockerAddress(address)" <ACCOUNT_ADDRESS>
+```
+
+create locker:
+```
+cast send --account <ACCOUNT_NAME>--rpc-url $RPC $LOCKER_FACTORY "createLockerContract()"
+```
+
+unlock with 7 days unlock period:
+```
+cast send --account testnet --rpc-url $RPC <LOCKER_ADDRESS> "unlock(uint128,address)" 604800 <RECEIVER_ADDRESS>
 ```
