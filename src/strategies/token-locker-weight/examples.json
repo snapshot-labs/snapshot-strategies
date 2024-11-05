@@ -1,12 +1,31 @@
 [
   {
-    "name": "Example query",
+    "name": "Token Locker Weight",
     "strategy": {
       "name": "token-locker-weight",
       "params": {
         "address": "0xF119B5Aa93a7755b09952B3a88D04cdAf5329034",
         "symbol": "veASF",
-        "decimals": 1
+        "decimals": 1,
+        "methodABI": {
+          "inputs": [
+            {
+              "internalType": "address",
+              "name": "account",
+              "type": "address"
+            }
+          ],
+          "name": "getAccountWeight",
+          "outputs": [
+            {
+              "internalType": "uint256",
+              "name": "",
+              "type": "uint256"
+            }
+          ],
+          "stateMutability": "view",
+          "type": "function"
+        }
       }
     },
     "network": "1",
