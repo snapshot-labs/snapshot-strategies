@@ -16,7 +16,7 @@
         },
         "lockerFactoryAddress": {
           "type": "string",
-          "title": "Locker contract address",
+          "title": "Locker factory contract address",
           "examples": ["e.g. 0xAcA744453C178F3D651e06A3459E2F242aa01789"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
