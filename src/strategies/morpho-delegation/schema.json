@@ -15,7 +15,7 @@
         "address": {
           "type": "string",
           "title": "Contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "examples": ["e.g. 0x3CF66a662390e37ff260D0cBAa8Af6d426D60D43"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
