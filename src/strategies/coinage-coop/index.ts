@@ -4,11 +4,10 @@ export const author = 'isaac-martin';
 export const version = '1.0.0';
 
 type Wallet = `0x${string}`;
-const COINAGE_COOP_MEMBERS_API_URL =
-  'https://mutt-desired-grouper.ngrok-free.app/coop/api/members';
+const COINAGE_COOP_MEMBERS_API_URL = 'https://coinage.media/coop/api/members';
 
 /**
- * Fetches all active dao members
+ * Fetches all active coinage coop members
  */
 const fetchActiveUsers = async (): Promise<Array<Wallet>> => {
   const response = await fetch(COINAGE_COOP_MEMBERS_API_URL, {
@@ -19,15 +18,8 @@ const fetchActiveUsers = async (): Promise<Array<Wallet>> => {
   return payload.data;
 };
 
-export async function strategy(
-  space,
-  network,
-  provider,
-  addresses,
-  options,
-  snapshot
-) {
-  let calculated: Array<[Wallet, number]> = [];
+export async function strategy(space, network, provider, addresses) {
+  const calculated: Array<[Wallet, number]> = [];
 
   try {
     const activeMembers = await fetchActiveUsers();
