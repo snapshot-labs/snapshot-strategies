@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "fountainhead",
+      "params": {
+        "tokenAddress": "0x3A193aC8FcaCCDa817c174D04081C105154a8441",
+        "lockerFactoryAddress": "0x8DaF7BF1a2052B6BDA0eC46619855Cec77DfbC76"
+      }
+    },
+    "network": "84532",
+    "addresses": [
+      "0x7269B0c7C831598465a9EB17F6c5a03331353dAF",
+      "0x6e7A82059a9D58B4D603706D478d04D1f961107a",
+      "0x264Ff25e609363cf738e238CBc7B680300509BED",
+      "0x5782BD439d3019F61bFac53f6358C30c3566737C",
+      "0x4ee5D45eB79aEa04C02961a2e543bbAf5cec81B3"
+    ],
+    "snapshot": 17304060
+  }
+]
