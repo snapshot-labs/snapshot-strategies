@@ -1,3 +1,4 @@
+import { EnumType } from 'json-to-graphql-query';
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
@@ -53,16 +54,16 @@ export async function strategy(
         __args: {
           where: {
             itemType_in: [
-              'wearable_v1',
-              'wearable_v2',
-              'smart_wearable_v1',
-              'emote_v1'
+              new EnumType('wearable_v1'),
+              new EnumType('wearable_v2'),
+              new EnumType('smart_wearable_v1'),
+              new EnumType('emote_v1')
             ],
             owner_in: chunk.map((address) => address.toLowerCase()),
             id_gt: ''
           },
-          orderBy: 'id',
-          orderDirection: 'asc',
+          orderBy: new EnumType('id'),
+          orderDirection: new EnumType('asc'),
           first: 1000
         },
         id: true,

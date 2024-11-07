@@ -1,5 +1,5 @@
 import Validation from '../validation';
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
 
 interface Attestation {
   attester: string;
@@ -47,7 +47,7 @@ async function isAttested(schemaId: string, address: string, network = 1) {
   const easUrl = EASNetworks[network];
   if (!easUrl) throw new Error(`EAS network ${network} not supported`);
 
-  const response: SubgraphResponse = await fetch(easUrl, {
+  const response: SubgraphResponse = await customFetch(easUrl, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({

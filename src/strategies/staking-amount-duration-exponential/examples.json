@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "staking-amount-duration-exponential",
+      "params": {
+        "address": "0x520BDBFCe65CECa0813e51D724804BC7Fd6107dd",
+        "symbol": "STAKE",
+        "decimals": 18,
+        "rate": 0.1
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0x57bABaf9E18587C2C1E97244729847604789fC81",
+      "0xc62BD6B53f46883038b5f018aE74155f07b0e6Db",
+      "0x6CcE789f04A3f0c291E97042765E07bccC6D73B3"
+    ],
+    "snapshot": 6856587
+  }
+]

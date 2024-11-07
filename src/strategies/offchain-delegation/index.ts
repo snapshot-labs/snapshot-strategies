@@ -1,6 +1,5 @@
-import fetch from 'cross-fetch';
 import { getAddress } from '@ethersproject/address';
-import { getScoresDirect } from '../../utils';
+import { getScoresDirect, customFetch } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
@@ -35,7 +34,7 @@ export async function strategy(
   const SPREADSHEET_ID = options.sheetId ?? DEFAULT_SPREADSHEET_ID;
   const GID = options.gid ?? DEFAULT_GID;
   const url = `https://docs.google.com/spreadsheets/d/e/${SPREADSHEET_ID}/pub?gid=${GID}&single=true&output=csv`;
-  const res = await fetch(url);
+  const res = await customFetch(url);
   const text = await res.text();
   const csv = csvToJson(text) || [];
   const delegations = Object.fromEntries(

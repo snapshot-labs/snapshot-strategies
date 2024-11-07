@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'snapshot-labs';
@@ -35,7 +35,7 @@ export async function strategy(
   const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/${platform}/contract/${address}/market_chart/range?vs_currency=${currency}&from=${
     block.timestamp - 100000
   }&to=${block.timestamp}`;
-  const coingeckoData = await fetch(coingeckoApiURL)
+  const coingeckoData = await customFetch(coingeckoApiURL)
     .then(async (r) => {
       const json = await r.json();
       return json;
