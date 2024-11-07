@@ -465,7 +465,6 @@ import * as stakingAmountDurationExponential from './staking-amount-duration-exp
 import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 
-
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
@@ -932,7 +931,6 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
-  'snx-multichain': snxMultichain,
   'coinage-coop': coinageCoop,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
   'snx-multichain': snxMultichain,
