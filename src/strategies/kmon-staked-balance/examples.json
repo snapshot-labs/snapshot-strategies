@@ -1,0 +1,20 @@
+[
+  {
+    "name": "KMON Staked Balance Query",
+    "strategy": {
+      "name": "kmon-staked-balance",
+      "params": {
+        "stakingAddress": "0xFDb4bc92Df528F6FA3DDeDEc96c91513869f1F49",
+        "symbol": "KMON",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x54AEA0dBB9419BA21e7E82b15019dD211f3da408",
+      "0x315E9664c0FCc8193bfEe07DbE7179AE65732460",
+      "0x978230bF043B0d4A1c773280c9C55E0DFFD84659"
+    ],
+    "snapshot": 21136765
+  }
+]
