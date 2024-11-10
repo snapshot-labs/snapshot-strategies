@@ -51,7 +51,9 @@ export async function strategy(
   const mCall2 = new Multicaller(network, provider, abi, { blockTag });
   // lockerFactory.getUserLocker(). Returns the deterministic address and a bool "exists".
   addresses.forEach((address) =>
-    mCall2.call(address, options.lockerFactoryAddress, 'getUserLocker', [address])
+    mCall2.call(address, options.lockerFactoryAddress, 'getUserLocker', [
+      address
+    ])
   );
   const mCall2Result: Record<string, any> = await mCall2.execute();
   const lockerByAddress = Object.fromEntries(
@@ -64,17 +66,36 @@ export async function strategy(
   // 3. GET LOCKER STATE (available balance, staked balance, fontaine count)
   const mCall3 = new Multicaller(network, provider, abi, { blockTag });
   existingLockers.forEach((lockerAddress) => {
-    mCall3.call(`available-${lockerAddress}`, lockerAddress, 'getAvailableBalance', []);
-    mCall3.call(`staked-${lockerAddress}`, lockerAddress, 'getStakedBalance', []);
-    mCall3.call(`fontaineCount-${lockerAddress}`, lockerAddress, 'fontaineCount', []);
+    mCall3.call(
+      `available-${lockerAddress}`,
+      lockerAddress,
+      'getAvailableBalance',
+      []
+    );
+    mCall3.call(
+      `staked-${lockerAddress}`,
+      lockerAddress,
+      'getStakedBalance',
+      []
+    );
+    mCall3.call(
+      `fontaineCount-${lockerAddress}`,
+      lockerAddress,
+      'fontaineCount',
+      []
+    );
   });
   const mCall3Result: Record<string, BigNumberish> = await mCall3.execute();
   // Transform raw results into structured data
   const lockerStates: Record<string, LockerState> = {};
   existingLockers.forEach((lockerAddress) => {
     lockerStates[lockerAddress] = {
-      availableBalance: BigNumber.from(mCall3Result[`available-${lockerAddress}`] || 0),
-      stakedBalance: BigNumber.from(mCall3Result[`staked-${lockerAddress}`] || 0),
+      availableBalance: BigNumber.from(
+        mCall3Result[`available-${lockerAddress}`] || 0
+      ),
+      stakedBalance: BigNumber.from(
+        mCall3Result[`staked-${lockerAddress}`] || 0
+      ),
       fontaineCount: Number(mCall3Result[`fontaineCount-${lockerAddress}`])
     };
   });
@@ -85,8 +106,12 @@ export async function strategy(
     const fontaineCount = lockerStates[lockerAddress].fontaineCount;
     // iterate backwards, so we have fontaines ordered by creation time (most recent first).
     // this makes it unlikely to miss fontaines which are still active.
-    for (let i = fontaineCount-1; i >= 0 && i >= fontaineCount-MAX_FONTAINES_PER_LOCKER; i--) {
-      mCall4.call(`${lockerAddress}-${i}`, lockerAddress, 'fontaines', [i])
+    for (
+      let i = fontaineCount - 1;
+      i >= 0 && i >= fontaineCount - MAX_FONTAINES_PER_LOCKER;
+      i--
+    ) {
+      mCall4.call(`${lockerAddress}-${i}`, lockerAddress, 'fontaines', [i]);
     }
   });
   const fontaineAddrs: Record<string, string> = await mCall4.execute();
@@ -96,7 +121,9 @@ export async function strategy(
   existingLockers.forEach((lockerAddress) => {
     for (let i = 0; i < lockerStates[lockerAddress].fontaineCount; i++) {
       const fontaineAddress = fontaineAddrs[`${lockerAddress}-${i}`];
-      mCall5.call(`${lockerAddress}-${i}`, options.tokenAddress, 'balanceOf', [fontaineAddress]);
+      mCall5.call(`${lockerAddress}-${i}`, options.tokenAddress, 'balanceOf', [
+        fontaineAddress
+      ]);
     }
   });
   const fontaineBalances: Record<string, BigNumberish> = await mCall5.execute();
@@ -106,7 +133,7 @@ export async function strategy(
 
   // SUM UP ALL THE BALANCES
   const balances = Object.fromEntries(
-    addresses.map(address => {
+    addresses.map((address) => {
       const lockerAddress: string = lockerByAddress[address];
       const unlockedBalance = BigNumber.from(unlockedBalances[address]);
 
@@ -117,7 +144,10 @@ export async function strategy(
       const availableBalance = lockerStates[lockerAddress].availableBalance;
       const stakedBalance = lockerStates[lockerAddress].stakedBalance;
       const fontaineBalanceSum = getFontaineBalancesForLocker(
-        lockerAddress, lockerStates[lockerAddress].fontaineCount, fontaineBalances);
+        lockerAddress,
+        lockerStates[lockerAddress].fontaineCount,
+        fontaineBalances
+      );
 
       const totalBalance = unlockedBalance
         .add(availableBalance)
@@ -144,9 +174,8 @@ function getFontaineBalancesForLocker(
   balances: Record<string, BigNumberish>
 ): BigNumber {
   return Array.from({ length: fontaineCount })
-    .map((_, i) => BigNumber.from(balances[`balance-${lockerAddress}-${i}`] || 0))
-    .reduce(
-      (sum, balance) => sum.add(balance),
-      BigNumber.from(0)
-    );
+    .map((_, i) =>
+      BigNumber.from(balances[`balance-${lockerAddress}-${i}`] || 0)
+    )
+    .reduce((sum, balance) => sum.add(balance), BigNumber.from(0));
 }
