@@ -7,7 +7,7 @@
 
 This validation module check the number of basis points (bps, i.e. 0.01%) of vote a delegate control, which is used to enforce the 0.01% snapshot proposer requirement specified in [The Constitution of the Arbitrum DAO](https://docs.arbitrum.foundation/dao-constitution).
 
-Arbitrum use an EXCLUDE_ADDRESS (0x00000000000000000000000000000000000A4B86) to mark non-votable tokens, tokens delegated to the EXCLUDE_ADDRESS will be excluded from votable supply.
+Arbitrum uses an EXCLUDE_ADDRESS (0x00000000000000000000000000000000000A4B86) to mark non-votable tokens, tokens delegated to the EXCLUDE_ADDRESS will be excluded from votable supply.
 
 You should use this validation module with erc20-votes strategy configured with the same token address and decimals.
 
