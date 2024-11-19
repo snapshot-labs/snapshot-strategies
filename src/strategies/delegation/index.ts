@@ -1,5 +1,5 @@
 import { getDelegations } from '../../utils/delegation';
-import { getScoresDirect } from '../../utils';
+import { getScoresDirect, getSnapshots } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
@@ -24,11 +24,20 @@ export async function strategy(
   )
     return {};
   const delegationSpace = options.delegationSpace || space;
+  const delegationNetwork = options.delegationNetwork || network;
+  let delegationSnapshot = snapshot;
+  if (delegationNetwork !== network) {
+    const snapshots = await getSnapshots(network, snapshot, provider, [
+      delegationNetwork
+    ]);
+    delegationSnapshot = snapshots[delegationNetwork];
+  }
+
   const delegations = await getDelegations(
     delegationSpace,
-    network,
+    delegationNetwork,
     addresses,
-    snapshot
+    delegationSnapshot
   );
   if (Object.keys(delegations).length === 0) return {};
 
