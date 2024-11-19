@@ -27,7 +27,7 @@
     "snapshot": 21218777
   },
   {
-    "name": "Example query",
+    "name": "Example query with delegationNetwork",
     "strategy": {
       "name": "delegation",
       "params": {
