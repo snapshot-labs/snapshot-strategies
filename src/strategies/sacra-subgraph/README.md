@@ -1,17 +1,14 @@
-# Sacra score power from Subgraph
+# Sacra power from Subgraph
 
-Calculates users power by hero score from Sacra subgraph.
+Calculates users power by passed biomes
 
 ```
-  heroEntities(
+  heroActions(
     where:{
-      owner: $address
-      dead: false
+      action: 3
+      owner_in: [$address]
     }
-    orderBy: score
-    orderDirection: desc
-    first: 1000
   ) {
-    score
+    values
   }
 ```

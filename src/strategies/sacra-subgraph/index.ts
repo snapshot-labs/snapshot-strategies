@@ -7,7 +7,7 @@ const SUBGRAPH_URL = {
 };
 
 export const author = 'alexandersazonof';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 export async function strategy(
   _space,
@@ -18,55 +18,53 @@ export async function strategy(
   snapshot
 ) {
   // initialize scores
-  const scores = {};
+  const power = {};
 
   // If graph doesn't exist return
   if (!SUBGRAPH_URL[network]) {
-    return scores;
+    return power;
   }
 
   const params = {
-    heroEntities: {
+    heroActions: {
       __args: {
         where: {
-          owner_in: addresses.map((address) => address.toLowerCase()),
+          action: 3,
           id_gt: '',
-          dead: false
+          owner_in: addresses.map((address) => address.toLowerCase())
         },
         orderBy: 'id',
         orderDirection: 'asc',
         first: 1000
       },
-      id: true,
-      score: true,
       owner: {
         id: true
-      }
+      },
+      values: true
     }
   };
 
   if (snapshot !== 'latest') {
     // @ts-ignore
-    params.heroEntities.__args.block = { number: snapshot };
+    params.heroActions.__args.block = { number: snapshot };
   }
 
   let hasNext = true;
   while (hasNext) {
     const result = await subgraphRequest(SUBGRAPH_URL[network], params);
 
-    const heroEntities =
-      result && result.heroEntities ? result.heroEntities : [];
-    const latest = heroEntities[heroEntities.length - 1];
+    const heroActions = result && result.heroActions ? result.heroActions : [];
+    const latest = heroActions[heroActions.length - 1];
 
-    for (const heroEntity of heroEntities) {
-      const userAddress = getAddress(heroEntity.owner.id);
-      const score = heroEntity.score;
-      scores[userAddress] = (scores[userAddress] ?? 0) + score;
+    for (const heroAction of heroActions) {
+      const userAddress = getAddress(heroAction.owner.id);
+      const userPower = 2 ** heroAction.values[0];
+      power[userAddress] = (power[userAddress] ?? 0) + userPower;
     }
 
-    hasNext = heroEntities.length === params.heroEntities.__args.first;
-    params.heroEntities.__args.where.id_gt = latest ? latest.id : '';
+    hasNext = heroActions.length === params.heroActions.__args.first;
+    params.heroActions.__args.where.id_gt = latest ? latest.id : '';
   }
 
-  return scores || {};
+  return power || {};
 }
