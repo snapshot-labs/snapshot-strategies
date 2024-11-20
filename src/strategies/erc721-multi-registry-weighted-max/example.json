@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "alkimi",
+      "params": {
+        "symbol": "Total",
+        "tokens": [
+          "0x3106a0a076BeDAE847652F42ef07FD58589E001f",
+          "0xb986Fd52697f16bE888bFAD2c5bF12cd67Ce834B",
+          "0xb2d4F230298Cf68164F6C5DD994068Cbb4C3D335"
+        ],
+        "maxBalance": 200000,
+        "weights": [1, 5, 10]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1aafe347843ac8f68b9d8d76c8214ee65f9e6b07",
+      "0x8497692174e3a27bcd51a519b808f89789d6580b",
+      "0x003daf6ef9fd7859d2bdab12bf5eb807dc46f1e7",
+      "0xba84436870c9a055430cfa412d8a9186802ffb92",
+      "0x5b1230af74e722d1aa127a7162751ea62b1a1f08"
+    ],
+    "snapshot": 21229701
+  }
+]

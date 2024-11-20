@@ -463,6 +463,7 @@ import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
 import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
 import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
+import * as erc721MultiRegistryWeightedMax from './erc721-multi-registry-weighted-max';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -936,7 +937,8 @@ const strategies = {
   'staking-amount-duration-linear': stakingAmountDurationLinear,
   'staking-amount-duration-exponential': stakingAmountDurationExponential,
   'sacra-subgraph': sacraSubgraph,
-  fountainhead
+  fountainhead,
+  'erc721-multi-registry-weighted-max': erc721MultiRegistryWeightedMax
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
