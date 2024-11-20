@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { multicall } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
-export const author = 'Gediminas';
+export const author = 'alkimi';
 export const version = '0.1.0';
 
 const abi = [
