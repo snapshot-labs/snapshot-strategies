@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Nayms Staking Strategy Example",
+    "strategy": {
+      "name": "nayms-staking",
+      "params": {
+        "contractAddress": "0x546Fb1621CF8C0e8e3ED8E3508b7c5100ADdBc03",
+        "decimals": 18,
+        "entityId": "0x454e544954590000000000004d2ced07e3029ea0f98cff05d1444649e7860b81"
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0x991c989157F99BdF0AD1B7b814F3462A14209636",
+      "0x127E238C42D91Fa81c5DF6a844EB9804bF6C7360",
+      "0x50CE06Ab2404C72fbD57620EA8aa0E282065A831"
+    ],
+    "snapshot": 21880158
+  }
+]

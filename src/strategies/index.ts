@@ -464,6 +464,7 @@ import * as stakingAmountDurationExponential from './staking-amount-duration-exp
 import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as erc721MultiRegistryWeightedMax from './erc721-multi-registry-weighted-max';
+import * as naymsStaking from './nayms-staking';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -939,6 +940,7 @@ const strategies = {
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
   'erc721-multi-registry-weighted-max': erc721MultiRegistryWeightedMax
+  'nayms-staking': naymsStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
