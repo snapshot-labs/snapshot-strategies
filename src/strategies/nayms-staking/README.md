@@ -8,4 +8,4 @@ The strategy:
 
 * Gets the user's entity ID from their address
 * Retrieves staking information using the entity ID
-* Returns the staking amount as voting power
+* Returns the boosted staking amount as voting power
