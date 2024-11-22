@@ -2,7 +2,7 @@
 
 The Streamr Network is a peer-to-peer network for publishing and subscribing to data in real-time. Applications use it for decentralized messaging, for example sharing data across applications or broadcasting real-time state changes to large audiences. The decentralized nature of the system makes the data transport scalable, robust, secure, tamper proof, and censorship resistant.
 
-Operators are the node running "miners" in the Streamr Network. They run Streamr nodes, subscribe to streams, and stake DATA in the Sponsorship contract(s) of those streams. When they subscribe, they help making that stream more robust. In return, they receive DATA tokens from the Sponsorship contract, in proportion to their stake.
+Operators are the node running "miners" in the Streamr Network. They run Streamr nodes, subscribe to streams, and stake DATA in the Sponsorship contract(s) of those streams. When they subscribe, they help make that stream more robust. In return, they receive DATA tokens from the Sponsorship contract, in proportion to their stake.
 
 This is why part of the Operators' DATA tokens are staked in Sponsorships (through an Operator contract that they control). Only a small portion of DATA is expected to be in the Streamr Network participants' wallets, the rest is staked or delegated into the Streamr Network.
 
