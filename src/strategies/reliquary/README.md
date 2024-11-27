@@ -13,7 +13,7 @@ or if we use multiplier
 
 In other words, if the nft has reached max voting level the voting power is equal to the amount deposited.
 
-Since Relic levels only update on an interaction, we have to chose if we want to use the current 'actual' level, or the level which the relic would
+Since Relic levels only update on an interaction, we have to choose if we want to use the current 'actual' level, or the level which the relic would
 have after an update. This can be done using the `useLevelOnUpdate` flag.
 
 Configuration:

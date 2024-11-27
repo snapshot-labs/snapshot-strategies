@@ -52,6 +52,6 @@ score = glovePower * weightClassMultiplier
   addresses and 10 distinct weight class kudo IDs.
 
 > **Warning**: This strategy uses `ethers.utils.BigNumber.toNumber()` and will
-  fail if a voter's `glovePower` or `weightClassMultiplier` is is greater than
+  fail if a voter's `glovePower` or `weightClassMultiplier` is greater than
   or equal to `Number.MAX_SAFE_INTEGER` or less than or equal to
   `Number.MIN_SAFE_INTEGER`

@@ -1,6 +1,6 @@
 # Botto Dao Governance strategy
 
-It returns the BOTTO balance of the voters participating in the governance and in the liquidiy mining program
+It returns the BOTTO balance of the voters participating in the governance and in the liquidity mining program
 
 Here is an example of parameters:
 ```json

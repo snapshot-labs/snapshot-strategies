@@ -462,6 +462,8 @@ import * as moxie from './moxie';
 import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
 import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
 import * as sacraSubgraph from './sacra-subgraph';
+import * as fountainhead from './fountainhead';
+import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
 
 const strategies = {
@@ -936,6 +938,8 @@ const strategies = {
   'staking-amount-duration-linear': stakingAmountDurationLinear,
   'staking-amount-duration-exponential': stakingAmountDurationExponential,
   'sacra-subgraph': sacraSubgraph,
+  fountainhead,
+  'nayms-staking': naymsStaking,
   'morpho-delegation': morphoDelegation
 };
 

@@ -26,6 +26,7 @@ export async function strategy(
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const uniqueAddresses = new Set<string>(addresses);
 
   const multi = new Multicaller(network, provider, stakeManagerABI, {
     blockTag
@@ -53,7 +54,7 @@ export async function strategy(
   const result = await multi.execute();
 
   const votingPower: Record<string, BigNumber> = {};
-  for (const address of addresses) {
+  for (const address of uniqueAddresses) {
     votingPower[address] = BigNumber.from(0);
   }
 
@@ -73,7 +74,7 @@ export async function strategy(
       isNotDeactivated &&
       validatorContract !== '0x0000000000000000000000000000000000000000'
     ) {
-      for (const address of addresses) {
+      for (const address of uniqueAddresses) {
         stakesMulti.call(
           `${address}_${i}`,
           validatorContract,
@@ -86,7 +87,7 @@ export async function strategy(
 
   const stakes = await stakesMulti.execute();
 
-  for (const address of addresses) {
+  for (const address of uniqueAddresses) {
     for (let i = 0; i < validatorCount; i++) {
       const key = `${address}_${i}`;
       if (stakes[key]) {
