@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "synfutures-v3-voting-power",
+      "params": {
+        "api": "https://api.synfutures.com/v3/odyssey/dev/user/usersVotingPower"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xef0db9ac4b66956957ecb691f3705386b5f460f0",
+      "0xef0db9ac4b66956957ecb691f3705386b5f460f1",
+      "0x94d896530daae7b81a56f759bd173cccc53903de",
+      "0x57eed6f7568d8ca75fb9b30ac636b68f3bd33bdb",
+      "0x50637ec92b7a5eea04220d4089911940d33e2925",
+      "0x5a5ed56cff810e2cbdc105c5dc3044841564a564",
+      "0x4b97934cff1f99dbef91c12a48d270fdda8a7543",
+      "0x62a89d2a9339c88027116f32f6f7972c0ce36167",
+      "0x392cc13567c68c4902fe67a1c6ba6743fe2fd8eb"
+    ],
+    "snapshot": 21265864
+  }
+]

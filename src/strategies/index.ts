@@ -464,6 +464,7 @@ import * as stakingAmountDurationExponential from './staking-amount-duration-exp
 import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
+import * as synfuturesv3VotingPower from './synfutures-v3-voting-power';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -938,7 +939,8 @@ const strategies = {
   'staking-amount-duration-exponential': stakingAmountDurationExponential,
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
-  'nayms-staking': naymsStaking
+  'nayms-staking': naymsStaking,
+  'synfutures-v3-voting-power': synfuturesv3VotingPower
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
