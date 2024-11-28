@@ -1,6 +1,7 @@
 # morpho-delegation
 
 This strategy allows to get any address' voting power for tokens inheriting from Morpho Labs Delegation Token.
+It sums the delegated assets plus the balance of the user (if not delegated)
 
 Here is an example of parameters:
 
