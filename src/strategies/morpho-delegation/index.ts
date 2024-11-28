@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 import { ADDRESS_ZERO } from '@uniswap/v3-sdk';
 
-export const author = 'morpho-labs;
+export const author = 'morpho-labs';
 export const version = '0.1.0';
 
 const abi = [
