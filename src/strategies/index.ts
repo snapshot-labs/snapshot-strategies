@@ -464,6 +464,7 @@ import * as stakingAmountDurationExponential from './staking-amount-duration-exp
 import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
+import * as morphoDelegation from './morpho-delegation';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -938,7 +939,8 @@ const strategies = {
   'staking-amount-duration-exponential': stakingAmountDurationExponential,
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
-  'nayms-staking': naymsStaking
+  'nayms-staking': naymsStaking,
+  'morpho-delegation': morphoDelegation
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
