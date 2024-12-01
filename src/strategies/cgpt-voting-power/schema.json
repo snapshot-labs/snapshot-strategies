@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "cgpt-voting-power",
+  "type": "object",
+  "properties": {
+    "address": {
+      "type": "string",
+      "title": "Contract Address",
+      "pattern": "^0x[a-fA-F0-9]{40}$"
+    },
+    "symbol": {
+      "type": "string",
+      "title": "CGPT",
+      "minLength": 1,
+      "maxLength": 10
+    },
+    "decimals": {
+      "type": "integer",
+      "title": "Decimals",
+      "default": 18,
+      "minimum": 0,
+      "maximum": 77
+    }
+  },
+  "required": ["address", "decimals"],
+  "additionalProperties": false
+}
