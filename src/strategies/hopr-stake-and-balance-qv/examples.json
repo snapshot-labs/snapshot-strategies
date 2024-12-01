@@ -6,7 +6,7 @@
       "params": {
         "tokenAddress": "0xf5581dfefd8fb0e4aec526be659cfab1f8c781da",
         "symbol": "HOPR",
-        "fallbackGnosisBlock": 27852687,
+        "fallbackGnosisBlock": 33114482,
         "subgraphStudioProdQueryApiKey": null,
         "subgraphStudioDevAccountId": null,
         "subgraphHostedAccountName": "hoprnet",
@@ -14,13 +14,13 @@
         "useChannelStake": true,
         "useHoprOnGnosis": true,
         "useHoprOnMainnet": true,
-        "subgraphStudioProdSafeStakeQueryId": "DrkbaCvNGVcNH1RghepLRy6NSHFi8Dmwp4T2LN3LqcjY",
+        "subgraphStudioProdSafeStakeQueryId": "FEQcaX9qfh31YL2K7rxRN5a3sr9rjMWkguJnby7StNRo",
         "subgraphStudioDevSafeStakeSubgraphName": "hopr-nodes-dufour",
-        "subgraphStudioDevSafeStakeVersion": "latest",
+        "subgraphStudioDevSafeStakeVersion": "version/latest",
         "subgraphHostedSafeStakeSubgraphName": null,
         "subgraphStudioProdChannelsQueryId": "Feg6Jero3aQzesVYuqk253NNLyNAZZppbDPKFYEGJ1Hj",
         "subgraphStudioDevChannelsSubgraphName": "hopr-channels",
-        "subgraphStudioDevChannelsVersion": "latest",
+        "subgraphStudioDevChannelsVersion": "version/latest",
         "subgraphHostedChannelsSubgraphName": null,
         "subgraphStudioProdHoprOnGnosisQueryId": "njToE7kpetd3P9sJdYQPSq6yQjBs7w9DahQpBj6WAoD",
         "subgraphStudioDevHoprOnGnosisSubgraphName": "hopr-on-gnosis",
@@ -48,6 +48,6 @@
       "0x3e1A12a6019ee26418F22B656926fE38F5e58C5f",
       "0x7A27A4D91231aCB3282b410Cc784517B417FA0DA"
     ],
-    "snapshot": 17220270
+    "snapshot": 19584202
   }
 ]

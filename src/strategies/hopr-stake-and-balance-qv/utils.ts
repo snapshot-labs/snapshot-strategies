@@ -131,13 +131,18 @@ export async function getGnosisBlockNumber(
   };
 
   // query from subgraph
-  const data = await subgraphRequestsToVariousServices(
-    queryUrl,
-    null,
-    null,
-    query
-  );
-  return !data ? fallbackBlockNumber : Number(data.blocks[0].number);
+  try {
+    const data = await subgraphRequestsToVariousServices(
+      queryUrl,
+      null,
+      null,
+      query
+    );
+    return !data ? fallbackBlockNumber : Number(data.blocks[0].number);
+  } catch (error) {
+    // console.error(`cannot convert block number from subgraph due to ${error}`);
+    return fallbackBlockNumber;
+  }
 }
 
 /**
@@ -148,8 +153,7 @@ export async function getGnosisBlockNumber(
  * @param stuidoDevSubgraphUrl url to the dev subgraph in the studio
  * @param studioProdSubgraphUrl url to the production subgraph in the studio
  * @param addresses address of voting accounts, which is an owner of the safe
- * @param blockNumber block number of the snapshot
- * @param snapshot snapshot
+ * @param blockNumber Gnosis chain block number for the query
  * @returns a key-value object where the key is safe address the value is the total number of owners.
  */
 export async function safeStakeSubgraphQuery(
@@ -157,13 +161,13 @@ export async function safeStakeSubgraphQuery(
   stuidoDevSubgraphUrl: string | null,
   studioProdSubgraphUrl: string | null,
   addresses: string[],
-  blockNumber: number,
-  snapshot: number | string
+  blockNumber: number
 ): Promise<Safe[]> {
   const query = {
     safes: {
       __args: {
         first: QUERY_LIMIT,
+        block: { number: blockNumber },
         where: {
           owners_: {
             owner_in: addresses.map((adr) => adr.toLowerCase())
@@ -184,11 +188,6 @@ export async function safeStakeSubgraphQuery(
     }
   };
 
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    query.safes.__args.block = { number: blockNumber };
-  }
-
   // query from subgraph
   const data = await subgraphRequestsToVariousServices(
     hostedSubgraphUrl,
@@ -198,7 +197,7 @@ export async function safeStakeSubgraphQuery(
   );
 
   // return parsed entries
-  if (!data || !data.safes || data.safe.length == 0) {
+  if (!data || !data.safes || data.safes.length == 0) {
     return [];
   } else {
     return data.safes.map((s) => {
@@ -217,8 +216,7 @@ export async function safeStakeSubgraphQuery(
  * @param stuidoDevSubgraphUrl url to the dev subgraph in the studio
  * @param studioProdSubgraphUrl url to the production subgraph in the studio
  * @param addresses address of wallets
- * @param blockNumber block number of the snapshot
- * @param snapshot snapshot
+ * @param blockNumber Gnosis chain block number for the query
  * @returns a key-value object where the key is the address and the value is the total HOPR token balance on Gnosis chain.
  */
 export async function hoprTotalOnGnosisSubgraphQuery(
@@ -226,13 +224,13 @@ export async function hoprTotalOnGnosisSubgraphQuery(
   stuidoDevSubgraphUrl: string | null,
   studioProdSubgraphUrl: string | null,
   addresses: string[],
-  blockNumber: number,
-  snapshot: number | string
+  blockNumber: number
 ): Promise<{ [propName: string]: BigNumber }> {
   const query = {
     accounts: {
       __args: {
         first: QUERY_LIMIT,
+        block: { number: blockNumber },
         where: {
           id_in: addresses.map((adr) => adr.toLowerCase())
         }
@@ -241,11 +239,6 @@ export async function hoprTotalOnGnosisSubgraphQuery(
       totalBalance: true
     }
   };
-
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    query.accounts.__args.block = { number: blockNumber };
-  }
 
   // query from subgraph
   const data = await subgraphRequestsToVariousServices(
@@ -271,8 +264,7 @@ export async function hoprTotalOnGnosisSubgraphQuery(
  * @param stuidoDevSubgraphUrl url to the dev subgraph in the studio
  * @param studioProdSubgraphUrl url to the production subgraph in the studio
  * @param addresses node addresses
- * @param blockNumber block number of the snapshot
- * @param snapshot snapshot
+ * @param blockNumber Gnosis chain block number for the query
  * @returns a key-value object where the key is the address and the value is the total HOPR token balance on Gnosis chain.
  */
 export async function hoprNodeStakeOnChannelsSubgraphQuery(
@@ -280,13 +272,13 @@ export async function hoprNodeStakeOnChannelsSubgraphQuery(
   stuidoDevSubgraphUrl: string | null,
   studioProdSubgraphUrl: string | null,
   addresses: string[],
-  blockNumber: number,
-  snapshot: number | string
+  blockNumber: number
 ): Promise<{ [propName: string]: BigNumber }> {
   const query = {
     accounts: {
       __args: {
         first: QUERY_LIMIT,
+        block: { number: blockNumber },
         where: {
           id_in: addresses.map((adr) => adr.toLowerCase())
         }
@@ -295,11 +287,6 @@ export async function hoprNodeStakeOnChannelsSubgraphQuery(
       balance: true
     }
   };
-
-  if (snapshot !== 'latest') {
-    // @ts-ignore
-    query.accounts.__args.block = { number: blockNumber };
-  }
 
   // query from subgraph
   const data = await subgraphRequestsToVariousServices(
@@ -312,10 +299,7 @@ export async function hoprNodeStakeOnChannelsSubgraphQuery(
   // map result (data.accounts) to addresses
   const entries = !data
     ? addresses.map((addr) => [addr, BigNumber.from('0')])
-    : data.accounts.map((d) => [
-        d.id,
-        parseUnits(d.totalBalance.toString(), 18)
-      ]);
+    : data.accounts.map((d) => [d.id, parseUnits(d.balance.toString(), 18)]);
   return Object.fromEntries(entries);
 }
 
