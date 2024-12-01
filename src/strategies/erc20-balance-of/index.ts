@@ -2,7 +2,7 @@ import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
 
-export const author = 'bonustrack';
+export const author = 'gopherj';
 export const version = '0.1.1';
 
 const abi = [
