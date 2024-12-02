@@ -1,6 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
 import { Multicaller } from '../../utils';
-import { ADDRESS_ZERO } from '@uniswap/v3-sdk';
+import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'morpho-labs';
 export const version = '0.1.0';
@@ -36,22 +36,25 @@ export async function strategy(
     delegateeMulti.call(address, options.address, 'delegatee', [address]);
     balanceOfMulti.call(address, options.address, 'balanceOf', [address]);
   });
-  const [delegatedVotingPowerResult, delegateeResult, balanceOfResult] =
-    await Promise.all([
-      delegatedVotingPowerMulti.execute(),
-      delegateeMulti.execute(),
-      balanceOfMulti.execute()
-    ]);
+  const [delegatedVotingPowerResult, delegateeResult, balanceOfResult]: Record<
+    string,
+    BigNumber
+  >[] = await Promise.all([
+    delegatedVotingPowerMulti.execute(),
+    delegateeMulti.execute(),
+    balanceOfMulti.execute()
+  ]);
 
   return Object.fromEntries(
-    Object.entries(delegatedVotingPowerResult).map(([address, votingData]) => [
+    Object.entries(delegatedVotingPowerResult).map(([address]) => [
       address,
       parseFloat(
         formatUnits(
-          delegatedVotingPowerResult[address] +
-            (delegateeResult[address].delegatee === ADDRESS_ZERO
-              ? balanceOfResult[address].balanceOf
-              : 0n),
+          delegatedVotingPowerResult[address].add(
+            delegateeResult[address].isZero()
+              ? balanceOfResult[address]
+              : BigNumber.from(0)
+          ),
           options.decimals
         )
       )
