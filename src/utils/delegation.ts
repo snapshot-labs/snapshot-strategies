@@ -5,7 +5,7 @@ const DELEGATION_DATA_CACHE = {};
 
 // delegations with overrides
 export async function getDelegations(space, network, addresses, snapshot) {
-  const addressesLc = addresses.map((addresses) => addresses.toLowerCase());
+  const addressesLc = addresses.map((address) => address.toLowerCase());
   const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
 
   const delegations = delegatesBySpace.filter(
