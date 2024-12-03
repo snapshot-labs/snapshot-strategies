@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { getSnapshots, subgraphRequest } from '../../utils';
 
-export const author = 'vladanthales';
+export const author = 'thales-markets';
 export const version = '1.0.5';
 
 enum NetworkId {
