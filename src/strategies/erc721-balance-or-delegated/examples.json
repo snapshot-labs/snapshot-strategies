@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-balance-or-delegated",
+      "params": {
+        "address": "0x4E911626Fa378cC95fB1A26Cc272c070eF79e4b7",
+        "symbol": "HVAXVC",
+        "decimals": 0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xEd82E1fF82ac4D1836b30839b3d5B826D205B31C",
+      "0xE1c3397AC3095E33f3C88a634E8Fe03D21a28089",
+      "0x77c0f84E730c9121eEEa22a79F6181AE7643d347",
+      "0xb56C2Cf38eD65CDbA1A014D9fE97a65A50C7ACDe"
+    ],
+    "snapshot": 21302486
+  }
+]
