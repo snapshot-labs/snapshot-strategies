@@ -21,11 +21,6 @@ export async function strategy(
   const _formatUnits = (value) =>
     parseFloat(formatUnits(value, options.decimals));
 
-  // Create default scores object
-  const defaultScores = Object.fromEntries(
-    addresses.map((address) => [address, 0])
-  );
-
   const multiBalances = new Multicaller(network, provider, abi, {
     blockTag
   });
