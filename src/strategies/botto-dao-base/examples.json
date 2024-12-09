@@ -12,12 +12,13 @@
     },
     "network": "8453",
     "addresses": [
-      "0xf2b10b41961f6bc3801e7946dabe5572158a78a5",
-      "0xea32cf979bdaf8d3bb4121d58515d4623a27f3e0",
+      "0x85D906C217Bb4c7b7f7CDE0D4318fAfa02f6F01d",
+      "0x276Dfeec6F5772156B19116d76D1E3DEB3B6F0b4",
+      "0x56768B032Fc12D2e911eF654B0054e26a58cef74",
       "0x7173d417cfa1cdec794fa21f4ca8a71d181b2ca0",
       "0x58787f1659b2fd8853918dab6d4a1565569e6044",
       "0x7dbc5f88986db946f1d5987edfbf9c6917230fa2"
     ],
-    "snapshot": 13803640
+    "snapshot": 20190843
   }
 ]
