@@ -16,7 +16,7 @@ export async function strategy(
   addresses,
   options,
   snapshot
-): Promise<Record<string, number>[]> {
+): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const _formatUnits = (value) =>
     parseFloat(formatUnits(value, options.decimals));
@@ -43,5 +43,5 @@ export async function strategy(
     })
   );
 
-  return [result];
+  return result;
 }
