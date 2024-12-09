@@ -39,19 +39,14 @@ export async function strategy(
     );
   });
 
-  try {
-    const balances: Record<string, BigNumberish> = await multiBalances.execute();
+  const balances: Record<string, BigNumberish> = await multiBalances.execute();
 
-    const result = Object.fromEntries(
-      addresses.map((adr) => {
-        const stakedBotto = _formatUnits(balances[adr + '-stakedBotto'] || 0);
-        return [adr, stakedBotto];
-      })
-    );
+  const result = Object.fromEntries(
+    addresses.map((adr) => {
+      const stakedBotto = _formatUnits(balances[adr + '-stakedBotto'] || 0);
+      return [adr, stakedBotto];
+    })
+  );
 
-    return [result];
-  } catch (error) {
-    console.error('Error fetching Base balances:', error);
-    return [defaultScores];
-  }
+  return [result];
 }
