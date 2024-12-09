@@ -238,6 +238,7 @@ import * as orangeReputationNftBasedVoting from './orange-reputation-nft-based-v
 import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as bottoDaoBase from './botto-dao-base';
 import * as genart from './genart';
 import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as balancerPoolid from './balancer-poolid';
@@ -718,6 +719,7 @@ const strategies = {
   'orange-reputation-nft-based-voting': orangeReputationNftBasedVoting,
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
+  'botto-dao-base': bottoDaoBase,
   genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'balancer-poolid': balancerPoolid,
