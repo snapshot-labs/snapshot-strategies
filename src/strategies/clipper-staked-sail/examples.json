@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example of clipper-staked-sail Strategy",
+    "strategy": {
+      "name": "clipper-staked-sail"
+    },
+    "network": "1",
+    "decimals": 18,
+    "addresses": [
+      "0x3334829670F9e8D309C9D9F318C4E6876755eDe2",
+      "0x8e70Ca936a2f2d81cBbF1Dc84Aabe4213C87b8E9",
+      "0x314C0695273Ba259Bb60074f2C92c67AC7ae6D40",
+      "0x2c2e209465D5312e6dF0cd5F7D1066f1aff9a953",
+      "0x4d768cFDb6E0077aD0a971678fa84DBcac32CE62",
+      "0x26f8435Bf2a7B8b4771F0D5317beb09fB1F197C3"
+    ],
+    "snapshot": 18558302
+  }
+]

@@ -1,7 +1,6 @@
-import fetch from 'cross-fetch';
-import { multicall } from '../../utils';
 import { BigNumber, BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
+import { multicall, customFetch } from '../../utils';
 
 export const author = 'emanuel-sol';
 export const version = '0.0.1';
@@ -37,7 +36,7 @@ export async function strategy(
     addresses: addresses
   };
 
-  const response = await fetch('https://api.forta.network/stats/shares', {
+  const response = await customFetch('https://api.forta.network/stats/shares', {
     method: 'POST',
     headers: {
       Accept: 'application/json',

@@ -1,7 +1,6 @@
 import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
-import fetch from 'cross-fetch';
+import { multicall, customFetch } from '../../utils';
 
 export const author = 'joaomajesus';
 export const version = '0.2.0';
@@ -43,7 +42,7 @@ export const version = '0.2.0';
  * - log: Boolean flag to enable or disable logging to the console (used for debugging purposes during development)
  *
  * - antiWhale.enable: Boolean flag to apply an anti-whale measure reducing the effect on the voting power as the token amount increases.
- *    - if enabled will apply the the following to the result:
+ *    - if enabled will apply the following to the result:
  *
  *      If result > antiWhale.threshold
  *        result = antiWhale.inflectionPoint * ( result / antiWhale.inflectionPoint ) ^ antiWhale.exponent
@@ -453,7 +452,7 @@ async function getPrice(network, provider, address, blockTag) {
   log.push(`to = ${from}`);
   log.push(`coingeckoApiURL = ${coingeckoApiURL}`);
 
-  const coingeckoData = await fetch(coingeckoApiURL)
+  const coingeckoData = await customFetch(coingeckoApiURL)
     .then(async (r) => {
       log.push(`coingeco response = ${JSON.stringify(r, undefined, 2)}`);
 

@@ -7,20 +7,19 @@ export const author = 'jo-chemla';
 export const version = '0.1.0';
 
 const PAGE_SIZE = 1000;
-const BALANCER_SUBGRAPH_URL_ROOT =
-  'https://api.thegraph.com/subgraphs/name/balancer-labs/balancer';
 
-const NETWORK_KEY = {
-  '1': '',
-  '42': '-kovan',
-  '137': '-polygon',
-  '42161': '-arbitrum'
+const BALANCER_SUBGRAPHS = {
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/93yusydMYauh7cfe9jEfoGABmwnX4GffHd7in8KJi1XB',
+  '1-v2':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/C4ayEZP2yTXRAB8vSaTrgN4m9anTe9Mdm2ViyiAuV9TV',
+  '137-v2':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/H9oPAbXnobBRq1cB3HDmbZ1E8MWQyJYQjT1QDJMrdbNp',
+  '42161-v2':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/98cQDy6tufTJtshDCuhh9z2kWXsQWBHVh2bqnLHsGAeS'
 };
 
 function buildBalancerSubgraphUrl(chainId, version) {
-  const networkString = NETWORK_KEY[chainId];
-  const versionString = version == 2 ? '-v2' : '';
-  return `${BALANCER_SUBGRAPH_URL_ROOT}${networkString}${versionString}`;
+  return BALANCER_SUBGRAPHS[`${chainId}${version === 2 ? '-v2' : ''}`];
 }
 
 const params = {

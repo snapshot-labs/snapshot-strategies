@@ -7,7 +7,7 @@ export const author = '0xleez';
 export const version = '0.1.1';
 
 const SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/jpegd/jpegd-core-mainnet'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/9CyfknHXr1cJrxraayn37zEmu1v4BS69i9NjLQW9XJT4'
 };
 
 const abi = [

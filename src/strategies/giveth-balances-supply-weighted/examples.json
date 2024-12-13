@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "giveth-balances-supply-weighted",
+      "params": {
+        "tokenAddress": "0x528CDc92eAB044E1E39FE43B9514bfdAB4412B98",
+        "stakedAddress": "0x301C739CF6bfb6B47A74878BdEB13f92F13Ae5E7",
+        "supplyApi": "https://circulating.giveth.io/token-supply",
+        "supplyField": "circulating",
+        "weight": 0.5,
+        "symbol": "GIV",
+        "decimals": 18,
+        "methodABI": {
+          "method": "function depositTokenBalance(address) public view returns (uint256)",
+          "name": "depositTokenBalance"
+        }
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0x826976d7C600d45FB8287CA1d7c76FC8eb732030",
+      "0x839395e20bbB182fa440d08F850E6c7A8f6F0780",
+      "0x960A16c9070A9BbbB03e1bFd418982636D56D77d"
+    ],
+    "snapshot": 117386958
+  }
+]

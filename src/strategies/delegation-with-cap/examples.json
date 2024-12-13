@@ -1,0 +1,32 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "delegation-with-cap",
+      "params": {
+        "symbol": "veBAL (delegated)",
+        "address": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+        "decimals": 18,
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "symbol": "veBAL",
+              "address": "0xC128a9954e6c874eA3d62ce62B468bA073093F25",
+              "decimals": 18
+            }
+          }
+        ],
+        "delegationSpace": "balancer.eth",
+        "capPercentage": 10
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xAD9992f3631028CEF19e6D6C31e822C5bc2442CC",
+      "0x512fce9B07Ce64590849115EE6B32fd40eC0f5F3",
+      "0x9f74662aD05840Ba35d111930501c617920dD68e"
+    ],
+    "snapshot": 17834154
+  }
+]

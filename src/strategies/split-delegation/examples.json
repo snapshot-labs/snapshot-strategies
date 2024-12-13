@@ -1,0 +1,38 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "split-delegation",
+      "params": {
+        "backendUrl": "https://delegate-api.gnosisguild.org",
+        "totalSupply": 1000000000,
+        "delegationOverride": false,
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "network": "1",
+            "params": {
+              "symbol": "LDO",
+              "address": "0x5a98fcbea516cf06857215779fd812ca3bef1b32",
+              "decimals": 18
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4af84812e595B5B0997A457eb3d5Ad8a3C1F6A0B",
+      "0x109B9744397ACf987A1abB5bB4EeF7362ab9Ff66",
+      "0x6CD69c3e7326Dec94596988AA6E5533ade51B52e",
+      "0xd1c7e00f41ce970F5A36686b172b9EAFc3700aAE",
+      "0x008756e24b06267B9D2488E5bf50091fC26C8e8d",
+      "0xb4F70F2F0f1A27276571a12e60c64E321f40d47C",
+      "0x70a613eA53b71abcBd9b32eAFB86362a31D5164C",
+      "0xcC18535935dAfa418A41C761C74586feF1952575",
+      "0xeE44C6fF39aC347d59e6b840D8412f60a7c2FAD1",
+      "0x7603a58A27ef77136398073D0E7453Ef0F650633"
+    ],
+    "snapshot": 19777000
+  }
+]

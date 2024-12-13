@@ -1,6 +1,5 @@
-import fetch from 'cross-fetch';
-import { Multicaller } from '../../utils';
 import { BigNumber } from '@ethersproject/bignumber';
+import { Multicaller, customFetch } from '../../utils';
 
 export const author = 'ethantddavis';
 export const version = '0.1.0';
@@ -50,7 +49,7 @@ export async function strategy(
     await callWalletToAddresses.execute();
 
   // fetch ipfs tier weights
-  const response = await fetch(
+  const response = await customFetch(
     'https://ipfs.io/ipfs/' + options.tokenWeightIPFS,
     {
       method: 'GET',

@@ -15,7 +15,7 @@ The space config will look like this:
   "address": "0xffffffff2ba8f66d4e51811c5190992176930278",
   "symbol": "COMBO"
   // subgraphURL for the request
-  "subGraphURL": "https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2",
+  "subGraphURL": "https://subgrapher.snapshot.org/subgraph/arbitrum/EYCKATKGBKLWvSfwvBjzfCBmGwYNdVkduYXVivCsLRFu",
   // scoreMultiplier can be used to increase users' scores by a certain magnitude
   "scoreMultiplier": 1,
 }

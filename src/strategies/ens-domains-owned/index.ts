@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const ENS_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/ensdomains/ens',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/5XqPmWe6gjyrJtFn9cLy237i4cWw2j9HcUJEXsP5qGtH',
   '3': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensropsten',
   '4': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensrinkeby',
   '5': 'https://api.thegraph.com/subgraphs/name/ensdomains/ensgoerli'
@@ -27,31 +27,38 @@ export async function strategy(
   const params = Object.fromEntries(
     pages
       .map((page, i) => `_${i}`)
-      .map((q, i) => [
-        q,
-        {
-          __aliasFor: 'domains',
-          __args: {
-            block: snapshot !== 'latest' ? { number: snapshot } : undefined,
-            where: {
-              name: options.domain
-            },
-            first: 1000
+      .map((q, i) => {
+        const args: any = {
+          where: {
+            name: options.domain
           },
-          id: true,
-          labelName: true,
-          subdomains: {
-            __args: {
-              where: {
-                owner_in: pages[i].map((address) => address.toLowerCase())
+          first: 1000
+        };
+
+        if (snapshot !== 'latest') {
+          args.block = { number: snapshot };
+        }
+
+        return [
+          q,
+          {
+            __aliasFor: 'domains',
+            __args: args,
+            id: true,
+            labelName: true,
+            subdomains: {
+              __args: {
+                where: {
+                  owner_in: pages[i].map((address) => address.toLowerCase())
+                }
+              },
+              owner: {
+                id: true
               }
-            },
-            owner: {
-              id: true
             }
           }
-        }
-      ])
+        ];
+      })
   );
 
   let result = await subgraphRequest(ENS_SUBGRAPH_URL[network], params);

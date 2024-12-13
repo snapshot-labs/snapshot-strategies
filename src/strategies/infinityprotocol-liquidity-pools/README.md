@@ -16,7 +16,7 @@ The space config will look like this:
         "address": "0xc168e40227e4ebd8c1cae80f7a55a4f0e6d66c97",
         "symbol": "DFYN"
         // subgraphURL for the request
-        "subGraphURL": "https://api.thegraph.com/subgraphs/name/ss-sonic/dfyn-v5",
+        "subGraphURL": "https://subgrapher.snapshot.org/subgraph/arbitrum/FuxKHMLaziLFcQi5c4y3p1JY1ZGLA81rFqBfZfbQZDpo",
         // scoreMultiplier can be used to increase users' scores by a certain magnitude
         "scoreMultiplier": 1,
       },

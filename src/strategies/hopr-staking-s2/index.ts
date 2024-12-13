@@ -8,7 +8,7 @@ export const version = '0.1.0';
 const XDAI_BLOCK_SUBGRAPH_URL =
   'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks';
 const HOPR_STAKING_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/hoprnet/staking-season2';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/94LBxbmmR2t3CujsDFhaFPSAVipUqHSvq4Zos3GNcbZg';
 const LIMIT = 1000; // 1000 addresses per query in Subgraph
 
 async function getXdaiBlockNumber(timestamp: number): Promise<number> {

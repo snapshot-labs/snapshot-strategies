@@ -1,7 +1,6 @@
-import fetch from 'cross-fetch';
 import { BigNumber } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
-import { multicall } from '../../utils';
+import { multicall, customFetch } from '../../utils';
 import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'benlyaunzon';
@@ -43,7 +42,7 @@ export async function strategy(
     snapshot
   );
 
-  const zrxStakingPoolsRes = await fetch(ZRX_STAKING_POOLS[network]);
+  const zrxStakingPoolsRes = await customFetch(ZRX_STAKING_POOLS[network]);
   const { stakingPools } = await zrxStakingPoolsRes.json();
   const response: BigNumber[] = await multicall(
     network,

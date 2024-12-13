@@ -1,17 +1,17 @@
-import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
-import { getScoresDirect } from '../../utils';
+import { Strategy } from '@snapshot-labs/snapshot.js/dist/src/voting/types';
 import { getAddress } from '@ethersproject/address';
+import { getScoresDirect, customFetch } from '../../utils';
 
 export const author = 'gnosis';
-export const version = '0.0.1';
+export const version = '0.0.2';
 
 const DEFAULT_BACKEND_URL = 'https://delegate-registry-backend.vercel.app';
 
 type Params = {
   backendUrl: string;
   strategies: Strategy[];
+  delegationV1VChainIds?: number[]; // add this to include v1 delegations
 };
 
 /*
@@ -33,7 +33,7 @@ export async function strategy(
   if (options.strategies.length > 8)
     throw new Error('Maximum 8 strategies allowed');
 
-  const response = await fetch(
+  const response = await customFetch(
     `${options.backendUrl}/api/${space}/snapshot/${blockTag}/strategy-formatted-vote-weights`,
     {
       method: 'POST',
@@ -42,8 +42,11 @@ export async function strategy(
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
-        addresses: addresses,
-        strategies: options.strategies
+        spaceParams: {
+          ...options,
+          mainChainId: Number(network)
+        },
+        addresses
       })
     }
   );
@@ -75,7 +78,7 @@ export async function strategy(
       ...addressesNotDelegatingOrDelegatedTo,
       ...addressesDelegatedTo.map(([address]) => address)
     ],
-    snapshot
+    blockTag
   );
 
   const delegationObject = addressesDelegatedTo.reduce(

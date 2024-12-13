@@ -13,6 +13,7 @@ This snapshot strategy enables voting power for the following assets staked in G
 - GHST-WMATIC LP
 
 Please note this excludes voting power from:
+
 - Staked wapGHST and unstaked wapGHST held in a wallet (see aavegotchi-agip-37-wap-ghst)
 - amGHST (see erc20-balance-of)
 - Unstaked GHST-FUD, GHST-FOMO, GHST-ALPHA, GHST-KEK, GHST-GLTR LP tokens (see erc20-tokens-per-uni)

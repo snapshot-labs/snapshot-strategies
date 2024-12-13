@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch';
 import examplesFile from './examples.json';
+import { customFetch } from '../../utils';
 
 export const author = 'deversifi';
 export const version = '0.1.0';
@@ -25,7 +25,7 @@ export async function strategy(
   Array.from(Array(pages)).forEach((x, i) => {
     const pageAddresses = addresses.slice(limit * i, limit * (i + 1));
     promises.push(
-      fetch(`${api_url}&addresses=${pageAddresses.join('&addresses=')}`, {
+      customFetch(`${api_url}&addresses=${pageAddresses.join('&addresses=')}`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',

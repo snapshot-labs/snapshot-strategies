@@ -1,6 +1,5 @@
-import fetch from 'cross-fetch';
 import { BigNumber } from '@ethersproject/bignumber';
-import { Multicaller } from '../../utils';
+import { Multicaller, customFetch } from '../../utils';
 
 export const author = 'syedMohib44';
 export const version = '0.0.2';
@@ -59,7 +58,7 @@ export async function strategy(
 
   const monObject: Record<string, number> = await multi2.execute();
 
-  const response = await fetch(
+  const response = await customFetch(
     'https://storageapi.fleek.co/' + options.tokenWeightIPFS,
     {
       method: 'GET',

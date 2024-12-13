@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sacra-subgraph",
+      "params": {}
+    },
+    "network": "250",
+    "addresses": [
+      "0x0009d6f1ee24dce26b3d59f7687acf9ef186908d",
+      "0x006028a11d9fff45112b4983f3dad6313784eee3",
+      "0x00662c5a6d56616b22f6180b325501b796825571"
+    ],
+    "snapshot": 95377862
+  }
+]

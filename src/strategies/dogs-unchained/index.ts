@@ -11,7 +11,7 @@ const abi721or20 = [
 ];
 
 const SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/dogsunchained/dogs-unchained';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/BhWDi1iaaH34qM1XsfiZRMRTd6DYvFushCN237LNVNTk';
 
 export async function strategy(
   space,

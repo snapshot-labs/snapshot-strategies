@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "moxie"
+    },
+    "network": "8453",
+    "addresses": [
+      "0x764e427020ad72624075c61260192c6e486d15a5",
+      "0xb59aa5bb9270d44be3fa9b6d67520a2d28cf80ab",
+      "0xcf03287A85298166522002c97aE4B1556fF026B3",
+      "0xcBFBcbFcA74955B8AB75Dec41F7b9eF36F329879"
+    ],
+    "snapshot": 20631331
+  }
+]

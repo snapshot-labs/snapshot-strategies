@@ -6,6 +6,11 @@ export const author = 'fzavalia';
 export const version = '0.1.0';
 
 const SUBGRAPH_QUERY_IN_FILTER_MAX_LENGTH = 500;
+const REQUEST_DELAY_MS = 1000 / 10; // 10 requests per second
+
+async function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
 
 export async function strategy(
   space,
@@ -109,6 +114,8 @@ async function fetchLandsAndEstatesInRentalsContract(
     let hasMoreResults = true;
 
     while (hasMoreResults) {
+      await delay(REQUEST_DELAY_MS);
+
       const result = await subgraphRequest(options.subgraphs.rentals, query);
 
       const rentalLandsAndEstates: RentalsLandOrEstate[] = result.rentalAssets;
@@ -181,6 +188,8 @@ async function fetchMarketplaceEstatesForProvidedRentalAssets(
     let hasMoreResults = true;
 
     while (hasMoreResults) {
+      await delay(REQUEST_DELAY_MS);
+
       const result = await subgraphRequest(
         options.subgraphs.marketplace,
         query
