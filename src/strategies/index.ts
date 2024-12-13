@@ -381,7 +381,6 @@ import * as gelatoStaking from './gelato-staking';
 import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
-import * as sdReverseDelegation from './sd-reverse-delegation';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
 import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
 import * as sdGaugeLessVoteBoostCrosschain from './sd-gauge-less-vote-boost-crosschain';
@@ -861,7 +860,6 @@ const strategies = {
   'friend-tech': friendTech,
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
-  'sd-reverse-delegation': sdReverseDelegation,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
   'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
