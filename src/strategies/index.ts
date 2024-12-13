@@ -384,6 +384,7 @@ import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdReverseDelegation from './sd-reverse-delegation';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
 import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
+import * as sdGaugeLessVoteBoostCrosschain from './sd-gauge-less-vote-boost-crosschain';
 import * as sdVoteBalanceOfTwavpPool from './sdvote-balanceof-twavp-pool';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
 import * as sdVoteBoostTWAVPVCrossChain from './sd-vote-boost-twavp-vsdcrv-crosschain';
@@ -863,6 +864,7 @@ const strategies = {
   'sd-reverse-delegation': sdReverseDelegation,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
+  'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
