@@ -16,7 +16,7 @@ yarn build
 
 ### Test strategy with predefined tests (params from examples.json file)
 
-> Note: If you're writing a new strategy, make sure to add it to strategies/index.ts before testing*
+> Note: If you're writing a new strategy, make sure to add it to strategies/index.ts before testing
 
 ```bash
 # Test default strategy (erc20-balance-of)
