@@ -5,9 +5,7 @@ import { Multicaller } from '../../utils';
 export const author = 'agustinjch';
 export const version = '1.0.0';
 
-const abi = [
-  'function userStakes(address) external view returns(uint256)'
-];
+const abi = ['function userStakes(address) external view returns(uint256)'];
 
 export async function strategy(
   space,
