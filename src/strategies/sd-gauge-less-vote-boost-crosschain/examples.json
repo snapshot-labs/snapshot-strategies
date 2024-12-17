@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Stake DAO vote boost using working balance",
+    "strategy": {
+      "name": "sd-gauge-less-vote-boost-crosschain",
+      "params": {
+        "sdTokenGauge": "0xE2496134149e6CD3f3A577C2B08A6f54fC23e6e4",
+        "symbol": "sdToken",
+        "decimals": 18,
+        "twavpDaysInterval": 10,
+        "twavpNumberOfBlocks": 2,
+        "whiteListedAddress": ["0x1c0D72a330F2768dAF718DEf8A19BAb019EEAd09"],
+        "blocksPerDay": 28798
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+      "0x931DaBf6721E47E6f5aeb19F6f5d48646144f484",
+      "0x3FbE6216dB591372D3Bb8428ac87B162F7B8601f",
+      "0x803585733d4554e712dcaCc2AcEA3a23b96de1e0",
+      "0xD4f9FE0039Da59e6DDb21bbb6E84e0C9e83D73eD"
+    ],
+    "snapshot": 44834720
+  }
+]
