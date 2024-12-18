@@ -9,6 +9,7 @@ export const version = '0.0.1';
 const VE_SDT = '0x0C30476f66034E11782938DF8e4384970B6c9e8a';
 const VE_PROXY_BOOST_SDT = '0xD67bdBefF01Fc492f1864E61756E5FBB3f173506';
 const TOKENLESS_PRODUCTION = 40;
+const MIN_BOOST = 0.4;
 
 // Used ABI
 const abi = [
@@ -98,6 +99,9 @@ export async function strategy(
 
   let veSDTTotalSupply = 0;
   let sdTokenGaugeTotalSupply = 0;
+  let sdTokenTotalSupply = 0;
+  let sumPoolsBalance = 0;
+  let lockerVotingPower = 0;
 
   for (let i = 0; i < options.twavpNumberOfBlocks; i++) {
     const isEnd = i === options.twavpNumberOfBlocks - 1;
@@ -123,6 +127,15 @@ export async function strategy(
     calls = sdTknGaugeBalanceCurrentChain;
     if (isEnd) {
       calls.push([options.sdTokenGauge, 'totalSupply']);
+      calls.push([options.sdToken, 'totalSupply']);
+      calls.push([options.veToken, 'balanceOf', [options.liquidLocker]]);
+
+      // Fetch pools balance
+      if (options.pools && Array.isArray(options.pools)) {
+        for (const pool of options.pools) {
+          calls.push([options.sdToken, 'balanceOf', [pool]]);
+        }
+      }
     }
 
     callResp = await multicall(
@@ -134,6 +147,21 @@ export async function strategy(
     );
 
     if (isEnd) {
+      if (options.pools && Array.isArray(options.pools)) {
+        const poolsReverse = [...options.pools].reverse()
+        for (let i = 0; i < poolsReverse.length; i++) {
+          sumPoolsBalance += parseFloat(formatUnits(callResp.pop()[0], 18));
+        }
+      }
+
+      lockerVotingPower = parseFloat(
+        formatUnits(callResp.pop()[0], 18)
+      );
+
+      sdTokenTotalSupply = parseFloat(
+        formatUnits(callResp.pop()[0], 18)
+      );
+
       sdTokenGaugeTotalSupply = parseFloat(
         formatUnits(callResp.pop()[0], 18)
       );
@@ -141,6 +169,11 @@ export async function strategy(
 
     responsesCurrentChain.push(callResp);
   }
+
+  const liquidityVoteFee =
+    (MIN_BOOST * sumPoolsBalance * lockerVotingPower) / sdTokenTotalSupply;
+
+  const totalUserVotes = lockerVotingPower - liquidityVoteFee;
 
   return Object.fromEntries(
     Array(addresses.length)
@@ -172,15 +205,23 @@ export async function strategy(
           userWorkingBalances.push(Math.min(l, lim));
         }
 
-        // Get average working balance.
-        const averageWorkingBalance = average(
-          userWorkingBalances,
-          addresses[i],
-          options.whiteListedAddress
-        );
+        let userVote = 0;
+        if(options.botAddress && addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
+          userVote = liquidityVoteFee * totalUserVotes;
+        } else {
+          // Get average working balance.
+          const averageWorkingBalance = average(
+            userWorkingBalances,
+            addresses[i],
+            options.whiteListedAddress
+          );
+
+          userVote = averageWorkingBalance * totalUserVotes;
+        }
 
         // Return address and voting power
-        return [getAddress(addresses[i]), Number(averageWorkingBalance)];
+        userVote /= 10_000;
+        return [getAddress(addresses[i]), Number(userVote)];
       })
   );
 }
@@ -194,7 +235,7 @@ function getPreviousBlocks(
   // Calculate total blocks interval
   const totalBlocksInterval = blocksPerDay * daysInterval;
   // Calculate block interval
-  const blockInterval = totalBlocksInterval / (numberOfBlocks - 1);
+  const blockInterval = totalBlocksInterval / (numberOfBlocks > 1 ? numberOfBlocks - 1 : numberOfBlocks);
 
   // Init array of block numbers
   const blockNumbers: number[] = [];
