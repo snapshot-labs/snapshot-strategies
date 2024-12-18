@@ -5,6 +5,31 @@ import passportGated from './passport-gated';
 import arbitrum from './arbitrum';
 import karmaEasAttestation from './karma-eas-attestation';
 
+// Типизация для validationInstance и структуры данных
+interface ValidationInstance {
+  id: string;
+  github: string;
+  version: string;
+  title: string;
+  description: string;
+  proposalValidationOnly: boolean;
+  votingValidationOnly: boolean;
+}
+
+interface ValidationData {
+  validation: any;
+  examples: any | null;
+  schema: any | null;
+  about: string;
+  id: string;
+  github: string;
+  version: string;
+  title: string;
+  description: string;
+  proposalValidationOnly: boolean;
+  votingValidationOnly: boolean;
+}
+
 const validationClasses = {
   basic,
   'passport-gated': passportGated,
@@ -12,18 +37,16 @@ const validationClasses = {
   'karma-eas-attestation': karmaEasAttestation
 };
 
-const validations = {};
-Object.keys(validationClasses).forEach(function (validationName) {
+const validations: { [key: string]: ValidationData } = {};
+
+Object.keys(validationClasses).forEach((validationName) => {
   let examples = null;
   let schema = null;
   let about = '';
 
   try {
     examples = JSON.parse(
-      readFileSync(
-        path.join(__dirname, validationName, 'examples.json'),
-        'utf8'
-      )
+      readFileSync(path.join(__dirname, validationName, 'examples.json'), 'utf8')
     );
   } catch (error) {
     examples = null;
@@ -47,7 +70,7 @@ Object.keys(validationClasses).forEach(function (validationName) {
   }
 
   const validationClass = validationClasses[validationName];
-  const validationInstance = new validationClass();
+  const validationInstance: ValidationInstance = new validationClass();
 
   validations[validationName] = {
     validation: validationClass,
