@@ -467,6 +467,7 @@ import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
+import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -944,7 +945,8 @@ const strategies = {
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
   'nayms-staking': naymsStaking,
-  'morpho-delegation': morphoDelegation
+  'morpho-delegation': morphoDelegation,
+  'lizcoin-strategy-2024': lizcoinStrategy2024
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
