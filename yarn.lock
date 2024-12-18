@@ -1239,10 +1239,10 @@
   dependencies:
     "@sinonjs/commons" "^2.0.0"
 
-"@snapshot-labs/snapshot.js@^0.12.38":
-  version "0.12.38"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.12.38.tgz#e30bdb5218bd73cc961fb7b60c68cbf322321cd8"
-  integrity sha512-qbN+WPZW+XUr4icFsNhVrqR/mPLCz0XVEOBnN1RJBrzKhMYPgUNwjGBOA0jaIfYKQaD94vMxrhQWKoQud/yIJA==
+"@snapshot-labs/snapshot.js@^0.12.39":
+  version "0.12.39"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.12.39.tgz#c64796aa58ec4fef4063daab4ceb173d7fc5ad95"
+  integrity sha512-yKTffnft7cdoSTYH8ceQxFMjghE2ycrtGWbkC5ZBEWHuP81ZfR+ZNjlWM0TtnNM87A3umhbW1wKCJ0tgn/JAFQ==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.6.4"
