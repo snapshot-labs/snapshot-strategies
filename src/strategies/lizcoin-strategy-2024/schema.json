@@ -1,0 +1,109 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Lizcoin Voting Strategy 2024",
+      "type": "object",
+      "properties": {
+        "lizcoinAddress": {
+          "type": "string",
+          "title": "Lizcoin ERC20 Token (LIZ) Address",
+          "default": "0xAF4144cd943ed5362Fed2BaE6573184659CBe6FF",
+          "examples": ["e.g. 0xAF4144cd943ed5362Fed2BaE6573184659CBe6FF"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "cLIZAddress": {
+          "type": "string",
+          "title": "cLIZ Convertable Coin Address",
+          "default": "0x0F9dc0c0A46733c8b9a6C2E4850913Ed31d31205",
+          "examples": ["e.g. 0x0F9dc0c0A46733c8b9a6C2E4850913Ed31d31205"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vLIZAddress": {
+          "type": "string",
+          "title": "vLIZ Convertable Coin Address",
+          "default": "0xe20C4edb8440CaDD4001c144B4F38576d1AA3820",
+          "examples": ["e.g. 0xe20C4edb8440CaDD4001c144B4F38576d1AA3820"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "veLIZAddress": {
+          "type": "string",
+          "title": "veLIZ Convertable Coin Address",
+          "default": "0xC817C0B518e8Fc98034ad867d679d4f8A284BFBE",
+          "examples": ["e.g. 0xC817C0B518e8Fc98034ad867d679d4f8A284BFBE"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "cLIZConversionRate": {
+          "type": "number",
+          "title": "cLIZ to LIZ Conversion Rate",
+          "default": 0.01,
+          "examples": [0.01],
+          "minimum": 0.000000001,
+          "maximum": 1000000000
+        },
+        "vLIZConversionRate": {
+          "type": "number",
+          "title": "vLIZ to LIZ Conversion Rate",
+          "default": 0.01,
+          "examples": [0.01],
+          "minimum": 0.000000001,
+          "maximum": 1000000000
+        },
+        "veLIZConversionRate": {
+          "type": "number",
+          "title": "veLIZ to LIZ Conversion Rate",
+          "default": 0.01,
+          "examples": [0.01],
+          "minimum": 0.000000001,
+          "maximum": 1000000000
+        },
+        "uniswapV2PoolAddress": {
+          "type": "string",
+          "title": "Voting Eligible Uniswap V2 LP Address",
+          "examples": ["e.g. 0xD47B93360EAADBA2678c30F64209a42b9800cEE4"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "stakingContractAddress": {
+          "type": "string",
+          "title": "Voting Eligible Staking Contract Address",
+          "examples": ["e.g. 0xEf2E841AA9F49cc0E54697A4Afa6361eA24d682F"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vestingContractAddress": {
+          "type": "string",
+          "title": "Voting Eligible Vesting Contract Address",
+          "examples": ["e.g. 0x895ecdCAC6431272946Ec615eD368d2f42fC2b44"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": [
+        "lizcoinAddress",
+        "cLIZAddress",
+        "vLIZAddress",
+        "veLIZAddress",
+        "cLIZConversionRate",
+        "vLIZConversionRate",
+        "veLIZConversionRate",
+        "uniswapV2PoolAddress",
+        "stakingContractAddress",
+        "vestingContractAddress"
+      ],
+      "additionalProperties": false
+    }
+  }
+}
