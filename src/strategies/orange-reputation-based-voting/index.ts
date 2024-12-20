@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
 
 export const author = 'orange-protocol';
 export const version = '0.1.0';
@@ -26,7 +26,7 @@ export async function strategy(
     query,
     variables: {}
   };
-  const rawResponse = await fetch(
+  const rawResponse = await customFetch(
     'https://api.orangeprotocol.io/orange2c/query',
     {
       method: 'POST',

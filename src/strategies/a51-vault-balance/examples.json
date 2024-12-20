@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "a51-vault-balance",
+      "params": {
+        "vaultAddress": "0x2ba1bc7d00ed1cb31379ee28a88968d90a6c2f49",
+        "isToken0": false,
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x22b77d7135174e1002d543ef8ff16a775db9ae5f",
+      "0x75f2bbf3a10b67134a780fb7d6da5808265111f7",
+      "0xfcae8fbaabb5336d8f4ddd76e6542fd6b89be68e"
+    ],
+    "snapshot": 55932446
+  }
+]

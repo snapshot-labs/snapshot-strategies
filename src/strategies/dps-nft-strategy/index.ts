@@ -6,7 +6,7 @@ export const version = '0.3.1';
 
 const DPS_SUBGRAPH_URL_MOONBEAM = {
   '1284':
-    'https://api.thegraph.com/subgraphs/name/andreibadea20/dps-holders-moonbeam'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/G2ysJgNidntuiBVzHtbdcyxeRX1Q6EB5vxVAG1x5Rs2C'
 };
 
 const PAGE_SIZE = 1000;

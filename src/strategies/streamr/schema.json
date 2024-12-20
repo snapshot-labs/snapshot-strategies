@@ -6,6 +6,12 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. DATA (operator)"],
+          "maxLength": 16
+        },
         "tokenAddress": {
           "type": "string",
           "title": "DATA token address",

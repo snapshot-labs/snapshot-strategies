@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
 
 export const author = 'bonustrack';
 export const version = '0.1.0';
@@ -27,7 +27,7 @@ export async function strategy(
   const block = await provider.getBlock(snapshot);
   const ts = block.timestamp;
 
-  const res = await fetch(
+  const res = await customFetch(
     `https://docs.google.com/spreadsheets/d/e/${options.sheetId}/pub?gid=${
       options.gid || '0'
     }&single=true&output=csv`

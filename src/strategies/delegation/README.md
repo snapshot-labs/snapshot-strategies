@@ -8,6 +8,7 @@ In delegation strategy, the sub strategies defined in params are used to delegat
 | ----------- | ----------- |
 | strategies      | list of sub strategies to calculate voting power based on delegation      |
 | delegationSpace (optional)   | Get delegations of a particular space (by default it take delegations of current space)  |
+| delegationNetwork  | Get delegation from a particular chain instead of default chain |
 
 Here is an example of parameters:
 

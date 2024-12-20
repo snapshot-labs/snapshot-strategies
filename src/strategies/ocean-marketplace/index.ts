@@ -17,7 +17,7 @@ const OCEAN_SUBGRAPH_URL = {
 };
 
 // Returns a BigDecimal as a BigNumber with 10^decimals extra zeros
-export function bdToBn(bd, decimals) {
+export function bdToBn(bd: string, decimals: number): BigNumber {
   let bn;
   const splitDecimal = bd.split('.');
 

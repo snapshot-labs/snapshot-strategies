@@ -20,8 +20,40 @@ const balancerVaultAbi = [
   'function getPoolTokenInfo(bytes32,address) view returns (uint256)'
 ];
 
+const uniV3TokenizedLpAbi = [
+  'function getTotalAmounts() view returns (uint256, uint256)',
+  'function token0() view returns (address)',
+  'function totalSupply() view returns (uint256)'
+];
+
 const toJsNum = (bn: BigNumberish) => {
   return parseFloat(formatUnits(bn));
+};
+
+const rdntPerUniV3LpToken = async (network, provider, options, blockTag) => {
+  const [token0Bal, token1Bal] = await call(provider, uniV3TokenizedLpAbi, [
+    options.lpToken,
+    'getTotalAmounts',
+    [],
+    { blockTag }
+  ]);
+
+  const [token0, totalSupplyBN] = await multicall(
+    network,
+    provider,
+    uniV3TokenizedLpAbi,
+    [
+      [options.lpToken, 'token0'],
+      [options.lpToken, 'totalSupply']
+    ],
+    { blockTag }
+  );
+  const totalSupply = toJsNum(totalSupplyBN[0]);
+  const rdntInLp =
+    Number(token0) == Number(options.rdnt)
+      ? toJsNum(token0Bal)
+      : toJsNum(token1Bal);
+  return rdntInLp / totalSupply;
 };
 
 const rdntPerBalancerLpToken = async (network, provider, options, blockTag) => {
@@ -93,6 +125,8 @@ export async function strategy(
     );
   } else if (network === '56') {
     rdntPerLp = await rdntPerUniLpToken(network, provider, options, blockTag);
+  } else if (network === '8453') {
+    rdntPerLp = await rdntPerUniV3LpToken(network, provider, options, blockTag);
   }
 
   // console.log(`RDNT per LP token: ${rdntPerLp}`);

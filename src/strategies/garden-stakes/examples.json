@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "garden-stakes",
+      "params": {
+        "gardenStakerAddress": "0xe2239938Ce088148b3Ab398b2b77Eedfcd9d1AfC"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x9d1AD258e43d6547Bd8176469Fd4E910dBeB8246",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x946232eA875bf2C3FD52DefA76B442f3AC2dBfc5",
+      "0xc1a17F2fd7DB9adf67De8a8F331d682923090Feb",
+      "0x2E2BE8E35537e66c5Cc34A99Aab01ebb374C8FDF",
+      "0x939C88325Be283b9D7a4365988624C28e82973b7",
+      "0x29C3e6eDc2385c4F85248b8B7E43CcE8dCD6bd78",
+      "0x011a4E314429E97D7056a71c6fea32392b474A42",
+      "0xb7d49ADB031d6DBDF3E8e28F21C6Dd3b6f231cD5"
+    ],
+    "snapshot": 218605485
+  }
+]

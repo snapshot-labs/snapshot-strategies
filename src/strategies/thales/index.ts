@@ -2,8 +2,8 @@ import { getAddress } from '@ethersproject/address';
 import { formatUnits } from '@ethersproject/units';
 import { getSnapshots, subgraphRequest } from '../../utils';
 
-export const author = 'vpoklopic';
-export const version = '1.0.4';
+export const author = 'thales-markets';
+export const version = '1.0.5';
 
 enum NetworkId {
   Optimism = 10,
@@ -13,10 +13,10 @@ enum NetworkId {
 
 const THALES_SUBGRAPH_URL = {
   optimism:
-    'https://api.thegraph.com/subgraphs/name/thales-markets/thales-token',
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/2WQ9TKJt96NUxuS2DbR7B4aAwcU9CMiaBH7fwZZfjpn1',
   arbitrum:
-    'https://api.thegraph.com/subgraphs/name/thales-markets/thales-token-arbitrum',
-  base: 'https://api.studio.thegraph.com/query/11948/thales-token-base/version/latest'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/GRHJHjVRzHrQoN86VyjXMDTDiw9pHNB9NqQJxQmnZcwb',
+  base: 'https://subgrapher.snapshot.org/subgraph/arbitrum/3cwvVz7HwAJD76gfmjfu8A92e9cELN9TEvY6rkdxyjaY'
 };
 
 function returnGraphParams(addresses: string[], block: string | number) {

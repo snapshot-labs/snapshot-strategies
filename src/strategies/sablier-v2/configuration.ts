@@ -6,79 +6,77 @@
 
 const chains = {
   arbitrum: '42161',
+  arbitrumSepolia: '421614',
   avalanche: '43114',
+  base: '8453',
+  blast: '81457',
   bsc: '56',
   ethereum: '1',
-  goerli: '5',
   gnosis: '100',
   optimism: '10',
-  polygon: '137'
+  optimismSepolia: '11155420',
+  polygon: '137',
+  scroll: '534352',
+  sepolia: '11155111',
+  zkSync: '324'
 };
 
 const deployments = {
-  [chains.arbitrum]: {
-    contracts: [
-      '0x197d655f3be03903fd25e7828c3534504bfe525e', // SablierV2LockupLinear
-      '0xa9efbef1a35ff80041f567391bdc9813b2d50197' // SablierV2LockupDynamic
-    ],
+  [chains.ethereum]: {
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-arbitrum'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/EuZZnhFtdCGqN2Zt7EMGYDqQKNrVuhJL63KAfwvF35bL'
+  },
+  [chains.arbitrumSepolia]: {
+    subgraph:
+      'https://api.studio.thegraph.com/query/57079/sablier-v2-arbitrum-sepolia/version/latest'
+  },
+  [chains.arbitrum]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/AR77w8PwmkAG7c9DJSsfW6yTrC5UdvdQ1Hz5ZTCuaUWz'
   },
   [chains.avalanche]: {
-    contracts: [
-      '0x610346e9088afa70d6b03e96a800b3267e75ca19', // SablierV2LockupLinear
-      '0x665d1c8337f1035cfbe13dd94bb669110b975f5f' // SablierV2LockupDynamic
-    ],
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-avalanche'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/FdVwZuMV43yCb1nPmjnLQwmzS58wvKuLMPzcZ4UWgWAc'
+  },
+  [chains.base]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/3pxjsW9rbDjmZpoQWzc5CAo4vzcyYE9YQyTghntmnb1K'
+  },
+  [chains.blast]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/BXoC2ToMZXnTmCjWftQRPh9zMyM7ysijMN54Nxzb2CEY'
   },
   [chains.bsc]: {
-    contracts: [
-      '0x3fe4333f62a75c2a85c8211c6aefd1b9bfde6e51', // SablierV2LockupLinear
-      '0xf2f3fef2454dca59eca929d2d8cd2a8669cc6214' // SablierV2LockupDynamic
-    ],
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-bsc'
-  },
-
-  [chains.ethereum]: {
-    contracts: [
-      '0xb10daee1fcf62243ae27776d7a92d39dc8740f95', // SablierV2LockupLinear
-      '0x39efdc3dbb57b2388ccc4bb40ac4cb1226bc9e44' // SablierV2LockupDynamic
-    ],
-    subgraph: 'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2'
-  },
-  [chains.goerli]: {
-    contracts: [
-      '0x6e3678c005815ab34986d8d66a353cd3699103de', // SablierV2LockupLinear
-      '0x4be70ede968e9dba12db42b9869bec66bedc17d7' // SablierV2LockupDynamic
-    ],
-    subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-goerli'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/BVyi15zcH5eUg5PPKfRDDesezMezh6cAkn8LPvh7MVAF'
   },
   [chains.gnosis]: {
-    contracts: [
-      '0x685e92c9ca2bb23f1b596d0a7d749c0603e88585', // SablierV2LockupLinear
-      '0xeb148e4ec13aaa65328c0ba089a278138e9e53f9' // SablierV2LockupDynamic
-    ],
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-gnosis'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/EXhNLbhCbsewJPx4jx5tutNXpxwdgng2kmX1J7w1bFyu'
   },
   [chains.optimism]: {
-    contracts: [
-      '0xb923abdca17aed90eb5ec5e407bd37164f632bfd', // SablierV2LockupLinear
-      '0x6f68516c21e248cddfaf4898e66b2b0adee0e0d6' // SablierV2LockupDynamic
-    ],
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-optimism'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/6e6Dvs1yDpsWDDREZRqxGi54SVdvTNzUdKpKJxniKVrp'
+  },
+  [chains.optimismSepolia]: {
+    subgraph:
+      'https://api.studio.thegraph.com/query/57079/sablier-v2-optimism-sepolia/version/latest'
   },
   [chains.polygon]: {
-    contracts: [
-      '0x67422c3e36a908d5c3237e9cffeb40bde7060f6e', // SablierV2LockupLinear
-      '0x7313addb53f96a4f710d3b91645c62b434190725' // SablierV2LockupDynamic
-    ],
     subgraph:
-      'https://api.thegraph.com/subgraphs/name/sablier-labs/sablier-v2-polygon'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/CsDNYv9XPUMP8vufuwDVKQrVhsxhzzRHezjLFFKZZbrx'
+  },
+  [chains.scroll]: {
+    subgraph:
+      'https://api.studio.thegraph.com/query/57079/sablier-v2-scroll/version/latest'
+  },
+  [chains.sepolia]: {
+    subgraph:
+      'https://api.studio.thegraph.com/query/57079/sablier-v2-sepolia/version/latest'
+  },
+  [chains.zkSync]: {
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/GY2fGozmfZiZ3xF2MfevohLR4YGnyxGxAyxzi9zmU5bY'
   }
 };
 

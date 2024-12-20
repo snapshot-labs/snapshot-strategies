@@ -1,7 +1,8 @@
-import fetch from 'cross-fetch';
 import { formatUnits, parseUnits } from '@ethersproject/units';
+import { isAddress } from '@ethersproject/address';
+import { isHexString } from '@ethersproject/bytes';
 
-import { Multicaller } from '../../utils';
+import { customFetch, Multicaller } from '../../utils';
 
 export const author = 'dasanra';
 export const version = '0.2.0';
@@ -11,7 +12,7 @@ const abi = [
   'function vestings(bytes32) view returns (address account, uint8 curveType, bool managed, uint16 durationWeeks, uint64 startDate, uint128 amount, uint128 amountClaimed, uint64 pausingDate, bool cancelled)'
 ];
 
-type AllocationDetails = {
+type Allocation = {
   account: string;
   contract: string;
   vestingId: string;
@@ -35,6 +36,25 @@ const canStillClaim = (claimDateLimit: string | undefined): boolean => {
   return true;
 };
 
+let _allocationMap: Record<string, Allocation[]> | null = null;
+
+async function loadAllocationMap(
+  options: Options
+): Promise<Record<string, Allocation[]>> {
+  if (!_allocationMap) {
+    const response = await customFetch(options.allocationsSource, {
+      method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json'
+      }
+    });
+    _allocationMap = createAllocationMap(await response.json());
+  }
+
+  return _allocationMap;
+}
+
 export async function strategy(
   space: string,
   network: string,
@@ -43,14 +63,7 @@ export async function strategy(
   options: Options,
   snapshot: number | string = 'latest'
 ) {
-  const response = await fetch(options.allocationsSource, {
-    method: 'GET',
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json'
-    }
-  });
-  const allocationsList: [[AllocationDetails]] = await response.json();
+  const allocationMap = await loadAllocationMap(options);
 
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, {
@@ -60,9 +73,7 @@ export async function strategy(
 
   // Get current vesting state from smart contract using the vestingId
   addresses.forEach((address) => {
-    const addressAllocations = allocationsList.find(
-      (allocations: AllocationDetails[]) => allocations[0].account === address
-    );
+    const addressAllocations = allocationMap[address];
 
     if (addressAllocations) {
       addressAllocations.forEach(({ contract, vestingId }) => {
@@ -73,12 +84,11 @@ export async function strategy(
 
   const vestings = await multi.execute();
 
-  const flatAllocationsList = allocationsList.flat();
   // Check vesting state, consider only unclaimed amounts and group allocations to the same account
-  return Object.keys(vestings).reduce((acc, key) => {
-    const { account, amount } = flatAllocationsList.find(
-      ({ vestingId }) => vestingId === key
-    ) as AllocationDetails;
+  return Object.keys(vestings).reduce((result, key) => {
+    // get it from the map by vestingId. A entry is guaranteed to exist
+    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+    const [{ account, amount }] = allocationMap[key]!;
 
     const hasAlreadyClaimed = vestings[key].account === account;
     let currentVestingAmount;
@@ -95,16 +105,50 @@ export async function strategy(
         : '0';
     }
 
-    const previousAmount = acc[account];
+    const previousAmount = result[account];
     // If account received multiple allocations sum them
     // Else we just return the currentAmount
     const pendingVestedAmount = previousAmount
       ? parseUnits(previousAmount.toString()).add(currentVestingAmount)
       : currentVestingAmount;
 
-    return {
-      ...acc,
+    return Object.assign(result, {
       [account]: parseFloat(formatUnits(pendingVestedAmount))
-    };
-  }, {});
+    });
+  }, {} as Record<string, number>);
+}
+
+function createAllocationMap(
+  rawAllocations: any[][]
+): Record<string, Allocation[]> {
+  const result: Record<string, Allocation[]> = {};
+
+  for (const rawAllocation of rawAllocations.flat()) {
+    const { account, contract, vestingId, amount } = rawAllocation;
+
+    if (
+      !isAddress(account) ||
+      !isAddress(contract) ||
+      (!isHexString(vestingId) && vestingId.length == 66) ||
+      String(BigInt(amount)) != amount
+    ) {
+      throw new Error(`Invalid Allocation Entry: ${rawAllocation}`);
+    }
+
+    if (!result[account]) {
+      result[account] = [];
+    }
+
+    if (!result[vestingId]) {
+      result[vestingId] = [];
+    }
+
+    // trimmed down allocation
+    const allocation = { account, contract, vestingId, amount };
+
+    result[account].push(allocation);
+    result[vestingId].push(allocation);
+  }
+
+  return result;
 }

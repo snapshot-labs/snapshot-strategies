@@ -1,7 +1,6 @@
-import { subgraphRequest, multicall } from '../../utils';
 import { BigNumberish } from '@ethersproject/bignumber';
 import { formatUnits } from '@ethersproject/units';
-import fetch from 'cross-fetch';
+import { subgraphRequest, multicall, customFetch } from '../../utils';
 
 export const author = 'onigiri-x';
 export const version = '0.1.0';
@@ -137,7 +136,7 @@ async function getConversionMonaPerETH(block) {
   const coingeckoApiURL = `https://api.coingecko.com/api/v3/coins/monavale/market_chart/range?vs_currency=eth&from=${
     block.timestamp - 100000
   }&to=${block.timestamp}`;
-  const coingeckoData = await fetch(coingeckoApiURL)
+  const coingeckoData = await customFetch(coingeckoApiURL)
     .then(async (r) => {
       const json = await r.json();
       return json;

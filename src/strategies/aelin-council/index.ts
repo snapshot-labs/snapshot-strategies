@@ -1,15 +1,15 @@
 import { getAddress } from '@ethersproject/address';
 import { Contract } from '@ethersproject/contracts';
 import { JsonRpcProvider } from '@ethersproject/providers';
-import { subgraphRequest } from '../../utils';
-import fetch from 'cross-fetch';
+import { subgraphRequest, customFetch } from '../../utils';
 
 export const author = '0xcdb';
 export const version = '1.0.0';
 
 const GRAPH_API_URL = {
   uniswap: {
-    mainnet: 'https://api.thegraph.com/subgraphs/name/uniswap/uniswap-v2'
+    mainnet:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/EYCKATKGBKLWvSfwvBjzfCBmGwYNdVkduYXVivCsLRFu'
   },
   aelin: {
     mainnet: 'https://api.thegraph.com/subgraphs/name/0xcdb/aelin-governance',
@@ -45,7 +45,7 @@ function returnGraphParams(snapshot: number | string, addresses: string[]) {
 }
 
 const getTokenRates = async () => {
-  const results = await fetch(
+  const results = await customFetch(
     'https://api.coingecko.com/api/v3/simple/price?ids=aelin%2Cethereum&vs_currencies=usd'
   );
   const rates = await results.json();

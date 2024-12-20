@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "morpho-delegation",
+      "params": {
+        "address": "0x3CF66a662390e37ff260D0cBAa8Af6d426D60D43",
+        "symbol": "MORPHO",
+        "decimals": 18
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0x3857CE40B832bD339D775Ba851B35488d80a8eF9",
+      "0x5506ac7914BB27D06A67Fc54c08b9AACD5023634",
+      "0xF404dBb34f7F16BfA315daaA9a8C33c7aBe94eD1"
+    ],
+    "snapshot": 7024881
+  }
+]

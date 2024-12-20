@@ -8,8 +8,7 @@ import type {
 } from './configuration';
 
 import { abi, deployments, queries, page } from './configuration';
-import { multicall, subgraphRequest } from '../../utils';
-import fetch from 'cross-fetch';
+import { multicall, subgraphRequest, customFetch } from '../../utils';
 
 /**
  * Query the subgraph for all the streams owned by all recipients.
@@ -457,7 +456,7 @@ async function getLatestBlock(
 
       const query = `{indexingStatusForCurrentVersion(subgraphName: \"${name}\"){ chains { latestBlock { number }}}}`;
 
-      const response = await fetch(url, {
+      const response = await customFetch(url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ query }),

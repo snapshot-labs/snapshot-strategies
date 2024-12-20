@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Polygon Self Staked POL",
+    "strategy": {
+      "name": "polygon-self-staked-pol",
+      "params": {
+        "stakeManagerAddress": "0x5e3Ef299fDDf15eAa0432E6e66473ace8c13D908",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1234567890123456789012345678901234567890",
+      "0x0987654321098765432109876543210987654321",
+      "0xf086597e0e155f9e46fbda46d5549697a103ffb4",
+      "0xd6f8d59f3037c7c021a4e1f88f2413862cde082c"
+    ],
+    "snapshot": 20733426
+  }
+]

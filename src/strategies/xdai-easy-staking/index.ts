@@ -7,7 +7,7 @@ export const author = 'maxaleks';
 export const version = '0.1.0';
 
 const EASY_STAKING_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/maxaleks/easy-staking';
+  'https://subgrapher.snapshot.org/subgraph/arbitrum/3jhMxbXh6Ua3WXfa7BuFHdh4nUDZaVgLVrvoouhUNPfT';
 
 const ercABI = [
   {

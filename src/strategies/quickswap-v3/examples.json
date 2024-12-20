@@ -1,0 +1,31 @@
+[
+  {
+    "name": "quickswap-v3 query",
+    "strategy": {
+      "name": "quickswap-v3",
+      "params": {
+        "subgraph": "https://api.studio.thegraph.com/query/20036/pos-mngr/v0.0.2",
+        "poolAddress": "0x86a448e1d9c1A31c093fA66F42b096A98297B072",
+        "isToken0": false,
+        "token0": {
+          "id": "0x0d500b1d8e8ef31e21c99d1db9a6444d3adf1270",
+          "symbol": "WMATIC",
+          "decimals": 18
+        },
+        "token1": {
+          "id": "0xe9e7c09e82328c3107d367f6c617cf9977e63ed0",
+          "symbol": "A51",
+          "decimals": 18
+        }
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x7f38595deacce8c4151bae0263adcecc40137da9",
+      "0x732a1d8bdf86ba67ccff57823b2e8935a050d18d",
+      "0x460610729fd088a7f3152871132883213955deea",
+      "0x4eF03f0eA9e744F22B768E17628cE39a2f48AbE5"
+    ],
+    "snapshot": 56124731
+  }
+]

@@ -1,3 +1,4 @@
+import { EnumType } from 'json-to-graphql-query';
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
@@ -5,13 +6,11 @@ export const author = '2fd';
 export const version = '0.1.0';
 
 const SUBGRAPH_QUERY_ADDRESSES_LIMIT = 2000;
+const REQUEST_DELAY_MS = 1000 / 10; // 10 requests per second
 const DECENTRALAND_COLLECTIONS_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-mainnet',
-  '3': 'https://api.thegraph.com/subgraphs/name/decentraland/collections-ethereum-ropsten',
-  '137':
-    'https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mainnet',
-  '80001':
-    'https://api.thegraph.com/subgraphs/name/decentraland/collections-matic-mumbai'
+  '1': 'https://subgraph.decentraland.org/collections-ethereum-mainnet',
+  '137': 'https://subgraph.decentraland.org/collections-matic-mainnet',
+  '80002': 'https://subgraph.decentraland.org/collections-matic-amoy'
 };
 
 function chunk(_array: string[], pageSize: number): string[][] {
@@ -20,6 +19,10 @@ function chunk(_array: string[], pageSize: number): string[][] {
     chunks.push(_array.slice(i, i + pageSize));
   }
   return chunks;
+}
+
+async function delay(ms: number) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
 export async function strategy(
@@ -51,16 +54,16 @@ export async function strategy(
         __args: {
           where: {
             itemType_in: [
-              'wearable_v1',
-              'wearable_v2',
-              'smart_wearable_v1',
-              'emote_v1'
+              new EnumType('wearable_v1'),
+              new EnumType('wearable_v2'),
+              new EnumType('smart_wearable_v1'),
+              new EnumType('emote_v1')
             ],
             owner_in: chunk.map((address) => address.toLowerCase()),
             id_gt: ''
           },
-          orderBy: 'id',
-          orderDirection: 'asc',
+          orderBy: new EnumType('id'),
+          orderDirection: new EnumType('asc'),
           first: 1000
         },
         id: true,
@@ -84,6 +87,8 @@ export async function strategy(
     // load and add each wearable by rarity
     let hasNext = true;
     while (hasNext) {
+      await delay(REQUEST_DELAY_MS);
+
       const result = await subgraphRequest(
         DECENTRALAND_COLLECTIONS_SUBGRAPH_URL[network],
         params

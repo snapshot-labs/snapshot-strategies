@@ -2,7 +2,7 @@ import { getAddress } from '@ethersproject/address';
 import { subgraphRequest } from '../../utils';
 
 const UNISWAP_SUBGRAPH_URL = {
-  '1': 'https://api.thegraph.com/subgraphs/name/ianlapham/uniswap-v2-dev'
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/FEtpnfQ1aqF8um2YktEkfzFD11ZKrfurvBLPeQzv9JB1'
 };
 
 export const author = 'snapshot-labs';

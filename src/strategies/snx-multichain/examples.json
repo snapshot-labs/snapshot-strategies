@@ -1,0 +1,80 @@
+[
+  {
+    "name": "Synthetix Collateral Voting Strategy",
+    "strategy": {
+      "name": "snx-multichain",
+      "params": {
+        "symbol": "SNX",
+        "strategies": [
+          {
+            "name": "contract-call",
+            "network": "1",
+            "params": {
+              "address": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
+              "decimals": 18,
+              "methodABI": {
+                "name": "collateral",
+                "type": "function",
+                "inputs": [
+                  {
+                    "name": "account",
+                    "type": "address",
+                    "internalType": "address"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "",
+                    "type": "uint",
+                    "internalType": "uint256"
+                  }
+                ],
+                "stateMutability": "view"
+              }
+            }
+          },
+          {
+            "name": "contract-call",
+            "network": "10",
+            "params": {
+              "address": "0x8700dAec35aF8Ff88c16BdF0418774CB3D7599B4",
+              "decimals": 18,
+              "methodABI": {
+                "name": "collateral",
+                "type": "function",
+                "inputs": [
+                  {
+                    "name": "account",
+                    "type": "address",
+                    "internalType": "address"
+                  }
+                ],
+                "outputs": [
+                  {
+                    "name": "",
+                    "type": "uint",
+                    "internalType": "uint256"
+                  }
+                ],
+                "stateMutability": "view"
+              }
+            }
+          }
+        ],
+        "collateralType": {
+          "1": "0xC011a73ee8576Fb46F5E1c5751cA3B9Fe0af2a6F",
+          "10": "0x8700dAec35aF8Ff88c16BdF0418774CB3D7599B4",
+          "8453": "0x22e6966b799c4d5b13be962e1d117b56327fda66"
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x27Cc4d6bc95b55a3a981BF1F1c7261CDa7bB0931",
+      "0xcb68110C43C97b6051FEd5e2Bacc2814aDaD1688",
+      "0xf07A2439296e07Bc4320AF924E655a01fb69D89C",
+      "0x99F4176EE457afedFfCB1839c7aB7A030a5e4A92"
+    ],
+    "snapshot": 20000000
+  }
+]

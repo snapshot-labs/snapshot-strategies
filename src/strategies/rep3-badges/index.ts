@@ -9,7 +9,8 @@ export const version = '1.0.0';
 
 const REP3_SUBGRAPH_API_URLS_BY_CHAIN_ID = {
   '80001': 'https://api.thegraph.com/subgraphs/name/eth-jashan/rep3-mumbai',
-  '137': 'https://api.thegraph.com/subgraphs/name/eth-jashan/rep3-matic'
+  '137':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/5q79qNXTXCAR9TrGAyExYCvBhD8LcAZ6WhTHqn2zh2wf'
 };
 
 const abi = [

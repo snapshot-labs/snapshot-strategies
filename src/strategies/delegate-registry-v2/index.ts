@@ -1,8 +1,7 @@
-import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
-import { Strategy } from '@snapshot-labs/snapshot.js/dist/voting/types';
-import { getScoresDirect } from '../../utils';
+import { Strategy } from '@snapshot-labs/snapshot.js/dist/src/voting/types';
 import { getAddress } from '@ethersproject/address';
+import { getScoresDirect, customFetch } from '../../utils';
 
 export const author = 'gnosis';
 export const version = '0.0.2';
@@ -34,7 +33,7 @@ export async function strategy(
   if (options.strategies.length > 8)
     throw new Error('Maximum 8 strategies allowed');
 
-  const response = await fetch(
+  const response = await customFetch(
     `${options.backendUrl}/api/${space}/snapshot/${blockTag}/strategy-formatted-vote-weights`,
     {
       method: 'POST',

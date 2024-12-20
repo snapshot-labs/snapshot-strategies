@@ -1,4 +1,4 @@
-import fetch from 'cross-fetch';
+import { customFetch } from '../../utils';
 import { strategy as erc721BalanceOfStrategy } from '../erc721';
 
 export const author = 'rawrjustin';
@@ -29,7 +29,7 @@ export async function strategy(
   const params = {
     proxyAddresses: addresses
   };
-  const apiResponse = await fetch(url, {
+  const apiResponse = await customFetch(url, {
     method: 'POST',
     headers: {
       Accept: 'application/json',

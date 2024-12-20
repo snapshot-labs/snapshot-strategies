@@ -1,6 +1,5 @@
-import fetch from 'cross-fetch';
 import { formatUnits } from '@ethersproject/units';
-import { subgraphRequest } from '../../utils';
+import { subgraphRequest, customFetch } from '../../utils';
 
 export const author = 'maxaleks';
 export const version = '0.1.0';
@@ -40,7 +39,7 @@ async function getUsers(addresses, snapshot, userType) {
 }
 
 const getXdaiBlockNumber = async (timestamp: number): Promise<number> =>
-  fetch(
+  customFetch(
     `https://blockscout.com/xdai/mainnet/api?module=block&action=getblocknobytime&timestamp=${timestamp}&closest=before`
   )
     .then((r) => r.json())

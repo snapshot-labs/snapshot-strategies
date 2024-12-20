@@ -1,5 +1,5 @@
-import fetch from 'cross-fetch';
 import { strategy as erc20BalanceStrategy } from '../erc20-balance-of';
+import { customFetch } from '../../utils';
 
 interface ApiReturn {
   balance: string[];
@@ -35,7 +35,7 @@ export async function strategy(
     );
 
   const apiUrl = getUrl(network);
-  const response = await fetch(
+  const response = await customFetch(
     `${apiUrl}/api.AccountService.Erc20TokenBalanceByHeight`,
     {
       method: 'POST',
