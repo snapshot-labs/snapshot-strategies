@@ -53,16 +53,12 @@ export async function strategy(
   }
 
   // Mainnet data
-  const mainnetProvider = getProvider("1");
+  const mainnetProvider = getProvider('1');
 
   // Get corresponding block number on mainnet
-  let mainnetBlockTag = await getIDChainBlock(
-    blockTag,
-    provider,
-    "1"
-  );
+  let mainnetBlockTag = await getIDChainBlock(blockTag, provider, '1');
 
-  if (mainnetBlockTag === "latest") {
+  if (mainnetBlockTag === 'latest') {
     mainnetBlockTag = await mainnetProvider.getBlockNumber();
   }
 
@@ -113,7 +109,7 @@ export async function strategy(
       calls.push([VE_SDT, 'totalSupply']);
     }
 
-    let callResp: any[] = await multicall("1", mainnetProvider, abi, calls, {
+    let callResp: any[] = await multicall('1', mainnetProvider, abi, calls, {
       blockTag: blockListMainnet[i]
     });
 
@@ -138,33 +134,23 @@ export async function strategy(
       }
     }
 
-    callResp = await multicall(
-      network,
-      provider,
-      abi,
-      calls,
-      { blockTag: blockList[i] }
-    );
+    callResp = await multicall(network, provider, abi, calls, {
+      blockTag: blockList[i]
+    });
 
     if (isEnd) {
       if (options.pools && Array.isArray(options.pools)) {
-        const poolsReverse = [...options.pools].reverse()
+        const poolsReverse = [...options.pools].reverse();
         for (let i = 0; i < poolsReverse.length; i++) {
           sumPoolsBalance += parseFloat(formatUnits(callResp.pop()[0], 18));
         }
       }
 
-      lockerVotingPower = parseFloat(
-        formatUnits(callResp.pop()[0], 18)
-      );
+      lockerVotingPower = parseFloat(formatUnits(callResp.pop()[0], 18));
 
-      sdTokenTotalSupply = parseFloat(
-        formatUnits(callResp.pop()[0], 18)
-      );
+      sdTokenTotalSupply = parseFloat(formatUnits(callResp.pop()[0], 18));
 
-      sdTokenGaugeTotalSupply = parseFloat(
-        formatUnits(callResp.pop()[0], 18)
-      );
+      sdTokenGaugeTotalSupply = parseFloat(formatUnits(callResp.pop()[0], 18));
     }
 
     responsesCurrentChain.push(callResp);
@@ -187,17 +173,13 @@ export async function strategy(
             formatUnits(BigNumber.from(responsesMainnet[j].shift()[0]), 18)
           );
           const l = parseFloat(
-            formatUnits(
-              BigNumber.from(responsesCurrentChain[j].shift()[0]),
-              18
-            )
+            formatUnits(BigNumber.from(responsesCurrentChain[j].shift()[0]), 18)
           );
 
           let lim = (l * TOKENLESS_PRODUCTION) / 100;
           if (veSDTTotalSupply > 0) {
             lim +=
-              (((sdTokenGaugeTotalSupply * voting_balance) /
-                veSDTTotalSupply) *
+              (((sdTokenGaugeTotalSupply * voting_balance) / veSDTTotalSupply) *
                 (100 - TOKENLESS_PRODUCTION)) /
               100;
           }
@@ -206,7 +188,10 @@ export async function strategy(
         }
 
         let userVote = 0;
-        if(options.botAddress && addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
+        if (
+          options.botAddress &&
+          addresses[i].toLowerCase() === options.botAddress.toLowerCase()
+        ) {
           userVote = liquidityVoteFee * totalUserVotes;
         } else {
           // Get average working balance.
@@ -235,7 +220,9 @@ function getPreviousBlocks(
   // Calculate total blocks interval
   const totalBlocksInterval = blocksPerDay * daysInterval;
   // Calculate block interval
-  const blockInterval = totalBlocksInterval / (numberOfBlocks > 1 ? numberOfBlocks - 1 : numberOfBlocks);
+  const blockInterval =
+    totalBlocksInterval /
+    (numberOfBlocks > 1 ? numberOfBlocks - 1 : numberOfBlocks);
 
   // Init array of block numbers
   const blockNumbers: number[] = [];
