@@ -19,10 +19,11 @@ export async function strategy(
   const balanceOfMulticaller = new Multicaller(network, provider, [
     'function balanceOf(address account) external view returns (uint256)',
   ], { blockTag });
-
-  addresses.forEach((address) =>
-    balanceOfMulticaller.call(address, options.address, 'balanceOf', [address])
-  );
+  addresses.forEach((address) => {
+    if (address !== reAltStrategy) {
+      balanceOfMulticaller.call(address, options.address, 'balanceOf', [address]);
+    }
+  });
 
   const sharesMulticaller = new Multicaller(network, provider, [
     'function shares(address user) external view returns (uint256)',
