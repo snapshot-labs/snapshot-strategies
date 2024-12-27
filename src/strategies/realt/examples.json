@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "realt",
+      "params": {
+        "address": "0xf96798f49936efb1a56f99ceae924b6b8359affb",
+        "symbol": "reALT",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x15de7B6a83ee7735EA00Dc4a0506059cDA4Bef49",
+      "0x16Ce1B15ed1278921d7Cae34Bf60a81227CFC295",
+      "0x16f665dA6D806760aFC317ee29Ef2feF2Ff4976E"
+    ],
+    "snapshot": 21488157
+  }
+]
