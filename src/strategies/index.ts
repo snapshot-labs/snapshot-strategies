@@ -466,6 +466,7 @@ import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
+import * as superfluidVesting from './superfluid-vesting';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -942,7 +943,8 @@ const strategies = {
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
   'nayms-staking': naymsStaking,
-  'morpho-delegation': morphoDelegation
+  'morpho-delegation': morphoDelegation,
+  'superfluid-vesting': superfluidVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
