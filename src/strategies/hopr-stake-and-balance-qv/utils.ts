@@ -55,7 +55,7 @@ export function getHostedSubgraphUrl(
 }
 
 /**
- * Try to query subgraphs from three differnt endpoints (hosted service, studio for development, studio in production), if applicable
+ * Try to query subgraphs from three different endpoints (hosted service, studio for development, studio in production), if applicable
  * @param hostedSubgraphUrl hosted subgrpah url
  * @param stuidoDevSubgraphUrl development url foro studio subgraph
  * @param studioProdSubgraphUrl production url foro studio subgraph
