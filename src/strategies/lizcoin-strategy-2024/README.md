@@ -4,7 +4,7 @@ lizcoin-strategy-2024
 A voting strategy for Lizard Labs' Lizcoin ERC20 Token (LIZ).
 
 The strategy is based on the quadratic voting formula. The strategy counts only staked and vested tokens – details
-follow bellow.
+follow below.
 
 ## Eligible $LIZ forms:
 * Staked $LIZ
