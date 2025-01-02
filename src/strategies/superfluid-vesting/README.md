@@ -9,7 +9,7 @@ In order for this intent to become executable, the sender also needs to
 - grant the necessary ACL permissions to the VestingScheduler contract
 - have enough funds available when needed
 
-Note: In order to create a vesting schedule with hard guarantees of sucessful execution, a vesting sender needs to be a contract which is pre-funded and has no means to withdraw funds.
+Note: In order to create a vesting schedule with hard guarantees of successful execution, a vesting sender needs to be a contract which is pre-funded and has no means to withdraw funds.
 
 ## Voting
 

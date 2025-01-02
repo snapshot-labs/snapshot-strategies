@@ -5,8 +5,12 @@ export const author = 'd10r';
 export const version = '0.1.0';
 
 const SUBGRAPH_URL_MAP = {
+  '10':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/6YMD95vYriDkmTJewC2vYubqVZrc6vdk3Sp3mR3YCQUw',
   '8453':
-    'https://subgrapher.snapshot.org/subgraph/arbitrum/4Zp6n8jcsJMBNa3GY9RZwoK4SLjoagwXGq6GhUQNMgSM'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/4Zp6n8jcsJMBNa3GY9RZwoK4SLjoagwXGq6GhUQNMgSM',
+  '11155420':
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/5UctBWuaQgr2HVSG6XtAKt5shyjg9snGvD6F424FcjMN'
 };
 
 export async function strategy(
@@ -22,8 +26,6 @@ export async function strategy(
   if (!subgraphUrl) {
     throw new Error('Subgraph URL not specified');
   }
-
-  console.log(`subgraphUrl: ${subgraphUrl}`);
 
   const query = {
     vestingSchedules: {
@@ -43,7 +45,8 @@ export async function strategy(
       endDate: true,
       flowRate: true,
       cliffAndFlowExecutedAt: true,
-      receiver: true
+      receiver: true,
+      remainderAmount: true
     }
   };
 
@@ -64,9 +67,10 @@ export async function strategy(
     const cliffAndFlowDate = BigInt(schedule.cliffAndFlowDate);
     const flowRate = BigInt(schedule.flowRate);
     const cliffAmount = BigInt(schedule.cliffAmount);
+    const remainderAmount = BigInt(schedule.remainderAmount);
 
     // the initial vesting amount
-    const fullAmount = cliffAmount + flowRate * (endDate - cliffAndFlowDate);
+    const fullAmount = cliffAmount + flowRate * (endDate - cliffAndFlowDate) + remainderAmount;
 
     // the remaining amount which hasn't yet vested
     let remainingAmount = fullAmount;
@@ -85,7 +89,8 @@ export async function strategy(
   return Object.fromEntries(
     processedMap.map(item => [
       getAddress(item.schedule.receiver),
-      Number(item.remainingAmount) / 1e18
+      // in theory remainingAmount could become negative, thus we cap at 0
+      Math.max(Number(item.remainingAmount) / 1e18, 0)
     ])
   );
 }
