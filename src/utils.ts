@@ -83,9 +83,10 @@ export function customFetch(
       }
       throw error;
     }),
-    new Promise(() =>
+    new Promise((_, reject) =>
       setTimeout(() => {
         controller.abort();
+        reject(new Error('API request timeout'));
       }, timeout)
     )
   ]);

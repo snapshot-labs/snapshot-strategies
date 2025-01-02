@@ -383,6 +383,7 @@ import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
 import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
+import * as sdGaugeLessVoteBoostCrosschain from './sd-gauge-less-vote-boost-crosschain';
 import * as sdVoteBalanceOfTwavpPool from './sdvote-balanceof-twavp-pool';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
 import * as sdVoteBoostTWAVPVCrossChain from './sd-vote-boost-twavp-vsdcrv-crosschain';
@@ -466,6 +467,8 @@ import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
+import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
+import * as realt from './realt';
 import * as superfluidVesting from './superfluid-vesting';
 
 const strategies = {
@@ -862,6 +865,7 @@ const strategies = {
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
+  'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
@@ -944,6 +948,8 @@ const strategies = {
   fountainhead,
   'nayms-staking': naymsStaking,
   'morpho-delegation': morphoDelegation,
+  'lizcoin-strategy-2024': lizcoinStrategy2024,
+  realt,
   'superfluid-vesting': superfluidVesting
 };
 
