@@ -259,6 +259,7 @@ import * as veRibbon from './ve-ribbon';
 import * as veRibbonVotingPower from './ve-ribbon-voting-power';
 import * as chubbykaijudao from './chubbykaijudao';
 import * as landDaoTiers from './landdao-token-tiers';
+import * as dcbCallTiers from './dcb-call-tiers';
 import * as defiplaza from './defiplaza';
 import * as stakingClaimedUnclaimed from './staking-claimed-unclaimed';
 import * as gysrStakingBalance from './gysr-staking-balance';
@@ -742,6 +743,7 @@ const strategies = {
   chubbykaijudao: chubbykaijudao,
   revest: revest,
   'staking-claimed-unclaimed': stakingClaimedUnclaimed,
+  'dcb-call-tiers': dcbCallTiers,
   'gysr-staking-balance': gysrStakingBalance,
   'gysr-lp-staking-balance': gysrLPStakingBalance,
   'wanakafarm-staking': wanakafarmStaking,
