@@ -49,7 +49,7 @@ Currently, the [Submit Passport endpoint](https://docs.passport.gitcoin.co/build
 
 ### Unit tests
 
-A few validation examples are provided in [examples.json](./examples.json). However, Passport stamps expire after some predetermined time which might end up breaking unit tests, so it is important to have in mind that a few example passports/stamp will require to be updated regurlarly before running tests. The `valid` property is used to set an example as valid/invalid passport during testing.
+A few validation examples are provided in [examples.json](./examples.json). However, Passport stamps expire after some predetermined time which might end up breaking unit tests, so it is important to have in mind that a few example passports/stamp will require to be updated regularly before running tests. The `valid` property is used to set an example as valid/invalid passport during testing.
 
 ## Modifications
 
