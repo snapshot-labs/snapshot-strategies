@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "superfluid-vesting",
+      "params": {
+        "superTokenAddress": "0xe58267cd7299c29a1b77F4E66Cd12Dd24a2Cd2FD",
+        "vestingSenderAddress": "0xd7086bf0754383c065d81b62fc2e874373660caa"
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0xf8a025B42B07db05638FE596cce339707ec3cC71",
+      "0x389E3d1c46595aF7335F8C6D3e403ce2E8a9cf8A",
+      "0x264Ff25e609363cf738e238CBc7B680300509BED",
+      "0x5782BD439d3019F61bFac53f6358C30c3566737C",
+      "0x4ee5D45eB79aEa04C02961a2e543bbAf5cec81B3"
+    ],
+    "snapshot": 24392394
+  }
+]
