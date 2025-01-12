@@ -25,7 +25,9 @@
         "subgraphUrl": {
           "type": "string",
           "title": "Subgraph URL (optional - if not already known to the strategy)",
-          "examples": ["e.g. https://subgrapher.snapshot.org/subgraph/arbitrum/4Zp6n8jcsJMBNa3GY9RZwoK4SLjoagwXGq6GhUQNMgSM"]
+          "examples": [
+            "e.g. https://subgrapher.snapshot.org/subgraph/arbitrum/4Zp6n8jcsJMBNa3GY9RZwoK4SLjoagwXGq6GhUQNMgSM"
+          ]
         }
       },
       "required": ["superTokenAddress", "vestingSenderAddress"],
