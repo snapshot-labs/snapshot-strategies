@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": ["string", "null"],
+          "title": "Symbol",
+          "default": "SYN"
+        },
+        "tokenAddress": {
+          "type": "string",
+          "title": "Token Address",
+          "pattern": "^0x[a-fA-F0-9]{40}$"
+        },
+        "stakingAddress": {
+          "type": "string",
+          "title": "Staking Address",
+          "pattern": "^0x[a-fA-F0-9]{40}$"
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "default": 18
+        }
+      },
+      "required": ["tokenAddress", "stakingAddress", "decimals"]
+    }
+  }
+}
