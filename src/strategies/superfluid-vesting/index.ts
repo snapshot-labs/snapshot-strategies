@@ -5,8 +5,7 @@ export const author = 'd10r';
 export const version = '0.1.0';
 
 const SUBGRAPH_URL_MAP = {
-  '10':
-    'https://subgrapher.snapshot.org/subgraph/arbitrum/6YMD95vYriDkmTJewC2vYubqVZrc6vdk3Sp3mR3YCQUw',
+  '10': 'https://subgrapher.snapshot.org/subgraph/arbitrum/6YMD95vYriDkmTJewC2vYubqVZrc6vdk3Sp3mR3YCQUw',
   '8453':
     'https://subgrapher.snapshot.org/subgraph/arbitrum/4Zp6n8jcsJMBNa3GY9RZwoK4SLjoagwXGq6GhUQNMgSM',
   '11155420':
@@ -21,7 +20,6 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-
   const subgraphUrl = options.subgraphUrl || SUBGRAPH_URL_MAP[network];
   if (!subgraphUrl) {
     throw new Error('Subgraph URL not specified');
@@ -70,24 +68,26 @@ export async function strategy(
     const remainderAmount = BigInt(schedule.remainderAmount);
 
     // the initial vesting amount
-    const fullAmount = cliffAmount + flowRate * (endDate - cliffAndFlowDate) + remainderAmount;
+    const fullAmount =
+      cliffAmount + flowRate * (endDate - cliffAndFlowDate) + remainderAmount;
 
     // the remaining amount which hasn't yet vested
     let remainingAmount = fullAmount;
     if (schedule.cliffAndFlowExecutedAt !== null) {
-      remainingAmount -= cliffAmount + flowRate * (BigInt(timestamp) - cliffAndFlowDate);
+      remainingAmount -=
+        cliffAmount + flowRate * (BigInt(timestamp) - cliffAndFlowDate);
     }
 
     return {
       schedule: schedule,
       fullAmount: fullAmount,
       remainingAmount: remainingAmount
-    }
+    };
   });
 
   // create a map of the remaining amounts
   return Object.fromEntries(
-    processedMap.map(item => [
+    processedMap.map((item) => [
       getAddress(item.schedule.receiver),
       // in theory remainingAmount could become negative, thus we cap at 0
       Math.max(Number(item.remainingAmount) / 1e18, 0)
