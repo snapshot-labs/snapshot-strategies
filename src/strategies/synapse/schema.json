@@ -11,23 +11,13 @@
           "title": "Symbol",
           "default": "SYN"
         },
-        "tokenAddress": {
-          "type": "string",
-          "title": "Token Address",
-          "pattern": "^0x[a-fA-F0-9]{40}$"
-        },
-        "stakingAddress": {
-          "type": "string",
-          "title": "Staking Address",
-          "pattern": "^0x[a-fA-F0-9]{40}$"
-        },
         "decimals": {
           "type": "number",
           "title": "Decimals",
           "default": 18
         }
       },
-      "required": ["tokenAddress", "stakingAddress", "decimals"]
+      "required": ["decimals"]
     }
   }
 }

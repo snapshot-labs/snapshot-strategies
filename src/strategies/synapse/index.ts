@@ -2,9 +2,47 @@ import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
 import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
+import { getProvider, getSnapshots } from '../../utils';
 
 export const author = 'defi-moses';
-export const version = '0.1.0';
+export const version = '0.2.0';
+
+const SUPPORTED_CHAINS = {
+  '1': {
+    tokenAddress: '0x0f2D719407FdBeFF09D87557AbB7232601FD9F29',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  },
+  '42161': {
+    // Arbitrum
+    tokenAddress: '0x080f6aed32fc474dd5717105dba5ea57268f46eb',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  },
+  '43114': {
+    // Avalanche
+    tokenAddress: '0x1f1E7c893855525b303f99bDF5c3c05Be09ca251',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  },
+  '10': {
+    // Optimism
+    tokenAddress: '0x5A5fFf6F753d7C11A56A52FE47a177a87e431655',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  },
+  '56': {
+    // BSC
+    tokenAddress: '0xa4080f1778e69467e905b8d6f72f6e441f9e9484',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  },
+  '137': {
+    // Polygon
+    tokenAddress: '0xf8f9efc0db77d8881500bb06ff5d6abc3070e695',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  },
+  '8453': {
+    // Base
+    tokenAddress: '0x432036208d2717394d2614d6697c46DF3Ed69540',
+    stakingAddress: '0x00000010cd90b3688d249d84c616de3a0343e60f'
+  }
+};
 
 const tokenAbi = [
   'function balanceOf(address) view returns (uint256)',
@@ -22,40 +60,38 @@ interface MulticallResult {
   };
 }
 
-export async function strategy(
-  space,
-  network,
+async function getChainBalance(
+  network: string,
   provider,
-  addresses,
+  addresses: string[],
   options,
   snapshot
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+  const chainConfig = SUPPORTED_CHAINS[network];
+  if (!chainConfig) return {};
 
   try {
     const multi = new Multicaller(network, provider, tokenAbi, { blockTag });
-
-    // Convert addresses to checksum format
     const checksumAddresses = addresses.map(getAddress);
 
     checksumAddresses.forEach((address) => {
-      multi.call(`token.${address}`, options.tokenAddress, 'balanceOf', [
+      multi.call(`token.${address}`, chainConfig.tokenAddress, 'balanceOf', [
         address
       ]);
     });
 
     const result = (await multi.execute()) as MulticallResult;
-
     const stakingMulti = new Multicaller(network, provider, stakingAbi, {
       blockTag
     });
-
     let stakingResult: MulticallResult = { staking: {} };
+
     try {
       checksumAddresses.forEach((address) => {
         stakingMulti.call(
           `staking.${address}`,
-          options.stakingAddress,
+          chainConfig.stakingAddress,
           'lockedAmountOf',
           [address]
         );
@@ -65,11 +101,10 @@ export async function strategy(
       const balanceMulti = new Multicaller(network, provider, stakingAbi, {
         blockTag
       });
-
       checksumAddresses.forEach((address) => {
         balanceMulti.call(
           `staking.${address}`,
-          options.stakingAddress,
+          chainConfig.stakingAddress,
           'balanceOf',
           [address]
         );
@@ -99,6 +134,39 @@ export async function strategy(
       })
     );
   } catch (error) {
-    throw error;
+    throw new Error(`Error fetching balances for network ${network}: ${error}`);
   }
+}
+
+export async function strategy(
+  space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+): Promise<Record<string, number>> {
+  const networks = Object.keys(SUPPORTED_CHAINS);
+  const blocks = await getSnapshots(network, snapshot, provider, networks);
+
+  const promises = networks.map(async (chainId) => {
+    const chainProvider = getProvider(chainId);
+    return getChainBalance(
+      chainId,
+      chainProvider,
+      addresses,
+      options,
+      blocks[chainId]
+    );
+  });
+
+  const results = await Promise.all(promises);
+
+  // Combine results from all chains
+  return addresses.reduce((acc, address) => {
+    acc[address] = results.reduce((sum, chainResult) => {
+      return sum + (chainResult[address] || 0);
+    }, 0);
+    return acc;
+  }, {});
 }
