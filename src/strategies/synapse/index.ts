@@ -2,7 +2,7 @@ import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
 import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
-import { getProvider, getSnapshots } from '../../utils';
+import { getSnapshots } from '../../utils';
 
 export const author = 'defi-moses';
 export const version = '0.2.0';
@@ -69,7 +69,9 @@ async function getChainBalance(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const chainConfig = SUPPORTED_CHAINS[network];
-  if (!chainConfig) return {};
+  if (!chainConfig) {
+    throw new Error(`Network ${network} not supported`);
+  }
 
   try {
     const multi = new Multicaller(network, provider, tokenAbi, { blockTag });
@@ -113,7 +115,7 @@ async function getChainBalance(
       try {
         stakingResult = await balanceMulti.execute();
       } catch (error) {
-        stakingResult = { staking: {} };
+        console.warn(`Failed to fetch staking balances for network ${network}`);
       }
     }
 
@@ -146,27 +148,19 @@ export async function strategy(
   options,
   snapshot
 ): Promise<Record<string, number>> {
-  const networks = Object.keys(SUPPORTED_CHAINS);
-  const blocks = await getSnapshots(network, snapshot, provider, networks);
+  // Check if the selected network is supported
+  if (!SUPPORTED_CHAINS[network]) {
+    throw new Error(`Network ${network} not supported`);
+  }
 
-  const promises = networks.map(async (chainId) => {
-    const chainProvider = getProvider(chainId);
-    return getChainBalance(
-      chainId,
-      chainProvider,
-      addresses,
-      options,
-      blocks[chainId]
-    );
-  });
+  const block = await getSnapshots(network, snapshot, provider, [network]);
+  const result = await getChainBalance(
+    network,
+    provider,
+    addresses,
+    options,
+    block[network]
+  );
 
-  const results = await Promise.all(promises);
-
-  // Combine results from all chains
-  return addresses.reduce((acc, address) => {
-    acc[address] = results.reduce((sum, chainResult) => {
-      return sum + (chainResult[address] || 0);
-    }, 0);
-    return acc;
-  }, {});
+  return result;
 }
