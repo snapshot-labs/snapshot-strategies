@@ -470,8 +470,10 @@ import * as morphoDelegation from './morpho-delegation';
 import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
 import * as realt from './realt';
 import * as superfluidVesting from './superfluid-vesting';
+import * as spookyLpSonic  from './spooky-lp-sonic';
 
 const strategies = {
+  'spooky-lp-sonic': spookyLpSonic,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
