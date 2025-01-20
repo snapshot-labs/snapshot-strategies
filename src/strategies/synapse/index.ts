@@ -2,7 +2,6 @@ import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
 import { getAddress } from '@ethersproject/address';
 import { Multicaller } from '../../utils';
-import { getSnapshots } from '../../utils';
 
 export const author = 'defi-moses';
 export const version = '0.2.0';
@@ -153,13 +152,12 @@ export async function strategy(
     throw new Error(`Network ${network} not supported`);
   }
 
-  const block = await getSnapshots(network, snapshot, provider, [network]);
   const result = await getChainBalance(
     network,
     provider,
     addresses,
     options,
-    block[network]
+    snapshot
   );
 
   return result;
