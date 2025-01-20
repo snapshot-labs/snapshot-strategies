@@ -1239,10 +1239,10 @@
   dependencies:
     "@sinonjs/commons" "^2.0.0"
 
-"@snapshot-labs/snapshot.js@^0.12.18":
-  version "0.12.18"
-  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.12.18.tgz#58421fc0fd8c424b76923a2d9b41e1f73c4767b0"
-  integrity sha512-zGRFgWws3cjQUZRw12uOpHlrdUgctMNRWlMu2N6QYD1VKQKZ21nW4ONanmSE/eWsQtiQL11wAAApaFxa4DdosA==
+"@snapshot-labs/snapshot.js@^0.12.42":
+  version "0.12.42"
+  resolved "https://registry.yarnpkg.com/@snapshot-labs/snapshot.js/-/snapshot.js-0.12.42.tgz#5a1b63ed1ebe2391a7a4b21eac60c7ac54a27d5c"
+  integrity sha512-uIcY9UKIty1yafSSWctrabrBI0i3n/vKRy9SE+7nm6DTbULHSDs9R6aI4O+jJcTg++GSKYiMGvhW46Vz0K9Jjg==
   dependencies:
     "@ensdomains/eth-ens-namehash" "^2.0.15"
     "@ethersproject/abi" "^5.6.4"
@@ -1260,7 +1260,7 @@
     cross-fetch "^3.1.6"
     json-to-graphql-query "^2.2.4"
     lodash.set "^4.3.2"
-    starknet "^5.24.3"
+    starknet "^5.19.3"
 
 "@spruceid/didkit-wasm-node@^0.2.1":
   version "0.2.1"
@@ -4123,7 +4123,7 @@ stack-utils@^2.0.3:
   dependencies:
     escape-string-regexp "^2.0.0"
 
-starknet@^5.24.3:
+starknet@^5.19.3:
   version "5.29.0"
   resolved "https://registry.yarnpkg.com/starknet/-/starknet-5.29.0.tgz#26d8074340f26a2da4bc373169a1a5ed6dc9bedf"
   integrity sha512-eEcd6uiYIwGvl8MtHOsXGBhREqjJk84M/qUkvPLQ3n/JAMkbKBGnygDlh+HAsvXJsGlMQfwrcVlm6KpDoPha7w==

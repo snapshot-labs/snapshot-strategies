@@ -55,7 +55,7 @@ The price is sourced from CoinGecko.
 - **log:** Boolean flag to enable or disable logging to the console (used for debugging purposes during development)
 
 - **antiWhale.enable:** Boolean flag to apply an anti-whale measure reducing the effect on the voting power as the token amount increases.
-  - if enabled will apply the the following to the result:
+  - if enabled will apply the following to the result:
   
       ```none
       If result > antiWhale.threshold

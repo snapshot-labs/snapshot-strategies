@@ -238,6 +238,7 @@ import * as orangeReputationNftBasedVoting from './orange-reputation-nft-based-v
 import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as bottoDaoBase from './botto-dao-base';
 import * as genart from './genart';
 import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as balancerPoolid from './balancer-poolid';
@@ -344,6 +345,7 @@ import * as rep3Badges from './rep3-badges';
 import * as marsecosystem from './marsecosystem';
 import * as ari10StakingLocked from './ari10-staking-locked';
 import * as skaleDelegationWeighted from './skale-delegation-weighted';
+import * as cookieStaking from './cookie-staking';
 import * as reliquary from './reliquary';
 import * as acrossStakedAcx from './across-staked-acx';
 import * as lodestarVesting from './lodestar-vesting';
@@ -381,6 +383,7 @@ import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
 import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
+import * as sdGaugeLessVoteBoostCrosschain from './sd-gauge-less-vote-boost-crosschain';
 import * as sdVoteBalanceOfTwavpPool from './sdvote-balanceof-twavp-pool';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
 import * as sdVoteBoostTWAVPVCrossChain from './sd-vote-boost-twavp-vsdcrv-crosschain';
@@ -455,7 +458,18 @@ import * as candyNftStaking from './candy-nft-staking';
 import * as pom from './pom';
 import * as superboring from './superboring';
 import * as erableGovernanceV1 from './erable-governance-v1';
+import * as worldLibertyFinancial from './world-liberty-financial-erc20-balance-of-votes';
 import * as snxMultichain from './snx-multichain';
+import * as moxie from './moxie';
+import * as stakingAmountDurationLinear from './staking-amount-duration-linear';
+import * as stakingAmountDurationExponential from './staking-amount-duration-exponential';
+import * as sacraSubgraph from './sacra-subgraph';
+import * as fountainhead from './fountainhead';
+import * as naymsStaking from './nayms-staking';
+import * as morphoDelegation from './morpho-delegation';
+import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
+import * as realt from './realt';
+import * as superfluidVesting from './superfluid-vesting';
 
 const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -709,6 +723,7 @@ const strategies = {
   'orange-reputation-nft-based-voting': orangeReputationNftBasedVoting,
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
+  'botto-dao-base': bottoDaoBase,
   genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'balancer-poolid': balancerPoolid,
@@ -813,6 +828,7 @@ const strategies = {
   'ari10-staking-locked': ari10StakingLocked,
   'skale-delegation-weighted': skaleDelegationWeighted,
   reliquary,
+  'cookie-staking': cookieStaking,
   'jpegd-locked-jpeg-of': jpegdLockedJpegOf,
   'lodestar-vesting': lodestarVesting,
   'lodestar-staked-lp': lodestarStakedLp,
@@ -849,6 +865,7 @@ const strategies = {
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
+  'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
@@ -922,7 +939,18 @@ const strategies = {
   pom,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
-  'snx-multichain': snxMultichain
+  'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
+  'snx-multichain': snxMultichain,
+  moxie: moxie,
+  'staking-amount-duration-linear': stakingAmountDurationLinear,
+  'staking-amount-duration-exponential': stakingAmountDurationExponential,
+  'sacra-subgraph': sacraSubgraph,
+  fountainhead,
+  'nayms-staking': naymsStaking,
+  'morpho-delegation': morphoDelegation,
+  'lizcoin-strategy-2024': lizcoinStrategy2024,
+  realt,
+  'superfluid-vesting': superfluidVesting
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -63,7 +63,7 @@ The original code utilized the Passport SDK to check if the user has a valid pas
 
 ### September 21, 2023
 
-Code is fully integrated with Passport API. In order to evaluate if an address is eligible for creating/voting on a proposa, It checks for passport stamp collection and minimum score using the `Unique Humanity` scoring mechanism, however it could be upgraded in the future to support other scoring algorithms.
+Code is fully integrated with Passport API. In order to evaluate if an address is eligible for creating/voting on a proposal, It checks for passport stamp collection and minimum score using the `Unique Humanity` scoring mechanism, however it could be upgraded in the future to support other scoring algorithms.
 
 Unit tests now support multiple example Passports to evaluate different validation scenarios.
 

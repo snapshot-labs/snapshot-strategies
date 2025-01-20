@@ -72,10 +72,22 @@ export function customFetch(
   options: RequestInit = {},
   timeout = 20000
 ): Promise<any> {
+  const controller = new AbortController();
+  const { signal } = controller;
+  const fetchOptions = { ...options, signal };
+
   return Promise.race([
-    fetch(url, options),
+    fetch(url, fetchOptions).catch((error) => {
+      if (error.name === 'AbortError') {
+        throw new Error('API request timeout');
+      }
+      throw error;
+    }),
     new Promise((_, reject) =>
-      setTimeout(() => reject(new Error('API request timeout')), timeout)
+      setTimeout(() => {
+        controller.abort();
+        reject(new Error('API request timeout'));
+      }, timeout)
     )
   ]);
 }
