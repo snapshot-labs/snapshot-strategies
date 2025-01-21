@@ -87,9 +87,7 @@ export async function strategy(
 
   // Fetch the balance of eco, stakedEcoX and opEco for each addresses
   addresses.forEach((address) => {
-    multi.call(prefixes.ecoVp(address), contracts.eco, 'voteBalanceOf', [
-      address
-    ]);
+    multi.call(prefixes.ecoVp(address), contracts.eco, 'balanceOf', [address]);
     multi.call(prefixes.ecoxVp(address), contracts.ecox, 'balanceOf', [
       address
     ]);
