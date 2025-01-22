@@ -1,0 +1,23 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": ["string", "null"],
+          "title": "Symbol",
+          "default": "SYN"
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "default": 18
+        }
+      },
+      "required": ["decimals"]
+    }
+  }
+}
