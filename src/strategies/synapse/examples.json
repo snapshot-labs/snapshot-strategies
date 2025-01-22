@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example Query",
+    "strategy": {
+      "name": "synapse",
+      "params": {
+        "symbol": "SYN",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xBdfbc9f2A873E07599CafA9BC18F80D4e07D7832",
+      "0x20D84F5e6533b48cdC8E557eD50d7825eBA77766",
+      "0xb73AcB429Ba868984c0236bdf940D4FE1E643F27"
+    ],
+    "snapshot": 21622022
+  }
+]
