@@ -65,27 +65,22 @@ export async function strategy(
       params.burns.__args.where.transaction_ = { blockNumber_lte: snapshot };
     }
 
-    try {
-      const result = await subgraphRequest(subgraphURL, params);
-      if (result && (result.mints || result.burns)) {
-        const mints = result.mints;
-        const burns = result.burns;
+    const result = await subgraphRequest(subgraphURL, params);
+    if (result && (result.mints || result.burns)) {
+      const mints = result.mints;
+      const burns = result.burns;
 
-        mints.forEach((mint) => {
-          const userAddress = getAddress(mint.origin);
-          const amount = parseFloat(mint.amount);
-          score[userAddress] += amount;
-        });
+      mints.forEach((mint) => {
+        const userAddress = getAddress(mint.origin);
+        const amount = parseFloat(mint.amount);
+        score[userAddress] += amount;
+      });
 
-        burns.forEach((burn) => {
-          const userAddress = getAddress(burn.origin);
-          const amount = parseFloat(burn.amount);
-          score[userAddress] -= amount;
-        });
-      }
-    } catch (error) {
-      // console.error(`Error querying pool ${poolId}:`, error);
-      continue;
+      burns.forEach((burn) => {
+        const userAddress = getAddress(burn.origin);
+        const amount = parseFloat(burn.amount);
+        score[userAddress] -= amount;
+      });
     }
   }
 
