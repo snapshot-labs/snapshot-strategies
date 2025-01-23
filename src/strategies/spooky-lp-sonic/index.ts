@@ -5,7 +5,7 @@ const MY_SUBGRAPH_URL = {
   '1': 'https://api.0xgraph.xyz/api/public/28820bd2-ad8b-4d40-a142-ce8d7c786f66/subgraphs/spookyswap/v3/v0.0.1/gn'
 };
 
-export const author = 'function03-labs';
+export const author = '0xaaiden';
 export const version = '0.1.0';
 
 export async function strategy(
