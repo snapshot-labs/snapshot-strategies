@@ -1,0 +1,19 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "opSnapshot": {
+          "type": "number",
+          "title": "Optimism block snapshot",
+          "examples": ["1231424"]
+        }
+      },
+      "required": ["opSnapshot"],
+      "additionalProperties": false
+    }
+  }
+}

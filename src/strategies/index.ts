@@ -6,6 +6,7 @@ import * as polygonSelfStaked from './polygon-self-staked-pol';
 import * as delegatexyzErc721BalanceOf from './delegatexyz-erc721-balance-of';
 import * as urbitGalaxies from './urbit-galaxies/index';
 import * as ecoVotingPower from './eco-voting-power';
+import * as ecoMultichainVotingPower from './eco-multichain-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
@@ -469,8 +470,9 @@ import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
 import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
 import * as realt from './realt';
-import * as superfluidVesting from './superfluid-vesting';
+import * as superfluidVesting from './superfluid-vesting
 import * as spookyLpSonic  from './spooky-lp-sonic';
+import * as synapse from './synapse';
 
 const strategies = {
   'spooky-lp-sonic': spookyLpSonic,
@@ -482,6 +484,7 @@ const strategies = {
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
+  'eco-multichain-voting-power': ecoMultichainVotingPower,
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
@@ -952,7 +955,8 @@ const strategies = {
   'morpho-delegation': morphoDelegation,
   'lizcoin-strategy-2024': lizcoinStrategy2024,
   realt,
-  'superfluid-vesting': superfluidVesting
+  'superfluid-vesting': superfluidVesting,
+  synapse
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
