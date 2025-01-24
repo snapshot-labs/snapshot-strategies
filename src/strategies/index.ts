@@ -1,6 +1,7 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as nedao from './nedao';
 import * as subgraphSplitDelegation from './subgraph-split-delegation';
 import * as polygonSelfStaked from './polygon-self-staked-pol';
 import * as delegatexyzErc721BalanceOf from './delegatexyz-erc721-balance-of';
@@ -942,6 +943,7 @@ const strategies = {
   'candy-lock-nft': candyLockNft,
   'candy-nft-staking': candyNftStaking,
   pom,
+  nedao,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
