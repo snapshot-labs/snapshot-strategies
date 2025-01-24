@@ -16,13 +16,7 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const poolIds = [
-    "0x686d873a9e0696afaca0bc163dcc95b577d9e3e8",
-    "0xf4dcfaa2711908a8c61d9516d84b24ffdae241db",
-    "0xb7228a39cdd2c734064fc95c54e75910ff06eed6",
-    "0x84d4716c1cf4d7b1b1c247ad69b62fa72ccc46d7",
-    "0xaa4ee51f55f9baa7cf180fbaf2688cc35fdc8012",
-  ];
+  const poolIds = options.poolIds;
 
   const subgraphURL = MY_SUBGRAPH_URL[network];
   const score = {};
