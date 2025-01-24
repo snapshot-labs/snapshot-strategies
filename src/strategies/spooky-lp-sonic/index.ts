@@ -2,7 +2,7 @@ import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 const MY_SUBGRAPH_URL = {
-  '1': 'https://api.0xgraph.xyz/api/public/28820bd2-ad8b-4d40-a142-ce8d7c786f66/subgraphs/spookyswap/v3/v0.0.1/gn'
+  '146': 'https://api.0xgraph.xyz/api/public/28820bd2-ad8b-4d40-a142-ce8d7c786f66/subgraphs/spookyswap/v3/v0.0.1/gn'
 };
 
 export const author = '0xaaiden';
