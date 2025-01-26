@@ -25,7 +25,9 @@
         "typeValidation": {
           "type": "string",
           "title": "The keccak256 value of the bot",
-          "examples": ["e.g. 0xd36f63907c7fad13dd9dc69aa8b9af9c3296a3edad0b0b1eb50c10fd066fc910"],
+          "examples": [
+            "e.g. 0xd36f63907c7fad13dd9dc69aa8b9af9c3296a3edad0b0b1eb50c10fd066fc910"
+          ],
           "pattern": "^0x[a-fA-F0-9]{64}$",
           "minLength": 66,
           "maxLength": 66
