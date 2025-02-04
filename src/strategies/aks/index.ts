@@ -14,7 +14,7 @@ type VotingResponse = {
   total: string;
 };
 
-const MINIUM_VOTING_POWER = 0.01;
+const MINIMUM_VOTING_POWER = 0.01;
 const SMART_CHEF_URL =
   'https://api.thegraph.com/subgraphs/name/akshaysoam8/smartchef';
 const VOTING_API_URL = 'https://voting-api.pancakeswap.info/api/power';
@@ -88,7 +88,7 @@ export async function strategy(
 
         return {
           ...accum,
-          [address]: total <= MINIUM_VOTING_POWER ? MINIUM_VOTING_POWER : total
+          [address]: total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
         };
       },
       {}

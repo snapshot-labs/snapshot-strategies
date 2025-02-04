@@ -10,7 +10,7 @@ const GIVETH_SUBGRAPH_API =
 const XDAI_BLOCKS_API =
   'https://subgrapher.snapshot.org/subgraph/arbitrum/HTGgWawRHBKr6tDe6umPoVNkYDoUpBEsJSGtX6A7N8MG';
 
-const CIRUCLATING_SUPPLY_API = 'https://circulating.giveth.io/token-supply';
+const CIRCULATING_SUPPLY_API = 'https://circulating.giveth.io/token-supply';
 // "supplyField" : "circulating",
 
 const blockParams = {
@@ -77,7 +77,7 @@ export async function strategy(
   );
 
   const data = subgraphRequest(GIVETH_SUBGRAPH_API, params);
-  const supply = fetch(CIRUCLATING_SUPPLY_API, {
+  const supply = fetch(CIRCULATING_SUPPLY_API, {
     method: 'GET',
     headers: {
       Accept: 'application/json',
