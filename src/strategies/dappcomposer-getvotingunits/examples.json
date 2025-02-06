@@ -1,0 +1,36 @@
+[
+  {
+    "name": "dAppComposer query",
+    "strategy": {
+      "name": "dappcomposer-getvotingunits",
+      "params": {
+        "address": "0xBcAA291f9b84A8B8dA02584F79587cCaEDfFE38a",
+        "decimals": 18
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0x890a8A5B2e0335a22DdB0a2Bd991f079591ff44C",
+      "0xC16A3fE7F94E8e55Dd50c8848380093fEA5aa714",
+      "0x6Fb67e33D101465065C87734a563731aB8c30bB1"
+    ],
+    "snapshot": 7594600
+  },
+  {
+    "name": "dAppComposer query",
+    "strategy": {
+      "name": "dappcomposer-getvotingunits",
+      "params": {
+        "address": "0xBcAA291f9b84A8B8dA02584F79587cCaEDfFE38a",
+        "decimals": 18
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0x890a8A5B2e0335a22DdB0a2Bd991f079591ff44C",
+      "0xC16A3fE7F94E8e55Dd50c8848380093fEA5aa714",
+      "0x6Fb67e33D101465065C87734a563731aB8c30bB1"
+    ],
+    "snapshot": 6456459
+  }
+]
