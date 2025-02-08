@@ -88,7 +88,8 @@ export async function strategy(
 
         return {
           ...accum,
-          [address]: total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
+          [address]:
+            total <= MINIMUM_VOTING_POWER ? MINIMUM_VOTING_POWER : total
         };
       },
       {}

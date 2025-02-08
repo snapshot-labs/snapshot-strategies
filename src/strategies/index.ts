@@ -960,7 +960,7 @@ const strategies = {
   realt,
   'superfluid-vesting': superfluidVesting,
   synapse,
-  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
