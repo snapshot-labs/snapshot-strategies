@@ -9,9 +9,7 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": [
-            "e.g. ENS"
-          ],
+          "examples": ["e.g. ENS"],
           "maxLength": 16
         },
         "address": {
@@ -25,16 +23,12 @@
         "decimals": {
           "type": "integer",
           "title": "Decimals",
-          "examples": [
-            "e.g. 18"
-          ],
+          "examples": ["e.g. 18"],
           "minimum": 0,
           "maximum": 18
         }
       },
-      "required": [
-        "address"
-      ],
+      "required": ["address"],
       "additionalProperties": false
     }
   }

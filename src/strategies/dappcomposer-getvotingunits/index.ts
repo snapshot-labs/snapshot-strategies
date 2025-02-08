@@ -25,12 +25,7 @@ export async function strategy(
 
   // Third batch: Get voting power for each token
   addresses.forEach((address) => {
-    multi.call(
-      `${address}`,
-      options.address,
-      'getVotingUnits',
-      [address]
-    );
+    multi.call(`${address}`, options.address, 'getVotingUnits', [address]);
   });
 
   const voteByTokenIds: Record<string, BigNumberish> = await multi.execute();
