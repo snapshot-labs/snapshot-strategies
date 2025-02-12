@@ -3,7 +3,7 @@
     "name": "Example query",
     "strategy": {
       "name": "spooky-lp-sonic",
-      "params": {"symbol": "lpBOO", "decimals": 18}
+      "params": {"symbol": "lpBOO"}
     },
     "network": "146",
     "addresses": [
