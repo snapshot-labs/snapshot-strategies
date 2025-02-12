@@ -1,0 +1,39 @@
+[
+  {
+    "name": "xGT3 query",
+    "strategy": {
+      "name": "xgt3-getvotingunits",
+      "params": {
+        "subgraphURI": "https://subgraph.satsuma-prod.com/15c928d3b406/tutellus/gt3-polygon/api",
+        "address": "0x79bE3dd832b5a61C9c7f1d0Ea6425e515b88f5bb",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x943B71Dd451dAA8097bC2aD6d4afb7517cB4Cf3f",
+      "0x7d867806BB8388794Bc02BcE322ae199fb390FD9",
+      "0xA1447C1531F1774D2c6Ca9E9cC04577A55B8e524",
+      "0x8e5812ae342AE21360b577318a0D9BD0364BE9BE"
+    ],
+    "snapshot": 65600114
+  },  {
+    "name": "xGT3 query",
+    "strategy": {
+      "name": "xgt3-getvotingunits",
+      "params": {
+        "subgraphURI": "https://subgraph.satsuma-prod.com/15c928d3b406/tutellus/gt3-polygon/api",
+        "address": "0x79bE3dd832b5a61C9c7f1d0Ea6425e515b88f5bb",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x943B71Dd451dAA8097bC2aD6d4afb7517cB4Cf3f",
+      "0x7d867806BB8388794Bc02BcE322ae199fb390FD9",
+      "0xA1447C1531F1774D2c6Ca9E9cC04577A55B8e524",
+      "0x8e5812ae342AE21360b577318a0D9BD0364BE9BE"
+    ],
+    "snapshot": 67776522
+  }
+]
