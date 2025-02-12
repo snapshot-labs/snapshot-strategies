@@ -73,13 +73,13 @@ export async function strategy(
       mints.forEach((mint) => {
         const userAddress = getAddress(mint.origin);
         const amount = parseFloat(mint.amount);
-        score[userAddress] += amount;
+        score[userAddress] += amount/10**19;
       });
 
       burns.forEach((burn) => {
         const userAddress = getAddress(burn.origin);
         const amount = parseFloat(burn.amount);
-        score[userAddress] -= amount;
+        score[userAddress] -= amount/10**19;
       });
     }
   }
