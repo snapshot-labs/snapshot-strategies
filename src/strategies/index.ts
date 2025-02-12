@@ -472,8 +472,9 @@ import * as morphoDelegation from './morpho-delegation';
 import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
 import * as realt from './realt';
 import * as superfluidVesting from './superfluid-vesting';
-import * as spookyLpSonic  from './spooky-lp-sonic';
+import * as spookyLpSonic from './spooky-lp-sonic';
 import * as synapse from './synapse';
+import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
 
 const strategies = {
   'spooky-lp-sonic': spookyLpSonic,
@@ -958,7 +959,8 @@ const strategies = {
   'lizcoin-strategy-2024': lizcoinStrategy2024,
   realt,
   'superfluid-vesting': superfluidVesting,
-  synapse
+  synapse,
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
