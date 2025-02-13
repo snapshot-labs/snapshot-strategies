@@ -1,0 +1,36 @@
+{
+  "name": "Example Query",
+  "strategy": {
+    "name": "cgpt-voting-power",
+    "params": {
+      "address": "0xf97f22eddcaf2e891f0d528bda6113874f292b91",
+      "decimals": 18
+    }
+  },
+  "network": "1",
+  "addresses": [
+    "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+    "0x53d284357ec70cE289D6D64134DfAc8E511c8a3D"
+  ],
+  "snapshot": 12419867,
+  "example": {
+    "input": {
+      "space": {},
+      "network": "1",
+      "provider": {},
+      "addresses": [
+        "0x742d35Cc6634C0532925a3b844Bc454e4438f44e",
+        "0x53d284357ec70cE289D6D64134DfAc8E511c8a3D"
+      ],
+      "options": {
+        "address": "0xf97f22eddcaf2e891f0d528bda6113874f292b91",
+        "decimals": 18
+      },
+      "snapshot": 12419867
+    },
+    "output": {
+      "0x742d35Cc6634C0532925a3b844Bc454e4438f44e": 1000,
+      "0x53d284357ec70cE289D6D64134DfAc8E511c8a3D": 2000
+    }
+  }
+}
