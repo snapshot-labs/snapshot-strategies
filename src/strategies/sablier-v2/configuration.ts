@@ -24,91 +24,64 @@ const chains = {
 
 const deployments = {
   [chains.ethereum]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/EuZZnhFtdCGqN2Zt7EMGYDqQKNrVuhJL63KAfwvF35bL',
-      'https://thegraph.com/explorer/subgraphs/AvDAMYYHGaEwn9F9585uqq6MM5CfvRtYcb7KjK7LKPCt'
-    ]
+    subgraph: 
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/AvDAMYYHGaEwn9F9585uqq6MM5CfvRtYcb7KjK7LKPCt'
   },
   [chains.arbitrumSepolia]: {
-    subgraph: [
-      'https://api.studio.thegraph.com/query/57079/sablier-v2-arbitrum-sepolia/version/latest',
-      'https://thegraph.com/explorer/subgraphs/ApEFvaPGARHedGmFp6TRQu7DoDHQKwt1LPWi1ka6DFHT'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/ApEFvaPGARHedGmFp6TRQu7DoDHQKwt1LPWi1ka6DFHT'
   },
   [chains.arbitrum]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/AR77w8PwmkAG7c9DJSsfW6yTrC5UdvdQ1Hz5ZTCuaUWz',
-      'https://thegraph.com/explorer/subgraphs/yvDXXHSyv6rGPSzfpbBcbQmMFrECac3Q2zADkYsMxam'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/yvDXXHSyv6rGPSzfpbBcbQmMFrECac3Q2zADkYsMxam'
   },
   [chains.avalanche]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/FdVwZuMV43yCb1nPmjnLQwmzS58wvKuLMPzcZ4UWgWAc',
-      'https://thegraph.com/explorer/subgraphs/FTDmonvFEm1VGkzECcnDY2CPHcW5dSmHRurSjEEfTkCX'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/FTDmonvFEm1VGkzECcnDY2CPHcW5dSmHRurSjEEfTkCX'
   },
   [chains.base]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/3pxjsW9rbDjmZpoQWzc5CAo4vzcyYE9YQyTghntmnb1K',
-      'https://thegraph.com/explorer/subgraphs/778GfecD9tsyB4xNnz4wfuAyfHU6rqGr79VCPZKu3t2F'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/778GfecD9tsyB4xNnz4wfuAyfHU6rqGr79VCPZKu3t2F'
   },
   [chains.blast]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/BXoC2ToMZXnTmCjWftQRPh9zMyM7ysijMN54Nxzb2CEY',
-      'https://thegraph.com/explorer/subgraphs/8MBBc6ET4izgJRrybgWzPjokhZKSjk43BNY1q3xcb8Es'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/8MBBc6ET4izgJRrybgWzPjokhZKSjk43BNY1q3xcb8Es'
   },
   [chains.bsc]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/BVyi15zcH5eUg5PPKfRDDesezMezh6cAkn8LPvh7MVAF',
-      'https://thegraph.com/explorer/subgraphs/A8Vc9hi7j45u7P8Uw5dg4uqYJgPo4x1rB4oZtTVaiccK'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/A8Vc9hi7j45u7P8Uw5dg4uqYJgPo4x1rB4oZtTVaiccK'
   },
   [chains.gnosis]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/EXhNLbhCbsewJPx4jx5tutNXpxwdgng2kmX1J7w1bFyu',
-      'https://thegraph.com/explorer/subgraphs/DtKniy1RvB19q1r2g1WLN4reMNKDacEnuAjh284rW2iK'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/DtKniy1RvB19q1r2g1WLN4reMNKDacEnuAjh284rW2iK'
   },
   [chains.linea]: {
-    subgraph: [
-      'https://thegraph.com/explorer/subgraphs/GvpecytqVzLzuwuQB3enozXoaZRFoVx8Kr7qrfMiE9bs'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/GvpecytqVzLzuwuQB3enozXoaZRFoVx8Kr7qrfMiE9bs'
   },
   [chains.optimism]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/6e6Dvs1yDpsWDDREZRqxGi54SVdvTNzUdKpKJxniKVrp',
-      'https://thegraph.com/explorer/subgraphs/NZHzd2JNFKhHP5EWUiDxa5TaxGCFbSD4g6YnYr8JGi6'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/NZHzd2JNFKhHP5EWUiDxa5TaxGCFbSD4g6YnYr8JGi6'
   },
   [chains.optimismSepolia]: {
-    subgraph: [
+    subgraph:
       'https://api.studio.thegraph.com/query/57079/sablier-v2-optimism-sepolia/version/latest'
-    ]
   },
   [chains.polygon]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/CsDNYv9XPUMP8vufuwDVKQrVhsxhzzRHezjLFFKZZbrx',
-      'https://thegraph.com/explorer/subgraphs/8fgeQMEQ8sskVeWE5nvtsVL2VpezDrAkx2d1VeiHiheu'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/8fgeQMEQ8sskVeWE5nvtsVL2VpezDrAkx2d1VeiHiheu'
   },
   [chains.scroll]: {
-    subgraph: [
-      'https://api.studio.thegraph.com/query/57079/sablier-v2-scroll/version/latest'
-    ]
+    subgraph:
+			'https://subgrapher.snapshot.org/subgraph/arbitrum/GycpYx8c9eRqxvEAfqnpNd1ZfXeuLzjRhnG7vvYaqEE1'
   },
   [chains.sepolia]: {
-    subgraph: [
-      'https://api.studio.thegraph.com/query/57079/sablier-v2-sepolia/version/latest',
-      'https://thegraph.com/explorer/subgraphs/5yDtFSxyRuqyjvGJyyuQhMEW3Uah7Ddy2KFSKVhy9VMa'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/5yDtFSxyRuqyjvGJyyuQhMEW3Uah7Ddy2KFSKVhy9VMa'
   },
   [chains.zkSync]: {
-    subgraph: [
-      'https://subgrapher.snapshot.org/subgraph/arbitrum/GY2fGozmfZiZ3xF2MfevohLR4YGnyxGxAyxzi9zmU5bY',
-      'https://thegraph.com/explorer/subgraphs/5yDtFSxyRuqyjvGJyyuQhMEW3Uah7Ddy2KFSKVhy9VMa'
-    ]
+    subgraph:
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/5yDtFSxyRuqyjvGJyyuQhMEW3Uah7Ddy2KFSKVhy9VMa'
   }
 };
 
