@@ -24,7 +24,7 @@ const chains = {
 
 const deployments = {
   [chains.ethereum]: {
-    subgraph: 
+    subgraph:
       'https://subgrapher.snapshot.org/subgraph/arbitrum/AvDAMYYHGaEwn9F9585uqq6MM5CfvRtYcb7KjK7LKPCt'
   },
   [chains.arbitrumSepolia]: {
@@ -73,7 +73,7 @@ const deployments = {
   },
   [chains.scroll]: {
     subgraph:
-			'https://subgrapher.snapshot.org/subgraph/arbitrum/GycpYx8c9eRqxvEAfqnpNd1ZfXeuLzjRhnG7vvYaqEE1'
+      'https://subgrapher.snapshot.org/subgraph/arbitrum/GycpYx8c9eRqxvEAfqnpNd1ZfXeuLzjRhnG7vvYaqEE1'
   },
   [chains.sepolia]: {
     subgraph:
