@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "wagdie-subgraph",
+      "params": {
+        "subGraphURL": "https://subgrapher.snapshot.org/subgraph/arbitrum/CiuchCqNbcNs88KkbQqs7PwuaD2DrPqHqxuDVKrJ5ESM",
+        "scoreMultiplier": 1,
+        "location": ["all"]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xca8307d015aa664a186ad67da19ac6fc4b6c0198",
+      "0x326937d5f4ad932db9d814ee7d852bc77b9d2e0d",
+      "0x4F0EceDCd73dA0315134741d9D3830B08fE32e95",
+      "0xa027b41dc6fe7abec1b6ac69335383604766623c"
+    ],
+    "snapshot": 16470969
+  }
+]

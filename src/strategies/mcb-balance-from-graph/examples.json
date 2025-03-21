@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "mcb-balance-from-graph",
+      "params": {
+        "symbol": "MCB",
+        "graph": "https://api.thegraph.com/subgraphs/name/renpu-mcarlo/mcb-balance"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfdf6c6096e70799e53d6172d32c6c3b6f3d1f38f",
+      "0xb796a0868a8fe1f93df3ea856daa6e169f7c37db",
+      "0x0cefe050ff97872c4390bdf28cd87822185ab266",
+      "0xe3124B1F5B7c793B6B4C97aFcAD7C6df6c1A9bc9"
+    ],
+    "snapshot": 2393677
+  }
+]

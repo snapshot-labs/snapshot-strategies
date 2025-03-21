@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ctoken",
+      "params": {
+        "symbol": "cUNI",
+        "address": "0x35A18000230DA775CAc24873d00Ff85BccdeD550",
+        "decimals": 8,
+        "offsetCheck": 40320,
+        "borrowingRestricted": true
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x614812d04526C0C882A6cB993a135fcD559F33F9",
+      "0xff91AcCd5277cc3de3E73DD77e3102b1980e439e",
+      "0x05ff2b0db69458a0750badebc4f9e13add608c7f",
+      "0xd1a8Dd23e356B9fAE27dF5DeF9ea025A602EC81e",
+      "0x48f7cb174a2333de834452ad240ce8d3d827dc55",
+      "0x0d3cae1ff719d6a2ac0fcd7cd22f599cac64b6ec",
+      "0xE0e710A907a8E44c078e6212Efa336C1191F4CD1"
+    ],
+    "snapshot": 13494433
+  }
+]

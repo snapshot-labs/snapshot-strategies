@@ -1,0 +1,19 @@
+[
+  {
+    "name": "AGIP 8+9: Voting power for GHST value of items, their aavegotchis equippedWearables + baseRarityScore",
+    "strategy": {
+      "name": "aavegotchi-agip",
+      "params": {
+        "tokenAddress": "0x86935f11c86623dec8a25696e1c19a8659cbf95d",
+        "symbol": "GOTCHI"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x9730299b10A30bDbAF81815c99b4657c685314AB",
+      "0xDd564df884Fd4e217c9ee6F65B4BA6e5641eAC63",
+      "0xBfe09443556773958bae1699b786d8E9680B5571"
+    ],
+    "snapshot": 51370819
+  }
+]

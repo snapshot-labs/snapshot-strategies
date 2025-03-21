@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-balance-of-at",
+      "params": {
+        "address": "0xB7d85Ab25b9D478961face285fa3D8AAecAd24a9",
+        "symbol": "xALPACA",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xdf7b69c22b96f2c7e07687971551021058260451",
+      "0x466b32918a35d8c290793a99dd37b6e14bcf3e92",
+      "0x4ea21fe653af9b524333512db3605830cc2fe592",
+      "0x215462dc79523ac795216e1baa27586840fa9382",
+      "0x5b4e7abcd18351f79211b6c9a6d1c3a3d329867d",
+      "0x4b7841b4a99eba9b9209c0f63183e32a1f7d87bc",
+      "0x29fec057b86ef46d240bd271837369f5715335ef",
+      "0xed7f2016130ca5083261079c7b869cc3ab82181a",
+      "0xb71d05cf5cdf7a9b15b20b9aab5e91332c271c96",
+      "0xbc4811f78dcb2ac60c026e871f697d87fc36022b",
+      "0xd1b38534fe56a0e44a3bc9341d5abea286c78a7c",
+      "0x64088896525d5ba1079415ecc20818ae76251c6f",
+      "0x4fcde7f599539b18fe4612e1df2663812bbaa1ff",
+      "0x14b6b8e79959bb0b332787c4954c2a42d7d4a638",
+      "0xc96caaac2cd4df2bfaab55f401e1ef5888b02ebb",
+      "0xf72d9eb746386d3835af331ff791e7900d05b14c",
+      "0x15c109307b99a10c665e1fa11147502b0001bb1a",
+      "0x83c4b3a588116a870276e85fb9c7a80a343d13cb"
+    ],
+    "snapshot": 14848160
+  }
+]

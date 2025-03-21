@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Nexon Army NFT Holders",
+    "strategy": {
+      "name": "nexon-army-nft"
+    },
+    "network": "137",
+    "addresses": [
+      "0xd43BA4193920dA3A288AAf3400dcb5be62fB1dee",
+      "0x8966D8aCbb4b0d5830fca4b0Dd3b134e41049B19",
+      "0x6A6B81b62389ef53e201B855b30b1B92D73B1C4F",
+      "0xDb8D2DBB24A346b5b84981B1D5e741F67596009C"
+    ],
+    "snapshot": 38466628
+  }
+]

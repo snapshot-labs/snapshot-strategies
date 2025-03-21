@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "mcn-farm",
+      "params": {
+        "tokenAddress": "0xD91E9a0fEf7C0fa4EBdAF4d0aCF55888949A2a9b",
+        "symbol": "MCN",
+        "decimals": "18",
+        "lpAddress": "0x2Ef2cb6af83de4171A69EE2f7C677079fFD9BcD0",
+        "stakingAddress": "0x15dEd15fE32EBac0b6cFb08cdAB112cca8380423"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xCba1A275e2D858EcffaF7a87F606f74B719a8A93",
+      "0x0E530732a9ecc807Cafc1665ADa8C27C197a7cb1",
+      "0xF4a616612D95FfcC667F2cCa19b41842Cea78DE6",
+      "0x1096cB8F6e17dB5a072fa5b19dC4b8F212CB36E3",
+      "0xD0996fd8113838Be107539dAbFa5EbD89583d45d",
+      "0x5e7C21DefE711bCd5CEa1B267d2e87F7913D510F",
+      "0xf1F56a5a6E9aCf0cF316Da9f2DcFc7312F4CAba9",
+      "0x87616fA850c87a78f307878f32D808dad8f4d401"
+    ],
+    "snapshot": 13050000
+  }
+]

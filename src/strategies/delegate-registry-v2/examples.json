@@ -1,0 +1,53 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "delegate-registry-v2",
+      "params": {
+        "backendUrl": "https://delegate-registry-backend.vercel.app",
+        "delegationV1VChainIds": [1, 100],
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "symbol": "ST",
+              "address": "0xE666Ad68a6e2897CD06A9ff378ED8b0d71093398",
+              "network": "5",
+              "decimals": 18
+            },
+            "network": "5"
+          },
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+              "symbol": "DAI",
+              "decimals": 18
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2011c83e8f75c0ceb90ec140d8e8adfc836e3685",
+      "0xde1e6a7ed0ad3f61d531a8a78e83ccddbd6e0c49",
+      "0x007de57773b6eb4ebbf6a740dfde1efdd5629630",
+      "0x6cc5b30cd0a93c1f85c7868f5f2620ab8c458190",
+      "0xd028d504316fec029cfa36bdc3a8f053f6e5a6e4",
+      "0x000e37ed92d86a7667f520c53b73b01ff5c206eb",
+      "0x000dbf2733da51135c1b21c8ef71a3d474383f0d",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad"
+    ],
+    "snapshot": 18478898
+  }
+]

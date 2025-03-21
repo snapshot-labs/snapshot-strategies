@@ -1,0 +1,21 @@
+[
+  {
+    "name": "ENS 10k Club",
+    "strategy": {
+      "name": "ens-10k-club",
+      "params": {
+        "address": "0x57f1887a8BF19b14fC0dF6Fd9B2acc9Af147eA85",
+        "symbol": "NUMS",
+        "clubWeight10k": 1,
+        "clubWeight999": 10
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xF5F8977348f592DB9773C373fEf5bE362D103776",
+      "0xE3D2b657c45613d30292Fd67Ef40DAB043B70706",
+      "0xaCf4C2950107eF9b1C37faA1F9a866C8F0da88b9"
+    ],
+    "snapshot": 14799078
+  }
+]

@@ -1,0 +1,95 @@
+[
+  {
+    "name": "Unipilot vault pilot balance query",
+    "strategy": {
+      "name": "unipilot-vault-pilot-balance",
+      "params": {
+        "decimals": 18,
+        "unipilotSubgraphURI": "https://api.thegraph.com/subgraphs/name/unipilotvoirstudio/stats-v2",
+        "vaultAddress": "0x8fd23f313c147d3c2a0fb11dd6b98515b9cb0603",
+        "unipilotFarming": "0x52D1Cc3E97B97d3a915f2C91E0aE687c89f6F2E0",
+        "unipilotVaultMethodABI": [
+          {
+            "inputs": [],
+            "name": "totalSupply",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          },
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+              }
+            ],
+            "name": "balanceOf",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          }
+        ],
+        "unipilotFarmingMethodABI": [
+          {
+            "inputs": [
+              {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+              },
+              {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+              }
+            ],
+            "name": "userInfo",
+            "outputs": [
+              {
+                "internalType": "uint256",
+                "name": "reward",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "altReward",
+                "type": "uint256"
+              },
+              {
+                "internalType": "uint256",
+                "name": "lpLiquidity",
+                "type": "uint256"
+              },
+              {
+                "internalType": "address",
+                "name": "vault",
+                "type": "address"
+              }
+            ],
+            "stateMutability": "view",
+            "type": "function"
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x899917ef0213b78cd9da7ff930efbd505433de56",
+      "0x019cdfd2a70dd4b899f330877752edfda5bd34c4"
+    ],
+    "snapshot": 15034421
+  }
+]

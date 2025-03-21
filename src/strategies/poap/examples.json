@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "poap",
+      "params": {
+        "symbol": "POAP",
+        "eventIds": ["1213", "1293"]
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x837d21cfda71e93e5257f95ce2c49751675ebcb1",
+      "0x00ac36c51500e900ab0f4e692fc1338cf70571b2",
+      "0xdd6f702c2907ce401888d993d7dc185e7a824466"
+    ],
+    "snapshot": 25283078
+  }
+]

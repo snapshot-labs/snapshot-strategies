@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-with-metadata-by-ownerof",
+      "params": {
+        "address": "0xea1982b712FA2eCf27F12E205b3b31D43FA858E5",
+        "symbol": "RFM100",
+        "metadataSrc": "https://6242dbddb6734894c157cfc0.mockapi.io/api/votingWeights"
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x030fBBD3ce096195c8c83bb8BfB70704eed865F9",
+      "0xb0b085dd0fe6c9632058f9ef088375c16f3aff12",
+      "0x7f16D5c969380E3420E17B4c3456A3844745A578"
+    ],
+    "snapshot": 10825197
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "dGenesis Query",
+    "strategy": {
+      "name": "dgenesis",
+      "params": {
+        "symbol": "DGV"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0xa52093DC50f2596abadb56dC643630E61944aBA9",
+      "0x987c781938d0881306069ec9e3f7e914cf23c9fe",
+      "0x3d9fe7337f067dd52d1dc8cb45490b1ad6c2f65b",
+      "0x9ee73ec148b8f68da65598ebb497f1e7e9957219",
+      "0xef764BAC8a438E7E498c2E5fcCf0f174c3E3F8dB"
+    ],
+    "snapshot": 3213870
+  }
+]

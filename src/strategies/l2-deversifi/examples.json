@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "l2-deversifi",
+      "params": {
+        "symbol": "L2",
+        "api": "https://api.deversifi.dev/v1/trading/r/tokenBalancesHistory",
+        "token": "xDVF"
+      }
+    },
+    "network": "3",
+    "addresses": [
+      "0xd4fcde55c9bbe8eff062f92a59047393b44abaee",
+      "0x9ab450355b4ab504cbc0e4de484781dac08e6a26",
+      "0xed48ba4eb763b8514210b53cd272688c66175533"
+    ],
+    "snapshot": 10802061
+  }
+]

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc1155-with-multiplier",
+      "params": {
+        "address": "0x2C56b43983Ca77cc29b27B4a731F0f0d54ae7e52",
+        "tokenId": 1,
+        "symbol": "DAWN",
+        "decimals": 0,
+        "multiplier": 5
+      }
+    },
+    "network": "4",
+    "addresses": [
+      "0x9cA70B93CaE5576645F5F069524A9B9c3aef5006",
+      "0xb5aE5169F4D750e802884d81b4f9eC66c525396F"
+    ],
+    "snapshot": 9694956
+  }
+]

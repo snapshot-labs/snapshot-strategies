@@ -1,0 +1,41 @@
+[
+  {
+    "name": "RXS Example",
+    "strategy": {
+      "name": "masterchef-pool-balance-no-rewarddebt",
+      "params": {
+        "symbol": "RXS",
+        "chefAddress": "0xcfA857d6EC2F59b050D7296FbcA8a91D061451f3",
+        "uniPairAddress": null,
+        "tokenIndex": null,
+        "pid": "75",
+        "weight": 1,
+        "weightDecimals": 0
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x191727d22f2693100acef8e48F8FeaEaa06d30b1",
+      "0xFAdE3DE0E802B9Bf52bD457389d933F9483fF2fD"
+    ],
+    "snapshot": 16801195
+  },
+  {
+    "name": "RXS-BUSD LP Example",
+    "strategy": {
+      "name": "masterchef-pool-balance-no-rewarddebt",
+      "params": {
+        "symbol": "RXS-BUSD LP",
+        "chefAddress": "0xcfA857d6EC2F59b050D7296FbcA8a91D061451f3",
+        "uniPairAddress": "0xE576ebF57b3776f8892e2dF1787Cb163f41a1242",
+        "tokenIndex": 0,
+        "pid": "74",
+        "weight": 1,
+        "weightDecimals": 0
+      }
+    },
+    "network": "56",
+    "addresses": ["0xe563983d6f46266Ad939c16bD59E5535Ab6E774D"],
+    "snapshot": 16801195
+  }
+]

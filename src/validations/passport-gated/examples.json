@@ -1,0 +1,39 @@
+[
+  {
+    "name": "Example of a passport gated validation",
+    "author": "0x000000000000000000000000000000000000dead",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "scoreThreshold": 0
+    },
+    "valid": true
+  },
+  {
+    "name": "Example of a passport gated validation",
+    "author": "0x24F15402C6Bb870554489b2fd2049A85d75B982f",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "scoreThreshold": 20,
+      "stamps": ["Ens", "Github", "Snapshot"],
+      "operator": "OR"
+    },
+    "valid": true
+  },
+  {
+    "name": "Example of a passport gated validation",
+    "author": "0x1F069c5B3D2dD6716020959d2c7dEfb01EEaD296",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "scoreThreshold": 20,
+      "stamps": ["Ens", "Github", "Snapshot"],
+      "operator": "OR"
+    },
+    "valid": false
+  }
+]

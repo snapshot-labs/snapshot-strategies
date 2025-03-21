@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Digitalax Genesis Contribution",
+    "strategy": {
+      "name": "digitalax-genesis-contribution",
+      "params": {
+        "symbol": "MONA",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x801e12b93a570930cb68ac29f3450bc5afd78350",
+      "0x4702baa85c236d204230a439c72625cd014b17ea",
+      "0xca11d10ceb098f597a0cab28117fc3465991a63c",
+      "0xa48f120e2a69c7848f7e841412fe494a5fddaede",
+      "0x294803520a1e7b671c105c8a3d94836f40b2b557",
+      "0xfaa1eb7e8d449a4b065f90028170108f54feb877",
+      "0x033cd8e9e400ac9d67375a08ff1fffb91e8100c0",
+      "0xd854d3800e0ce85273789a0cc70215d415a8c945",
+      "0x09e0ba2596677a84cc3b419c648ed42d47a42d6f"
+    ],
+    "snapshot": 13513882
+  }
+]

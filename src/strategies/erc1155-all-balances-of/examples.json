@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc1155-all-balances-of",
+      "params": {
+        "address": "0x71eb5c179ceb640160853144cbb8df5bd24ab5cc",
+        "symbol": "CORGI"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x06658Fd70023f527BFAc1A6d9141C56d99c65129",
+      "0xa745067637CFea3fef6861135fAd57Ad38dF3Bfe",
+      "0xe616A809F70f0B947331759303286C28Cc304693",
+      "0xb104371D5a2680fB0d47eA9A3aA2348392454186"
+    ],
+    "snapshot": 14597922
+  }
+]

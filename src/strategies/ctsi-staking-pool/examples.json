@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ctsi-staking-pool",
+      "params": {
+        "expectedResults": {
+          "scores": {
+            "0x4af926a219e09fe5dd1ee16d7039d82ecf979148": 1001.2293481992707,
+            "0x0b47fef7cb50ad5abbc10265152aacc3b4b5e6d1": 19243.216830099187,
+            "0xff26ccf9058b9bd8facfb6a8876864fec193285d": 4272385.58482901
+          }
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4af926a219e09fe5dd1ee16d7039d82ecf979148",
+      "0x0b47fef7cb50ad5abbc10265152aacc3b4b5e6d1",
+      "0xff26ccf9058b9bd8facfb6a8876864fec193285d"
+    ],
+    "snapshot": 16053852
+  }
+]

@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "superTokenAddress": {
+          "type": "string",
+          "title": "Super Token contract address",
+          "examples": ["e.g. 0x6C210F071c7246C452CAC7F8BaA6dA53907BbaE1"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "vestingSenderAddress": {
+          "type": "string",
+          "title": "Vesting sender address",
+          "examples": ["e.g. 0x6C210F071c7246C452CAC7F8BaA6dA53907BbaE1"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "subgraphUrl": {
+          "type": "string",
+          "title": "Subgraph URL (optional - if not already known to the strategy)",
+          "examples": [
+            "e.g. https://subgrapher.snapshot.org/subgraph/arbitrum/4Zp6n8jcsJMBNa3GY9RZwoK4SLjoagwXGq6GhUQNMgSM"
+          ]
+        }
+      },
+      "required": ["superTokenAddress", "vestingSenderAddress"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "superboring",
+      "params": {
+        "tokenAddress": "0x6C210F071c7246C452CAC7F8BaA6dA53907BbaE1",
+        "superBoringAddress": "0xAcA744453C178F3D651e06A3459E2F242aa01789"
+      }
+    },
+    "network": "42220",
+    "addresses": [
+      "0xA6dB8CdC7dED892C6cE2c56a29c3FAa69687CCC4",
+      "0x7DeF778c74ac7F6E355b277Ba29c0D73142467a8",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0xbae4ffDeAF799fd43f7d6d5f378Dd775d1f48f1e",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x4ee5D45eB79aEa04C02961a2e543bbAf5cec81B3"
+    ],
+    "snapshot": 27695930
+  }
+]

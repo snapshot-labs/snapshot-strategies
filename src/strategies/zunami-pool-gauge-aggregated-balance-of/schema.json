@@ -1,0 +1,70 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "zunami-pool-gauge-aggregated-balance-of",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Snapshot helper address",
+          "examples": ["e.g. 0x0AD930970b60d24bd30F612D287f188A7626B147"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "fraxStakingAddress": {
+          "type": "string",
+          "title": "Zunami convex frax staking address",
+          "examples": ["e.g. 0xb8ebc210BCF78be8Ef3F09Dd0d8e85Fa5e252e86"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 1
+        },
+        "curvePoolAddress": {
+          "type": "string",
+          "title": "Curve pool address",
+          "examples": ["e.g. 0x68934F60758243eafAf4D2cFeD27BF8010bede3a"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "lpPriceDecimals": {
+          "type": "number",
+          "title": "Curve lp price decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 1
+        },
+        "blackListAddresses": {
+          "type": "array",
+          "title": "Black listed addresses",
+          "examples": [
+            "0xBdCA4F610e7101Cc172E2135ba025737B99AbD30",
+            "0xbc61f6973cE564eFFB16Cd79B5BC3916eaD592E2"
+          ],
+          "items": {
+            "type": "string",
+            "pattern": "^0x[a-fA-F0-9]{40}$",
+            "minLength": 42,
+            "maxLength": 42
+          }
+        }
+      },
+      "required": [
+        "address",
+        "decimals",
+        "curvePoolAddress",
+        "lpPriceDecimals",
+        "blackListAddresses"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

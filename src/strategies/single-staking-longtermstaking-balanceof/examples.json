@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Single Staking Amount from Long Term Vault",
+    "strategy": {
+      "name": "single-staking-longtermstaking-balanceof",
+      "params": {
+        "stakingPoolAddress": "0xe69D70069877929fda936dE5E5c83b441822D63F",
+        "symbol": "MCRN",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x46D8e47b9A6487FDAB0a700b269A452cFeED49Aa",
+      "0x46D8e47b9A6487FDAB0a700b269A452cFeED49Aa",
+      "0x46D8e47b9A6487FDAB0a700b269A452cFeED49Aa"
+    ],
+    "snapshot": 37085430
+  }
+]

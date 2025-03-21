@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-ribbon",
+      "params": {
+        "address": "0x6123b0049f904d730db3c36a31167d9d4121fa6b",
+        "symbol": "RBN",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x6b98259456fa6ca17df0fe5a8cfa829c30484eee",
+      "0x309c65c98c56c4db478ec67d3d0c91738cbafc36",
+      "0x57d98609d623b9885721a58b896d40c7871e1573",
+      "0xdd00270d347ea0fc0fdd82e9385fbef0682c24f8",
+      "0xcec909e109af27c4220d8c0400ec990126187dce",
+      "0x7d79ab8c86eef9c6d3001822cca2384d314db999",
+      "0x7ce68b8796144c4fd1af5d82d79ed2cbaf8b1ea5",
+      "0xba1d28a156b69f0e07961e1adfd1fba24f249443",
+      "0x22f9076c7c3436dae40a05cf4ea7d4174b458629",
+      "0xbe370f522c2d8bfda9476048b1d3afc3a3bf537a",
+      "0x4559d6b52b6a736684345b42d5e3ee8405991466",
+      "0xdc212554bf38c0e8e8b2dff80ddba739dfdff5da"
+    ],
+    "snapshot": 14321000
+  }
+]

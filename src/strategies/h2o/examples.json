@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "h2o",
+      "params": {
+        "symbol": "OCEAN",
+        "collateralTypeId": "OCEAN-A"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1EC1CcEF3e1735bdA3F4BA698e8a524AA7c93274",
+      "0x0ac0240f4656dc80684d0df1208bb91c0220725d",
+      "0x24a9689d209622fd6def27a21174c1cdfb479483",
+      "0x650235ffc650d3b3d95c904be345aafb97c586cf",
+      "0x71d5b84d22b6df54fa6cc6c325ff36c86b9f356c",
+      "0x933b7dfefae9e2e8385054d1c9b1143d9aeeb069",
+      "0x99665a5252c15ca3e24fcebab56d0721fb9d1158"
+    ],
+    "snapshot": 14678934
+  }
+]

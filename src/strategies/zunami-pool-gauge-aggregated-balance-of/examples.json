@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "zunami-pool-gauge-aggregated-balance-of",
+      "params": {
+        "address": "0x0AD930970b60d24bd30F612D287f188A7626B147",
+        "fraxStakingAddress": "0xb8ebc210BCF78be8Ef3F09Dd0d8e85Fa5e252e86",
+        "decimals": 18,
+        "lpPriceDecimals": 18,
+        "curvePoolAddress": "0x68934F60758243eafAf4D2cFeD27BF8010bede3a",
+        "blackListAddresses": [
+          "0xBdCA4F610e7101Cc172E2135ba025737B99AbD30",
+          "0xbc61f6973cE564eFFB16Cd79B5BC3916eaD592E2",
+          "0x989AEb4d175e16225E39E87d0D97A3360524AD80"
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xF9605D8c4c987d7Cb32D0d11FbCb8EeeB1B22D5d",
+      "0x1c012C98676eAFB6C1D4886a543c4fFf50a43FE0",
+      "0x5180db0237291A6449DdA9ed33aD90a38787621c",
+      "0x924402163f01cCA1b161A3188d3f32601843Ae4A",
+      "0xa6dC407C39bd07F6D6C3780C2F5a53e690387F4a",
+      "0x287CDD0A59d69E9F101E90BDBCC892607DF08CF9",
+      "0x2d34816C3c83554CE97144c623C381b303Aba732",
+      "0x6De72e5568CfbB9d0fb91Fb384D2E52d7e5C1E94",
+
+      "0xBdCA4F610e7101Cc172E2135ba025737B99AbD30",
+      "0xbc61f6973cE564eFFB16Cd79B5BC3916eaD592E2",
+      "0x989AEb4d175e16225E39E87d0D97A3360524AD80"
+    ],
+    "snapshot": 17330743
+  }
+]

@@ -1,0 +1,32 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0xBCC1b6477B52212fb62734D21bC0ecAE684B4970"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "input": {
+          "type": "string",
+          "title": "Input",
+          "examples": ["e.g. lockedAmount"]
+        },
+        "weight": {
+          "type": "number",
+          "title": "Weight",
+          "examples": ["e.g. 3"]
+        }
+      },
+      "required": ["address", "input", "weight"],
+      "additionalProperties": false
+    }
+  }
+}

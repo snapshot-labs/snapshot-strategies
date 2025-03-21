@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "delegatexyz-erc721-balance-of",
+      "params": {
+        "address": "0xBC4CA0EdA7647A8aB7C2061c2E118A18a936f13D",
+        "symbol": "BAYC"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x9fBDD6437840641B5dEDE244B084D31e109A0F23",
+      "0xdA6A58741EaEf21eb455811F3421705cF7AF9dc8",
+      "0x6AE06aD5CFEf7575B31933a18c263013CCFd3be1",
+      "0x51688cd36c18891167e8036bde2a8fb10ec80c43",
+      "0x3e17fac953de2cd729b0ace7f6d4353387717e9e",
+      "0x23f67feb67a3aa1e376d23beaa3f241217e427c9",
+      "0x54685c62db8e16b1484768db8e0daf3c644d50bf",
+      "0x766bc61d3150232f6f4e1d81633d68f3a94879e3"
+    ],
+    "snapshot": 20042069
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example printer-financial query",
+    "strategy": {
+      "name": "printer-financial",
+      "params": {
+        "symbol": "INK",
+        "lpPairAddress": "0xDECC75dBF9679d7A3B6AD011A98F05b5CC6A8a9d",
+        "lpPoolAddress": "0xF95AB2A261B0920f3d5aBc02A41dBe125eBA10aE",
+        "lpPoolId": "3",
+        "printerAddress": "0xb1E6B2a4e6c5717CDBf8F6b01e89455C920a3646",
+        "inkAddress": "0xFFAbb85ADb5c25D57343547a8b32B62f03814B12"
+      }
+    },
+    "network": "250",
+    "addresses": [
+      "0x659fc9f71f407764D6C961Cea4c1814409feb5eE",
+      "0x1CBC2226b57Ae4BDbF6BC5CE1908E9D1873553aa"
+    ],
+    "snapshot": 31153229
+  }
+]

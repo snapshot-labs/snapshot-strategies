@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example Hashes votes query",
+    "strategy": {
+      "name": "hashes-voting",
+      "params": {
+        "address": "0xD07e72b00431af84AD438CA995Fd9a7F0207542d",
+        "symbol": "HASH"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xecece69f68bde56e7d53bd77d84da21a386bae0f",
+      "0x6dfc724df608c15027772f770f00b2b7a4040976"
+    ],
+    "snapshot": 13366241
+  }
+]

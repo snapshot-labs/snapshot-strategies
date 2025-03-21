@@ -1,0 +1,15 @@
+[
+  {
+    "name": "Voting power based on aavegotchis equipped with wagie wearables for the WAGMI Warriors Guild",
+    "strategy": {
+      "name": "aavegotchi-wagmi-guild",
+      "params": {
+        "tokenAddress": "0x86935f11c86623dec8a25696e1c19a8659cbf95d",
+        "symbol": "GOTCHI"
+      }
+    },
+    "network": "137",
+    "addresses": ["0x26cf02F892B04aF4Cf350539CE2C77FCF79Ec172"],
+    "snapshot": 20122217
+  }
+]

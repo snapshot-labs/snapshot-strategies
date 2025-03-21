@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Flexa Capacity staking example query",
+    "strategy": {
+      "name": "flexa-capacity-staking",
+      "params": {
+        "symbol": "FLEX",
+        "apiBase": "https://api.capacity.staging.flexa.network"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x4621E524e6F95A6280b7761BDE3d150101b290F8",
+      "0x3c4B8C52Ed4c29eE402D9c91FfAe1Db2BAdd228D",
+      "0xd649bACfF66f1C85618c5376ee4F38e43eE53b63",
+      "0x726022a9fe1322fA9590FB244b8164936bB00489",
+      "0xc6665eb39d2106fb1DBE54bf19190F82FD535c19",
+      "0x6ef2376fa6e12dabb3a3ed0fb44e4ff29847af68"
+    ],
+    "snapshot": 11437846
+  }
+]

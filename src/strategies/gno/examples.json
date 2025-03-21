@@ -1,0 +1,24 @@
+[
+  {
+    "name": "GNO Token Votes",
+    "strategy": {
+      "name": "gno",
+      "network": "1",
+      "params": {
+        "symbol": "GNO",
+        "decimals": 18,
+        "SUBGRAPH_URL": "https://api.thegraph.com/subgraphs/id/QmfZ5cepEwspcrLLwtA3i5M6qEnv3WKDkpAtC65t8VpY6M"
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x53bcFaEd43441C7bB6149563eC11f756739C9f6A",
+      "0x000000000000541e251335090ac5b47176af4f7e",
+      "0x0000000000007f150bd6f54c40a34d7c3d5e9f56",
+      "0x0000000000051666bbfbb42925c3ee5d50cf6b10",
+      "0x00000000003b3cc22af3ae1eac0440bcee416b40",
+      "0x000000000dfde7deaf24138722987c9a6991e2d4"
+    ],
+    "snapshot": 14476000
+  }
+]

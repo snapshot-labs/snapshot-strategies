@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Polis Balance",
+    "strategy": {
+      "name": "polis-balance",
+      "params": {
+        "validators": "0x636278bAd2D76AAC5E9bAcfd185687c8901063E9",
+        "staking": "0xf69e9147d88de50c4bd42f9b41cbce00841cc2dd",
+        "symbol": "POLIS",
+        "decimals": 18
+      }
+    },
+    "network": "333999",
+    "addresses": [
+      "0xed86b5962a1a73afad7181f0b3e427a93ce8e552",
+      "0x78d60a7ccd14f637bc4637e4cfd71e39b38d6614",
+      "0x769354a23fcFEa505F49705cd4085C4e69aA7eCe",
+      "0x17286e3fBA160b68803eeA3C70716A89B2e62e49"
+    ],
+    "snapshot": 640029
+  }
+]

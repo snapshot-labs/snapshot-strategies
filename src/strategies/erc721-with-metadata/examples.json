@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-with-metadata",
+      "params": {
+        "address": "0x986010627A96200C287Cff73007b7b5797C32846",
+        "symbol": "NFT",
+        "metadataSrc": "https://6242dbddb6734894c157cfc0.mockapi.io/api/votingWeights"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x50dd57F50A17d57304e7A4F262Da30bEB31C2E87",
+      "0x1fbF1E602530fB2e849Ae46B34A29493BCd75EC9",
+      "0xD130470E8b4B73d74FB723d5cb8A9DfD83462a1f"
+    ],
+    "snapshot": 16521706
+  }
+]

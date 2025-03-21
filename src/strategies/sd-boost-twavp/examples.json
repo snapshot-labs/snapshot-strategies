@@ -1,0 +1,25 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sd-boost-twavp",
+      "params": {
+        "sdToken": "0xD1b5651E55D4CeeD36251c61c50C889B36F6abB5",
+        "veToken": "0x5f3b5DfEb7B28CDbD7FAba78963EE202a494e2A2",
+        "lockerToken": "0x52f541764E6e90eeBc5c21Ff570De0e2D63766B6",
+        "gauge": "0x7f50786A0b15723D741727882ee99a0BF34e3466",
+        "symbol": "sdToken",
+        "decimals": 18,
+        "sampleSize": 15,
+        "sampleStep": 5,
+        "avgBlockTime": 13.91
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xa7888f85bd76deef3bd03d4dbcf57765a49883b3",
+      "0x8d9f950c23b73edf79ce52f74c6fb589cd2cbd90"
+    ],
+    "snapshot": 15000000
+  }
+]

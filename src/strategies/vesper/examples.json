@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Vesper",
+    "strategy": {
+      "name": "vesper",
+      "params": {
+        "token": "0x1b40183EFB4Dd766f11bDa7A7c3AD8982e998421",
+        "symbol": "VSP",
+        "votingPower": "0xD744320abd3bD4445Dc3C90C889391bD454D5B30",
+        "decimals": 18,
+        "blocksPerPeriod": 40320,
+        "minBlock": 18569909
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xb92792552e590339A7DbF1E0D6114fbc7395c86b",
+      "0xf4087b7AB24Bde9c445ddD0bc4DF257F81277214",
+      "0x8b01d375e274213c860eF6ac013DBDd5286CD816",
+      "0xDBC13E67F678Cc00591920ceCe4dCa6322a79AC7"
+    ],
+    "snapshot": 18569909
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "degenzoo-erc721-animals-weighted",
+      "params": {
+        "address": "0x6defa7058d517f2dada60d79b7e26ab8a1219aca",
+        "symbol": "NFT"
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x91646c2c2fF05C4e9822740b0aD9d8B3DA51382b",
+      "0xb9cc4a34BaA26D27363eE224CD652a6eBc59b49b",
+      "0x7219Fc75f990d0147F51960c8E4Dc868c6f3670C"
+    ],
+    "snapshot": 27121184
+  }
+]

@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "meebitsdao",
+      "params": {
+        "address": "0xc34cbca32e355636c7f52dd8beab0af2396ebd79",
+        "symbol": "MFND",
+        "apiUrl": "https://api.meebitsdao.com/user/token_status/",
+        "startingTokenId": 1,
+        "endingTokenId": 200
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x2009a752a50D3CDe486d7b5921944377B729E747",
+      "0xf9e20049d1634b3ad75dedc6072b04ff68fe01db",
+      "0x4D949AA6994242031460fa8E3edD783cf77B5e2E"
+    ],
+    "snapshot": 18213580
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "sushiswap",
+      "params": {
+        "address": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",
+        "symbol": "PSP",
+        "useStakedBalances": "true",
+        "masterchefVersion": "v2"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x058476edacb23e9507cff379e7dd8cf4dee4d2db",
+      "0x5ba47f8c64fcf55e986e2f37860b91b501d1b1ed"
+    ],
+    "snapshot": 14080593
+  }
+]

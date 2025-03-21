@@ -1,0 +1,29 @@
+[
+  {
+    "name": "Get VP of LAND and Estate owner's that have their assets locked in the Rentals contract",
+    "strategy": {
+      "name": "decentraland-rental-lessors",
+      "params": {
+        "subgraphs": {
+          "rentals": "https://api.studio.thegraph.com/query/49472/rentals-ethereum-sepolia/version/latest",
+          "marketplace": "https://api.studio.thegraph.com/query/49472/marketplace-sepolia/version/latest"
+        },
+        "addresses": {
+          "estate": "0x369a7fbe718c870c79f99fb423882e8dd8b20486",
+          "land": "0x42f4ba48791e2de32f5fbf553441c2672864bb33"
+        },
+        "multipliers": {
+          "estateSize": 2000,
+          "land": 2000
+        }
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0x69d30b1875d39e13a01af73ccfed6d84839e84f2",
+      "0xa87d168717538e86d71ac48baccaeb84162de602",
+      "0x747c6f502272129bf1ba872a1903045b837ee86c"
+    ],
+    "snapshot": 6339835
+  }
+]

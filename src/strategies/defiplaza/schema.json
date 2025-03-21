@@ -1,0 +1,35 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. DFP2"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Governance contract address",
+          "examples": ["e.g. 0x2F57430a6ceDA85a67121757785877b4a71b8E6D"]
+        },
+        "stableplaza": {
+          "type": "string",
+          "title": "StablePlaza contract address",
+          "examples": ["e.g. 0x3A2b8cC91aF8bf45F3Ec61E779ee1c2ba6b7E694"]
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["address", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

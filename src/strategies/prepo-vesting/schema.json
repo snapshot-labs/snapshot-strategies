@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "prePO Vesting Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. PPO (Vesting)"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Contract Address",
+          "examples": ["e.g. 0xB1B74EA823bAd9AFb5e2caC578235EeeB329A245"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "multiplier": {
+          "type": "number",
+          "title": "Multiplier",
+          "examples": ["e.g. 0.5"]
+        }
+      },
+      "required": ["address", "multiplier"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "tokenAddress": {
+          "type": "string",
+          "title": "Token contract address",
+          "examples": ["e.g. 0x6C210F071c7246C452CAC7F8BaA6dA53907BbaE1"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "superBoringAddress": {
+          "type": "string",
+          "title": "SuperBoring contract address",
+          "examples": ["e.g. 0xAcA744453C178F3D651e06A3459E2F242aa01789"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["tokenAddress", "superBoringAddress"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Example Eco Voting Power",
+    "strategy": {
+      "name": "eco-multichain-voting-power",
+      "params": {
+        "opSnapshot": 130876509
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xBCfD22419EC47D3AFfb2E5bD307193d6bB6bF71d",
+      "0x40051DE3036d76Aee7B16Cb2c21c86eB0dFa3f4c",
+      "0x35244c622e5034dc1bcf2ff3931cfa57192572ff",
+      "0x3ec87777b22d12ea95c55456324433a4c5a7bfe8",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x99f98ea4A883DB4692Fa317070F4ad2dC94b05CE",
+      "0xE3DE066aC4CFa2C6169C6e8ccc2afe7b4E440C1D",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
+      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
+      "0xB4DEF7B6eEa87F5F1C1898159EFb7bFdA2ce8b63",
+      "0x7b955928d7649AC718FfcD26a70cd50F043fF34b",
+      "0x14daC0aF5D64f4F5dbdF8743758E922e31528C26"
+    ],
+    "snapshot": 21674610
+  }
+]

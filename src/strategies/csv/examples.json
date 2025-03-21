@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "csv",
+      "params": {
+        "csv": "ipfs://bafkreig3xgt2j7mtcukqy5jglmxwlyy7unrqi2ncplgfnpq32aqomzbo4m",
+        "symbol": "ABC",
+        "decimals": 0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xA478c2975Ab1Ea89e8196811F51A7B7Ade33eB11",
+      "0xef8305e140ac520225daf050e2f71d5fbcc543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x8C28Cf33d9Fd3D0293f963b1cd27e3FF422B425c"
+    ],
+    "snapshot": 20172180
+  }
+]

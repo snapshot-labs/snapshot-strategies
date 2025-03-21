@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Strategy provides one voting power unit for each unit of a given ERC20 token included in the LP.",
+    "strategy": {
+      "name": "erc20-tokens-per-uni",
+      "params": {
+        "erc20TokenAddress": "0x385Eeac5cB85A38A9a07A70c73e0a3271CfB54A7",
+        "poolTokenAddress": "0xb0E35478a389dD20050D66a67FB761678af99678"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x26cf02F892B04aF4Cf350539CE2C77FCF79Ec172",
+      "0x027Ffd3c119567e85998f4E6B9c3d83D5702660c"
+    ],
+    "snapshot": 33423178
+  }
+]

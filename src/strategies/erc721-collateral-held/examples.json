@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-collateral-held",
+      "params": {
+        "address": "0x950eceee9e7d7366a24fc9d2ed4c0c37d17a0fa9",
+        "symbol": "AAMVT"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x20798fd64a342d1ee640348e42c14181fdc842d8",
+      "0x985a29e88e75394dbdae41a269409f701ccf6a43",
+      "0x825c657e9e72c04b7dc1e92b947f2fa33d1127fb",
+      "0x14ccd6fb7c6d5693969f38c8ef5c08d77d260ce4"
+    ],
+    "snapshot": 84179668
+  }
+]

@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "world-liberty-financial-erc20-balance-of-votes",
+      "params": {
+        "address": "0xdA5e1988097297dCdc1f90D4dFE7909e847CBeF6",
+        "symbol": "WLFI",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1246E490308db61DCa45ead613f47430De3830ad",
+      "0xEe7f7f53F0D0c8c56A38e97c5a58E4d321A174dC",
+      "0xF32e3596f555546ACc4aD6Ef67e1ABF36b134748"
+    ],
+    "snapshot": 20942069
+  }
+]

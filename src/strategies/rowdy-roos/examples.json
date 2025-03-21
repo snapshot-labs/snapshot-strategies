@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Rowdy Roos",
+    "strategy": {
+      "name": "rowdy-roos",
+      "params": {
+        "staking": "0xcC5CcdcbB9C4bc26e387052a94FA93b8890D5693",
+        "token": "0x2Af3cc814B0a10ABeD25C62b9bB679Da667E4bda",
+        "symbol": "BOBL",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": ["0x9E2Ae5480ca4933149E6E1D834b3a880c4fC90Db"],
+    "snapshot": 14848961
+  }
+]

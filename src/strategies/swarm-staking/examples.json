@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Swarm Staking",
+    "strategy": {
+      "name": "swarm-staking",
+      "params": {}
+    },
+    "network": "137",
+    "addresses": [
+      "0x022ddd9e1fa29397905d7e49ed3df96544bd0ea0",
+      "0x3DF51013b9080786A374E2980dd1dA88B0B99177",
+      "0x3b00fc5e00df2d4543050b81329ed5c36e813dfb",
+      "0x3da206ed63127d6b0a19f8950fc5b183bf58e7df",
+      "0x8668936dc604bbbdd30600dd78623e64fdc1577b",
+      "0xb6a2efec3ac82531355dc0256a53f0d2c183e01f",
+      "0xc98cc732a8ad9735cfdbf594f50207b92c694466",
+      "0x7f49acb60aa0ada47a763f119012e95f07484a8d",
+      "0x993627ca9fd5a926c08414e1a24ee81910ec4e6c",
+      "0x993627ca9fd5a926c08414e1a24ee81910ec4e6c"
+    ],
+    "snapshot": 59108341
+  }
+]

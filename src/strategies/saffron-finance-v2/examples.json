@@ -1,0 +1,44 @@
+[
+  {
+    "name": "Example Saffron V2",
+    "strategy": {
+      "name": "saffron-finance-v2",
+      "params": {
+        "symbol": "SAFF_STAK_V2",
+        "decimals": 18,
+        "multiplier": 1.1,
+        "stakingPool": "0x4eB4C5911e931667fE1647428F38401aB1661763",
+        "singleAssets": [
+          "0xb753428af26E81097e7fD17f40c88aaA3E04902c",
+          "0xf34960d9d60be18cc1d5afc1a6f012a723a28811"
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x5AE6eb5fE2195885fDBf62285936A3e89F92e17a",
+      "0xD90B866039E8820c2Cd082840fceeD81Cef691F8",
+      "0x905D6a479C4be28aF08364CE1c8e02eBC9c4bdA8",
+      "0x64eacbcdbc6123bcc8b90a5fde8dd099aadb0e56",
+      "0x9cbadd5ce7e14742f70414a6dcbd4e7bb8712719",
+      "0xA43Cfc82083cd5EdaC9ABf13059bDb2447A10a80",
+      "0x854cd0603e0c72c4758798ebeb110e882973239f",
+      "0xcef2d0c7d89c3dcc7a8e8af561b0294bcd6e9ebd",
+      "0x91dca37856240e5e1906222ec79278b16420dc92",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x3478697c64578D3D8092925EE365168CcabfeB66",
+      "0x905D6a479C4be28aF08364CE1c8e02eBC9c4bdA8",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
+      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C"
+    ],
+    "snapshot": 14394748
+  }
+]

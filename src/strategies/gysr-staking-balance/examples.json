@@ -1,0 +1,68 @@
+[
+  {
+    "name": "Example GYSR staking balance query",
+    "strategy": {
+      "name": "gysr-staking-balance",
+      "params": {
+        "pool": "0x30C0f65D9b27EBE2CC2A49Cbcb4133230b3fb381",
+        "symbol": "GYSR",
+        "decimals": 18
+      }
+    },
+    "network": 1,
+    "addresses": [
+      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0xa0ffbF245095dBFbB3A76d86C18Cda009b96aD8B",
+      "0x126bC064dBd1d0205fC608C3178a60C9706b482C",
+      "0xC643B5B1d3912C52f9498E8C6E8BF321C94F28E9",
+      "0x39cf6E97046cc8454fE0aaD04B05524Ae34025Cb",
+      "0xA80481E3f9098602954B2E5cf306e6dEE053EF3E"
+    ],
+    "snapshot": 14200000
+  },
+  {
+    "name": "Example GYSR NFT staking balance query on Polygon",
+    "strategy": {
+      "name": "gysr-staking-balance",
+      "params": {
+        "pool": "0xc8D2A357178b9466Ad0f153CD2c950226F612934",
+        "symbol": "NFT",
+        "decimals": 0
+      }
+    },
+    "network": 137,
+    "addresses": [
+      "0xa478c2975ab1ea89e8196811f51a7b7ade33eb11",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x1E1A51E25f2816335cA436D65e9Af7694BE232ad",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0x1f254336E5c46639A851b9CfC165697150a6c327",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0x1Fd05325d3236D4e07963195538b75636ABDE75C",
+      "0xa15226cAB1A266958f881Ec18035741D047aA47F",
+      "0x97A8C2e0E1f17296e8C109eD136Fe9C75d745092",
+      "0xdab44c6D2e0691856016B4412D70ecDE86b0d0b1",
+      "0xA80481E3f9098602954B2E5cf306e6dEE053EF3E"
+    ],
+    "snapshot": 24976000
+  }
+]

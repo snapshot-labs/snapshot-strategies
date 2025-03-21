@@ -1,0 +1,46 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "masterchef-pool-balance",
+      "params": {
+        "symbol": "CHEF",
+        "chefAddress": "0xD38abbAeC03a9FF287eFc9a5F0d0580E07335D1D",
+        "uniPairAddress": null,
+        "tokenIndex": null,
+        "pid": "0",
+        "weight": 1,
+        "weightDecimals": 0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfCA5a27d4cfF104FC276897CA3f32cFeDc6f50BA",
+      "0x577bfa0898187c10bbbbb3d001c94aafb5cfc0e4",
+      "0x068e48e984b83387afe772614916780a753929d9"
+    ],
+    "snapshot": 12288851
+  },
+  {
+    "name": "Pool 1 balance",
+    "strategy": {
+      "name": "masterchef-pool-balance",
+      "params": {
+        "symbol": "CHEF LP",
+        "chefAddress": "0xD38abbAeC03a9FF287eFc9a5F0d0580E07335D1D",
+        "uniPairAddress": "0xe0b1433e0174b47e8879ee387f1069a0dbf94137",
+        "tokenIndex": 0,
+        "pid": "1",
+        "weight": 5,
+        "weightDecimals": 1
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xfCA5a27d4cfF104FC276897CA3f32cFeDc6f50BA",
+      "0x577bfa0898187c10bbbbb3d001c94aafb5cfc0e4",
+      "0x068e48e984b83387afe772614916780a753929d9"
+    ],
+    "snapshot": 12288851
+  }
+]

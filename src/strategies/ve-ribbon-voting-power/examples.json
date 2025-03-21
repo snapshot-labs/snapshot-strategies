@@ -1,0 +1,35 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-ribbon-voting-power",
+      "params": {
+        "address": "0x19854C9A5fFa8116f48f984bDF946fB9CEa9B5f7",
+        "symbol": "veRBN",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x7b82ddcac8d0b137a09590838057c0a9d5bae3c3",
+      "0x379bb4d5b82676b98ce29cbe824f808305107d56",
+      "0x03fb1fd0fec2fb4d979b2e30a4adfaf868f85f0f",
+      "0x47ed49b4eadce83993b005fd4456cdf66404d58d",
+      "0xd925e71b56a84f8763895a6939320a2465d2618f",
+      "0x0fa7744874bfedfc3d67ab57253d840be685fdc2",
+      "0xcde3725b25d6d9bc78cf0941cc15fd9710c764b9",
+      "0x02ef8147e2d0997cca48d99f01bad846d16558fa",
+      "0x81324a39570bba1722a3cbe4a4cd372c24d084d4",
+      "0x8f688a91695f7d2a1e93e57cedcbf5c5202f617b",
+      "0x24f8d92794a283b454d1fc32722f51a4f3bc1ae5",
+      "0x5abd0ffea71da700905c359ce0d0408fa78d120a",
+      "0x85f15c9b2bfa79805205ed1df3570ad0875a24b2",
+      "0x704d40d9212e511842fee1b667020a471ebe9ce0",
+      "0xb4fbd802d9dc5c0208346c311bcb6b9ecff468c6",
+      "0xb41c77b430e7f36f8b78c5c580828a5c62fdc352",
+      "0x7b977a4bc02f87f7ac9a2afed8d71f87dbe2ac39",
+      "0xa7cca50b9a8a2ffb5c0c047913fa1c088cd50bff"
+    ],
+    "snapshot": 14357198
+  }
+]

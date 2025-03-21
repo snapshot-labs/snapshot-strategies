@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-balance-of-at-nft",
+      "params": {
+        "address": "0xc8034b3dF18Ea4d607E86D6b6Bf23E2A8Ed70F89",
+        "symbol": "vedcMST",
+        "decimals": 18
+      }
+    },
+    "network": "250",
+    "addresses": [
+      "0x378f7533041249cd1806550deaA2f73A856c9889",
+      "0x83BB8062ea95E7a234c48778590cEA150217627D",
+      "0x9Fd7f1aE7e600056E34b9515443600F01AD95a28"
+    ],
+    "snapshot": 39532840
+  }
+]

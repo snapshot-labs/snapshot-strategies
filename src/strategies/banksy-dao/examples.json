@@ -1,0 +1,19 @@
+[
+  {
+    "name": "dao banksy farm",
+    "strategy": {
+      "name": "banksy-dao",
+      "params": {
+        "address": "0x942d791ab07e33Fe4B780Fc0b3874a24Ac3da433",
+        "symbol": "BanksyNFT"
+      }
+    },
+    "network": "43114",
+    "addresses": [
+      "0x503d2E56055c7078905369D7fA43c6f20C70a43a",
+      "0x2730bd7b669e2B5fC6abcDBdf048f0D8e5b0fBE6",
+      "0xb0dD83eDeB1e615F8E638F4824BA86C8053dF366"
+    ],
+    "snapshot": 10085683
+  }
+]

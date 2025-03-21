@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Uniswap-v3 query",
+    "strategy": {
+      "name": "uniswap-v3",
+      "params": {
+        "symbol": "UNI",
+        "poolAddress": "0xfc9f572124d8f469960b94537b493f2676776c03",
+        "tokenReserve": 0
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1a62c9d1746de9fd9d449e80ddbb8a67d2a72a94",
+      "0x790398726a68a2e81aec3ed0f7cc3758bccc5681"
+    ],
+    "snapshot": 12952757
+  }
+]

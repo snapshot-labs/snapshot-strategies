@@ -1,0 +1,162 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Validation",
+  "definitions": {
+    "Validation": {
+      "title": "Gitcoin passport gated",
+      "type": "object",
+      "properties": {
+        "scoreThreshold": {
+          "type": "number",
+          "title": "Passport Score Threshold",
+          "description": "Minimum Passport score threshold (>=) to be eligible as a valid Passport",
+          "minimum": 0,
+          "maximum": 100,
+          "default": 0
+        },
+        "operator": {
+          "type": "string",
+          "title": "Approval operator",
+          "description": "Control how many stamps are required to become eligible.",
+          "anyOf": [
+            {
+              "const": "NONE",
+              "title": "No operator"
+            },
+            {
+              "const": "AND",
+              "title": "Require all stamps"
+            },
+            {
+              "const": "OR",
+              "title": "Require at least one stamp"
+            }
+          ]
+        },
+        "stamps": {
+          "type": "array",
+          "title": "Stamps",
+          "description": "List of Eligible Passport Stamps (Optional).",
+          "uniqueItems": true,
+          "minItems": 0,
+          "maxItems": 27,
+          "items": {
+            "type": "string",
+            "anyOf": [
+              {
+                "const": "GtcStaking",
+                "title": "GTC Staking"
+              },
+              {
+                "const": "Gitcoin",
+                "title": "Gitcoin"
+              },
+              {
+                "const": "Twitter",
+                "title": "Twitter"
+              },
+              {
+                "const": "Discord",
+                "title": "Discord"
+              },
+              {
+                "const": "Google",
+                "title": "Google"
+              },
+              {
+                "const": "Github",
+                "title": "Github"
+              },
+              {
+                "const": "Facebook",
+                "title": "Facebook"
+              },
+              {
+                "const": "Linkedin",
+                "title": "Linkedin"
+              },
+              {
+                "const": "Ens",
+                "title": "ENS"
+              },
+              {
+                "const": "Brightid",
+                "title": "BrightID"
+              },
+              {
+                "const": "Poh",
+                "title": "Proof of Humanity"
+              },
+              {
+                "const": "ETH",
+                "title": "ETH"
+              },
+              {
+                "const": "Snapshot",
+                "title": "Snapshot"
+              },
+              {
+                "const": "NFT",
+                "title": "NFT Holder"
+              },
+              {
+                "const": "ZkSync",
+                "title": "ZkSync"
+              },
+              {
+                "const": "Lens",
+                "title": "Lens"
+              },
+              {
+                "const": "GnosisSafe",
+                "title": "Gnosis Safe"
+              },
+              {
+                "const": "Coinbase",
+                "title": "Coinbase"
+              },
+              {
+                "const": "GuildXYZ",
+                "title": "Guild Membership and Roles"
+              },
+              {
+                "const": "Hypercerts",
+                "title": "Hypercerts"
+              },
+              {
+                "const": "PHI",
+                "title": "PHI"
+              },
+              {
+                "const": "Holonym",
+                "title": "Holonym"
+              },
+              {
+                "const": "Idena",
+                "title": "Idena"
+              },
+              {
+                "const": "Civic",
+                "title": "Civic"
+              },
+              {
+                "const": "CyberConnect",
+                "title": "CyberConnect"
+              },
+              {
+                "const": "GrantsStack",
+                "title": "GrantsStack"
+              },
+              {
+                "const": "TrustaLabs",
+                "title": "Trusta Labs"
+              }
+            ]
+          }
+        }
+      },
+      "required": ["scoreThreshold"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,16 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc1155-balance-of-ids",
+      "params": {
+        "symbol": "ABC",
+        "address": "0x28472a58A490c5e09A238847F66A68a47cC76f0f",
+        "ids": ["0"]
+      }
+    },
+    "network": "1",
+    "addresses": ["0x34518f5559425a7bb06f66196920af10e1938b5f"],
+    "snapshot": 14039001
+  }
+]

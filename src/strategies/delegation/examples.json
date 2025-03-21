@@ -1,0 +1,55 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "delegation",
+      "params": {
+        "symbol": "APE (delegated)",
+        "delegationSpace": "apecoin.eth",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "symbol": "APE",
+              "address": "0x4d224452801aced8b2f0aebe155379bb5d594381",
+              "decimals": 18
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x33924aFFe6BC352C246d7f384988f7b4Ad5f9cf2",
+      "0x56ee461fd756c416c5d2149b3976A019D3b44cc9",
+      "0x5c4a0fa9Ab5cfc27d198Cab40EC079210902A948"
+    ],
+    "snapshot": 21218777
+  },
+  {
+    "name": "Example query with delegationNetwork",
+    "strategy": {
+      "name": "delegation",
+      "params": {
+        "symbol": "APE (delegated)",
+        "delegationSpace": "apecoin.eth",
+        "delegationNetwork": "1",
+        "strategies": [
+          {
+            "name": "eth-balance",
+            "params": {
+              "symbol": "APE"
+            }
+          }
+        ]
+      }
+    },
+    "network": "33139",
+    "addresses": [
+      "0x56ee461fd756c416c5d2149b3976A019D3b44cc9",
+      "0x68Afd61E37267Fd2898F0f965B580182e8D20e6d",
+      "0xCD02c8b722c8E286fbb353Fd7Bf814Bd38490C27"
+    ],
+    "snapshot": 4631281
+  }
+]

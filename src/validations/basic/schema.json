@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Validation",
+  "definitions": {
+    "Validation": {
+      "title": "Basic validation",
+      "type": "object",
+      "properties": {
+        "minScore": {
+          "title": "Minimum score",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "strategies": {
+          "title": "Strategies",
+          "type": "array",
+          "items": {
+            "title": "Strategy",
+            "type": "object",
+            "default": {
+              "name": "ticket",
+              "network": "1",
+              "params": {
+                "symbol": "DAI"
+              }
+            },
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object"
+              }
+            },
+            "required": ["name", "params"]
+          }
+        }
+      },
+      "required": ["minScore"],
+      "additionalProperties": false
+    }
+  }
+}

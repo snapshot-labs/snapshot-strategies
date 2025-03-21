@@ -1,0 +1,25 @@
+[
+  {
+    "name": "ERC20 balanceOf with linear vesting of bazaar auction participants",
+    "strategy": {
+      "name": "balance-of-with-bazaar-batch-auction-linear-vesting-power",
+      "params": {
+        "address": "0x32fb7d6e0cbeb9433772689aa4647828cc7cbba8",
+        "symbol": "COVE",
+        "decimals": 18,
+        "auctionAddress": "0x2f3715F710076Cfdb5AA872Bc8a4b965a07c3A08",
+        "vestingDuration": 31536000
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x7Bd578354b0B2f02E656f1bDC0e41a80f860534b",
+      "0xD24B84C386cc65c49Dd596E59d950c54298cD429",
+      "0x5c5D1F39d21e304c4664E933c50DeF24A5C66D86",
+      "0x98b69D0B81fb1966eBe0Af76789425706e5aFe7B",
+      "0xF4880975728EE25A96C701c225c9EF58Eebe5a5b",
+      "0x77796c658d75A232ECDBf92c5d71Ec082F735780"
+    ],
+    "snapshot": 19784128
+  }
+]

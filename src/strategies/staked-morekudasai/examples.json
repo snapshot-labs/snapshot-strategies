@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "staked-morekudasai",
+      "params": {
+        "address": "0x954521ba40a377f5433cb9a6d2b7ee7660be487a",
+        "symbol": "stMK",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x04CD9cC35601bb748cBC98B549545F44068cDDeB",
+      "0x76aa21a8Baef91B5c031A03E951f530E7F9489d3",
+      "0xbA1DD0D124231E6e059ff2f08A50af100C51679b",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C"
+    ],
+    "snapshot": 17683972
+  }
+]

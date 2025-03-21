@@ -1,0 +1,30 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "fixed_staking_address": {
+          "type": "string",
+          "title": "Candy nft fixed staking contract address",
+          "examples": ["e.g. 0xA46C4a3428a5E9B5C84A4457215D98BC8DC17AbB"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "shared_staking_address": {
+          "type": "string",
+          "title": "Candy nft shared staking contract address",
+          "examples": ["e.g. 0xCa207941946218126BD7BBe44C5d457753490b4A"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["fixed_staking_address", "shared_staking_address"],
+      "additionalProperties": false
+    }
+  }
+}

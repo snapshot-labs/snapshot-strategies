@@ -1,0 +1,32 @@
+[
+  {
+    "name": "anti-whale",
+    "strategy": {
+      "name": "anti-whale",
+      "params": {
+        "symbol": "ANTI",
+        "strategy": {
+          "name": "erc20-balance-of",
+          "params": {
+            "address": "0x579cea1889991f68acc35ff5c3dd0621ff29b0c9",
+            "symbol": "IQ",
+            "decimals": 18
+          }
+        },
+        "antiWhale": {
+          "inflectionPoint": 1000,
+          "threshold": 250,
+          "exponent": 0.5
+        },
+        "log": true
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x52bc44d5378309ee2abf1539bf71de1b7d7be3b5",
+      "0x9feab70f3c4a944b97b7565bac4991df5b7a69ff",
+      "0xaca39b187352d9805deced6e73a3d72abf86e7a0"
+    ],
+    "snapshot": 12419836
+  }
+]

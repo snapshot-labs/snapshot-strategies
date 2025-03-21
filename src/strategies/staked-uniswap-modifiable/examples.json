@@ -1,0 +1,37 @@
+[
+  {
+    "name": "Tokens staked in LP staking contract",
+    "strategy": {
+      "name": "staked-uniswap-modifiable",
+      "params": {
+        "tokenAddress": "0x2a2550e0a75acec6d811ae3930732f7f3ad67588",
+        "uniswapAddress": "0x87051936dc0669460951d612fbbe93df88942229",
+        "stakingAddress": "0xCF2026d955E6686B8582765BF0c5D2Ec05996796",
+        "symbol": "PATH",
+        "decimals": 18,
+        "methodABI": {
+          "name": "getTotalDeposit",
+          "type": "function",
+          "inputs": [
+            {
+              "name": "_account",
+              "type": "address",
+              "internalType": "address"
+            }
+          ],
+          "outputs": [
+            {
+              "name": "",
+              "type": "uint256",
+              "internalType": "uint256"
+            }
+          ],
+          "stateMutability": "view"
+        }
+      }
+    },
+    "network": "1",
+    "addresses": ["0x29c0b49931A18CB8F343b8474D2fb103DBa1e294"],
+    "snapshot": 14022650
+  }
+]

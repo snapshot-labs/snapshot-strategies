@@ -1,0 +1,45 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Governance Token Contract address",
+          "examples": ["e.g. 0x6E8a8726639d12935b3219892155520bdC57366B"]
+        },
+        "lpaddress": {
+          "type": "string",
+          "title": "LP Token Contract address on Sushi",
+          "examples": ["e.g. 0xc1214b61965594b3e08Ea4950747d5A077Cd1886"]
+        },
+        "harvaddress": {
+          "type": "string",
+          "title": "Harvest Token Contract Address",
+          "examples": ["e.g. 0x0a0be71cfce12ecb966dc762016c28ef5640b56a"]
+        },
+        "veaddress": {
+          "type": "string",
+          "title": "veGNOME Token Contract Address",
+          "examples": ["e.g. 0xae059C276904B9E885710c4a68434b4Bc437da6e"]
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. GNOME"],
+          "maxLength": 16
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"]
+        }
+      },
+      "required": ["address", "lpaddress", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

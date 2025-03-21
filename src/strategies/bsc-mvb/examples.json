@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "bsc-mvb",
+      "params": {
+        "symbol": "BSCDAO",
+        "params": {
+          "blacklistNFTID": ["1"],
+          "configs": [
+            {
+              "name": "MVB Voting Badge - BSC Core Team Badge",
+              "cumulative": true,
+              "votingPower": 10
+            }
+          ]
+        }
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0x42d228f33C31aE390A3B023515ddE8F81f214067",
+      "0x77e4CDF993a2F7A7973f38A5401A0E895B859366"
+    ],
+    "snapshot": 12580101
+  }
+]

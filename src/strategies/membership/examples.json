@@ -1,0 +1,33 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "membership",
+      "params": {
+        "symbol": "DAI",
+        "membershipStrategy": {
+          "name": "erc721",
+          "params": {
+            "address": "0xb47e3cd837ddf8e4c57f05d70ab865de6e193bbb",
+            "symbol": "PUNK"
+          }
+        },
+        "votingPowerStrategy": {
+          "name": "erc20-balance-of",
+          "params": {
+            "address": "0x6b175474e89094c44da98b954eedeac495271d0f",
+            "symbol": "DAI",
+            "decimals": 18
+          }
+        }
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x3295df41a2f288da03818ae32565e1599f1b2eee",
+      "0x207230E06e14d1fa94e703f4784F819667472247",
+      "0x00555966521df9edbca9b8a497ad8031cf33f72a"
+    ],
+    "snapshot": 13791476
+  }
+]

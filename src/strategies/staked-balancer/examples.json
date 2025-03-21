@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Equivalent amount of token held in a staked balancer LP contract",
+    "strategy": {
+      "name": "staked-balancer",
+      "params": {
+        "tokenAddress": "0xcafe001067cdef266afb7eb5a286dcfd277f3de5",
+        "balancerPoolId": "0xcb0e14e96f2cefa8550ad8e4aea344f211e5061d00020000000000000000011a",
+        "stakingContract": "0xc8dc2ec5f5e02be8b37a8444a1931f02374a17ab",
+        "symbol": "PSP"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x3CE06981bC523f950E3dF346878216365B24b6Fe",
+      "0x956a64f1028de63b3984637ddd10ae96662b3acd",
+      "0x3ce06981bc523f950e3df346878216365b24b6fe",
+      "0x5bb9d7c8e5b4767fdc754f67e6e701a55d3db1f9",
+      "0x9c0d72f2ac26420cb7eeb155bf401b672840e87b"
+    ],
+    "snapshot": 13976779
+  }
+]

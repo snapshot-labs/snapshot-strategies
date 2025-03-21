@@ -1,0 +1,18 @@
+[
+  {
+    "name": "AGIP 17: Voting power for GHST value of parcels",
+    "strategy": {
+      "name": "aavegotchi-agip-17",
+      "params": {
+        "symbol": "REALM"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0x027Ffd3c119567e85998f4E6B9c3d83D5702660c",
+      "0xC3c2e1Cf099Bc6e1fA94ce358562BCbD5cc59FE5",
+      "0x585E06CA576D0565a035301819FD2cfD7104c1E8"
+    ],
+    "snapshot": 50601487
+  }
+]

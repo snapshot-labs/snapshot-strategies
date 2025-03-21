@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-with-tokenid-weighted",
+      "params": {
+        "address": "0x30cDAc3871c41a63767247C8D1a2dE59f5714e78",
+        "symbol": "Reaper(s)",
+        "tokenIds": ["2112", "2871", "3221", "3587"]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x863379Ab401d454834E1FE2eCe48F51a29eE9d7A",
+      "0x4C4E6f13fb5E3f70C3760262a03E317982691d10",
+      "0xf58195de3af91aff1f8dd559ad41f88f1b6c4aaf"
+    ],
+    "snapshot": 13847063
+  }
+]

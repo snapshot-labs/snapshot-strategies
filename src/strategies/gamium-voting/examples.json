@@ -1,0 +1,24 @@
+[
+  {
+    "name": "GAMIUM Holders & Stakers",
+    "strategy": {
+      "name": "gamium-voting",
+      "params": {
+        "token": "0x5B6bf0c7f989dE824677cFBD507D9635965e9cD3",
+        "lp_token": "0xEdeec0ED10Abee9b5616bE220540CAb40C9d991E",
+        "staking_token": "0x8a3FB54dE0df64915FD66B55e1594141C1A880AB",
+        "staking_pair": "0xaD0916e7Ba7100629EAe9143e035F98ab5EA4ABd",
+        "symbol": "GMM",
+        "decimals": 18
+      }
+    },
+    "network": "56",
+    "addresses": [
+      "0xbf9Cd2f0902e1c09A096384b3D673728BcEB5a48",
+      "0xD662F69daA8acD8A4eBD7E25fcF1cFc054106Ce9",
+      "0x02622882eDE73f887D5602B2F8285a43A528a120",
+      "0xcE12c8FdFa479FD9e1B37327ee960ea441E4bc80"
+    ],
+    "snapshot": 17342974
+  }
+]

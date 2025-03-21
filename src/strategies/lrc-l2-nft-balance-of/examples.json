@@ -1,0 +1,29 @@
+[
+  {
+    "name": "LoopringV2NFT",
+    "strategy": {
+      "name": "lrc-l2-nft-balance-of",
+      "params": {
+        "graph": "https://subgrapher.snapshot.org/subgraph/arbitrum/8Z15oyPLRCYzVdNbjKSU2iD8BE6Sj8PZRV4KddDuvuk2",
+        "minter_account_id": "74447",
+        "tokens": ["0xc76eca2937b006606ebe717621409e4c2df906f1"],
+        "blacklisted_account_ids": ["38482"],
+        "blacklisted_nft_ids": [
+          "0x94743548ba8d82a4ee8ea3dfad589ea501ad2738-0-0xc76eca2937b006606ebe717621409e4c2df906f1-0x15f13a1431906d9ca5b24df9de0b443690bf822d012e5da30b18d36ffad545aa-5"
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xad29249bd6d203b3c824d2514b8221c83eb608d1",
+      "0x3c41f4e24e52f624fd4bf00dfe90d63c64cf964c",
+      "0xe4c9487dbef67405d4469ae27837e5f42197af21",
+      "0xacf9c4d62f00ed3e47e3d8aabfc80300be02cb4d",
+      "0x6efd66a92a22561c3b2e08b5253a2bbd64c3edcc",
+      "0x197f6515eb864133ce1d689f50a912620f3953ac",
+      "0xecd5d7ca36538174c977b42c08e924b4341ffbf0",
+      "0x0a437c0caeda1e081ba413229da0bf132fe74584"
+    ],
+    "snapshot": 15175152
+  }
+]

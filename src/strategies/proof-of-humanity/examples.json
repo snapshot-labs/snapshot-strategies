@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "proof-of-humanity",
+      "params": {
+        "address": "0xC5E9dDebb09Cd64DfaCab4011A0D5cEDaf7c9BDb"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x1d7b9b8234bb7d72ddb278977f63fcc304d6f5d4",
+      "0xad51219eed2068da73ef6a3a8f19b6144c328a9f"
+    ],
+    "snapshot": 14551594
+  }
+]

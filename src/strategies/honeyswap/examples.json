@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "honeyswap",
+      "params": {
+        "symbol": "WXDAI",
+        "address": "0xe91d153e0b41518a2ce8dd3d7944fa863463a97d",
+        "useStakedBalances": "true"
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x60a9372862bD752CD02D9AE482F94Cd2fe92A0Bf",
+      "0x8520Fc4C282342f8e746b881b9B60c14F96A0fAB",
+      "0x28DDA781160928D6BeF89833cD646A145a7899F3",
+      "0xEB8Db0f667B4f96c6819c7E3f14Bd3a2bd89B062",
+      "0x5EEDb07269278609D396210A4CB2D3A66f696daf",
+      "0xc88db189Dc19753908534411794deD880C10B5cb",
+      "0xC6f1a9D4Fb5681f986d3Dc6EC116f66D95CC2F03"
+    ],
+    "snapshot": 11437846
+  }
+]

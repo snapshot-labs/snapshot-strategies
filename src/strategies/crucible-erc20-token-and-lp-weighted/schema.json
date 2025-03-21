@@ -1,0 +1,44 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Token symbol",
+          "examples": ["e.g. MIST"],
+          "maxLength": 16
+        },
+        "crucibleFactory": {
+          "type": "string",
+          "title": "Crucible factory address",
+          "examples": ["e.g. 0x54e0395CFB4f39beF66DBCd5bD93Cca4E9273D56"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "tokenAddress": {
+          "type": "string",
+          "title": "Token address",
+          "examples": ["e.g. 0x88ACDd2a6425c3FaAE4Bc9650Fd7E27e0Bebb7aB"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "lpTokenAddress": {
+          "type": "string",
+          "title": "LP address",
+          "examples": ["e.g. 0xCD6bcca48069f8588780dFA274960F15685aEe0e"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        }
+      },
+      "required": ["crucibleFactory", "tokenAddress", "lpTokenAddress"],
+      "additionalProperties": false
+    }
+  }
+}

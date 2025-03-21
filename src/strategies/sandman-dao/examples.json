@@ -1,0 +1,18 @@
+[
+  {
+    "name": "dao sandman.finance",
+    "strategy": {
+      "name": "sandman-dao",
+      "params": {
+        "address": "0x743F554f6AcCd4E452AF6C96c48B78E849d87316",
+        "symbol": "TheEndless"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xA34f2b833753bCDb6e652A87B0d363FF8f1eE9c5",
+      "0x6fEc079288329553F4d4512be33d05d5793e1f31"
+    ],
+    "snapshot": 24110041
+  }
+]

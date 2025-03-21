@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc721-multi-registry",
+      "params": {
+        "symbol": "PUNKS",
+        "registries": [
+          "0xb47e3cd837dDF8e4c57F05d70Ab865de6e193BBB",
+          "0xb7F7F6C52F2e2fdb1963Eab30438024864c313F6"
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x51688cd36c18891167e8036bde2a8fb10ec80c43",
+      "0x3e17fac953de2cd729b0ace7f6d4353387717e9e",
+      "0x23f67feb67a3aa1e376d23beaa3f241217e427c9",
+      "0x54685c62db8e16b1484768db8e0daf3c644d50bf",
+      "0x766bc61d3150232f6f4e1d81633d68f3a94879e3",
+      "0xe34bded2b256430a9be53cbf5cba3b6d866d55f3",
+      "0x031c690be2932403cbdd85f8853f596794cff6c3"
+    ],
+    "snapshot": 12995362
+  }
+]

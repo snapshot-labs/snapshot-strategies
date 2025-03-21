@@ -1,0 +1,34 @@
+[
+  {
+    "name": "Example Eco Voting Power",
+    "strategy": {
+      "name": "eco-voting-power",
+      "params": {
+        "delegatee": "0xbFB97a6e13E42518522379C94e0Ddd99F7b70b8b"
+      }
+    },
+    "network": "5",
+    "addresses": [
+      "0x18ab8b4fba1c770b279b97686f4265e882aa1e94",
+      "0x40051DE3036d76Aee7B16Cb2c21c86eB0dFa3f4c",
+      "0x35244c622e5034dc1bcf2ff3931cfa57192572ff",
+      "0x3ec87777b22d12ea95c55456324433a4c5a7bfe8",
+      "0x1F717Ce8ff07597ee7c408b5623dF40AaAf1787C",
+      "0x1c7a9275F2BD5a260A9c31069F77d53473b8ae2e",
+      "0x1d5E65a087eBc3d03a294412E46CE5D6882969f4",
+      "0xE3DE066aC4CFa2C6169C6e8ccc2afe7b4E440C1D",
+      "0x2ec3F80BeDA63Ede96BA20375032CDD3aAfb3030",
+      "0x4AcBcA6BE2f8D2540bBF4CA77E45dA0A4a095Fa2",
+      "0x4F3D348a6D09837Ae7961B1E0cEe2cc118cec777",
+      "0x6D7f23A509E212Ba7773EC1b2505d1A134f54fbe",
+      "0x07a1f6fc89223c5ebD4e4ddaE89Ac97629856A0f",
+      "0x8d5F05270da470e015b67Ab5042BDbE2D2FEFB48",
+      "0x8d07D225a769b7Af3A923481E1FdF49180e6A265",
+      "0x8f60501dE5b9b01F9EAf1214dbE1924aA97F7fd0",
+      "0x9B8e8dD9151260c21CB6D7cc59067cd8DF306D58",
+      "0x17ea92D6FfbAA1c7F6B117c1E9D0c88ABdc8b84C",
+      "0x38C0039247A31F3939baE65e953612125cB88268"
+    ],
+    "snapshot": 8620080
+  }
+]

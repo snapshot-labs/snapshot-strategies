@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "starcatchers-top-window",
+      "params": {
+        "origin": 14277684,
+        "delegateLimit": 1,
+        "delegateDuration": 91000,
+        "symbol": "STAR"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x370f75a63F438186DbfECfD27cD75a5023bEa737",
+      "0x239f4b81f1B54Ee89a506C98b34a4FF6b012f8E7",
+      "0xB0B60594c97D73A16233B112f7fFa6aB470B1790"
+    ],
+    "snapshot": 14278000
+  }
+]

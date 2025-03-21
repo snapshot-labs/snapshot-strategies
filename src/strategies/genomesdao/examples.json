@@ -1,0 +1,41 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "genomesdao",
+      "params": {
+        "address": "0x6E8a8726639d12935b3219892155520bdC57366B",
+        "lpaddress": "0xc1214b61965594b3e08Ea4950747d5A077Cd1886",
+        "harvaddress": "0x0a0be71cfce12ecb966dc762016c28ef5640b56a",
+        "veaddress": "0xae059C276904B9E885710c4a68434b4Bc437da6e",
+        "symbol": "GNOME",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xd53c79ff8c473bbfe4e40e5525d4d24fd4b8534c",
+      "0xA4e2E09eDEDC19342801243CcFcB834F582616aE",
+      "0x326a9c20f220042c9e2ee3d7969e2a3963a67606",
+      "0xc1214b61965594b3e08ea4950747d5a077cd1886",
+      "0x7641d6f27dfd771daa164b9dc9aa13a8ebe41ce1",
+      "0x39cc360806b385c96969ce9ff26c23476017f652",
+      "0xb2fe752658b69bb6121cc20fc44453cb64a41c84",
+      "0x7566f600d85c1d4e8adbd7ec320cf0de90c13199",
+      "0x7f30ef435c125e42cd8ec68c3f2e9f79c5923901",
+      "0xc292eafd5422a9c961cc2630cbddf04c93db33bd",
+      "0x85a31f476428284c2eba10c1d18b4b66a8503d1f",
+      "0x5771605020287556c6f24341879437d38a651250",
+      "0xc2ddec8a16c757d7fc683b4ad4634ef87be6f26f",
+      "0x452cbcc3ff392ae6e42f0aff8113f21f0a144846",
+      "0xa4e2e09ededc19342801243ccfcb834f582616ae",
+      "0xeb8dfecd1d9447f31122cae7f1bada00dda9746c",
+      "0xfaf6a40bc40cef05fafdc3e0036611c8f8c9d3fa",
+      "0x374615cb8cf32360eb592f3f35163ed4c2fdcc7a",
+      "0xd49c91a75fbf8943d12c65b8d1a5da4173ed1d21",
+      "0x74ddd85389f4fd0069c922273498b4e28cdc9ccc",
+      "0x0057ff99a06f82cd876c4f7f1718bd9a4f2e74b6"
+    ],
+    "snapshot": 26201867
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-votes",
+      "params": {
+        "address": "0xC18360217D8F7Ab5e7c516566761Ea12Ce7F9D72",
+        "symbol": "ENS"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x552DF471a4c7Fea11Ea8d7a7b0Acc6989b902a95",
+      "0x89EdE5cBE53473A64d6C8DF14176a0d658dAAeDC",
+      "0x5BFCB4BE4d7B43437d5A0c57E908c048a4418390"
+    ],
+    "snapshot": 21791300
+  }
+]

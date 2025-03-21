@@ -1,0 +1,26 @@
+[
+  {
+    "name": "Example of Arbitrum DAO Validation",
+    "author": "0x0eb5b03c0303f2f47cd81d7be4275af8ed347576",
+    "space": "arbitrumfoundation.eth",
+    "network": "42161",
+    "snapshot": "latest",
+    "params": {
+      "minBps": 1,
+      "address": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+      "decimals": 18,
+      "excludeaddr": "0x00000000000000000000000000000000000A4B86",
+      "strategies": [
+        {
+          "name": "erc20-votes",
+          "params": {
+            "symbol": "ARB",
+            "address": "0x912CE59144191C1204E64559FE8253a0e49E6548",
+            "decimals": 18
+          },
+          "network": "42161"
+        }
+      ]
+    }
+  }
+]

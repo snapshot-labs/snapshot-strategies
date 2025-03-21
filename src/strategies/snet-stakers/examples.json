@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "snet-stakers",
+      "params": {
+        "address": "0xa1e841e8f770e5c9507e2f8cfd0aa6f73009715d",
+        "symbol": "AGIX",
+        "decimals": 8,
+        "stakingAddress": "0xF153Aec75e1A8B2f5647bEfaC783b31a5c3Fba22",
+        "stakeMapIndex": 26
+      }
+    },
+    "network": "3",
+    "addresses": [
+      "0xC4f3BFE7D69461B7f363509393D44357c084404c",
+      "0x90F8bf6A479f320ead074411a4B0e7944Ea8c9C1",
+      "0x520b1A5B90E103eDE987663CB18CB7a4311EC17e",
+      "0x22d491Bde2303f2f43325b2108D26f1eAbA1e32b",
+      "0xd03ea8624C8C5987235048901fB614fDcA89b117",
+      "0x95cED938F7991cd0dFcb48F0a06a40FA1aF46EBC",
+      "0x749BaAE8b4dF2883B98F33616C97563fAE81E05C",
+      "0x2943144193B00Da6f1d4055383Bf0fBc99805322",
+      "0x03F2eFdcb4BF042EDceBe7c2A22c8fCDB7E0aF76"
+    ],
+    "snapshot": 11437846
+  }
+]

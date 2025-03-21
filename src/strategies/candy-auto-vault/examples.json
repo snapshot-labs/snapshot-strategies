@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "candy-auto-vault",
+      "params": {
+        "address": "0x8FEf43b1f3046F8f58A76c64aD01Bc8d82ff0ad1",
+        "decimals": 18
+      }
+    },
+    "network": "25",
+    "addresses": [
+      "0xe63C9580F032047883eac063E3F0b700033B823A",
+      "0x1152694659bc4a982946fe3e7d7aa26e9c6EB2b7",
+      "0x5fB141dF98c72F31766E8eE6A4a0f224BBA26777",
+      "0x5Abbf6aB860577E89C0483cF141e300bF8B74250",
+      "0x5E54Ea4F4BeeDFdece613a67eB1fCbE06d15F845",
+      "0x19E53469BdfD70e103B18D9De7627d88c4506DF2",
+      "0xf0709362bAE2c85A65dD749d1482dC7d576116fe",
+      "0x12fe999052B5779FE5A8266C363462bbE38626cD",
+      "0xFc7bB93d64CD48D5754830B70630d9eE89C87C44",
+      "0x090fF72fb73b289BB233Fe7d1e8FDd8AdD9Cf534",
+      "0x172A25d57dA59AB86792FB8cED103ad871CBEf34"
+    ],
+    "snapshot": 15303354
+  }
+]

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query (Official Registry)",
+    "strategy": {
+      "name": "brightid",
+      "params": {
+        "registry": "v5",
+        "symbol": "ID"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x7A38760C295f1ea086005214a279fb1280010483",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0x38C0039247A31F3939baE65e953612125cB88268"
+    ],
+    "snapshot": 14266000
+  }
+]

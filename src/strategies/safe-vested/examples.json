@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "safe-vested",
+      "params": {
+        "allocationsSource": "https://safe-claiming-app-data.gnosis-safe.io/allocations/1/snapshot-allocations-data.json",
+        "claimDateLimit": "2022-12-28T11:00:00Z"
+      }
+    },
+    "network": "1",
+    "snapshot": 17778299,
+    "addresses": [
+      "0x9970dcab40e29a84D1020DeaEa443dCE1d8471b7",
+      "0x1230B3d59858296A31053C1b8562Ecf89A2f888b",
+      "0x121Cf7457171bD7a93232807CBa65f7Bd7a48a2d",
+      "0xda2242a6DbDa924bf7D7DB8aC9482d4763EB211C",
+      "0xf2565317F3Ae8Ae9EA98E9Fe1e7FADC77F823cbD",
+      "0x37b828802FAeA4244d176Da386CF632F5Bbc414F",
+      "0xA8FFD6B87388F8d5FACfDa0147d9B0Da511539b6",
+      "0x0Ca678b984186b0117501C00d4A6B4F8F342D06D"
+    ]
+  }
+]

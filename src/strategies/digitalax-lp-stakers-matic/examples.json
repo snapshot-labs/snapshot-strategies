@@ -1,0 +1,19 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "digitalax-lp-stakers-matic",
+      "params": {
+        "address": "0xF795c2abB0E7A56A0C011993C37A51626756B4BD",
+        "symbol": "MONA"
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xb9f1942edb0e0b9fdf77cb85397e75437aa37999",
+      "0xd4c4f5e108d09f4383f431d143e75ecabb703f2a",
+      "0x2f55acce6958d390dc32606230b6bda2dfec2102"
+    ],
+    "snapshot": 22757476
+  }
+]

@@ -29,4 +29,4 @@ The strategy uses the `balanceOf` function from the staking contract to determin
 
 ## License
 
-MIT 
+MIT

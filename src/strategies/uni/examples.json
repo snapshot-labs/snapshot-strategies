@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "uni",
+      "params": {
+        "symbol": "UNI",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2Ab4e42c2190C05b3dccD9B039dAf8743217392a",
+      "0x00000583Cf2C6aA7488471fbe12ac7f0DfeB1cDa",
+      "0xEF5AD662a5a42C3023e009035ee235082800B924",
+      "0x7466ebF3B8aF67511f7163Ab1E31f928b2E60330"
+    ],
+    "snapshot": 10911534
+  }
+]

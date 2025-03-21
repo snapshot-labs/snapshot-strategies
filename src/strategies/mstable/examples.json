@@ -1,0 +1,19 @@
+[
+  {
+    "name": "mstable",
+    "strategy": {
+      "name": "mstable",
+      "params": {
+        "symbol": "MSTABLE",
+        "stkBPT": "0xefbe22085d9f29863cfb77eed16d3cc0d927b011",
+        "stkMTA": "0x8f2326316eC696F6d023E37A9931c2b2C177a3D7"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x2ee8670d2b936985d5fb1ee968810c155d3bb9ca",
+      "0x19f12c947d25ff8a3b748829d8001ca09a28d46d"
+    ],
+    "snapshot": 13236086
+  }
+]

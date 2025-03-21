@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ethermon-erc721",
+      "params": {
+        "EMONA_ADDRESS": "0x9928a8ea82d86290dfd1920e126b3872890525b3",
+        "tokenWeightIPFS": "abb6cbba-f8e6-4fce-89a8-7360cda5daf9-bucket/weights.json",
+        "EMON_DATA_ADDRESS": "0x0f05607e51d5224300520a710898a8467d8d1117",
+        "symbol": "EMONA"
+      }
+    },
+    "network": "137",
+    "addresses": ["0x111c26A02ca4050684D4083d72E2A7C1dCbA853f"],
+    "snapshot": 14101222
+  }
+]
