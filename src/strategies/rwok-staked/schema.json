@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "RWOK Staked NFT Strategy",
+  "description": "Strategy that computes voting power based on staked RWOK NFTs",
+  "properties": {
+    "network": {
+      "type": "string",
+      "description": "Network ID (e.g., '8453' for Base mainnet)",
+      "enum": ["8453"]
+    },
+    "snapshot": {
+      "type": ["number", "string"],
+      "description": "Block number or 'latest' for the snapshot"
+    },
+    "addresses": {
+      "type": "array",
+      "description": "List of addresses to check voting power for",
+      "items": {
+        "type": "string",
+        "pattern": "^0x[a-fA-F0-9]{40}$"
+      }
+    }
+  },
+  "required": ["network", "snapshot", "addresses"]
+} 

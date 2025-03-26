@@ -1,0 +1,27 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "RWOK Staked NFT Voting Power",
+  "description": "Computes voting power based on staked RWOK NFTs",
+  "properties": {
+    "network": {
+      "type": "string",
+      "description": "The network where the staking contract is deployed",
+      "enum": ["1", "56", "137", "42161", "10", "100", "43114", "250", "1666600000", "1284", "1285", "1287", "1313161554", "1313161555"]
+    },
+    "snapshot": {
+      "type": ["number", "string"],
+      "description": "Block number or 'latest' for the snapshot",
+      "pattern": "^[0-9]+$|^latest$"
+    },
+    "addresses": {
+      "type": "array",
+      "description": "List of addresses to check voting power for",
+      "items": {
+        "type": "string",
+        "pattern": "^0x[a-fA-F0-9]{40}$"
+      }
+    }
+  },
+  "required": ["network", "snapshot", "addresses"]
+} 
