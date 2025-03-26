@@ -35,5 +35,20 @@
       "operator": "OR"
     },
     "valid": false
+  },
+  {
+    "name": "Example of a passport gated validation",
+    "author": "0x24F15402C6Bb870554489b2fd2049A85d75B982f",
+    "space": "fabien.eth",
+    "network": "1",
+    "snapshot": "latest",
+    "params": {
+      "scoreThreshold": 20,
+      "stamps": ["Ens", "Github", "Snapshot"],
+      "operator": "MIN",
+      "minStamps": 1,
+      "checkExpired": false
+    },
+    "valid": true
   }
 ]
