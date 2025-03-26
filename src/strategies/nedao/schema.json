@@ -36,7 +36,7 @@
           "maxLength": 66
         }
       },
-      "required": ["contractAddress", "validateur", "typeValidation"],
+      "required": ["proposalsOnly", "contractAddress", "validateur", "typeValidation"],
       "additionalProperties": false
     }
   }
