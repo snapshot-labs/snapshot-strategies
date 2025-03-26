@@ -9,13 +9,13 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. UNI"],
+          "examples": ["JCKP"],
           "maxLength": 16
         },
         "address": {
           "type": "string",
           "title": "Contract address",
-          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "examples": ["0x7E3d5f58D6759c59a8543080060864A955EF6427"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
           "maxLength": 42
@@ -23,8 +23,7 @@
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": ["e.g. 18"],
-          "minimum": 0
+          "examples": [18]
         }
       },
       "required": ["address", "decimals"],
