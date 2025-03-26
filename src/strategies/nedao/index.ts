@@ -24,6 +24,8 @@ export async function strategy(
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
+  if (options.proposalsOnly === true) return Object.fromEntries(addresses.map((address) => [address, 0])); // return 0 for all addresses to prevent votes on proposals
+
   addresses.forEach((address) =>
     multi.call(address, options.contractAddress, 'litProclamation', [
       options.validateur,
