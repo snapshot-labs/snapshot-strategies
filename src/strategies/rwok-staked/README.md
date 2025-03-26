@@ -1,43 +1,32 @@
-# RWOK Staked NFT Voting Strategy
+# RWOK Staked NFT Strategy
 
-This strategy computes voting power based on staked RWOK NFTs. Each staked NFT contributes to the voting power of the holder.
+This strategy calculates voting power based on the number of staked NFTs a user has, with a multiplier applied.
 
 ## Parameters
 
-- `network`: The network where the staking contract is deployed (e.g., "8453" for Base mainnet)
-- `snapshot`: Block number or 'latest' for the snapshot
-- `addresses`: List of addresses to check voting power for
-
-## Contract Details
-
-- Staking Contract: `0x2C0973b082491948A48180D2bf528E7B51D44Eec`
-- NFT Multiplier: 300030
+- `address`: The address of the staking contract
+- `multiplier`: The multiplier to apply to the number of staked NFTs (default: 30000)
 
 ## Example
 
 ```json
 {
-  "network": "8453",
-  "snapshot": "latest",
-  "addresses": ["0x182db357b1a92a689b428382672Ac6Cd76725D71"]
+  "name": "rwok-staked",
+  "params": {
+    "address": "0x1234...5678",
+    "multiplier": 30000
+  }
 }
 ```
 
-## Implementation
+## How it works
 
-The strategy uses the `getStakeInfo(address)` function from the staking contract to determine:
-1. The number of NFTs each address has staked
-2. The current rewards for the staked NFTs
+1. Gets the number of staked NFTs for each address using the `getStakeInfo` function
+2. Applies the multiplier to calculate voting power
+3. Returns the voting power for each address
 
-The voting power is calculated by multiplying the number of staked NFTs by the NFT multiplier.
+## Notes
 
-### Example Response
-```json
-{
-  "0x182db357b1a92a689b428382672Ac6Cd76725D71": 1500150
-}
-```
-
-## License
-
-MIT 
+- The strategy uses the `getStakeInfo` function to get staked NFT information
+- Voting power is calculated as: number of staked NFTs * multiplier
+- The default multiplier is 30000 

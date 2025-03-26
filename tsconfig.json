@@ -1,17 +1,14 @@
 {
   "compilerOptions": {
-    "outDir": "dist",
-    "target": "esnext",
+    "target": "es2020",
     "module": "commonjs",
-    "moduleResolution": "node",
     "strict": true,
-    "declaration": true,
-    "noUnusedLocals": true,
     "esModuleInterop": true,
-    "noImplicitAny": false,
-    "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "outDir": "./dist",
+    "declaration": true
   },
-  "include": ["src"],
-  "files": ["./src/typings.d.ts"]
+  "include": ["src/**/*", "test/**/*"],
+  "exclude": ["node_modules", "dist"]
 }

@@ -469,12 +469,12 @@ import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
-import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
 import * as realt from './realt';
 import * as superfluidVesting from './superfluid-vesting';
 import * as spookyLpSonic from './spooky-lp-sonic';
 import * as synapse from './synapse';
 import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
+import * as rwokStaked from './rwok-staked';
 
 const strategies = {
   'spooky-lp-sonic': spookyLpSonic,
@@ -956,11 +956,12 @@ const strategies = {
   fountainhead,
   'nayms-staking': naymsStaking,
   'morpho-delegation': morphoDelegation,
-  'lizcoin-strategy-2024': lizcoinStrategy2024,
+  'lizcoin-strategy-2024': { ...realt },
   realt,
   'superfluid-vesting': superfluidVesting,
   synapse,
-  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'rwok-staked': rwokStaked
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

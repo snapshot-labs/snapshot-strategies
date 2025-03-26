@@ -1,9 +1,12 @@
+node_modules/
+dist/
+coverage/
+.env
 .DS_Store
-node_modules
-dist
+yarn-error.log
+package-lock.json
 
 # Remove some common IDE working directories
 .idea
 .vscode
-.env
 .history

@@ -1,71 +1,29 @@
 {
-  "name": "@snapshot-labs/strategies",
+  "name": "rwok-snapshot-strategy",
   "version": "0.1.0",
-  "main": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    ".": "./dist/index.js"
-  },
-  "files": [
-    "dist"
-  ],
-  "repository": "snapshot-labs/snapshot-strategies",
-  "license": "MIT",
+  "private": true,
   "scripts": {
-    "build": "tsc -p .",
-    "test": "jest -i strategy.test.ts",
-    "test:vp": "jest -i vp.test.ts",
-    "test:delegation": "jest -i delegation.test.ts",
-    "test:validation": "jest -i validation.test.ts",
-    "prepublishOnly": "npm run build",
-    "postinstall": "npm run build",
-    "postbuild": "copyfiles -u 1 \"src/**/*.md\" dist/ && copyfiles -u 1 \"src/**/*.json\" dist/",
-    "typecheck": "tsc --noEmit",
+    "build": "tsc",
+    "test": "jest",
     "lint": "eslint src/ test/ --ext .ts,.json",
-    "lint:fix": "yarn lint --fix"
+    "lint:fix": "eslint src/ test/ --ext .ts,.json --fix"
   },
   "dependencies": {
     "@ethersproject/abi": "^5.6.4",
     "@ethersproject/address": "^5.6.1",
-    "@ethersproject/bignumber": "^5.6.2",
-    "@ethersproject/bytes": "^5.6.1",
-    "@ethersproject/contracts": "^5.6.2",
-    "@ethersproject/hash": "^5.6.1",
-    "@ethersproject/providers": "^5.6.8",
-    "@ethersproject/solidity": "^5.6.1",
-    "@ethersproject/strings": "^5.6.1",
-    "@ethersproject/units": "^5.6.1",
-    "@ethersproject/wallet": "^5.6.2",
-    "@snapshot-labs/snapshot.js": "^0.12.54",
-    "@spruceid/didkit-wasm-node": "^0.2.1",
-    "@uniswap/sdk-core": "^3.0.1",
-    "@uniswap/v3-sdk": "^3.9.0",
-    "blakejs": "^1.2.1",
-    "copyfiles": "^2.4.1",
-    "cross-fetch": "^3.1.6",
-    "dotenv": "^16.0.3",
-    "eth-ens-namehash": "^2.0.8",
-    "json-to-graphql-query": "^2.2.4",
-    "tulons": "^0.0.7"
+    "@ethersproject/bignumber": "^5.8.0",
+    "@ethersproject/contracts": "^5.8.0",
+    "@ethersproject/providers": "^5.8.0",
+    "@snapshot-labs/snapshot.js": "^0.12.54"
   },
   "devDependencies": {
     "@types/jest": "^29.5.1",
-    "@types/node": "^18.0.3",
+    "@types/node": "^16.18.0",
     "@typescript-eslint/eslint-plugin": "^5.30.5",
     "@typescript-eslint/parser": "^5.30.5",
     "eslint": "^8.19.0",
-    "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
     "jest": "^29.5.0",
-    "prettier": "^2.7.1",
     "ts-jest": "^29.1.0",
     "typescript": "^4.7.4"
-  },
-  "engines": {
-    "node": ">=16.10.0"
-  },
-  "resolutions": {
-    "@uniswap/v3-periphery": "1.4.1"
   }
 }
