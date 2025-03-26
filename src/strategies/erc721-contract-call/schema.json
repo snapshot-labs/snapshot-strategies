@@ -1,0 +1,33 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "xSGT NFT Voting Power",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Contract Address",
+          "description": "The address of the xSGT NFT contract",
+          "format": "address",
+          "examples": ["0x1234567890123456789012345678901234567890"]
+        },
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "description": "The symbol of the NFT token",
+          "examples": ["xSGT"]
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "description": "The number of decimals for the voting power (typically 0 for NFTs)",
+          "default": 0
+        }
+      },
+      "required": ["address"],
+      "additionalProperties": false
+    }
+  }
+}
