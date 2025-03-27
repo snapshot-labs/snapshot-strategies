@@ -57,10 +57,10 @@ export function getCuratorSignalledGRT(curator: Curator): number {
     const signalAmount = parseFloat(deployment.signalAmount);
     // we calculate the value of their signal based on the share they have
     // of the total signal in the subgraph deployment
-    const deploymentSignalShareCoeficient = signalAmount
+    const deploymentSignalShareCoefficient = signalAmount
       ? signalledTokens / signalAmount
       : 0;
-    result += deploymentSignalShareCoeficient * parsedSignal;
+    result += deploymentSignalShareCoefficient * parsedSignal;
   }
   // Get GRT of Curator for the name signal they have in each Deployment
   for (const nameSignal of nameSignals) {
@@ -69,22 +69,22 @@ export function getCuratorSignalledGRT(curator: Curator): number {
       const signalledTokens = parseFloat(deployment.signalledTokens);
       const signal = parseFloat(nameSignal.signal);
       const signalAmount = parseFloat(deployment.signalAmount);
-      const deploymentSignalShareCoeficient = signalAmount
+      const deploymentSignalShareCoefficient = signalAmount
         ? signalledTokens / signalAmount
         : 0;
 
-      result += deploymentSignalShareCoeficient * signal;
+      result += deploymentSignalShareCoefficient * signal;
     } else {
       // edge case where curators didn't withdraw their signal from a deprecated subgraph
       const subgraph = nameSignal.subgraph;
       const withdrawableTokens = parseFloat(subgraph.withdrawableTokens);
       const _nameSignal = parseFloat(nameSignal.nameSignal);
       const nameSignalAmount = parseFloat(subgraph.nameSignalAmount);
-      const subgraphNameSignalShareCoeficient = nameSignalAmount
+      const subgraphNameSignalShareCoefficient = nameSignalAmount
         ? withdrawableTokens / nameSignalAmount
         : 0;
 
-      result += subgraphNameSignalShareCoeficient * _nameSignal;
+      result += subgraphNameSignalShareCoefficient * _nameSignal;
     }
   }
   // result is in wei, format it in GRT
