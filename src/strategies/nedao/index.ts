@@ -1,8 +1,8 @@
 import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 
-export const author = 'nedao';
-export const version = '0.1.0';
+export const author = 'arcantel-sa';
+export const version = '0.1.1';
 
 const abi = [
   'function litProclamation(address validateur,address sujet, bytes32 typeValidation) public view returns (bytes32) '
