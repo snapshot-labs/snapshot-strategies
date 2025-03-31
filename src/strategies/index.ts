@@ -476,6 +476,7 @@ import * as superfluidVesting from './superfluid-vesting';
 import * as spookyLpSonic from './spooky-lp-sonic';
 import * as synapse from './synapse';
 import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
+import * as xgt3GetVotingUnits from './xgt3-getvotingunits';
 
 const strategies = {
   livepeer,
@@ -962,7 +963,8 @@ const strategies = {
   realt,
   'superfluid-vesting': superfluidVesting,
   synapse,
-  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'xgt3-getvotingunits': xgt3GetVotingUnits,
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
