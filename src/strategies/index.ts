@@ -244,6 +244,7 @@ import * as bottoDaoBase from './botto-dao-base';
 import * as genart from './genart';
 import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as balancerPoolid from './balancer-poolid';
+import * as livepeer from './livepeer';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
@@ -477,6 +478,7 @@ import * as synapse from './synapse';
 import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
 
 const strategies = {
+  livepeer,
   'spooky-lp-sonic': spookyLpSonic,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
