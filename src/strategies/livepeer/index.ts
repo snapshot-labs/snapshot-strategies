@@ -6,10 +6,11 @@ export const author = 'livepeer';
 export const version = '0.1.0';
 
 // Livepeer contracts on Arbitrum
-const VOTING_CONTRACT = '0x0B9C254837E72Ebe9Fe04960C43B69782E68169A';
-const TRANSCODER_CONTRACT = '0x35Bcf3c30594191d53231E4FF333E8A770453e40';
+const VOTING_CHECKPOINT_CONTRACT = '0x0B9C254837E72Ebe9Fe04960C43B69782E68169A';
+const ORCHESTRATOR_REGISTRY_CONTRACT =
+  '0x35Bcf3c30594191d53231E4FF333E8A770453e40';
 const ARBITRUM_NETWORK = '42161';
-const DECIMALS = 18; // Standard ERC-20 decimal precision
+const TOKEN_DECIMALS = 18; // Standard ERC-20 decimal precision
 
 const abi = [
   'function getVotes(address account) external view returns (uint256)',
@@ -31,16 +32,16 @@ export async function strategy(
     return Object.fromEntries(addresses.map((address) => [address, 0]));
   }
 
-  // Check which addresses are orchestrators
+  // Check which addresses are registered orchestrators
   const orchestratorStatusCalls = addresses.map((address) => [
-    TRANSCODER_CONTRACT,
+    ORCHESTRATOR_REGISTRY_CONTRACT,
     'transcoderStatus',
     [address]
   ]);
 
-  // Get voting power for all addresses
+  // Get staked LPT voting power for all addresses
   const votingPowerCalls = addresses.map((address) => [
-    VOTING_CONTRACT,
+    VOTING_CHECKPOINT_CONTRACT,
     'getVotes',
     [address]
   ]);
@@ -53,9 +54,9 @@ export async function strategy(
   return Object.fromEntries(
     addresses.map((address, i) => [
       getAddress(address),
-      // Only count voting power if the address is an orchestrator (status = 1)
+      // Only count voting power if the address is an active orchestrator (status = 1)
       orchestratorStatuses[i] && orchestratorStatuses[i][0] === 1
-        ? parseFloat(formatUnits(votingPowers[i][0], DECIMALS))
+        ? parseFloat(formatUnits(votingPowers[i][0], TOKEN_DECIMALS))
         : 0
     ])
   );
