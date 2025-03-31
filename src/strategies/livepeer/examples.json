@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example Livepeer Voting Strategy",
+    "strategy": {
+      "name": "livepeer",
+      "params": {}
+    },
+    "network": "42161",
+    "addresses": [
+      "0x1d1f2cd9e9f0c1578929b6371459d14227a8d8d6",
+      "0x525419ff5707190389bfb5c87c375d710f5fcb0e",
+      "0x71d1226948891fc54befbc999744aaafcc0a8417",
+      "0x4416A274f86e1dB860b513548b672154d43B81b2",
+      "0x4f4758F7167B18e1F5B3c1a7575E3eb584894dbc"
+    ],
+    "snapshot": 321512747
+  }
+]
