@@ -54,8 +54,7 @@ export async function strategy(
 
   const getDataFromBlockChain = async (
     contractCalls: [string, string, [number]][]
-  ) =>
-    multicall(network, provider, abi, contractCalls, { blockTag, limit: 250 });
+  ) => multicall(network, provider, abi, contractCalls, { blockTag });
 
   const filterUnusedAddresses = (addressesToFilter: string[]): string[] =>
     addressesToFilter.filter((address: string) =>
