@@ -173,10 +173,8 @@ export default class extends Validation {
   async validate(currentAddress = this.author): Promise<boolean> {
     const requiredStamps = this.params.stamps || [];
     const operator = this.params.operator;
-    const scoreThreshold = this.params.scoreThreshold;
+    const scoreThreshold = this.params.scoreThreshold || 0;
 
-    if (scoreThreshold === undefined)
-      throw new Error('Score threshold is required');
     if (requiredStamps.length > 0 && (!operator || operator === 'NONE'))
       throw new Error('Operator is required when selecting required stamps');
 
