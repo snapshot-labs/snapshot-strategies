@@ -60,6 +60,12 @@ export async function strategy(
     [k: string]: number;
   };
 
+  if (votingPowerByAddress.error) {
+    throw new Error(
+      `Error fetching voting power from backend: ${votingPowerByAddress.error}`
+    );
+  }
+
   return Object.keys(votingPowerByAddress).reduce((acc, address) => {
     acc[getAddress(address)] = votingPowerByAddress[address];
     return acc;
