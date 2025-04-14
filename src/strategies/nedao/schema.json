@@ -1,0 +1,54 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "proposalsOnly": {
+          "type": "boolean",
+          "title": "To only allow new proposals but no votes",
+          "examples": ["e.g. true"]
+        },
+        "contractAddress": {
+          "type": "string",
+          "title": "The contract address",
+          "examples": ["e.g. 0xB94E35600A925569ea2f4DC57D571657ccDb8FDc"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "validateur": {
+          "type": "string",
+          "title": "The idValidateur of the bot",
+          "examples": ["e.g. 0x7aaAd3167Ad03809aC61e667bdBC72285CEe3BF4"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "typeValidation": {
+          "type": "string",
+          "title": "The keccak256 value of the certificate",
+          "examples": [
+            "e.g. 0xd36f63907c7fad13dd9dc69aa8b9af9c3296a3edad0b0b1eb50c10fd066fc910"
+          ],
+          "title": "The keccak256 value of the bot",
+          "examples": [
+            "e.g. 0xd36f63907c7fad13dd9dc69aa8b9af9c3296a3edad0b0b1eb50c10fd066fc910"
+          ],
+          "pattern": "^0x[a-fA-F0-9]{64}$",
+          "minLength": 66,
+          "maxLength": 66
+        }
+      },
+      "required": [
+        "proposalsOnly",
+        "contractAddress",
+        "validateur",
+        "typeValidation"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

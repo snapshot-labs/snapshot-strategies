@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "spooky-lp-sonic",
+      "params": {}
+    },
+    "network": "146",
+    "addresses": [
+      "0xf83e546bd2959c22f1715ecaffc03d39b8d0fa96",
+      "0x02fa5640f5D948f14C9195fB2873D832A49f0A5f",
+      "0xFE2fb8587760c8d5960CB7A5BA2f2299EdF10506",
+      "0x593B0c00078A741eB440c7B9Dde999bdD40Aa1F9",
+      "0x159b567635aea41170aafaf1f832185344c56fba"
+    ],
+    "snapshot": 5256661
+  }
+]

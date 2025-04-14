@@ -1,11 +1,13 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as nedao from './nedao';
 import * as subgraphSplitDelegation from './subgraph-split-delegation';
 import * as polygonSelfStaked from './polygon-self-staked-pol';
 import * as delegatexyzErc721BalanceOf from './delegatexyz-erc721-balance-of';
 import * as urbitGalaxies from './urbit-galaxies/index';
 import * as ecoVotingPower from './eco-voting-power';
+import * as ecoMultichainVotingPower from './eco-multichain-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
@@ -242,6 +244,7 @@ import * as bottoDaoBase from './botto-dao-base';
 import * as genart from './genart';
 import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as balancerPoolid from './balancer-poolid';
+import * as livepeer from './livepeer';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
@@ -467,8 +470,16 @@ import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
+import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
+import * as realt from './realt';
+import * as superfluidVesting from './superfluid-vesting';
+import * as spookyLpSonic from './spooky-lp-sonic';
+import * as synapse from './synapse';
+import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
 
 const strategies = {
+  livepeer,
+  'spooky-lp-sonic': spookyLpSonic,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
@@ -477,6 +488,7 @@ const strategies = {
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
+  'eco-multichain-voting-power': ecoMultichainVotingPower,
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
@@ -934,6 +946,7 @@ const strategies = {
   'candy-lock-nft': candyLockNft,
   'candy-nft-staking': candyNftStaking,
   pom,
+  nedao,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
@@ -944,7 +957,12 @@ const strategies = {
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
   'nayms-staking': naymsStaking,
-  'morpho-delegation': morphoDelegation
+  'morpho-delegation': morphoDelegation,
+  'lizcoin-strategy-2024': lizcoinStrategy2024,
+  realt,
+  'superfluid-vesting': superfluidVesting,
+  synapse,
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

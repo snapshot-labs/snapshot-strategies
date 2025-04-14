@@ -58,7 +58,7 @@ export async function strategy(
   const mCall2Result: Record<string, any> = await mCall2.execute();
   const lockerByAddress = Object.fromEntries(
     Object.entries(mCall2Result)
-      .filter(([_, { isCreated }]) => isCreated)
+      .filter(([, { isCreated }]) => isCreated)
       .map(([addr, { lockerAddress }]) => [addr, lockerAddress])
   );
   const existingLockers = Object.values(lockerByAddress);

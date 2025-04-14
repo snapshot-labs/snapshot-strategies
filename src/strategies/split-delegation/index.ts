@@ -1,6 +1,7 @@
 import fetch from 'cross-fetch';
 import { StaticJsonRpcProvider } from '@ethersproject/providers';
 import { Strategy } from '@snapshot-labs/snapshot.js/dist/src/voting/types';
+import { getAddress } from '@ethersproject/address';
 
 export const author = 'gnosisguild';
 export const version = '1.0.0';
@@ -59,5 +60,14 @@ export async function strategy(
     [k: string]: number;
   };
 
-  return votingPowerByAddress;
+  if (votingPowerByAddress.error) {
+    throw new Error(
+      `Error fetching voting power from backend: ${votingPowerByAddress.error}`
+    );
+  }
+
+  return Object.keys(votingPowerByAddress).reduce((acc, address) => {
+    acc[getAddress(address)] = votingPowerByAddress[address];
+    return acc;
+  }, {});
 }
