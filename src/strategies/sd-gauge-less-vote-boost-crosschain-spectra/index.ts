@@ -14,6 +14,7 @@ const MIN_BOOST = 0.4;
 // Used ABI
 const abi = [
   'function balanceOf(address account) external view returns (uint256)',
+  'function locked(uint256 nftid) external view returns ((int128,uint256,bool))',
   'function working_supply() external view returns (uint256)',
   'function totalSupply() external view returns (uint256)',
   'function working_balances(address account) external view returns (uint256)',
@@ -124,7 +125,7 @@ export async function strategy(
     if (isEnd) {
       calls.push([options.sdTokenGauge, 'totalSupply']);
       calls.push([options.sdToken, 'totalSupply']);
-      calls.push([options.veToken, 'balanceOf', [options.liquidLocker]]);
+      calls.push([options.veToken, 'locked', [1263]]);
 
       // Fetch pools balance
       if (options.pools && Array.isArray(options.pools)) {
@@ -147,7 +148,7 @@ export async function strategy(
       }
 
       lockerVotingPower = parseFloat(
-        formatUnits(callResp.pop()[0], 18)
+        formatUnits(callResp.pop()[0][0], 18)
       );
 
       sdTokenTotalSupply = parseFloat(
