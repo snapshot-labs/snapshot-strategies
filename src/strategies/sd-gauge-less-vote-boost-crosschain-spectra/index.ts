@@ -68,14 +68,16 @@ export async function strategy(
     mainnetBlockTag,
     options.twavpNumberOfBlocks,
     options.twavpDaysInterval,
-    7200
+    7200,
+    options.removeTwavp
   );
 
   const blockList = getPreviousBlocks(
     blockTag,
     options.twavpNumberOfBlocks,
     options.twavpDaysInterval,
-    options.blocksPerDay
+    options.blocksPerDay,
+    options.removeTwavp
   );
 
   // Queries
@@ -219,8 +221,13 @@ function getPreviousBlocks(
   currentBlockNumber: number,
   numberOfBlocks: number,
   daysInterval: number,
-  blocksPerDay: number
+  blocksPerDay: number,
+  removeTwavp: boolean
 ): number[] {
+  if (removeTwavp) {
+    return [currentBlockNumber]
+  }
+
   // Calculate total blocks interval
   const totalBlocksInterval = blocksPerDay * daysInterval;
   // Calculate block interval
