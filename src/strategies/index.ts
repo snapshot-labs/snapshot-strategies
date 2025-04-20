@@ -876,7 +876,8 @@ const strategies = {
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
   'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
-  'sd-gauge-less-vote-boost-crosschain-spectra': sdGaugeLessVoteBoostCrosschainSpectra,
+  'sd-gauge-less-vote-boost-crosschain-spectra':
+    sdGaugeLessVoteBoostCrosschainSpectra,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,

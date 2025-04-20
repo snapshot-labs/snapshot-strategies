@@ -143,23 +143,17 @@ export async function strategy(
 
     if (isEnd) {
       if (options.pools && Array.isArray(options.pools)) {
-        const poolsReverse = [...options.pools].reverse()
+        const poolsReverse = [...options.pools].reverse();
         for (let i = 0; i < poolsReverse.length; i++) {
           sumPoolsBalance += parseFloat(formatUnits(callResp.pop()[0], 18));
         }
       }
 
-      lockerVotingPower = parseFloat(
-        formatUnits(callResp.pop()[0][0], 18)
-      );
+      lockerVotingPower = parseFloat(formatUnits(callResp.pop()[0][0], 18));
 
-      sdTokenTotalSupply = parseFloat(
-        formatUnits(callResp.pop()[0], 18)
-      );
+      sdTokenTotalSupply = parseFloat(formatUnits(callResp.pop()[0], 18));
 
-      sdTokenGaugeTotalSupply = parseFloat(
-        formatUnits(callResp.pop()[0], 18)
-      );
+      sdTokenGaugeTotalSupply = parseFloat(formatUnits(callResp.pop()[0], 18));
     }
 
     responsesCurrentChain.push(callResp);
@@ -197,7 +191,10 @@ export async function strategy(
         }
 
         let userVote = 0;
-        if(options.botAddress && addresses[i].toLowerCase() === options.botAddress.toLowerCase()) {
+        if (
+          options.botAddress &&
+          addresses[i].toLowerCase() === options.botAddress.toLowerCase()
+        ) {
           userVote = liquidityVoteFee * totalUserVotes;
         } else {
           // Get average working balance.
@@ -225,13 +222,15 @@ function getPreviousBlocks(
   removeTwavp: boolean
 ): number[] {
   if (removeTwavp) {
-    return [currentBlockNumber]
+    return [currentBlockNumber];
   }
 
   // Calculate total blocks interval
   const totalBlocksInterval = blocksPerDay * daysInterval;
   // Calculate block interval
-  const blockInterval = totalBlocksInterval / (numberOfBlocks > 1 ? numberOfBlocks - 1 : numberOfBlocks);
+  const blockInterval =
+    totalBlocksInterval /
+    (numberOfBlocks > 1 ? numberOfBlocks - 1 : numberOfBlocks);
 
   // Init array of block numbers
   const blockNumbers: number[] = [];
