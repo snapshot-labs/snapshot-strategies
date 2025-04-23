@@ -90,6 +90,10 @@ export async function strategy(
     })
   );
 
+  if (results.some((result) => result.status === 'rejected')) {
+    throw new Error(`Error fetching data in poap strategy`);
+  }
+
   for (const supplyResponse of results) {
     if (supplyResponse.status === 'rejected') continue;
 
