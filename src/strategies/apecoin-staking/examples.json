@@ -3,8 +3,7 @@
     "name": "APE Staking",
     "strategy": {
       "name": "apecoin-staking",
-      "params": {
-      }
+      "params": {}
     },
     "network": "33139",
     "addresses": [
