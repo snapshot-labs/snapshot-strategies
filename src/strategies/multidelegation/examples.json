@@ -1,0 +1,121 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "multidelegation",
+      "params": {
+        "symbol": "VP (delegated)",
+        "polygonChain": "mumbai",
+        "delegationSpace": "1emu.eth",
+        "strategies": [
+          {
+            "name": "erc20-balance-of",
+            "params": {
+              "symbol": "WMANA",
+              "address": "0xfd09cf7cfffa9932e33668311c4777cb9db3c9be",
+              "decimals": 18
+            }
+          },
+          {
+            "name": "erc721-with-multiplier",
+            "params": {
+              "symbol": "LAND",
+              "address": "0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d",
+              "multiplier": 2000
+            }
+          },
+          {
+            "name": "decentraland-estate-size",
+            "params": {
+              "symbol": "ESTATE",
+              "address": "0x959e104e1a4db6317fa58f8295f586e1a978c297",
+              "multiplier": 2000
+            }
+          },
+          {
+            "name": "multichain",
+            "params": {
+              "name": "multichain",
+              "graphs": {
+                "137": "https://api.thegraph.com/subgraphs/name/decentraland/blocks-matic-mainnet"
+              },
+              "symbol": "MANA",
+              "strategies": [
+                {
+                  "name": "erc20-balance-of",
+                  "params": {
+                    "address": "0x0f5d2fb29fb7d3cfee444a200298f468908cc942",
+                    "decimals": 18
+                  },
+                  "network": "1"
+                },
+                {
+                  "name": "erc20-balance-of",
+                  "params": {
+                    "address": "0xA1c57f48F0Deb89f569dFbE6E2B7f46D33606fD4",
+                    "decimals": 18
+                  },
+                  "network": "137"
+                }
+              ]
+            }
+          },
+          {
+            "name": "erc721-with-multiplier",
+            "params": {
+              "symbol": "NAMES",
+              "address": "0x2a187453064356c898cae034eaed119e1663acb8",
+              "multiplier": 100
+            }
+          },
+          {
+            "name": "decentraland-wearable-rarity",
+            "params": {
+              "symbol": "WEARABLE",
+              "collections": [
+                "0x32b7495895264ac9d0b12d32afd435453458b1c6",
+                "0xd35147be6401dcb20811f2104c33de8e97ed6818",
+                "0xc04528c14c8ffd84c7c1fb6719b4a89853035cdd",
+                "0xc1f4b0eea2bd6690930e6c66efd3e197d620b9c2",
+                "0xf64dc33a192e056bb5f0e5049356a0498b502d50",
+                "0xc3af02c0fd486c8e9da5788b915d6fff3f049866"
+              ],
+              "multipliers": {
+                "epic": 10,
+                "rare": 5,
+                "mythic": 1000,
+                "uncommon": 1,
+                "legendary": 100
+              }
+            }
+          },
+          {
+            "name": "decentraland-rental-lessors",
+            "params": {
+              "symbol": "RENTAL",
+              "addresses": {
+                "land": "0xf87e31492faf9a91b02ee0deaad50d51d56d5d4d",
+                "estate": "0x959e104e1a4db6317fa58f8295f586e1a978c297"
+              },
+              "subgraphs": {
+                "rentals": "https://api.thegraph.com/subgraphs/name/decentraland/rentals-ethereum-mainnet",
+                "marketplace": "https://api.thegraph.com/subgraphs/name/decentraland/marketplace"
+              },
+              "multipliers": { "land": 2000, "estateSize": 2000 }
+            }
+          }
+        ]
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x56d0B5eD3D525332F00C9BC938f93598ab16AAA7",
+      "0x49E4DbfF86a2E5DA27c540c9A9E8D2C3726E278F",
+      "0xd7539FCdC0aB79a7B688b04387cb128E75cb77Dc",
+      "0x4757cE43Dc5429B8F1A132DC29eF970E55Ae722B",
+      "0xC9dA7343583fA8Bb380A6F04A208C612F86C7701",
+      "0x69ABF813a683391C0ec888351912E14590B56e88"
+    ],
+    "snapshot": 17380758
+  }
+]
