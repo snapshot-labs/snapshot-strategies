@@ -1,4 +1,4 @@
-# Ape Coin Staking Strategy
+# ApeCoin staking
 
 This strategy calculates voting power based on the amount of APE tokens staked with BAYC, MAYC, and BAKC NFTs.
 
