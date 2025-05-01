@@ -1,0 +1,16 @@
+[
+  {
+    "name": "APE Staking",
+    "strategy": {
+      "name": "apecoin-staking",
+      "params": {}
+    },
+    "network": "33139",
+    "addresses": [
+      "0x3Af637465aEa69F009004283095B1569E764ECd9",
+      "0x5C04911bA3a457De6FA0357b339220e4E034e8F7",
+      "0xf558B2720932F4Adfca3f3b841b2A6E4dF18085D"
+    ],
+    "snapshot": 14740552
+  }
+]
