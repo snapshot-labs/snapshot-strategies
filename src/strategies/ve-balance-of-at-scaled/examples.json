@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "ve-balance-of-at-scaled",
+      "params": {
+        "address": "0x1bffabc6dfcafb4177046db6686e3f135e8bc732",
+        "symbol": "aveQI",
+        "decimals": 18,
+        "scaleValue": 4
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x55C1568eFD6D19Edec498330952fA7e582FEA20A",
+      "0xc06320d9028F851c6cE46e43F04aFF0A426F446c",
+      "0x044325aCCB1A131cD00B4Cef674E9a8d9b60ad72",
+      "0x680963fe5e628c5486C3A282ca12Aa575820e446"
+    ],
+    "snapshot": 18383737
+  }
+]
