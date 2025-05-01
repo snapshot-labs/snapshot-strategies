@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Example voting based on hedgey vesting token with a multiplier",
+    "strategy": {
+      "name": "hedgey-locked",
+      "params": {
+        "contracts": [
+          "0x73cD8626b3cD47B009E68380720CFE6679A3Ec3D",
+          "0x1bb64AF7FE05fc69c740609267d2AbE3e119Ef82"
+        ],
+        "token": "0x04E69Ff14A86E1ca9a155A8563E95887973EE175",
+        "symbol": "AITV",
+        "decimals": 18,
+        "multiplier": 1
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xe90a6EaBEe9162b23edAe465f55327F95d15ae11",
+      "0xBE54EBB0A14317256f32Aee3Df8a894793960E78",
+      "0xF0138A76223d93192C9c903520f1cf95c9094065",
+      "0xDC13Ab880e2AB7b5544a7b927769B5CEc6d62a0b",
+      "0xe31D847B47465cC2745319dAc9E0c6ac711cA10b"
+    ],
+    "snapshot": 21844600
+  }
+]
