@@ -1,0 +1,51 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "backendUrl": {
+          "type": "string",
+          "title": "Backend API URL",
+          "default": "https://delegate-api.gnosisguild.org",
+          "examples": ["e.g. https://delegate-api.gnosisguild.org"]
+        },
+        "totalSupply": {
+          "type": "number",
+          "title": "Total Supply",
+          "default": 1000000000,
+          "examples": ["e.g. 1000000000"]
+        },
+        "strategies": {
+          "title": "Strategies",
+          "type": "array",
+          "items": {
+            "title": "Strategy",
+            "type": "object",
+            "properties": {
+              "name": {
+                "type": "string"
+              },
+              "network": {
+                "type": "string"
+              },
+              "params": {
+                "type": "object"
+              }
+            },
+            "required": ["name", "params"]
+          }
+        },
+        "delegationOverride": {
+          "type": "boolean",
+          "title": "Delegation Override",
+          "default": false
+        }
+      },
+      "required": ["backendUrl", "totalSupply", "strategies"],
+      "additionalProperties": false
+    }
+  }
+}
