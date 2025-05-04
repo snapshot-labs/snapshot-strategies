@@ -32,7 +32,7 @@ export function getStudioProdSubgraphUrl(
 ): string | null {
   return !apiKey
     ? null
-    : `https://gateway.thegraph.com/api/${apiKey}/subgraphs/id/${subgraphId}`;
+    : `https://gateway-arbitrum.network.thegraph.com/api/${apiKey}/subgraphs/id/${subgraphId}`;
 }
 
 export function getStudioDevSubgraphUrl(
@@ -111,7 +111,9 @@ export async function subgraphRequestsToVariousServices(
  * @returns a number
  */
 export async function getGnosisBlockNumber(
-  queryUrl: string,
+  hostedQueryUrl: string | null,
+  devQueryUrl: string | null,
+  prodQueryUrl: string | null,
   timestamp: number,
   fallbackBlockNumber: number
 ): Promise<number> {
@@ -132,9 +134,9 @@ export async function getGnosisBlockNumber(
 
   // query from subgraph
   const data = await subgraphRequestsToVariousServices(
-    queryUrl,
-    null,
-    null,
+    hostedQueryUrl,
+    devQueryUrl,
+    prodQueryUrl,
     query
   );
   return !data ? fallbackBlockNumber : Number(data.blocks[0].number);
