@@ -479,8 +479,10 @@ import * as synapse from './synapse';
 import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
 import * as erc20BalanceOfSaevo from './erc20-balance-of-saevo';
 import * as apecoinStaking from './apecoin-staking';
+import * as sybil from './sybil';
 
 const strategies = {
+  sybil,
   'apecoin-staking': apecoinStaking,
   'erc20-balance-of-saevo': erc20BalanceOfSaevo,
   livepeer,
