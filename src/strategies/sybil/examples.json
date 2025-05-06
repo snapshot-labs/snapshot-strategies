@@ -1,0 +1,18 @@
+[
+  {
+    "name": "Sybil",
+    "strategy": {
+      "name": "sybil",
+      "params": {
+        "address": "0x613F350E9a6bb3614e1095B824eB9B203D9f4fD2"
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0xCbD25e6545DEf86B9A00E5205851F7332111C924",
+      "0x1DBd908b5a4f9b2c144FaF24221C74fb71CF33CE",
+      "0xaEc81EE0E733212FCE2E95B69272a1869673BFE5"
+    ],
+    "snapshot": 8259368
+  }
+]
