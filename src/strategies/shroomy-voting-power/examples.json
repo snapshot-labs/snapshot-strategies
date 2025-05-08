@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Shroomy Voting Powerr",
+    "strategy": {
+      "name": "shroomy-voting-power",
+      "params": {
+        "shroomyToken": "0xAF01Df0F0D5c524bA8F041FD80ef306DB73fb6EA",
+        "votingPowerContract": "0x3a3B720aE972113b8aFC79effa13553fdc55e702",
+        "shroomyDecimals": 18,
+        "lpTokens": [
+          {
+            "address": "0x1fB1e2e4509Ae4008Ed5Ea2AF1C6484c9fea3BcC",
+            "decimals": 18
+          },
+          {
+            "address": "0xAF01Df0F0D5c524bA8F041FD80ef306DB73fb6EA",
+            "multiplier": 1.5,
+            "decimals": 18
+          }
+        ]
+      }
+    },
+    "network": "763373",
+    "addresses": [
+      "0x96ED142318794327D68FdC2b4f50afC329F1813f",
+      "0xeF8305E140ac520225DAf050e2f71d5fBcC543e7",
+      "0xe869D2c153c971b93683E4826105bF08C4AC3ceF"
+    ],
+    "snapshot": 17525427
+  }
+]
