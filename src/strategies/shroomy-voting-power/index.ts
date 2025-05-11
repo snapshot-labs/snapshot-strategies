@@ -44,7 +44,7 @@ export async function strategy(
       )
     );
   }
-  
+
   const powers = await multicaller.execute();
 
   addresses.forEach((address) => {
