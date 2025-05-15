@@ -1,0 +1,119 @@
+/*
+  Niji Warriors are NFTs that can vote on behalf of their owner. Each NFT has its own private key.
+
+  At any time, Niji Warrior NFTs can vote on edenonline.eth Snapshot Proposals.
+  The Niji Warrior's voting power equals 1 per default.
+
+  When voting directly on Snapshot, the player's vote overrides the Niji Warrior's vote.
+  The player's voting power is the square root of the sum of NFTs owned by the player.
+
+  Strategy flow:
+  - Retrieve the Niji Warriors address mapping (token ID to address) on IPFS
+  - Makes a multicall for tokensOfOwner (use length for balance)
+
+  If blockTag is provided, query the token balances for a specific block.
+*/
+import { multicall } from '../../utils';
+
+const abi = [
+  'function balanceOf(address account) external view returns (uint256)',
+  'function tokensOfOwner(address account) external view returns (uint256[])'
+];
+
+export const author = 'nicolas-law';
+export const version = '0.1.0';
+
+export async function strategy(
+  space,
+  network,
+  provider,
+  addresses,
+  options,
+  snapshot
+) {
+  const url = options.url;
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  // Fetch Niji Agent EOA addresses
+  const req = await fetch(url);
+  if (!req.ok) throw new Error('Failed to fetch Niji Warrior address mapping');
+  const rawNijiData = await req.json();
+  if (
+    !rawNijiData.eoa ||
+    !Array.isArray(rawNijiData.eoa) ||
+    rawNijiData.eoa.length !== 10000 // 1 EOA per Niji Warrior
+  ) {
+    throw new Error(
+      'Invalid Niji Warrior address mapping: missing or malformed `eoa` array'
+    );
+  }
+
+  // Niji Warrior EOA address to tokenId
+  const eoaToNijiId: Record<string, number> = {};
+  rawNijiData.eoa.forEach((address: string, nijiId: number) => {
+    eoaToNijiId[address.toLowerCase()] = nijiId;
+  });
+  const addressesLowerSet = new Set(addresses.map((a) => a.toLowerCase()));
+
+  // Filter out Niji Warrior EOAs since they own 0 tokens for tokensOfOwner multicall
+  const standardVoters = addresses.filter(
+    (addr) => eoaToNijiId[addr.toLowerCase()] === undefined
+  );
+
+  // Fetch token IDs owned by each player
+  // Instead of calling erc20BalanceOf, use `tokensOfOwner[id][0].length`
+  const tokensOfOwner =
+    standardVoters.length > 0
+      ? await multicall(
+          network,
+          provider,
+          abi,
+          standardVoters.map((address: string) => [
+            options.address,
+            'tokensOfOwner',
+            [address]
+          ]),
+          { blockTag }
+        )
+      : [];
+
+  // Build tokenId => owner mapping for all NFTs owned by standard voter
+  const tokenOwners: Record<number, string> = {};
+  for (let idx = 0; idx < tokensOfOwner.length; idx++) {
+    const tokens = tokensOfOwner[idx][0] || [];
+    const owner = standardVoters[idx];
+    for (let t = 0; t < tokens.length; t++) {
+      tokenOwners[Number(tokens[t])] = owner;
+    }
+  }
+
+  // Compose final results using the original address array
+  const results: Record<string, number> = {};
+  for (let i = 0; i < addresses.length; i++) {
+    const address = addresses[i];
+    const addrLower = address.toLowerCase();
+    if (eoaToNijiId[addrLower] === undefined) {
+      // Standard user: their score = sqrt(number of NFTs owned)
+      // Find index of user in standardUsers
+      const idx = standardVoters.indexOf(address);
+      let tokenCount = 0;
+      if (
+        idx !== -1 &&
+        tokensOfOwner[idx] &&
+        Array.isArray(tokensOfOwner[idx][0])
+      ) {
+        tokenCount = tokensOfOwner[idx][0].length;
+      }
+      results[address] = Math.sqrt(tokenCount);
+    } else {
+      // This is a Niji Warrior agent address, find ind its tokenId to find its owner
+      // If the owner has already voted, agent gets 0; else 1
+      const nijiId = eoaToNijiId[addrLower];
+      const owner = tokenOwners[nijiId];
+      results[address] =
+        owner && addressesLowerSet.has(owner.toLowerCase()) ? 0 : 1;
+    }
+  }
+
+  return results;
+}
