@@ -16,7 +16,6 @@
 import { multicall } from '../../utils';
 
 const abi = [
-  'function balanceOf(address account) external view returns (uint256)',
   'function tokensOfOwner(address account) external view returns (uint256[])'
 ];
 
