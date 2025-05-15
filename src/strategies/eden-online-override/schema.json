@@ -31,7 +31,7 @@
             "e.g. 18"
           ]
         },
-        "url": {
+        "addressUrl": {
           "type": "string",
           "title": "URL of the document to fetch from IPFS",
           "examples": [
@@ -43,7 +43,7 @@
     "required": [
       "address",
       "decimals",
-      "url"
+      "addressUrl"
     ],
     "additionalProperties": true
   }

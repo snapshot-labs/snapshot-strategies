@@ -31,26 +31,26 @@ export async function strategy(
   options,
   snapshot
 ) {
-  const url = options.url;
+  const addressUrl = options.addressUrl;
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // Fetch Niji Agent EOA addresses
-  const req = await fetch(url);
+  const req = await fetch(addressUrl);
   if (!req.ok) throw new Error('Failed to fetch Niji Warrior address mapping');
   const rawNijiData = await req.json();
   if (
-    !rawNijiData.eoa ||
-    !Array.isArray(rawNijiData.eoa) ||
-    rawNijiData.eoa.length !== 10000 // 1 EOA per Niji Warrior
+    !rawNijiData.addresses ||
+    !Array.isArray(rawNijiData.addresses) ||
+    rawNijiData.addresses.length !== 10000 // 1 address per Niji Warrior
   ) {
     throw new Error(
-      'Invalid Niji Warrior address mapping: missing or malformed `eoa` array'
+      'Invalid Niji Warrior address mapping: missing or malformed `addresses` array'
     );
   }
 
   // Niji Warrior EOA address to tokenId
   const eoaToNijiId: Record<string, number> = {};
-  rawNijiData.eoa.forEach((address: string, nijiId: number) => {
+  rawNijiData.addresses.forEach((address: string, nijiId: number) => {
     eoaToNijiId[address.toLowerCase()] = nijiId;
   });
   const addressesLowerSet = new Set(addresses.map((a) => a.toLowerCase()));
