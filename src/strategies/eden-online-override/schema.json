@@ -35,16 +35,16 @@
           "type": "string",
           "title": "URL of the document to fetch from IPFS",
           "examples": [
-            "https://maroon-absent-panther-103.mypinata.cloud/ipfs/bafybeiellha74vduonid7k5qlrgyh5tnm4baauxggtynizarj426i537mm"
+            "e.g. https://maroon-absent-panther-103.mypinata.cloud/ipfs/bafybeiellha74vduonid7k5qlrgyh5tnm4baauxggtynizarj426i537mm"
           ]
         }
-      }
-    },
-    "required": [
-      "address",
-      "decimals",
-      "addressUrl"
-    ],
-    "additionalProperties": true
+      },
+      "required": [
+        "address",
+        "decimals",
+        "addressUrl"
+      ],
+      "additionalProperties": false
+    }
   }
 }

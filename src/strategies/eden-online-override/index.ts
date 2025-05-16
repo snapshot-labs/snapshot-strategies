@@ -50,17 +50,17 @@ export async function strategy(
   // Niji Warrior EOA address to tokenId
   const eoaToNijiId: Record<string, number> = {};
   rawNijiData.addresses.forEach((address: string, nijiId: number) => {
-    eoaToNijiId[address.toLowerCase()] = nijiId;
+    eoaToNijiId[address] = nijiId;
   });
-  const addressesLowerSet = new Set(addresses.map((a) => a.toLowerCase()));
+
+  const addressesSet = new Set<string>(addresses);
 
   // Filter out Niji Warrior EOAs since they own 0 tokens for tokensOfOwner multicall
-  const standardVoters = addresses.filter(
-    (addr) => eoaToNijiId[addr.toLowerCase()] === undefined
+  const standardVoters = Array.from(addressesSet).filter(
+    (addr: string) => eoaToNijiId[addr] === undefined
   );
 
   // Fetch token IDs owned by each player
-  // Instead of calling erc20BalanceOf, use `tokensOfOwner[id][0].length`
   const tokensOfOwner =
     standardVoters.length > 0
       ? await multicall(
@@ -86,14 +86,12 @@ export async function strategy(
     }
   }
 
-  // Compose final results using the original address array
+  // Final results with overrides
   const results: Record<string, number> = {};
   for (let i = 0; i < addresses.length; i++) {
     const address = addresses[i];
-    const addrLower = address.toLowerCase();
-    if (eoaToNijiId[addrLower] === undefined) {
-      // Standard user: their score = sqrt(number of NFTs owned)
-      // Find index of user in standardUsers
+    if (eoaToNijiId[address] === undefined) {
+      // Standard user: score = sqrt(NFT balance)
       const idx = standardVoters.indexOf(address);
       let tokenCount = 0;
       if (
@@ -105,12 +103,11 @@ export async function strategy(
       }
       results[address] = Math.sqrt(tokenCount);
     } else {
-      // This is a Niji Warrior agent address, find ind its tokenId to find its owner
+      // This is a Niji Warrior agent address, find its tokenId to find its owner
       // If the owner has already voted, agent gets 0; else 1
-      const nijiId = eoaToNijiId[addrLower];
+      const nijiId = eoaToNijiId[address];
       const owner = tokenOwners[nijiId];
-      results[address] =
-        owner && addressesLowerSet.has(owner.toLowerCase()) ? 0 : 1;
+      results[address] = owner && addressesSet.has(owner) ? 0 : 1;
     }
   }
 
