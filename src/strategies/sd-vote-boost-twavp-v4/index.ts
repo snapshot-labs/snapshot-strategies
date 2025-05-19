@@ -43,7 +43,7 @@ export async function strategy(
   calls.push([options.sdToken, 'totalSupply', []]);
 
   for (const pool of options.pools) {
-    calls.push([pool, 'balances', [1]]);
+    calls.push([options.sdToken, 'balanceOf', [pool]]);
   }
   calls.push([options.veToken, 'balanceOf', [options.liquidLocker]]);
 
@@ -61,7 +61,8 @@ export async function strategy(
   const blockList = getPreviousBlocks(
     blockTag,
     options.sampleStep,
-    options.sampleSize
+    options.sampleSize,
+    options.removeTwavp || false
   );
 
   // Query working balance of users
@@ -166,8 +167,13 @@ export async function strategy(
 function getPreviousBlocks(
   currentBlockNumber: number,
   numberOfBlocks: number,
-  daysInterval: number
+  daysInterval: number,
+  removeTwavp: boolean
 ): number[] {
+  if (removeTwavp) {
+    return [currentBlockNumber];
+  }
+
   // Estimate number of blocks per day
   const blocksPerDay = 86400 / 12;
   // Calculate total blocks interval
