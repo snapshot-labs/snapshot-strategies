@@ -10,7 +10,8 @@
     "esModuleInterop": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
   "include": ["src"],
   "files": ["./src/typings.d.ts"]

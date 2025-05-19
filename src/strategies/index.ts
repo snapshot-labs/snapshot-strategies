@@ -477,8 +477,15 @@ import * as superfluidVesting from './superfluid-vesting';
 import * as spookyLpSonic from './spooky-lp-sonic';
 import * as synapse from './synapse';
 import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
+import * as erc20BalanceOfSaevo from './erc20-balance-of-saevo';
+import * as apecoinStaking from './apecoin-staking';
+import * as shroomyVotingPower from './shroomy-voting-power';
+import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 
 const strategies = {
+  'shroomy-voting-power': shroomyVotingPower,
+  'apecoin-staking': apecoinStaking,
+  'erc20-balance-of-saevo': erc20BalanceOfSaevo,
   livepeer,
   'spooky-lp-sonic': spookyLpSonic,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -876,7 +883,8 @@ const strategies = {
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
   'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
-  'sd-gauge-less-vote-boost-crosschain-spectra': sdGaugeLessVoteBoostCrosschainSpectra,
+  'sd-gauge-less-vote-boost-crosschain-spectra':
+    sdGaugeLessVoteBoostCrosschainSpectra,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
@@ -964,7 +972,8 @@ const strategies = {
   realt,
   'superfluid-vesting': superfluidVesting,
   synapse,
-  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'prl-in-sprl2-balance': prlInSpRL2Balance
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
