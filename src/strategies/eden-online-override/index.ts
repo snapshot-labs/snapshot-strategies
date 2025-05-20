@@ -100,8 +100,10 @@ export async function strategy(
         Array.isArray(tokensOfOwner[idx][0])
       ) {
         tokenCount = tokensOfOwner[idx][0].length;
+        results[address] = Math.sqrt(tokenCount);
+      } else {
+        results[address] = 0;
       }
-      results[address] = Math.sqrt(tokenCount);
     } else {
       // This is a Niji Warrior agent address, find its tokenId to find its owner
       // If the owner has already voted, agent gets 0; else 1
