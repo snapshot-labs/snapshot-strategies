@@ -21,6 +21,7 @@ const abi = [
 
 export const author = 'nicolas-law';
 export const version = '0.1.0';
+export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,
