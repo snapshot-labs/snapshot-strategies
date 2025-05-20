@@ -6,7 +6,7 @@
       "params": {
         "symbol": "UBINIJI",
         "address": "0x66efaf92df6456c3cb810012b2de3fb223c25d0d",
-        "decimals": "0",
+        "decimals": 0,
         "addressUrl": "https://maroon-absent-panther-103.mypinata.cloud/ipfs/bafybeicd55sbss2vnxpqaicg7dqmlyjbkqpscqy357idinpyhwgvh53jii"
       }
     },
