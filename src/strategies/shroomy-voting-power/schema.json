@@ -8,7 +8,7 @@
       "properties": {
         "votingPowerContract": {
           "type": "string",
-          "title": "Adress of the contract with the getVotingPower function",
+          "title": "Address of the contract with the getVotingPower function",
           "examples": ["e.g. 0x3a3B720aE972113b8aFC79effa13553fdc55e702"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
@@ -16,7 +16,7 @@
         },
         "shroomyToken": {
           "type": "string",
-          "title": "Adress of the Shroomy token",
+          "title": "Address of the Shroomy token",
           "examples": ["e.g. 0xAF01Df0F0D5c524bA8F041FD80ef306DB73fb6EA"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
@@ -35,7 +35,7 @@
             "properties": {
               "address": {
                 "type": "string",
-                "title": "Adress of the LP token contract",
+                "title": "Address of the LP token contract",
                 "pattern": "^0x[a-fA-F0-9]{40}$",
                 "minLength": 42,
                 "maxLength": 42
