@@ -13,6 +13,7 @@ import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
+import * as dimoBalanceOfOrVotesWithOverride from './dimo-balance-of-or-votes-with-overrides';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
@@ -528,6 +529,7 @@ const strategies = {
   'erc20-balance-of-at': erc20BalanceOfAt,
   'erc20-votes': erc20Votes,
   'erc20-votes-with-override': erc20VotesWithOverride,
+  'dimo-balance-of-or-votes-with-overrides': dimoBalanceOfOrVotesWithOverride,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,

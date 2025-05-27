@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "dimo-balance-of-or-votes-with-overrides",
+      "params": {
+        "address": "0xE261D618a959aFfFd53168Cd07D12E37B26761db",
+        "symbol": "DIMO",
+        "decimals": 18
+      }
+    },
+    "network": "137",
+    "addresses": [
+      "0xd744468B9192301650f8Cb5e390BdD824DFA6Dd9",
+      "0x3E54D4B54E41AeB81525b1d012dAac48B11b096e",
+      "0xCD162D41b5f76a20e4Bb0C3Bc579db1080d3987C",
+      "0x1FEf0Af90412993e9eBce447F32D6c4Ca46D1331"
+    ],
+    "snapshot": 3715149
+  }
+]
