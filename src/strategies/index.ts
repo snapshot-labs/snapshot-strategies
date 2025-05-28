@@ -482,6 +482,7 @@ import * as apecoinStaking from './apecoin-staking';
 import * as shroomyVotingPower from './shroomy-voting-power';
 import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 import * as edenOnlineOverride from './eden-online-override';
+import { DEFAULT_SUPPORTED_PROTOCOLS } from '..';
 
 const strategies = {
   'shroomy-voting-power': shroomyVotingPower,
@@ -1010,6 +1011,7 @@ Object.keys(strategies).forEach(function (strategyName) {
   strategies[strategyName].examples = examples;
   strategies[strategyName].schema = schema;
   strategies[strategyName].about = about;
+  strategies[strategyName].supportedProtocols ||= DEFAULT_SUPPORTED_PROTOCOLS;
 });
 
 export default strategies;

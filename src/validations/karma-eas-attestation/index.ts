@@ -70,7 +70,10 @@ export default class extends Validation {
   public description =
     'Use EAS attest.sh to determine if user can create a proposal.';
   public proposalValidationOnly = true;
+
   async validate(): Promise<boolean> {
+    this.validateAddressType();
+
     const schemaId = this.params.schemaId;
     if (!schemaId) throw new Error(`Attestation schema not provided`);
 

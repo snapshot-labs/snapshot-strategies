@@ -20,6 +20,9 @@ export default class extends Validation {
   async validate(): Promise<boolean> {
     if (this.params.strategies?.length > 8)
       throw new Error(`Max number of strategies exceeded`);
+
+    this.validateAddressType();
+
     const minBps = this.params.minBps;
     const decimals = this.params.decimals;
     const excludeaddr =

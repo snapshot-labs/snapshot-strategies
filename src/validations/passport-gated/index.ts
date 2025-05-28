@@ -171,6 +171,8 @@ export default class extends Validation {
     'Protect your proposals from spam and vote manipulation by requiring users to have a valid Gitcoin Passport.';
 
   async validate(currentAddress = this.author): Promise<boolean> {
+    this.validateAddressType();
+
     const requiredStamps = this.params.stamps || [];
     const operator = this.params.operator;
     const scoreThreshold = this.params.scoreThreshold || 0;
