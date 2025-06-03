@@ -480,6 +480,7 @@ import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
 import * as erc20BalanceOfSaevo from './erc20-balance-of-saevo';
 import * as apecoinStaking from './apecoin-staking';
 import * as shroomyVotingPower from './shroomy-voting-power';
+import * as pufferGetPastVotes from './puffer-getpastvotes';
 
 const strategies = {
   'shroomy-voting-power': shroomyVotingPower,
@@ -971,7 +972,8 @@ const strategies = {
   realt,
   'superfluid-vesting': superfluidVesting,
   synapse,
-  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'puffer-getpastvotes': pufferGetPastVotes
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

@@ -1,0 +1,19 @@
+[
+  {
+    "name": "vlPUFFER Example",
+    "strategy": {
+      "name": "puffer-getpastvotes",
+      "params": {
+        "address": "0xcD1adFB7Ae5E08F7494cdE2EA6666CeF5cc4804c",
+        "decimals": 18
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0xe19cBAAa2e546f8C6175892190d1f26279d19995",
+      "0xDDDeAfB492752FC64220ddB3E7C9f1d5CcCdFdF0",
+      "0x65d2dd7A66a2733a36559fE900A236280A05FBD6"
+    ],
+    "snapshot": 8310195
+  }
+]
