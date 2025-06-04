@@ -975,7 +975,7 @@ const strategies = {
   'superfluid-vesting': superfluidVesting,
   synapse,
   'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
-  'puffer-getpastvotes': pufferGetPastVotes
+  'puffer-getpastvotes': pufferGetPastVotes,
   'prl-in-sprl2-balance': prlInSpRL2Balance,
   'eden-online-override': edenOnlineOverride
 };
