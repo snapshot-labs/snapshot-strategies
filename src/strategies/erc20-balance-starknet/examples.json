@@ -1,6 +1,6 @@
 [
   {
-    "name": "Top STRK Holders's balance",
+    "name": "Top STRK holder balances",
     "strategy": {
       "name": "erc20-balance-starknet",
       "params": {
