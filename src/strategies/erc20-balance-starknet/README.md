@@ -12,4 +12,4 @@ Here is an example of parameters:
 }
 ```
 
-List of tokens and its details can be found on https://starkscan.co/top-tokens
+List of tokens and their details can be found on https://starkscan.co/top-tokens
