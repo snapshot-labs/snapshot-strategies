@@ -20,7 +20,7 @@
           "examples": [
             "e.g. 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
           ],
-          "pattern": "^0x[a-fA-F0-9]{64}$",
+          "pattern": "^0x[a-f0-9]{64}$",
           "minLength": 66,
           "maxLength": 66,
           "errorMessage": "Must be a valid lowercase and padded Starknet contract address"
