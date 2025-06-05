@@ -9,9 +9,7 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": [
-            "e.g. STRK"
-          ],
+          "examples": ["e.g. STRK"],
           "maxLength": 16
         },
         "address": {
@@ -28,16 +26,11 @@
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": [
-            "e.g. 18"
-          ],
+          "examples": ["e.g. 18"],
           "minimum": 0
         }
       },
-      "required": [
-        "address",
-        "decimals"
-      ],
+      "required": ["address", "decimals"],
       "additionalProperties": false
     }
   }
