@@ -167,6 +167,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as defiAppVoting from './defi-app-voting';
 import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
@@ -699,6 +700,7 @@ const strategies = {
   'loot-character-guilds': lootCharacterGuilds,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
+  'defi-app-voting': defiAppVoting,
   'hashes-voting': hashesVoting,
   'hashflow-vehft': hashflowVeHft,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
