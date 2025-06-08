@@ -26,8 +26,12 @@ export async function strategy(
   const MFD_CONTRACT = options.lockingContract;
   const HOME_TOKEN = options.homeToken;
 
-  const locksMulticaller = new Multicaller(network, provider, mfdAbi, { blockTag });
-  const homeMulticaller = new Multicaller(network, provider, erc20Abi, { blockTag });
+  const locksMulticaller = new Multicaller(network, provider, mfdAbi, {
+    blockTag
+  });
+  const homeMulticaller = new Multicaller(network, provider, erc20Abi, {
+    blockTag
+  });
 
   addresses.forEach((address) => {
     locksMulticaller.call(address, MFD_CONTRACT, 'getUserLocks', [address]);
