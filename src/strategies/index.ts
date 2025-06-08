@@ -493,7 +493,7 @@ const strategies = {
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
-  givethGnosisBalanceSupplyWeightedV3,
+    givethGnosisBalanceSupplyWeightedV3,
   'minime-balance-vs-supply-weighted': minimeBalanceVsSupplyWeighted,
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
@@ -556,7 +556,7 @@ const strategies = {
   'erc721-with-tokenid': erc721WithTokenId,
   'erc721-with-tokenid-range-weights': erc721WithTokenIdRangeWeights,
   'erc721-with-tokenid-range-weights-simple':
-  erc721WithTokenIdRangeWeightsSimple,
+    erc721WithTokenIdRangeWeightsSimple,
   'erc721-with-tokenid-weighted': erc721WithTokenIdWeighted,
   'erc721-with-metadata': erc721WithMetadata,
   'erc721-with-metadata-by-ownerof': erc721WithMetadataByOwnerOf,
@@ -691,7 +691,7 @@ const strategies = {
   'sunrisegaming-staking': sunriseGamingStaking,
   'single-staking-autocompound-balanceof': singleStakingAutoCompoundBalanceOf,
   'single-staking-longtermstaking-balanceof':
-  singleStakingLongTermStakingBalanceOf,
+    singleStakingLongTermStakingBalanceOf,
   'single-staking-pools-balanceof': singleStakingPoolsBalanceOf,
   'hopr-stake-and-balance-qv': hoprStakeAndBalanceQV,
   'hopr-bridged-balance': hoprBridgedBalance,
@@ -734,7 +734,7 @@ const strategies = {
   'snet-stakers': snetStakers,
   'snet-liquidity-providers': snetLiquidityProviders,
   'unstackedtoadz-and-stackedtoadz-stakers':
-  unstackedToadzAndStackedToadzStakers,
+    unstackedToadzAndStackedToadzStakers,
   'ocean-dao-brightid': oceanDAOBrightID,
   membership: membership,
   'lydia-gov-vault': lydiaGovVault,
@@ -837,7 +837,7 @@ const strategies = {
   'nation3-passport-coop-with-delegations': nation3CoopPassportWithDelegations,
   'erc20-tokens-per-uni': erc20TokensPerUni,
   'bancor-standard-rewards-underlying-balance':
-  bancorStandardRewardsUnderlyingBalance,
+    bancorStandardRewardsUnderlyingBalance,
   'sd-vote-boost': sdVoteBoost,
   'sd-vote-boost-twavp': sdVoteBoostTWAVP,
   spreadsheet,
@@ -874,7 +874,7 @@ const strategies = {
   'hats-protocol-single-vote-per-org': hatsProtocolSingleVotePerOrg,
   'karma-discord-roles': karmaDiscordRoles,
   'seedify-cumulative-voting-power-hodl-staking-farming':
-  seedifyHoldStakingFarming,
+    seedifyHoldStakingFarming,
   'staked-morekudasai': stakedMoreKudasai,
   'sablier-v1-deposit': sablierV1Deposit,
   'sablier-v2': sablierV2,
@@ -887,7 +887,7 @@ const strategies = {
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
   'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
   'sd-gauge-less-vote-boost-crosschain-spectra':
-  sdGaugeLessVoteBoostCrosschainSpectra,
+    sdGaugeLessVoteBoostCrosschainSpectra,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
@@ -934,7 +934,7 @@ const strategies = {
   'total-axion-shares': totalAxionShares,
   'unipool-same-token': unipoolSameToken,
   'vendor-v2-borrower-collateral-balance-of':
-  vendorV2BorrowerCollateralBalanceOf,
+    vendorV2BorrowerCollateralBalanceOf,
   'volt-voting-power': voltVotingPower,
   'xdai-stakers-and-holders': xdaiStakersAndHolders,
   'urbit-galaxies': urbitGalaxies,
@@ -945,7 +945,7 @@ const strategies = {
   'a51-vault-balance': a51VaultBalance,
   'quickswap-v3': quickswapv3,
   'balance-of-with-bazaar-batch-auction-linear-vesting-power':
-  balanceOfWithBazaarBatchAuctionLinearVestingPower,
+    balanceOfWithBazaarBatchAuctionLinearVestingPower,
   'staking-balance-of-v1': stakingBalanceOfV1,
   'staking-balance-of-v2': stakingBalanceOfV2,
   'garden-stakes': gardenStakes,
