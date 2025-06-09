@@ -1,0 +1,63 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "votingPowerContract": {
+          "type": "string",
+          "title": "Address of the contract with the getVotingPower function",
+          "examples": ["e.g. 0x3a3B720aE972113b8aFC79effa13553fdc55e702"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "shroomyToken": {
+          "type": "string",
+          "title": "Address of the Shroomy token",
+          "examples": ["e.g. 0xAF01Df0F0D5c524bA8F041FD80ef306DB73fb6EA"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "shroomyDecimals": {
+          "type": "number",
+          "title": "Number of decimal places of the Shroomy token",
+          "examples": ["e.g. 18"]
+        },
+        "lpTokens": {
+          "type": "array",
+          "title": "LP tokens (optional)",
+          "items": {
+            "type": "object",
+            "properties": {
+              "address": {
+                "type": "string",
+                "title": "Address of the LP token contract",
+                "pattern": "^0x[a-fA-F0-9]{40}$",
+                "minLength": 42,
+                "maxLength": 42
+              },
+              "decimals": {
+                "type": "number",
+                "title": "Number of decimal places",
+                "examples": ["e.g. 18"]
+              },
+              "multiplier": {
+                "type": "number",
+                "title": "Multiplier of the voting power (optional)",
+                "examples": ["e.g. 1"],
+                "default": 1
+              }
+            },
+            "required": ["address", "decimals"]
+          }
+        }
+      },
+      "required": ["votingPowerContract", "shroomyToken", "shroomyDecimals"],
+      "additionalProperties": false
+    }
+  }
+}

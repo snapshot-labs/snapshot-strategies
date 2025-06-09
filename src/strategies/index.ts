@@ -167,6 +167,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as defiAppVoting from './defi-app-voting';
 import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
@@ -477,8 +478,16 @@ import * as superfluidVesting from './superfluid-vesting';
 import * as spookyLpSonic from './spooky-lp-sonic';
 import * as synapse from './synapse';
 import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
+import * as erc20BalanceOfSaevo from './erc20-balance-of-saevo';
+import * as apecoinStaking from './apecoin-staking';
+import * as shroomyVotingPower from './shroomy-voting-power';
+import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
+import * as edenOnlineOverride from './eden-online-override';
 
 const strategies = {
+  'shroomy-voting-power': shroomyVotingPower,
+  'apecoin-staking': apecoinStaking,
+  'erc20-balance-of-saevo': erc20BalanceOfSaevo,
   livepeer,
   'spooky-lp-sonic': spookyLpSonic,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
@@ -691,6 +700,7 @@ const strategies = {
   'loot-character-guilds': lootCharacterGuilds,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
+  'defi-app-voting': defiAppVoting,
   'hashes-voting': hashesVoting,
   'hashflow-vehft': hashflowVeHft,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
@@ -965,7 +975,9 @@ const strategies = {
   realt,
   'superfluid-vesting': superfluidVesting,
   synapse,
-  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'prl-in-sprl2-balance': prlInSpRL2Balance,
+  'eden-online-override': edenOnlineOverride
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

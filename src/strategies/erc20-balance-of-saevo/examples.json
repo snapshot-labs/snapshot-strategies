@@ -1,0 +1,20 @@
+[
+  {
+    "name": "Balance of sAEVO",
+    "strategy": {
+      "name": "erc20-balance-of-saevo",
+      "params": {
+        "address": "0x38913051E01D4F6910cB66bB9aC3cb77D746Ad81",
+        "symbol": "sAEVO",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xe21bf4f4bcaf23c70481eae6464a3a896b16084d",
+      "0x00000032cb44d0ec3a78a18c8dda95071d341d1a",
+      "0x050a2af16d500bcdb5ce7a21fbd95a5c831210ab"
+    ],
+    "snapshot": 11437846
+  }
+]
