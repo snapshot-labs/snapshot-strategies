@@ -23,11 +23,11 @@ export async function strategy(
   const multi = new Multicaller(network, provider, abi, { blockTag });
 
   // Figure out the current block number
-  let blockNumber = await provider.getBlockNumber();
+  let blockNumber = blockTag;
 
   // If the block tag is not the latest block, use the block tag as blockNumber
-  if (blockTag !== 'latest') {
-    blockNumber = blockTag;
+  if (blockTag === 'latest') {
+    blockNumber = await provider.getBlockNumber();
   }
 
   // Fetch that block to figure out the block timestamp (current interval block timestamp)
