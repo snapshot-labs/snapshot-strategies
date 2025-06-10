@@ -13,7 +13,7 @@ const abi = [
   'function getEthBalance(address account) public view returns (uint256 balance)'
 ];
 
-const CONTRACT_ADDRESS = '0xdd6b74123b2ab93ad701320d3f8d1b92b4fa5202';
+const DELEGATION_CONTRACT_ADDRESS = '0xdd6b74123b2ab93ad701320d3f8d1b92b4fa5202';
 const DELEGATION_ID =
   '0x0000000000000000000000000000000000000000000000000000000000000001';
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -35,13 +35,13 @@ export async function strategy(
   addresses.forEach((address: string) => {
     delegationMulticall.call(
       `delegation.${address}`,
-      CONTRACT_ADDRESS,
+      DELEGATION_CONTRACT_ADDRESS,
       'delegation',
       [address, DELEGATION_ID]
     );
     delegationMulticall.call(
       `delegators.${address}`,
-      CONTRACT_ADDRESS,
+      DELEGATION_CONTRACT_ADDRESS,
       'getDelegators',
       [address, DELEGATION_ID]
     );
