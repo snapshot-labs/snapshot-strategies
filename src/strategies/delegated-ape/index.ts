@@ -28,7 +28,6 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  // First multicall: Get delegations and delegators for all addresses
   const delegationMulticall = new Multicaller(network, provider, abi, {
     blockTag
   });
@@ -50,25 +49,21 @@ export async function strategy(
 
   const results = await delegationMulticall.execute();
 
-  // Process results and collect all delegators
   const allDelegators = new Set<string>();
 
   addresses.forEach((voterAddress: string) => {
     const delegation = results.delegation[voterAddress];
     const delegators = results.delegators[voterAddress] || [];
 
-    // Add delegators from getDelegators call
     delegators.forEach((delegator: string) => {
       allDelegators.add(delegator.toLowerCase());
     });
 
-    // If delegation is zero address, add the voter address itself
     if (delegation === ZERO_ADDRESS) {
       allDelegators.add(voterAddress.toLowerCase());
     }
   });
 
-  // Second multicall: Get ETH balance for all delegators
   const balanceMulticall = new Multicaller(
     network,
     provider,
@@ -90,7 +85,6 @@ export async function strategy(
   const balanceResults: Record<string, BigNumberish> =
     await balanceMulticall.execute();
 
-  // Calculate final scores
   const scores: Record<string, number> = {};
 
   addresses.forEach((voterAddress: string) => {
@@ -99,20 +93,18 @@ export async function strategy(
 
     let totalVotingPower = BigNumber.from(0);
 
-    // Add voting power from all delegators
     delegators.forEach((delegator: string) => {
       const balance = balanceResults[delegator.toLowerCase()] || 0;
       totalVotingPower = totalVotingPower.add(BigNumber.from(balance));
     });
 
-    // If delegation is zero address, add voter's own balance
     if (delegation === ZERO_ADDRESS) {
       const voterBalance = balanceResults[voterAddress.toLowerCase()] || 0;
       totalVotingPower = totalVotingPower.add(BigNumber.from(voterBalance));
     }
 
     scores[getAddress(voterAddress)] = parseFloat(
-      formatUnits(totalVotingPower, options.decimals || 18)
+      formatUnits(totalVotingPower, 18)
     );
   });
 

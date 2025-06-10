@@ -6,7 +6,9 @@ If a user has delegated their voting power to someone else, their own balance is
 
 ## Parameters
 
-| Parameter | Description | Default |
-| --------- | ----------- | ------- |
-| `decimals` | Number of decimals for the token | 18 |
+| Parameter | Description |
+| --------- | ----------- |
+| `symbol` | Symbol for display purposes (optional) |
+
+Note: Decimals are hardcoded to 18.
 
