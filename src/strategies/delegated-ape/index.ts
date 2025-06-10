@@ -13,10 +13,6 @@ const abi = [
   'function getEthBalance(address account) public view returns (uint256 balance)'
 ];
 
-const DELEGATION_CONTRACT_ADDRESS =
-  '0xdd6b74123b2ab93ad701320d3f8d1b92b4fa5202';
-const DELEGATION_ID =
-  '0x0000000000000000000000000000000000000000000000000000000000000001';
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
 
 export async function strategy(
@@ -36,15 +32,15 @@ export async function strategy(
   addresses.forEach((address: string) => {
     delegationMulticall.call(
       `delegation.${address}`,
-      DELEGATION_CONTRACT_ADDRESS,
+      options.delegationContract,
       'delegation',
-      [address, DELEGATION_ID]
+      [address, options.delegationId]
     );
     delegationMulticall.call(
       `delegators.${address}`,
-      DELEGATION_CONTRACT_ADDRESS,
+      options.delegationContract,
       'getDelegators',
-      [address, DELEGATION_ID]
+      [address, options.delegationId]
     );
   });
 

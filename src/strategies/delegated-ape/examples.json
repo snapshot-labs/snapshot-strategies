@@ -4,7 +4,9 @@
     "strategy": {
       "name": "delegated-ape",
       "params": {
-        "symbol": "APE"
+        "symbol": "APE",
+        "delegationContract": "0xDd6B74123b2aB93aD701320D3F8D1b92B4fA5202",
+        "delegationId": "0x0000000000000000000000000000000000000000000000000000000000000001"
       }
     },
     "network": "33111",
