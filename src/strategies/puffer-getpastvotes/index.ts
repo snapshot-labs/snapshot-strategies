@@ -14,8 +14,25 @@ export async function strategy(
   network,
   provider,
   addresses,
-  options
+  options,
+  snapshot
 ): Promise<Record<string, number>> {
+  const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
+
+  // Create a multicaller for the block tag, either past / present
+  const multi = new Multicaller(network, provider, abi, { blockTag });
+
+  // Figure out the current block number
+  let blockNumber = await provider.getBlockNumber();
+
+  // If the block tag is not the latest block, use the block tag as blockNumber
+  if (blockTag !== 'latest') {
+    blockNumber = blockTag;
+  }
+
+  // Fetch that block to figure out the block timestamp (current interval block timestamp)
+  const block = await provider.getBlock(blockNumber);
+
   // We want to use `getPastVotes` because of the delegation happening on the contract
   // We want to use the past timestamp to get the votes at the start of the previous week
 
@@ -23,15 +40,14 @@ export async function strategy(
   // This ensures alignment with contract's 7-day voting periods
   const SECONDS_PER_WEEK = 7 * 24 * 60 * 60;
   // Get the current timestamp in seconds
-  const currentTimestampInSeconds = Math.floor(Date.now() / 1000);
+  const currentIntervalBlockTimestampInSeconds = block.timestamp;
+
   // Calculate the current period based on the current timestamp
   const currentPeriod = Math.floor(
-    currentTimestampInSeconds / SECONDS_PER_WEEK
+    currentIntervalBlockTimestampInSeconds / SECONDS_PER_WEEK
   );
   // Calculate the timestamp at the end of the previous period
   const previousPeriodEnd = currentPeriod * SECONDS_PER_WEEK - 1;
-
-  const multi = new Multicaller(network, provider, abi);
 
   addresses.forEach((address) =>
     multi.call(address, options.address, 'getPastVotes', [
