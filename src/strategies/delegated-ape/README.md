@@ -8,7 +8,4 @@ If a user has delegated their voting power to someone else, their own balance is
 
 | Parameter | Description |
 | --------- | ----------- |
-| `symbol` | Symbol for display purposes (optional) |
-
-Note: Decimals are hardcoded to 18.
-
+| `symbol` | Symbol to display (optional) |
