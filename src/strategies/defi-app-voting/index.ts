@@ -49,7 +49,7 @@ export async function strategy(
       const sHome = locks.reduce((acc, lock) => acc + toJsNum(lock.amount), 0);
       const home = toJsNum(homeBalances[address] ?? 0);
 
-      const weightedPower = sHome * 0.8 + home * 0.2;
+      const weightedPower = sHome * 4 + home;
       return [address, weightedPower];
     })
   );
