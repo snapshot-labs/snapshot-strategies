@@ -6,7 +6,7 @@ Using the protocol, DAOs can give various types of badges to their members. Thes
 
 This architecture lets communities track and visualise their member activity and, on the other hand, lets community members build their portfolio of work through on-chain credentials. These naturally have a higher signalling value than more traditional types of portfolios like resumés.
 
-Badges given through the rep3 platform are also fully interoperable with several web3 tools, especially those that are used for gating resources behind a token. These badges, at a contract level, are custom implmentations of ERC-721 tokens. This is a deliberate decision to balance the trade-off between maintaining the integrity of these badges (w.r.t. the work they represent) and permitting key rotation by users.
+Badges given through the rep3 platform are also fully interoperable with several web3 tools, especially those that are used for gating resources behind a token. These badges, at a contract level, are custom implementations of ERC-721 tokens. This is a deliberate decision to balance the trade-off between maintaining the integrity of these badges (w.r.t. the work they represent) and permitting key rotation by users.
 
 The rest of this document details the technical specifications and integration process of our protocol. Please note that this document might be confusing to understand or even have some outdated parts. We are in the process of updating these as we begin to focus on protocol-level integrations in addition to focussing on tool adoption.
 
