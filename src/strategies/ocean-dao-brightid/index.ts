@@ -81,7 +81,7 @@ export async function strategy(
     .filter((address, index, self) => self.indexOf(address) === index); // Remove duplicates
 
   for (const chain of Object.keys(options.strategies)) {
-    let scores = await getScoresDirect(
+    const scores = await getScoresDirect(
       space,
       options.strategies[chain],
       chain,
@@ -92,7 +92,7 @@ export async function strategy(
 
     // [{ address: '0x...', score: 0.5 },{ address: '0x...', score: 0.5 }]
     // sum scores for each address and return
-    scores = scores.reduce((finalScores: any, score: any) => {
+    const addressScores = scores.reduce((finalScores: any, score: any) => {
       for (const [address, value] of Object.entries(score)) {
         if (!finalScores[address]) {
           finalScores[address] = 0;
@@ -105,19 +105,19 @@ export async function strategy(
 
     // sum delegations
     addresses.forEach((address) => {
-      if (!scores[address]) scores[address] = 0;
+      if (!addressScores[address]) addressScores[address] = 0;
       if (delegations[address]) {
         delegations[address].forEach((delegator: string) => {
-          scores[address] += scores[delegator] ?? 0; // add delegator score
-          scores[delegator] = 0; // set delegator score to 0
+          addressScores[address] += addressScores[delegator] ?? 0; // add delegator score
+          addressScores[delegator] = 0; // set delegator score to 0
         });
       }
     });
 
-    for (const key of Object.keys(scores)) {
+    for (const key of Object.keys(addressScores)) {
       totalScores[key] = totalScores[key]
-        ? totalScores[key] + scores[key]
-        : scores[key];
+        ? totalScores[key] + addressScores[key]
+        : addressScores[key];
     }
   }
 
