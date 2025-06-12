@@ -170,9 +170,7 @@ export default class extends Validation {
   public description =
     'Protect your proposals from spam and vote manipulation by requiring users to have a valid Gitcoin Passport.';
 
-  async validate(currentAddress = this.author): Promise<boolean> {
-    this.validateAddressType();
-
+  protected async doValidate(customAuthor: string): Promise<boolean> {
     const requiredStamps = this.params.stamps || [];
     const operator = this.params.operator;
     const scoreThreshold = this.params.scoreThreshold || 0;
@@ -183,7 +181,7 @@ export default class extends Validation {
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
     const validStamps = await validateStamps(
-      currentAddress,
+      customAuthor,
       operator,
       proposalTs,
       requiredStamps
@@ -194,7 +192,7 @@ export default class extends Validation {
     }
 
     const validScore = await validatePassportScore(
-      currentAddress,
+      customAuthor,
       scoreThreshold
     );
 

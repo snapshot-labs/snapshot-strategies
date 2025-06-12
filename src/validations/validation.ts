@@ -1,3 +1,4 @@
+import { DEFAULT_SUPPORTED_PROTOCOLS } from '..';
 import { Protocol, Snapshot } from '../types';
 import snapshot from '@snapshot-labs/snapshot.js';
 
@@ -7,7 +8,7 @@ export default class Validation {
   public version = '';
   public title = '';
   public description = '';
-  public supportedProtocols: Protocol[] = ['evm'];
+  public supportedProtocols: Protocol[] = DEFAULT_SUPPORTED_PROTOCOLS;
 
   public author: string;
   public space: string;
@@ -29,12 +30,20 @@ export default class Validation {
     this.params = params;
   }
 
-  async validate(): Promise<boolean> {
+  async validate(customAuthor = this.author): Promise<boolean> {
+    this.validateAddressType(customAuthor);
+
+    return this.doValidate(customAuthor);
+  }
+
+  // Abstract method to be implemented by subclasses
+  // This contains the actual validation logic without global/commons validation
+  protected async doValidate(_customAuthor: string): Promise<boolean> {
     return true;
   }
 
-  validateAddressType(): boolean {
-    const formattedAddress = snapshot.utils.getFormattedAddress(this.author);
+  validateAddressType(address: string): boolean {
+    const formattedAddress = snapshot.utils.getFormattedAddress(address);
 
     if (
       (snapshot.utils.isEvmAddress(formattedAddress) &&
@@ -46,7 +55,7 @@ export default class Validation {
     }
 
     throw new Error(
-      `Address "${this.author}" is not a valid ${this.supportedProtocols.join(
+      `Address "${address}" is not a valid ${this.supportedProtocols.join(
         ' or '
       )} address`
     );

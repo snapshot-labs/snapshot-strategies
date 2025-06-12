@@ -10,14 +10,13 @@ export default class extends Validation {
   public description = 'Use any strategy to determine if a user can vote.';
   public supportedProtocols: Protocol[] = ['evm', 'starknet'];
 
-  async validate(): Promise<boolean> {
+  protected async doValidate(): Promise<boolean> {
     if (this.params.strategies?.length > 8)
       throw new Error(`Max number of strategies exceeded`);
 
     const minScore = this.params.minScore;
 
     if (minScore) {
-      this.validateAddressType();
       const scores = await getScoresDirect(
         this.space,
         this.params.strategies,
