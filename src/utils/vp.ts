@@ -10,6 +10,7 @@ import {
 } from '../utils';
 import _strategies from '../strategies';
 import { Score, Snapshot, VotingPower } from '../types';
+import { DEFAULT_SUPPORTED_PROTOCOLS } from '..';
 
 const DELEGATION_CONTRACT = '0x469788fE6E9E9681C6ebF3bF78e7Fd26Fc015446';
 const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -58,7 +59,7 @@ export async function getVp(
 
     addresses = getFormattedAddressesByProtocol(
       addresses,
-      strategy.supportedProtocols
+      strategy.supportedProtocols ?? DEFAULT_SUPPORTED_PROTOCOLS
     );
     return _strategies[strategy.name].strategy(
       space,
