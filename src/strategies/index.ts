@@ -485,7 +485,7 @@ import * as shroomyVotingPower from './shroomy-voting-power';
 import * as pufferGetPastVotes from './puffer-getpastvotes';
 import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 import * as edenOnlineOverride from './eden-online-override';
-import { DEFAULT_SUPPORTED_PROTOCOLS } from '..';
+import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
 
 const strategies = {
   'shroomy-voting-power': shroomyVotingPower,

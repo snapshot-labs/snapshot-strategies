@@ -1,6 +1,9 @@
-import { DEFAULT_SUPPORTED_PROTOCOLS, MAX_STRATEGIES_LENGTH } from '..';
-import { Protocol, Snapshot } from '../types';
 import snapshot from '@snapshot-labs/snapshot.js';
+import {
+  DEFAULT_SUPPORTED_PROTOCOLS,
+  MAX_STRATEGIES_LENGTH
+} from '../constants';
+import { Protocol, Snapshot } from '../types';
 
 export default class Validation {
   public id = '';
@@ -40,20 +43,25 @@ export default class Validation {
 
   // Abstract method to be implemented by subclasses
   // This contains the actual validation logic without global/commons validation
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   protected async doValidate(_customAuthor: string): Promise<boolean> {
     return true;
   }
 
   private validateAddressType(address: string): boolean {
-    const formattedAddress = snapshot.utils.getFormattedAddress(address);
+    try {
+      const formattedAddress = snapshot.utils.getFormattedAddress(address);
 
-    if (
-      (snapshot.utils.isEvmAddress(formattedAddress) &&
-        this.supportedProtocols.includes('evm')) ||
-      (snapshot.utils.isStarknetAddress(formattedAddress) &&
-        this.supportedProtocols.includes('starknet'))
-    ) {
-      return true;
+      if (
+        (snapshot.utils.isEvmAddress(formattedAddress) &&
+          this.supportedProtocols.includes('evm')) ||
+        (snapshot.utils.isStarknetAddress(formattedAddress) &&
+          this.supportedProtocols.includes('starknet'))
+      ) {
+        return true;
+      }
+    } catch (error) {
+      // If isStarknetAddress throws an error, fall through to the standard error
     }
 
     throw new Error(
