@@ -1,4 +1,4 @@
-import { DEFAULT_SUPPORTED_PROTOCOLS } from '..';
+import { DEFAULT_SUPPORTED_PROTOCOLS, MAX_STRATEGIES_LENGTH } from '..';
 import { Protocol, Snapshot } from '../types';
 import snapshot from '@snapshot-labs/snapshot.js';
 
@@ -9,6 +9,7 @@ export default class Validation {
   public title = '';
   public description = '';
   public supportedProtocols: Protocol[] = DEFAULT_SUPPORTED_PROTOCOLS;
+  public hasInnerStrategies = false;
 
   public author: string;
   public space: string;
@@ -32,6 +33,7 @@ export default class Validation {
 
   async validate(customAuthor = this.author): Promise<boolean> {
     this.validateAddressType(customAuthor);
+    this.validateStrategiesLength();
 
     return this.doValidate(customAuthor);
   }
@@ -42,7 +44,7 @@ export default class Validation {
     return true;
   }
 
-  validateAddressType(address: string): boolean {
+  private validateAddressType(address: string): boolean {
     const formattedAddress = snapshot.utils.getFormattedAddress(address);
 
     if (
@@ -59,5 +61,15 @@ export default class Validation {
         ' or '
       )} address`
     );
+  }
+
+  private validateStrategiesLength(): boolean {
+    if (
+      this.hasInnerStrategies &&
+      this.params.strategies?.length > MAX_STRATEGIES_LENGTH
+    ) {
+      throw new Error(`Max number of strategies exceeded`);
+    }
+    return true;
   }
 }
