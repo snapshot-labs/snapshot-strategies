@@ -84,6 +84,7 @@ import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
+import * as delegatedApe from './delegated-ape';
 import * as delegation from './delegation';
 import * as delegationWithCap from './delegation-with-cap';
 import * as delegationWithOverrides from './delegation-with-overrides';
@@ -167,6 +168,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as defiAppVoting from './defi-app-voting';
 import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
@@ -480,6 +482,7 @@ import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
 import * as erc20BalanceOfSaevo from './erc20-balance-of-saevo';
 import * as apecoinStaking from './apecoin-staking';
 import * as shroomyVotingPower from './shroomy-voting-power';
+import * as pufferGetPastVotes from './puffer-getpastvotes';
 import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 import * as edenOnlineOverride from './eden-online-override';
 import { DEFAULT_SUPPORTED_PROTOCOLS } from '..';
@@ -596,6 +599,7 @@ const strategies = {
   'staked-daomaker': stakedDaomaker,
   'balancer-unipool': balancerUnipool,
   typhoon,
+  'delegated-ape': delegatedApe,
   delegation,
   'delegation-with-cap': delegationWithCap,
   'delegation-with-overrides': delegationWithOverrides,
@@ -700,6 +704,7 @@ const strategies = {
   'loot-character-guilds': lootCharacterGuilds,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
+  'defi-app-voting': defiAppVoting,
   'hashes-voting': hashesVoting,
   'hashflow-vehft': hashflowVeHft,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
@@ -975,6 +980,7 @@ const strategies = {
   'superfluid-vesting': superfluidVesting,
   synapse,
   'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'puffer-getpastvotes': pufferGetPastVotes,
   'prl-in-sprl2-balance': prlInSpRL2Balance,
   'eden-online-override': edenOnlineOverride
 };
