@@ -1,11 +1,12 @@
 import { formatUnits, parseUnits } from '@ethersproject/units';
 import { Contract } from '@ethersproject/contracts';
 import { strategy as fetchERC20Balances } from '../erc20-balance-of';
+import { strategy as fetchERC20Votes } from '../erc20-votes';
 import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'Cooperlabs';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const BPTAbi = [
   'function getTokens() external view returns (address[] tokens)'
@@ -26,6 +27,7 @@ interface StrategyOptions {
     router: string;
   };
   multiplier: number;
+  useVoteBalance: boolean;
 }
 
 const ZERO_ADDRESS = '0x0000000000000000000000000000000000000000';
@@ -40,14 +42,23 @@ export async function strategy(
 ): Promise<Record<string, number>> {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
-  const account2BPTBalance = await fetchERC20Balances(
-    space,
-    network,
-    provider,
-    addresses,
-    options.sPRL2,
-    snapshot
-  );
+  const account2BPTBalance = options.useVoteBalance
+    ? await fetchERC20Votes(
+        space,
+        network,
+        provider,
+        addresses,
+        options.sPRL2,
+        snapshot
+      )
+    : await fetchERC20Balances(
+        space,
+        network,
+        provider,
+        addresses,
+        options.sPRL2,
+        snapshot
+      );
 
   const bptContract = new Contract(options.balancerV3.bpt, BPTAbi, provider);
   const poolTokens: string[] = await bptContract.getTokens();

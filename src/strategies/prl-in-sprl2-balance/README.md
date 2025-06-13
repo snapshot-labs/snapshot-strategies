@@ -4,10 +4,14 @@ This is a strategy to get PRL balances staked in sPRL2 contract extrapolated as 
 
 It works like this:
 
-1. Get BPT balance an account holds
+1. Depending the `useVoteBalance` flag, get either the BPT balance an account holds using `balanceOf(address)` or `getVotes(address)`
 
 ```js
+/// useVoteBalance = false:
 const BPTBalance = sPRL2.balanceOf(address);
+--- OR ---
+/// useVoteBalance = true
+const BPTBalance = sPRL2.getVotes(address);
 ```
 
 2. Get tokens of the Balancer Pool
@@ -70,6 +74,7 @@ Here is an example of parameters:
     "bpt": "0x1846C6cBE0D433e152fA358e5fF27968E18bcE7c",
     "router": "0x5C6fb490BDFD3246EB0bB062c168DeCAF4bD9FDd"
   },
-  "multiplier": 2.5
+  "multiplier": 2.5,
+  "useVoteBalance": false
 },
 ```
