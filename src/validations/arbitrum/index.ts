@@ -18,7 +18,7 @@ export default class extends Validation {
   public proposalValidationOnly = true;
 
   async validate(): Promise<boolean> {
-    if (this.params.strategies?.length > 8)
+    if (this.params.strategies?.length > 10)
       throw new Error(`Max number of strategies exceeded`);
     const minBps = this.params.minBps;
     const decimals = this.params.decimals;

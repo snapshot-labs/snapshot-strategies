@@ -9,7 +9,7 @@ export default class extends Validation {
   public description = 'Use any strategy to determine if a user can vote.';
 
   async validate(): Promise<boolean> {
-    if (this.params.strategies?.length > 8)
+    if (this.params.strategies?.length > 10)
       throw new Error(`Max number of strategies exceeded`);
     const minScore = this.params.minScore;
 
