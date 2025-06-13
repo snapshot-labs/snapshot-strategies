@@ -6,7 +6,7 @@ import { getAddress } from '@ethersproject/address';
 import { BigNumber } from '@ethersproject/bignumber';
 
 export const author = 'Cooperlabs';
-export const version = '0.1.0';
+export const version = '0.2.0';
 
 const BPTAbi = [
   'function getTokens() external view returns (address[] tokens)'
