@@ -17,7 +17,8 @@
           "bpt": "0x1846C6cBE0D433e152fA358e5fF27968E18bcE7c",
           "router": "0x5C6fb490BDFD3246EB0bB062c168DeCAF4bD9FDd"
         },
-        "multiplier": 2.5
+        "multiplier": 2.5,
+        "useVoteBalance": true
       }
     },
     "network": "1",
