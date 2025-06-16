@@ -1,10 +1,13 @@
+import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'forte';
 export const version = '0.0.1';
 
-type batch = { timestamp: any; stakeAmount: any };
+type batch = [stakeAmount: BigNumber, timeStamp: BigNumber];
+const stakeAmount = 0; // index of the stake amount in the batch tuple
+const timeStamp = 1; // index of the timestamp in the batch tuple
 
 const abiStaking = [
   'function getStakedBatches(address _user) external view returns ((uint256, uint256)[] memory)'
@@ -56,12 +59,13 @@ export async function strategy(
 function calculateVotingPower(rawBatches: batch[], kycLevel: number): number {
   let votingPower: bigint = 0n;
   rawBatches.forEach((batch) => {
+    console.log('batch', batch);
     const today: number = +new Date();
-    const stakeDate: number = +new Date(batch[1]._hex * 1000);
+    const stakeDate: number = +new Date(Number(batch[timeStamp]._hex) * 1000); // * 1000 to convert to ms
     const daysStaked: number = Math.floor(
-      (today - stakeDate) / (60 * 60 * 24 * 1000)
+      (today - stakeDate) / (60 * 60 * 24 * 1000) // (...) / (1 day in ms)
     );
-    const stake: bigint = BigInt(batch[0]._hex); // why do I need to do this if I am defining batch?
+    const stake: bigint = BigInt(batch[stakeAmount]._hex);
     votingPower +=
       (stake * BigInt(4 * (daysStaked > 1 ? daysStaked - 1 : 0))) / 1461n;
   });
