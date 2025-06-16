@@ -57,18 +57,20 @@ export async function strategy(
 }
 
 function calculateVotingPower(rawBatches: batch[], kycLevel: number): number {
-  let votingPower: bigint = 0n;
-  rawBatches.forEach((batch) => {
-    console.log('batch', batch);
-    const today: number = +new Date();
-    const stakeDate: number = +new Date(Number(batch[timeStamp]._hex) * 1000); // * 1000 to convert to ms
-    const daysStaked: number = Math.floor(
-      (today - stakeDate) / (60 * 60 * 24 * 1000) // (...) / (1 day in ms)
-    );
-    const stake: bigint = BigInt(batch[stakeAmount]._hex);
-    votingPower +=
-      (stake * BigInt(4 * (daysStaked > 1 ? daysStaked - 1 : 0))) / 1461n;
-  });
-  votingPower = votingPower * BigInt(kycLevel > 2 ? 2 : kycLevel);
-  return parseFloat(formatUnits(votingPower));
+  let preKYCPower: bigint = rawBatches.reduce(
+    (votingPower: bigint, batch: batch): bigint => {
+      const today: number = +new Date();
+      const stakeDate: number = +new Date(Number(batch[timeStamp]._hex) * 1000); // * 1000 to convert to ms
+      const daysStaked: number = Math.floor(
+        (today - stakeDate) / (60 * 60 * 24 * 1000) // (...) / (1 day in ms)
+      );
+      const stake: bigint = BigInt(batch[stakeAmount]._hex);
+      return (votingPower +=
+        (stake * BigInt(4 * (daysStaked > 1 ? daysStaked - 1 : 0))) / 1461n);
+    },
+    0n
+  );
+  return parseFloat(
+    formatUnits(preKYCPower * BigInt(kycLevel > 2 ? 2 : kycLevel))
+  );
 }
