@@ -3,7 +3,7 @@ import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
 export const author = 'forte';
-export const version = '0.0.1';
+export const version = '0.1.0';
 
 type batch = [stakeAmount: BigNumber, timeStamp: BigNumber];
 const stakeAmount = 0; // index of the stake amount in the batch tuple
