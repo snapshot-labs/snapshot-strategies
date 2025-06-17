@@ -5,7 +5,6 @@
 This strategy works with staking contracts with the optionality of adding an external-contract call to be used as a multiplier factor. The voting power is calculated based on the amount of tokens staked, the amount of days staked, an internal multiplier factor, and an optional external multiplier factor. The staking contract must comply with a specific interface shown below as it takes into account different stakes deposited at different times by the same account.
 
 ```solidity
-<<<<<<< HEAD
 struct StakeBatch {
     uint256 amount; // total amount of tokens staked in the batch
     uint256 timestamp; // timestamp when the batch was created
@@ -18,10 +17,6 @@ interface IStakedBatches {
      * @return the list of all the staked batches of the user
      */
     function getStakedBatches(address _user) external view returns (StakeBatch[] memory);
-=======
-interface IForteStaking {
-  function getStakedBatches(address _user) external view returns ((uint256 stakeAmount, uint256 timestamp)[] memory)
->>>>>>> a1104a1 (parameterized the voting power)
 }
 ```
 
@@ -37,11 +32,7 @@ Notice that the return type can be of any size. For example, a `uint256` would b
 
 The equation of the voting power is:
 
-<<<<<<< HEAD
 $votingPower(snapshot) = \sum_{i=1}^n amountStaked(i) * (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator} * [externalMultiplier]$
-=======
-$votingPower(snapshot) = \sum_{i}^n amountStaked(i) * (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator} * [externalMultiplier]$
->>>>>>> a1104a1 (parameterized the voting power)
 
 where _n_ is the number of batches of staked tokens by the user.
 
