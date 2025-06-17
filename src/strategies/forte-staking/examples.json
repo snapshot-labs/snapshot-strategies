@@ -5,8 +5,14 @@
       "name": "forte-staking",
       "params": {
         "stakingAddress": "0x249E662fe228Eff1e7dCE7cF3E78dFD481C7Ba3E",
-        "kycAddress": "0x86f53212865b6fddb99633dc002a7f7aacaaa8db",
-        "symbol": "FORTE"
+        "externalMultiplierAddress": "0x86f53212865b6fddb99633dc002a7f7aacaaa8db",
+        "symbol": "FORTE",
+        "externalMultiplierABI": "function getAccessLevel(address _account) external view returns (uint8)",
+        "externalMultiplierFunction": "getAccessLevel",
+        "multiplierNumerator": 4,
+        "multiplierDenominator": 1461,
+        "daysOffset": -1,
+        "externalMultiplierCeiling": 2
       }
     },
     "network": "11155111",

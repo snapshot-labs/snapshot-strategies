@@ -8,13 +8,8 @@ export const version = '0.1.0';
 type batch = [stakeAmount: BigNumber, timeStamp: BigNumber];
 const stakeAmount = 0; // index of the stake amount in the batch tuple
 const timeStamp = 1; // index of the timestamp in the batch tuple
-
 const abiStaking = [
   'function getStakedBatches(address _user) external view returns ((uint256, uint256)[] memory)'
-];
-
-const abiKYC = [
-  'function getAccessLevel(address _account) external view returns (uint8)'
 ];
 
 export async function strategy(
@@ -38,25 +33,53 @@ export async function strategy(
   );
   const stakeResult: Record<string, batch[]> = await stakeCall.execute();
 
-  // getting the KYC level
-  const kycCall = new Multicaller(network, provider, abiKYC, {
-    blockTag
-  });
-  addresses.forEach((address) =>
-    kycCall.call(address, options.kycAddress, 'getAccessLevel', [address])
+  // getting external multiplier
+
+  const externalMultiplierCall = new Multicaller(
+    network,
+    provider,
+    [options.externalMultiplierABI],
+    {
+      blockTag
+    }
   );
-  const kycResult: Record<string, number> = await kycCall.execute();
+  addresses.forEach((address) =>
+    externalMultiplierCall.call(
+      address,
+      options.externalMultiplierAddress,
+      options.externalMultiplierFunction,
+      [address]
+    )
+  );
+  const externalMultiplierResult: Record<string, number> =
+    options.externalMultiplierAddress
+      ? await externalMultiplierCall.execute()
+      : [];
 
   // return voting power
   return Object.fromEntries(
     Object.entries(stakeResult).map(([address, rawBatches]) => [
       address,
-      calculateVotingPower(rawBatches, kycResult[address])
+      calculateVotingPower(
+        rawBatches,
+        options.multiplierNumerator,
+        options.multiplierDenominator,
+        options.daysOffset,
+        externalMultiplierResult[address],
+        options.externalMultiplierCeiling
+      )
     ])
   );
 }
 
-function calculateVotingPower(rawBatches: batch[], kycLevel: number): number {
+function calculateVotingPower(
+  rawBatches: batch[],
+  numerator: number,
+  denominator: number,
+  offset: number,
+  externalMultiplier: number = 1,
+  externalMultiplierCeiling: number = 1
+): number {
   let preKYCPower: bigint = rawBatches.reduce(
     (votingPower: bigint, batch: batch): bigint => {
       const today: number = +new Date();
@@ -67,12 +90,23 @@ function calculateVotingPower(rawBatches: batch[], kycLevel: number): number {
       const stake: bigint = BigInt(batch[stakeAmount]._hex);
       return (
         votingPower +
-        (stake * BigInt(4 * (daysStaked > 1 ? daysStaked - 1 : 0))) / 1461n
+        (stake *
+          BigInt(
+            numerator * (daysStaked > -offset ? daysStaked + offset : 0)
+          )) /
+          BigInt(denominator)
       );
     },
     0n
   );
   return parseFloat(
-    formatUnits(preKYCPower * BigInt(kycLevel > 2 ? 2 : kycLevel))
+    formatUnits(
+      preKYCPower *
+        BigInt(
+          externalMultiplier > externalMultiplierCeiling
+            ? externalMultiplierCeiling
+            : externalMultiplier
+        )
+    )
   );
 }
