@@ -65,8 +65,10 @@ function calculateVotingPower(rawBatches: batch[], kycLevel: number): number {
         (today - stakeDate) / (60 * 60 * 24 * 1000) // (...) / (1 day in ms)
       );
       const stake: bigint = BigInt(batch[stakeAmount]._hex);
-      return (votingPower +=
-        (stake * BigInt(4 * (daysStaked > 1 ? daysStaked - 1 : 0))) / 1461n);
+      return (
+        votingPower +
+        (stake * BigInt(4 * (daysStaked > 1 ? daysStaked - 1 : 0))) / 1461n
+      );
     },
     0n
   );
