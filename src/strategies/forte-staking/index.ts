@@ -101,7 +101,11 @@ function calculateVotingPower(
   );
   return parseFloat(
     formatUnits(
+<<<<<<< HEAD
       rawVotingPower *
+=======
+      preKYCPower *
+>>>>>>> a1104a1 (parameterized the voting power)
         BigInt(
           externalMultiplier > externalMultiplierCeiling
             ? externalMultiplierCeiling
