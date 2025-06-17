@@ -80,7 +80,7 @@ function calculateVotingPower(
   externalMultiplier: number = 1,
   externalMultiplierCeiling: number = 1
 ): number {
-  let preKYCPower: bigint = rawBatches.reduce(
+  let rawVotingPower: bigint = rawBatches.reduce(
     (votingPower: bigint, batch: batch): bigint => {
       const today: number = +new Date();
       const stakeDate: number = +new Date(Number(batch[timeStamp]._hex) * 1000); // * 1000 to convert to ms
@@ -101,7 +101,7 @@ function calculateVotingPower(
   );
   return parseFloat(
     formatUnits(
-      preKYCPower *
+      rawVotingPower *
         BigInt(
           externalMultiplier > externalMultiplierCeiling
             ? externalMultiplierCeiling
