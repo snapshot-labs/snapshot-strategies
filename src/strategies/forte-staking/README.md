@@ -22,7 +22,7 @@ Notice that the return type can be of any size. For example, a `uint256` would b
 
 The equation of the voting power is:
 
-$votingPower(snapshot) = \sum_{i}^n amountStaked(i) * (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator} * [externalMultiplier]$
+$votingPower(snapshot) = \sum_{i=1}^n amountStaked(i) * (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator} * [externalMultiplier]$
 
 where _n_ is the number of batches of staked tokens by the user.
 
