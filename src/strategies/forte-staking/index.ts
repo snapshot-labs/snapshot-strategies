@@ -77,17 +77,17 @@ function calculateVotingPower(
   numerator: number,
   denominator: number,
   offset: number,
-  externalMultiplier: number = 1,
-  externalMultiplierCeiling: number = 1
+  externalMultiplier = 1,
+  externalMultiplierCeiling = 1
 ): number {
-  let rawVotingPower: bigint = rawBatches.reduce(
+  const rawVotingPower: bigint = rawBatches.reduce(
     (votingPower: bigint, batch: batch): bigint => {
       const today: number = +new Date();
       const stakeDate: number = +new Date(Number(batch[timeStamp]._hex) * 1000); // * 1000 to convert to ms
       const daysStaked: number = Math.floor(
         (today - stakeDate) / (60 * 60 * 24 * 1000) // (...) / (1 day in ms)
       );
-      const stake: bigint = BigInt(batch[stakeAmount]._hex);
+      const stake = BigInt(batch[stakeAmount]._hex);
       return (
         votingPower +
         (stake *
