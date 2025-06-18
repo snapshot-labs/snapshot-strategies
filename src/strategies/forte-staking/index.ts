@@ -2,7 +2,7 @@ import { BigNumber } from '@ethersproject/bignumber';
 import { Multicaller } from '../../utils';
 import { formatUnits } from '@ethersproject/units';
 
-export const author = 'forte';
+export const author = 'oscarsernarosero';
 export const version = '0.1.0';
 
 type batch = [stakeAmount: BigNumber, timeStamp: BigNumber];
