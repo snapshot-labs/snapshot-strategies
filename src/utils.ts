@@ -102,6 +102,7 @@ export const {
   getBlockNumber,
   getProvider,
   getSnapshots,
+  getFormattedAddress,
   SNAPSHOT_SUBGRAPH_URL
 } = snapshot.utils;
 
