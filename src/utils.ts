@@ -142,6 +142,7 @@ export const {
   getBlockNumber,
   getProvider,
   getSnapshots,
+  getFormattedAddress,
   SNAPSHOT_SUBGRAPH_URL
 } = snapshot.utils;
 
@@ -157,6 +158,7 @@ export default {
   getProvider,
   getDelegations,
   getSnapshots,
+  getFormattedAddress,
   SNAPSHOT_SUBGRAPH_URL,
   getVp,
   getCoreDelegations
