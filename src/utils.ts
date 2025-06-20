@@ -118,6 +118,7 @@ export default {
   getProvider,
   getDelegations,
   getSnapshots,
+  getFormattedAddress,
   SNAPSHOT_SUBGRAPH_URL,
   getVp,
   getCoreDelegations
