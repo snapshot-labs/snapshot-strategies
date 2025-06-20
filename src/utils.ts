@@ -109,27 +109,23 @@ export function getFormattedAddressesByProtocol(
 
   return addresses
     .map((address) => {
-      let evmAddress, starknetAddress;
-
-      try {
-        evmAddress = snapshot.utils.getFormattedAddress(address, 'evm');
-      } catch (e) {}
-      try {
-        starknetAddress = snapshot.utils.getFormattedAddress(
-          address,
-          'starknet'
-        );
-      } catch (e) {}
-
-      if (evmAddress && protocols.includes('evm')) {
-        return evmAddress;
+      if (protocols.includes('evm')) {
+        try {
+          return snapshot.utils.getFormattedAddress(address, 'evm');
+        } catch (e) {
+          // Continue to starknet if evm formatting fails and starknet is supported
+        }
       }
 
-      if (!evmAddress && starknetAddress && protocols.includes('starknet')) {
-        return starknetAddress;
+      if (protocols.includes('starknet')) {
+        try {
+          return snapshot.utils.getFormattedAddress(address, 'starknet');
+        } catch (e) {
+          // Address format not supported by any protocol
+        }
       }
     })
-    .filter(Boolean);
+    .filter(Boolean) as string[];
 }
 
 export const {
