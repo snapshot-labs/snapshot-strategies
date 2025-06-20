@@ -68,7 +68,7 @@ describe('Validation', () => {
       expect(doValidateSpy).toHaveBeenCalledWith(customAuthor);
     });
 
-    it('should validate custom author address type', async () => {
+    it('should return false for invalid custom author address type', async () => {
       const validation = new TestValidation(
         '0x1234567890abcdef1234567890abcdef12345678',
         'test-space',
@@ -80,9 +80,8 @@ describe('Validation', () => {
       const starknetAddress =
         '0x07f71118e351c02f6EC7099C8CDf93AED66CEd8406E94631cC91637f7D7F203A';
 
-      await expect(validation.validate(starknetAddress)).rejects.toThrow(
-        `Address "${starknetAddress}" is not a valid evm address`
-      );
+      const result = await validation.validate(starknetAddress);
+      expect(result).toBe(false);
     });
 
     it('should return the result from doValidate', async () => {
@@ -255,7 +254,7 @@ describe('Validation', () => {
       await expect(validation.validate()).resolves.not.toThrow();
     });
 
-    it('should throw error for valid Starknet address when only evm protocol is supported', async () => {
+    it('should return false for valid Starknet address when only evm protocol is supported', async () => {
       const validation = new TestValidation(
         VALID_STARKNET_ADDRESS,
         'test-space',
@@ -265,12 +264,11 @@ describe('Validation', () => {
       );
       validation.supportedProtocols = ['evm'];
 
-      await expect(validation.validate()).rejects.toThrow(
-        `Address "${VALID_STARKNET_ADDRESS}" is not a valid evm address`
-      );
+      const result = await validation.validate();
+      expect(result).toBe(false);
     });
 
-    it('should throw error for invalid address when evm protocol is supported', async () => {
+    it('should return false for invalid address when evm protocol is supported', async () => {
       const validation = new TestValidation(
         INVALID_ADDRESS,
         'test-space',
@@ -280,12 +278,11 @@ describe('Validation', () => {
       );
       validation.supportedProtocols = ['evm'];
 
-      await expect(validation.validate()).rejects.toThrow(
-        `Address "${INVALID_ADDRESS}" is not a valid evm address`
-      );
+      const result = await validation.validate();
+      expect(result).toBe(false);
     });
 
-    it('should throw error for invalid address when starknet protocol is supported', async () => {
+    it('should return false for invalid address when starknet protocol is supported', async () => {
       const validation = new TestValidation(
         INVALID_ADDRESS,
         'test-space',
@@ -295,12 +292,11 @@ describe('Validation', () => {
       );
       validation.supportedProtocols = ['starknet'];
 
-      await expect(validation.validate()).rejects.toThrow(
-        `Address "${INVALID_ADDRESS}" is not a valid starknet address`
-      );
+      const result = await validation.validate();
+      expect(result).toBe(false);
     });
 
-    it('should throw error for invalid address when both protocols are supported', async () => {
+    it('should return false for invalid address when both protocols are supported', async () => {
       const validation = new TestValidation(
         INVALID_ADDRESS,
         'test-space',
@@ -310,9 +306,8 @@ describe('Validation', () => {
       );
       validation.supportedProtocols = ['evm', 'starknet'];
 
-      await expect(validation.validate()).rejects.toThrow(
-        `Address "${INVALID_ADDRESS}" is not a valid evm or starknet address`
-      );
+      const result = await validation.validate();
+      expect(result).toBe(false);
     });
   });
 });

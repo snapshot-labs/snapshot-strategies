@@ -32,7 +32,11 @@ export default class Validation {
   }
 
   async validate(customAuthor = this.author): Promise<boolean> {
-    this.validateAddressType(customAuthor);
+    try {
+      this.validateAddressType(customAuthor);
+    } catch (e) {
+      return false;
+    }
 
     return this.doValidate(customAuthor);
   }
