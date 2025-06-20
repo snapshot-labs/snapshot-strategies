@@ -157,21 +157,6 @@ describe('Validation', () => {
       await expect(validation.validate()).resolves.not.toThrow();
     });
 
-    it('should throw error when hasInnerStrategies is true and strategies length exceeds limit', async () => {
-      const validation = new TestValidation(
-        '0x1234567890abcdef1234567890abcdef12345678',
-        'test-space',
-        '1',
-        123456,
-        { strategies: new Array(10).fill({}) }
-      );
-      validation.hasInnerStrategies = true;
-
-      await expect(validation.validate()).rejects.toThrow(
-        'Max number of strategies exceeded'
-      );
-    });
-
     it('should not throw error when hasInnerStrategies is true and strategies is undefined', async () => {
       const validation = new TestValidation(
         '0x1234567890abcdef1234567890abcdef12345678',

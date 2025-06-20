@@ -1,8 +1,5 @@
 import snapshot from '@snapshot-labs/snapshot.js';
-import {
-  DEFAULT_SUPPORTED_PROTOCOLS,
-  MAX_STRATEGIES_LENGTH
-} from '../constants';
+import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
 import { Protocol, Snapshot } from '../types';
 
 export default class Validation {
@@ -36,7 +33,6 @@ export default class Validation {
 
   async validate(customAuthor = this.author): Promise<boolean> {
     this.validateAddressType(customAuthor);
-    this.validateStrategiesLength();
 
     return this.doValidate(customAuthor);
   }
@@ -69,15 +65,5 @@ export default class Validation {
         ' or '
       )} address`
     );
-  }
-
-  private validateStrategiesLength(): boolean {
-    if (
-      this.hasInnerStrategies &&
-      this.params.strategies?.length > MAX_STRATEGIES_LENGTH
-    ) {
-      throw new Error(`Max number of strategies exceeded`);
-    }
-    return true;
   }
 }
