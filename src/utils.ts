@@ -177,7 +177,10 @@ export const {
 } = snapshot.utils;
 
 export default {
+  sha256,
   getScoresDirect,
+  customFetch,
+  getFormattedAddressesByProtocol,
   multicall,
   Multicaller,
   subgraphRequest,
