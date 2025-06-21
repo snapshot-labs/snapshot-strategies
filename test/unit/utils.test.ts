@@ -10,80 +10,147 @@ describe('utils', () => {
     '0x07f71118e351c02f6ec7099c8cdf93aed66ced8406e94631cc91637f7d7f203a';
 
   describe('getFormattedAddressesByProtocol()', () => {
-    const input = [
-      VALID_EVM_ADDRESS,
-      'invalidEVMAddress',
-      VALID_STARKNET_ADDRESS,
-      ''
-    ];
+    // Test data constants
+    const INVALID_ADDRESS = 'invalidAddress';
+    const EMPTY_ADDRESS = '';
+    const STARKNET_ONLY_ADDRESS = VALID_STARKNET_ADDRESS;
+    const EVM_ONLY_ADDRESS = VALID_EVM_ADDRESS;
 
-    it('should return an empty array when no addresses are provided', () => {
-      const result = getFormattedAddressesByProtocol([]);
-      expect(result).toEqual([]);
+    describe('Basic functionality', () => {
+      it('should return an empty array when no addresses are provided', () => {
+        const result = getFormattedAddressesByProtocol([]);
+        expect(result).toEqual([]);
+      });
+
+      it('should use evm as default protocol when no protocols provided', () => {
+        const result = getFormattedAddressesByProtocol([EVM_ONLY_ADDRESS]);
+        expect(result).toEqual([VALID_FORMATTED_EVM_ADDRESS]);
+      });
     });
 
-    it('should return an empty array when protocol is not valid', () => {
-      const result = getFormattedAddressesByProtocol(input, [
-        // @ts-ignore
-        'invalidProtocol'
-      ]);
-      expect(result).toEqual([]);
+    describe('Protocol validation', () => {
+      it('should throw an error when no protocols are provided', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol([], []);
+        }).toThrow('At least one protocol must be specified');
+      });
+
+      it('should throw an error for single invalid protocol', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol(
+            [EVM_ONLY_ADDRESS],
+            [
+              // @ts-ignore
+              'invalidProtocol'
+            ]
+          );
+        }).toThrow('Invalid protocol(s): invalidProtocol');
+      });
+
+      it('should throw an error for multiple invalid protocols', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol(
+            [EVM_ONLY_ADDRESS],
+            [
+              // @ts-ignore
+              'invalidProtocol1',
+              // @ts-ignore
+              'invalidProtocol2'
+            ]
+          );
+        }).toThrow('Invalid protocol(s): invalidProtocol1, invalidProtocol2');
+      });
     });
 
-    it('should throw an error when no protocol is provided', () => {
-      expect(() => {
-        getFormattedAddressesByProtocol([], []);
-      }).toThrow();
+    describe('Single protocol formatting', () => {
+      it('should format EVM addresses correctly', () => {
+        const result = getFormattedAddressesByProtocol(
+          [EVM_ONLY_ADDRESS],
+          ['evm']
+        );
+        expect(result).toEqual([VALID_FORMATTED_EVM_ADDRESS]);
+      });
+
+      it('should format Starknet addresses correctly', () => {
+        const result = getFormattedAddressesByProtocol(
+          [STARKNET_ONLY_ADDRESS],
+          ['starknet']
+        );
+        expect(result).toEqual([VALID_FORMATTED_STARKNET_ADDRESS]);
+      });
     });
 
-    it('should use evm as default protocol when no protocols provided', () => {
-      const result = getFormattedAddressesByProtocol(input);
-      expect(result).toEqual([VALID_FORMATTED_EVM_ADDRESS]);
+    describe('Multiple protocol formatting', () => {
+      it('should prioritize EVM when address is valid for both protocols', () => {
+        const result = getFormattedAddressesByProtocol(
+          [EVM_ONLY_ADDRESS],
+          ['evm', 'starknet']
+        );
+        expect(result).toEqual([VALID_FORMATTED_EVM_ADDRESS]);
+      });
+
+      it('should fall back to Starknet when EVM formatting fails', () => {
+        const result = getFormattedAddressesByProtocol(
+          [STARKNET_ONLY_ADDRESS],
+          ['evm', 'starknet']
+        );
+        expect(result).toEqual([VALID_FORMATTED_STARKNET_ADDRESS]);
+      });
+
+      it('should format addresses from different protocols correctly', () => {
+        const result = getFormattedAddressesByProtocol(
+          [EVM_ONLY_ADDRESS, STARKNET_ONLY_ADDRESS],
+          ['evm', 'starknet']
+        );
+        expect(result).toEqual([
+          VALID_FORMATTED_EVM_ADDRESS,
+          VALID_FORMATTED_STARKNET_ADDRESS
+        ]);
+      });
+
+      it('should maintain protocol order independence for multiple valid protocols', () => {
+        const result1 = getFormattedAddressesByProtocol(
+          [EVM_ONLY_ADDRESS],
+          ['evm', 'starknet']
+        );
+        const result2 = getFormattedAddressesByProtocol(
+          [EVM_ONLY_ADDRESS],
+          ['starknet', 'evm']
+        );
+        expect(result1).toEqual(result2);
+      });
     });
 
-    it('should prioritize evm when address is valid for both protocols and both are specified', () => {
-      const result = getFormattedAddressesByProtocol(
-        [VALID_EVM_ADDRESS],
-        ['evm', 'starknet']
-      );
-      expect(result).toEqual([VALID_FORMATTED_EVM_ADDRESS]);
-    });
+    describe('Error handling', () => {
+      it('should throw an error for completely invalid addresses', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol([INVALID_ADDRESS], ['evm']);
+        }).toThrow('is not a valid evm address');
+      });
 
-    it('should return only formatted EVM addresses on evm protocol', () => {
-      const result = getFormattedAddressesByProtocol(input, ['evm']);
-      expect(result).toEqual([VALID_FORMATTED_EVM_ADDRESS]);
-    });
+      it('should throw an error for empty string addresses', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol([EMPTY_ADDRESS], ['evm']);
+        }).toThrow('is not a valid evm address');
+      });
 
-    it('should return only formatted starknet addresses on starknet protocol', () => {
-      const result = getFormattedAddressesByProtocol(input, ['starknet']);
-      expect(result).toEqual([VALID_FORMATTED_STARKNET_ADDRESS]);
-    });
+      it('should throw an error when address is invalid for all specified protocols', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol(
+            [INVALID_ADDRESS],
+            ['evm', 'starknet']
+          );
+        }).toThrow('is not a valid evm or starknet address');
+      });
 
-    it('should return both formatted starknet and evm addresses on starknet and evm protocol', () => {
-      const result = getFormattedAddressesByProtocol(input, [
-        'starknet',
-        'evm'
-      ]);
-      expect(result).toEqual([
-        VALID_FORMATTED_EVM_ADDRESS,
-        VALID_FORMATTED_STARKNET_ADDRESS
-      ]);
-    });
-
-    it('should return empty array when all addresses are invalid for specified protocol', () => {
-      const result = getFormattedAddressesByProtocol(
-        ['invalidAddress'],
-        ['evm']
-      );
-      expect(result).toEqual([]);
-    });
-
-    it('should return empty array when all addresses are invalid for specified protocol', () => {
-      const result = getFormattedAddressesByProtocol(
-        ['invalidAddress'],
-        ['starknet']
-      );
-      expect(result).toEqual([]);
+      it('should throw an error on first invalid address in mixed array', () => {
+        expect(() => {
+          getFormattedAddressesByProtocol(
+            [EVM_ONLY_ADDRESS, INVALID_ADDRESS, STARKNET_ONLY_ADDRESS],
+            ['evm', 'starknet']
+          );
+        }).toThrow('is not a valid evm or starknet address');
+      });
     });
   });
 });
