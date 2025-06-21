@@ -13,6 +13,6 @@
     "allowSyntheticDefaultImports": true,
     "skipLibCheck": true
   },
-  "include": ["src"],
+  "include": ["src", "test"],
   "files": ["./src/typings.d.ts"]
 }

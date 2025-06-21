@@ -13,7 +13,8 @@ import {
 } from './options';
 
 export const author = 'xJonathanLEI';
-export const version = '0.2.2';
+export const version = '0.2.3';
+export const supportedProtocols = ['evm', 'starknet'];
 
 export async function strategy(
   space,

@@ -1,5 +1,6 @@
 // To test strategies by copy pasting score API body here
 import snapshot from '../src';
+import { Snapshot } from '../src/types';
 
 const scoreAPIObj = {
   params: {
@@ -1346,7 +1347,7 @@ snapshot.utils
     scoreAPIObj.params.network,
     provider,
     scoreAPIObj.params.addresses,
-    scoreAPIObj.params.snapshot
+    scoreAPIObj.params.snapshot as Snapshot
   )
   .then(console.log)
   .then(() => {
