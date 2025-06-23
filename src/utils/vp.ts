@@ -59,7 +59,8 @@ export async function getVp(
 
     addresses = getFormattedAddressesByProtocol(
       addresses,
-      strategy.supportedProtocols ?? DEFAULT_SUPPORTED_PROTOCOLS
+      _strategies[strategy.name].supportedProtocols ??
+        DEFAULT_SUPPORTED_PROTOCOLS
     );
     return _strategies[strategy.name].strategy(
       space,
