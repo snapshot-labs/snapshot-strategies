@@ -6,13 +6,16 @@
     "moduleResolution": "node",
     "strict": true,
     "declaration": true,
+    "declarationMap": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
     "allowSyntheticDefaultImports": true,
-    "skipLibCheck": true
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true
   },
   "include": ["src", "test"],
-  "files": ["./src/typings.d.ts"]
+  "files": ["./src/typings.d.ts"],
+  "exclude": ["node_modules", "dist", "test"]
 }
