@@ -85,7 +85,8 @@ export async function getVp(
 
     addresses = getFormattedAddressesByProtocol(
       addresses,
-      strategies[i].supportedProtocols
+      _strategies[strategies[i].name].supportedProtocols ??
+        DEFAULT_SUPPORTED_PROTOCOLS
     );
     return addresses.reduce((a, b) => a + (score[b] || 0), 0);
   });
