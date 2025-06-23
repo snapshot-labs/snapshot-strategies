@@ -1,6 +1,7 @@
 import { getAddress } from '@ethersproject/address';
 import { subgraphRequest, getScoresDirect } from '../../utils';
 import { Strategy } from '@snapshot-labs/snapshot.js/dist/src/voting/types';
+import { Snapshot } from '../../types';
 
 export const author = 'aragon';
 export const version = '0.1.0';
@@ -35,7 +36,7 @@ export async function strategy(
     subgraphUrl: DEFAULT_BACKEND_URL,
     strategies: []
   },
-  snapshot: string | number
+  snapshot: Snapshot
 ) {
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
   const block = await provider.getBlock(blockTag);
