@@ -1,0 +1,36 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "prl-in-sprl2-balance",
+      "params": {
+        "PRL": {
+          "address": "0x6c0aeceeDc55c9d55d8B99216a670D85330941c3",
+          "symbol": "PRL",
+          "decimals": 18
+        },
+        "sPRL2": {
+          "address": "0xE8A2d848fE656E34A6caA35f375B42979e322135",
+          "decimals": 18
+        },
+        "balancerV3": {
+          "bpt": "0x1846C6cBE0D433e152fA358e5fF27968E18bcE7c",
+          "router": "0x5C6fb490BDFD3246EB0bB062c168DeCAF4bD9FDd"
+        },
+        "multiplier": 2.5,
+        "useVoteBalance": true
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xBabB038737A7Ae0DcA02075E79ed5B7704C29827",
+      "0xc6250f96c0a85Ec80b3323e40A96AD7A424dC6F7",
+      "0x857F56db9E7f4a6d203998d9266327fcB6F08cF2",
+      "0xD758e17c0d96a6C753995D86e891E07286858130",
+      "0xB9Bb02813C802fFf656361fC10F3255706bc4C17",
+      "0xb0EA432eC505608a2cdeE05815508356B6f89231",
+      "0x564ABB3dACad1422edc127759D267B49571e54Ab"
+    ],
+    "snapshot": 22446590
+  }
+]

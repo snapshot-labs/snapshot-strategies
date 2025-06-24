@@ -1,11 +1,13 @@
 import { readFileSync } from 'fs';
 import path from 'path';
 
+import * as nedao from './nedao';
 import * as subgraphSplitDelegation from './subgraph-split-delegation';
 import * as polygonSelfStaked from './polygon-self-staked-pol';
 import * as delegatexyzErc721BalanceOf from './delegatexyz-erc721-balance-of';
 import * as urbitGalaxies from './urbit-galaxies/index';
 import * as ecoVotingPower from './eco-voting-power';
+import * as ecoMultichainVotingPower from './eco-multichain-voting-power';
 import * as dpsNFTStrategy from './dps-nft-strategy';
 import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
@@ -82,6 +84,7 @@ import * as stablexswap from './stablexswap';
 import * as stakedKeep from './staked-keep';
 import * as stakedDaomaker from './staked-daomaker';
 import * as typhoon from './typhoon';
+import * as delegatedApe from './delegated-ape';
 import * as delegation from './delegation';
 import * as delegationWithCap from './delegation-with-cap';
 import * as delegationWithOverrides from './delegation-with-overrides';
@@ -165,6 +168,7 @@ import * as tombFinance from './tomb-finance';
 import * as trancheStakingSLICE from './tranche-staking-slice';
 import * as unipoolUniv2Lp from './unipool-univ2-lp';
 import * as unipoolXSushi from './unipool-xsushi';
+import * as defiAppVoting from './defi-app-voting';
 import * as taraxaDelegation from './taraxa-delegation';
 import * as poap from './poap';
 import * as poapWithWeight from './poap-with-weight';
@@ -238,9 +242,11 @@ import * as orangeReputationNftBasedVoting from './orange-reputation-nft-based-v
 import * as squidDao from './squid-dao';
 import * as pathBalanceStakedAndLocked from './path-balance-staked-and-locked';
 import * as bottoDao from './botto-dao';
+import * as bottoDaoBase from './botto-dao-base';
 import * as genart from './genart';
 import * as erc721MultiRegistryWeighted from './erc721-multi-registry-weighted';
 import * as balancerPoolid from './balancer-poolid';
+import * as livepeer from './livepeer';
 import * as stakedBalancer from './staked-balancer';
 import * as stakedUniswapModifiable from './staked-uniswap-modifiable';
 import * as givethGnosisBalanceV2 from './giveth-gnosis-balance-v2';
@@ -382,6 +388,8 @@ import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
 import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
+import * as sdGaugeLessVoteBoostCrosschain from './sd-gauge-less-vote-boost-crosschain';
+import * as sdGaugeLessVoteBoostCrosschainSpectra from './sd-gauge-less-vote-boost-crosschain-spectra';
 import * as sdVoteBalanceOfTwavpPool from './sdvote-balanceof-twavp-pool';
 import * as sdVoteBoostTWAVPVsdToken from './sd-vote-boost-twavp-vsdtoken';
 import * as sdVoteBoostTWAVPVCrossChain from './sd-vote-boost-twavp-vsdcrv-crosschain';
@@ -465,8 +473,28 @@ import * as sacraSubgraph from './sacra-subgraph';
 import * as fountainhead from './fountainhead';
 import * as naymsStaking from './nayms-staking';
 import * as morphoDelegation from './morpho-delegation';
+import * as lizcoinStrategy2024 from './lizcoin-strategy-2024';
+import * as realt from './realt';
+import * as superfluidVesting from './superfluid-vesting';
+import * as spookyLpSonic from './spooky-lp-sonic';
+import * as synapse from './synapse';
+import * as dappcomposerGetVotingUnits from './dappcomposer-getvotingunits';
+import * as erc20BalanceOfSaevo from './erc20-balance-of-saevo';
+import * as apecoinStaking from './apecoin-staking';
+import * as shroomyVotingPower from './shroomy-voting-power';
+import * as pufferGetPastVotes from './puffer-getpastvotes';
+import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
+import * as edenOnlineOverride from './eden-online-override';
+import * as forteStaking from './forte-staking';
+
+import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
 
 const strategies = {
+  'shroomy-voting-power': shroomyVotingPower,
+  'apecoin-staking': apecoinStaking,
+  'erc20-balance-of-saevo': erc20BalanceOfSaevo,
+  livepeer,
+  'spooky-lp-sonic': spookyLpSonic,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
@@ -475,6 +503,7 @@ const strategies = {
   'cap-voting-power': capVotingPower,
   'izumi-veizi': izumiVeiZi,
   'eco-voting-power': ecoVotingPower,
+  'eco-multichain-voting-power': ecoMultichainVotingPower,
   'forta-shares': fortaShares,
   'across-staked-acx': acrossStakedAcx,
   'ethermon-erc721': ethermon721,
@@ -572,6 +601,7 @@ const strategies = {
   'staked-daomaker': stakedDaomaker,
   'balancer-unipool': balancerUnipool,
   typhoon,
+  'delegated-ape': delegatedApe,
   delegation,
   'delegation-with-cap': delegationWithCap,
   'delegation-with-overrides': delegationWithOverrides,
@@ -676,6 +706,7 @@ const strategies = {
   'loot-character-guilds': lootCharacterGuilds,
   'comp-like-votes-inclusive': compLikeVotesInclusive,
   mstable,
+  'defi-app-voting': defiAppVoting,
   'hashes-voting': hashesVoting,
   'hashflow-vehft': hashflowVeHft,
   'aavegotchi-wagmi-guild': aavegotchiWagmiGuild,
@@ -718,6 +749,7 @@ const strategies = {
   'orange-reputation-nft-based-voting': orangeReputationNftBasedVoting,
   'squid-dao': squidDao,
   'botto-dao': bottoDao,
+  'botto-dao-base': bottoDaoBase,
   genart,
   'path-balance-staked-and-locked': pathBalanceStakedAndLocked,
   'balancer-poolid': balancerPoolid,
@@ -859,6 +891,9 @@ const strategies = {
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
+  'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
+  'sd-gauge-less-vote-boost-crosschain-spectra':
+    sdGaugeLessVoteBoostCrosschainSpectra,
   'sdvote-balanceof-twavp-pool': sdVoteBalanceOfTwavpPool,
   'sd-vote-boost-twavp-vsdtoken': sdVoteBoostTWAVPVsdToken,
   'sd-vote-boost-twavp-vsdcrv-crosschain': sdVoteBoostTWAVPVCrossChain,
@@ -930,6 +965,7 @@ const strategies = {
   'candy-lock-nft': candyLockNft,
   'candy-nft-staking': candyNftStaking,
   pom,
+  nedao,
   superboring,
   'erable-governance-v1': erableGovernanceV1,
   'world-liberty-financial-erc20-balance-of-votes': worldLibertyFinancial,
@@ -940,7 +976,16 @@ const strategies = {
   'sacra-subgraph': sacraSubgraph,
   fountainhead,
   'nayms-staking': naymsStaking,
-  'morpho-delegation': morphoDelegation
+  'morpho-delegation': morphoDelegation,
+  'lizcoin-strategy-2024': lizcoinStrategy2024,
+  realt,
+  'superfluid-vesting': superfluidVesting,
+  synapse,
+  'dappcomposer-getvotingunits': dappcomposerGetVotingUnits,
+  'puffer-getpastvotes': pufferGetPastVotes,
+  'prl-in-sprl2-balance': prlInSpRL2Balance,
+  'eden-online-override': edenOnlineOverride,
+  'forte-staking': forteStaking
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
@@ -975,6 +1020,7 @@ Object.keys(strategies).forEach(function (strategyName) {
   strategies[strategyName].examples = examples;
   strategies[strategyName].schema = schema;
   strategies[strategyName].about = about;
+  strategies[strategyName].supportedProtocols ||= DEFAULT_SUPPORTED_PROTOCOLS;
 });
 
 export default strategies;

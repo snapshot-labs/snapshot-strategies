@@ -5,13 +5,12 @@
     "module": "commonjs",
     "moduleResolution": "node",
     "strict": true,
-    "declaration": true,
     "noUnusedLocals": true,
     "esModuleInterop": true,
     "noImplicitAny": false,
     "resolveJsonModule": true,
-    "allowSyntheticDefaultImports": true
+    "allowSyntheticDefaultImports": true,
+    "skipLibCheck": true
   },
-  "include": ["src"],
-  "files": ["./src/typings.d.ts"]
+  "include": ["src/**/*"]
 }

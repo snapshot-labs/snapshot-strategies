@@ -3,7 +3,7 @@ name: Build CI
 on: [push, pull_request]
 
 jobs:
-  build_lint:
+  build:
     runs-on: ubuntu-latest
 
     strategy:
@@ -16,7 +16,7 @@ jobs:
       uses: actions/setup-node@v1
       with:
         node-version: ${{ matrix.node-version }}
-    - name: yarn install, build and lint
+    - name: yarn install and build
       run: |
         yarn install --frozen-lockfile
         yarn build

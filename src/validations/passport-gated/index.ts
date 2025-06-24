@@ -170,20 +170,18 @@ export default class extends Validation {
   public description =
     'Protect your proposals from spam and vote manipulation by requiring users to have a valid Gitcoin Passport.';
 
-  async validate(currentAddress = this.author): Promise<boolean> {
+  protected async doValidate(customAuthor: string): Promise<boolean> {
     const requiredStamps = this.params.stamps || [];
     const operator = this.params.operator;
-    const scoreThreshold = this.params.scoreThreshold;
+    const scoreThreshold = this.params.scoreThreshold || 0;
 
-    if (scoreThreshold === undefined)
-      throw new Error('Score threshold is required');
     if (requiredStamps.length > 0 && (!operator || operator === 'NONE'))
       throw new Error('Operator is required when selecting required stamps');
 
     const provider = snapshot.utils.getProvider(this.network);
     const proposalTs = (await provider.getBlock(this.snapshot)).timestamp;
     const validStamps = await validateStamps(
-      currentAddress,
+      customAuthor,
       operator,
       proposalTs,
       requiredStamps
@@ -194,7 +192,7 @@ export default class extends Validation {
     }
 
     const validScore = await validatePassportScore(
-      currentAddress,
+      customAuthor,
       scoreThreshold
     );
 

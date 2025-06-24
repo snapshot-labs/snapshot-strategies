@@ -1,10 +1,16 @@
 import { getAddress } from '@ethersproject/address';
 import { getDelegatesBySpace } from '../utils';
+import { Snapshot } from '../types';
 
 const DELEGATION_DATA_CACHE = {};
 
 // delegations with overrides
-export async function getDelegations(space, network, addresses, snapshot) {
+export async function getDelegations(
+  space,
+  network,
+  addresses: string[],
+  snapshot: Snapshot
+) {
   const addressesLc = addresses.map((address) => address.toLowerCase());
   const delegatesBySpace = await getDelegatesBySpace(network, space, snapshot);
 
@@ -46,7 +52,12 @@ function getDelegationReverseData(delegation) {
   };
 }
 
-export async function getDelegationsData(space, network, addresses, snapshot) {
+export async function getDelegationsData(
+  space,
+  network,
+  addresses: string[],
+  snapshot: Snapshot
+) {
   const cacheKey = `${space}-${network}-${snapshot}`;
   let delegationsReverse = DELEGATION_DATA_CACHE[cacheKey];
 

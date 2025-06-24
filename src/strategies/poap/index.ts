@@ -10,7 +10,7 @@ const EVENT_IDS_LIMIT = 500;
 const POAP_API_ENDPOINT_URL = {
   '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s',
   '100':
-    'https://subgrapher.snapshot.org/subgraph/arbitrum/DWkA5Rpw4z11TXr6DawquZJeXasF4CfyeQy1S2jxCXLH'
+    'https://subgrapher.snapshot.org/subgraph/arbitrum/41xbTurY2KEHZdwFYPXAZTgRL8n4Cf3RfV3X4GSuUckp'
 };
 // subgraph query in filter has max length of 500
 const MAX_ACCOUNTS_IN_QUERY = 500;
@@ -89,6 +89,10 @@ export async function strategy(
       return subgraphRequest(POAP_API_ENDPOINT_URL[network], query);
     })
   );
+
+  if (results.some((result) => result.status === 'rejected')) {
+    throw new Error(`Error fetching data in poap strategy`);
+  }
 
   for (const supplyResponse of results) {
     if (supplyResponse.status === 'rejected') continue;

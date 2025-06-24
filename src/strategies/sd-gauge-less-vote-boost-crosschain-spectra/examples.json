@@ -1,0 +1,31 @@
+[
+  {
+    "name": "Stake DAO vote boost using working balance",
+    "strategy": {
+      "name": "sd-gauge-less-vote-boost-crosschain-spectra",
+      "params": {
+        "pools": [],
+        "symbol": "sdSPECTRA-voting-power",
+        "sdToken": "0x8e7801bAC71E92993f6924e7D767D7dbC5fCE0AE",
+        "veToken": "0x6a89228055C7C28430692E342F149f37462B478B",
+        "decimals": 18,
+        "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+        "blocksPerDay": 43200,
+        "liquidLocker": "0x6a89228055C7C28430692E342F149f37462B478B",
+        "sdTokenGauge": "0xeFd0248D2C05075815e0c38f0Bd9C1645706DF3F",
+        "twavpDaysInterval": 1,
+        "whiteListedAddress": [],
+        "twavpNumberOfBlocks": 1,
+        "removeTwavp": true
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0x54c9cB3AC40EF11C56565e8490e7C3b4b17582AF",
+      "0x7e1e1c5ac70038a9718431c92a618f01f8dada18",
+      "0x3FbE6216dB591372D3Bb8428ac87B162F7B8601f",
+      "0x2fC74276522cB6e8b7541Bd590D969119fC15A61"
+    ],
+    "snapshot": 28927753
+  }
+]

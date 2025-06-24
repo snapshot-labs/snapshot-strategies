@@ -1,0 +1,19 @@
+[
+  {
+    "name": "HOME & sHOME Voting - Base",
+    "strategy": {
+      "name": "defi-app-voting",
+      "params": {
+        "lockingContract": "0xC9714F8f036087d801f38C4105194e150d3a1864",
+        "homeToken": "0x4BfAa776991E85e5f8b1255461cbbd216cFc714f"
+      }
+    },
+    "network": "8453",
+    "addresses": [
+      "0x0dC9044fcD7760dfbdB567A364B9B098e770b192",
+      "0x4011091Dbe57bd4521F598616fe4BB3978ea3005",
+      "0x2eAA7327e9B5Ff46bc2B7452acE9e44A1528eb84"
+    ],
+    "snapshot": 31422072
+  }
+]
