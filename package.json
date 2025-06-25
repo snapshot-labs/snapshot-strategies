@@ -16,6 +16,7 @@
     "test:vp": "jest -i vp.test.ts",
     "test:delegation": "jest -i delegation.test.ts",
     "test:validation": "jest -i validation.test.ts",
+    "test:integration": "jest -i test/integration/",
     "test:unit": "jest -i test/unit/",
     "prepublishOnly": "npm run build",
     "postinstall": "npm run build",
