@@ -31,6 +31,7 @@ export default class Validation {
     this.params = params;
   }
 
+  // TODO: validate invalid networks
   async validate(customAuthor = this.author): Promise<boolean> {
     try {
       this.validateAddressType(customAuthor);
