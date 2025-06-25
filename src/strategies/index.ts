@@ -486,6 +486,7 @@ import * as pufferGetPastVotes from './puffer-getpastvotes';
 import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 import * as edenOnlineOverride from './eden-online-override';
 import * as forteStaking from './forte-staking';
+import * as overtime from './overtime';
 
 import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
 
@@ -985,7 +986,8 @@ const strategies = {
   'puffer-getpastvotes': pufferGetPastVotes,
   'prl-in-sprl2-balance': prlInSpRL2Balance,
   'eden-online-override': edenOnlineOverride,
-  'forte-staking': forteStaking
+  'forte-staking': forteStaking,
+  overtime
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
