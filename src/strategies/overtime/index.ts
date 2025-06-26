@@ -3,7 +3,6 @@ import { strategy as erc20BalanceOfStrategy } from '../erc20-balance-of';
 
 export const author = 'thales-markets';
 export const version = '1.0.0';
-export const dependOnOtherAddress = true;
 
 export async function strategy(
   space,
@@ -35,10 +34,8 @@ export async function strategy(
     const address = Object.keys(scores)[i];
     const smartAccount = eoaToSmartAccountMapping[address];
     // If the current address has a mapped smart account, add the smart account's score to the owner's score
-    // and set the smart account's score to 0 to prevent double counting.
     if (smartAccount !== undefined) {
       scores[address] = scores[address] + scores[smartAccount];
-      scores[smartAccount] = 0;
     }
   }
 
