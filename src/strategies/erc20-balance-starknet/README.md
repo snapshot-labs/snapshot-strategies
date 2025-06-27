@@ -1,6 +1,6 @@
 # erc20-balance-starknet
 
-This strategy returns the balance of the voters for a specific Starknet ERC20 token.
+This strategy returns the balance of the voters for a specific Starknet ERC-20 token.
 
 Here is an example of parameters:
 
