@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": ["e.g. 0xcD1adFB7Ae5E08F7494cdE2EA6666CeF5cc4804c"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 0
+        }
+      },
+      "required": ["address", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

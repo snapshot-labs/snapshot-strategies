@@ -1,0 +1,38 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. APE"],
+          "maxLength": 16
+        },
+        "delegationContract": {
+          "type": "string",
+          "title": "Delegation Contract Address",
+          "examples": ["e.g. 0xDd6B74123b2aB93aD701320D3F8D1b92B4fA5202"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "delegationId": {
+          "type": "string",
+          "title": "Delegation ID",
+          "examples": [
+            "e.g. 0x0000000000000000000000000000000000000000000000000000000000000001"
+          ],
+          "pattern": "^0x[a-fA-F0-9]{64}$",
+          "minLength": 0,
+          "maxLength": 100
+        }
+      },
+      "required": ["delegationContract", "delegationId"],
+      "additionalProperties": false
+    }
+  }
+}
