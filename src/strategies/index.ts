@@ -36,6 +36,7 @@ import * as erc20BalanceOfWithDelegation from './erc20-balance-of-with-delegatio
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
 import * as erc20BalanceOfTopHolders from './erc20-balance-of-top-holders';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
+import * as erc20BalanceStarknet from './erc20-balance-starknet';
 import * as ethalendBalanceOf from './ethalend-balance-of';
 import * as prepoVesting from './prepo-vesting';
 import * as erc20BalanceOfIndexed from './erc20-balance-of-indexed';
@@ -546,6 +547,7 @@ const strategies = {
   'erc20-balance-of-top-holders': erc20BalanceOfTopHolders,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
+  'erc20-balance-starknet': erc20BalanceStarknet,
   'erc20-price': erc20Price,
   'ethalend-balance-of': ethalendBalanceOf,
   'balance-of-with-min': balanceOfWithMin,

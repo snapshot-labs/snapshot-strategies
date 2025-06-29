@@ -1,9 +1,11 @@
-import { getAddress } from '@ethersproject/address';
 import { performance } from 'perf_hooks';
 import fetch from 'cross-fetch';
 import snapshot from '../src';
 import snapshotjs from '@snapshot-labs/snapshot.js';
 import addresses from './addresses.json';
+import starknetAddresses from './addresses-starknet.json';
+
+const STARKNET_CHAIN_IDS = ['0x534e5f4d41494e', '0x534e5f5345504f4c4941'];
 
 jest.useFakeTimers({ advanceTimers: true });
 
@@ -112,7 +114,11 @@ describe.each(examples)(
     it('Returned addresses should be checksum addresses', () => {
       expect(
         Object.keys(scores[0]).every(
-          (address) => getAddress(address) === address
+          (address) =>
+            snapshotjs.utils.getFormattedAddress(
+              address,
+              STARKNET_CHAIN_IDS.includes(example.network) ? 'starknet' : 'evm'
+            ) === address
         )
       ).toBe(true);
     });
@@ -200,7 +206,11 @@ describe.each(examples)(
     let getScoresTimeMore: number | null = null;
 
     it(`Should work with ${moreArg || 500} addresses`, async () => {
-      example.addresses = addresses.slice(0, Number(moreArg));
+      example.addresses = (
+        STARKNET_CHAIN_IDS.includes(example.network)
+          ? starknetAddresses
+          : addresses
+      ).slice(0, Number(moreArg));
       const getScoresStart = performance.now();
       scoresMore = await callGetScores(example);
       const getScoresEnd = performance.now();
