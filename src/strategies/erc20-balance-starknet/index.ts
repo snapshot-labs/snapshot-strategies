@@ -4,7 +4,7 @@ import { Multicaller } from '../../utils';
 
 export const author = 'wa0x6e';
 export const version = '0.0.1';
-
+export const supportedProtocols = ['starknet'];
 const abi = [
   {
     name: 'balanceOf',
