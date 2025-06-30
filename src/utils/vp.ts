@@ -1,21 +1,25 @@
 import { formatBytes32String } from '@ethersproject/strings';
-import { getAddress } from '@ethersproject/address';
+import { getAddress, isAddress } from '@ethersproject/address';
 import subgraphs from '@snapshot-labs/snapshot.js/src/delegationSubgraphs.json';
+import snapshot from '@snapshot-labs/snapshot.js';
 import {
-  getFormattedAddressesByProtocol,
   getProvider,
   getSnapshots,
   Multicaller,
   subgraphRequest
 } from '../utils';
 import _strategies from '../strategies';
-import { Score, Snapshot, VotingPower } from '../types';
-import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
+import { Score, Snapshot, VotingPower, Protocol } from '../types';
+import { DEFAULT_SUPPORTED_PROTOCOLS, VALID_PROTOCOLS } from '../constants';
 
 const DELEGATION_CONTRACT = '0x469788fE6E9E9681C6ebF3bF78e7Fd26Fc015446';
 const EMPTY_ADDRESS = '0x0000000000000000000000000000000000000000';
 const EMPTY_SPACE = formatBytes32String('');
 const abi = ['function delegation(address, bytes32) view returns (address)'];
+
+// Address format constants
+const EVM_ADDRESS_REGEX = /^0x[a-fA-F0-9]{40}$/;
+const STARKNET_ADDRESS_REGEX = /^0x[a-fA-F0-9]{64}$/;
 
 interface Delegation {
   in: string[];
@@ -30,6 +34,9 @@ export async function getVp(
   space: string,
   delegation?: boolean
 ): Promise<VotingPower> {
+  validateStrategies(strategies);
+  validateVoterAddress(address);
+
   const networks = [...new Set(strategies.map((s) => s.network || network))];
   const snapshots = await getSnapshots(
     network,
@@ -38,8 +45,10 @@ export async function getVp(
     networks
   );
 
+  // TODO: Delegation support for Starknet
+  const delegationSupported = delegation && isAddress(address);
   const delegations = {};
-  if (delegation) {
+  if (delegationSupported) {
     const ds = await Promise.all(
       networks.map((n) => getDelegations(address, n, snapshots[n], space))
     );
@@ -49,19 +58,19 @@ export async function getVp(
   const p: Score[] = strategies.map((strategy) => {
     const n = strategy.network || network;
     let addresses = [address];
+    const supportedProtocols = _strategies[strategy.name].supportedProtocols;
 
-    if (delegation) {
+    if (delegationSupported && supportedProtocols.includes('evm')) {
       addresses = delegations[n].in;
       if (!delegations[n].out) addresses.push(address);
       addresses = [...new Set(addresses)];
       if (addresses.length === 0) return {};
     }
 
-    addresses = getFormattedAddressesByProtocol(
-      addresses,
-      _strategies[strategy.name].supportedProtocols ??
-        DEFAULT_SUPPORTED_PROTOCOLS
-    );
+    addresses = formatSupportedAddresses(addresses, supportedProtocols);
+
+    if (addresses.length === 0) return {};
+
     return _strategies[strategy.name].strategy(
       space,
       n,
@@ -76,18 +85,16 @@ export async function getVp(
   const vpByStrategy = scores.map((score, i) => {
     const n = strategies[i].network || network;
     let addresses = [address];
+    const supportedProtocols =
+      _strategies[strategies[i].name].supportedProtocols;
 
-    if (delegation) {
+    if (delegationSupported && supportedProtocols.includes('evm')) {
       addresses = delegations[n].in;
       if (!delegations[n].out) addresses.push(address);
       addresses = [...new Set(addresses)];
     }
 
-    addresses = getFormattedAddressesByProtocol(
-      addresses,
-      _strategies[strategies[i].name].supportedProtocols ??
-        DEFAULT_SUPPORTED_PROTOCOLS
-    );
+    addresses = formatSupportedAddresses(addresses, supportedProtocols);
     return addresses.reduce((a, b) => a + (score[b] || 0), 0);
   });
   const vp = vpByStrategy.reduce((a, b) => a + b, 0);
@@ -227,4 +234,92 @@ export async function getDelegations(
     in: delegationsIn,
     out: delegationOut
   };
+}
+
+// Ensure that the address is either a valid EVM address or Starknet address
+function validateVoterAddress(address: string): void {
+  try {
+    const result = formatSupportedAddresses([address], VALID_PROTOCOLS);
+    if (!result.length) {
+      throw new Error('invalid address');
+    }
+  } catch {
+    throw new Error('invalid address');
+  }
+}
+
+function validateStrategies(strategies: any[]): void {
+  const invalidStrategies = strategies
+    .filter((s) => !_strategies[s.name])
+    .map((s) => s.name);
+
+  if (invalidStrategies.length > 0) {
+    throw new Error(`invalid strategies: ${invalidStrategies.join(', ')}`);
+  }
+}
+
+/**
+ * Validates that protocols are non-empty and contain only valid protocol names.
+ *
+ * @param protocols - Array of protocol names to validate
+ */
+function validateProtocols(protocols: Protocol[]): void {
+  if (!protocols.length) {
+    throw new Error('At least one protocol must be specified');
+  }
+
+  const invalidProtocols = protocols.filter(
+    (p) => !VALID_PROTOCOLS.includes(p)
+  );
+  if (invalidProtocols.length > 0) {
+    throw new Error(`Invalid protocol(s): ${invalidProtocols.join(', ')}`);
+  }
+}
+
+/**
+ * Formats addresses relevant to the given protocols according to the specified blockchain protocols.
+ *
+ * Will ignore addresses that are not evm or starknet like addresses
+ *
+ * @param addresses - Array of blockchain addresses to format
+ * @param protocols - Array of protocol names to validate against. Defaults to ['evm'].
+ *                   Valid protocols are 'evm' and 'starknet'.
+ *
+ * @returns Array of formatted addresses in the same order as input
+ */
+export function formatSupportedAddresses(
+  addresses: string[],
+  protocols: Protocol[] = DEFAULT_SUPPORTED_PROTOCOLS
+): string[] {
+  validateProtocols(protocols);
+
+  const supportsEvm = protocols.includes('evm');
+  const supportsStarknet = protocols.includes('starknet');
+
+  const getAddressType = (address: string): 'evm' | 'starknet' | null => {
+    if (supportsEvm && EVM_ADDRESS_REGEX.test(address)) return 'evm';
+    if (supportsStarknet && STARKNET_ADDRESS_REGEX.test(address))
+      return 'starknet';
+    return null;
+  };
+
+  const result: string[] = [];
+  for (const address of addresses) {
+    const addressType = getAddressType(address);
+    if (!addressType) continue; // Skip unsupported addresses
+
+    try {
+      const formattedAddress = snapshot.utils.getFormattedAddress(
+        address,
+        addressType
+      );
+      result.push(formattedAddress);
+    } catch (e) {
+      throw new Error(
+        `Address "${address}" is not a valid ${protocols.join(' or ')} address`
+      );
+    }
+  }
+
+  return result;
 }
