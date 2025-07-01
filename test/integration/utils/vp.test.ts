@@ -7,7 +7,7 @@ const TEST_TIMEOUT = 20e3;
 describe('VP Calculation Integration Tests', () => {
   describe('getVp()', () => {
     it(
-      'should calculate VP without delegation',
+      'should calculate VP for EVM address on evm protocol',
       async () => {
         const scores = await getVp(
           evmAddress,
@@ -15,23 +15,6 @@ describe('VP Calculation Integration Tests', () => {
           strategies.withDelegation,
           snapshot,
           space
-        );
-
-        expect(scores).toMatchSnapshot();
-      },
-      TEST_TIMEOUT
-    );
-
-    it(
-      'should calculate VP with delegation enabled',
-      async () => {
-        const scores = await getVp(
-          evmAddress,
-          network,
-          strategies.withDelegation,
-          snapshot,
-          space,
-          true
         );
 
         expect(scores).toMatchSnapshot();
@@ -56,23 +39,6 @@ describe('VP Calculation Integration Tests', () => {
     );
 
     it(
-      'should calculate VP for EVM address on mixed protocol with delegation enabled',
-      async () => {
-        const scores = await getVp(
-          evmAddress,
-          network,
-          strategies.mixed,
-          snapshot,
-          space,
-          true
-        );
-
-        expect(scores).toMatchSnapshot();
-      },
-      TEST_TIMEOUT
-    );
-
-    it(
       'should calculate VP for Starknet address on mixed protocol',
       async () => {
         const scores = await getVp(
@@ -89,23 +55,6 @@ describe('VP Calculation Integration Tests', () => {
     );
 
     it(
-      'should calculate VP for Starknet address on mixed protocol with delegation enabled',
-      async () => {
-        const scores = await getVp(
-          starknetAddress,
-          network,
-          strategies.mixed,
-          snapshot,
-          space,
-          true
-        );
-
-        expect(scores).toMatchSnapshot();
-      },
-      TEST_TIMEOUT
-    );
-
-    it(
       'should calculate VP for Starknet address on evm protocol',
       async () => {
         const scores = await getVp(
@@ -114,23 +63,6 @@ describe('VP Calculation Integration Tests', () => {
           strategies.evmOnly,
           snapshot,
           space
-        );
-
-        expect(scores).toMatchSnapshot();
-      },
-      TEST_TIMEOUT
-    );
-
-    it(
-      'should calculate VP for Starknet address on evm protocol with delegation enabled',
-      async () => {
-        const scores = await getVp(
-          starknetAddress,
-          network,
-          strategies.evmOnly,
-          snapshot,
-          space,
-          true
         );
 
         expect(scores).toMatchSnapshot();

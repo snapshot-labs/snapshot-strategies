@@ -2,7 +2,7 @@ import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
-import { getVp, getDelegations as getCoreDelegations } from './utils/vp';
+import { getVp } from './utils/vp';
 import { createHash } from 'crypto';
 import { Score, Snapshot } from './types';
 
@@ -129,6 +129,5 @@ export default {
   getSnapshots,
   getFormattedAddress,
   SNAPSHOT_SUBGRAPH_URL,
-  getVp,
-  getCoreDelegations
+  getVp
 };
