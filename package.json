@@ -12,7 +12,7 @@
   "license": "MIT",
   "scripts": {
     "build": "tsc -p .",
-    "test": "yarn test:unit && jest -i strategy.test.ts",
+    "test": "jest -i test/unit -i test/integration -i strategy.test.ts",
     "test:vp": "jest -i vp.test.ts",
     "test:delegation": "jest -i delegation.test.ts",
     "test:validation": "jest -i validation.test.ts",
