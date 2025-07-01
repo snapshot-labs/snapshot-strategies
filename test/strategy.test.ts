@@ -4,8 +4,7 @@ import snapshot from '../src';
 import snapshotjs from '@snapshot-labs/snapshot.js';
 import addresses from './addresses.json';
 import starknetAddresses from './addresses-starknet.json';
-
-const STARKNET_CHAIN_IDS = ['0x534e5f4d41494e', '0x534e5f5345504f4c4941'];
+import networks from '@snapshot-labs/snapshot.js/src/networks.json';
 
 jest.useFakeTimers({ advanceTimers: true });
 
@@ -117,7 +116,7 @@ describe.each(examples)(
           (address) =>
             snapshotjs.utils.getFormattedAddress(
               address,
-              STARKNET_CHAIN_IDS.includes(example.network) ? 'starknet' : 'evm'
+              networks[example.network].starknet ? 'starknet' : 'evm'
             ) === address
         )
       ).toBe(true);
@@ -207,9 +206,7 @@ describe.each(examples)(
 
     it(`Should work with ${moreArg || 500} addresses`, async () => {
       example.addresses = (
-        STARKNET_CHAIN_IDS.includes(example.network)
-          ? starknetAddresses
-          : addresses
+        networks[example.network].starknet ? starknetAddresses : addresses
       ).slice(0, Number(moreArg));
       const getScoresStart = performance.now();
       scoresMore = await callGetScores(example);
