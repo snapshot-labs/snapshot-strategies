@@ -1,0 +1,37 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "symbol": {
+          "type": "string",
+          "title": "Symbol",
+          "examples": ["e.g. STRK"],
+          "maxLength": 16
+        },
+        "address": {
+          "type": "string",
+          "title": "Contract address",
+          "examples": [
+            "e.g. 0x049d36570d4e46f48e99674bd3fcc84644ddd6b96f7c741b1562b82f9e004dc7"
+          ],
+          "pattern": "^0x[a-f0-9]{64}$",
+          "minLength": 66,
+          "maxLength": 66,
+          "errorMessage": "Must be a valid lowercase and padded Starknet contract address"
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 0
+        }
+      },
+      "required": ["address", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}
