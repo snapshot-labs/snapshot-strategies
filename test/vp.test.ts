@@ -31,28 +31,8 @@ const strategies = [
 ];
 
 describe('', () => {
-  it('getVp without delegation', async () => {
-    const scores = await getVp(
-      address,
-      network,
-      strategies,
-      snapshot,
-      space,
-      false
-    );
-    expect(scores).toMatchSnapshot();
-    console.log(scores);
-  }, 20e3);
-
-  it('getVp with delegation', async () => {
-    const scores = await getVp(
-      address,
-      network,
-      strategies,
-      snapshot,
-      space,
-      true
-    );
+  it('getVp', async () => {
+    const scores = await getVp(address, network, strategies, snapshot, space);
     expect(scores).toMatchSnapshot();
     console.log(scores);
   }, 20e3);
