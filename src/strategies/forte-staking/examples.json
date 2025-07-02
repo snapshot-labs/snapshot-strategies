@@ -6,7 +6,6 @@
       "params": {
         "stakingAddress": "0x249E662fe228Eff1e7dCE7cF3E78dFD481C7Ba3E",
         "externalMultiplierAddress": "0x86f53212865b6fddb99633dc002a7f7aacaaa8db",
-        "symbol": "FORTE",
         "externalMultiplierABI": "function getAccessLevel(address _account) external view returns (uint8)",
         "externalMultiplierFunction": "getAccessLevel",
         "multiplierNumerator": 4,
