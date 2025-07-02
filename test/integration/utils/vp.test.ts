@@ -113,5 +113,11 @@ describe('VP Calculation Integration Tests', () => {
         'invalid strategies: strategy-one-invalid, strategy-two-invalid'
       );
     });
+
+    it('should throw an error with empty strategies', async () => {
+      await expect(
+        getVp(evmAddress, network, [], snapshot, space)
+      ).rejects.toThrow('no strategies provided');
+    });
   });
 });

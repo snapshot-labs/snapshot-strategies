@@ -13,15 +13,6 @@ export async function getVp(
   validateStrategies(strategies);
 
   const vpState = snapshotBlock === 'latest' ? 'pending' : 'final';
-
-  if (!strategies.length) {
-    return {
-      vp: 0,
-      vp_by_strategy: [],
-      vp_state: vpState
-    };
-  }
-
   const { formattedAddress, addressType } = validateAndFormatAddress(address);
   const networks = [...new Set(strategies.map((s) => s.network || network))];
   const snapshots = await getSnapshots(
@@ -84,6 +75,10 @@ function validateAndFormatAddress(address: string): {
 }
 
 function validateStrategies(strategies: any[]): void {
+  if (!strategies.length) {
+    throw new Error('no strategies provided');
+  }
+
   const invalidStrategies = strategies
     .filter((strategy) => !_strategies[strategy.name])
     .map((strategy) => strategy.name);
