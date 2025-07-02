@@ -92,7 +92,7 @@ describe('utils', () => {
             snapshot,
             space
           )
-        ).rejects.toThrow('invalid address');
+        ).rejects.toThrow(/Invalid.*address/);
       }
     );
 
