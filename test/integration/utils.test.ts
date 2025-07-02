@@ -1,4 +1,4 @@
-import { getVp } from '../src/utils/vp';
+import { getVp } from '../../src/utils';
 
 const address = '0xeF8305E140ac520225DAf050e2f71d5fBcC543e7';
 const space = 'cvx.eth';
@@ -30,10 +30,9 @@ const strategies = [
   }
 ];
 
-describe('', () => {
+describe('utils', () => {
   it('getVp', async () => {
     const scores = await getVp(address, network, strategies, snapshot, space);
     expect(scores).toMatchSnapshot();
-    console.log(scores);
   }, 20e3);
 });

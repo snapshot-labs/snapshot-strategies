@@ -2,9 +2,8 @@ import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
-import { getVp } from './utils/vp';
 import { createHash } from 'crypto';
-import { Protocol, Score, Snapshot } from './types';
+import { Protocol, Score, Snapshot, VotingPower } from './types';
 import { VALID_PROTOCOLS } from './constants';
 
 export function sha256(str) {
@@ -73,6 +72,31 @@ export async function getScoresDirect(
   } catch (e) {
     return Promise.reject(e);
   }
+}
+
+export async function getVp(
+  address: string,
+  network: string,
+  strategies: any[],
+  snapshot: Snapshot,
+  space: string
+): Promise<VotingPower> {
+  const scores: Score[] = await getScoresDirect(
+    space,
+    strategies,
+    network,
+    getProvider(network),
+    [address],
+    snapshot
+  );
+
+  const vpByStrategy = scores.map((score) => score[address] || 0);
+
+  return {
+    vp: vpByStrategy.reduce((a, b) => a + b, 0),
+    vp_by_strategy: vpByStrategy,
+    vp_state: snapshot === 'latest' ? 'pending' : 'final'
+  };
 }
 
 export function customFetch(

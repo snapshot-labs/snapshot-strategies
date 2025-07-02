@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[` getVp 1`] = `
+exports[`utils getVp 1`] = `
 {
   "vp": 21.55404462002206,
   "vp_by_strategy": [
