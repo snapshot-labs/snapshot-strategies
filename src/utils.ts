@@ -24,10 +24,6 @@ async function callStrategy(
     return {};
   }
 
-  if (!_strategies.hasOwnProperty(strategy.name)) {
-    throw new Error(`Invalid strategy: ${strategy.name}`);
-  }
-
   const score: Score = await _strategies[strategy.name].strategy(
     space,
     network,
@@ -53,16 +49,23 @@ export async function getScoresDirect(
   snapshot: Snapshot
 ): Promise<Score[]> {
   try {
-    const networks = strategies.map((s) => s.network || network);
-    const snapshots = await getSnapshots(network, snapshot, provider, networks);
-    // @ts-ignore
     if (addresses.length === 0) return strategies.map(() => ({}));
+
+    const addressesByProtocols = validateAndFormatAddresses(addresses);
+    validateStrategies(strategies);
+
+    const networks = [...new Set(strategies.map((s) => s.network || network))];
+    const snapshots = await getSnapshots(network, snapshot, provider, networks);
+
     return await Promise.all(
       strategies.map((strategy) =>
         callStrategy(
           space,
           strategy.network || network,
-          addresses,
+          getAddressesFromSupportedProtocols(
+            addressesByProtocols,
+            strategy.name
+          ),
           strategy,
           snapshots[strategy.network || network]
         )
@@ -80,20 +83,20 @@ export async function getVp(
   snapshot: Snapshot,
   space: string
 ): Promise<VotingPower> {
-  const { formattedAddress } = validateAndFormatAddress(address);
+  validateStrategies(strategies, { allowEmpty: false });
 
   const scores = await getScoresDirect(
     space,
     strategies,
     network,
     getProvider(network),
-    [formattedAddress],
+    [address],
     snapshot
   );
 
   const vpByStrategy = scores.map((score) => {
     const matchingKey = Object.keys(score).find(
-      (key) => key.toLowerCase() === formattedAddress.toLowerCase()
+      (key) => key.toLowerCase() === address.toLowerCase()
     );
     return matchingKey ? score[matchingKey] : 0;
   });
@@ -136,23 +139,58 @@ function getAddressType(address: string): Protocol | null {
   return null;
 }
 
-function validateAndFormatAddress(address: string): {
-  formattedAddress: string;
-  addressType: Protocol;
-} {
-  const addressType = getAddressType(address);
-  if (!addressType) {
-    throw new Error('invalid address');
+function validateAndFormatAddresses(
+  addresses: string[]
+): Record<Protocol, string[]> {
+  const results: Record<Protocol, string[]> = {
+    evm: [],
+    starknet: []
+  };
+
+  for (const address of addresses) {
+    const addressType = getAddressType(address);
+    if (!addressType) {
+      throw new Error('invalid address');
+    }
+
+    try {
+      results[addressType].push(
+        snapshot.utils.getFormattedAddress(address, addressType)
+      );
+    } catch {
+      throw new Error('invalid address');
+    }
   }
 
-  let formattedAddress: string;
-  try {
-    formattedAddress = snapshot.utils.getFormattedAddress(address, addressType);
-  } catch {
-    throw new Error('invalid address');
+  return results;
+}
+
+function getAddressesFromSupportedProtocols(
+  addressesByProtocols: Record<Protocol, string[]>,
+  strategyName: string
+): string[] {
+  return Object.entries(addressesByProtocols)
+    .filter(([protocol]) =>
+      _strategies[strategyName].supportedProtocols.includes(protocol)
+    )
+    .flatMap(([, addresses]) => addresses);
+}
+
+function validateStrategies(
+  strategies: any[],
+  { allowEmpty = true }: { allowEmpty?: boolean } = {}
+): void {
+  if (!strategies.length && !allowEmpty) {
+    throw new Error('no strategies provided');
   }
 
-  return { formattedAddress, addressType };
+  const invalidStrategies = strategies
+    .filter((strategy) => !_strategies[strategy.name])
+    .map((strategy) => strategy.name);
+
+  if (invalidStrategies.length > 0) {
+    throw new Error(`Invalid strategies: ${invalidStrategies.join(', ')}`);
+  }
 }
 
 export const {

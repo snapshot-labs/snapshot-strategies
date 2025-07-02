@@ -95,5 +95,25 @@ describe('utils', () => {
         ).rejects.toThrow('invalid address');
       }
     );
+
+    it('should throw an error with single invalid strategy', async () => {
+      await expect(
+        getVp(evmAddress, network, strategies.singleInvalid, snapshot, space)
+      ).rejects.toThrow('Invalid strategies: whitelist-invalid');
+    });
+
+    it('should throw an error with multiple invalid strategies', async () => {
+      await expect(
+        getVp(evmAddress, network, strategies.multipleInvalid, snapshot, space)
+      ).rejects.toThrow(
+        'Invalid strategies: strategy-one-invalid, strategy-two-invalid'
+      );
+    });
+
+    it('should throw an error with empty strategies', async () => {
+      await expect(
+        getVp(evmAddress, network, [], snapshot, space)
+      ).rejects.toThrow('no strategies provided');
+    });
   });
 });

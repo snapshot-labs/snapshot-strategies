@@ -23,3 +23,24 @@ exports[`utils getVp() should calculate VP for EVM address on mixed protocol 1`]
   "vp_state": "final",
 }
 `;
+
+exports[`utils getVp() should calculate VP for Starknet address on evm protocol 1`] = `
+{
+  "vp": 0,
+  "vp_by_strategy": [
+    0,
+  ],
+  "vp_state": "final",
+}
+`;
+
+exports[`utils getVp() should calculate VP for Starknet address on mixed protocol 1`] = `
+{
+  "vp": 1,
+  "vp_by_strategy": [
+    1,
+    0,
+  ],
+  "vp_state": "final",
+}
+`;
