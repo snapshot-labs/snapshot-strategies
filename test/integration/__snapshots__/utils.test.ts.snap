@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`utils getVp 1`] = `
+exports[`utils getVp() should calculate VP for EVM address on evm protocol 1`] = `
 {
   "vp": 21.55404462002206,
   "vp_by_strategy": [
@@ -8,6 +8,17 @@ exports[`utils getVp 1`] = `
     9.998985610441185,
     11.506635026590818,
     0.04842398299005922,
+  ],
+  "vp_state": "final",
+}
+`;
+
+exports[`utils getVp() should calculate VP for EVM address on mixed protocol 1`] = `
+{
+  "vp": 10.998985610441185,
+  "vp_by_strategy": [
+    1,
+    9.998985610441185,
   ],
   "vp_state": "final",
 }
