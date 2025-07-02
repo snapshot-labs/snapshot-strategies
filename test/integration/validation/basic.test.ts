@@ -68,7 +68,7 @@ describe('Basic Validation Integration Tests', () => {
 
       it('should return true even if user is not in whitelist when minScore is undefined', async () => {
         validation = new BasicValidation(
-          '0x742d35Cc6634C0532925a3b8D4C4D09F6d60e89e',
+          '0x742D35cc6634c0532925A3b8d4C4d09F6D60E89e',
           'test-space',
           '1',
           'latest',
@@ -90,7 +90,7 @@ describe('Basic Validation Integration Tests', () => {
 
       it('should return true even if user is not in whitelist when minScore is 0', async () => {
         validation = new BasicValidation(
-          '0x742d35Cc6634C0532925a3b8D4C4D09F6d60e89e',
+          '0x742D35cc6634c0532925A3b8d4C4d09F6D60E89e',
           'test-space',
           '1',
           'latest',
@@ -141,7 +141,7 @@ describe('Basic Validation Integration Tests', () => {
 
       it('should validate with whitelist strategy - user not in whitelist', async () => {
         validation = new BasicValidation(
-          '0x742d35Cc6634C0532925a3b8D4C4D09F6d60e89e',
+          '0x742D35cc6634c0532925A3b8d4C4d09F6D60E89e',
           'test-space',
           '1',
           'latest',
