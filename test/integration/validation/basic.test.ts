@@ -531,7 +531,7 @@ describe('Basic Validation Integration Tests', () => {
         );
 
         await expect(validation.validate()).rejects.toThrow(
-          'Invalid strategy: non-existent-strategy'
+          'Invalid strategies: non-existent-strategy'
         );
       }, 10000);
     });
