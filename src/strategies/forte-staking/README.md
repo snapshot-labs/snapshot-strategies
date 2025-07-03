@@ -34,28 +34,26 @@ The equation of the voting power is:
 
 $votingPower(snapshot) = \sum_{i=1}^n amountStaked(i) * (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator} * [externalMultiplier]$
 
-where _n_ is the number of batches of staked tokens by the user.
+where _n_ is the number of batches of staked tokens by the user, and _daystStaked_ is an integer rounded down that represents the number of days since the batch was created.
 
-Notice that the multiplier is a function of a range due to the ceiling parameter:
+Notice that the external multiplier is a function of a range due to the ceiling parameter:
 
 $externalMultiplier =
   \begin{cases}
-    externalMultiplier > externalMultiplierCeiling     & \quad externalMultiplierCeiling\\
+    externalMultiplier > externalMultiplierCeiling  & \quad externalMultiplierCeiling\\
     externalMultiplier ≤ externalMultiplierCeiling  & \quad externalMultiplier
-  \end{cases}
-$
+  \end{cases}$
 
 ## Examples
 
 ### Using KYC as an external multiplier
 
-In this example, the external multiplier is the KYC level of the user in an external contract. The KYC level itself can be any positive number. However, any value greater than 2 will be treated as 2 due to the ceiling parameter:
+In this example, the external multiplier is the KYC level of the user stored in an external contract. The KYC level itself can be any positive number. However, any value greater than 2 will be treated as 2 due to the ceiling parameter:
 
 ```json
 {
   "stakingAddress": "0x249E662fe228Eff1e7dCE7cF3E78dFD481C7Ba3E",
   "externalMultiplierAddress": "0x86f53212865b6fddb99633dc002a7f7aacaaa8db",
-  "symbol": "FORTE",
   "externalMultiplierABI": "function getAccessLevel(address _account) external view returns (uint8)",
   "externalMultiplierFunction": "getAccessLevel",
   "multiplierNumerator": 4,
@@ -72,7 +70,6 @@ This is the same example as the one above but without the external multiplier wh
 ```json
 {
   "stakingAddress": "0x249E662fe228Eff1e7dCE7cF3E78dFD481C7Ba3E",
-  "symbol": "FORTE",
   "multiplierNumerator": 4,
   "multiplierDenominator": 1461,
   "daysOffset": -1
