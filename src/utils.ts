@@ -2,10 +2,8 @@ import fetch from 'cross-fetch';
 import _strategies from './strategies';
 import snapshot from '@snapshot-labs/snapshot.js';
 import { getDelegations } from './utils/delegation';
-import { getVp } from './utils/vp';
 import { createHash } from 'crypto';
-import { Protocol, Score, Snapshot } from './types';
-import { VALID_PROTOCOLS } from './constants';
+import { Protocol, Score, Snapshot, VotingPower } from './types';
 
 export function sha256(str) {
   return createHash('sha256').update(str).digest('hex');
@@ -25,11 +23,6 @@ async function callStrategy(
   ) {
     return {};
   }
-
-  if (!_strategies.hasOwnProperty(strategy.name)) {
-    throw new Error(`Invalid strategy: ${strategy.name}`);
-  }
-
   const score: Score = await _strategies[strategy.name].strategy(
     space,
     network,
@@ -38,12 +31,19 @@ async function callStrategy(
     strategy.params,
     snapshot
   );
-  const addressesLc = addresses.map((address) => address.toLowerCase());
-  return Object.fromEntries(
-    Object.entries(score).filter(
-      ([address, vp]) => vp > 0 && addressesLc.includes(address.toLowerCase())
-    )
+
+  const normalizedAddresses = new Set(
+    addresses.map((address) => address.toLowerCase())
   );
+  const filteredScore: Score = {};
+
+  for (const [address, vp] of Object.entries(score)) {
+    if (vp > 0 && normalizedAddresses.has(address.toLowerCase())) {
+      filteredScore[address] = vp;
+    }
+  }
+
+  return filteredScore;
 }
 
 export async function getScoresDirect(
@@ -55,16 +55,20 @@ export async function getScoresDirect(
   snapshot: Snapshot
 ): Promise<Score[]> {
   try {
-    const networks = strategies.map((s) => s.network || network);
-    const snapshots = await getSnapshots(network, snapshot, provider, networks);
-    // @ts-ignore
     if (addresses.length === 0) return strategies.map(() => ({}));
+
+    const addressesByProtocol = categorizeAddressesByProtocol(addresses);
+    validateStrategies(strategies);
+
+    const networks = [...new Set(strategies.map((s) => s.network || network))];
+    const snapshots = await getSnapshots(network, snapshot, provider, networks);
+
     return await Promise.all(
       strategies.map((strategy) =>
         callStrategy(
           space,
           strategy.network || network,
-          addresses,
+          filterAddressesForStrategy(addressesByProtocol, strategy.name),
           strategy,
           snapshots[strategy.network || network]
         )
@@ -73,6 +77,41 @@ export async function getScoresDirect(
   } catch (e) {
     return Promise.reject(e);
   }
+}
+
+export async function getVp(
+  address: string,
+  network: string,
+  strategies: any[],
+  snapshot: Snapshot,
+  space: string
+): Promise<VotingPower> {
+  if (!strategies.length) {
+    throw new Error('no strategies provided');
+  }
+
+  const scores = await getScoresDirect(
+    space,
+    strategies,
+    network,
+    getProvider(network),
+    [address],
+    snapshot
+  );
+
+  const normalizedAddress = address.toLowerCase();
+  const vpByStrategy = scores.map((score) => {
+    const matchingKey = Object.keys(score).find(
+      (key) => key.toLowerCase() === normalizedAddress
+    );
+    return matchingKey ? score[matchingKey] : 0;
+  });
+
+  return {
+    vp: vpByStrategy.reduce((a, b) => a + b, 0),
+    vp_by_strategy: vpByStrategy,
+    vp_state: snapshot === 'latest' ? 'pending' : 'final'
+  };
 }
 
 export function customFetch(
@@ -100,66 +139,59 @@ export function customFetch(
   ]);
 }
 
-/**
- * Validates that protocols are non-empty and contain only valid protocol names.
- *
- * @param protocols - Array of protocol names to validate
- */
-function validateProtocols(protocols: Protocol[]): void {
-  if (!protocols.length) {
-    throw new Error('At least one protocol must be specified');
-  }
-
-  const invalidProtocols = protocols.filter(
-    (p) => !VALID_PROTOCOLS.includes(p)
-  );
-  if (invalidProtocols.length > 0) {
-    throw new Error(`Invalid protocol(s): ${invalidProtocols.join(', ')}`);
-  }
+function detectProtocol(address: string): Protocol | null {
+  if (/^0x[a-fA-F0-9]{40}$/.test(address)) return 'evm';
+  if (/^0x[a-fA-F0-9]{64}$/.test(address)) return 'starknet';
+  return null;
 }
 
-/**
- * Formats addresses according to the specified blockchain protocols.
- *
- * This function takes a list of addresses and formats them according to the provided
- * protocols. It prioritizes EVM formatting when multiple protocols are specified and
- * an address is valid for both. If EVM formatting fails but Starknet is supported,
- * it falls back to Starknet formatting. Throws an error if any address cannot be
- * formatted according to the specified protocols.
- *
- * @param addresses - Array of blockchain addresses to format
- * @param protocols - Array of protocol names to validate against. Defaults to ['evm'].
- *                   Valid protocols are 'evm' and 'starknet'.
- *
- * @returns Array of formatted addresses in the same order as input
- */
-export function getFormattedAddressesByProtocol(
-  addresses: string[],
-  protocols: Protocol[] = ['evm']
+function categorizeAddressesByProtocol(
+  addresses: string[]
+): Record<Protocol, string[]> {
+  const results: Record<Protocol, string[]> = {
+    evm: [],
+    starknet: []
+  };
+
+  for (const address of addresses) {
+    const addressType = detectProtocol(address);
+    if (!addressType) {
+      throw new Error(`Invalid address format: ${address}`);
+    }
+
+    try {
+      const formattedAddress = snapshot.utils.getFormattedAddress(
+        address,
+        addressType
+      );
+      if (!results[addressType].includes(formattedAddress)) {
+        results[addressType].push(formattedAddress);
+      }
+    } catch {
+      throw new Error(`Invalid ${addressType} address: ${address}`);
+    }
+  }
+
+  return results;
+}
+
+function filterAddressesForStrategy(
+  addressesByProtocol: Record<Protocol, string[]>,
+  strategyName: string
 ): string[] {
-  validateProtocols(protocols);
+  return _strategies[strategyName].supportedProtocols.flatMap(
+    (protocol: Protocol) => addressesByProtocol[protocol] || []
+  );
+}
 
-  return addresses.map((address) => {
-    if (protocols.includes('evm')) {
-      try {
-        return snapshot.utils.getFormattedAddress(address, 'evm');
-      } catch (e) {
-        // Continue to starknet if evm formatting fails and starknet is supported
-      }
-    }
+function validateStrategies(strategies: any[]): void {
+  const invalidStrategies = strategies
+    .filter((strategy) => !_strategies[strategy.name])
+    .map((strategy) => strategy.name);
 
-    if (protocols.includes('starknet')) {
-      try {
-        return snapshot.utils.getFormattedAddress(address, 'starknet');
-      } catch (e) {
-        // Address format not supported by any protocol
-      }
-    }
-
-    throw new Error(
-      `Address "${address}" is not a valid ${protocols.join(' or ')} address`
-    );
-  });
+  if (invalidStrategies.length > 0) {
+    throw new Error(`Invalid strategies: ${invalidStrategies.join(', ')}`);
+  }
 }
 
 export const {
@@ -180,7 +212,6 @@ export default {
   sha256,
   getScoresDirect,
   customFetch,
-  getFormattedAddressesByProtocol,
   multicall,
   Multicaller,
   subgraphRequest,
