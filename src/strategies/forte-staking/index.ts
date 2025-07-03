@@ -93,7 +93,12 @@ function calculateVotingPower(
         stake * (daysStaked > 0 ? 1n : 0n) +
         (stake *
           BigInt(
-            numerator * (daysStaked > -offset ? daysStaked + offset : 0)
+            numerator *
+              (daysStaked > -offset
+                ? daysStaked > 0
+                  ? daysStaked + offset
+                  : 0
+                : 0)
           )) /
           BigInt(denominator)
       );
