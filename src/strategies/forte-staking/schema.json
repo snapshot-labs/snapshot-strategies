@@ -51,7 +51,7 @@
         },
         "externalMultiplierCeiling": {
           "type": "number",
-          "title": "numerator",
+          "title": "external multiplier ceiling",
           "examples": ["e.g. 2"]
         }
       },
