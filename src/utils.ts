@@ -84,7 +84,9 @@ export async function getVp(
   network: string,
   strategies: any[],
   snapshot: Snapshot,
-  space: string
+  space: string,
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  _ = false // kept for backward compatibility
 ): Promise<VotingPower> {
   if (!strategies.length) {
     throw new Error('no strategies provided');
