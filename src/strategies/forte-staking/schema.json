@@ -6,15 +6,9 @@
       "title": "Strategy",
       "type": "object",
       "properties": {
-        "symbol": {
-          "type": "string",
-          "title": "Symbol",
-          "examples": ["e.g. FOR"],
-          "maxLength": 16
-        },
         "stakingAddress": {
           "type": "string",
-          "title": "Contract address",
+          "title": "Staking contract address",
           "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
@@ -22,7 +16,7 @@
         },
         "externalMultiplierAddress": {
           "type": "string",
-          "title": "External multiplier address",
+          "title": "External-multiplier contract address",
           "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
           "pattern": "^0x[a-fA-F0-9]{40}$",
           "minLength": 42,
@@ -30,14 +24,14 @@
         },
         "externalMultiplierABI": {
           "type": "string",
-          "title": "External multiplier ABI",
+          "title": "External multiplier ABI (string version)",
           "examples": [
             "e.g. function getAccessLevel(address _account) external view returns (uint8)"
           ]
         },
         "externalMultiplierFunction": {
           "type": "string",
-          "title": "External multiplier ABI",
+          "title": "External-multiplier function name",
           "examples": ["e.g. getAccessLevel"]
         },
         "multiplierNumerator": {
@@ -52,7 +46,7 @@
         },
         "daysOffset": {
           "type": "number",
-          "title": "offset",
+          "title": "Days offset",
           "examples": ["e.g. -1"]
         },
         "externalMultiplierCeiling": {
