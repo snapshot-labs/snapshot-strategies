@@ -488,6 +488,7 @@ import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 import * as edenOnlineOverride from './eden-online-override';
 import * as forteStaking from './forte-staking';
 import * as overtime from './overtime';
+import * as orderlyStakedOrder from './orderly-staked-order';
 
 import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
 
@@ -989,7 +990,8 @@ const strategies = {
   'prl-in-sprl2-balance': prlInSpRL2Balance,
   'eden-online-override': edenOnlineOverride,
   'forte-staking': forteStaking,
-  overtime
+  overtime,
+  'orderly-staked-order': orderlyStakedOrder
 };
 
 Object.keys(strategies).forEach(function (strategyName) {
