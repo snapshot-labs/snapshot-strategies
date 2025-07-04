@@ -32,9 +32,11 @@ Notice that the return type can be of any size. For example, a `uint256` would b
 
 The equation of the voting power is:
 
-$votingPower(snapshot) = \sum_{i=1}^n amountStaked(i) * (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator} * [externalMultiplier]$
+$votingPower(snapshot) = \sum_{i=1}^n amountStaked(i) * (1 + (daysStaked(i) + daysOffset) * \frac{multiplierNumerator}{ multiplierDenominator}) * [externalMultiplier]$
 
-where _n_ is the number of batches of staked tokens by the user, and _daystStaked_ is an integer rounded down that represents the number of days since the batch was created.
+This is only true for each stake batch that has been deposited for more than 1 day. Otherwise, the voting power of the batch is equal to zero.
+
+where _n_ is the number of batches of staked tokens by the user, and _daystStaked_ is a rounded down integer that represents the number of days since the batch was created.
 
 Notice that the external multiplier is a function of a range due to the ceiling parameter:
 
