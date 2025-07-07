@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Example query OP",
+    "strategy": {
+      "name": "overtime",
+      "params": {
+        "address": "0xedf38688b27036816a50185caa430d5479e1c63e",
+        "symbol": "OVER",
+        "decimals": 18,
+        "eoaToSmartAccountMapApi": "https://overdrop.overtime.io/eoa-smart-account-map"
+      }
+    },
+    "network": "10",
+    "addresses": [
+      "0x9f8e4ee788D9b00A3409584E18034aA7B736C396",
+      "0x7d2824F1825da25072011B3e326025172E404b15",
+      "0x3320EE0189aAD77b3aB570a00464Ce7a45B6E465",
+      "0x28b2Be30b0AE526aF0cB94984B750d4C35e913c0",
+      "0xc8038Fb922764405aF919A02BDd2792A36566074",
+      "0x0D858351A5FB419C9A3760647900d2F7aD526c83"
+    ],
+    "snapshot": 137587693
+  }
+]

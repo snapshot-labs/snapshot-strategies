@@ -1,0 +1,24 @@
+[
+  {
+    "name": "Eden Online Override",
+    "strategy": {
+      "name": "eden-online-override",
+      "params": {
+        "symbol": "UBINIJI",
+        "address": "0x66efaf92df6456c3cb810012b2de3fb223c25d0d",
+        "decimals": 0,
+        "addressUrl": "https://maroon-absent-panther-103.mypinata.cloud/ipfs/bafybeicd55sbss2vnxpqaicg7dqmlyjbkqpscqy357idinpyhwgvh53jii"
+      }
+    },
+    "network": "42161",
+    "addresses": [
+      "0x26e40Ea3E3229d785F2FbFcE7C877abb7aEaBb85",
+      "0xCCC15d2EAdf4aD883C916b2830C64F029c1ED404",
+      "0xBD1BBA2759Ca0EA1e24CF8beeBFFb3f92C3fC5d7",
+      "0x5967D6e8a5c50c8079706b8020316ae668722Dd7",
+      "0x280aDB46d499669dABDb5F885E5c484f9CcD2974",
+      "0xDa5658b452230E02FE40fD79824bE7ca4ead74CE"
+    ],
+    "snapshot": 336972651
+  }
+]

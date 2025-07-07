@@ -1,0 +1,23 @@
+[
+  {
+    "name": "Delegated APE strategy",
+    "strategy": {
+      "name": "delegated-ape",
+      "params": {
+        "symbol": "APE",
+        "delegationContract": "0xDd6B74123b2aB93aD701320D3F8D1b92B4fA5202",
+        "delegationId": "0x0000000000000000000000000000000000000000000000000000000000000001"
+      }
+    },
+    "network": "33111",
+    "addresses": [
+      "0x556B14CbdA79A36dC33FcD461a04A5BCb5dC2A70",
+      "0x5EF29cf961cf3Fc02551B9BdaDAa4418c446c5dd",
+      "0x537f1896541d28F4c70116EEa602b1B34Da95163",
+      "0xa40839f84CF98Ee6F4fdB84c1bB1a448e7835EfE",
+      "0x220bc93D88C0aF11f1159eA89a885d5ADd3A7Cf6",
+      "0xF6108479b97EB92E2727edD5f2707620C51EB2DF"
+    ],
+    "snapshot": 18653634
+  }
+]

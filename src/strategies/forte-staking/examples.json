@@ -1,0 +1,28 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "forte-staking",
+      "params": {
+        "stakingAddress": "0x249E662fe228Eff1e7dCE7cF3E78dFD481C7Ba3E",
+        "externalMultiplierAddress": "0x86f53212865b6fddb99633dc002a7f7aacaaa8db",
+        "externalMultiplierABI": "function getAccessLevel(address _account) external view returns (uint8)",
+        "externalMultiplierFunction": "getAccessLevel",
+        "multiplierNumerator": 4,
+        "multiplierDenominator": 1461,
+        "daysOffset": -1,
+        "externalMultiplierCeiling": 2
+      }
+    },
+    "network": "11155111",
+    "addresses": [
+      "0xe5405Dabe7d24F044941cEE4eA73a194659D7bD4",
+      "0x9Fb190F6Da7cdDd939bB4f661c134051ecf6A8B5",
+      "0x12363F899a1b2039a2A5a1A717be896AFA446382",
+      "0xE3D777106b622474a2974839061D652a7Af3C989",
+      "0x9B42F52E69C9bA94991A7D7e7aF73b2340a43216",
+      "0xd99675E7583e73E8DDC6bdbcbff5321983232763"
+    ],
+    "snapshot": 8541444
+  }
+]

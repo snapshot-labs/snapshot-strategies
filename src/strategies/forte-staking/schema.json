@@ -1,0 +1,67 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "stakingAddress": {
+          "type": "string",
+          "title": "Staking contract address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "externalMultiplierAddress": {
+          "type": "string",
+          "title": "External-multiplier contract address",
+          "examples": ["e.g. 0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984"],
+          "pattern": "^0x[a-fA-F0-9]{40}$",
+          "minLength": 42,
+          "maxLength": 42
+        },
+        "externalMultiplierABI": {
+          "type": "string",
+          "title": "External multiplier ABI (string version)",
+          "examples": [
+            "e.g. function getAccessLevel(address _account) external view returns (uint8)"
+          ]
+        },
+        "externalMultiplierFunction": {
+          "type": "string",
+          "title": "External-multiplier function name",
+          "examples": ["e.g. getAccessLevel"]
+        },
+        "multiplierNumerator": {
+          "type": "number",
+          "title": "numerator",
+          "examples": ["e.g. 4"]
+        },
+        "multiplierDenominator": {
+          "type": "number",
+          "title": "denominator",
+          "examples": ["e.g. 1461"]
+        },
+        "daysOffset": {
+          "type": "number",
+          "title": "Days offset",
+          "examples": ["e.g. -1"]
+        },
+        "externalMultiplierCeiling": {
+          "type": "number",
+          "title": "external multiplier ceiling",
+          "examples": ["e.g. 2"]
+        }
+      },
+      "required": [
+        "stakingAddress",
+        "multiplierNumerator",
+        "multiplierDenominator",
+        "daysOffset"
+      ],
+      "additionalProperties": false
+    }
+  }
+}

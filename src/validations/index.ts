@@ -60,7 +60,8 @@ Object.keys(validationClasses).forEach(function (validationName) {
     title: validationInstance.title,
     description: validationInstance.description,
     proposalValidationOnly: validationInstance.proposalValidationOnly,
-    votingValidationOnly: validationInstance.votingValidationOnly
+    votingValidationOnly: validationInstance.votingValidationOnly,
+    supportedProtocols: validationInstance.supportedProtocols
   };
 });
 
