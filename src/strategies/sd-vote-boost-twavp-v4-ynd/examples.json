@@ -1,0 +1,30 @@
+[
+  {
+    "name": "Stake DAO vote boost using TWAVP V4",
+    "strategy": {
+      "name": "sd-vote-boost-twavp-v4-ynd",
+      "params": {
+        "pools": [],
+        "symbol": "sdYND",
+        "sdToken": "0x0a885027D84155387B9Bd47485B0fdec10C6B4EC",
+        "veToken": "0xd666b56ee7786cc918fddceade542d013de0e4f1",
+        "decimals": 18,
+        "botAddress": "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+        "sampleSize": 10,
+        "sampleStep": 5,
+        "liquidLocker": "0x8396A782cc966661cd818a4DaC19C3E0aA893012",
+        "sdTokenGauge": "0x26aB50DC99F14405155013ea580Ea2b3dB1801c7",
+        "whiteListedAddress": []
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x26a5994176d34D128C5e6ab80Fa0882A7df4fF00",
+      "0xDdB50FfDbA4D89354E1088e4EA402de895562173",
+      "0xb4542526AfeE2FdA1D584213D1521272a398B42a",
+      "0xfD8bD978f198503a0BA9C5D7f7586E23fC4A4b40",
+      "0xe9046C3ce344f442caEf7B3c3d6e9D4b0F666E51"
+    ],
+    "snapshot": 22867892
+  }
+]
