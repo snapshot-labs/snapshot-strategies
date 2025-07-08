@@ -46,7 +46,11 @@ export async function strategy(
   for (const pool of options.pools) {
     calls.push([options.sdToken, 'balanceOf', [pool]]);
   }
-  calls.push([options.veToken, 'votingPowerForAccount', [options.liquidLocker]]);
+  calls.push([
+    options.veToken,
+    'votingPowerForAccount',
+    [options.liquidLocker]
+  ]);
 
   // --- Create block number list for twavp
   // Obtain last block number
