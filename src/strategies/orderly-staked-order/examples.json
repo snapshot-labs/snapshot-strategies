@@ -4,7 +4,7 @@
     "strategy": {
       "name": "orderly-staked-order"
     },
-    "network": "1",
+    "network": "291",
     "addresses": [
       "0xd51C5283b8727206bf9Be2b2DB4e5673EfAF519C",
       "0xb5fa15414334db658648163d16b36288c246d938",
