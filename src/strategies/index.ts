@@ -388,6 +388,7 @@ import * as erc4626AssetsOf from './erc4626-assets-of';
 import * as sdVoteBoostTWAVPV2 from './sd-vote-boost-twavp-v2';
 import * as sdVoteBoostTWAVPV3 from './sd-vote-boost-twavp-v3';
 import * as sdVoteBoostTWAVPV4 from './sd-vote-boost-twavp-v4';
+import * as sdVoteBoostTWAVPV4Ynd from './sd-vote-boost-twavp-v4-ynd';
 import * as sdGaugeLessVoteBoost from './sd-gauge-less-vote-boost';
 import * as sdGaugeLessVoteBoostCrosschain from './sd-gauge-less-vote-boost-crosschain';
 import * as sdGaugeLessVoteBoostCrosschainSpectra from './sd-gauge-less-vote-boost-crosschain-spectra';
@@ -894,6 +895,7 @@ const strategies = {
   'sd-vote-boost-twavp-v2': sdVoteBoostTWAVPV2,
   'sd-vote-boost-twavp-v3': sdVoteBoostTWAVPV3,
   'sd-vote-boost-twavp-v4': sdVoteBoostTWAVPV4,
+  'sd-vote-boost-twavp-v4-ynd': sdVoteBoostTWAVPV4Ynd,
   'sd-gauge-less-vote-boost': sdGaugeLessVoteBoost,
   'sd-gauge-less-vote-boost-crosschain': sdGaugeLessVoteBoostCrosschain,
   'sd-gauge-less-vote-boost-crosschain-spectra':
