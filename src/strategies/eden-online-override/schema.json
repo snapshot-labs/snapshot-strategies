@@ -35,17 +35,10 @@
         "votingWeight": {
           "type": "number",
           "title": "Niji Voting Weight",
-          "examples": [
-            "e.g. 1"
-          ]
+          "examples": ["e.g. 1"]
         }
       },
-      "required": [
-        "address",
-        "decimals",
-        "addressUrl",
-        "votingWeight"
-      ],
+      "required": ["address", "decimals", "addressUrl", "votingWeight"],
       "additionalProperties": false
     }
   }
