@@ -29,11 +29,16 @@
           "type": "string",
           "title": "URL of the document to fetch from IPFS",
           "examples": [
-            "e.g. https://maroon-absent-panther-103.mypinata.cloud/ipfs/bafybeiellha74vduonid7k5qlrgyh5tnm4baauxggtynizarj426i537mm"
+            "e.g. https://ipfs.io/ipfs/bafybeicd55sbss2vnxpqaicg7dqmlyjbkqpscqy357idinpyhwgvh53jii"
           ]
+        },
+        "votingWeight": {
+          "type": "number",
+          "title": "Niji Voting Weight",
+          "examples": ["e.g. 1"]
         }
       },
-      "required": ["address", "decimals", "addressUrl"],
+      "required": ["address", "decimals", "addressUrl", "votingWeight"],
       "additionalProperties": false
     }
   }
