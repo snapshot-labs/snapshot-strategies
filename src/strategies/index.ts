@@ -128,6 +128,7 @@ import * as trancheStakingLP from './tranche-staking-lp';
 import * as masterchefPoolBalance from './masterchef-pool-balance';
 import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as api from './api';
+import * as xaqua from './xaqua-vaults-treasury';
 import * as apiPost from './api-post';
 import * as apiV2 from './api-v2';
 import * as xseen from './xseen';
@@ -500,6 +501,7 @@ const strategies = {
   'erc20-balance-of-saevo': erc20BalanceOfSaevo,
   livepeer,
   'spooky-lp-sonic': spookyLpSonic,
+  'xaqua-vaults-treasury' : xaqua,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
