@@ -4,8 +4,6 @@ import { multicall } from '../../utils';
 export const author = 'pepperati224';
 export const version = '0.1.0';
 
-
-
 export async function strategy(
   space,
   network,
@@ -30,22 +28,14 @@ export async function strategy(
     callData.push([options.treasury, 'usersAllocation', [address]]);
   }
 
-const response: any[] = await multicall(
-  network,
-  provider,
-  abi,
-  callData,
-  {
+  const response: any[] = await multicall(network, provider, abi, callData, {
     blockTag
-  }
-);
-
+  });
   // Aggregate scores
   const scores: Record<string, number> = {};
 
   for (let i = 0; i < addresses.length; i++) {
     const address = addresses[i];
-
     const vault1Res = response[i * 3];
     const vault2Res = response[i * 3 + 1];
     const treasuryRes = response[i * 3 + 2];
