@@ -2,7 +2,7 @@
   {
     "name": "Custom vault + treasury strategy",
     "strategy": {
-      "name": "xaqua-vaults-treasury", 
+      "name": "xaqua-vaults-treasury",
       "params": {
         "vault1": "0x8f0d1a8d2f2f0d9b297e6d4d7cd234ab638df51f",
         "vault2": "0x589fad2960b93efdfc0f86fcb5606cf625d8f755",

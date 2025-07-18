@@ -501,7 +501,7 @@ const strategies = {
   'erc20-balance-of-saevo': erc20BalanceOfSaevo,
   livepeer,
   'spooky-lp-sonic': spookyLpSonic,
-  'xaqua-vaults-treasury' : xaqua,
+  'xaqua-vaults-treasury': xaqua,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
