@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Custom vault + treasury strategy",
+    "strategy": {
+      "name": "xaqua-vaults-treasury",
+      "params": {
+        "vault1": "0x8f0d1a8d2f2f0d9b297e6d4d7cd234ab638df51f",
+        "vault2": "0x589fad2960b93efdfc0f86fcb5606cf625d8f755",
+        "treasury": "0x46b6d5732d1b86f4fac7572efb675afbaba8164b",
+        "decimals": 18
+      }
+    },
+    "network": "146",
+    "addresses": [
+      "0x76E9EB9e6EA511A56D5625014c8a1708Bea49419",
+      "0xbA3dc81872F61Ca7f80F1f1786F0dd316F68DA99",
+      "0xFcD804207271E0cbFcf363891F4DF4Af2DBDc12B"
+    ],
+    "snapshot": 38921180
+  }
+]
