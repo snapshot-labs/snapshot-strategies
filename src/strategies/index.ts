@@ -13,6 +13,7 @@ import * as dpsNFTStrategyNova from './dps-nft-strategy-nova';
 import * as nounsPower from './nouns-rfp-power';
 import * as erc20Votes from './erc20-votes';
 import * as erc20VotesWithOverride from './erc20-votes-with-override';
+import * as erc20VotesUndelegatedBalance from './erc20-votes-undelegated-balance';
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
@@ -127,6 +128,7 @@ import * as trancheStakingLP from './tranche-staking-lp';
 import * as masterchefPoolBalance from './masterchef-pool-balance';
 import * as masterchefPoolBalancePrice from './masterchef-pool-balance-price';
 import * as api from './api';
+import * as xaqua from './xaqua-vaults-treasury';
 import * as apiPost from './api-post';
 import * as apiV2 from './api-v2';
 import * as xseen from './xseen';
@@ -489,6 +491,7 @@ import * as prlInSpRL2Balance from './prl-in-sprl2-balance';
 import * as edenOnlineOverride from './eden-online-override';
 import * as forteStaking from './forte-staking';
 import * as overtime from './overtime';
+import * as orderlyStakedOrder from './orderly-staked-order';
 
 import { DEFAULT_SUPPORTED_PROTOCOLS } from '../constants';
 
@@ -498,6 +501,7 @@ const strategies = {
   'erc20-balance-of-saevo': erc20BalanceOfSaevo,
   livepeer,
   'spooky-lp-sonic': spookyLpSonic,
+  'xaqua-vaults-treasury': xaqua,
   'delegatexyz-erc721-balance-of': delegatexyzErc721BalanceOf,
   'giveth-balances-supply-weighted': givethBalancesSupplyWeighted,
   'giveth-gnosis-balance-supply-weighted-v3':
@@ -537,6 +541,7 @@ const strategies = {
   'erc20-balance-of-at': erc20BalanceOfAt,
   'erc20-votes': erc20Votes,
   'erc20-votes-with-override': erc20VotesWithOverride,
+  'erc20-votes-undelegated-balance': erc20VotesUndelegatedBalance,
   'erc721-multi-registry-weighted': erc721MultiRegistryWeighted,
   'erc20-balance-of-fixed-total': erc20BalanceOfFixedTotal,
   'erc20-balance-of-cv': erc20BalanceOfCv,
@@ -991,7 +996,8 @@ const strategies = {
   'prl-in-sprl2-balance': prlInSpRL2Balance,
   'eden-online-override': edenOnlineOverride,
   'forte-staking': forteStaking,
-  overtime
+  overtime,
+  'orderly-staked-order': orderlyStakedOrder
 };
 
 Object.keys(strategies).forEach(function (strategyName) {

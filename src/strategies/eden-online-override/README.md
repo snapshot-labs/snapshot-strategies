@@ -3,7 +3,7 @@
 Niji Warriors are NFTs that can vote on behalf of their owner. Each NFT has its own private key.
 
 At any time, Niji Warrior NFTs can vote on edenonline.eth Snapshot Proposals.
-The Niji Warrior's voting power equals 1 per default.
+The Niji Warrior's voting power equals `votingWeight` as defined in the strategy parameters (usually 0.1 to 1).
 
 When voting directly on Snapshot, the player's vote overrides the Niji Warrior's vote.
 The player's voting power is the square root of the sum of NFTs owned by the player.
