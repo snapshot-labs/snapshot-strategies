@@ -59,34 +59,34 @@ export async function strategy(
     lowercaseAddressBatches.push(slice);
   }
 
-  const query = {
-    accounts: {
-      __args: {
-        where: {
-          id_in: [] as string[]
-        }
-      },
-      id: true,
-      tokens: {
-        __args: {
-          where: {
-            event_in: options.eventIds
-          }
-        },
-        id: true
-      }
-    }
-  };
-  if (snapshot !== 'latest') {
-    query.accounts.__args['block'] = { number: snapshot };
-  }
-
   const results = await Promise.allSettled<{
     accounts: { id: string; tokens?: { id: string }[] }[];
   }>(
     lowercaseAddressBatches.map((addresses) => {
-      query.accounts.__args.where.id_in = addresses;
-      return subgraphRequest(POAP_API_ENDPOINT_URL[network], query);
+      // Create a fresh query object for each batch to avoid mutation issues
+      const batchQuery = {
+        accounts: {
+          __args: {
+            first: addresses.length, // Specify how many results we want
+            where: {
+              id_in: addresses
+            }
+          },
+          id: true,
+          tokens: {
+            __args: {
+              where: {
+                event_in: options.eventIds
+              }
+            },
+            id: true
+          }
+        }
+      };
+      if (snapshot !== 'latest') {
+        batchQuery.accounts.__args['block'] = { number: snapshot };
+      }
+      return subgraphRequest(POAP_API_ENDPOINT_URL[network], batchQuery);
     })
   );
 
