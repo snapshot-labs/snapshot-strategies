@@ -63,11 +63,10 @@ export async function strategy(
     accounts: { id: string; tokens?: { id: string }[] }[];
   }>(
     lowercaseAddressBatches.map((addresses) => {
-      // Create a fresh query object for each batch to avoid mutation issues
       const batchQuery = {
         accounts: {
           __args: {
-            first: addresses.length, // Specify how many results we want
+            first: addresses.length,
             where: {
               id_in: addresses
             }
