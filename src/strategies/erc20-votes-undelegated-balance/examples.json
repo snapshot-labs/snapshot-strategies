@@ -1,0 +1,22 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "erc20-votes-undelegated-balance",
+      "params": {
+        "address": "0xAcd2c239012D17BEB128B0944D49015104113650",
+        "decimals": 18
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0xAcd2c239012D17BEB128B0944D49015104113650",
+      "0x30320770c27c747E6C9CD30F5046c5313b0a1858",
+      "0xb656015c94a4516fae9fa744b78e050299d5201d",
+      "0x6dE6AbF292224b9b293f304388735D08b4Db1398",
+      "0xe068F7e056380e460DE88cd8290C5596F0803D53",
+      "0x13883dc4326fe65a3ae0383d509166dfad620cc4"
+    ],
+    "snapshot": 22926406
+  }
+]

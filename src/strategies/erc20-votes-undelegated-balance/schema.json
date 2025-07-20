@@ -9,7 +9,7 @@
         "symbol": {
           "type": "string",
           "title": "Symbol",
-          "examples": ["e.g. UBINIJI"],
+          "examples": ["e.g. VOTE"],
           "maxLength": 16
         },
         "address": {
@@ -23,22 +23,12 @@
         "decimals": {
           "type": "number",
           "title": "Decimals",
-          "examples": ["e.g. 18"]
-        },
-        "addressUrl": {
-          "type": "string",
-          "title": "URL of the document to fetch from IPFS",
-          "examples": [
-            "e.g. https://ipfs.io/ipfs/bafybeicd55sbss2vnxpqaicg7dqmlyjbkqpscqy357idinpyhwgvh53jii"
-          ]
-        },
-        "votingWeight": {
-          "type": "number",
-          "title": "Niji Voting Weight",
-          "examples": ["e.g. 1"]
+          "examples": ["e.g. 18"],
+          "minimum": 0,
+          "default": 18
         }
       },
-      "required": ["address", "decimals", "addressUrl", "votingWeight"],
+      "required": ["address"],
       "additionalProperties": false
     }
   }

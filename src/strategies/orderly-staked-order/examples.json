@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Example query",
+    "strategy": {
+      "name": "orderly-staked-order"
+    },
+    "network": "291",
+    "addresses": [
+      "0xd51C5283b8727206bf9Be2b2DB4e5673EfAF519C",
+      "0xb5fa15414334db658648163d16b36288c246d938",
+      "0xb620d75b59bbf0adb20a630c8ecaee8e9cede0c0",
+      "0x4a6CA5F866AccF53f582990611eee174FaBd8110",
+      "0x5b19847a2f61048a2efaa41cc6270f4534538571"
+    ],
+    "snapshot": 22845985
+  }
+]

@@ -32,6 +32,7 @@ export async function strategy(
   snapshot
 ) {
   const addressUrl = options.addressUrl;
+  const votingWeight = options.votingWeight;
   const blockTag = typeof snapshot === 'number' ? snapshot : 'latest';
 
   // Fetch Niji Agent EOA addresses
@@ -107,10 +108,10 @@ export async function strategy(
       }
     } else {
       // This is a Niji Warrior agent address, find its tokenId to find its owner
-      // If the owner has already voted, agent gets 0; else 1
+      // If the owner has already voted, agent gets 0; else `votingWeight`
       const nijiId = eoaToNijiId[address];
       const owner = tokenOwners[nijiId];
-      results[address] = owner && addressesSet.has(owner) ? 0 : 1;
+      results[address] = owner && addressesSet.has(owner) ? 0 : votingWeight;
     }
   }
 
