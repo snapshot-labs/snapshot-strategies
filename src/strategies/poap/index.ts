@@ -8,7 +8,7 @@ export const version = '1.2.0';
 // subgraph query in filter has max length of 500
 const EVENT_IDS_LIMIT = 500;
 const POAP_API_ENDPOINT_URL = {
-  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/HuioMeA9oSgs2vkBUQvhfxN9jhkBayadi1tmvKN3KG4s',
+  '1': 'https://subgrapher.snapshot.org/subgraph/arbitrum/J4XbkvmPeCwBstAGXFwvWih4TFfmcp5xbmpXLaNeSBtp',
   '100':
     'https://subgrapher.snapshot.org/subgraph/arbitrum/41xbTurY2KEHZdwFYPXAZTgRL8n4Cf3RfV3X4GSuUckp'
 };
