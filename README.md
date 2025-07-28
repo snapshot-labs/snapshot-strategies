@@ -1,3 +1,5 @@
+> **Notice:** This repository is deprecated. Please use the [Score API](https://github.com/snapshot-labs/score-api) repository instead.
+
 # Snapshot strategies
 
 ## Development
