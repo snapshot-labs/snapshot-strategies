@@ -12,6 +12,8 @@ rate of ACX-LP to ACX. Finally, outstanding rewards for all staked LP positions 
 - `usdcLpTokenAddress` - (**Required**, `string`) Address of USDC-LP token.
 - `wbtcLpTokenAddress` - (**Required**, `string`) Address of WBTC-LP token.
 - `daiLpTokenAddress` - (**Required**, `string`) Address of DAI-LP token.
+- `usdtLpTokenAddress` - (**Required**, `string`) Address of USDT-LP token.
+- `wstethAcxBlpTokenAddress` - (**Required**, `string`) Address of Balancer 50wstETH-ACX LP token.
 - `hubPoolAddress` - (**Required**, `string`) Address of contract users can deposit tokens to receive LP tokens.
 - `acxTokenAddress` - (**Required**, `string`) Address of token that is emitted to staked LP users in the AcceleratingDistributor.
 
@@ -23,6 +25,8 @@ Here is an example of parameters that work for `"network": "1"`
     "acxLpTokenAddress": "0xb0C8fEf534223B891D4A430e49537143829c4817",
     "wethLpTokenAddress": "0x28F77208728B0A45cAb24c4868334581Fe86F95B",
     "usdcLpTokenAddress": "0xC9b09405959f63F72725828b5d449488b02be1cA",
+    "usdtLpTokenAddress": "0xC2faB88f215f62244d2E32c8a65E8F58DA8415a5",
+    "wstethAcxBlpTokenAddress": "0x36Be1E97eA98AB43b4dEBf92742517266F5731a3",
     "wbtcLpTokenAddress": "0x59C1427c658E97a7d568541DaC780b2E5c8affb4",
     "daiLpTokenAddress": "0x4fabacac8c41466117d6a38f46d08ddd4948a0cb",
     "hubPoolAddress": "0xc186fa914353c44b2e33ebe05f21846f1048beda",
