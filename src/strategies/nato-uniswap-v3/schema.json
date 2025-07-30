@@ -1,0 +1,28 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "title": "NATO Uniswap V3 Strategy",
+  "properties": {
+    "tokenAddress": {
+      "type": "string",
+      "title": "NATO Token Address",
+      "default": "0xd968196fa6977c4e58f2af5ac01c655ea8332d22"
+    },
+    "poolAddress": {
+      "type": "string",
+      "title": "Uniswap V3 Pool Address",
+      "default": "0x02623e0e65A1D8537f6235512839E2f7b76C7A12"
+    },
+    "feeTier": {
+      "type": "number",
+      "title": "Fee Tier (Uniswap V3)",
+      "default": 10000
+    },
+    "network": {
+      "type": "string",
+      "title": "Network",
+      "default": "base"
+    }
+  },
+  "required": ["tokenAddress", "poolAddress", "feeTier", "network"]
+}
