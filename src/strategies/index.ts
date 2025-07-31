@@ -35,6 +35,7 @@ import * as erc20WithBalance from './erc20-with-balance';
 import * as erc20BalanceOfDelegation from './erc20-balance-of-delegation';
 import * as erc20BalanceOfWithDelegation from './erc20-balance-of-with-delegation';
 import * as erc20BalanceOfQuadraticDelegation from './erc20-balance-of-quadratic-delegation';
+import * as erc20QuadraticVoting from './erc20-quadratic-voting';
 import * as erc20BalanceOfTopHolders from './erc20-balance-of-top-holders';
 import * as erc20BalanceOfWeighted from './erc20-balance-of-weighted';
 import * as erc20BalanceStarknet from './erc20-balance-starknet';
@@ -550,6 +551,7 @@ const strategies = {
   'erc20-balance-of-delegation': erc20BalanceOfDelegation,
   'erc20-balance-of-with-delegation': erc20BalanceOfWithDelegation,
   'erc20-balance-of-quadratic-delegation': erc20BalanceOfQuadraticDelegation,
+  'erc20-quadratic-voting': erc20QuadraticVoting,
   'erc20-balance-of-top-holders': erc20BalanceOfTopHolders,
   'erc20-balance-of-weighted': erc20BalanceOfWeighted,
   'erc20-balance-of-indexed': erc20BalanceOfIndexed,
