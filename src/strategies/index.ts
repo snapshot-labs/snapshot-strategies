@@ -369,6 +369,7 @@ import * as pdnBalancesAndVests from './pdn-balances-and-vests';
 import * as izumiVeiZi from './izumi-veizi';
 import * as lqtyProxyStakers from './lqty-proxy-stakers';
 import * as rdntCapitalVoting from './rdnt-capital-voting';
+import * as multidelegation from './multidelegation';
 import * as stakedDefiBalance from './staked-defi-balance';
 import * as degenzooErc721AnimalsWeighted from './degenzoo-erc721-animals-weighted';
 import * as capVotingPower from './cap-voting-power';
@@ -875,6 +876,7 @@ const strategies = {
   'pdn-balances-and-vests': pdnBalancesAndVests,
   'lqty-proxy-stakers': lqtyProxyStakers,
   'rdnt-capital-voting': rdntCapitalVoting,
+  multidelegation,
   'staked-defi-balance': stakedDefiBalance,
   'degenzoo-erc721-animals-weighted': degenzooErc721AnimalsWeighted,
   'zunami-pool-gauge-aggregated-balance-of': zunamiPoolGaugeAggregatedBalanceOf,
