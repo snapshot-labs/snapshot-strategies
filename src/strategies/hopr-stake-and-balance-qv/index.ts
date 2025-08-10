@@ -31,8 +31,6 @@ export const version = '0.2.0';
  *************** PARAMETERS ***************
  ******************************************
  */
-const XDAI_BLOCK_HOSTED_SUBGRAPH_URL =
-  'https://api.thegraph.com/subgraphs/name/1hive/xdai-blocks'; // convert mainnet block to its corresponding block on Gnosis chain
 const tokenAbi = ['function balanceOf(address) view returns (uint256)']; // get mainnet HOPR token balance
 const DEFAULT_HOPR_HOSTED_ACCOUNT_NAME = 'hoprnet';
 const DEFAULT_FACTOR = 0.75; // Quadratic-voting-like factor
@@ -105,8 +103,23 @@ export async function strategy(
   ]);
 
   // get the block number for subgraph query
+  const hostedSafeStakeSubgraphUrl = getHostedSubgraphUrl(
+    options.subgraphHostedAccountName ?? DEFAULT_HOPR_HOSTED_ACCOUNT_NAME,
+    options.subgraphHostednosisBlockSubgraphName
+  );
+  const stuidoDevGnosisBlockSubgraphUrl = getStudioDevSubgraphUrl(
+    options.subgraphStudioDevAccountId,
+    options.subgraphStudioDevGnosisBlockSubgraphName,
+    options.subgraphStudioDevGnosisBlockVersion
+  );
+  const studioProdGnosisBlockSubgraphUrl = getStudioProdSubgraphUrl(
+    options.subgraphStudioProdQueryApiKey,
+    options.subgraphStudioProdGnosisBlockQueryId
+  );
   const subgraphBlock = await getGnosisBlockNumber(
-    XDAI_BLOCK_HOSTED_SUBGRAPH_URL,
+    hostedSafeStakeSubgraphUrl,
+    stuidoDevGnosisBlockSubgraphUrl,
+    studioProdGnosisBlockSubgraphUrl,
     block.timestamp,
     options.fallbackGnosisBlock
   );
