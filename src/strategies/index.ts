@@ -17,6 +17,7 @@ import * as erc20VotesUndelegatedBalance from './erc20-votes-undelegated-balance
 import * as antiWhale from './anti-whale';
 import * as balancer from './balancer';
 import * as balancerSmartPool from './balancer-smart-pool';
+import * as beaconChain from './beacon-chain';
 import * as contractCall from './contract-call';
 import * as dfynFarms from './dfyn-staked-in-farms';
 import * as dfynVaults from './dfyn-staked-in-vaults';
@@ -523,6 +524,7 @@ const strategies = {
   'anti-whale': antiWhale,
   balancer,
   'balancer-smart-pool': balancerSmartPool,
+  'beacon-chain': beaconChain,
   'lit-dao-governance': litDaoGovernance,
   'balance-in-vdfyn-vault': vDfynVault,
   'erc20-received': erc20Received,

@@ -1,0 +1,34 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$ref": "#/definitions/Strategy",
+  "definitions": {
+    "Strategy": {
+      "title": "Strategy",
+      "type": "object",
+      "properties": {
+        "clEndpoint": {
+          "type": "string",
+          "title": "Consensus Layer Endpoint",
+          "examples": ["e.g. https://rpc-gbc.gnosischain.com"],
+          "default": "https://rpc-gbc.gnosischain.com"
+        },
+        "clMultiplier": {
+          "type": "string",
+          "title": "Consensus Layer Multiplier",
+          "examples": ["e.g. 32", "1"],
+          "default": "1",
+          "description": "Multiplier to convert validator balance (usually divide by this value)"
+        },
+        "decimals": {
+          "type": "number",
+          "title": "Decimals",
+          "examples": ["e.g. 18"],
+          "minimum": 0,
+          "default": 9
+        }
+      },
+      "required": ["clEndpoint", "clMultiplier", "decimals"],
+      "additionalProperties": false
+    }
+  }
+}

@@ -1,0 +1,21 @@
+[
+  {
+    "name": "Beacon Chain Validators",
+    "strategy": {
+      "name": "beacon-chain",
+      "params": {
+        "clEndpoint": "https://rpc-gbc.gnosischain.com",
+        "clMultiplier": "32",
+        "decimals": 9
+      }
+    },
+    "network": "100",
+    "addresses": [
+      "0x756e9a772F87cC1B3c56E0b88f941BB3AeF0A81a",
+      "0x2A5b95c0770BD74B66D7214E60ea6619FD233687",
+      "0x0000000000000000000000000000000000000001",
+      "0x0000000000000000000000000000000000000002"
+    ],
+    "snapshot": 41536371
+  }
+]
