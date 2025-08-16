@@ -27,7 +27,7 @@ where:
 - "subgraphStudioProdSafeStakeQueryId": ID of the "safe stake" subgraph in production. E.g. "DrkbaCvNGVcNH1RghepLRy6NSHFi8Dmwp4T2LN3LqcjY".
 - "subgraphStudioDevSafeStakeSubgraphName": Name of the safe stake subgraph in Graph Studio. E.g. "hopr-nodes-dufour".
 - "subgraphStudioDevSafeStakeVersion": Latest development version of the safe stake subgraph. E.g. "latest".
-- "subgraphHostedSafeStakeSubgraphName": Name of the safe stake subgraph in Graph Hosted service. This servie does not exist, so the value should be `null`.
+- "subgraphHostedSafeStakeSubgraphName": Name of the safe stake subgraph in Graph Hosted service. This service does not exist, so the value should be `null`.
 - "subgraphStudioProdChannelsQueryId": ID of the "channels" subgraph in production. E.g. "Feg6Jero3aQzesVYuqk253NNLyNAZZppbDPKFYEGJ1Hj".
 - "subgraphStudioDevChannelsSubgraphName": Name of the channels subgraph in Graph Studio. E.g. "hopr-channels".
 - "subgraphStudioDevChannelsVersion": Latest development version of the channels subgraph. E.g. "latest".
