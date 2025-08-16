@@ -1,6 +1,6 @@
 [
   {
-    "name": "Example simple contract call plus / minus",
+    "name": "Example simple contract call minus",
     "strategy": {
       "name": "math",
       "params": {
@@ -24,6 +24,41 @@
           }
         ],
         "operation": "minus"
+      }
+    },
+    "network": "1",
+    "addresses": [
+      "0x5C52cC7c96bDE8594e5B77D5b76d042CB5FaE5f2",
+      "0x4D19C0a5357bC48be0017095d3C871D9aFC3F21d",
+      "0xf59869753f41Db720127Ceb8DbB8afAF89030De4"
+    ],
+    "snapshot": 16847746
+  },
+  {
+    "name": "Example simple contract call plus",
+    "strategy": {
+      "name": "math",
+      "params": {
+        "symbol": "MATH",
+        "operands": [
+          {
+            "type": "strategy",
+            "strategy": {
+              "network": "1",
+              "name": "erc20-balance-of",
+              "params": {
+                "address": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+                "symbol": "USDT",
+                "decimals": 6
+              }
+            }
+          },
+          {
+            "type": "constant",
+            "value": 6
+          }
+        ],
+        "operation": "plus"
       }
     },
     "network": "1",
