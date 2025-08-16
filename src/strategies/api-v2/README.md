@@ -13,7 +13,7 @@ Voting strategy using a REST API endpoint. Number of votes depends on the return
 | `type` | `string` | Type of the API endpoint ( `api-get` or `api-post` or `ipfs` or `json` ) | `api-get` |
 | `additionalParams` | `string` | Additional parameters for the API endpoint (optional) | `` |
 
-If you are passing a IPFS url use following format:
+If you are passing an IPFS url use following format:
 
 ```JSON
 {
@@ -40,7 +40,7 @@ If you are passing a API url use following format: (all voter addresses will be 
 }
 ```
 
-If you are passing a API url with POST method use following format:
+If you are passing an API url with POST method use following format:
 
 ```JSON
 {
