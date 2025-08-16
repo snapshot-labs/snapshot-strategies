@@ -160,6 +160,7 @@ import * as glide from './glide';
 import * as rnbwBalance from './rnbw-balance';
 import * as celerSgnDelegation from './celer-sgn-delegation';
 import * as infinityProtocolPools from './infinityprotocol-liquidity-pools';
+import * as IntegralDAO from './integral-dao';
 import * as aaveGovernancePower from './aave-governance-power';
 import * as cake from './cake';
 import * as aks from './aks';
@@ -672,6 +673,7 @@ const strategies = {
   'rnbw-balance': rnbwBalance,
   'celer-sgn-delegation': celerSgnDelegation,
   'infinityprotocol-liquidity-pools': infinityProtocolPools,
+  'integral-dao': IntegralDAO,
   'aave-governance-power': aaveGovernancePower,
   cake,
   aks,
