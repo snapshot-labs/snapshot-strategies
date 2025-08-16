@@ -2,8 +2,7 @@ import { subgraphRequest } from '../../utils';
 import { getAddress } from '@ethersproject/address';
 
 const MY_SUBGRAPH_URL = {
-  '146':
-    'https://api.0xgraph.xyz/api/public/28820bd2-ad8b-4d40-a142-ce8d7c786f66/subgraphs/spookyswap/v3/v0.0.1/gn'
+  '146': 'https://api.0xgraph.xyz/api/public/28820bd2-ad8b-4d40-a142-ce8d7c786f66/subgraphs/spookyswap/v3/v0.0.1/gn'
 };
 
 export const author = '0xaaiden';
@@ -18,12 +17,12 @@ export async function strategy(
   snapshot
 ) {
   const poolIds = [
-    '0x686d873a9e0696afaca0bc163dcc95b577d9e3e8',
-    '0xf4dcfaa2711908a8c61d9516d84b24ffdae241db',
-    '0xb7228a39cdd2c734064fc95c54e75910ff06eed6',
-    '0x84d4716c1cf4d7b1b1c247ad69b62fa72ccc46d7',
-    '0xaa4ee51f55f9baa7cf180fbaf2688cc35fdc8012'
-  ];
+    "0x686d873a9e0696afaca0bc163dcc95b577d9e3e8",
+    "0xf4dcfaa2711908a8c61d9516d84b24ffdae241db",
+    "0xb7228a39cdd2c734064fc95c54e75910ff06eed6",
+    "0x84d4716c1cf4d7b1b1c247ad69b62fa72ccc46d7",
+    "0xaa4ee51f55f9baa7cf180fbaf2688cc35fdc8012"
+    ];
 
   const subgraphURL = MY_SUBGRAPH_URL[network];
   const score = {};
@@ -74,13 +73,13 @@ export async function strategy(
       mints.forEach((mint) => {
         const userAddress = getAddress(mint.origin);
         const amount = parseFloat(mint.amount);
-        score[userAddress] += amount;
+        score[userAddress] += amount/10**19;
       });
 
       burns.forEach((burn) => {
         const userAddress = getAddress(burn.origin);
         const amount = parseFloat(burn.amount);
-        score[userAddress] -= amount;
+        score[userAddress] -= amount/10**19;
       });
     }
   }
