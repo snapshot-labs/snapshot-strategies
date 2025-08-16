@@ -1,0 +1,11 @@
+{
+  "name": "xSGT NFT Voting Power Example",
+  "strategy": {
+    "name": "xsgt-nft-voting-power",
+    "params": {
+      "address": "0x1234567890123456789012345678901234567890",
+      "symbol": "xSGT",
+      "decimals": 0
+    }
+  }
+}
