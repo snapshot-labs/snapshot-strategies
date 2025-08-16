@@ -1,7 +1,7 @@
 # recusal-list
 
 This is strategy for disallowing certain address from voting due to conflict of interest or other reasons for recusal.
-You can pass any strategy as an optionnal parameter to combine the recusal with another one.
+You can pass any strategy as an optional parameter to combine the recusal with another one.
 
 Below is an example of parameters. The address list renotes which addresses to restrict. The strategy and its params defines the strategy to use if needed.
 
