@@ -1,4 +1,4 @@
-import { formatUnits, parseUnits } from '@ethersproject/units';
+import { formatUnits } from '@ethersproject/units';
 import { BigNumber } from '@ethersproject/bignumber';
 import { multicall } from '../../utils';
 import {
@@ -57,7 +57,7 @@ function calculateScore(
   safeStakingBalance: number,
   exponent: number
 ) {
-  const total =
+  const total: number =
     parseFloat(
       formatUnits(
         gnosisBalance.add(BigNumber.from(mainnetBalance.toString())),
@@ -110,6 +110,7 @@ export async function strategy(
     block.timestamp,
     options.fallbackGnosisBlock
   );
+  // console.info(`Gnosis subgraph block number ${subgraphBlock}`);
 
   // trim addresses to sub of "QUERY_LIMIT" addresses.
   const addressSubsets: string[][] = trimArray(addresses);
@@ -125,7 +126,7 @@ export async function strategy(
     // array of nodes per safe
     const safeNodes = new Map<string, string[]>();
     // array of all the nodes managed by the safes where its owner is a voter
-    const nodes: string[] = [];
+    let nodes: string[] = [];
     // Find the list of Safes (created by HoprStakeFactory contract) where the voting account is an owner,
     // as well as the total number of owners of each safe
     // construct URLs for safe stake subgraph
@@ -150,8 +151,7 @@ export async function strategy(
           stuidoDevSafeStakeSubgraphUrl,
           studioProdSafeStakeSubgraphUrl,
           subset,
-          subgraphBlock,
-          snapshot
+          subgraphBlock
         )
       )
     );
@@ -160,7 +160,7 @@ export async function strategy(
       resultSubset.forEach((safe) => {
         // 1. safe -> nodes
         safeNodes.set(safe.safeAddress, safe.nodes);
-        nodes.concat(safe.nodes);
+        nodes = nodes.concat(safe.nodes);
         if (safe.owners.length == 0) {
           // 2. safe -> factor
           safeFactor.set(safe.safeAddress, 0);
@@ -202,8 +202,7 @@ export async function strategy(
             stuidoDevChannelsSubgraphUrl,
             studioProdChannelsSubgraphUrl,
             subset,
-            subgraphBlock,
-            snapshot
+            subgraphBlock
           )
         )
       );
@@ -220,10 +219,7 @@ export async function strategy(
           safeStakeInChannel.set(key, BigNumber.from('0'));
         } else {
           const stakesInNodes = nodesManagedBySafe.reduce(
-            (acc, cur) =>
-              (acc = acc.add(
-                parseUnits(subgraphNodeStakeInChannels[cur] ?? '0', 18)
-              )),
+            (acc, cur) => (acc = acc.add(subgraphNodeStakeInChannels[cur])),
             BigNumber.from('0')
           );
           safeStakeInChannel.set(key, stakesInNodes);
@@ -261,8 +257,7 @@ export async function strategy(
           stuidoDevHoprOnGnosisSubgraphUrl,
           studioProdHoprOnGnosisSubgraphUrl,
           subset,
-          subgraphBlock,
-          snapshot
+          subgraphBlock
         )
       )
     );
@@ -274,11 +269,12 @@ export async function strategy(
 
   // sum of all the safes owned by the voting account
   // = sum{ factor * (safe's x/wxHOPR balance + wxHOPR tokens staked in the Channels) }
-  const summedStakePerSafe = addresses.map((address) => {
+  const summedStakePerSafe: number[] = addresses.map((address) => {
+    const lowercasedAddr = address.toLowerCase();
     // from the voting address, get all the safe addresses
-    const safes = ownerSafes.get(address) ?? [];
+    const safes = ownerSafes.get(lowercasedAddr) ?? [];
     if (safes.length == 0) {
-      return BigNumber.from('0');
+      return 0;
     } else {
       return safes.reduce((acc, curSafe) => {
         // factor * (x/wxHOPR token balance + safe stake in channels)
@@ -298,7 +294,7 @@ export async function strategy(
               formatUnits(curSafeTokenBalance.add(curSafeStakeInChannels), 18)
             )
         );
-      });
+      }, 0);
     }
   });
 
