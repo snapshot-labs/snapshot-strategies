@@ -263,6 +263,7 @@ import * as spacey2025 from './spacey2025';
 import * as spacefiBlp from './spacefi-blp';
 import * as sandmanDao from './sandman-dao';
 import * as veBalanceOfAt from './ve-balance-of-at';
+import * as veBalanceOfAtScaled from './ve-balance-of-at-scaled';
 import * as veRibbon from './ve-ribbon';
 import * as veRibbonVotingPower from './ve-ribbon-voting-power';
 import * as chubbykaijudao from './chubbykaijudao';
@@ -773,6 +774,7 @@ const strategies = {
   'spacefi-blp': spacefiBlp,
   'sandman-dao': sandmanDao,
   've-balance-of-at': veBalanceOfAt,
+  've-balance-of-at-scaled': veBalanceOfAtScaled,
   've-ribbon': veRibbon,
   've-ribbon-voting-power': veRibbonVotingPower,
   chubbykaijudao: chubbykaijudao,
